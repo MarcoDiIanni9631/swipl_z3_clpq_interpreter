@@ -1,4 +1,3 @@
-% turibe v15 + z3constr2lower integration
 :- use_module(library(clpq)).
 :- assert(file_search_path(z3lib, '/home/marco/Desktop/z3Swi/swi-prolog-z3')).
 :- use_module(z3lib(z3)).
@@ -11,6 +10,10 @@ is_qr_constr(Term) :-
     functor(Term, Op, 2),
     memberchk(Op, ['=','=:=','=<','<','>=','>']).
 
+is_z3_constr(Term) :-
+    compound(Term),
+    Term = ite(_, _, _).
+
 % ----------------------------
 % SECTION: Utilities
 % ----------------------------
@@ -22,23 +25,8 @@ conj_to_list(A, [A]).
 build_conjunct([C], C).
 build_conjunct([C|Rest], (C, R)) :- build_conjunct(Rest, R).
 
-var2z3pairs([],[]).
-var2z3pairs([X|Xs],[X-Y|Ys]) :- 
-  var2z3(X,Y),
-  var2z3pairs(Xs,Ys).
-
-var2z3(X,X1) :- 
-  term_to_atom(X, A), 
-  atomic_concat(x, A, X1).
-
-unifypairs([]).
-unifypairs([X-Y|Ys]) :- X=Y, unifypairs(Ys).
-
-z3constr2lower(C,P,C1) :-
-  term_variables(C,L), 
-  var2z3pairs(L,P), 
-  copy_term((C,P), (C1,P1)), 
-  unifypairs(P1).
+add_to_store(C, true, C).
+add_to_store(C, Store, (Store, C)).
 
 % ----------------------------
 % SECTION: Interpreter
@@ -49,8 +37,6 @@ zmi(Goal) :- zmi(Goal, 10).
 zmi(Goal, MaxSteps) :-
     InitialZ3 = true,
     InitialCLPQ = true,
-    writeln(Goal),
-    writeln('Ho appena stampato goal'),
     (   zmi_aux(Goal, InitialZ3, InitialCLPQ, MaxSteps, FinalZ3, FinalCLPQ),
         conj_to_list(FinalZ3, Z3List),
         conj_to_list(FinalCLPQ, CLPQList),
@@ -62,20 +48,8 @@ zmi(Goal, MaxSteps) :-
         clpq_sat_from_list(CLPQList), nl,
 
         writeln('--- Z3 Analysis ---'),
-        build_conjunct(Z3List, Z3Conj),
-        % % write('Ora stampo z3conj che poi faccio diventare z3ground'),
-        % % write(Z3Conj),nl,
-        % write('Ora stampo z3LIst che poi faccio diventare z3ground'),
-        % write(Z3List),nl,
-        % % Apply z3constr2lower
-        z3constr2lower(Z3Conj, Pairs, Z3Ground),
-
-        writeln('--- Z3 Variable Mapping ---'),
-        writeln(Pairs), nl,
-
-
         z3_reset,
-        z3_push(Z3Ground),
+        maplist(z3_push, Z3List),
         ( z3_check(Sat) ->
             writeln('Z3 says:'), writeln(Sat),
             ( Sat == l_true ->
@@ -99,8 +73,15 @@ zmi_aux(constr(C), Z3In, CLPQIn, _, Z3Out, CLPQOut) :-
     conj_to_list(C, List),
     include(is_qr_constr, List, CLPQList),
     Z3List = List,
-    build_conjunct(CLPQList, CLPQOut),
-    build_conjunct(Z3List, Z3Out).
+    % subtract(List, CLPQList, TempRest),
+    % subtract(TempRest, Z3List, NotHandled),
+
+    % ( CLPQList \= [] -> writeln('Added to CLPQ:'), writeln(CLPQList) ; true ),
+    % ( Z3List \= [] -> writeln('Sent only to Z3:'), writeln(Z3List) ; true ),
+    % ( NotHandled \= [] -> writeln('Unsupported constraints:'), writeln(NotHandled) ; true ),
+
+    foldl(add_to_store, CLPQList, CLPQIn, CLPQOut),
+    foldl(add_to_store, Z3List, Z3In, Z3Out).
 
 zmi_aux(Goal, Z3In, CLPQIn, Steps, Z3Out, CLPQOut) :-
     Steps > 0,
@@ -110,13 +91,15 @@ zmi_aux(Goal, Z3In, CLPQIn, Steps, Z3Out, CLPQOut) :-
     ->  writeln('Interpreting user-defined predicate:'), writeln(Goal),
         zmi_aux(Body, Z3In, CLPQIn, NewSteps, Z3Out, CLPQOut)
     ;   writeln('Generic constraint:'), writeln(Goal),
+        add_to_store(Goal, Z3In, Z3Out),
         ( is_qr_constr(Goal) ->
             writeln('Added to CLPQ:'), writeln(Goal),
-            build_conjunct([CLPQIn, Goal], CLPQOut),
-            build_conjunct([Z3In, Goal], Z3Out)
-        ;   writeln('Sent only to Z3:'), writeln(Goal),
-            CLPQOut = CLPQIn,
-            build_conjunct([Z3In, Goal], Z3Out)
+            add_to_store(Goal, CLPQIn, CLPQOut)
+        ; is_z3_constr(Goal) ->
+            writeln('Sent only to Z3:'), writeln(Goal),
+            CLPQOut = CLPQIn
+        ;   writeln('Unsupported constraint:'), writeln(Goal),
+            CLPQOut = CLPQIn
         )
     ).
 zmi_aux(_, _, _, 0, _, _) :-
@@ -127,15 +110,14 @@ zmi_aux(_, _, _, 0, _, _) :-
 % ----------------------------
 
 clpq_sat_from_list(List) :-
-    include(is_qr_constr, List, CLPQOnly),
-    (   CLPQOnly == [] ->
-        writeln('Skipped constraints:'), writeln(List)
-    ;   build_conjunct(CLPQOnly, Conj),
-        copy_term(Conj, Copy),
-        (   {Copy} -> writeln('CLPQ constraint result: true')
-        ;   writeln('CLPQ constraint result: false')
-        )
-    ).
+    exclude(==(true), List, NoTrue),
+    include(is_qr_constr, NoTrue, CLPQOnly),
+    build_conjunct(CLPQOnly, Conj),
+    copy_term(Conj, Copy),
+    (   {Copy} -> writeln('CLPQ constraint result: true')
+    ;   writeln('CLPQ constraint result: false')
+    ),
+    ( CLPQOnly = [] -> writeln('Skipped constraints:'), writeln(List) ; true ).
 
 % ----------------------------
 % SECTION: Test Cases

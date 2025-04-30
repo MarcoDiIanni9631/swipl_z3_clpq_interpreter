@@ -1,4 +1,3 @@
-% turibe v15 + z3constr2lower integration
 :- use_module(library(clpq)).
 :- assert(file_search_path(z3lib, '/home/marco/Desktop/z3Swi/swi-prolog-z3')).
 :- use_module(z3lib(z3)).
@@ -7,7 +6,7 @@
 % SECTION: Constraint Checkers
 % ----------------------------
 
-is_qr_constr(Term) :-  
+is_qr_constr(Term) :-
     functor(Term, Op, 2),
     memberchk(Op, ['=','=:=','=<','<','>=','>']).
 
@@ -22,23 +21,43 @@ conj_to_list(A, [A]).
 build_conjunct([C], C).
 build_conjunct([C|Rest], (C, R)) :- build_conjunct(Rest, R).
 
-var2z3pairs([],[]).
-var2z3pairs([X|Xs],[X-Y|Ys]) :- 
-  var2z3(X,Y),
-  var2z3pairs(Xs,Ys).
+var2z3pairs([], []).
+var2z3pairs([X|Xs], [X-Y|Ys]) :-
+    var2z3(X, Y),
+    var2z3pairs(Xs, Ys).
 
-var2z3(X,X1) :- 
-  term_to_atom(X, A), 
-  atomic_concat(x, A, X1).
+var2z3(X, X1) :-
+    term_to_atom(X, A),
+    atomic_concat(x, A, X1).
 
 unifypairs([]).
 unifypairs([X-Y|Ys]) :- X=Y, unifypairs(Ys).
 
-z3constr2lower(C,P,C1) :-
-  term_variables(C,L), 
-  var2z3pairs(L,P), 
-  copy_term((C,P), (C1,P1)), 
-  unifypairs(P1).
+z3constr2lower(C, P, C1) :-
+    term_variables(C, L),
+    var2z3pairs(L, P),
+    copy_term((C,P), (C1,P1)),
+    unifypairs(P1).
+
+% ----------------------------
+% SECTION: sostituisci_costanti 
+% ----------------------------
+
+sostituisci_costanti(T, Assoc, T1) :-
+    ( atomic(T) ->
+        ( member(Var-T, Assoc) ->
+            T1 = Var
+        ;   T1 = T
+        )
+    ; compound(T) ->
+
+       ( T =.. [F|Args],
+        maplist(sostituisci_costanti_(Assoc), Args, Args1),
+        T1 =.. [F|Args1])
+    ; T1 = T ).
+
+sostituisci_costanti_(Assoc, Arg, Arg1) :-
+    sostituisci_costanti(Arg, Assoc, Arg1).
 
 % ----------------------------
 % SECTION: Interpreter
@@ -63,24 +82,30 @@ zmi(Goal, MaxSteps) :-
 
         writeln('--- Z3 Analysis ---'),
         build_conjunct(Z3List, Z3Conj),
-        % % write('Ora stampo z3conj che poi faccio diventare z3ground'),
-        % % write(Z3Conj),nl,
-        % write('Ora stampo z3LIst che poi faccio diventare z3ground'),
-        % write(Z3List),nl,
-        % % Apply z3constr2lower
         z3constr2lower(Z3Conj, Pairs, Z3Ground),
+
+
+        % writeln(Pairs),
+        % writeln('Ho appena stampato pairs!!'),
 
         writeln('--- Z3 Variable Mapping ---'),
         writeln(Pairs), nl,
 
 
+
         z3_reset,
-        z3_push(Z3Ground),
+         
+       z3_push(Z3Ground),
         ( z3_check(Sat) ->
             writeln('Z3 says:'), writeln(Sat),
             ( Sat == l_true ->
-                z3_model(Model),
-                write('Model: '), writeln(Model), nl
+                (z3_model(Model),
+                write('Model: '), writeln(Model), nl,
+                sostituisci_costanti(Model, Pairs, T1),
+                writeln(T1)
+                )
+
+                
             ; Sat == l_false ->
                 writeln('Z3 says: UNSAT')
             ;   writeln('Z3 says: UNKNOWN or ERROR')
