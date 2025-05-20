@@ -52,6 +52,10 @@ zmi(Goal, MaxSteps) :-
         ( CLPQPure == [] -> writeln('No CLPQ constraints to check.')
         ; build_conjunct(CLPQPure, C), copy_term(C, Copy), ( {Copy} -> writeln('CLPQ result: true') ; writeln('CLPQ result: false') )
         ),
+
+          writeln(Z3Expr),
+    writeln("Ho appena stampato sopra z3expr di vidal"),
+   
         normalize_and_expr(FinalZ3, NormalizedZ3),
         conj_to_list(NormalizedZ3, Z3List),
         exclude(==(true), Z3List, Z3Filtered),
