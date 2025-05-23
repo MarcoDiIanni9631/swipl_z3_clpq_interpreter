@@ -1,8 +1,17 @@
 :- use_module(library(clpq)).
-:- assert(file_search_path(z3lib, '/home/marco/Desktop/z3Swi/swi-prolog-z3')).
-:- use_module(solver_turibe).
-:- use_module(z3lib(z3)).
 :- use_module(solver_clpq).
+
+%Solver Turibe module
+
+% :- assert(file_search_path(z3lib, '/home/marco/Desktop/z3Swi/swi-prolog-z3')).
+% :- use_module(solver_turibe).
+% :- use_module(z3lib(z3)).
+
+%Solver Vidal module
+
+:- assert(file_search_path(z3lib, '/home/marco/Desktop/SWIPrologZ3')).
+:- use_module(z3lib(swiplz3)).
+:- use_module(solver_vidal).
 
 % ----------------------------
 % DEFINIZIONE OPERATORI PERSONALIZZATI
@@ -85,19 +94,20 @@ zmi(Goal, MaxSteps) :-
     InitialZ3 = true,
     InitialCLPQ = true,
     (   zmi_aux(Goal, InitialZ3, InitialCLPQ, MaxSteps, FinalZ3, FinalCLPQ, Tree),
-        nl, writeln('--- Final Print, CLPQ and Z3---'),
+        % nl, writeln('--- Final Print, CLPQ and Z3---'),
         nl, writeln('--- Derivation Tree ---'),
-        print_tree(Tree),
+        print_tree(Tree)
+        %,
 
-        normalize_and_expr(FinalCLPQ, NormalizedCLPQ),
-        conj_to_list(NormalizedCLPQ, CLPQList),
-        nl, writeln('--- CLPQ Constraints ---'),
-        writeln(CLPQList), nl,
-        writeln('--- CLPQ Satisfiability ---'),
-        clpq_sat_from_list(CLPQList), nl,
+        % normalize_and_expr(FinalCLPQ, NormalizedCLPQ),
+        % conj_to_list(NormalizedCLPQ, CLPQList),
+        % nl, writeln('--- CLPQ Constraints ---'),
+        % writeln(CLPQList), nl,
+        % writeln('--- CLPQ Satisfiability ---'),
+        % clpq_sat_from_list(CLPQList), nl,
 
-        analyze_with_z3(FinalZ3)
-    ; writeln("Interpreter finished with no result.")
+        % analyze_with_z3(FinalZ3)
+ %   ; writeln("Interpreter finished with no result.")
     ).
 
 zmi_aux(true, Z3, CLPQ, _, Z3, CLPQ, true).
@@ -113,12 +123,17 @@ zmi_aux(constr(C), Z3In, CLPQIn, _, Z3Out, CLPQOut, constr(Normalized)) :-
     build_conjunct([CLPQIn | FilteredCLPQ], CLPQOut),
     build_conjunct([Z3In, Normalized], Z3Out),
 
-    nl, writeln('Stampo filtered clpq'), writeln(FilteredCLPQ),
+   % nl, writeln('Stampo filtered clpq'), writeln(FilteredCLPQ),
     nl, writeln('--- Immediate CLPQ Check ---'),
     clpq_sat_from_list(FilteredCLPQ),
 
-    nl, writeln('--- Immediate Z3 Check ---'),
-    analyze_with_z3(Normalized).
+    nl, writeln('--- Immediate Z3 Vidal Check ---'),
+    analyze_with_z3(Z3Out,Res),
+    ( Res == unsat ->
+    writeln('Vincolo insoddisfacibile. Interrompo.'),
+    !, fail
+; true )
+.
 
 zmi_aux(Goal, Z3In, CLPQIn, Steps, Z3Out, CLPQOut, SubTree => Goal) :-
     Steps > 0,
@@ -180,3 +195,24 @@ run_all_tests :-
     nl, writeln(">> Test: example_eq_true"), zmi(example_eq_true),
     nl, writeln(">> Test: example_eq_true2"), zmi(example_eq_true2),
     nl, writeln(">> Test: example_eq_false"), zmi(example_eq_false).
+
+
+%Test Vidal
+
+example_simple(X) :-
+constr(X > 5).
+
+example_and(X, Y) :-
+    constr((X > 0, Y < 1)).
+
+example_and_unsat(X) :-
+    constr((X > 0, X < 0)).
+
+example_and_or(X, Y) :-
+    constr(and(X > 0, or(Y = 3, Y = 5))).
+
+sumlistZ([], X):- constr(X=0).
+
+sumlistZ([H|T], R) :-
+    sumlistZ(T, R1),
+    constr(R = R1 + H).

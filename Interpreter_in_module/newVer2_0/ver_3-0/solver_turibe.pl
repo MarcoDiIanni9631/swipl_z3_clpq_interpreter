@@ -4,7 +4,7 @@
     var2z3pairs/2,
     var2z3/2,
     unifypairs/1,
-    analyze_with_z3/1
+    analyze_with_z3/2
 ]).
 
 :- use_module(z3lib(z3)).
@@ -51,14 +51,35 @@ sostituisci_costanti_(Assoc, Arg, Arg1) :-
 % Analisi completa tramite Z3
 % ----------------------------
 
-analyze_with_z3(Formula) :-
+analyze_with_z3(Formula,Result) :-
     z3constr2lower(Formula, Pairs, Z3Ground),
     nl, writeln('--- Z3 Analysis ---'),
     writeln('Z3 Variable Mapping:'), writeln(Pairs),
     writeln('Z3 Ground Constraints:'), writeln(Z3Ground),
 
+
+            writeln('Sono entrato nella analysis di turibe prima del reset'),
+
     z3_reset,
     z3_push(Z3Ground),
+                writeln('Stampo adesso i vincoli che sto per analizzare con turibe'),
+
+    writeln(Z3Ground),
+                writeln('Ho appena stampato i vincoli'),
+
+  %  nl,nl,nl,
+  %  writeln(Z3Ground),
+   % nl,nl,nl,
+
+%     ( z3_push(Z3Ground) ->
+%     writeln('Sono entrato nella analysis di turibe post  reset, z3 push andato a buon fine')
+% ;
+%     Result = push_failed,
+%     !
+% ),
+
+    %  writeln('Sono entrato nella analysis di turibe post  reset'),
+
     ( z3_check(Sat) ->
         writeln('Z3 says:'), writeln(Sat),
         ( Sat == l_true ->
@@ -66,8 +87,13 @@ analyze_with_z3(Formula) :-
             write('Model: '), writeln(Model), nl,
             sostituisci_costanti(Model, Pairs, ModelReadable),
             writeln('Model Assocs (original vars):'), writeln(ModelReadable)
-        ; Sat == l_false ->
-            writeln('Z3 says: UNSAT')
+        ; 
+        
+        writeln('Sono entrato nella condizione unsat'),
+        Sat == l_false ->
+            writeln('Z3 says: UNSAT'),
+            Result = unsat
+
         ; writeln('Z3 says: UNKNOWN or ERROR')
         )
     ; writeln('Z3 check failed.')
