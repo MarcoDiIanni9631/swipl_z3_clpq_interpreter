@@ -18,44 +18,52 @@ normalize_and_expr(and(A, B), Norm) :-
     normalize_and_expr(A, NA),
     normalize_and_expr(B, NB),
     build_conjunct([NA, NB], Norm).
-
 normalize_and_expr((A , B), Norm) :-
     normalize_and_expr(A, NA),
     normalize_and_expr(B, NB),
     build_conjunct([NA, NB], Norm).
-
 normalize_and_expr(X, X).
 
 % ----------------------------
-% Vincoli validi per Z3
+% Flatten ricorsivo completo
 % ----------------------------
-
-is_valid_z3_constraint(Term) :-
-    Term =.. [Op, _, _],
-    member(Op, ['=', '=:=', '=<', '<', '>=', '>']).
+fully_flatten_conj(true, []) :- !.
+fully_flatten_conj((A, B), FlatList) :- !,
+    fully_flatten_conj(A, FlatA),
+    fully_flatten_conj(B, FlatB),
+    append(FlatA, FlatB, FlatList).
+fully_flatten_conj(and(A, B), FlatList) :- !,
+    fully_flatten_conj(A, FlatA),
+    fully_flatten_conj(B, FlatB),
+    append(FlatA, FlatB, FlatList).
+fully_flatten_conj(Other, [Other]).
 
 % ----------------------------
 % SOLO CHECK DI SODDISFACIBILITÀ (Z3)
 % ----------------------------
-
 z3_sat_check(Formula, Result) :-
+    writeln('Arrivo qui'),
     z3_mk_config,
     z3_set_param_value("model", "true"),
     z3_mk_context(Context),
     z3_mk_solver(Context),
     z3_push(Context),
 
+    writeln('Prima del normalize:'), writeln(Formula),
     normalize_and_expr(Formula, Normalized),
-    conj_to_list(Normalized, Constraints),
-    exclude(==(true), Constraints, TmpFiltered),
-    include(is_valid_z3_constraint, TmpFiltered, Filtered),
+    fully_flatten_conj(Normalized, FlatList),
+    exclude(==(true), FlatList, Filtered),
+
 
     writeln('--- Z3 Immediate SAT Check ---'),
     writeln('Filtered Constraints:'), writeln(Filtered),
 
     z3_intconstr2smtlib(Context, [], Filtered, Vars, SMTLIBStr),
+    writeln('--- SMTLIB string ---'), writeln(SMTLIBStr),
     ( Vars = [] -> true ; z3_mk_int_vars(Context, Vars) ),
-    z3_assert_string(Context, SMTLIBStr),
+    catch(z3_assert_string(Context, SMTLIBStr),
+          Error,
+          (writeln('Z3 assertion failed!'), writeln(Error), Result = error, fail)),
 
     ( z3_check(Context) ->
         Result = sat
@@ -69,7 +77,6 @@ z3_sat_check(Formula, Result) :-
 % ----------------------------
 % STAMPA MODELLO COMPLETO FINALE (Z3)
 % ----------------------------
-
 z3_print_model_final(Formula) :-
     z3_mk_config,
     z3_set_param_value("model", "true"),
@@ -78,16 +85,18 @@ z3_print_model_final(Formula) :-
     z3_push(Context),
 
     normalize_and_expr(Formula, Normalized),
-    conj_to_list(Normalized, Constraints),
-    exclude(==(true), Constraints, TmpFiltered),
-    include(is_valid_z3_constraint, TmpFiltered, Filtered),
+    fully_flatten_conj(Normalized, FlatList),
+    exclude(==(true), FlatList, Filtered),
 
     writeln('--- Z3 Final Model ---'),
     writeln('Filtered Constraints:'), writeln(Filtered),
 
     z3_intconstr2smtlib(Context, [], Filtered, Vars, SMTLIBStr),
+    writeln('--- SMTLIB string ---'), writeln(SMTLIBStr),
     ( Vars = [] -> true ; z3_mk_int_vars(Context, Vars) ),
-    z3_assert_string(Context, SMTLIBStr),
+    catch(z3_assert_string(Context, SMTLIBStr),
+          Error,
+          (writeln('Z3 assertion failed!'), writeln(Error), fail)),
 
     ( z3_check(Context) ->
         writeln('Z3 SAT Result:'),

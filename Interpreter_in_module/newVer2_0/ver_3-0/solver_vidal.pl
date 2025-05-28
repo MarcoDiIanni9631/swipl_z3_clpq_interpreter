@@ -27,6 +27,7 @@ is_decl_var_constr(C) :-
 % ----------------------------
 
 analyze_with_z3(Formula,Result) :-
+    writeln('Arrivo qui'),
     z3_mk_config,
     z3_set_param_value("model", "true"),
     z3_mk_context(Context),

@@ -1,18 +1,28 @@
 :- use_module(library(clpq)).
 :- use_module(solver_clpq).
 
-%Solver Turibe module
-:- assert(file_search_path(z3lib, '/home/marco/Desktop/z3Swi/swi-prolog-z3')).
-:- use_module(solver_turibe).
-:- use_module(z3lib(z3)).
+% %Solver Turibe module
+% :- assert(file_search_path(z3lib, '/home/marco/Desktop/z3Swi/swi-prolog-z3')).
+% :- use_module(solver_turibe).
+% :- use_module(z3lib(z3)).
+
+%Solver Vidal module
+
+:- assert(file_search_path(z3lib, '/home/marco/Desktop/SWIPrologZ3')).
+:- use_module(z3lib(swiplz3)).
+:- use_module(solver_vidal).
 
 % ----------------------------
 % DEFINIZIONE OPERATORI PERSONALIZZATI
 % ----------------------------
 
-:- op(1000, yfx, &).  % and
-:- op(900, fy, ~).    % not
+% :- op(1000, yfx, &).  % and
+% :- op(900, fy, ~).    % not
 
+:- op(1000, yfx, &).   % and
+:- op(1000, yfx, v).   % or VeriMAP-style
+:- op(1000, yfx, or).  % or alternative
+:- op(900,  fy, ~).    % not
 % ----------------------------
 % Constraint Checkers
 % ----------------------------
@@ -35,6 +45,18 @@ build_conjunct([C|Rest], (C, R)) :- build_conjunct(Rest, R).
 % ----------------------------
 % Boolean normalization (completa e unificata)
 % ----------------------------
+
+normalize_bool_expr(A v B, or(NA, NB)) :-
+    !, normalize_bool_expr(A, NA),
+       normalize_bool_expr(B, NB).
+
+% normalize_bool_expr(A or B, or(NA, NB)) :-
+%     !, normalize_bool_expr(A, NA),
+%        normalize_bool_expr(B, NB).
+
+normalize_bool_expr(or(A, B), or(NA, NB)) :-
+    !, normalize_bool_expr(A, NA),
+       normalize_bool_expr(B, NB).
 
 normalize_bool_expr((A , B), Norm) :-
 	!,
@@ -85,12 +107,12 @@ normalize_bool_expr(A, A).
 % Interprete zmi
 % ----------------------------
 
-zmi(Goal) :- zmi(Goal, 10).
+zmi(Head) :- zmi(Head, 100000).
 
-zmi(Goal, MaxSteps) :-
+zmi(Head, MaxSteps) :-
 	InitialZ3 = true,
 	InitialCLPQ = true,
-	(zmi_aux(Goal, InitialZ3, InitialCLPQ, MaxSteps, FinalZ3, FinalCLPQ, Tree),
+	(zmi_aux(Head, InitialZ3, InitialCLPQ, MaxSteps, FinalZ3, FinalCLPQ, Tree),
 		nl, writeln('--- Derivation Tree ---'),
 		print_tree(Tree),
 		nl, writeln('--- CLPQ Constraints ---'),
@@ -122,21 +144,22 @@ zmi_aux(constr(C), Z3In, CLPQIn, _, Z3Out, CLPQOut, constr(Normalized)) :-
 		writeln('Z3 result: SAT'), true
 	; writeln('Z3 result: UNKNOWN or push_failed'), true ).
 
-zmi_aux(Goal, Z3In, CLPQIn, Steps, Z3Out, CLPQOut, SubTree => Goal) :-
+zmi_aux(Head, Z3In, CLPQIn, Steps, Z3Out, CLPQOut, SubTree => Head) :-
 	Steps > 0,
-	Goal \= true,
-	Goal \= (_, _),
-	Goal \= constr(_),
+	Head \= true,
+	Head \= (_, _),
+	Head \= constr(_),
 	NewSteps is Steps - 1,
-	(clause(Goal, Body) ->
+	(clause(Head, Body) ->
 		zmi_aux(Body, Z3In, CLPQIn, NewSteps, Z3Out, CLPQOut, SubTree)
-	; is_qr_constr(Goal) ->
-		build_conjunct([CLPQIn, Goal], CLPQOut),
-		build_conjunct([Z3In, Goal], Z3Out),
-		SubTree = constr(Goal)
-	; CLPQOut = CLPQIn,
-		build_conjunct([Z3In, Goal], Z3Out),
-		SubTree = Goal).
+	; is_qr_constr(Head) -> (
+		build_conjunct([CLPQIn, Head], CLPQOut),
+		build_conjunct([Z3In, Head], Z3Out),
+		SubTree = constr(Head))
+	; (CLPQOut = CLPQIn,
+		build_conjunct([Z3In, Head], Z3Out),
+		SubTree = Head)).
+		
 
 zmi_aux(_, _, _, 0, _, _, _) :-
 	writeln('Step limit reached.'), fail.
@@ -149,8 +172,8 @@ print_tree(Tree) :- print_tree(Tree, 0).
 print_tree(true, Indent) :- tab(Indent), writeln('true').
 print_tree(constr(C), Indent) :- tab(Indent), format('constr(~w)~n', [C]).
 print_tree((A, B), Indent) :- print_tree(A, Indent), print_tree(B, Indent).
-print_tree(SubTree => Goal, Indent) :-
-	Goal =.. [F | Args],
+print_tree(SubTree => Head, Indent) :-
+	Head =.. [F | Args],
 	tab(Indent), format('~w(~w)~n', [F, Args]),
 	NewIndent is Indent + 2,
 	print_tree(SubTree, NewIndent).
@@ -188,3 +211,24 @@ example_simple(X) :- constr(X > 5).
 example_and(X, Y) :- constr((X > 0, Y < 1)).
 example_and_unsat(X) :- constr((X > 0, X < 0)).
 example_and_or(X, Y) :- constr(and(X > 0, or(Y = 3, Y = 5))).
+
+
+% Predicato ausiliario: raddoppia un numero
+double(X, Y) :- constr(Y = 2 * X).
+
+% Caso base: la somma della lista vuota è 0
+double_sum([], R) :- constr(R = 0).
+
+% Caso ricorsivo: raddoppia H, somma ricorsiva su T, poi somma i risultati
+double_sum([H | T], R) :-
+    double(H, DH),               % chiamata al terzo predicato
+    double_sum(T, RT),
+    constr(R = DH + RT).
+
+% Esempio di test
+example_double_sum(R) :- double_sum([1, 2], R).
+
+example_or_verimap :- constr((X = 1 v X = 2)).
+example_or_alt :- constr((Y = 10 or Y = 20)).
+
+example_or_mixed :- constr(((X > 0 & Y < 3) v (X < 0 & Y > 10))).

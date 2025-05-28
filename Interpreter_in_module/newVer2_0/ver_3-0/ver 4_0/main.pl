@@ -85,7 +85,7 @@ normalize_bool_expr(A, A).
 % Interprete zmi
 % ----------------------------
 
-zmi(Goal) :- zmi(Goal, 10).
+zmi(Goal) :- zmi(Goal, 10000).
 
 zmi(Goal, MaxSteps) :-
 	InitialZ3 = true,
