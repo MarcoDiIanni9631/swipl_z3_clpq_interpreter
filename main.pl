@@ -3,33 +3,27 @@
 :- use_module(library(clpq)).
 :- use_module(solver_clpq).
 
-% %Solver Turibe module
-% :- assert(file_search_path(z3lib, '/home/marco/Desktop/z3Swi/swi-prolog-z3')).
-% :- use_module(solver_turibe).
-% :- use_module(z3lib(z3)).
+%Solver Turibe module
+:- assert(file_search_path(z3lib, '/home/marco/Desktop/z3Swi/swi-prolog-z3')).
+:- use_module(solver_turibe).
+:- use_module(z3lib(z3)).
 
-%Solver Vidal module
+% %Solver Vidal module
 
-:- assert(file_search_path(z3lib, '/home/marco/Desktop/SWIPrologZ3')).
-:- use_module(z3lib(swiplz3)).
-:- use_module(solver_vidal).
+% :- assert(file_search_path(z3lib, '/home/marco/Desktop/SWIPrologZ3')).
+% :- use_module(z3lib(swiplz3)).
+% :- use_module(solver_vidal).
 
 
 %Utilities per rimuovere sporcizia 
-
-
-load_clean(File) :-
-    open(File, read, Stream),
-    load_clean_lines(Stream),
-    close(Stream).
-
 load_clean_lines(Stream) :-
-    read_line_to_string(Stream, Line),
-    ( Line == end_of_file ->
+    read_full_term(Stream, FullTermString),
+    ( FullTermString == end_of_file ->
         true
-    ; should_skip_line(Line) ->
+    ; should_skip_line(FullTermString) ->
+        writeln(skipping(FullTermString)),
         load_clean_lines(Stream)
-    ; open_string(Line, LineStream),
+    ; open_string(FullTermString, LineStream),
       catch(
           read_term(LineStream, Term, [syntax_errors(dec10)]),
           _Err,
@@ -37,21 +31,46 @@ load_clean_lines(Stream) :-
       ),
       close(LineStream),
       ( Term == fail ->
+            writeln('Errore di parsing!'),
             load_clean_lines(Stream)
       ; assertz(Term),
         load_clean_lines(Stream)
       )
     ).
 
-% Skippa le righe che iniziano con :- pred, :- mode, ecc.
+load_clean(File) :-
+    open(File, read, Stream),
+    load_clean_lines(Stream),
+    close(Stream).
+
+read_full_term(Stream, Full) :-
+    read_line_to_string(Stream, Line),
+    ( Line == end_of_file ->
+        Full = end_of_file
+    ; read_full_term(Stream, Line, Full)
+    ).
+
+read_full_term(Stream, Acc, Full) :-
+    ( sub_string(Acc, _, 1, 0, ".") ->
+        Full = Acc
+    ; read_line_to_string(Stream, Next),
+      ( Next == end_of_file ->
+          Full = Acc  % termina anche se manca il punto
+      ; string_concat(Acc, "\n", Temp),
+        string_concat(Temp, Next, NewAcc),
+        read_full_term(Stream, NewAcc, Full)
+      )
+    ).
+
 should_skip_line(Line) :-
-    string_codes(Line, Codes),
-    phrase((
-        ":-", blanks,
-        ( "pred" ; "mode" ; "query" ; "ignore" )
-    ), Codes, _).
-
-
+    string_lower(Line, Lower),
+    (
+        sub_string(Lower, _, _, _, ":- pred");
+        sub_string(Lower, _, _, _, ":- mode");
+        sub_string(Lower, _, _, _, ":- query");
+        sub_string(Lower, _, _, _, ":- ignore")
+    ),
+    writeln(skipping(Line)).
 
 % ----------------------------
 % DEFINIZIONE OPERATORI PERSONALIZZATI
