@@ -3,16 +3,16 @@
 :- use_module(library(clpq)).
 :- use_module(solver_clpq).
 
-%Solver Turibe module
-:- assert(file_search_path(z3lib, '/home/marco/Desktop/z3Swi/swi-prolog-z3')).
-:- use_module(solver_turibe).
-:- use_module(z3lib(z3)).
+% %Solver Turibe module
+% :- assert(file_search_path(z3lib, '/home/marco/Desktop/z3Swi/swi-prolog-z3')).
+% :- use_module(solver_turibe).
+% :- use_module(z3lib(z3)).
 
-% %Solver Vidal module
+%Solver Vidal module
 
-% :- assert(file_search_path(z3lib, '/home/marco/Desktop/SWIPrologZ3')).
-% :- use_module(z3lib(swiplz3)).
-% :- use_module(solver_vidal).
+:- assert(file_search_path(z3lib, '/home/marco/Desktop/SWIPrologZ3')).
+:- use_module(z3lib(swiplz3)).
+:- use_module(solver_vidal).
 
 
 %Utilities per rimuovere sporcizia 
