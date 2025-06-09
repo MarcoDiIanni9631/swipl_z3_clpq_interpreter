@@ -28,6 +28,22 @@ z3constr2lower(C, P, C1) :-
     unifypairs(P1).
 
 % ----------------------------
+% Normalizzazione formula per Z3
+% ----------------------------
+
+normalize_z3_formula((true, Rest), Norm) :- !, normalize_z3_formula(Rest, Norm).
+normalize_z3_formula((Rest, true), Norm) :- !, normalize_z3_formula(Rest, Norm).
+normalize_z3_formula((A, B), Norm) :-
+    !, normalize_z3_formula(and(A, B), Norm).
+normalize_z3_formula(and(true, A), Norm) :- !, normalize_z3_formula(A, Norm).
+normalize_z3_formula(and(A, true), Norm) :- !, normalize_z3_formula(A, Norm).
+normalize_z3_formula(and(A, B), and(NA, NB)) :-
+    !, normalize_z3_formula(A, NA),
+       normalize_z3_formula(B, NB).
+normalize_z3_formula(true, true) :- !.
+normalize_z3_formula(F, F).
+
+% ----------------------------
 % Sostituzione delle costanti nel modello
 % ----------------------------
 
@@ -48,7 +64,9 @@ sostituisci_costanti_(Assoc, Arg, Arg1) :-
 % ----------------------------
 
 z3_sat_check(Formula, Result) :-
-    z3constr2lower(Formula, _, Z3Ground),
+    z3constr2lower(Formula, _, RawGround),
+    normalize_z3_formula(RawGround, Z3Ground),
+    writeln('--- Formula da pushare su Z3 ---'), writeln(Z3Ground),
     z3_reset,
     ( z3_push(Z3Ground) ->
         z3_check(Sat),
@@ -57,7 +75,7 @@ z3_sat_check(Formula, Result) :-
         ; Sat == l_false ->
             Result = unsat
         ; Result = unknown )
-    ; Result = push_failed
+    ; writeln('Z3 PUSH FAILED! Impossibile asserire la formula:'), writeln(Z3Ground), Result = unsat
     ).
 
 % ----------------------------
@@ -65,7 +83,9 @@ z3_sat_check(Formula, Result) :-
 % ----------------------------
 
 z3_print_model_final(Formula) :-
-    z3constr2lower(Formula, Pairs, Z3Ground),
+    z3constr2lower(Formula, Pairs, RawGround),
+    normalize_z3_formula(RawGround, Z3Ground),
+    writeln('--- Formula da pushare su Z3 ---'), writeln(Z3Ground),
     z3_reset,
     ( z3_push(Z3Ground) ->
         z3_check(Sat),
@@ -79,5 +99,5 @@ z3_print_model_final(Formula) :-
             writeln('Z3 says: UNSAT')
         ; writeln('Z3 says: UNKNOWN or ERROR')
         )
-    ; writeln('Z3 push failed. Cannot analyze constraints.')
+    ; writeln('Z3 push failed. Cannot analyze constraints.'), writeln(Z3Ground)
     ).

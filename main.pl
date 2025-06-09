@@ -1,18 +1,20 @@
 :- use_module(library(dcg/basics)).
-
 :- use_module(library(clpq)).
 :- use_module(solver_clpq).
 
-% %Solver Turibe module
-% :- assert(file_search_path(z3lib, '/home/marco/Desktop/z3Swi/swi-prolog-z3')).
-% :- use_module(solver_turibe).
-% :- use_module(z3lib(z3)).
+% ----------------------------
+% Solver Selection (Turibe o Vidal)
+% ----------------------------
 
-%Solver Vidal module
+set_solver(turibe) :-
+    assert(file_search_path(z3lib, '/home/marco/Desktop/z3Swi/swi-prolog-z3')),
+    use_module(solver_turibe),
+    use_module(z3lib(z3)).
 
-:- assert(file_search_path(z3lib, '/home/marco/Desktop/SWIPrologZ3')).
-:- use_module(z3lib(swiplz3)).
-:- use_module(solver_vidal).
+set_solver(vidal) :-
+    assert(file_search_path(z3lib, '/home/marco/Desktop/SWIPrologZ3')),
+    use_module(z3lib(swiplz3)),
+    use_module(solver_vidal).
 
 
 %Utilities per rimuovere sporcizia 
@@ -76,13 +78,11 @@ should_skip_line(Line) :-
 % DEFINIZIONE OPERATORI PERSONALIZZATI
 % ----------------------------
 
-% :- op(1000, yfx, &).  % and
-% :- op(900, fy, ~).    % not
-
 :- op(1000, yfx, &).   % and
 :- op(1000, yfx, v).   % or VeriMAP-style
 :- op(1000, yfx, or).  % or alternative
 :- op(900,  fy, ~).    % not
+
 % ----------------------------
 % Constraint Checkers
 % ----------------------------
@@ -109,10 +109,6 @@ build_conjunct([C|Rest], (C, R)) :- build_conjunct(Rest, R).
 normalize_bool_expr(A v B, or(NA, NB)) :-
     !, normalize_bool_expr(A, NA),
        normalize_bool_expr(B, NB).
-
-% normalize_bool_expr(A or B, or(NA, NB)) :-
-%     !, normalize_bool_expr(A, NA),
-%        normalize_bool_expr(B, NB).
 
 normalize_bool_expr(or(A, B), or(NA, NB)) :-
     !, normalize_bool_expr(A, NA),
@@ -186,7 +182,6 @@ zmi(Head, MaxSteps) :-
 	nl, writeln('--- FINAL MODEL (Z3) ---'),
 	z3_print_model_final(FinalZ3).
 
-
 zmi_aux(true, Z3, CLPQ, _, Z3, CLPQ, true).
 zmi_aux((A, B), Z3In, CLPQIn, Steps, Z3Out, CLPQOut, (TreeA, TreeB)) :-
 	zmi_aux(A, Z3In, CLPQIn, Steps, TempZ3, TempCLPQ, TreeA),
@@ -201,16 +196,12 @@ zmi_aux(constr(C), Z3In, CLPQIn, _, Z3Out, CLPQOut, constr(Normalized)) :-
 	nl, writeln('--- Immediate CLPQ Check ---'),
 	clpq_sat_from_list(FilteredCLPQ),
 	nl, writeln('--- Immediate Z3 Check ---'),
-z3_sat_check(Z3Out, Res),
-( Res == unsat ->
-  (  writeln('Z3 result: UNSAT'),
-    writeln('Vincolo insoddisfacibile. Interrompo.'),
-    throw(z3_unsat))
-; Res == sat ->
-    writeln('Z3 result: SAT')
-; writeln('Z3 result: UNKNOWN or push_failed')
-).
-
+	z3_sat_check(Z3Out, Res),
+	( Res == unsat ->
+	  (  writeln('Z3 result: UNSAT'), writeln('Vincolo insoddisfacibile. Interrompo.'), throw(z3_unsat))
+	; Res == sat -> writeln('Z3 result: SAT')
+	; writeln('Z3 result: UNKNOWN or push_failed')
+	).
 
 zmi_aux(Head, Z3In, CLPQIn, Steps, Z3Out, CLPQOut, SubTree => Head) :-
 	Steps > 0,
@@ -220,8 +211,6 @@ zmi_aux(Head, Z3In, CLPQIn, Steps, Z3Out, CLPQOut, SubTree => Head) :-
 	NewSteps is Steps - 1,
     clause(Head, Body),
     zmi_aux(Body, Z3In, CLPQIn, NewSteps, Z3Out, CLPQOut, SubTree).
-	
-		
 
 zmi_aux(_, _, _, 0, _, _, _) :-
 	writeln('Step limit reached.'), fail.
