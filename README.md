@@ -34,12 +34,12 @@ Caricare il file generato da VeriMAP
 Utilizzare il predicato load_clean/1 specificando il percorso completo o relativo del file .pl che si desidera interpretare. Ad esempio:
 
    ```bash
-    load_clean('test/VerimapFile/TRACER-  testabs9_VeriMAP_true.c.transform.smt.smt2.pl').
+    load_clean('test/VerimapFile/TRACER-testabs9_VeriMAP_true.c.transform.smt.smt2.pl').
 
 Sostituire il percorso con quello corretto relativo al file da interpretare.
 
 Una volta caricato il file, è possibile lanciare la query da interpretare. Ad esempio:
-
+   ```bash
 zmi(incorrect).
 
 La cartella test in questo repository contiene una sottocartella VerimapFile che a sua volta contiene due esempi per fare test.
