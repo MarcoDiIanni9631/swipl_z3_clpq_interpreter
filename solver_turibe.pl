@@ -60,7 +60,7 @@ sostituisci_costanti_(Assoc, Arg, Arg1) :-
     sostituisci_costanti(Arg, Assoc, Arg1).
 
 % ----------------------------
-% SOLO CHECK DI SODDISFACIBILITÀ
+% SOLO CHECK DI SODDISFACIBILITÀ (se fail il main interromperà)
 % ----------------------------
 
 z3_sat_check(Formula, Result) :-
@@ -83,21 +83,24 @@ z3_sat_check(Formula, Result) :-
 % ----------------------------
 
 z3_print_model_final(Formula) :-
+
+   % write('Sono entrato nella formula finale!!!'),
     z3constr2lower(Formula, Pairs, RawGround),
     normalize_z3_formula(RawGround, Z3Ground),
-    writeln('--- Formula da pushare su Z3 ---'), writeln(Z3Ground),
+   % writeln('--- Formula da pushare su Z3 ---'), writeln(Z3Ground),
     z3_reset,
     ( z3_push(Z3Ground) ->
         z3_check(Sat),
         ( Sat == l_true ->
-            writeln('--- Z3 Final Model (Turibe) ---'),
+            writeln('--- Z3 Final Model (Turibe) (l_true) ---'),
             z3_model(Model),
-            write('Model: '), writeln(Model),
+          %  write('Model: '), writeln(Model),
             sostituisci_costanti(Model, Pairs, ReadableModel),
             writeln('Readable Model:'), writeln(ReadableModel)
         ; Sat == l_false ->
-            writeln('Z3 says: UNSAT')
-        ; writeln('Z3 says: UNKNOWN or ERROR')
+            writeln('Z3 says: UNSAT (l_false)')
+        ; Sat == l_undef -> 
+            writeln('Z3 says: UNKNOWN or ERROR (l_undef)')
         )
     ; writeln('Z3 push failed. Cannot analyze constraints.'), writeln(Z3Ground)
     ).

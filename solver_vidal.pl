@@ -39,7 +39,7 @@ fully_flatten_conj(and(A, B), FlatList) :- !,
 fully_flatten_conj(Other, [Other]).
 
 % ----------------------------
-% SOLO CHECK DI SODDISFACIBILITÀ (Z3)
+% SOLO CHECK DI SODDISFACIBILITÀ (Z3) (se fail interrompo)
 % ----------------------------
 z3_sat_check(Formula, Result) :-
     writeln('Arrivo qui'),
