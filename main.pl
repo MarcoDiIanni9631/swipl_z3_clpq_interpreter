@@ -105,32 +105,32 @@ build_conjunct([C|Rest], (C, R)) :- build_conjunct(Rest, R).
 % ----------------------------
 
 normalize_bool_expr(A v B, or(NA, NB)) :-
-     normalize_bool_expr(A, NA),
+    !, normalize_bool_expr(A, NA),
        normalize_bool_expr(B, NB).
 
 normalize_bool_expr(or(A, B), or(NA, NB)) :-
-     normalize_bool_expr(A, NA),
+    !, normalize_bool_expr(A, NA),
        normalize_bool_expr(B, NB).
 
 normalize_bool_expr((A , B), Norm) :-
-	 normalize_bool_expr(A, NA),
+	!, normalize_bool_expr(A, NA),
 	   normalize_bool_expr(B, NB),
 	   build_conjunct([NA, NB], Norm).
 
 normalize_bool_expr(and(A, B), Norm) :-
-	 normalize_bool_expr(A, NA),
+	!, normalize_bool_expr(A, NA),
 	   normalize_bool_expr(B, NB),
 	   build_conjunct([NA, NB], Norm).
 
 normalize_bool_expr(A & B, and(NA, NB)) :-
-	 normalize_bool_expr(A, NA),
+	!, normalize_bool_expr(A, NA),
 	   normalize_bool_expr(B, NB).
 
 normalize_bool_expr(~A, not(NA)) :-
-	 normalize_bool_expr(A, NA).
+	!, normalize_bool_expr(A, NA).
 
 normalize_bool_expr(not(A), not(NA)) :-
-	 normalize_bool_expr(A, NA).
+	!, normalize_bool_expr(A, NA).
 
 normalize_bool_expr((A = true), NA) :-
 	\+ A == true, \+ A == false,
@@ -140,8 +140,8 @@ normalize_bool_expr((A = false), not(NA)) :-
 	\+ A == true, \+ A == false,
 	!, normalize_bool_expr(A, NA).
 
-%normalize_bool_expr((_ = true), true) :- !.
-%normalize_bool_expr((_ = false), false) :- !.
+normalize_bool_expr((_ = true), true) :- !.
+normalize_bool_expr((_ = false), false) :- !.
 normalize_bool_expr(true, true) :- !.
 normalize_bool_expr(false, false) :- !.
 normalize_bool_expr(A, A).
