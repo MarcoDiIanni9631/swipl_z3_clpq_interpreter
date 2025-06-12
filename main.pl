@@ -89,9 +89,9 @@ should_skip_line(Line) :-
 % Utility vincoli
 % ----------------------------
 
-is_qr_constr(Term) :-
-	functor(Term, Op, 2),
-	memberchk(Op, ['=', '=:=', '=<', '<', '>=', '>']).
+% is_qr_constr(Term) :-
+% 	functor(Term, Op, 2),
+% 	memberchk(Op, ['=', '=:=', '=<', '<', '>=', '>']).
 
 conj_to_list(true, []) :- !.
 conj_to_list((A, B), [A|Rest]) :- !, conj_to_list(B, Rest).

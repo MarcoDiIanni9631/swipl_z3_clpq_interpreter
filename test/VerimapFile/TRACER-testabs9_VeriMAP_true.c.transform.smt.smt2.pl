@@ -15,8 +15,7 @@
 :- mode constr(in).
 :- ignore constr/1.
 
-new3(A,B,C) :- constr((A=2)).
-new3(A,B,C) :- constr((D=0&(E=0&A=1))).
+new3(A,B,C) :- constr((D=0&(E=0&A=0))).
 new2(A,B) :-  constr((A>=0&(D=0&C=1))), new3(C,A,B).
 new2(A,B) :- constr((A=< - 1&(D=0&C=0))), new3(C,A,B) .
 new1 :- constr((A=0&B=99)), new2(A,B) .
