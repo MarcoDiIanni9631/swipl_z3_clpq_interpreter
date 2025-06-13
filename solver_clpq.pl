@@ -17,7 +17,7 @@ clpq_sat_from_formula(Formula) :-
 
     ( Cleaned == [] ->
         writeln('CLPQ result: only true')
-    ; build_conjunct2(Cleaned, Conj),
+    ; build_conjunct(Cleaned, Conj),
       ( catch({Conj}, _, false) ->
             writeln('CLPQ result: SAT')
         ;   writeln('CLPQ result: UNSAT')
@@ -36,10 +36,10 @@ formula_to_list(and(A,B), List) :- !,
 formula_to_list(true, []) :- !.
 formula_to_list(X, [X]).
 
-% Ricostruisce (A,B,...) da lista
-build_conjunct2([X], X).
-build_conjunct2([X|Xs], (X, Rest)) :-
-    build_conjunct2(Xs, Rest).
+% % Ricostruisce (A,B,...) da lista
+% build_conjunct2([X], X).
+% build_conjunct2([X|Xs], (X, Rest)) :-
+%     build_conjunct2(Xs, Rest).
 
 % Riconosce solo vincoli aritmetici gestibili da CLPQ
 is_clpq_constraint2(Term) :-
