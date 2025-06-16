@@ -32,26 +32,35 @@ set_solver(vidal) :-
 % Entry point for the symbolic interpreter
 % ----------------------------
 
+
 zmi(Head) :-
     catch(
         (
-            InitialZ3 = true,
-            InitialCLPQ = true,
-            MaxSteps = 10,
-            zmi_aux(Head, InitialZ3, InitialCLPQ, MaxSteps, FinalZ3, FinalCLPQ, Tree),
-            nl, writeln('--- Derivation Tree ---'),
-            print_tree(Tree),
-            nl, writeln('--- CLPQ Constraints ---'),
-            normalize_bool_expr(FinalCLPQ, NormalizedCLPQ),
-            conj_to_list(NormalizedCLPQ, CLPQList),
-            writeln(CLPQList),
-            nl, writeln('--- FINAL MODEL (Z3) ---'),
-            z3_sat_check(FinalZ3, Z3FinalResponse),
-            print_z3_model_if_exist(Z3FinalResponse, FinalZ3)
+            (   run_zmi(Head)
+            ->  true
+            ;   writeln('No fully satisfiable (SAT) branch found. incorrect never occurs.')
+            )
         ),
         Exception,
         handle_exception(Exception)
     ).
+
+
+run_zmi(Head) :-
+    InitialZ3 = true,
+    InitialCLPQ = true,
+    MaxSteps = 100,
+    zmi_aux(Head, InitialZ3, InitialCLPQ, MaxSteps, FinalZ3, FinalCLPQ, Tree),
+    nl, writeln('--- Derivation Tree ---'),
+    print_tree(Tree),
+    nl, writeln('--- CLPQ Constraints ---'),
+    normalize_bool_expr(FinalCLPQ, NormalizedCLPQ),
+    conj_to_list(NormalizedCLPQ, CLPQList),
+    writeln(CLPQList),
+    nl, writeln('--- FINAL MODEL (Z3) ---'),
+    z3_sat_check(FinalZ3, Z3FinalResponse),
+    print_z3_model_if_exist(Z3FinalResponse, FinalZ3).
+
 
 
 handle_exception(sat_model) :-
@@ -83,24 +92,24 @@ handle_exception(step_limit_reached) :-
 
 
 
-zmi(Head, MaxSteps) :-
-    InitialZ3 = true,
-    InitialCLPQ = true,
-    (   zmi_aux(Head, InitialZ3, InitialCLPQ, MaxSteps, FinalZ3, FinalCLPQ, Tree)
-    ->  true
-    ;   Tree = 'Step limit reached',
-        FinalZ3 = InitialZ3,
-        FinalCLPQ = InitialCLPQ
-    ),
-    nl, writeln('--- Derivation Tree ---'),
-    print_tree(Tree),
-    nl, writeln('--- CLPQ Constraints ---'),
-    normalize_bool_expr(FinalCLPQ, NormalizedCLPQ),
-    conj_to_list(NormalizedCLPQ, CLPQList),
-    writeln(CLPQList),
-    nl, writeln('--- FINAL MODEL (Z3) ---'),
-    z3_sat_check(FinalZ3, Z3FinalResponse),
-    print_z3_model_if_exist(Z3FinalResponse, FinalZ3).
+% zmi(Head, MaxSteps) :-
+%     InitialZ3 = true,
+%     InitialCLPQ = true,
+%     (   zmi_aux(Head, InitialZ3, InitialCLPQ, MaxSteps, FinalZ3, FinalCLPQ, Tree)
+%     ->  true
+%     ;   Tree = 'Step limit reached',
+%         FinalZ3 = InitialZ3,
+%         FinalCLPQ = InitialCLPQ
+%     ),
+%     nl, writeln('--- Derivation Tree ---'),
+%     print_tree(Tree),
+%     nl, writeln('--- CLPQ Constraints ---'),
+%     normalize_bool_expr(FinalCLPQ, NormalizedCLPQ),
+%     conj_to_list(NormalizedCLPQ, CLPQList),
+%     writeln(CLPQList),
+%     nl, writeln('--- FINAL MODEL (Z3) ---'),
+%     z3_sat_check(FinalZ3, Z3FinalResponse),
+%     print_z3_model_if_exist(Z3FinalResponse, FinalZ3).
 
 % ----------------------------
 % Interpreter rules
