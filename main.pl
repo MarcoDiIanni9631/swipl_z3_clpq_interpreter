@@ -34,17 +34,64 @@ set_solver(vidal) :-
 
 zmi(Head) :-
     catch(
-        ( zmi(Head, 10000)
-        ; writeln('No fully satisfiable (SAT) branch found. incorrect never occurs.')
+        (
+            InitialZ3 = true,
+            InitialCLPQ = true,
+            MaxSteps = 10,
+            zmi_aux(Head, InitialZ3, InitialCLPQ, MaxSteps, FinalZ3, FinalCLPQ, Tree),
+            nl, writeln('--- Derivation Tree ---'),
+            print_tree(Tree),
+            nl, writeln('--- CLPQ Constraints ---'),
+            normalize_bool_expr(FinalCLPQ, NormalizedCLPQ),
+            conj_to_list(NormalizedCLPQ, CLPQList),
+            writeln(CLPQList),
+            nl, writeln('--- FINAL MODEL (Z3) ---'),
+            z3_sat_check(FinalZ3, Z3FinalResponse),
+            print_z3_model_if_exist(Z3FinalResponse, FinalZ3)
         ),
-        sat_model,
-        writeln('SAT branch exists! incorrect can occur with the model shown above.')
+        Exception,
+        handle_exception(Exception)
     ).
+
+
+handle_exception(sat_model) :-
+    writeln('SAT branch exists! incorrect can occur with the model shown above.').
+
+handle_exception(step_limit_reached) :-
+    writeln('Step limit reached. No satisfying model (incorrect never occurs).').
+
+% zmi_main(Head) :-
+%     catch(
+%         (
+%             InitialZ3 = true,
+%             InitialCLPQ = true,
+%             MaxSteps = 10,
+%             zmi_aux(Head, InitialZ3, InitialCLPQ, MaxSteps, FinalZ3, FinalCLPQ, Tree),
+%             nl, writeln('--- Derivation Tree ---'),
+%             print_tree(Tree),
+%             nl, writeln('--- CLPQ Constraints ---'),
+%             normalize_bool_expr(FinalCLPQ, NormalizedCLPQ),
+%             conj_to_list(NormalizedCLPQ, CLPQList),
+%             writeln(CLPQList),
+%             nl, writeln('--- FINAL MODEL (Z3) ---'),
+%             z3_sat_check(FinalZ3, Z3FinalResponse),
+%             print_z3_model_if_exist(Z3FinalResponse, FinalZ3)
+%         ),
+%         step_limit_reached,
+%         fail  % fallisce così lo intercetta zmi/1
+%     ).
+
+
 
 zmi(Head, MaxSteps) :-
     InitialZ3 = true,
     InitialCLPQ = true,
-    zmi_aux(Head, InitialZ3, InitialCLPQ, MaxSteps, FinalZ3, FinalCLPQ, Tree),
+    (   zmi_aux(Head, InitialZ3, InitialCLPQ, MaxSteps, FinalZ3, FinalCLPQ, Tree)
+    ->  true
+    ;   Tree = 'Step limit reached',
+        FinalZ3 = InitialZ3,
+        FinalCLPQ = InitialCLPQ
+    ),
     nl, writeln('--- Derivation Tree ---'),
     print_tree(Tree),
     nl, writeln('--- CLPQ Constraints ---'),
@@ -58,6 +105,9 @@ zmi(Head, MaxSteps) :-
 % ----------------------------
 % Interpreter rules
 % ----------------------------
+
+zmi_aux(_, _, _, 0, _, _, _) :-
+    throw(step_limit_reached).
 
 zmi_aux(true, Z3, CLPQ, _, Z3, CLPQ, true).
 
@@ -77,16 +127,14 @@ zmi_aux(constr(C), Z3In, CLPQIn, _, Z3Out, CLPQOut, constr(Normalized)) :-
 
 zmi_aux(Head, Z3In, CLPQIn, Steps, Z3Out, CLPQOut, SubTree => Head) :-
     Steps > 0,
+    format('[STEP ~w] ~w~n', [Steps, Head]),
     Head \= true,
     Head \= (_, _),
     Head \= constr(_),
-    NewSteps is Steps - 1,
     clause(Head, RawBody),
     reorder_body(RawBody, Body),
+    NewSteps is Steps - 1,
     zmi_aux(Body, Z3In, CLPQIn, NewSteps, Z3Out, CLPQOut, SubTree).
-
-zmi_aux(_, _, _, 0, _, _, _) :-
-    writeln('Step limit reached.'), fail.
 
 % ----------------------------
 % Body reordering: constr(...) first 
@@ -94,7 +142,6 @@ zmi_aux(_, _, _, 0, _, _, _) :-
 
 reorder_body((constr(C), B), (constr(C), B)) :- !.
 reorder_body((A, constr(C)), (constr(C), A)) :- !.
-
 reorder_body(constr(C), constr(C)) :- !.
 reorder_body(Other, Other).
 
@@ -111,6 +158,8 @@ print_tree(SubTree => Head, Indent) :-
     tab(Indent), format('~w(~w)~n', [F, Args]),
     NewIndent is Indent + 2,
     print_tree(SubTree, NewIndent).
+print_tree('Step limit reached', Indent) :-
+    tab(Indent), writeln('[... Step limit reached ...]').
 print_tree(Other, Indent) :- tab(Indent), writeln(Other).
 
 % ----------------------------
