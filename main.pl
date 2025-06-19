@@ -149,10 +149,18 @@ zmi_aux(Head, Z3In, CLPQIn, Steps, Z3Out, CLPQOut, SubTree => Head) :-
 % Body reordering: constr(...) first 
 % ----------------------------
 
-reorder_body((constr(C), B), (constr(C), B)) :- !.
-reorder_body((A, constr(C)), (constr(C), A)) :- !.
-reorder_body(constr(C), constr(C)) :- !.
-reorder_body(Other, Other).
+reorder_body(BodyIn, BodyOut) :-
+    flatten_body(BodyIn, FlatList),
+    select(constr(C), FlatList, Rest),
+    build_conjunct([constr(C) | Rest], BodyOut).
+
+% Ricorsivamente trasforma (a,b,c) in [a,b,c]
+flatten_body((A, B), FlatList) :-
+    flatten_body(A, FlatA),
+    flatten_body(B, FlatB),
+    append(FlatA, FlatB, FlatList).
+flatten_body(true, []) :- !.
+flatten_body(X, [X]).
 
 % ----------------------------
 % Derivation tree printing
