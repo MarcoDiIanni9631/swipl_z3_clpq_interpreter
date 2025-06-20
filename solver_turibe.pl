@@ -6,6 +6,18 @@
 :- use_module(z3lib(z3)).
 
 % ----------------------------
+% Modalità Debug
+% ----------------------------
+
+:- dynamic debug_mode/0.
+
+% Stampa solo se debug_mode attivo
+debug_print(Msg) :- debug_mode, !, writeln(Msg).
+debug_print(_).
+debug_print(Msg, Arg) :- debug_mode, !, format(Msg, [Arg]).
+debug_print(_, _).
+
+% ----------------------------
 % Conversione variabili Prolog -> Z3
 % ----------------------------
 
@@ -66,7 +78,7 @@ sostituisci_costanti_(Assoc, Arg, Arg1) :-
 z3_sat_check(Formula, Result) :-
     z3constr2lower(Formula, _, RawGround),
     normalize_z3_formula(RawGround, Z3Ground),
-    writeln('--- Formula da pushare su Z3 ---'), writeln(Z3Ground),
+    debug_print('--- Formula da pushare su Z3 ---'), debug_print(Z3Ground),
     z3_reset,
     ( z3_push(Z3Ground) ->
         z3_check(Sat),
@@ -75,7 +87,7 @@ z3_sat_check(Formula, Result) :-
         ; Sat == l_false ->
             Result = unsat
         ; Result = unknown )
-    ; writeln('Z3 PUSH FAILED! Impossibile asserire la formula:'), writeln(Z3Ground), Result = unsat
+    ; debug_print('Z3 PUSH FAILED! Impossibile asserire la formula:'), debug_print(Z3Ground), Result = unsat
     ).
 
 % ----------------------------
@@ -83,24 +95,21 @@ z3_sat_check(Formula, Result) :-
 % ----------------------------
 
 z3_print_model_final(Formula) :-
-
-   % write('Sono entrato nella formula finale!!!'),
     z3constr2lower(Formula, Pairs, RawGround),
     normalize_z3_formula(RawGround, Z3Ground),
-   % writeln('--- Formula da pushare su Z3 ---'), writeln(Z3Ground),
+    debug_print('--- Formula da pushare su Z3 ---'), debug_print(Z3Ground),
     z3_reset,
     ( z3_push(Z3Ground) ->
         z3_check(Sat),
         ( Sat == l_true ->
-            writeln('--- Z3 Final Model (Turibe) (l_true) ---'),
+            %writeln('--- Z3 Final Model (Turibe) (l_true) ---'),
             z3_model(Model),
-          %  write('Model: '), writeln(Model),
             sostituisci_costanti(Model, Pairs, ReadableModel),
             writeln('Readable Model:'), writeln(ReadableModel)
         ; Sat == l_false ->
             writeln('Z3 says: UNSAT (l_false)')
-        ; Sat == l_undef -> 
+        ; Sat == l_undef ->
             writeln('Z3 says: UNKNOWN or ERROR (l_undef)')
         )
-    ; writeln('Z3 push failed. Cannot analyze constraints.'), writeln(Z3Ground)
+    ; debug_print('Z3 push failed. Cannot analyze constraints.'), debug_print(Z3Ground)
     ).
