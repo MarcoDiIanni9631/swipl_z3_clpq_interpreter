@@ -15,14 +15,9 @@
 :- mode constr(in).
 :- ignore constr/1.
 
-
-new3(A,B,C) :- constr(C=0).
-new3(A,B,C) :- constr(C=1).
-
-new2(A,B) :-  new3(A,B,C), constr(A=1 & C=0), constr((A=1 & C=0)).
-new2(A,B) :-  new3(A,B,C), constr((B=0 & C=1)).
-new2(A,B) :-  new3(A,B,C), constr((B=99 & C=1)).
-
-new1 :- new2(A,B), constr((true)).
+new3(A,B,C) :- constr((D=0&(E=0&A=0))).
+new2(A,B) :- new3(C,A,B),new3(C,A,B),new3(C,A,B),new3(C,A,B), constr((A>=0&(D=0&C=1))).
+new2(A,B) :- new3(C,A,B), constr((A=< - 1&(D=0&C=0))).
+new1 :- new2(A,B), constr((A=0&B=99)), new2(A,B).
 incorrect :- new1, constr((true)).
 

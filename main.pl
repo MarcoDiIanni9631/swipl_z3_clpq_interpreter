@@ -145,23 +145,25 @@ zmi_aux(Head, Z3In, CLPQIn, Steps, Z3Out, CLPQOut, SubTree => Head) :-
     NewSteps is Steps - 1,
     zmi_aux(Body, Z3In, CLPQIn, NewSteps, Z3Out, CLPQOut, SubTree).
 
-% ----------------------------
-% Body reordering: constr(...) first 
-% ----------------------------
+% Sposta tutti i constr(X) in testa alla lista
+move_constr(Lista, Risultato) :-
+    split_constr(Lista, Ts, Altri),
+    append(Ts, Altri, Risultato).
 
+split_constr([], [], []).
+split_constr([H|T], [H|Ts], Altri) :-
+    H =.. [constr, _],
+    !,
+    split_constr(T, Ts, Altri).
+split_constr([H|T], Ts, [H|Altri]) :-
+    split_constr(T, Ts, Altri).
+
+% Funzione finale da usare nel main
 reorder_body(BodyIn, BodyOut) :-
-    flatten_body(BodyIn, FlatList),
-    select(constr(C), FlatList, Rest),
-    build_conjunct([constr(C) | Rest], BodyOut).
-
-% Ricorsivamente trasforma (a,b,c) in [a,b,c]
-flatten_body((A, B), FlatList) :-
-    flatten_body(A, FlatA),
-    flatten_body(B, FlatB),
-    append(FlatA, FlatB, FlatList).
-flatten_body(true, []) :- !.
-flatten_body(X, [X]).
-
+    conj_to_list(BodyIn, FlatList),
+    move_constr(FlatList, ReorderedList),
+    build_conjunct(ReorderedList, BodyOut).
+    
 % ----------------------------
 % Derivation tree printing
 % ----------------------------
