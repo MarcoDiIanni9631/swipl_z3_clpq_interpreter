@@ -5,6 +5,11 @@
 :- use_module(logic_utils).
 :- use_module(io).
 
+
+%https://linuxize.com/post/timeout-command-in-linux/
+%
+%
+
 % ----------------------------
 % Solver Selection (Turibe or Vidal)
 % ----------------------------
@@ -67,7 +72,7 @@ print_single_model(model(FinalZ3, FinalCLPQ, Tree)) :-
 zmi_branch_sat(Head, model(FinalZ3, FinalCLPQ, Tree)) :-
     InitialZ3 = true,
     InitialCLPQ = true,
-    MaxSteps = 100, 
+    MaxSteps = 50, 
     zmi_aux(Head, InitialZ3, InitialCLPQ, MaxSteps, FinalZ3, FinalCLPQ, Tree),
     z3_sat_check(FinalZ3, sat).
 
@@ -75,7 +80,9 @@ zmi_branch_sat(Head, model(FinalZ3, FinalCLPQ, Tree)) :-
 % Interpreter rules 
 % ----------------------------
 
-zmi_aux(_, _, _, 0, _, _, _) :- fail.
+zmi_aux(_, _, _, 0, _, _, _) :- 
+    writeln('MaxStep reached'),
+    fail.
 
 zmi_aux(true, Z3, CLPQ, _, Z3, CLPQ, true).
 
@@ -100,21 +107,46 @@ zmi_aux(Head, Z3In, CLPQIn, Steps, Z3Out, CLPQOut, SubTree => Head) :-
     NewSteps is Steps - 1,
     zmi_aux(Body, Z3In, CLPQIn, NewSteps, Z3Out, CLPQOut, SubTree).
 
-% ----------------------------
-% Body reordering: constr(...) first 
-% ----------------------------
+% Sposta tutti i constr(X) in testa alla lista
+move_constr(Lista, Risultato) :-
+    split_constr(Lista, Ts, Altri),
+    append(Ts, Altri, Risultato).
 
+split_constr([], [], []).
+split_constr([H|T], [H|Ts], Altri) :-
+    H =.. [constr, _],
+    !,
+    split_constr(T, Ts, Altri).
+split_constr([H|T], Ts, [H|Altri]) :-
+    split_constr(T, Ts, Altri).
+
+% Funzione finale da usare nel main
 reorder_body(BodyIn, BodyOut) :-
-    flatten_body(BodyIn, FlatList),
-    select(constr(C), FlatList, Rest),
-    build_conjunct([constr(C) | Rest], BodyOut).
+    conj_to_list(BodyIn, FlatList),
+    move_constr(FlatList, ReorderedList),
+   % format('DEBUG: constrs davanti: ~w~n', [ReorderedList]),
+    build_conjunct(ReorderedList, BodyOut).
 
-flatten_body((A, B), FlatList) :-
-    flatten_body(A, FlatA),
-    flatten_body(B, FlatB),
-    append(FlatA, FlatB, FlatList).
-flatten_body(true, []) :- !.
-flatten_body(X, [X]).
+%
+
+% % move_constr(+Lista, -Risultato)
+% % Risultato è la lista ottenuta da Lista movendo in testa gli elementi constr(X)
+ 
+% move_constr(Lista, Risultato) :-
+%     split_constr(Lista, Ts, Altri),
+%     append(Ts, Altri, Risultato).
+ 
+% % split_constr(+Lista, -Ts, -Altri)
+% % Divide la lista in due: Ts contiene solo termini con funtore constr/1, Altri tutto il resto
+ 
+% split_constr([], [], []).
+% split_constr([H|T], [H|Ts], Altri) :-
+%     H =.. [constr, _],            % verifica se H ha funtore constr/1
+%     !,
+%     split_constr(T, Ts, Altri).
+% split_constr([H|T], Ts, [H|Altri]) :-
+%     split_constr(T, Ts, Altri).
+
 
 % ----------------------------
 % Derivation tree printing
