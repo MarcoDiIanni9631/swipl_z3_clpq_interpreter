@@ -20,7 +20,7 @@ for file in "$DIR"/*.smt2.pl; do
   finalout=""
 
   # Esegui SWI-Prolog e salva output temporaneo
-  swipl -l main_2.pl -g "load_clean('$file'),set_solver(turibe),zmi(incorrect),halt." > "$tmpout" 2>&1
+  swipl -l main.pl -g "load_clean('$file'),set_solver(turibe),zmi(incorrect),halt." > "$tmpout" 2>&1
 
   # Controlla presenza di "No SAT" o "SAT MODEL"
   if grep -q "No SAT" "$tmpout"; then

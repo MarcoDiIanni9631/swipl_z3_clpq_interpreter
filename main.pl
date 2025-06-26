@@ -5,6 +5,11 @@
 :- use_module(logic_utils).
 :- use_module(io).
 
+
+%https://linuxize.com/post/timeout-command-in-linux/
+%
+%
+
 % ----------------------------
 % Solver Selection (Turibe or Vidal)
 % ----------------------------
@@ -29,94 +34,56 @@ set_solver(vidal) :-
 :- op(900,  fy, ~).    % not
 
 % ----------------------------
-% Entry point for the symbolic interpreter
+% Entry point for collecting ALL SAT branches
 % ----------------------------
 
-
 zmi(Head) :-
-    catch(
-        (
-            (   run_zmi(Head)
-            ->  true
-            ;   writeln('No fully satisfiable (SAT) branch found. incorrect never occurs.')
-            )
-        ),
-        Exception,
-        handle_exception(Exception)
-    ).
+    findall(Model,
+        zmi_branch_sat(Head, Model),
+        Models),
+    ( Models == [] ->(
+        writeln('No SAT branches found.'),
+    fail)
+    ; (writeln('--- ALL SAT BRANCHES FOUND ---'),
+      print_all_models(Models)
+    )).
 
+print_all_models([]).
+print_all_models([M|Rest]) :-
+    writeln('--- SAT MODEL ---'),
+    print_single_model(M),
+    nl,
+    print_all_models(Rest).
 
-run_zmi(Head) :-
-    InitialZ3 = true,
-    InitialCLPQ = true,
-    MaxSteps = 100,
-    zmi_aux(Head, InitialZ3, InitialCLPQ, MaxSteps, FinalZ3, FinalCLPQ, Tree),
-    nl, writeln('--- Derivation Tree ---'),
-    print_tree(Tree),
+print_single_model(model(FinalZ3, FinalCLPQ, Tree)) :-
+  %  nl, writeln('--- Derivation Tree ---'),
+   % print_tree(Tree),
     nl, writeln('--- CLPQ Constraints ---'),
     normalize_bool_expr(FinalCLPQ, NormalizedCLPQ),
     conj_to_list(NormalizedCLPQ, CLPQList),
     writeln(CLPQList),
     nl, writeln('--- FINAL MODEL (Z3) ---'),
-    z3_sat_check(FinalZ3, Z3FinalResponse),
-    print_z3_model_if_exist(Z3FinalResponse, FinalZ3).
-
-
-
-handle_exception(sat_model) :-
-    writeln('SAT branch exists! incorrect can occur with the model shown above.').
-
-handle_exception(step_limit_reached) :-
-    writeln('Step limit reached. No satisfying model (incorrect never occurs).').
-
-% zmi_main(Head) :-
-%     catch(
-%         (
-%             InitialZ3 = true,
-%             InitialCLPQ = true,
-%             MaxSteps = 10,
-%             zmi_aux(Head, InitialZ3, InitialCLPQ, MaxSteps, FinalZ3, FinalCLPQ, Tree),
-%             nl, writeln('--- Derivation Tree ---'),
-%             print_tree(Tree),
-%             nl, writeln('--- CLPQ Constraints ---'),
-%             normalize_bool_expr(FinalCLPQ, NormalizedCLPQ),
-%             conj_to_list(NormalizedCLPQ, CLPQList),
-%             writeln(CLPQList),
-%             nl, writeln('--- FINAL MODEL (Z3) ---'),
-%             z3_sat_check(FinalZ3, Z3FinalResponse),
-%             print_z3_model_if_exist(Z3FinalResponse, FinalZ3)
-%         ),
-%         step_limit_reached,
-%         fail  % fallisce così lo intercetta zmi/1
-%     ).
-
-
-
-% zmi(Head, MaxSteps) :-
-%     InitialZ3 = true,
-%     InitialCLPQ = true,
-%     (   zmi_aux(Head, InitialZ3, InitialCLPQ, MaxSteps, FinalZ3, FinalCLPQ, Tree)
-%     ->  true
-%     ;   Tree = 'Step limit reached',
-%         FinalZ3 = InitialZ3,
-%         FinalCLPQ = InitialCLPQ
-%     ),
-%     nl, writeln('--- Derivation Tree ---'),
-%     print_tree(Tree),
-%     nl, writeln('--- CLPQ Constraints ---'),
-%     normalize_bool_expr(FinalCLPQ, NormalizedCLPQ),
-%     conj_to_list(NormalizedCLPQ, CLPQList),
-%     writeln(CLPQList),
-%     nl, writeln('--- FINAL MODEL (Z3) ---'),
-%     z3_sat_check(FinalZ3, Z3FinalResponse),
-%     print_z3_model_if_exist(Z3FinalResponse, FinalZ3).
+    z3_print_model_final(FinalZ3).
 
 % ----------------------------
-% Interpreter rules
+% Wrapper per raccogliere solo i SAT
 % ----------------------------
 
-zmi_aux(_, _, _, 0, _, _, _) :-
-    throw(step_limit_reached).
+zmi_branch_sat(Head, model(FinalZ3, FinalCLPQ, Tree)) :-
+    InitialZ3 = true,
+    InitialCLPQ = true,
+    MaxSteps = 50, 
+    zmi_aux(Head, InitialZ3, InitialCLPQ, MaxSteps, FinalZ3, FinalCLPQ, Tree),
+    z3_sat_check(FinalZ3, sat).
+
+% ----------------------------
+% Interpreter rules 
+% ----------------------------
+
+zmi_aux(Head, _, _, 0, _, _, _) :- 
+    format('❌ Non è mai stato raggiunto ~w entro il numero massimo di passi consentiti (MaxSteps).\n', [Head]),
+    fail.
+
 
 zmi_aux(true, Z3, CLPQ, _, Z3, CLPQ, true).
 
@@ -127,16 +94,12 @@ zmi_aux((A, B), Z3In, CLPQIn, Steps, Z3Out, CLPQOut, (TreeA, TreeB)) :-
 zmi_aux(constr(C), Z3In, CLPQIn, _, Z3Out, CLPQOut, constr(Normalized)) :-
     normalize_bool_expr(C, Normalized),
     build_conjunct([CLPQIn, Normalized], CLPQOut),
-    format('Raw constraints to pass to solver_clpq: ~w~n', [CLPQOut]),
     clpq_sat_from_formula(CLPQOut),
     build_conjunct([Z3In, Normalized], Z3Out),
-    nl, writeln('--- Immediate Z3 Check ---'),
-    z3_sat_check(Z3Out, Res),
-    z3_check_res(Res).
+    z3_sat_check(Z3Out, sat).
 
 zmi_aux(Head, Z3In, CLPQIn, Steps, Z3Out, CLPQOut, SubTree => Head) :-
     Steps > 0,
-    format('[STEP ~w] ~w~n', [Steps, Head]),
     Head \= true,
     Head \= (_, _),
     Head \= constr(_),
@@ -162,8 +125,30 @@ split_constr([H|T], Ts, [H|Altri]) :-
 reorder_body(BodyIn, BodyOut) :-
     conj_to_list(BodyIn, FlatList),
     move_constr(FlatList, ReorderedList),
+   % format('DEBUG: constrs davanti: ~w~n', [ReorderedList]),
     build_conjunct(ReorderedList, BodyOut).
-    
+
+%
+
+% % move_constr(+Lista, -Risultato)
+% % Risultato è la lista ottenuta da Lista movendo in testa gli elementi constr(X)
+ 
+% move_constr(Lista, Risultato) :-
+%     split_constr(Lista, Ts, Altri),
+%     append(Ts, Altri, Risultato).
+ 
+% % split_constr(+Lista, -Ts, -Altri)
+% % Divide la lista in due: Ts contiene solo termini con funtore constr/1, Altri tutto il resto
+ 
+% split_constr([], [], []).
+% split_constr([H|T], [H|Ts], Altri) :-
+%     H =.. [constr, _],            % verifica se H ha funtore constr/1
+%     !,
+%     split_constr(T, Ts, Altri).
+% split_constr([H|T], Ts, [H|Altri]) :-
+%     split_constr(T, Ts, Altri).
+
+
 % ----------------------------
 % Derivation tree printing
 % ----------------------------
@@ -180,29 +165,3 @@ print_tree(SubTree => Head, Indent) :-
 print_tree('Step limit reached', Indent) :-
     tab(Indent), writeln('[... Step limit reached ...]').
 print_tree(Other, Indent) :- tab(Indent), writeln(Other).
-
-% ----------------------------
-% Z3 result management
-% ----------------------------
-
-z3_check_res(unsat) :-
-    writeln('Z3 result: UNSAT 3'),
-    writeln('Unsatisfiable constraint in this branch. Backtracking.'), fail.
-z3_check_res(sat) :-
-    writeln('Z3 result: SAT 3').
-z3_check_res(unknown) :-
-    writeln('Z3 result: Unknown 3').
-
-% ----------------------------
-% Final model printing
-% ----------------------------
-
-print_z3_model_if_exist(unsat, _) :-
-    writeln('Z3 result: UNSAT 2'), fail.
-print_z3_model_if_exist(sat, Formula) :-
-    writeln('Z3 result: SAT 2'),
-    nl, writeln('--- FINAL MODEL (Z3) ---'),
-    z3_print_model_final(Formula),
-    throw(sat_model).
-print_z3_model_if_exist(unknown, _) :-
-    writeln('Z3 result: UNKNOWN or push_failed').
