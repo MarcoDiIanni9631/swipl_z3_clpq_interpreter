@@ -15,7 +15,14 @@
 % ----------------------------
 
 set_solver(turibe) :-
-    assert(file_search_path(z3lib, '/home/marco/Desktop/z3Swi/swi-prolog-z3')),
+  
+  %original
+  %  assert(file_search_path(z3lib, '/home/marco/Desktop/z3Swi/swi-prolog-z3')),
+    
+    %for develop purpose
+
+assert(file_search_path(z3lib, '/home/marco/Desktop/27-giu/swi-prolog-z3_arrays3')),
+
     use_module(solver_turibe),
     use_module(z3lib(z3)).
 
