@@ -4,7 +4,7 @@
 ]).
 
 :- use_module(z3lib(z3)).
-
+%:- initialization(assert(debug_mode)).
 % ----------------------------
 % Modalità Debug
 % ----------------------------
@@ -78,15 +78,17 @@ sostituisci_costanti_(Assoc, Arg, Arg1) :-
 z3_sat_check(Formula, Result) :-
     z3constr2lower(Formula, _, RawGround),
     normalize_z3_formula(RawGround, Z3Ground),
+    %writeln('🧪 DEBUG: invio a Z3 la formula:'),
     debug_print('--- Formula da pushare su Z3 ---'), debug_print(Z3Ground),
-    z3_reset,
-    ( z3_push(Z3Ground) ->
+    %z3_reset,
+   % trace,
+    ( z3_push(Z3Ground) ->(
         z3_check(Sat),
         ( Sat == l_true ->
             Result = sat
         ; Sat == l_false ->
             Result = unsat
-        ; Result = unknown )
+        ; Result = unknown ))
     ; debug_print('Z3 PUSH FAILED! Impossibile asserire la formula:'), debug_print(Z3Ground), Result = unsat
     ).
 
@@ -95,10 +97,11 @@ z3_sat_check(Formula, Result) :-
 % ----------------------------
 
 z3_print_model_final(Formula) :-
+    debug_print('✅ z3_sat_check attivato!'),
     z3constr2lower(Formula, Pairs, RawGround),
     normalize_z3_formula(RawGround, Z3Ground),
     debug_print('--- Formula da pushare su Z3 ---'), debug_print(Z3Ground),
-    z3_reset,
+    %z3_reset,
     ( z3_push(Z3Ground) ->
         z3_check(Sat),
         ( Sat == l_true ->
