@@ -17,7 +17,7 @@ cleanup_all :-
 % ------------------------------------------------------------------
 % TEST 1
 % ------------------------------------------------------------------
-:- begin_tests(level1_constr_true_sat, [setup(cleanup_all), cleanup(cleanup_all)]).
+:- begin_tests(level1_constr_true_sat, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
 
 test(level1_constr_true_sat) :-
     user:assertz((incorrect :- constr(true))),
@@ -28,7 +28,7 @@ test(level1_constr_true_sat) :-
 % ------------------------------------------------------------------
 % TEST 2
 % ------------------------------------------------------------------
-:- begin_tests(level2_basic_constraints_sat, [setup(cleanup_all), cleanup(cleanup_all)]).
+:- begin_tests(level2_basic_constraints_sat, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
 
 test(level2_basic_constraints_sat) :-
     user:assertz((incorrect :- constr((A = 0 & B = 5 & A < B)))),
@@ -39,7 +39,7 @@ test(level2_basic_constraints_sat) :-
 % ------------------------------------------------------------------
 % TEST 2.5 IT HAS TO FAIL
 % ------------------------------------------------------------------
-:- begin_tests(level2_basic_constraints_sat2, [setup(cleanup_all), cleanup(cleanup_all)]).
+:- begin_tests(level2_basic_constraints_sat2, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
 
 test(level2_basic_constraints_sat2) :-
     user:assertz((incorrect :- constr((A = 0 & B = 5 & A > B)))),
@@ -51,7 +51,7 @@ test(level2_basic_constraints_sat2) :-
 % ------------------------------------------------------------------
 % TEST 3
 % ------------------------------------------------------------------
-:- begin_tests(level3_predicate_and_constraint_sat, [setup(cleanup_all), cleanup(cleanup_all)]).
+:- begin_tests(level3_predicate_and_constraint_sat, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
 
 test(level3_predicate_and_constraint_sat) :-
     user:assertz((p(X) :- constr(X = 3))),
@@ -63,7 +63,7 @@ test(level3_predicate_and_constraint_sat) :-
 % ------------------------------------------------------------------
 % TEST 4
 % ------------------------------------------------------------------
-:- begin_tests(level4_calling_chain_sat, [setup(cleanup_all), cleanup(cleanup_all)]).
+:- begin_tests(level4_calling_chain_sat, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
 
 test(level4_calling_chain_sat) :-
     user:assertz((p(X) :- constr(X = 3))),
@@ -76,7 +76,7 @@ test(level4_calling_chain_sat) :-
 % ------------------------------------------------------------------
 % TEST 5
 % ------------------------------------------------------------------
-:- begin_tests(level5_multiple_clauses_sat, [setup(cleanup_all), cleanup(cleanup_all)]).
+:- begin_tests(level5_multiple_clauses_sat, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
 
 test(level5_multiple_clauses_sat) :-
     user:assertz((case1(A,B) :- constr((A = 1 & B = 4)))),
@@ -89,7 +89,7 @@ test(level5_multiple_clauses_sat) :-
 % ------------------------------------------------------------------
 % TEST 6
 % ------------------------------------------------------------------
-:- begin_tests(level6_array_select_store_sat, [setup(cleanup_all), cleanup(cleanup_all)]).
+:- begin_tests(level6_array_select_store_sat, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
 
 test(level6_array_select_store_sat) :-
     user:assertz((incorrect :- constr((Y = select(store(A, 5, 88), 5))))),
@@ -100,7 +100,7 @@ test(level6_array_select_store_sat) :-
 % ------------------------------------------------------------------
 % TEST 7
 % ------------------------------------------------------------------
-:- begin_tests(level7_realistic_nested_predicates_sat, [setup(cleanup_all), cleanup(cleanup_all)]).
+:- begin_tests(level7_realistic_nested_predicates_sat, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
 
 test(level7_realistic_nested_predicates_sat) :-
     user:assertz((new5(A,B,C,D) :- constr((E=0 & F=0 & A=0)))),
@@ -119,7 +119,7 @@ test(level7_realistic_nested_predicates_sat) :-
 % ------------------------------------------------------------------
 % TEST 8 (UNSAT)
 % ------------------------------------------------------------------
-:- begin_tests(level8_unsat_basic_conflict, [setup(cleanup_all), cleanup(cleanup_all)]).
+:- begin_tests(level8_unsat_basic_conflict, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
 
 test(level8_unsat_basic_conflict, [fail]) :-
     user:assertz((incorrect :- constr((A = 1 & A = 2)))),
@@ -135,7 +135,7 @@ test(level8_unsat_basic_conflict, [fail]) :-
 % ------------------------------------------------------------------
 % TEST 9 (store only)
 % ------------------------------------------------------------------
-:- begin_tests(level9_store_only_sat, [setup(cleanup_all), cleanup(cleanup_all)]).
+:- begin_tests(level9_store_only_sat, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
 
 test(level9_store_only_sat) :-
     user:assertz((new1(A,B,C,D,E,F,G) :- constr((I = store(J,B,C))))),
