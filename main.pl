@@ -4,6 +4,7 @@
 
 :- use_module(logic_utils).
 :- use_module(io).
+:- include('zmi_incorrect_tests.pl').
 
 
 %https://linuxize.com/post/timeout-command-in-linux/
