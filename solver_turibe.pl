@@ -80,7 +80,7 @@ z3_sat_check(Formula, Result) :-
     normalize_z3_formula(RawGround, Z3Ground),
     %writeln('🧪 DEBUG: invio a Z3 la formula:'),
     debug_print('--- Formula da pushare su Z3 ---'), debug_print(Z3Ground),
-    %z3_reset,
+    z3_reset,
    % trace,
     ( z3_push(Z3Ground) ->(
         z3_check(Sat),
