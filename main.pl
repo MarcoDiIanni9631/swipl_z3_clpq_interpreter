@@ -5,7 +5,7 @@
 :- use_module(logic_utils).
 :- use_module(io).
 :- include('zmi_incorrect_tests.pl').
-
+:- dynamic current_predicate_context/1.
 
 %https://linuxize.com/post/timeout-command-in-linux/
 %
@@ -46,6 +46,7 @@ set_solver(vidal) :-
 % ----------------------------
 
 zmi(Head) :-
+set_solver(turibe),
     findall(Model,
         zmi_branch_sat(Head, Model),
         Models),
@@ -89,7 +90,7 @@ zmi_branch_sat(Head, model(FinalZ3, FinalCLPQ, Tree)) :-
 % ----------------------------
 
 zmi_aux(Head, _, _, 0, _, _, _) :- 
-    format('❌ Non è mai stato raggiunto ~w entro il numero massimo di passi consentiti (MaxSteps).\n', [Head]),
+    format(' Non è mai stato raggiunto ~w entro il numero massimo di passi consentiti (MaxSteps).\n', [Head]),
     fail.
 
 
@@ -100,10 +101,22 @@ zmi_aux((A, B), Z3In, CLPQIn, Steps, Z3Out, CLPQOut, (TreeA, TreeB)) :-
     zmi_aux(B, TempZ3, TempCLPQ, Steps, Z3Out, CLPQOut, TreeB).
 
 zmi_aux(constr(C), Z3In, CLPQIn, _, Z3Out, CLPQOut, constr(Normalized)) :-
+   % writeln('sono almeno arrivato qui'),
     normalize_bool_expr(C, Normalized),
     build_conjunct([CLPQIn, Normalized], CLPQOut),
     clpq_sat_from_formula(CLPQOut),
-    build_conjunct([Z3In, Normalized], Z3Out),
+    build_conjunct([Z3In, Normalized], Z3Temp),
+
+    ( current_predicate_context(PredArity) ->
+        format(' Uso contesto corrente nel constr: ~w~n', [PredArity])
+    ; PredArity = dummy/0,
+      writeln(' Nessun contesto trovato nel constr')
+    ),
+
+    z3constr2lower(PredArity, Normalized, _, Z3Typed),
+    build_conjunct([Z3Temp, Z3Typed], Z3Out),
+    writeln('sono almeno arrivato qui 2'),
+
     z3_sat_check(Z3Out, sat).
 
 zmi_aux(Head, Z3In, CLPQIn, Steps, Z3Out, CLPQOut, SubTree => Head) :-
@@ -112,10 +125,17 @@ zmi_aux(Head, Z3In, CLPQIn, Steps, Z3Out, CLPQOut, SubTree => Head) :-
     Head \= (_, _),
     Head \= constr(_),
     clause(Head, RawBody),
+    
+    Head =.. [PredName | Args],
+    length(Args, Arity),
+    asserta(current_predicate_context(PredName/Arity)),
+    
     reorder_body(RawBody, Body),
     NewSteps is Steps - 1,
-    zmi_aux(Body, Z3In, CLPQIn, NewSteps, Z3Out, CLPQOut, SubTree).
+    zmi_aux(Body, Z3In, CLPQIn, NewSteps, Z3Out, CLPQOut, SubTree),
 
+    retract(current_predicate_context(_)).
+    
 % Sposta tutti i constr(X) in testa alla lista
 move_constr(Lista, Risultato) :-
     split_constr(Lista, Ts, Altri),
