@@ -109,20 +109,24 @@ zmi_aux(Head, Z3In, CLPQIn, Steps, Z3Out, CLPQOut, SubTree => Head) :-
 rewrite_constr(Head, constr(C0), constr(CFinal)) :-
     Head =.. [PredName | Args],
     length(Args, Arity),
-    findall(arg_type(PredName/Arity, Pos, Type),
-            arg_type(PredName/Arity, Pos, Type),
-            ClauseTypes),
-    findall((Var:Type = Var:Type),
-        (between(1, Arity, Pos),
-         nth1(Pos, Args, Var),
-         memberchk(arg_type(PredName/Arity, Pos, Type), ClauseTypes)
-        ),
-        TypeAnnots),
-    conj_to_list(C0, CList),
+    copy_term((Args, C0), (ArgsCopy, CCopy)),  % Copia sicura!
+    infer_annotations(PredName/Arity, ArgsCopy, TypeAnnots),
+    conj_to_list(CCopy, CList),
     append(TypeAnnots, CList, FullList),
     build_conjunct(FullList, CFinal),
     !.
 rewrite_constr(_, Other, Other).
+
+infer_annotations(Pred, Args, Annotations) :-
+    findall(
+        Var:Type = Var:Type,
+        (
+            nth1(Pos, Args, Var),
+            arg_type(Pred, Pos, Type)
+        ),
+        Annotations
+    ).
+
 
 % ----------------------------
 % Sposta constr in testa
