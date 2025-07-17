@@ -76,6 +76,7 @@ sostituisci_costanti_(Assoc, Arg, Arg1) :-
 % ----------------------------
 
 z3_sat_check(Formula, Result) :-
+   % writeln(Formula),
     z3constr2lower(Formula, _, RawGround),
     normalize_z3_formula(RawGround, Z3Ground),
     %writeln('🧪 DEBUG: invio a Z3 la formula:'),

@@ -4,17 +4,31 @@
     load_clean_lines/1,
     read_full_term/2,
     read_full_term/3,
-    should_skip_line/1
+    should_skip_line/1,
+    arg_type/3
 ]).
+
+:- use_module(library(readutil)).
+:- dynamic arg_type/3.
 
 % ----------------------------
 % Caricamento e pulizia file
 % ----------------------------
 
+load_clean(File) :-
+    retractall(arg_type(_,_,_)),
+    open(File, read, Stream),
+    load_clean_lines(Stream),
+    close(Stream).
+
 load_clean_lines(Stream) :-
     read_full_term(Stream, FullTermString),
     ( FullTermString == end_of_file ->
         true
+    ; string_lower(FullTermString, Lower),
+      sub_string(Lower, _, _, _, ":- pred") ->
+        try_parse_pred_line(FullTermString),
+        load_clean_lines(Stream)
     ; should_skip_line(FullTermString) ->
         writeln(skipping(FullTermString)),
         load_clean_lines(Stream)
@@ -28,15 +42,14 @@ load_clean_lines(Stream) :-
       ( Term == fail ->
             writeln('Errore di parsing!'),
             load_clean_lines(Stream)
-      ; user:assertz(Term),  
+      ; user:assertz(Term),
         load_clean_lines(Stream)
       )
     ).
 
-load_clean(File) :-
-    open(File, read, Stream),
-    load_clean_lines(Stream),
-    close(Stream).
+% ----------------------------
+% Parsing riga multipla
+% ----------------------------
 
 read_full_term(Stream, Full) :-
     read_line_to_string(Stream, Line),
@@ -57,12 +70,57 @@ read_full_term(Stream, Acc, Full) :-
       )
     ).
 
+% ----------------------------
+% Estrazione dei tipi da :- pred ...
+% ----------------------------
+
+try_parse_pred_line(Line) :-
+    normalize_space(string(S), Line),
+    ( catch(extract_pred_type(S), Err,
+            (print_message(error, Err), fail)) ->
+        true
+    ; format("failed to parse: ~w~n", [S])
+    ).
+
+extract_pred_type(Line) :-
+    string_codes(Line, Codes),
+    phrase(pred_decl(Name/Arity, Types), Codes),
+    Arity > 0,
+    forall(nth1(Pos, Types, T),
+           assertz(arg_type(Name/Arity, Pos, T))).
+
+pred_decl(Name/Arity, Types) -->
+    ":- pred ",
+    whites, pred_head(Name, Types),
+    ".", !,
+    { length(Types, Arity) }.
+
+pred_head(Name, Types) -->
+    atom_string(Name),
+    "(", !, type_list(Types), ")".
+pred_head(_, []) --> [], { fail }.  % ignora quelli senza argomenti
+
+type_list([T|Ts]) -->
+    whites, type_string(T), whites,
+    ( "," -> type_list(Ts) ; [] ).
+type_list([]) --> [].
+
+type_string(T) -->
+    string_without(",)", Cs),
+    { string_codes(T, Cs), normalize_space(string(T), T) }.
+
+atom_string(Atom) -->
+    string_without("(", Cs),
+    { string_codes(S, Cs), normalize_space(atom(Atom), S) }.
+
+% ----------------------------
+% Linee da saltare
+% ----------------------------
+
 should_skip_line(Line) :-
     string_lower(Line, Lower),
     (
-        sub_string(Lower, _, _, _, ":- pred");
         sub_string(Lower, _, _, _, ":- mode");
         sub_string(Lower, _, _, _, ":- query");
         sub_string(Lower, _, _, _, ":- ignore")
-    ),
-    writeln(skipping(Line)).
+    ).
