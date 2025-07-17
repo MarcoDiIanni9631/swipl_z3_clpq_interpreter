@@ -6,24 +6,12 @@
 :- use_module(io).
 :- include('zmi_incorrect_tests.pl').
 
-
-%https://linuxize.com/post/timeout-command-in-linux/
-%
-%
-
 % ----------------------------
 % Solver Selection (Turibe or Vidal)
 % ----------------------------
 
 set_solver(turibe) :-
-  
-  %original
-  %  assert(file_search_path(z3lib, '/home/marco/Desktop/z3Swi/swi-prolog-z3')),
-    
-    %for develop purpose
-
-assert(file_search_path(z3lib, '/home/marco/Desktop/27-giu/swi-prolog-z3_arrays3')),
-
+    assert(file_search_path(z3lib, '/home/marco/Desktop/27-giu/swi-prolog-z3_arrays3')),
     use_module(solver_turibe),
     use_module(z3lib(z3)).
 
@@ -37,7 +25,7 @@ set_solver(vidal) :-
 % ----------------------------
 
 :- op(1000, yfx, &).   % and
-:- op(1000, yfx, v).   % or (VeriMAP-style)
+:- op(1000, yfx, v).   % or
 :- op(1000, yfx, or).  % alternative or
 :- op(900,  fy, ~).    % not
 
@@ -46,26 +34,21 @@ set_solver(vidal) :-
 % ----------------------------
 
 zmi(Head) :-
-    findall(Model,
-        zmi_branch_sat(Head, Model),
-        Models),
-    ( Models == [] ->(
-        writeln('No SAT branches found.'),
-    fail)
-    ; (writeln('--- ALL SAT BRANCHES FOUND ---'),
+    set_solver(turibe),
+    findall(Model, zmi_branch_sat(Head, Model), Models),
+    ( Models == [] ->
+        writeln('No SAT branches found.'), fail
+    ; writeln('--- ALL SAT BRANCHES FOUND ---'),
       print_all_models(Models)
-    )).
+    ).
 
 print_all_models([]).
 print_all_models([M|Rest]) :-
     writeln('--- SAT MODEL ---'),
-    print_single_model(M),
-    nl,
+    print_single_model(M), nl,
     print_all_models(Rest).
 
 print_single_model(model(FinalZ3, FinalCLPQ, Tree)) :-
-  %  nl, writeln('--- Derivation Tree ---'),
-   % print_tree(Tree),
     nl, writeln('--- CLPQ Constraints ---'),
     normalize_bool_expr(FinalCLPQ, NormalizedCLPQ),
     conj_to_list(NormalizedCLPQ, CLPQList),
@@ -92,7 +75,6 @@ zmi_aux(Head, _, _, 0, _, _, _) :-
     format('❌ Non è mai stato raggiunto ~w entro il numero massimo di passi consentiti (MaxSteps).\n', [Head]),
     fail.
 
-
 zmi_aux(true, Z3, CLPQ, _, Z3, CLPQ, true).
 
 zmi_aux((A, B), Z3In, CLPQIn, Steps, Z3Out, CLPQOut, (TreeA, TreeB)) :-
@@ -104,6 +86,7 @@ zmi_aux(constr(C), Z3In, CLPQIn, _, Z3Out, CLPQOut, constr(Normalized)) :-
     build_conjunct([CLPQIn, Normalized], CLPQOut),
     clpq_sat_from_formula(CLPQOut),
     build_conjunct([Z3In, Normalized], Z3Out),
+    writeln(Z3Out),
     z3_sat_check(Z3Out, sat).
 
 zmi_aux(Head, Z3In, CLPQIn, Steps, Z3Out, CLPQOut, SubTree => Head) :-
@@ -112,50 +95,54 @@ zmi_aux(Head, Z3In, CLPQIn, Steps, Z3Out, CLPQOut, SubTree => Head) :-
     Head \= (_, _),
     Head \= constr(_),
     clause(Head, RawBody),
-    reorder_body(RawBody, Body),
+    reorder_body(RawBody, TempBody),
+    conj_to_list(TempBody, BodyList),
+    maplist(rewrite_constr(Head), BodyList, RewrittenList),
+    build_conjunct(RewrittenList, Body),
     NewSteps is Steps - 1,
     zmi_aux(Body, Z3In, CLPQIn, NewSteps, Z3Out, CLPQOut, SubTree).
 
-% Sposta tutti i constr(X) in testa alla lista
+% ----------------------------
+% Inserisce annotazioni di tipo nei constr
+% ----------------------------
+
+rewrite_constr(Head, constr(C0), constr(CFinal)) :-
+    Head =.. [PredName | Args],
+    length(Args, Arity),
+    findall(arg_type(PredName/Arity, Pos, Type),
+            arg_type(PredName/Arity, Pos, Type),
+            ClauseTypes),
+    findall((Var:Type = Var:Type),
+        (between(1, Arity, Pos),
+         nth1(Pos, Args, Var),
+         memberchk(arg_type(PredName/Arity, Pos, Type), ClauseTypes)
+        ),
+        TypeAnnots),
+    conj_to_list(C0, CList),
+    append(TypeAnnots, CList, FullList),
+    build_conjunct(FullList, CFinal),
+    !.
+rewrite_constr(_, Other, Other).
+
+% ----------------------------
+% Sposta constr in testa
+% ----------------------------
+
 move_constr(Lista, Risultato) :-
     split_constr(Lista, Ts, Altri),
     append(Ts, Altri, Risultato).
 
 split_constr([], [], []).
 split_constr([H|T], [H|Ts], Altri) :-
-    H =.. [constr, _],
-    !,
+    H =.. [constr, _], !,
     split_constr(T, Ts, Altri).
 split_constr([H|T], Ts, [H|Altri]) :-
     split_constr(T, Ts, Altri).
 
-% Funzione finale da usare nel main
 reorder_body(BodyIn, BodyOut) :-
     conj_to_list(BodyIn, FlatList),
     move_constr(FlatList, ReorderedList),
-   % format('DEBUG: constrs davanti: ~w~n', [ReorderedList]),
     build_conjunct(ReorderedList, BodyOut).
-
-%
-
-% % move_constr(+Lista, -Risultato)
-% % Risultato è la lista ottenuta da Lista movendo in testa gli elementi constr(X)
- 
-% move_constr(Lista, Risultato) :-
-%     split_constr(Lista, Ts, Altri),
-%     append(Ts, Altri, Risultato).
- 
-% % split_constr(+Lista, -Ts, -Altri)
-% % Divide la lista in due: Ts contiene solo termini con funtore constr/1, Altri tutto il resto
- 
-% split_constr([], [], []).
-% split_constr([H|T], [H|Ts], Altri) :-
-%     H =.. [constr, _],            % verifica se H ha funtore constr/1
-%     !,
-%     split_constr(T, Ts, Altri).
-% split_constr([H|T], Ts, [H|Altri]) :-
-%     split_constr(T, Ts, Altri).
-
 
 % ----------------------------
 % Derivation tree printing

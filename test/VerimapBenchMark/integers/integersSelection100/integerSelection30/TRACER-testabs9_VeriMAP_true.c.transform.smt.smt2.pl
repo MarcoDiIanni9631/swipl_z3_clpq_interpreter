@@ -5,7 +5,7 @@
 
 :- pred new3(int,int,int).
 :- mode new3(in,in,in).
-:- pred new2(int,int).
+:- pred new2(bool,bool).
 :- mode new2(in,in).
 :- pred new1.
 :- pred incorrect.
