@@ -11,6 +11,6 @@
 :- mode constr(in).
 :- ignore constr/1.
 
-new1(A,B,C,D,E,F,G) :- constr((I = store(J,B,C))).
-incorrect :- new1(A,A,A,A,A,A,A), constr((A>=1&G=1)).
+new1(A,B,C,D,E,F,G) :- constr((L = store(C,B,J))).
+incorrect :- new1(A,B,C,D,E,F,G), constr((A>=1&G=1)).
 
