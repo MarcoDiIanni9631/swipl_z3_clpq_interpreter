@@ -107,7 +107,8 @@ type_list([]) --> [].
 
 type_string(T) -->
     string_without(",)", Cs),
-    { string_codes(T, Cs), normalize_space(string(T), T) }.
+{ string_codes(S, Cs), normalize_space(string(Str), S), atom_string(T, Str) }.
+
 
 atom_string(Atom) -->
     string_without("(", Cs),

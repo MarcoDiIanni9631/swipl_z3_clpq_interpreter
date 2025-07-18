@@ -1,18 +1,18 @@
 :- op(1000, yfx, &).
 :- op(900, fy, ~).
 
-% Cleanup comune per i test
-cleanup_all :-
-    user:retractall((incorrect :- _)),
-    user:retractall((p(_) :- _)),
-    user:retractall((q(_) :- _)),
-    user:retractall((case1 :- _)),
-    user:retractall((new1 :- _)),
-    user:retractall((new2(_,_,_) :- _)),
-    user:retractall((new3(_,_,_) :- _)),
-    user:retractall((new4(_,_,_) :- _)),
-    user:retractall((new5(_,_,_,_) :- _)),
-    (   current_predicate(z3_reset/0) -> z3_reset ; true).
+% % Cleanup comune per i test
+% cleanup_all :-
+%     user:retractall((incorrect :- _)),
+%     user:retractall((p(_) :- _)),
+%     user:retractall((q(_) :- _)),
+%     user:retractall((case1 :- _)),
+%     user:retractall((new1 :- _)),
+%     user:retractall((new2(_,_,_) :- _)),
+%     user:retractall((new3(_,_,_) :- _)),
+%     user:retractall((new4(_,_,_) :- _)),
+%     user:retractall((new5(_,_,_,_) :- _)),
+%     (   current_predicate(z3_reset/0) -> z3_reset ; true).
 
 % ------------------------------------------------------------------
 % TEST 1
@@ -87,15 +87,94 @@ test(level5_multiple_clauses_sat) :-
 :- end_tests(level5_multiple_clauses_sat).
 
 % ------------------------------------------------------------------
-% TEST 6
+% TEST 6 SUCCESS
 % ------------------------------------------------------------------
 :- begin_tests(level6_array_select_store_sat, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
 
 test(level6_array_select_store_sat) :-
-    user:assertz((incorrect :- constr((Y = select(store(A, 5, 88), 5))))),
+    user:assertz((incorrect :- constr((Y = 88 & (Y = select(store(A, 5, 88), 5)))))),
     zmi(incorrect).
 
 :- end_tests(level6_array_select_store_sat).
+
+
+% ------------------------------------------------------------------
+% TEST 6.5 SUCCESS TO-DO, STACK LIMIT NOW
+% ------------------------------------------------------------------
+:- begin_tests(level6_array_select_store_sat_freeZ, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
+
+test(level6_array_select_store_sat_freeZ) :-
+    user:assertz((incorrect :- constr((Y = Z & (Y = select(store(A, 5, Z), 5)))))),
+    zmi(incorrect).
+
+:- end_tests(level6_array_select_store_sat_freeZ).
+
+% ------------------------------------------------------------------
+% TEST 6.5 SUCCESS TO-DO, STACK LIMIT NOW tutto tipato
+% ------------------------------------------------------------------
+:- begin_tests(level6_array_select_store_sat_freeZ3, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
+
+test(level6_array_select_store_sat_freeZ3) :-
+    user:assertz((incorrect :- constr((Y:int = Z:int & (Y = select(store(A, 5, Z:int), 5)))))),
+    zmi(incorrect).
+
+:- end_tests(level6_array_select_store_sat_freeZ3).
+
+
+% ------------------------------------------------------------------
+% TEST 6.6 SUCCESS TO-DO, STACK LIMIT NOW -V2 Z:int work
+% ------------------------------------------------------------------
+:- begin_tests(level6_array_select_store_sat_freeZ2, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
+
+test(level6_array_select_store_sat_freeZ2) :-
+    user:assertz((
+        incorrect :-
+            constr((Y = select(store(default_array, 5, Z:int), 5)))
+    )),
+    zmi(incorrect).
+
+:- end_tests(level6_array_select_store_sat_freeZ2).
+
+
+
+
+
+
+% ------------------------------------------------------------------
+% TEST 6.5 SUCCESS AXIOM
+% ------------------------------------------------------------------
+:- begin_tests(level6_array_select_store_sat_ax, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
+
+test(level6_array_select_store_sat_ax) :-
+    user:assertz((incorrect :- constr(((Z = select(store(A, 5, Z), 5)))))),
+    zmi(incorrect).
+
+:- end_tests(level6_array_select_store_sat_ax).
+
+% ------------------------------------------------------------------
+% TEST 6.5 SUCCESS AXIOM
+% ------------------------------------------------------------------
+:- begin_tests(level6_array_select_store_sat_minor, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
+
+test(level6_array_select_store_sat_minor) :-
+    user:assertz((incorrect :- constr(((Z < select(store(A, 5, Z), 5)))))),
+    zmi(incorrect).
+
+:- end_tests(level6_array_select_store_sat_minor).
+
+
+
+% ------------------------------------------------------------------
+% TEST 6 F FAIL
+% ------------------------------------------------------------------
+:- begin_tests(level6_array_select_store_sat_fail, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
+
+test(level6_array_select_store_sat_fail) :-
+    user:assertz((incorrect :- constr((Y = 87 & (Y = select(store(A, 5, 88), 5)))))),
+    zmi(incorrect).
+
+:- end_tests(level6_array_select_store_sat_fail).
+
 
 % ------------------------------------------------------------------
 % TEST 7
