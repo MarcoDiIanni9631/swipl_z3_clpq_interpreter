@@ -1,4 +1,3 @@
-%% io.pl
 :- module(io, [
     load_clean/1,
     load_clean_lines/1,
@@ -12,7 +11,7 @@
 :- dynamic arg_type/3.
 
 % ----------------------------
-% Caricamento e pulizia file
+% Caricamento e parsing file
 % ----------------------------
 
 load_clean(File) :-
@@ -64,14 +63,14 @@ read_full_term(Stream, Acc, Full) :-
     ; read_line_to_string(Stream, Next),
       ( Next == end_of_file ->
           Full = Acc
-      ; string_concat(Acc, "\n", Temp),
+      ; string_concat(Acc, " ", Temp),
         string_concat(Temp, Next, NewAcc),
         read_full_term(Stream, NewAcc, Full)
       )
     ).
 
 % ----------------------------
-% Estrazione dei tipi da :- pred ...
+% Parsing dichiarazioni pred
 % ----------------------------
 
 try_parse_pred_line(Line) :-
@@ -79,43 +78,44 @@ try_parse_pred_line(Line) :-
     ( catch(extract_pred_type(S), Err,
             (print_message(error, Err), fail)) ->
         true
-    ; format("failed to parse: ~w~n", [S])
+    ; format("failed to parse: ~q~n", [S])
     ).
 
 extract_pred_type(Line) :-
     string_codes(Line, Codes),
     phrase(pred_decl(Name/Arity, Types), Codes),
     Arity > 0,
-    forall(nth1(Pos, Types, T),
-           assertz(arg_type(Name/Arity, Pos, T))).
+    forall(nth1(Pos, Types, T), (
+        ( T = array(Inner) ->
+              assertz(arg_type(Name/Arity, Pos, array(Inner, Inner)))
+        ;     assertz(arg_type(Name/Arity, Pos, T))
+        )
+    )).
 
 pred_decl(Name/Arity, Types) -->
-    ":- pred ",
-    whites, pred_head(Name, Types),
-    ".", !,
+    ":- pred ", whites, pred_head(Name, Types), whites, ".", !,
     { length(Types, Arity) }.
 
 pred_head(Name, Types) -->
-    atom_string(Name),
-    "(", !, type_list(Types), ")".
-pred_head(_, []) --> [], { fail }.  % ignora quelli senza argomenti
-
-type_list([T|Ts]) -->
-    whites, type_string(T), whites,
-    ( "," -> type_list(Ts) ; [] ).
-type_list([]) --> [].
-
-type_string(T) -->
-    string_without(",)", Cs),
-{ string_codes(S, Cs), normalize_space(string(Str), S), atom_string(T, Str) }.
-
+    atom_string(Name), "(", type_list(Types), ")".
 
 atom_string(Atom) -->
     string_without("(", Cs),
     { string_codes(S, Cs), normalize_space(atom(Atom), S) }.
 
+type_list([T|Ts]) -->
+    whites, type_term(T), whites,
+    ( "," -> type_list(Ts) ; [] ).
+type_list([]) --> [].
+
+type_term(array(Inner)) -->
+    "array(", type_term(Inner), ")", !.
+type_term(T) -->
+    string_without(",)", Cs),
+    { string_codes(S, Cs), normalize_space(string(Str), S), atom_string(T, Str) }.
+
 % ----------------------------
-% Linee da saltare
+% Linee da ignorare
 % ----------------------------
 
 should_skip_line(Line) :-
