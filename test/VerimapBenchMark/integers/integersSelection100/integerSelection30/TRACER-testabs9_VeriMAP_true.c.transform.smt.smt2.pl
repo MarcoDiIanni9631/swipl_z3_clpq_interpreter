@@ -15,6 +15,6 @@
 new3(A,B,C) :- constr((D=0&(E=0&A=0))).
 new2(A,B) :- new3(C,A,B), constr((A>=0&(D=0&C=1))).
 new2(A,B) :- new3(C,A,B), constr((A=< - 1&(D=0&C=0))).
-new1 :- new2(A,B), constr((A=0&B=99)).
+new1 :- new2(A,B), constr((A=0&A=0&B=99)).
 incorrect :- new1, constr((true)).
 

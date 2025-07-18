@@ -96,9 +96,22 @@ zmi_aux(Head, Z3In, CLPQIn, Steps, Z3Out, CLPQOut, SubTree => Head) :-
     Head \= constr(_),
     clause(Head, RawBody),
     reorder_body(RawBody, TempBody),
+   % writeln('Adesso stampo rawBody'),
+
+   % writeln(RawBody),
     conj_to_list(TempBody, BodyList),
     maplist(rewrite_constr(Head), BodyList, RewrittenList),
+    %maplist(rewrite_constr(Head), BodyList, BodyList),
+
+    %build_conjunct(BodyList, Body),
+
     build_conjunct(RewrittenList, Body),
+
+
+
+  %         writeln('Adesso invece stampo Body'),
+
+   % writeln(Body),
     NewSteps is Steps - 1,
     zmi_aux(Body, Z3In, CLPQIn, NewSteps, Z3Out, CLPQOut, SubTree).
 
@@ -109,24 +122,40 @@ zmi_aux(Head, Z3In, CLPQIn, Steps, Z3Out, CLPQOut, SubTree => Head) :-
 rewrite_constr(Head, constr(C0), constr(CFinal)) :-
     Head =.. [PredName | Args],
     length(Args, Arity),
-    copy_term((Args, C0), (ArgsCopy, CCopy)),  % Copia sicura!
-    infer_annotations(PredName/Arity, ArgsCopy, TypeAnnots),
-    conj_to_list(CCopy, CList),
+
+    infer_annotations(PredName/Arity, Args, TypeAnnots),
+    
+  %  writeln('StampoTypeAnnots'),
+   % writeln(TypeAnnots),
+
+    conj_to_list(C0, CList),
+   % writeln('Clist'),
+  %  writeln(CList),
+
+
     append(TypeAnnots, CList, FullList),
-    build_conjunct(FullList, CFinal),
+
+  %  writeln('fulllist'),
+  %  writeln(FullList),
+
+    build_conjunct_left_assoc(FullList, CFinal),
+  %  writeln('Stampo Cfinal'),
+  %  writeln(CFinal),
     !.
+
+
 rewrite_constr(_, Other, Other).
 
 infer_annotations(Pred, Args, Annotations) :-
-    findall(
-        Var:Type = Var:Type,
-        (
-            nth1(Pos, Args, Var),
-            arg_type(Pred, Pos, Type)
-        ),
-        Annotations
-    ).
+    length(Args, Arity),
+    numlist(1, Arity, Positions),
+    maplist(make_annotation(Pred, Args), Positions, Annots),
+    exclude(==(none), Annots, Annotations).
 
+make_annotation(Pred, Args, Pos, Var:Type=Var:Type) :-
+    nth1(Pos, Args, Var),
+    arg_type(Pred, Pos, Type), !.
+make_annotation(_, _, _, none).
 
 % ----------------------------
 % Sposta constr in testa
@@ -164,3 +193,25 @@ print_tree(SubTree => Head, Indent) :-
 print_tree('Step limit reached', Indent) :-
     tab(Indent), writeln('[... Step limit reached ...]').
 print_tree(Other, Indent) :- tab(Indent), writeln(Other).
+
+
+
+% ----------------------------
+% Flatten congiunzioni per evitare annidamenti inutili
+% ----------------------------
+
+% flatten_and_conjuncts([], []).
+% flatten_and_conjuncts([true | T], FT) :- !,
+%     flatten_and_conjuncts(T, FT).
+% flatten_and_conjuncts([(A, B) | T], FT) :- !,
+%     conj_to_list((A, B), ABList),
+%     append(ABList, T, NewList),
+%     flatten_and_conjuncts(NewList, FT).
+% flatten_and_conjuncts([H | T], [H | FT]) :-
+%     flatten_and_conjuncts(T, FT).
+
+
+% Costruisce (A and B) and C ... in forma associata a sinistra
+build_conjunct_left_assoc([X], X).
+build_conjunct_left_assoc([H|T], (H, Rest)) :-
+    build_conjunct_left_assoc(T, Rest).
