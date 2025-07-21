@@ -78,16 +78,18 @@
     % ----------------------------
 
     z3_sat_check(Formula, Result) :-
-    writeln('Stampo formula prima che faccio z3ConstrLower'),
-     writeln(Formula),
+    %writeln('Stampo formula prima che faccio z3ConstrLower'),
+    % writeln(Formula),
         z3constr2lower(Formula, _, RawGround),
         normalize_z3_formula(RawGround, Z3Ground),
         %writeln('🧪 DEBUG: invio a Z3 la formula:'),
         debug_print('--- Formula da pushare su Z3 ---'), debug_print(Z3Ground),
         z3_reset,
     % trace,
+    nl,nl,nl,
     writeln('Stampo z3 ground, forumla che io pusho insomma'),
     writeq(Z3Ground),
+    nl,nl,
         ( z3_push(Z3Ground) ->(
             z3_check(Sat),
             ( Sat == l_true ->
