@@ -86,7 +86,7 @@ zmi_aux(constr(C), Z3In, CLPQIn, _, Z3Out, CLPQOut, constr(Normalized)) :-
     build_conjunct([CLPQIn, Normalized], CLPQOut),
     clpq_sat_from_formula(CLPQOut),
     build_conjunct([Z3In, Normalized], Z3Out),
-    writeln(Z3Out),
+   % writeln(Z3Out),
     z3_sat_check(Z3Out, sat).
 
 zmi_aux(Head, Z3In, CLPQIn, Steps, Z3Out, CLPQOut, SubTree => Head) :-
@@ -96,13 +96,17 @@ zmi_aux(Head, Z3In, CLPQIn, Steps, Z3Out, CLPQOut, SubTree => Head) :-
     Head \= constr(_),
     clause(Head, RawBody),
     reorder_body(RawBody, TempBody),
-   % writeln('Adesso stampo rawBody'),
+    writeln('Adesso stampo rawBody'),
 
-   % writeln(RawBody),
+    writeln(RawBody),
+    nl,
+    nl,
     conj_to_list(TempBody, BodyList),
     maplist(rewrite_constr(Head), BodyList, RewrittenList),
     %maplist(rewrite_constr(Head), BodyList, BodyList),
-
+    writeln('Adesso stampo rewrittenList'),
+    nl,nl,
+    writeln(RewrittenList),
     %build_conjunct(BodyList, Body),
 
     build_conjunct(RewrittenList, Body),

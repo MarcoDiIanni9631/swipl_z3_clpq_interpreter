@@ -31,6 +31,15 @@ build_conjunct([C|Rest], (C, R)) :- build_conjunct(Rest, R).
 % Normalizzazione booleana
 % ----------------------------
 
+
+normalize_bool_expr((A = B), Norm) :-
+    compound(A), functor(A, store, _), !,
+    normalize_bool_expr((B = A), Norm).
+
+normalize_bool_expr((A = B), Norm) :-
+    compound(A), functor(A, select, _), !,
+    normalize_bool_expr((B = A), Norm).
+	
 normalize_bool_expr(A v B, or(NA, NB)) :-
     !, normalize_bool_expr(A, NA),
        normalize_bool_expr(B, NB).
