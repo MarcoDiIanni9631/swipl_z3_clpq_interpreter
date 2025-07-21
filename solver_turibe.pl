@@ -97,11 +97,17 @@ z3_sat_check(Formula, Result) :-
 % ----------------------------
 
 z3_print_model_final(Formula) :-
+    writeln('Stampo formula ora'),
+    writeln(Formula),
+    nl,nl,nl,
     debug_print('✅ z3_sat_check attivato!'),
     z3constr2lower(Formula, Pairs, RawGround),
     normalize_z3_formula(RawGround, Z3Ground),
     debug_print('--- Formula da pushare su Z3 ---'), debug_print(Z3Ground),
     %z3_reset,
+        writeln('Ora stampo z3ground!!!'),nl,nl,nl,
+
+    writeln(Z3Ground),nl,nl,nl,
     ( z3_push(Z3Ground) ->
         z3_check(Sat),
         ( Sat == l_true ->
