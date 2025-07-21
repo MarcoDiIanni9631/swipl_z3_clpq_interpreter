@@ -1,3 +1,5 @@
+% zmi_debug_version.pl
+
 :- use_module(library(dcg/basics)).
 :- use_module(library(clpq)).
 :- use_module(solver_clpq).
@@ -50,12 +52,9 @@ print_all_models([M|Rest]) :-
 
 print_single_model(model(FinalZ3, FinalCLPQ, Tree)) :-
     nl, writeln('--- CLPQ Constraints ---'),
-   % normalize_bool_expr(FinalCLPQ, NormalizedCLPQ),
-   % conj_to_list(NormalizedCLPQ, CLPQList),
     writeln(FinalCLPQ),
     nl, writeln('--- FINAL MODEL (Z3) ---'),
     z3_print_model_final(FinalZ3).
-    %writeln(FinalZ3).
 
 % ----------------------------
 % Wrapper per raccogliere solo i SAT
@@ -83,20 +82,15 @@ zmi_aux((A, B), Z3In, CLPQIn, Steps, Z3Out, CLPQOut, (TreeA, TreeB)) :-
     zmi_aux(B, TempZ3, TempCLPQ, Steps, Z3Out, CLPQOut, TreeB).
 
 zmi_aux(constr(C), Z3In, CLPQIn, _, Z3Out, CLPQOut, constr(Normalized)) :-
-    
-    nl,nl,nl,
-    writeln('Stampo C'),
-    writeln(C),
-    writeln('stampo anche i cLPq constraitn'),
-    writeln(CLPQOut),nl,nl,
+    nl, writeln('========[DEBUG]========'),
+    writeln('Stampo C:'), writeln(C),
+    term_variables(C, VarsC), writeln('Vars in C:'), writeln(VarsC),
     normalize_bool_expr(C, Normalized),
-    writeln('Stampo Normalized C'),nl,nl,nl,
-    writeln(Normalized),nl,nl,nl,
-
+    writeln('Stampo Normalized C:'), writeln(Normalized),
+    term_variables(Normalized, VarsNorm), writeln('Vars in Normalized C:'), writeln(VarsNorm),
     build_conjunct([CLPQIn, Normalized], CLPQOut),
     clpq_sat_from_formula(CLPQOut),
     build_conjunct([Z3In, Normalized], Z3Out),
-   % writeln(Z3Out),
     z3_sat_check(Z3Out, sat).
 
 zmi_aux(Head, Z3In, CLPQIn, Steps, Z3Out, CLPQOut, SubTree => Head) :-
@@ -106,26 +100,14 @@ zmi_aux(Head, Z3In, CLPQIn, Steps, Z3Out, CLPQOut, SubTree => Head) :-
     Head \= constr(_),
     clause(Head, RawBody),
     reorder_body(RawBody, TempBody),
-    writeln('Adesso stampo rawBody'),
-
-    writeln(RawBody),
-    nl,
-    nl,
+    writeln('======= [DEBUG] ======='),
+    writeln('Adesso stampo rawBody:'), writeln(RawBody),
     conj_to_list(TempBody, BodyList),
+    writeln('BodyList:'), writeln(BodyList),
     maplist(rewrite_constr(Head), BodyList, RewrittenList),
-    %maplist(rewrite_constr(Head), BodyList, BodyList),
-    writeln('Adesso stampo rewrittenList'),
-    nl,nl,
-    writeln(RewrittenList),
-    %build_conjunct(BodyList, Body),
-
+    writeln('RewrittenList:'), writeln(RewrittenList),
     build_conjunct(RewrittenList, Body),
-
-
-
-  %         writeln('Adesso invece stampo Body'),
-
-   % writeln(Body),
+    term_variables(Body, VarsBody), writeln('Vars in Body after build_conjunct:'), writeln(VarsBody),
     NewSteps is Steps - 1,
     zmi_aux(Body, Z3In, CLPQIn, NewSteps, Z3Out, CLPQOut, SubTree).
 
@@ -136,27 +118,14 @@ zmi_aux(Head, Z3In, CLPQIn, Steps, Z3Out, CLPQOut, SubTree => Head) :-
 rewrite_constr(Head, constr(C0), constr(CFinal)) :-
     Head =.. [PredName | Args],
     length(Args, Arity),
-
     infer_annotations(PredName/Arity, Args, TypeAnnots),
-    
-  %  writeln('StampoTypeAnnots'),
-   % writeln(TypeAnnots),
-
     conj_to_list(C0, CList),
-   % writeln('Clist'),
-  %  writeln(CList),
-
-
+    writeln('[DEBUG rewrite_constr] Vars in C0:'), term_variables(C0, VarsC0), writeln(VarsC0),
     append(TypeAnnots, CList, FullList),
-
-  %  writeln('fulllist'),
-  %  writeln(FullList),
-
+    writeln('[DEBUG rewrite_constr] Vars in FullList:'), term_variables(FullList, VarsFullList), writeln(VarsFullList),
     build_conjunct_left_assoc(FullList, CFinal),
-  %  writeln('Stampo Cfinal'),
-  %  writeln(CFinal),
+    writeln('[DEBUG rewrite_constr] Vars in CFinal:'), term_variables(CFinal, VarsCFinal), writeln(VarsCFinal),
     !.
-
 
 rewrite_constr(_, Other, Other).
 
@@ -207,23 +176,6 @@ print_tree(SubTree => Head, Indent) :-
 print_tree('Step limit reached', Indent) :-
     tab(Indent), writeln('[... Step limit reached ...]').
 print_tree(Other, Indent) :- tab(Indent), writeln(Other).
-
-
-
-% ----------------------------
-% Flatten congiunzioni per evitare annidamenti inutili
-% ----------------------------
-
-% flatten_and_conjuncts([], []).
-% flatten_and_conjuncts([true | T], FT) :- !,
-%     flatten_and_conjuncts(T, FT).
-% flatten_and_conjuncts([(A, B) | T], FT) :- !,
-%     conj_to_list((A, B), ABList),
-%     append(ABList, T, NewList),
-%     flatten_and_conjuncts(NewList, FT).
-% flatten_and_conjuncts([H | T], [H | FT]) :-
-%     flatten_and_conjuncts(T, FT).
-
 
 % Costruisce (A and B) and C ... in forma associata a sinistra
 build_conjunct_left_assoc([X], X).
