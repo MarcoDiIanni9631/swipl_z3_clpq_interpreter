@@ -50,11 +50,12 @@ print_all_models([M|Rest]) :-
 
 print_single_model(model(FinalZ3, FinalCLPQ, Tree)) :-
     nl, writeln('--- CLPQ Constraints ---'),
-    normalize_bool_expr(FinalCLPQ, NormalizedCLPQ),
-    conj_to_list(NormalizedCLPQ, CLPQList),
-    writeln(CLPQList),
+   % normalize_bool_expr(FinalCLPQ, NormalizedCLPQ),
+   % conj_to_list(NormalizedCLPQ, CLPQList),
+    writeln(FinalCLPQ),
     nl, writeln('--- FINAL MODEL (Z3) ---'),
     z3_print_model_final(FinalZ3).
+    %writeln(FinalZ3).
 
 % ----------------------------
 % Wrapper per raccogliere solo i SAT
@@ -82,7 +83,16 @@ zmi_aux((A, B), Z3In, CLPQIn, Steps, Z3Out, CLPQOut, (TreeA, TreeB)) :-
     zmi_aux(B, TempZ3, TempCLPQ, Steps, Z3Out, CLPQOut, TreeB).
 
 zmi_aux(constr(C), Z3In, CLPQIn, _, Z3Out, CLPQOut, constr(Normalized)) :-
+    
+    nl,nl,nl,
+    writeln('Stampo C'),
+    writeln(C),
+    writeln('stampo anche i cLPq constraitn'),
+    writeln(CLPQOut),nl,nl,
     normalize_bool_expr(C, Normalized),
+    writeln('Stampo Normalized C'),nl,nl,nl,
+    writeln(Normalized),nl,nl,nl,
+
     build_conjunct([CLPQIn, Normalized], CLPQOut),
     clpq_sat_from_formula(CLPQOut),
     build_conjunct([Z3In, Normalized], Z3Out),
