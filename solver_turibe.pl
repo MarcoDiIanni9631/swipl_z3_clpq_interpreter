@@ -114,14 +114,22 @@ z3_sat_check(Formula, Result) :-
             z3constr2lower(Formula, Pairs, RawGround),
             normalize_z3_formula(RawGround, Z3Ground),
             debug_print('--- Formula da pushare su Z3 ---'), debug_print(Z3Ground),
+          
             %z3_reset,
+            nl,nl,nl,   
+            writeln(Z3Ground),
+            writeln('Stampo z3 ground'),
+
+            nl,nl,nl,
+
             ( z3_push(Z3Ground) ->
                 z3_check(Sat),
                 ( Sat == l_true ->
                     %writeln('--- Z3 Final Model (Turibe) (l_true) ---'),
                     z3_model(Model),
-                    sostituisci_costanti(Model, Pairs, ReadableModel),
-                    writeln('Readable Model:'), writeln(ReadableModel)
+                    writeln('Z3 Model Crudo:'), writeln(Model)
+                  %  sostituisci_costanti(Model, Pairs, ReadableModel),
+                   % writeln('Readable Model:'), writeln(ReadableModel)
                 ; Sat == l_false ->
                     writeln('Z3 says: UNSAT (l_false)')
                 ; Sat == l_undef ->
