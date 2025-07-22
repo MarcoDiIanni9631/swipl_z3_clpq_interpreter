@@ -78,21 +78,22 @@
         % ----------------------------
 
 z3_sat_check(Formula, Result) :-
-    writeln('Prima di z3constr2lower:'),
-    writeln('Formula:'), writeln(Formula),
-    term_variables(Formula, Vars), writeln('Vars in Formula:'), writeln(Vars),
+   % writeln('Prima di z3constr2lower:'),
+   % writeln('Formula:'), writeln(Formula),
+    term_variables(Formula, Vars),
+    %writeln('Vars in Formula:'), writeln(Vars),
     z3constr2lower(Formula, Pairs, RawGround),
-    writeln('PAIRS:'), writeln(Pairs),
+   % writeln('PAIRS:'), writeln(Pairs),
     normalize_z3_formula(RawGround, Z3Ground),
-    writeln('Z3Ground:'), writeln(Z3Ground),
+   % writeln('Z3Ground:'), writeln(Z3Ground),
             %writeln('🧪 DEBUG: invio a Z3 la formula:'),
             debug_print('--- Formula da pushare su Z3 ---'), debug_print(Z3Ground),
             z3_reset,
         % trace,
-        nl,nl,nl,
+      %  nl,nl,nl,
     % writeln('Stampo z3 ground, forumla che io pusho insomma'),
         %writeq(Z3Ground),
-        nl,nl,
+        %nl,nl,
             ( z3_push(Z3Ground) ->(
                 z3_check(Sat),
                 ( Sat == l_true ->
@@ -108,26 +109,26 @@ z3_sat_check(Formula, Result) :-
         % ----------------------------
 
         z3_print_model_final(Formula) :-
-            writeln('Stampo formula'),
-            writeln(Formula),
+         %   writeln('Stampo formula'),
+         %   writeln(Formula),
             debug_print('✅ z3_sat_check attivato!'),
             z3constr2lower(Formula, Pairs, RawGround),
             normalize_z3_formula(RawGround, Z3Ground),
             debug_print('--- Formula da pushare su Z3 ---'), debug_print(Z3Ground),
           
             %z3_reset,
-            nl,nl,nl,   
-            writeln(Z3Ground),
-            writeln('Stampo z3 ground'),
+          %  nl,nl,nl,   
+          %  writeln(Z3Ground),
+          %  writeln('Stampo z3 ground'),
 
-            nl,nl,nl,
+           % nl,nl,nl,
 
             ( z3_push(Z3Ground) ->
                 z3_check(Sat),
                 ( Sat == l_true ->
                     %writeln('--- Z3 Final Model (Turibe) (l_true) ---'),
                     z3_model(Model),
-                    writeln('Z3 Model Crudo:'), writeln(Model)
+                    writeln('Z3 Model:'), writeln(Model)
                   %  sostituisci_costanti(Model, Pairs, ReadableModel),
                    % writeln('Readable Model:'), writeln(ReadableModel)
                 ; Sat == l_false ->
