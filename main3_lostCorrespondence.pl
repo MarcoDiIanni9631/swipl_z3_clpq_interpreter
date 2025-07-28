@@ -125,16 +125,8 @@ zmi_aux(Head, Z3In, CLPQIn,SymTabIn, Steps, Z3Out, CLPQOut, SubTree => Head) :-
     reorder_body(RawBody, TempBody),
     conj_to_list(TempBody, BodyList),
     extend_type_table(Head, SymTabIn, SymTabMid),
-   % extend_type_tableBody(BodyList, SymTabMid, SymTabMid),
-
-    format('📌 SymTab dopo extend: ~w~n', [SymTabMid]),
-    Head =.. [_|Args],
-    format('📌 Variabili in Head: ~w~n', [Args]),
     maplist(rewrite_constr(Head, SymTabMid), BodyList, RewrittenList),
-    writeln('Mi trovo in questa head'),
-    writeln(Head),
-    writeln('📌 BodyList riscritta:'),
-    maplist(writeln, RewrittenList),
+
     %maplist(rewrite_constr(Head), BodyList, RewrittenList),
     build_conjunct(RewrittenList, Body),
     NewSteps is Steps - 1,
@@ -145,21 +137,13 @@ zmi_aux(Head, Z3In, CLPQIn,SymTabIn, Steps, Z3Out, CLPQOut, SubTree => Head) :-
 extend_type_table(Head, Old, New) :-
     Head =.. [Pred | Args],
     length(Args, Arity),
-    PredArity = Pred/Arity,
-    build_type_pairs(PredArity, 1, Args, [], Pairs),
-    append(Old, Pairs, Combined),
-    sort(Combined, New).
-
-build_type_pairs(_, _, [], Acc, Acc).
-build_type_pairs(PredArity, Pos, [Var | Rest], AccIn, AccOut) :-
-    ( arg_type(PredArity, Pos, Type) ->
-        Pair = Var-Type,
-        AccNext = [Pair | AccIn]
-    ; AccNext = AccIn
-    ),
-    Pos1 is Pos + 1,
-    build_type_pairs(PredArity, Pos1, Rest, AccNext, AccOut).
-
+    findall(arg_type(Pred/Arity, Pos, Type), arg_type(Pred/Arity, Pos, Type), DeclTypes),
+    findall(Var-Type,
+        (between(1, Arity, Pos), nth1(Pos, Args, Var),
+         memberchk(arg_type(Pred/Arity, Pos, Type), DeclTypes)),
+        Pairs),
+    append(Old, Pairs, NewAll),
+    sort(NewAll, New).
 
 rewrite_constr(_, _, constr(true), constr(true)) :- !.
 rewrite_constr(_, _, true, true) :- !.
@@ -175,7 +159,6 @@ rewrite_constr(_, SymTab, constr(C0), constr(CFinal)) :-
 rewrite_constr(_, _, Other, Other).
 
 build_type_equality(Var-Type, (Var:Type = Var:Type)).
-
 
 % ----------------------------
 % Inserisce annotazioni di tipo nei constr
