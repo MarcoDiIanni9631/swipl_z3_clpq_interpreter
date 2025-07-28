@@ -125,12 +125,12 @@ zmi_aux(Head, Z3In, CLPQIn,SymTabIn, Steps, Z3Out, CLPQOut, SubTree => Head) :-
     reorder_body(RawBody, TempBody),
     conj_to_list(TempBody, BodyList),
     extend_type_table(Head, SymTabIn, SymTabMid),
-   % extend_type_tableBody(BodyList, SymTabMid, SymTabMid),
+    extend_type_tableBody(BodyList, SymTabMid, SymTabFinal),
 
-    format('📌 SymTab dopo extend: ~w~n', [SymTabMid]),
-    Head =.. [_|Args],
-    format('📌 Variabili in Head: ~w~n', [Args]),
-    maplist(rewrite_constr(Head, SymTabMid), BodyList, RewrittenList),
+    %format('📌 SymTab dopo extend: ~w~n', [SymTabMid]),
+    %Head =.. [_|Args],
+    %format('📌 Variabili in Head: ~w~n', [Args]),
+    maplist(rewrite_constr(Head, SymTabFinal), BodyList, RewrittenList),
     writeln('Mi trovo in questa head'),
     writeln(Head),
     writeln('📌 BodyList riscritta:'),
@@ -141,6 +141,19 @@ zmi_aux(Head, Z3In, CLPQIn,SymTabIn, Steps, Z3Out, CLPQOut, SubTree => Head) :-
     zmi_aux(Body, Z3In, CLPQIn,SymTabMid, NewSteps, Z3Out, CLPQOut, SubTree).
 
 
+
+extend_type_tableBody([], SymTab, SymTab).
+extend_type_tableBody([Goal | Rest], SymTabIn, SymTabOut) :-
+    ( Goal = constr(_) ; Goal == true ) ->
+        extend_type_tableBody(Rest, SymTabIn, SymTabOut)
+    ;
+        Goal =.. [Pred | Args],
+        length(Args, Arity),
+        PredArity = Pred/Arity,
+        build_type_pairs(PredArity, 1, Args, [], Pairs),
+        append(SymTabIn, Pairs, Combined),
+        sort(Combined, SymTabNext),
+        extend_type_tableBody(Rest, SymTabNext, SymTabOut).
 
 extend_type_table(Head, Old, New) :-
     Head =.. [Pred | Args],
