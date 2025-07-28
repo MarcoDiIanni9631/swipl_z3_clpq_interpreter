@@ -26,10 +26,10 @@
 % new5(A,B,C) :- new6(D,A,B,C), constr((B>=1&(E=0&D=0))).
 % new5(A,B,C) :- new6(D,A,B,C), constr((B=< - 1&(E=0&D=0))).
 % new4(A,B,C) :- new2(D,E,C), constr((C>=1&(F=1&(D=1+A&(G=1&(E= - 1+B&H=0)))))).
-new4(A,B,C) :- constr((C=<0&(E=1&(D=1+A&F=0)))).
-new3(A,B,C) :- new4(A,D,C), constr((A=<0&(E=1&(D=1+B&F=1)))).
-%new3(A,B,C) :- new5(A,B,C), constr((A>=1&D=1)).
-new2(A,B,C) :- new3(A,B,C), constr((true)).
-new1 :- new2(A,B,C), constr((B=0&A=0)).
+% new4(A,B,C) :- constr((C=<0&(E=1&(D=1+A&F=0)))).
+% new3(A,B,C) :- new4(A,D,C), constr((A=<0&(E=1&(D=1+B&F=1)))).
+% %new3(A,B,C) :- new5(A,B,C), constr((A>=1&D=1)).
+new2(A,B,C) :-  constr((C=1)).
+new1 :- new2(A,B,D), constr((B=0&A=0)).
 incorrect :- new1, constr((true)).
 
