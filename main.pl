@@ -37,10 +37,11 @@ set_solver(vidal) :-
 
 zmi(Head) :-
     set_solver(turibe),
-    findall(Model, zmi_branch_sat(Head, Model), Models),
+    MaxSteps = 10, % <-- qui il default passi
+    findall(Model, zmi_branch_sat(Head, MaxSteps, Model), Models),
     ( Models == [] ->
-        writeln('No SAT branches found.'), fail
-    ; writeln('--- ALL SAT BRANCHES FOUND ---'),
+        format('No SAT branches found in MaxSteps = ~w.\n', [MaxSteps]), fail
+    ; format('--- ALL SAT BRANCHES FOUND (MaxSteps = ~w) ---~n', [MaxSteps]),
       print_all_models(Models)
     ).
 
@@ -60,10 +61,9 @@ print_single_model(model(FinalZ3, FinalCLPQ, Tree)) :-
 % Wrapper per raccogliere solo i SAT
 % ----------------------------
 
-zmi_branch_sat(Head, model(FinalZ3, FinalCLPQ, Tree)) :-
+zmi_branch_sat(Head, MaxSteps, model(FinalZ3, FinalCLPQ, Tree)) :-
     InitialZ3 = true,
     InitialCLPQ = true,
-    MaxSteps = 50, 
     zmi_aux(Head, InitialZ3, InitialCLPQ, MaxSteps, FinalZ3, FinalCLPQ, Tree),
     z3_sat_check(FinalZ3, sat).
 
@@ -72,7 +72,6 @@ zmi_branch_sat(Head, model(FinalZ3, FinalCLPQ, Tree)) :-
 % ----------------------------
 
 zmi_aux(Head, _, _, 0, _, _, _) :- 
-    format('❌ Non è mai stato raggiunto ~w entro il numero massimo di passi consentiti (MaxSteps).\n', [Head]),
     fail.
 
 zmi_aux(true, Z3, CLPQ, _, Z3, CLPQ, true).
@@ -82,14 +81,7 @@ zmi_aux((A, B), Z3In, CLPQIn, Steps, Z3Out, CLPQOut, (TreeA, TreeB)) :-
     zmi_aux(B, TempZ3, TempCLPQ, Steps, Z3Out, CLPQOut, TreeB).
 
 zmi_aux(constr(C), Z3In, CLPQIn, _, Z3Out, CLPQOut, constr(Normalized)) :-
-    %nl, writeln('========[DEBUG]========'),
-   % writeln('Stampo C:'), writeln(C),
-    term_variables(C, VarsC), 
-    %writeln('Vars in C:'), writeln(VarsC),
     normalize_bool_expr(C, Normalized),
-   % writeln('Stampo Normalized C:'), writeln(Normalized),
-    term_variables(Normalized, VarsNorm), 
-    %writeln('Vars in Normalized C:'), writeln(VarsNorm),
     build_conjunct([CLPQIn, Normalized], CLPQOut),
     clpq_sat_from_formula(CLPQOut),
     build_conjunct([Z3In, Normalized], Z3Out),
@@ -102,15 +94,9 @@ zmi_aux(Head, Z3In, CLPQIn, Steps, Z3Out, CLPQOut, SubTree => Head) :-
     Head \= constr(_),
     clause(Head, RawBody),
     reorder_body(RawBody, TempBody),
-   % writeln('======= [DEBUG] ======='),
-   % writeln('Adesso stampo rawBody:'), writeln(RawBody),
     conj_to_list(TempBody, BodyList),
-   % writeln('BodyList:'), writeln(BodyList),
     maplist(rewrite_constr(Head), BodyList, RewrittenList),
-   % writeln('RewrittenList:'), writeln(RewrittenList),
     build_conjunct(RewrittenList, Body),
-    term_variables(Body, VarsBody), 
-    %writeln('Vars in Body after build_conjunct:'), writeln(VarsBody),
     NewSteps is Steps - 1,
     zmi_aux(Body, Z3In, CLPQIn, NewSteps, Z3Out, CLPQOut, SubTree).
 
@@ -123,17 +109,8 @@ rewrite_constr(Head, constr(C0), constr(CFinal)) :-
     length(Args, Arity),
     infer_annotations(PredName/Arity, Args, TypeAnnots),
     conj_to_list(C0, CList),
-    %writeln('[DEBUG rewrite_constr] Vars in C0:'),
-    term_variables(C0, VarsC0),
-    % writeln(VarsC0),
     append(TypeAnnots, CList, FullList),
-    %writeln('[DEBUG rewrite_constr] Vars in FullList:'),
-    term_variables(FullList, VarsFullList),
-    % writeln(VarsFullList),
     build_conjunct_left_assoc(FullList, CFinal),
-    %writeln('[DEBUG rewrite_constr] Vars in CFinal:'),
-    term_variables(CFinal, VarsCFinal),
-    %writeln(VarsCFinal),
     !.
 
 rewrite_constr(_, Other, Other).

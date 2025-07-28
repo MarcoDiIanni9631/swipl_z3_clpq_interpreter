@@ -32,6 +32,12 @@ build_conjunct([C|Rest], (C, R)) :- build_conjunct(Rest, R).
 % ----------------------------
 
 
+% Caso base: uguaglianze/relazioni aritmetiche (STOP ricorsione)
+normalize_bool_expr(Expr, Expr) :-
+    Expr =.. [Op, _, _],
+    member(Op, [=, <, >, =<, >=, \=, =:=, =\=]), !.
+
+
 normalize_bool_expr((A = B), Norm) :-
     compound(A), functor(A, store, _), !,
     normalize_bool_expr((B = A), Norm).

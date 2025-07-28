@@ -222,3 +222,110 @@ test(level9_store_only_sat) :-
     zmi(incorrect).
 
 :- end_tests(level9_store_only_sat).
+
+
+:- begin_tests(min1_basic_nested, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
+
+test(min1_basic_nested) :-
+    user:assertz((incorrect :- constr((A = 10 & (B = 5 & (A > B & (C = (A+B) & (C < 20)))))))),
+    zmi(incorrect).
+
+:- end_tests(min1_basic_nested).
+
+
+:- begin_tests(min3_ite_branch, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
+
+test(min3_ite_branch) :-
+    user:assertz((incorrect :- constr((Cond = (B = 97) & (X = ite(Cond, 1, 0)))))),
+    zmi(incorrect).
+
+:- end_tests(min3_ite_branch).
+
+:- begin_tests(min_assign_bool, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
+
+test(assign_bool) :-
+    user:assertz((incorrect :- constr((G = (B = 65))))),
+    zmi(incorrect).
+
+:- end_tests(min_assign_bool).
+
+:- begin_tests(min_assign_bool2, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
+
+test(assign_bool2) :-
+    user:assertz((incorrect :- constr((B = 65)))),
+    zmi(incorrect).
+
+:- end_tests(min_assign_bool2).
+
+
+% Z3 ERROR: code 3l invalid argument
+
+:- begin_tests(min_assign_var_eq, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
+
+test(assign_var_eq) :-
+    user:assertz((incorrect :- constr((N = (O = A))))),
+    zmi(incorrect).
+
+:- end_tests(min_assign_var_eq).
+
+
+:- begin_tests(min_assign_var_eq33, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
+
+test(assign_var_eq33) :-
+    user:assertz((incorrect :- constr((O=1 &(A=1&(N:bool = (O:int = A:int))))))),
+    zmi(incorrect).
+
+:- end_tests(min_assign_var_eq33).
+
+
+
+:- begin_tests(min_assign_var_eq2, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
+
+
+%Caso risolto in logic utils prima clausola
+test(assign_var_eq2) :-
+    user:assertz((incorrect :- constr((O=1 & (A=1 &(C=O)))))),  
+    zmi(incorrect).
+
+:- end_tests(min_assign_var_eq2).
+
+
+
+%result ite: model{constants:[x_6644=0,x_6658=uninterpreted!val!0,x_6660=uninterpreted!val!1],functions:[]}
+
+:- begin_tests(min_assign_var_eq13, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
+
+test(assign_var_eq13) :-
+    user:assertz((incorrect :- constr(N = ite(O = A, 1, 0)))),
+    zmi(incorrect).
+
+:- end_tests(min_assign_var_eq13).
+
+
+%result ite: model{constants:[x_6644=0,x_6658=uninterpreted!val!0,x_6660=uninterpreted!val!1],functions:[]}
+
+
+%Ite gestito bene se valorizzato
+%model{constants:[x_12734=1,x_12746=1,x_12752=1],functions:[]}
+
+:- begin_tests(min_assign_var_eq14, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
+
+test(assign_var_eq14) :-
+    user:assertz((incorrect :- constr(O=1 &(A=1 &(N = ite(O = A, 1, 0)))))),
+    zmi(incorrect).
+
+:- end_tests(min_assign_var_eq14).
+
+
+
+
+% funziona se assegno :array(int,int) a select(A:array(int,int)
+
+
+:- begin_tests(select, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
+
+test(assign_var_eq14) :-
+    user:assertz((incorrect :- constr(( select(A:array(int,int),B) = Y)))),
+    zmi(incorrect).
+
+:- end_tests(select).
