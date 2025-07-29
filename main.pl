@@ -85,23 +85,23 @@ zmi_aux(constr(C), Z3In, CLPQIn,SymTab, _, Z3Out, CLPQOut, constr(Normalized)) :
     build_conjunct([CLPQIn, Normalized], CLPQOut),
     clpq_sat_from_formula(CLPQOut),
     build_conjunct([Z3In, Normalized], Z3Out),
-    writeln('Stampo Z3 out'),
-    writeln(Z3Out),
+   % writeln('Stampo Z3 out'),
+   % writeln(Z3Out),
     maplist(build_type_equality, SymTab, TypeAnnots),
-    writeln('Stampo Type Annotations'),
-    writeln(TypeAnnots),
+   % writeln('Stampo Type Annotations'),
+   % writeln(TypeAnnots),
 
     build_conjunct([TypeAnnots,Z3Out],FullList),
     %append(TypeAnnots, Z3Out, FullList),
     forall(member((Var:Type = Var:Type), TypeAnnots),
         format('✅ Inserita in constr: ~w:~w~n', [Var, Type])),
     %build_conjunct([TypeAnnots,Z3Out], Z3Final),
-    writeln('Stampo FullList'),
+   % writeln('Stampo FullList'),
     
-    writeln(FullList),
+   % writeln(FullList),
     %normalize_bool_expr(FullList, Z3Final),
-    writeln('Stampo Z3Final'),
-    writeln(FullList),
+   % writeln('Stampo Z3Final'),
+   % writeln(FullList),
 
 
     z3_sat_check(Z3Final, sat).
@@ -131,7 +131,7 @@ zmi_aux(Head, Z3In, CLPQIn,SymTabIn, Steps, Z3Out, CLPQOut, SubTree => Head) :-
     %Head =.. [_|Args],
     %format('📌 Variabili in Head: ~w~n', [Args]),
     maplist(rewrite_constr(Head, SymTabFinal), BodyList, RewrittenList),
-    writeln('Mi trovo in questa head'),
+    %writeln('Mi trovo in questa head'),
     writeln(Head),
     writeln('📌 BodyList riscritta:'),
     maplist(writeln, RewrittenList),
@@ -143,6 +143,7 @@ zmi_aux(Head, Z3In, CLPQIn,SymTabIn, Steps, Z3Out, CLPQOut, SubTree => Head) :-
 
 
 extend_type_tableBody([], SymTab, SymTab).
+
 extend_type_tableBody([Goal | Rest], SymTabIn, SymTabOut) :-
     ( Goal = constr(_) ; Goal == true ) ->
         extend_type_tableBody(Rest, SymTabIn, SymTabOut)

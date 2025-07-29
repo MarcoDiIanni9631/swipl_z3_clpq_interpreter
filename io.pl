@@ -101,7 +101,22 @@ pred_head(Name, Types) -->
 
 atom_string(Atom) -->
     string_without("(", Cs),
-    { string_codes(S, Cs), normalize_space(atom(Atom), S) }.
+    {
+        string_codes(S, Cs),
+        normalize_space(string(S1), S),
+        strip_quotes(S1, S2),
+        atom_string(Atom, S2)
+    }.
+
+strip_quotes(Str, Unquoted) :-
+    string_length(Str, Len),
+    ( Len >= 2,
+      sub_string(Str, 0, 1, _, "'"),
+      sub_string(Str, _, 1, 0, "'") ->
+        LenMinus2 is Len - 2,
+        sub_string(Str, 1, LenMinus2, 1, Unquoted)
+    ; Unquoted = Str
+    ).
 
 type_list([T|Ts]) -->
     whites, type_term(T), whites,
@@ -112,7 +127,11 @@ type_term(array(Inner)) -->
     "array(", type_term(Inner), ")", !.
 type_term(T) -->
     string_without(",)", Cs),
-    { string_codes(S, Cs), normalize_space(string(Str), S), atom_string(T, Str) }.
+    {
+        string_codes(S, Cs),
+        normalize_space(string(Str), S),
+        atom_string(T, Str)
+    }.
 
 % ----------------------------
 % Linee da ignorare
