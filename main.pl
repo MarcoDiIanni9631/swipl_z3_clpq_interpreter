@@ -38,6 +38,7 @@ set_solver(vidal) :-
 zmi(Head) :-
     set_solver(turibe),
     MaxSteps = 10, % <-- qui il default passi
+    format('ℹ️ MaxStep impostato a: ~w\n', [MaxSteps]),
     findall(Model, zmi_branch_sat(Head, MaxSteps, Model), Models),
     ( Models == [] ->
         format('No SAT branches found in MaxSteps = ~w.\n', [MaxSteps]), fail
@@ -138,7 +139,7 @@ zmi_aux(Head, Z3In, CLPQIn,SymTabIn, Steps, Z3Out, CLPQOut, SubTree => Head) :-
     %maplist(rewrite_constr(Head), BodyList, RewrittenList),
     build_conjunct(RewrittenList, Body),
     NewSteps is Steps - 1,
-    zmi_aux(Body, Z3In, CLPQIn,SymTabMid, NewSteps, Z3Out, CLPQOut, SubTree).
+    zmi_aux(Body, Z3In, CLPQIn,SymTabFinal, NewSteps, Z3Out, CLPQOut, SubTree).
 
 
 
