@@ -83,7 +83,7 @@ zmi_aux((A, B), Z3In, CLPQIn,SymTab, Steps, Z3Out, CLPQOut, (TreeA, TreeB)) :-
 zmi_aux(constr(C), Z3In, CLPQIn,SymTab, _, Z3Out, CLPQOut, constr(Normalized)) :-
     normalize_bool_expr(C, Normalized),
     build_conjunct([CLPQIn, Normalized], CLPQOut),
-    clpq_sat_from_formula(CLPQOut),
+  %  clpq_sat_from_formula(CLPQOut),
     build_conjunct([Z3In, Normalized], Z3Out),
    % writeln('Stampo Z3 out'),
    % writeln(Z3Out),
