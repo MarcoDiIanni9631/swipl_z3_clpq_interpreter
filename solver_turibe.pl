@@ -90,8 +90,8 @@ z3_sat_check(Formula, Result) :-
     %writeln('🧪 DEBUG: invio a Z3 la formula:'),
     debug_print('--- Formula da pushare su Z3 ---'), debug_print(Z3Ground),
     z3_reset,
-    writeln('Stampa prima di inviare'),
-    writeq(Z3Ground),
+    % writeln('Stampa prima di inviare'),
+    % writeq(Z3Ground),
 
     ( z3_push(Z3Ground) -> (
             z3_check(Sat),

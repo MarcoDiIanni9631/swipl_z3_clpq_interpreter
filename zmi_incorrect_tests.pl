@@ -1,6 +1,6 @@
 :- op(1000, yfx, &).
 :- op(900, fy, ~).
-
+:- style_check(-singleton).
 % % Cleanup comune per i test
 % cleanup_all :-
 %     user:retractall((incorrect :- _)),
