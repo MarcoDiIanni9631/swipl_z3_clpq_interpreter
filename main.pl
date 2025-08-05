@@ -6,7 +6,7 @@
 
 :- use_module(logic_utils).
 :- use_module(io).
-:- include('zmi_incorrect_tests.pl').
+%:- include('zmi_incorrect_tests.pl').
 
 % ----------------------------
 % Solver Selection (Turibe or Vidal)
@@ -37,12 +37,12 @@ set_solver(vidal) :-
 
 zmi(Head) :-
     set_solver(turibe),
-    MaxSteps = 10, % <-- qui il default passi
-    format('ℹ️ MaxStep impostato a: ~w\n', [MaxSteps]),
-    findall(Model, zmi_branch_sat(Head, MaxSteps, Model), Models),
+    MaxDepths = 10, % <-- qui il default passi
+    format('ℹ️ MaxDepth impostato a: ~w\n', [MaxDepths]),
+    findall(Model, zmi_branch_sat(Head, MaxDepths, Model), Models),
     ( Models == [] ->
-        format('No SAT branches found in MaxSteps = ~w.\n', [MaxSteps]), fail
-    ; format('--- ALL SAT BRANCHES FOUND (MaxSteps = ~w) ---~n', [MaxSteps]),
+        format('No SAT branches found in MaxDepths = ~w.\n', [MaxDepths]), fail
+    ; format('--- ALL SAT BRANCHES FOUND (MaxDepths = ~w) ---~n', [MaxDepths]),
       print_all_models(Models)
     ).
 
@@ -52,7 +52,7 @@ print_all_models([M|Rest]) :-
     print_single_model(M), nl,
     print_all_models(Rest).
 
-print_single_model(model(FinalZ3, FinalCLPQ, Tree)) :-
+print_single_model(model(FinalZ3, FinalCLPQ, _)) :-
     nl, writeln('--- CLPQ Constraints ---'),
     writeln(FinalCLPQ),
     nl, writeln('--- FINAL MODEL (Z3) ---'),
@@ -62,17 +62,21 @@ print_single_model(model(FinalZ3, FinalCLPQ, Tree)) :-
 % Wrapper per raccogliere solo i SAT
 % ----------------------------
 
-zmi_branch_sat(Head, MaxSteps, model(FinalZ3, FinalCLPQ, Tree)) :-
+zmi_branch_sat(Head, MaxDepths, model(FinalZ3, FinalCLPQ, Tree)) :-
     InitialZ3 = true,
     InitialCLPQ = true,
-    zmi_aux(Head, InitialZ3, InitialCLPQ,[], MaxSteps, FinalZ3, FinalCLPQ, Tree),
-    z3_sat_check(FinalZ3, sat).
+    zmi_aux(Head, InitialZ3, InitialCLPQ, [], MaxDepths, FinalZ3, FinalCLPQ, Tree),
+    writeln('Sto per fare di nuovo un check occhio'),
+    writeln(FinalZ3),
+    z3_sat_check(FinalZ3, sat),      
+    format('✅ INCORRECT/FF FOUND: ~w\n', [FinalZ3]).
+
 
 % ----------------------------
 % Interpreter rules 
 % ----------------------------
 
-zmi_aux(Head, _, _, 0,_, _, _, _) :- 
+zmi_aux(_, _, _, 0,_, _, _, _) :- 
     fail.
 
 zmi_aux(true, Z3, CLPQ,_, _, Z3, CLPQ, true).
@@ -81,30 +85,19 @@ zmi_aux((A, B), Z3In, CLPQIn,SymTab, Steps, Z3Out, CLPQOut, (TreeA, TreeB)) :-
     zmi_aux(A, Z3In, CLPQIn,SymTab, Steps, TempZ3, TempCLPQ, TreeA),
     zmi_aux(B, TempZ3, TempCLPQ,SymTab, Steps, Z3Out, CLPQOut, TreeB).
 
-zmi_aux(constr(C), Z3In, CLPQIn,SymTab, _, Z3Out, CLPQOut, constr(Normalized)) :-
+zmi_aux(constr(C), Z3In, CLPQIn, SymTab, _, Z3Out, CLPQOut, constr(Normalized)) :-
+    writeln('Entrato in constr c'),
     normalize_bool_expr(C, Normalized),
     build_conjunct([CLPQIn, Normalized], CLPQOut),
-  %  clpq_sat_from_formula(CLPQOut),
     build_conjunct([Z3In, Normalized], Z3Out),
-   % writeln('Stampo Z3 out'),
-   % writeln(Z3Out),
     maplist(build_type_equality, SymTab, TypeAnnots),
-   % writeln('Stampo Type Annotations'),
-   % writeln(TypeAnnots),
-
-    build_conjunct([TypeAnnots,Z3Out],FullList),
-    %append(TypeAnnots, Z3Out, FullList),
-    forall(member((Var:Type = Var:Type), TypeAnnots),
-        format('✅ Inserita in constr: ~w:~w~n', [Var, Type])),
-    %build_conjunct([TypeAnnots,Z3Out], Z3Final),
-   % writeln('Stampo FullList'),
-    
-   % writeln(FullList),
-    %normalize_bool_expr(FullList, Z3Final),
-   % writeln('Stampo Z3Final'),
-   % writeln(FullList),
-
-
+  %  writeln('Stampo Type annot'), writeln(TypeAnnots),
+    conj_to_list(Z3Out, Z3List),
+  %  writeln('Stampo Z3List'), writeln(Z3List),
+    append(TypeAnnots, Z3List, FlatList),
+    writeln('Stampo flatList'), writeln(FlatList),
+    build_conjunct(FlatList, Z3Final),
+    nl,
     z3_sat_check(Z3Final, sat).
 
 %prima era cosi:
@@ -132,10 +125,10 @@ zmi_aux(Head, Z3In, CLPQIn,SymTabIn, Steps, Z3Out, CLPQOut, SubTree => Head) :-
     %Head =.. [_|Args],
     %format('📌 Variabili in Head: ~w~n', [Args]),
     maplist(rewrite_constr(Head, SymTabFinal), BodyList, RewrittenList),
-    %writeln('Mi trovo in questa head'),
+    writeln('Mi trovo in questa head'),
     writeln(Head),
-    writeln('📌 BodyList riscritta:'),
-    maplist(writeln, RewrittenList),
+   % writeln('📌 BodyList riscritta:'),
+   % maplist(writeln, RewrittenList),
     %maplist(rewrite_constr(Head), BodyList, RewrittenList),
     build_conjunct(RewrittenList, Body),
     NewSteps is Steps - 1,
@@ -183,9 +176,11 @@ rewrite_constr(_, SymTab, constr(C0), constr(CFinal)) :-
     maplist(build_type_equality, SymTab, TypeAnnots),
     conj_to_list(Normalized0, CList),
     append(TypeAnnots, CList, FullList),
-    forall(member((Var:Type = Var:Type), TypeAnnots),
-           format('✅ Inserita in rewrite: ~w:~w~n', [Var, Type])),
-    build_conjunct(FullList, CFinal),
+forall(
+    member((Var:Type = Var:Type), TypeAnnots),
+    format('✅ Inserita in rewrite: ~w:~w~n', [Var, Type])
+),
+    build_conjunct(FullList, CFinal),   
     !.
 rewrite_constr(_, _, Other, Other).
 
@@ -254,3 +249,13 @@ print_tree(SubTree => Head, Indent) :-
 print_tree('Step limit reached', Indent) :-
     tab(Indent), writeln('[... Step limit reached ...]').
 print_tree(Other, Indent) :- tab(Indent), writeln(Other).
+
+
+% flatten_list([], []).
+% flatten_list([[]|T], Flat) :-        
+%     flatten_list(T, Flat).
+% flatten_list([H|T], Flat) :-
+%     !, flatten_list(H, HFlat),
+%     flatten_list(T, TFlat),
+%     append(HFlat, TFlat, Flat).
+% flatten_list(X, [X]).

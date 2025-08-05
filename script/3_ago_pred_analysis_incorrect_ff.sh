@@ -29,9 +29,9 @@ for file in "$DIR"/*.smt2.pl; do
   timeout 10s swipl -l main.pl -g "load_clean('$file'),set_solver(turibe),zmi(${TARGET}),halt." > "$tmpout" 2>&1
   EXIT_CODE=$?
 
-  # Estrai MaxStep se presente (es. dalla riga: ℹ️ MaxStep impostato a: 10)
-  MAXSTEP=$(grep -oP "MaxStep impostato a: \K[0-9]+" "$tmpout")
-  [ -z "$MAXSTEP" ] && MAXSTEP="unknown"
+  # Estrai MaxDepth se presente (es. dalla riga: ℹ️ MaxDepth impostato a: 10)
+  MaxDepth=$(grep -oP "MaxDepth impostato a: \K[0-9]+" "$tmpout")
+  [ -z "$MaxDepth" ] && MaxDepth="unknown"
 
   # Controllo presenza messaggio "INCORRECT/FF FOUND"
   FOUND_INCORRECT=$(grep -q "✅ INCORRECT/FF FOUND" "$tmpout" && echo yes || echo no)
@@ -41,9 +41,9 @@ for file in "$DIR"/*.smt2.pl; do
     echo "Timeout per il file: $file"
 
     if [ "$FOUND_INCORRECT" = "yes" ]; then
-      finalout="${base}.timeout_false_maxstep${MAXSTEP}.zmiout"
+      finalout="${base}.timeout_false_MaxDepth${MaxDepth}.zmiout"
     else
-      finalout="${base}.timeout_maxstep${MAXSTEP}.zmiout"
+      finalout="${base}.timeout_MaxDepth${MaxDepth}.zmiout"
     fi
 
     mv "$tmpout" "$finalout"
@@ -53,11 +53,11 @@ for file in "$DIR"/*.smt2.pl; do
 
   # Normale esecuzione
   if grep -q "No SAT" "$tmpout"; then
-    finalout="${base}.true_maxstep${MAXSTEP}.zmiout"
+    finalout="${base}.true_MaxDepth${MaxDepth}.zmiout"
   elif grep -q "Z3 Model" "$tmpout" || grep -q "SAT MODEL" "$tmpout" || [ "$FOUND_INCORRECT" = "yes" ]; then
-    finalout="${base}.false_maxstep${MAXSTEP}.zmiout"
+    finalout="${base}.false_MaxDepth${MaxDepth}.zmiout"
   else
-    finalout="${base}.unknown_maxstep${MAXSTEP}.zmiout"
+    finalout="${base}.unknown_MaxDepth${MaxDepth}.zmiout"
   fi
 
   mv "$tmpout" "$finalout"
