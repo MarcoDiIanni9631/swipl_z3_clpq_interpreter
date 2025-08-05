@@ -81,11 +81,15 @@ z3_sat_check(Formula, Result) :-
     % writeln('Prima di z3constr2lower:'),
     % writeln('Formula:'), writeln(Formula),
     % Vars è usata solo per debug/commenti, la metto come _Vars
+    % writeln('Stampo formula prima di normalize'),
+    % writeln(Formula),
     term_variables(Formula, _Vars),
     %writeln('Vars in Formula:'), writeln(_Vars),
     z3constr2lower(Formula, _Pairs, RawGround),
     % writeln('PAIRS:'), writeln(Pairs),
     normalize_z3_formula(RawGround, Z3Ground),
+    % writeln('Stampo formula dopo il normalize'),
+    % writeln(Formula),
     % writeln('Z3Ground:'), writeln(Z3Ground),
     %writeln('🧪 DEBUG: invio a Z3 la formula:'),
    % debug_print('--- Formula da pushare su Z3 ---'), debug_print(Z3Ground),
@@ -96,8 +100,8 @@ z3_sat_check(Formula, Result) :-
     ( z3_push(Z3Ground) -> (
             z3_check(Sat),
             ( Sat == l_true ->
-                (Result = sat,
-                format('✅ INCORRECT/FF FOUND: ~w\n', [Z3Ground]))
+                Result = sat
+           %     format('✅ INCORRECT/FF FOUND: ~w\n', [Z3Ground]))
 
             ; Sat == l_false ->
                 Result = unsat

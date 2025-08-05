@@ -1,0 +1,211 @@
+skipping(:- mode new5(in,in,in).)
+skipping(:- mode new4(in,in).)
+skipping(:- mode new3(in,in).)
+skipping(:- mode new2(in,in).)
+failed to parse: ":- pred new1."
+failed to parse: ":- pred incorrect."
+failed to parse: ":- pred ff."
+skipping(:- query ff/0.)
+skipping(:- mode constr(in).)
+skipping(:- ignore constr/1.)
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/type_inference.pl:248:
+Warning:    Singleton variables: [Y]
+Installing Z3 package
+Using Z3 version Z3 4.15.3.0
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:895:
+Warning:    Singleton variables: [N,M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:907:
+Warning:    Singleton variables: [M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:922:
+Warning:    Singleton variables: [N]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:931:
+Warning:    Singleton variables: [N,O,A]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:943:
+Warning:    Singleton variables: [N]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:957:
+Warning:    Singleton variables: [N,M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:970:
+Warning:    Loading module plunit_z3_push_test_equal22222223445 abolished: [plunit_z3_push_test_equal22222223445:'unit test'/4,plunit_z3_push_test_equal22222223445:'unit body'/2]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:972:
+Warning:    Singleton variables: [O,A,M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:988:
+Warning:    Singleton variables: [M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:1001:
+Warning:    Singleton variables: [M]
+ℹ️ MaxDepth impostato a: 10
+Mi trovo in questa head
+incorrect
+Entrato in constr c
+Stampo Type annot
+[]
+Stampo Z3List
+[true]
+Stampo flatList
+[true]
+
+✅ Inserita in rewrite: _3904:int
+✅ Inserita in rewrite: _3906:int
+Mi trovo in questa head
+new1
+Entrato in constr c
+Stampo Type annot
+[_3904:int=_3904:int,_3906:int=_3906:int]
+Stampo Z3List
+[(true,true),_3904:int=_3904:int,_3906:int=_3906:int,_3904=10,_3906=0]
+Stampo flatList
+[_3904:int=_3904:int,_3906:int=_3906:int,(true,true),_3904:int=_3904:int,_3906:int=_3906:int,_3904=10,_3906=0]
+
+Mi trovo in questa head
+new2(_3904,_3906)
+Entrato in constr c
+Stampo Type annot
+[_3904:int=_3904:int,_3906:int=_3906:int]
+Stampo Z3List
+[((true,true),_3904:int=_3904:int,_3906:int=_3906:int,_3904=10,_3906=0)]
+Stampo flatList
+[_3904:int=_3904:int,_3906:int=_3906:int,((true,true),_3904:int=_3904:int,_3906:int=_3906:int,_3904=10,_3906=0)]
+
+✅ Inserita in rewrite: _3904:int
+✅ Inserita in rewrite: _3906:int
+✅ Inserita in rewrite: _17330:int
+Mi trovo in questa head
+new3(_3904,_3906)
+Entrato in constr c
+Stampo Type annot
+[_3904:int=_3904:int,_3906:int=_3906:int,_17330:int=_17330:int]
+Stampo Z3List
+[(((true,true),_3904:int=_3904:int,_3906:int=_3906:int,_3904=10,_3906=0),true),_3904:int=_3904:int,_3906:int=_3906:int,_17330:int=_17330:int,_3904-_3906>=1,_17358=1,_17330=1+_3906]
+Stampo flatList
+[_3904:int=_3904:int,_3906:int=_3906:int,_17330:int=_17330:int,(((true,true),_3904:int=_3904:int,_3906:int=_3906:int,_3904=10,_3906=0),true),_3904:int=_3904:int,_3906:int=_3906:int,_17330:int=_17330:int,_3904-_3906>=1,_17358=1,_17330=1+_3906]
+
+Mi trovo in questa head
+new2(_3904,_17330)
+Entrato in constr c
+Stampo Type annot
+[_3904:int=_3904:int,_3906:int=_3906:int,_17330:int=_17330:int]
+Stampo Z3List
+[((((true,true),_3904:int=_3904:int,_3906:int=_3906:int,_3904=10,_3906=0),true),_3904:int=_3904:int,_3906:int=_3906:int,_17330:int=_17330:int,_3904-_3906>=1,_17358=1,_17330=1+_3906)]
+Stampo flatList
+[_3904:int=_3904:int,_3906:int=_3906:int,_17330:int=_17330:int,((((true,true),_3904:int=_3904:int,_3906:int=_3906:int,_3904=10,_3906=0),true),_3904:int=_3904:int,_3906:int=_3906:int,_17330:int=_17330:int,_3904-_3906>=1,_17358=1,_17330=1+_3906)]
+
+✅ Inserita in rewrite: _260:int
+✅ Inserita in rewrite: _262:int
+✅ Inserita in rewrite: _1036:int
+✅ Inserita in rewrite: _3604:int
+Mi trovo in questa head
+new3(_260,_1036)
+Entrato in constr c
+Stampo Type annot
+[_260:int=_260:int,_262:int=_262:int,_1036:int=_1036:int,_3604:int=_3604:int]
+Stampo Z3List
+[(((((true,true),_260:int=_260:int,_262:int=_262:int,_260=10,_262=0),true),_260:int=_260:int,_262:int=_262:int,_1036:int=_1036:int,_260-_262>=1,_1064=1,_1036=1+_262),true),_260:int=_260:int,_262:int=_262:int,_1036:int=_1036:int,_3604:int=_3604:int,_260-_1036>=1,_3632=1,_3604=1+_1036]
+Stampo flatList
+[_260:int=_260:int,_262:int=_262:int,_1036:int=_1036:int,_3604:int=_3604:int,(((((true,true),_260:int=_260:int,_262:int=_262:int,_260=10,_262=0),true),_260:int=_260:int,_262:int=_262:int,_1036:int=_1036:int,_260-_262>=1,_1064=1,_1036=1+_262),true),_260:int=_260:int,_262:int=_262:int,_1036:int=_1036:int,_3604:int=_3604:int,_260-_1036>=1,_3632=1,_3604=1+_1036]
+
+Mi trovo in questa head
+new2(_260,_3604)
+Entrato in constr c
+Stampo Type annot
+[_260:int=_260:int,_262:int=_262:int,_1036:int=_1036:int,_3604:int=_3604:int]
+Stampo Z3List
+[((((((true,true),_260:int=_260:int,_262:int=_262:int,_260=10,_262=0),true),_260:int=_260:int,_262:int=_262:int,_1036:int=_1036:int,_260-_262>=1,_1064=1,_1036=1+_262),true),_260:int=_260:int,_262:int=_262:int,_1036:int=_1036:int,_3604:int=_3604:int,_260-_1036>=1,_3632=1,_3604=1+_1036)]
+Stampo flatList
+[_260:int=_260:int,_262:int=_262:int,_1036:int=_1036:int,_3604:int=_3604:int,((((((true,true),_260:int=_260:int,_262:int=_262:int,_260=10,_262=0),true),_260:int=_260:int,_262:int=_262:int,_1036:int=_1036:int,_260-_262>=1,_1064=1,_1036=1+_262),true),_260:int=_260:int,_262:int=_262:int,_1036:int=_1036:int,_3604:int=_3604:int,_260-_1036>=1,_3632=1,_3604=1+_1036)]
+
+✅ Inserita in rewrite: _260:int
+✅ Inserita in rewrite: _262:int
+✅ Inserita in rewrite: _1036:int
+✅ Inserita in rewrite: _3604:int
+✅ Inserita in rewrite: _29068:int
+Mi trovo in questa head
+new3(_260,_3604)
+Entrato in constr c
+Stampo Type annot
+[_260:int=_260:int,_262:int=_262:int,_1036:int=_1036:int,_3604:int=_3604:int,_29068:int=_29068:int]
+Stampo Z3List
+[(((((((true,true),_260:int=_260:int,_262:int=_262:int,_260=10,_262=0),true),_260:int=_260:int,_262:int=_262:int,_1036:int=_1036:int,_260-_262>=1,_1064=1,_1036=1+_262),true),_260:int=_260:int,_262:int=_262:int,_1036:int=_1036:int,_3604:int=_3604:int,_260-_1036>=1,_3632=1,_3604=1+_1036),true),_260:int=_260:int,_262:int=_262:int,_1036:int=_1036:int,_3604:int=_3604:int,_29068:int=_29068:int,_260-_3604>=1,_29096=1,_29068=1+_3604]
+Stampo flatList
+[_260:int=_260:int,_262:int=_262:int,_1036:int=_1036:int,_3604:int=_3604:int,_29068:int=_29068:int,(((((((true,true),_260:int=_260:int,_262:int=_262:int,_260=10,_262=0),true),_260:int=_260:int,_262:int=_262:int,_1036:int=_1036:int,_260-_262>=1,_1064=1,_1036=1+_262),true),_260:int=_260:int,_262:int=_262:int,_1036:int=_1036:int,_3604:int=_3604:int,_260-_1036>=1,_3632=1,_3604=1+_1036),true),_260:int=_260:int,_262:int=_262:int,_1036:int=_1036:int,_3604:int=_3604:int,_29068:int=_29068:int,_260-_3604>=1,_29096=1,_29068=1+_3604]
+
+Mi trovo in questa head
+new2(_260,_3392)
+Entrato in constr c
+Stampo Type annot
+[_260:int=_260:int,_262:int=_262:int,_1034:int=_1034:int,_2102:int=_2102:int,_3392:int=_3392:int]
+Stampo Z3List
+[((((((((true,true),_260:int=_260:int,_262:int=_262:int,_260=10,_262=0),true),_260:int=_260:int,_262:int=_262:int,_1034:int=_1034:int,_260-_262>=1,_1062=1,_1034=1+_262),true),_260:int=_260:int,_262:int=_262:int,_1034:int=_1034:int,_2102:int=_2102:int,_260-_1034>=1,_2130=1,_2102=1+_1034),true),_260:int=_260:int,_262:int=_262:int,_1034:int=_1034:int,_2102:int=_2102:int,_3392:int=_3392:int,_260-_2102>=1,_3420=1,_3392=1+_2102)]
+Stampo flatList
+[_260:int=_260:int,_262:int=_262:int,_1034:int=_1034:int,_2102:int=_2102:int,_3392:int=_3392:int,((((((((true,true),_260:int=_260:int,_262:int=_262:int,_260=10,_262=0),true),_260:int=_260:int,_262:int=_262:int,_1034:int=_1034:int,_260-_262>=1,_1062=1,_1034=1+_262),true),_260:int=_260:int,_262:int=_262:int,_1034:int=_1034:int,_2102:int=_2102:int,_260-_1034>=1,_2130=1,_2102=1+_1034),true),_260:int=_260:int,_262:int=_262:int,_1034:int=_1034:int,_2102:int=_2102:int,_3392:int=_3392:int,_260-_2102>=1,_3420=1,_3392=1+_2102)]
+
+✅ Inserita in rewrite: _260:int
+✅ Inserita in rewrite: _262:int
+✅ Inserita in rewrite: _1034:int
+✅ Inserita in rewrite: _2102:int
+✅ Inserita in rewrite: _3392:int
+✅ Inserita in rewrite: _37108:int
+Mi trovo in questa head
+new3(_260,_3392)
+Entrato in constr c
+Stampo Type annot
+[_260:int=_260:int,_262:int=_262:int,_1034:int=_1034:int,_2102:int=_2102:int,_3392:int=_3392:int,_37108:int=_37108:int]
+Stampo Z3List
+[(((((((((true,true),_260:int=_260:int,_262:int=_262:int,_260=10,_262=0),true),_260:int=_260:int,_262:int=_262:int,_1034:int=_1034:int,_260-_262>=1,_1062=1,_1034=1+_262),true),_260:int=_260:int,_262:int=_262:int,_1034:int=_1034:int,_2102:int=_2102:int,_260-_1034>=1,_2130=1,_2102=1+_1034),true),_260:int=_260:int,_262:int=_262:int,_1034:int=_1034:int,_2102:int=_2102:int,_3392:int=_3392:int,_260-_2102>=1,_3420=1,_3392=1+_2102),true),_260:int=_260:int,_262:int=_262:int,_1034:int=_1034:int,_2102:int=_2102:int,_3392:int=_3392:int,_37108:int=_37108:int,_260-_3392>=1,_37136=1,_37108=1+_3392]
+Stampo flatList
+[_260:int=_260:int,_262:int=_262:int,_1034:int=_1034:int,_2102:int=_2102:int,_3392:int=_3392:int,_37108:int=_37108:int,(((((((((true,true),_260:int=_260:int,_262:int=_262:int,_260=10,_262=0),true),_260:int=_260:int,_262:int=_262:int,_1034:int=_1034:int,_260-_262>=1,_1062=1,_1034=1+_262),true),_260:int=_260:int,_262:int=_262:int,_1034:int=_1034:int,_2102:int=_2102:int,_260-_1034>=1,_2130=1,_2102=1+_1034),true),_260:int=_260:int,_262:int=_262:int,_1034:int=_1034:int,_2102:int=_2102:int,_3392:int=_3392:int,_260-_2102>=1,_3420=1,_3392=1+_2102),true),_260:int=_260:int,_262:int=_262:int,_1034:int=_1034:int,_2102:int=_2102:int,_3392:int=_3392:int,_37108:int=_37108:int,_260-_3392>=1,_37136=1,_37108=1+_3392]
+
+✅ Inserita in rewrite: _260:int
+✅ Inserita in rewrite: _262:int
+✅ Inserita in rewrite: _1034:int
+✅ Inserita in rewrite: _2102:int
+✅ Inserita in rewrite: _3392:int
+Mi trovo in questa head
+new3(_260,_3392)
+Entrato in constr c
+Stampo Type annot
+[_260:int=_260:int,_262:int=_262:int,_1034:int=_1034:int,_2102:int=_2102:int,_3392:int=_3392:int]
+Stampo Z3List
+[(((((((((true,true),_260:int=_260:int,_262:int=_262:int,_260=10,_262=0),true),_260:int=_260:int,_262:int=_262:int,_1034:int=_1034:int,_260-_262>=1,_1062=1,_1034=1+_262),true),_260:int=_260:int,_262:int=_262:int,_1034:int=_1034:int,_2102:int=_2102:int,_260-_1034>=1,_2130=1,_2102=1+_1034),true),_260:int=_260:int,_262:int=_262:int,_1034:int=_1034:int,_2102:int=_2102:int,_3392:int=_3392:int,_260-_2102>=1,_3420=1,_3392=1+_2102),true),_260:int=_260:int,_262:int=_262:int,_1034:int=_1034:int,_2102:int=_2102:int,_3392:int=_3392:int,_3392-_260>=0]
+Stampo flatList
+[_260:int=_260:int,_262:int=_262:int,_1034:int=_1034:int,_2102:int=_2102:int,_3392:int=_3392:int,(((((((((true,true),_260:int=_260:int,_262:int=_262:int,_260=10,_262=0),true),_260:int=_260:int,_262:int=_262:int,_1034:int=_1034:int,_260-_262>=1,_1062=1,_1034=1+_262),true),_260:int=_260:int,_262:int=_262:int,_1034:int=_1034:int,_2102:int=_2102:int,_260-_1034>=1,_2130=1,_2102=1+_1034),true),_260:int=_260:int,_262:int=_262:int,_1034:int=_1034:int,_2102:int=_2102:int,_3392:int=_3392:int,_260-_2102>=1,_3420=1,_3392=1+_2102),true),_260:int=_260:int,_262:int=_262:int,_1034:int=_1034:int,_2102:int=_2102:int,_3392:int=_3392:int,_3392-_260>=0]
+
+✅ Inserita in rewrite: _260:int
+✅ Inserita in rewrite: _262:int
+✅ Inserita in rewrite: _1034:int
+✅ Inserita in rewrite: _2102:int
+Mi trovo in questa head
+new3(_260,_2102)
+Entrato in constr c
+Stampo Type annot
+[_260:int=_260:int,_262:int=_262:int,_1034:int=_1034:int,_2102:int=_2102:int]
+Stampo Z3List
+[(((((((true,true),_260:int=_260:int,_262:int=_262:int,_260=10,_262=0),true),_260:int=_260:int,_262:int=_262:int,_1034:int=_1034:int,_260-_262>=1,_1062=1,_1034=1+_262),true),_260:int=_260:int,_262:int=_262:int,_1034:int=_1034:int,_2102:int=_2102:int,_260-_1034>=1,_2130=1,_2102=1+_1034),true),_260:int=_260:int,_262:int=_262:int,_1034:int=_1034:int,_2102:int=_2102:int,_2102-_260>=0]
+Stampo flatList
+[_260:int=_260:int,_262:int=_262:int,_1034:int=_1034:int,_2102:int=_2102:int,(((((((true,true),_260:int=_260:int,_262:int=_262:int,_260=10,_262=0),true),_260:int=_260:int,_262:int=_262:int,_1034:int=_1034:int,_260-_262>=1,_1062=1,_1034=1+_262),true),_260:int=_260:int,_262:int=_262:int,_1034:int=_1034:int,_2102:int=_2102:int,_260-_1034>=1,_2130=1,_2102=1+_1034),true),_260:int=_260:int,_262:int=_262:int,_1034:int=_1034:int,_2102:int=_2102:int,_2102-_260>=0]
+
+✅ Inserita in rewrite: _260:int
+✅ Inserita in rewrite: _262:int
+✅ Inserita in rewrite: _1034:int
+Mi trovo in questa head
+new3(_260,_1034)
+Entrato in constr c
+Stampo Type annot
+[_260:int=_260:int,_262:int=_262:int,_1034:int=_1034:int]
+Stampo Z3List
+[(((((true,true),_260:int=_260:int,_262:int=_262:int,_260=10,_262=0),true),_260:int=_260:int,_262:int=_262:int,_1034:int=_1034:int,_260-_262>=1,_1062=1,_1034=1+_262),true),_260:int=_260:int,_262:int=_262:int,_1034:int=_1034:int,_1034-_260>=0]
+Stampo flatList
+[_260:int=_260:int,_262:int=_262:int,_1034:int=_1034:int,(((((true,true),_260:int=_260:int,_262:int=_262:int,_260=10,_262=0),true),_260:int=_260:int,_262:int=_262:int,_1034:int=_1034:int,_260-_262>=1,_1062=1,_1034=1+_262),true),_260:int=_260:int,_262:int=_262:int,_1034:int=_1034:int,_1034-_260>=0]
+
+✅ Inserita in rewrite: _260:int
+✅ Inserita in rewrite: _262:int
+Mi trovo in questa head
+new3(_260,_262)
+Entrato in constr c
+Stampo Type annot
+[_260:int=_260:int,_262:int=_262:int]
+Stampo Z3List
+[(((true,true),_260:int=_260:int,_262:int=_262:int,_260=10,_262=0),true),_260:int=_260:int,_262:int=_262:int,_262-_260>=0]
+Stampo flatList
+[_260:int=_260:int,_262:int=_262:int,(((true,true),_260:int=_260:int,_262:int=_262:int,_260=10,_262=0),true),_260:int=_260:int,_262:int=_262:int,_262-_260>=0]
+
+No SAT branches found in MaxDepths = 10.
+ERROR: -g load_clean('/home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/test/separato/vmap_copy/postModifica1ago/TRACER-testabs7_VeriMAP_true.c.transform.smt.smt2.pl'),set_solver(turibe),zmi(incorrect),halt.: false
