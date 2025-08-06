@@ -76,7 +76,8 @@ zmi_branch_sat(Head, MaxDepths, model(FinalZ3, FinalCLPQ, Tree)) :-
 % Interpreter rules 
 % ----------------------------
 
-zmi_aux(_, _, _, 0,_, _, _, _) :- 
+zmi_aux(_, _, _, _,0, _, _, _) :- 
+    writeln('Limite MaxDepth raggiunto'),
     fail.
 
 zmi_aux(true, Z3, CLPQ,_, _, Z3, CLPQ, true).
