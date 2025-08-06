@@ -1,0 +1,549 @@
+skipping(:- mode inv(in,in,in,in).)
+failed to parse: ":- pred ff."
+skipping(:- query ff/0.)
+skipping(:- mode constr(in).)
+skipping(:- ignore constr/1.)
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/type_inference.pl:248:
+Warning:    Singleton variables: [Y]
+Installing Z3 package
+Using Z3 version Z3 4.15.3.0
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:895:
+Warning:    Singleton variables: [N,M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:907:
+Warning:    Singleton variables: [M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:922:
+Warning:    Singleton variables: [N]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:931:
+Warning:    Singleton variables: [N,O,A]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:943:
+Warning:    Singleton variables: [N]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:957:
+Warning:    Singleton variables: [N,M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:970:
+Warning:    Loading module plunit_z3_push_test_equal22222223445 abolished: [plunit_z3_push_test_equal22222223445:'unit body'/2,plunit_z3_push_test_equal22222223445:'unit test'/4]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:972:
+Warning:    Singleton variables: [O,A,M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:988:
+Warning:    Singleton variables: [M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:1001:
+Warning:    Singleton variables: [M]
+ℹ️ MaxDepth impostato a: 10
+Mi trovo in questa head
+ff
+Stampo Rawbody
+inv(_29358,_29360,_29362,_29364),constr((~_29358=<_29360+_29362&_29364=<0))
+✅ Inserita in rewrite: _29358:int
+✅ Inserita in rewrite: _29360:int
+✅ Inserita in rewrite: _29362:int
+✅ Inserita in rewrite: _29364:int
+Stampo Body prima di zmi
+constr((_29358:int=_29358:int,_29360:int=_29360:int,_29362:int=_29362:int,_29364:int=_29364:int,not(_29358=<_29360+_29362)and _29364=<0)),inv(_29358,_29360,_29362,_29364)
+Entrato in constr c
+Stampo flatList
+[_29358:int=_29358:int,_29360:int=_29360:int,_29362:int=_29362:int,_29364:int=_29364:int,true,_29358:int=_29358:int,_29360:int=_29360:int,_29362:int=_29362:int,_29364:int=_29364:int,not(_29358=<_29360+_29362),_29364=<0]
+
+Mi trovo in questa head
+inv(_130,_132,_134,_136)
+Stampo Rawbody
+constr((_130=0&(~_132=<_134&_136=0)))
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _136:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_130=0 and not(_132=<_134)and _136=0))
+Entrato in constr c
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,(true,_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,not(_130=<_132+_134),_136=<0),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_130=0,not(_132=<_134),_136=0]
+
+Sto per fare di nuovo un check occhio
+(true,_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,not(_130=<_132+_134),_136=<0),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_130=0,not(_132=<_134),_136=0
+✅ INCORRECT/FF FOUND: (true,_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,not(_130=<_132+_134),_136=<0),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_130=0,not(_132=<_134),_136=0
+Stampo Rawbody
+inv(_30984,_132,_134,_30990),constr((_136=ite(_134=<_30984,- 2+_30990,1+_30990)&_130=1+_30984))
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _136:int
+✅ Inserita in rewrite: _30984:int
+✅ Inserita in rewrite: _30990:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_30984:int=_30984:int,_30990:int=_30990:int,_136=ite(_134=<_30984,- 2+_30990,1+_30990)and _130=1+_30984)),inv(_30984,_132,_134,_30990)
+Entrato in constr c
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_830:int=_830:int,_836:int=_836:int,(true,_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,not(_130=<_132+_134),_136=<0),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_830:int=_830:int,_836:int=_836:int,_136=ite(_134=<_830,- 2+_836,1+_836),_130=1+_830]
+
+Mi trovo in questa head
+inv(_830,_132,_134,_836)
+Stampo Rawbody
+constr((_830=0&(~_132=<_134&_836=0)))
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _136:int
+✅ Inserita in rewrite: _830:int
+✅ Inserita in rewrite: _836:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_830:int=_830:int,_836:int=_836:int,_830=0 and not(_132=<_134)and _836=0))
+Entrato in constr c
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_830:int=_830:int,_836:int=_836:int,((true,_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,not(_130=<_132+_134),_136=<0),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_830:int=_830:int,_836:int=_836:int,_136=ite(_134=<_830,- 2+_836,1+_836),_130=1+_830),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_830:int=_830:int,_836:int=_836:int,_830=0,not(_132=<_134),_836=0]
+
+Sto per fare di nuovo un check occhio
+((true,_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,not(_130=<_132+_134),_136=<0),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_830:int=_830:int,_836:int=_836:int,_136=ite(_134=<_830,- 2+_836,1+_836),_130=1+_830),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_830:int=_830:int,_836:int=_836:int,_830=0,not(_132=<_134),_836=0
+✅ INCORRECT/FF FOUND: ((true,_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,not(_130=<_132+_134),_136=<0),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_136=ite(_134=<_828,- 2+_834,1+_834),_130=1+_828),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_828=0,not(_132=<_134),_834=0
+Stampo Rawbody
+inv(_14770,_132,_134,_14776),constr((_834=ite(_134=<_14770,- 2+_14776,1+_14776)&_828=1+_14770))
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _136:int
+✅ Inserita in rewrite: _828:int
+✅ Inserita in rewrite: _834:int
+✅ Inserita in rewrite: _14770:int
+✅ Inserita in rewrite: _14776:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_14770:int=_14770:int,_14776:int=_14776:int,_834=ite(_134=<_14770,- 2+_14776,1+_14776)and _828=1+_14770)),inv(_14770,_132,_134,_14776)
+Entrato in constr c
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_14770:int=_14770:int,_14776:int=_14776:int,((true,_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,not(_130=<_132+_134),_136=<0),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_136=ite(_134=<_828,- 2+_834,1+_834),_130=1+_828),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_14770:int=_14770:int,_14776:int=_14776:int,_834=ite(_134=<_14770,- 2+_14776,1+_14776),_828=1+_14770]
+
+Mi trovo in questa head
+inv(_1830,_132,_134,_1836)
+Stampo Rawbody
+constr((_1830=0&(~_132=<_134&_1836=0)))
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _136:int
+✅ Inserita in rewrite: _828:int
+✅ Inserita in rewrite: _834:int
+✅ Inserita in rewrite: _1830:int
+✅ Inserita in rewrite: _1836:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_1830=0 and not(_132=<_134)and _1836=0))
+Entrato in constr c
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,(((true,_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,not(_130=<_132+_134),_136=<0),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_136=ite(_134=<_828,- 2+_834,1+_834),_130=1+_828),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_834=ite(_134=<_1830,- 2+_1836,1+_1836),_828=1+_1830),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_1830=0,not(_132=<_134),_1836=0]
+
+Sto per fare di nuovo un check occhio
+(((true,_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,not(_130=<_132+_134),_136=<0),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_136=ite(_134=<_828,- 2+_834,1+_834),_130=1+_828),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_834=ite(_134=<_1830,- 2+_1836,1+_1836),_828=1+_1830),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_1830=0,not(_132=<_134),_1836=0
+✅ INCORRECT/FF FOUND: (((true,_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,not(_130=<_132+_134),_136=<0),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_136=ite(_134=<_828,- 2+_834,1+_834),_130=1+_828),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_834=ite(_134=<_1830,- 2+_1836,1+_1836),_828=1+_1830),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_1830=0,not(_132=<_134),_1836=0
+Stampo Rawbody
+inv(_55502,_132,_134,_55508),constr((_1836=ite(_134=<_55502,- 2+_55508,1+_55508)&_1830=1+_55502))
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _136:int
+✅ Inserita in rewrite: _828:int
+✅ Inserita in rewrite: _834:int
+✅ Inserita in rewrite: _1830:int
+✅ Inserita in rewrite: _1836:int
+✅ Inserita in rewrite: _55502:int
+✅ Inserita in rewrite: _55508:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_55502:int=_55502:int,_55508:int=_55508:int,_1836=ite(_134=<_55502,- 2+_55508,1+_55508)and _1830=1+_55502)),inv(_55502,_132,_134,_55508)
+Entrato in constr c
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_55502:int=_55502:int,_55508:int=_55508:int,(((true,_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,not(_130=<_132+_134),_136=<0),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_136=ite(_134=<_828,- 2+_834,1+_834),_130=1+_828),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_834=ite(_134=<_1830,- 2+_1836,1+_1836),_828=1+_1830),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_55502:int=_55502:int,_55508:int=_55508:int,_1836=ite(_134=<_55502,- 2+_55508,1+_55508),_1830=1+_55502]
+
+Mi trovo in questa head
+inv(_3112,_132,_134,_3118)
+Stampo Rawbody
+constr((_3112=0&(~_132=<_134&_3118=0)))
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _136:int
+✅ Inserita in rewrite: _828:int
+✅ Inserita in rewrite: _834:int
+✅ Inserita in rewrite: _1830:int
+✅ Inserita in rewrite: _1836:int
+✅ Inserita in rewrite: _3112:int
+✅ Inserita in rewrite: _3118:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3112:int=_3112:int,_3118:int=_3118:int,_3112=0 and not(_132=<_134)and _3118=0))
+Entrato in constr c
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3112:int=_3112:int,_3118:int=_3118:int,((((true,_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,not(_130=<_132+_134),_136=<0),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_136=ite(_134=<_828,- 2+_834,1+_834),_130=1+_828),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_834=ite(_134=<_1830,- 2+_1836,1+_1836),_828=1+_1830),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3112:int=_3112:int,_3118:int=_3118:int,_1836=ite(_134=<_3112,- 2+_3118,1+_3118),_1830=1+_3112),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3112:int=_3112:int,_3118:int=_3118:int,_3112=0,not(_132=<_134),_3118=0]
+
+Sto per fare di nuovo un check occhio
+((((true,_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,not(_130=<_132+_134),_136=<0),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_136=ite(_134=<_828,- 2+_834,1+_834),_130=1+_828),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_834=ite(_134=<_1830,- 2+_1836,1+_1836),_828=1+_1830),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3112:int=_3112:int,_3118:int=_3118:int,_1836=ite(_134=<_3112,- 2+_3118,1+_3118),_1830=1+_3112),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3112:int=_3112:int,_3118:int=_3118:int,_3112=0,not(_132=<_134),_3118=0
+✅ INCORRECT/FF FOUND: ((((true,_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,not(_130=<_132+_134),_136=<0),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_136=ite(_134=<_828,- 2+_834,1+_834),_130=1+_828),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_834=ite(_134=<_1830,- 2+_1836,1+_1836),_828=1+_1830),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_1836=ite(_134=<_3110,- 2+_3116,1+_3116),_1830=1+_3110),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_3110=0,not(_132=<_134),_3116=0
+Stampo Rawbody
+inv(_31772,_132,_134,_31778),constr((_3116=ite(_134=<_31772,- 2+_31778,1+_31778)&_3110=1+_31772))
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _136:int
+✅ Inserita in rewrite: _828:int
+✅ Inserita in rewrite: _834:int
+✅ Inserita in rewrite: _1830:int
+✅ Inserita in rewrite: _1836:int
+✅ Inserita in rewrite: _3110:int
+✅ Inserita in rewrite: _3116:int
+✅ Inserita in rewrite: _31772:int
+✅ Inserita in rewrite: _31778:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_31772:int=_31772:int,_31778:int=_31778:int,_3116=ite(_134=<_31772,- 2+_31778,1+_31778)and _3110=1+_31772)),inv(_31772,_132,_134,_31778)
+Entrato in constr c
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_31772:int=_31772:int,_31778:int=_31778:int,((((true,_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,not(_130=<_132+_134),_136=<0),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_136=ite(_134=<_828,- 2+_834,1+_834),_130=1+_828),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_834=ite(_134=<_1830,- 2+_1836,1+_1836),_828=1+_1830),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_1836=ite(_134=<_3110,- 2+_3116,1+_3116),_1830=1+_3110),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_31772:int=_31772:int,_31778:int=_31778:int,_3116=ite(_134=<_31772,- 2+_31778,1+_31778),_3110=1+_31772]
+
+Mi trovo in questa head
+inv(_4626,_132,_134,_4632)
+Stampo Rawbody
+constr((_4626=0&(~_132=<_134&_4632=0)))
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _136:int
+✅ Inserita in rewrite: _828:int
+✅ Inserita in rewrite: _834:int
+✅ Inserita in rewrite: _1830:int
+✅ Inserita in rewrite: _1836:int
+✅ Inserita in rewrite: _3110:int
+✅ Inserita in rewrite: _3116:int
+✅ Inserita in rewrite: _4626:int
+✅ Inserita in rewrite: _4632:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_4626=0 and not(_132=<_134)and _4632=0))
+Entrato in constr c
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,(((((true,_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,not(_130=<_132+_134),_136=<0),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_136=ite(_134=<_828,- 2+_834,1+_834),_130=1+_828),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_834=ite(_134=<_1830,- 2+_1836,1+_1836),_828=1+_1830),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_1836=ite(_134=<_3110,- 2+_3116,1+_3116),_1830=1+_3110),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_3116=ite(_134=<_4626,- 2+_4632,1+_4632),_3110=1+_4626),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_4626=0,not(_132=<_134),_4632=0]
+
+Sto per fare di nuovo un check occhio
+(((((true,_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,not(_130=<_132+_134),_136=<0),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_136=ite(_134=<_828,- 2+_834,1+_834),_130=1+_828),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_834=ite(_134=<_1830,- 2+_1836,1+_1836),_828=1+_1830),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_1836=ite(_134=<_3110,- 2+_3116,1+_3116),_1830=1+_3110),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_3116=ite(_134=<_4626,- 2+_4632,1+_4632),_3110=1+_4626),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_4626=0,not(_132=<_134),_4632=0
+✅ INCORRECT/FF FOUND: (((((true,_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,not(_130=<_132+_134),_136=<0),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_136=ite(_134=<_828,- 2+_834,1+_834),_130=1+_828),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_834=ite(_134=<_1830,- 2+_1836,1+_1836),_828=1+_1830),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_1836=ite(_134=<_3110,- 2+_3116,1+_3116),_1830=1+_3110),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_3116=ite(_134=<_4626,- 2+_4632,1+_4632),_3110=1+_4626),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_4626=0,not(_132=<_134),_4632=0
+Stampo Rawbody
+inv(_47872,_132,_134,_47878),constr((_4632=ite(_134=<_47872,- 2+_47878,1+_47878)&_4626=1+_47872))
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _136:int
+✅ Inserita in rewrite: _828:int
+✅ Inserita in rewrite: _834:int
+✅ Inserita in rewrite: _1830:int
+✅ Inserita in rewrite: _1836:int
+✅ Inserita in rewrite: _3110:int
+✅ Inserita in rewrite: _3116:int
+✅ Inserita in rewrite: _4626:int
+✅ Inserita in rewrite: _4632:int
+✅ Inserita in rewrite: _47872:int
+✅ Inserita in rewrite: _47878:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_47872:int=_47872:int,_47878:int=_47878:int,_4632=ite(_134=<_47872,- 2+_47878,1+_47878)and _4626=1+_47872)),inv(_47872,_132,_134,_47878)
+Entrato in constr c
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_47872:int=_47872:int,_47878:int=_47878:int,(((((true,_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,not(_130=<_132+_134),_136=<0),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_136=ite(_134=<_828,- 2+_834,1+_834),_130=1+_828),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_834=ite(_134=<_1830,- 2+_1836,1+_1836),_828=1+_1830),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_1836=ite(_134=<_3110,- 2+_3116,1+_3116),_1830=1+_3110),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_3116=ite(_134=<_4626,- 2+_4632,1+_4632),_3110=1+_4626),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_47872:int=_47872:int,_47878:int=_47878:int,_4632=ite(_134=<_47872,- 2+_47878,1+_47878),_4626=1+_47872]
+
+Mi trovo in questa head
+inv(_6378,_132,_134,_6384)
+Stampo Rawbody
+constr((_6378=0&(~_132=<_134&_6384=0)))
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _136:int
+✅ Inserita in rewrite: _828:int
+✅ Inserita in rewrite: _834:int
+✅ Inserita in rewrite: _1830:int
+✅ Inserita in rewrite: _1836:int
+✅ Inserita in rewrite: _3110:int
+✅ Inserita in rewrite: _3116:int
+✅ Inserita in rewrite: _4626:int
+✅ Inserita in rewrite: _4632:int
+✅ Inserita in rewrite: _6378:int
+✅ Inserita in rewrite: _6384:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_6378=0 and not(_132=<_134)and _6384=0))
+Entrato in constr c
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,((((((true,_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,not(_130=<_132+_134),_136=<0),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_136=ite(_134=<_828,- 2+_834,1+_834),_130=1+_828),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_834=ite(_134=<_1830,- 2+_1836,1+_1836),_828=1+_1830),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_1836=ite(_134=<_3110,- 2+_3116,1+_3116),_1830=1+_3110),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_3116=ite(_134=<_4626,- 2+_4632,1+_4632),_3110=1+_4626),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_4632=ite(_134=<_6378,- 2+_6384,1+_6384),_4626=1+_6378),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_6378=0,not(_132=<_134),_6384=0]
+
+Sto per fare di nuovo un check occhio
+((((((true,_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,not(_130=<_132+_134),_136=<0),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_136=ite(_134=<_828,- 2+_834,1+_834),_130=1+_828),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_834=ite(_134=<_1830,- 2+_1836,1+_1836),_828=1+_1830),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_1836=ite(_134=<_3110,- 2+_3116,1+_3116),_1830=1+_3110),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_3116=ite(_134=<_4626,- 2+_4632,1+_4632),_3110=1+_4626),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_4632=ite(_134=<_6378,- 2+_6384,1+_6384),_4626=1+_6378),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_6378=0,not(_132=<_134),_6384=0
+✅ INCORRECT/FF FOUND: ((((((true,_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,not(_130=<_132+_134),_136=<0),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_136=ite(_134=<_828,- 2+_834,1+_834),_130=1+_828),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_834=ite(_134=<_1830,- 2+_1836,1+_1836),_828=1+_1830),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_1836=ite(_134=<_3110,- 2+_3116,1+_3116),_1830=1+_3110),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_3116=ite(_134=<_4626,- 2+_4632,1+_4632),_3110=1+_4626),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_4632=ite(_134=<_6378,- 2+_6384,1+_6384),_4626=1+_6378),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_6378=0,not(_132=<_134),_6384=0
+Stampo Rawbody
+inv(_32454,_132,_134,_32460),constr((_6384=ite(_134=<_32454,- 2+_32460,1+_32460)&_6378=1+_32454))
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _136:int
+✅ Inserita in rewrite: _828:int
+✅ Inserita in rewrite: _834:int
+✅ Inserita in rewrite: _1830:int
+✅ Inserita in rewrite: _1836:int
+✅ Inserita in rewrite: _3110:int
+✅ Inserita in rewrite: _3116:int
+✅ Inserita in rewrite: _4626:int
+✅ Inserita in rewrite: _4632:int
+✅ Inserita in rewrite: _6378:int
+✅ Inserita in rewrite: _6384:int
+✅ Inserita in rewrite: _32454:int
+✅ Inserita in rewrite: _32460:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_32454:int=_32454:int,_32460:int=_32460:int,_6384=ite(_134=<_32454,- 2+_32460,1+_32460)and _6378=1+_32454)),inv(_32454,_132,_134,_32460)
+Entrato in constr c
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_32454:int=_32454:int,_32460:int=_32460:int,((((((true,_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,not(_130=<_132+_134),_136=<0),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_136=ite(_134=<_828,- 2+_834,1+_834),_130=1+_828),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_834=ite(_134=<_1830,- 2+_1836,1+_1836),_828=1+_1830),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_1836=ite(_134=<_3110,- 2+_3116,1+_3116),_1830=1+_3110),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_3116=ite(_134=<_4626,- 2+_4632,1+_4632),_3110=1+_4626),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_4632=ite(_134=<_6378,- 2+_6384,1+_6384),_4626=1+_6378),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_32454:int=_32454:int,_32460:int=_32460:int,_6384=ite(_134=<_32454,- 2+_32460,1+_32460),_6378=1+_32454]
+
+Mi trovo in questa head
+inv(_32454,_132,_134,_32460)
+Stampo Rawbody
+constr((_32454=0&(~_132=<_134&_32460=0)))
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _136:int
+✅ Inserita in rewrite: _828:int
+✅ Inserita in rewrite: _834:int
+✅ Inserita in rewrite: _1830:int
+✅ Inserita in rewrite: _1836:int
+✅ Inserita in rewrite: _3110:int
+✅ Inserita in rewrite: _3116:int
+✅ Inserita in rewrite: _4626:int
+✅ Inserita in rewrite: _4632:int
+✅ Inserita in rewrite: _6378:int
+✅ Inserita in rewrite: _6384:int
+✅ Inserita in rewrite: _32454:int
+✅ Inserita in rewrite: _32460:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_32454:int=_32454:int,_32460:int=_32460:int,_32454=0 and not(_132=<_134)and _32460=0))
+Entrato in constr c
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_32454:int=_32454:int,_32460:int=_32460:int,(((((((true,_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,not(_130=<_132+_134),_136=<0),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_136=ite(_134=<_828,- 2+_834,1+_834),_130=1+_828),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_834=ite(_134=<_1830,- 2+_1836,1+_1836),_828=1+_1830),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_1836=ite(_134=<_3110,- 2+_3116,1+_3116),_1830=1+_3110),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_3116=ite(_134=<_4626,- 2+_4632,1+_4632),_3110=1+_4626),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_4632=ite(_134=<_6378,- 2+_6384,1+_6384),_4626=1+_6378),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_32454:int=_32454:int,_32460:int=_32460:int,_6384=ite(_134=<_32454,- 2+_32460,1+_32460),_6378=1+_32454),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_32454:int=_32454:int,_32460:int=_32460:int,_32454=0,not(_132=<_134),_32460=0]
+
+Sto per fare di nuovo un check occhio
+(((((((true,_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,not(_130=<_132+_134),_136=<0),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_136=ite(_134=<_828,- 2+_834,1+_834),_130=1+_828),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_834=ite(_134=<_1830,- 2+_1836,1+_1836),_828=1+_1830),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_1836=ite(_134=<_3110,- 2+_3116,1+_3116),_1830=1+_3110),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_3116=ite(_134=<_4626,- 2+_4632,1+_4632),_3110=1+_4626),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_4632=ite(_134=<_6378,- 2+_6384,1+_6384),_4626=1+_6378),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_8366:int=_8366:int,_8372:int=_8372:int,_6384=ite(_134=<_8366,- 2+_8372,1+_8372),_6378=1+_8366),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_8366:int=_8366:int,_8372:int=_8372:int,_8366=0,not(_132=<_134),_8372=0
+✅ INCORRECT/FF FOUND: (((((((true,_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,not(_130=<_132+_134),_136=<0),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_136=ite(_134=<_828,- 2+_834,1+_834),_130=1+_828),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_834=ite(_134=<_1830,- 2+_1836,1+_1836),_828=1+_1830),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_1836=ite(_134=<_3110,- 2+_3116,1+_3116),_1830=1+_3110),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_3116=ite(_134=<_4626,- 2+_4632,1+_4632),_3110=1+_4626),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_4632=ite(_134=<_6378,- 2+_6384,1+_6384),_4626=1+_6378),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_8366:int=_8366:int,_8372:int=_8372:int,_6384=ite(_134=<_8366,- 2+_8372,1+_8372),_6378=1+_8366),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_8366:int=_8366:int,_8372:int=_8372:int,_8366=0,not(_132=<_134),_8372=0
+Stampo Rawbody
+inv(_108746,_132,_134,_108752),constr((_8372=ite(_134=<_108746,- 2+_108752,1+_108752)&_8366=1+_108746))
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _136:int
+✅ Inserita in rewrite: _828:int
+✅ Inserita in rewrite: _834:int
+✅ Inserita in rewrite: _1830:int
+✅ Inserita in rewrite: _1836:int
+✅ Inserita in rewrite: _3110:int
+✅ Inserita in rewrite: _3116:int
+✅ Inserita in rewrite: _4626:int
+✅ Inserita in rewrite: _4632:int
+✅ Inserita in rewrite: _6378:int
+✅ Inserita in rewrite: _6384:int
+✅ Inserita in rewrite: _8366:int
+✅ Inserita in rewrite: _8372:int
+✅ Inserita in rewrite: _108746:int
+✅ Inserita in rewrite: _108752:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_8366:int=_8366:int,_8372:int=_8372:int,_108746:int=_108746:int,_108752:int=_108752:int,_8372=ite(_134=<_108746,- 2+_108752,1+_108752)and _8366=1+_108746)),inv(_108746,_132,_134,_108752)
+Entrato in constr c
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_8366:int=_8366:int,_8372:int=_8372:int,_108746:int=_108746:int,_108752:int=_108752:int,(((((((true,_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,not(_130=<_132+_134),_136=<0),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_136=ite(_134=<_828,- 2+_834,1+_834),_130=1+_828),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_834=ite(_134=<_1830,- 2+_1836,1+_1836),_828=1+_1830),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_1836=ite(_134=<_3110,- 2+_3116,1+_3116),_1830=1+_3110),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_3116=ite(_134=<_4626,- 2+_4632,1+_4632),_3110=1+_4626),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_4632=ite(_134=<_6378,- 2+_6384,1+_6384),_4626=1+_6378),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_8366:int=_8366:int,_8372:int=_8372:int,_6384=ite(_134=<_8366,- 2+_8372,1+_8372),_6378=1+_8366),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_8366:int=_8366:int,_8372:int=_8372:int,_108746:int=_108746:int,_108752:int=_108752:int,_8372=ite(_134=<_108746,- 2+_108752,1+_108752),_8366=1+_108746]
+
+Mi trovo in questa head
+inv(_10488,_132,_134,_10494)
+Stampo Rawbody
+constr((_10488=0&(~_132=<_134&_10494=0)))
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _136:int
+✅ Inserita in rewrite: _828:int
+✅ Inserita in rewrite: _834:int
+✅ Inserita in rewrite: _1830:int
+✅ Inserita in rewrite: _1836:int
+✅ Inserita in rewrite: _3110:int
+✅ Inserita in rewrite: _3116:int
+✅ Inserita in rewrite: _4626:int
+✅ Inserita in rewrite: _4632:int
+✅ Inserita in rewrite: _6378:int
+✅ Inserita in rewrite: _6384:int
+✅ Inserita in rewrite: _8366:int
+✅ Inserita in rewrite: _8372:int
+✅ Inserita in rewrite: _10488:int
+✅ Inserita in rewrite: _10494:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_8366:int=_8366:int,_8372:int=_8372:int,_10488:int=_10488:int,_10494:int=_10494:int,_10488=0 and not(_132=<_134)and _10494=0))
+Entrato in constr c
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_8366:int=_8366:int,_8372:int=_8372:int,_10488:int=_10488:int,_10494:int=_10494:int,((((((((true,_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,not(_130=<_132+_134),_136=<0),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_136=ite(_134=<_828,- 2+_834,1+_834),_130=1+_828),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_834=ite(_134=<_1830,- 2+_1836,1+_1836),_828=1+_1830),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_1836=ite(_134=<_3110,- 2+_3116,1+_3116),_1830=1+_3110),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_3116=ite(_134=<_4626,- 2+_4632,1+_4632),_3110=1+_4626),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_4632=ite(_134=<_6378,- 2+_6384,1+_6384),_4626=1+_6378),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_8366:int=_8366:int,_8372:int=_8372:int,_6384=ite(_134=<_8366,- 2+_8372,1+_8372),_6378=1+_8366),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_8366:int=_8366:int,_8372:int=_8372:int,_10488:int=_10488:int,_10494:int=_10494:int,_8372=ite(_134=<_10488,- 2+_10494,1+_10494),_8366=1+_10488),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_8366:int=_8366:int,_8372:int=_8372:int,_10488:int=_10488:int,_10494:int=_10494:int,_10488=0,not(_132=<_134),_10494=0]
+
+Sto per fare di nuovo un check occhio
+((((((((true,_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,not(_130=<_132+_134),_136=<0),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_136=ite(_134=<_828,- 2+_834,1+_834),_130=1+_828),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_834=ite(_134=<_1830,- 2+_1836,1+_1836),_828=1+_1830),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_1836=ite(_134=<_3110,- 2+_3116,1+_3116),_1830=1+_3110),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_3116=ite(_134=<_4626,- 2+_4632,1+_4632),_3110=1+_4626),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_4632=ite(_134=<_6378,- 2+_6384,1+_6384),_4626=1+_6378),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_8366:int=_8366:int,_8372:int=_8372:int,_6384=ite(_134=<_8366,- 2+_8372,1+_8372),_6378=1+_8366),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_8366:int=_8366:int,_8372:int=_8372:int,_10488:int=_10488:int,_10494:int=_10494:int,_8372=ite(_134=<_10488,- 2+_10494,1+_10494),_8366=1+_10488),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_8366:int=_8366:int,_8372:int=_8372:int,_10488:int=_10488:int,_10494:int=_10494:int,_10488=0,not(_132=<_134),_10494=0
+✅ INCORRECT/FF FOUND: ((((((((true,_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,not(_130=<_132+_134),_136=<0),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_136=ite(_134=<_828,- 2+_834,1+_834),_130=1+_828),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_834=ite(_134=<_1830,- 2+_1836,1+_1836),_828=1+_1830),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_1836=ite(_134=<_3110,- 2+_3116,1+_3116),_1830=1+_3110),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_3116=ite(_134=<_4626,- 2+_4632,1+_4632),_3110=1+_4626),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_4632=ite(_134=<_6378,- 2+_6384,1+_6384),_4626=1+_6378),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_8366:int=_8366:int,_8372:int=_8372:int,_6384=ite(_134=<_8366,- 2+_8372,1+_8372),_6378=1+_8366),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_8366:int=_8366:int,_8372:int=_8372:int,_10488:int=_10488:int,_10494:int=_10494:int,_8372=ite(_134=<_10488,- 2+_10494,1+_10494),_8366=1+_10488),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_8366:int=_8366:int,_8372:int=_8372:int,_10488:int=_10488:int,_10494:int=_10494:int,_10488=0,not(_132=<_134),_10494=0
+Stampo Rawbody
+inv(_116094,_132,_134,_116100),constr((_10494=ite(_134=<_116094,- 2+_116100,1+_116100)&_10488=1+_116094))
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _136:int
+✅ Inserita in rewrite: _828:int
+✅ Inserita in rewrite: _834:int
+✅ Inserita in rewrite: _1830:int
+✅ Inserita in rewrite: _1836:int
+✅ Inserita in rewrite: _3110:int
+✅ Inserita in rewrite: _3116:int
+✅ Inserita in rewrite: _4626:int
+✅ Inserita in rewrite: _4632:int
+✅ Inserita in rewrite: _6378:int
+✅ Inserita in rewrite: _6384:int
+✅ Inserita in rewrite: _8366:int
+✅ Inserita in rewrite: _8372:int
+✅ Inserita in rewrite: _10488:int
+✅ Inserita in rewrite: _10494:int
+✅ Inserita in rewrite: _116094:int
+✅ Inserita in rewrite: _116100:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_8366:int=_8366:int,_8372:int=_8372:int,_10488:int=_10488:int,_10494:int=_10494:int,_116094:int=_116094:int,_116100:int=_116100:int,_10494=ite(_134=<_116094,- 2+_116100,1+_116100)and _10488=1+_116094)),inv(_116094,_132,_134,_116100)
+Entrato in constr c
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_8366:int=_8366:int,_8372:int=_8372:int,_10488:int=_10488:int,_10494:int=_10494:int,_116094:int=_116094:int,_116100:int=_116100:int,((((((((true,_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,not(_130=<_132+_134),_136=<0),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_136=ite(_134=<_828,- 2+_834,1+_834),_130=1+_828),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_834=ite(_134=<_1830,- 2+_1836,1+_1836),_828=1+_1830),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_1836=ite(_134=<_3110,- 2+_3116,1+_3116),_1830=1+_3110),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_3116=ite(_134=<_4626,- 2+_4632,1+_4632),_3110=1+_4626),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_4632=ite(_134=<_6378,- 2+_6384,1+_6384),_4626=1+_6378),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_8366:int=_8366:int,_8372:int=_8372:int,_6384=ite(_134=<_8366,- 2+_8372,1+_8372),_6378=1+_8366),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_8366:int=_8366:int,_8372:int=_8372:int,_10488:int=_10488:int,_10494:int=_10494:int,_8372=ite(_134=<_10488,- 2+_10494,1+_10494),_8366=1+_10488),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_8366:int=_8366:int,_8372:int=_8372:int,_10488:int=_10488:int,_10494:int=_10494:int,_116094:int=_116094:int,_116100:int=_116100:int,_10494=ite(_134=<_116094,- 2+_116100,1+_116100),_10488=1+_116094]
+
+Mi trovo in questa head
+inv(_12948,_132,_134,_12954)
+Stampo Rawbody
+constr((_12948=0&(~_132=<_134&_12954=0)))
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _136:int
+✅ Inserita in rewrite: _828:int
+✅ Inserita in rewrite: _834:int
+✅ Inserita in rewrite: _1830:int
+✅ Inserita in rewrite: _1836:int
+✅ Inserita in rewrite: _3110:int
+✅ Inserita in rewrite: _3116:int
+✅ Inserita in rewrite: _4626:int
+✅ Inserita in rewrite: _4632:int
+✅ Inserita in rewrite: _6378:int
+✅ Inserita in rewrite: _6384:int
+✅ Inserita in rewrite: _8366:int
+✅ Inserita in rewrite: _8372:int
+✅ Inserita in rewrite: _10488:int
+✅ Inserita in rewrite: _10494:int
+✅ Inserita in rewrite: _12948:int
+✅ Inserita in rewrite: _12954:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_8366:int=_8366:int,_8372:int=_8372:int,_10488:int=_10488:int,_10494:int=_10494:int,_12948:int=_12948:int,_12954:int=_12954:int,_12948=0 and not(_132=<_134)and _12954=0))
+Entrato in constr c
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_8366:int=_8366:int,_8372:int=_8372:int,_10488:int=_10488:int,_10494:int=_10494:int,_12948:int=_12948:int,_12954:int=_12954:int,(((((((((true,_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,not(_130=<_132+_134),_136=<0),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_136=ite(_134=<_828,- 2+_834,1+_834),_130=1+_828),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_834=ite(_134=<_1830,- 2+_1836,1+_1836),_828=1+_1830),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_1836=ite(_134=<_3110,- 2+_3116,1+_3116),_1830=1+_3110),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_3116=ite(_134=<_4626,- 2+_4632,1+_4632),_3110=1+_4626),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_4632=ite(_134=<_6378,- 2+_6384,1+_6384),_4626=1+_6378),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_8366:int=_8366:int,_8372:int=_8372:int,_6384=ite(_134=<_8366,- 2+_8372,1+_8372),_6378=1+_8366),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_8366:int=_8366:int,_8372:int=_8372:int,_10488:int=_10488:int,_10494:int=_10494:int,_8372=ite(_134=<_10488,- 2+_10494,1+_10494),_8366=1+_10488),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_8366:int=_8366:int,_8372:int=_8372:int,_10488:int=_10488:int,_10494:int=_10494:int,_12948:int=_12948:int,_12954:int=_12954:int,_10494=ite(_134=<_12948,- 2+_12954,1+_12954),_10488=1+_12948),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_8366:int=_8366:int,_8372:int=_8372:int,_10488:int=_10488:int,_10494:int=_10494:int,_12948:int=_12948:int,_12954:int=_12954:int,_12948=0,not(_132=<_134),_12954=0]
+
+Sto per fare di nuovo un check occhio
+(((((((((true,_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,not(_130=<_132+_134),_136=<0),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_136=ite(_134=<_828,- 2+_834,1+_834),_130=1+_828),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_834=ite(_134=<_1830,- 2+_1836,1+_1836),_828=1+_1830),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_1836=ite(_134=<_3110,- 2+_3116,1+_3116),_1830=1+_3110),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_3116=ite(_134=<_4626,- 2+_4632,1+_4632),_3110=1+_4626),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_4632=ite(_134=<_6378,- 2+_6384,1+_6384),_4626=1+_6378),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_8366:int=_8366:int,_8372:int=_8372:int,_6384=ite(_134=<_8366,- 2+_8372,1+_8372),_6378=1+_8366),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_8366:int=_8366:int,_8372:int=_8372:int,_10488:int=_10488:int,_10494:int=_10494:int,_8372=ite(_134=<_10488,- 2+_10494,1+_10494),_8366=1+_10488),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_8366:int=_8366:int,_8372:int=_8372:int,_10488:int=_10488:int,_10494:int=_10494:int,_12948:int=_12948:int,_12954:int=_12954:int,_10494=ite(_134=<_12948,- 2+_12954,1+_12954),_10488=1+_12948),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_8366:int=_8366:int,_8372:int=_8372:int,_10488:int=_10488:int,_10494:int=_10494:int,_12948:int=_12948:int,_12954:int=_12954:int,_12948=0,not(_132=<_134),_12954=0
+✅ INCORRECT/FF FOUND: (((((((((true,_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,not(_130=<_132+_134),_136=<0),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_136=ite(_134=<_828,- 2+_834,1+_834),_130=1+_828),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_834=ite(_134=<_1830,- 2+_1836,1+_1836),_828=1+_1830),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_1836=ite(_134=<_3110,- 2+_3116,1+_3116),_1830=1+_3110),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_3116=ite(_134=<_4626,- 2+_4632,1+_4632),_3110=1+_4626),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_4632=ite(_134=<_6378,- 2+_6384,1+_6384),_4626=1+_6378),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_8366:int=_8366:int,_8372:int=_8372:int,_6384=ite(_134=<_8366,- 2+_8372,1+_8372),_6378=1+_8366),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_8366:int=_8366:int,_8372:int=_8372:int,_10488:int=_10488:int,_10494:int=_10494:int,_8372=ite(_134=<_10488,- 2+_10494,1+_10494),_8366=1+_10488),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_8366:int=_8366:int,_8372:int=_8372:int,_10488:int=_10488:int,_10494:int=_10494:int,_12948:int=_12948:int,_12954:int=_12954:int,_10494=ite(_134=<_12948,- 2+_12954,1+_12954),_10488=1+_12948),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_8366:int=_8366:int,_8372:int=_8372:int,_10488:int=_10488:int,_10494:int=_10494:int,_12948:int=_12948:int,_12954:int=_12954:int,_12948=0,not(_132=<_134),_12954=0
+Stampo Rawbody
+inv(_65080,_132,_134,_65086),constr((_12954=ite(_134=<_65080,- 2+_65086,1+_65086)&_12948=1+_65080))
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _136:int
+✅ Inserita in rewrite: _828:int
+✅ Inserita in rewrite: _834:int
+✅ Inserita in rewrite: _1830:int
+✅ Inserita in rewrite: _1836:int
+✅ Inserita in rewrite: _3110:int
+✅ Inserita in rewrite: _3116:int
+✅ Inserita in rewrite: _4626:int
+✅ Inserita in rewrite: _4632:int
+✅ Inserita in rewrite: _6378:int
+✅ Inserita in rewrite: _6384:int
+✅ Inserita in rewrite: _8366:int
+✅ Inserita in rewrite: _8372:int
+✅ Inserita in rewrite: _10488:int
+✅ Inserita in rewrite: _10494:int
+✅ Inserita in rewrite: _12948:int
+✅ Inserita in rewrite: _12954:int
+✅ Inserita in rewrite: _65080:int
+✅ Inserita in rewrite: _65086:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_8366:int=_8366:int,_8372:int=_8372:int,_10488:int=_10488:int,_10494:int=_10494:int,_12948:int=_12948:int,_12954:int=_12954:int,_65080:int=_65080:int,_65086:int=_65086:int,_12954=ite(_134=<_65080,- 2+_65086,1+_65086)and _12948=1+_65080)),inv(_65080,_132,_134,_65086)
+Entrato in constr c
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_8366:int=_8366:int,_8372:int=_8372:int,_10488:int=_10488:int,_10494:int=_10494:int,_12948:int=_12948:int,_12954:int=_12954:int,_65080:int=_65080:int,_65086:int=_65086:int,(((((((((true,_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,not(_130=<_132+_134),_136=<0),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_136=ite(_134=<_828,- 2+_834,1+_834),_130=1+_828),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_834=ite(_134=<_1830,- 2+_1836,1+_1836),_828=1+_1830),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_1836=ite(_134=<_3110,- 2+_3116,1+_3116),_1830=1+_3110),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_3116=ite(_134=<_4626,- 2+_4632,1+_4632),_3110=1+_4626),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_4632=ite(_134=<_6378,- 2+_6384,1+_6384),_4626=1+_6378),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_8366:int=_8366:int,_8372:int=_8372:int,_6384=ite(_134=<_8366,- 2+_8372,1+_8372),_6378=1+_8366),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_8366:int=_8366:int,_8372:int=_8372:int,_10488:int=_10488:int,_10494:int=_10494:int,_8372=ite(_134=<_10488,- 2+_10494,1+_10494),_8366=1+_10488),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_8366:int=_8366:int,_8372:int=_8372:int,_10488:int=_10488:int,_10494:int=_10494:int,_12948:int=_12948:int,_12954:int=_12954:int,_10494=ite(_134=<_12948,- 2+_12954,1+_12954),_10488=1+_12948),_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_828:int=_828:int,_834:int=_834:int,_1830:int=_1830:int,_1836:int=_1836:int,_3110:int=_3110:int,_3116:int=_3116:int,_4626:int=_4626:int,_4632:int=_4632:int,_6378:int=_6378:int,_6384:int=_6384:int,_8366:int=_8366:int,_8372:int=_8372:int,_10488:int=_10488:int,_10494:int=_10494:int,_12948:int=_12948:int,_12954:int=_12954:int,_65080:int=_65080:int,_65086:int=_65086:int,_12954=ite(_134=<_65080,- 2+_65086,1+_65086),_12948=1+_65080]
+
+--- ALL SAT BRANCHES FOUND (MaxDepths = 10) ---
+--- SAT MODEL ---
+
+--- CLPQ Constraints ---
+(true,_72652:int=_72652:int,_72676:int=_72676:int,_72700:int=_72700:int,_72724:int=_72724:int,not(_72652=<_72676+_72700),_72724=<0),_72652:int=_72652:int,_72676:int=_72676:int,_72700:int=_72700:int,_72724:int=_72724:int,_72652=0,not(_72676=<_72700),_72724=0
+
+--- FINAL MODEL (Z3) ---
+Z3 Model:
+model{constants:[x_72652=0,x_72676=0,x_72700= -1,x_72724=0],functions:[]}
+
+--- SAT MODEL ---
+
+--- CLPQ Constraints ---
+((true,_72046:int=_72046:int,_72070:int=_72070:int,_72094:int=_72094:int,_72118:int=_72118:int,not(_72046=<_72070+_72094),_72118=<0),_72046:int=_72046:int,_72070:int=_72070:int,_72094:int=_72094:int,_72118:int=_72118:int,_72266:int=_72266:int,_72290:int=_72290:int,_72118=ite(_72094=<_72266,- 2+_72290,1+_72290),_72046=1+_72266),_72046:int=_72046:int,_72070:int=_72070:int,_72094:int=_72094:int,_72118:int=_72118:int,_72266:int=_72266:int,_72290:int=_72290:int,_72266=0,not(_72070=<_72094),_72290=0
+
+--- FINAL MODEL (Z3) ---
+Z3 Model:
+model{constants:[x_72046=1,x_72070=0,x_72094= -1,x_72118= -2,x_72266=0,x_72290=0,x_72652=0,x_72676=0,x_72700= -1,x_72724=0],functions:[]}
+
+--- SAT MODEL ---
+
+--- CLPQ Constraints ---
+(((true,_71108:int=_71108:int,_71132:int=_71132:int,_71156:int=_71156:int,_71180:int=_71180:int,not(_71108=<_71132+_71156),_71180=<0),_71108:int=_71108:int,_71132:int=_71132:int,_71156:int=_71156:int,_71180:int=_71180:int,_71328:int=_71328:int,_71352:int=_71352:int,_71180=ite(_71156=<_71328,- 2+_71352,1+_71352),_71108=1+_71328),_71108:int=_71108:int,_71132:int=_71132:int,_71156:int=_71156:int,_71180:int=_71180:int,_71328:int=_71328:int,_71352:int=_71352:int,_71574:int=_71574:int,_71598:int=_71598:int,_71352=ite(_71156=<_71574,- 2+_71598,1+_71598),_71328=1+_71574),_71108:int=_71108:int,_71132:int=_71132:int,_71156:int=_71156:int,_71180:int=_71180:int,_71328:int=_71328:int,_71352:int=_71352:int,_71574:int=_71574:int,_71598:int=_71598:int,_71574=0,not(_71132=<_71156),_71598=0
+
+--- FINAL MODEL (Z3) ---
+Z3 Model:
+model{constants:[x_71108=2,x_71132=0,x_71156= -1,x_71180= -4,x_71328=1,x_71352= -2,x_71574=0,x_71598=0,x_72046=1,x_72070=0,x_72094= -1,x_72118= -2,x_72266=0,x_72290=0,x_72652=0,x_72676=0,x_72700= -1,x_72724=0],functions:[]}
+
+--- SAT MODEL ---
+
+--- CLPQ Constraints ---
+((((true,_69790:int=_69790:int,_69814:int=_69814:int,_69838:int=_69838:int,_69862:int=_69862:int,not(_69790=<_69814+_69838),_69862=<0),_69790:int=_69790:int,_69814:int=_69814:int,_69838:int=_69838:int,_69862:int=_69862:int,_70010:int=_70010:int,_70034:int=_70034:int,_69862=ite(_69838=<_70010,- 2+_70034,1+_70034),_69790=1+_70010),_69790:int=_69790:int,_69814:int=_69814:int,_69838:int=_69838:int,_69862:int=_69862:int,_70010:int=_70010:int,_70034:int=_70034:int,_70256:int=_70256:int,_70280:int=_70280:int,_70034=ite(_69838=<_70256,- 2+_70280,1+_70280),_70010=1+_70256),_69790:int=_69790:int,_69814:int=_69814:int,_69838:int=_69838:int,_69862:int=_69862:int,_70010:int=_70010:int,_70034:int=_70034:int,_70256:int=_70256:int,_70280:int=_70280:int,_70550:int=_70550:int,_70574:int=_70574:int,_70280=ite(_69838=<_70550,- 2+_70574,1+_70574),_70256=1+_70550),_69790:int=_69790:int,_69814:int=_69814:int,_69838:int=_69838:int,_69862:int=_69862:int,_70010:int=_70010:int,_70034:int=_70034:int,_70256:int=_70256:int,_70280:int=_70280:int,_70550:int=_70550:int,_70574:int=_70574:int,_70550=0,not(_69814=<_69838),_70574=0
+
+--- FINAL MODEL (Z3) ---
+Z3 Model:
+model{constants:[x_69790=3,x_69814=1,x_69838=0,x_69862= -6,x_70010=2,x_70034= -4,x_70256=1,x_70280= -2,x_70550=0,x_70574=0,x_71108=2,x_71132=0,x_71156= -1,x_71180= -4,x_71328=1,x_71352= -2,x_71574=0,x_71598=0,x_72046=1,x_72070=0,x_72094= -1,x_72118= -2,x_72266=0,x_72290=0,x_72652=0,x_72676=0,x_72700= -1,x_72724=0],functions:[]}
+
+--- SAT MODEL ---
+
+--- CLPQ Constraints ---
+(((((true,_12386:int=_12386:int,_12410:int=_12410:int,_12434:int=_12434:int,_12458:int=_12458:int,not(_12386=<_12410+_12434),_12458=<0),_12386:int=_12386:int,_12410:int=_12410:int,_12434:int=_12434:int,_12458:int=_12458:int,_12606:int=_12606:int,_12630:int=_12630:int,_12458=ite(_12434=<_12606,- 2+_12630,1+_12630),_12386=1+_12606),_12386:int=_12386:int,_12410:int=_12410:int,_12434:int=_12434:int,_12458:int=_12458:int,_12606:int=_12606:int,_12630:int=_12630:int,_12852:int=_12852:int,_12876:int=_12876:int,_12630=ite(_12434=<_12852,- 2+_12876,1+_12876),_12606=1+_12852),_12386:int=_12386:int,_12410:int=_12410:int,_12434:int=_12434:int,_12458:int=_12458:int,_12606:int=_12606:int,_12630:int=_12630:int,_12852:int=_12852:int,_12876:int=_12876:int,_13146:int=_13146:int,_13170:int=_13170:int,_12876=ite(_12434=<_13146,- 2+_13170,1+_13170),_12852=1+_13146),_12386:int=_12386:int,_12410:int=_12410:int,_12434:int=_12434:int,_12458:int=_12458:int,_12606:int=_12606:int,_12630:int=_12630:int,_12852:int=_12852:int,_12876:int=_12876:int,_13146:int=_13146:int,_13170:int=_13170:int,_13488:int=_13488:int,_13512:int=_13512:int,_13170=ite(_12434=<_13488,- 2+_13512,1+_13512),_13146=1+_13488),_12386:int=_12386:int,_12410:int=_12410:int,_12434:int=_12434:int,_12458:int=_12458:int,_12606:int=_12606:int,_12630:int=_12630:int,_12852:int=_12852:int,_12876:int=_12876:int,_13146:int=_13146:int,_13170:int=_13170:int,_13488:int=_13488:int,_13512:int=_13512:int,_13488=0,not(_12410=<_12434),_13512=0
+
+--- FINAL MODEL (Z3) ---
+Z3 Model:
+model{constants:[x_12386=4,x_12410=1,x_12434=0,x_12458= -8,x_12606=3,x_12630= -6,x_12852=2,x_12876= -4,x_13146=1,x_13170= -2,x_13488=0,x_13512=0,x_69790=3,x_69814=1,x_69838=0,x_69862= -6,x_70010=2,x_70034= -4,x_70256=1,x_70280= -2,x_70550=0,x_70574=0,x_71108=2,x_71132=0,x_71156= -1,x_71180= -4,x_71328=1,x_71352= -2,x_71574=0,x_71598=0,x_72046=1,x_72070=0,x_72094= -1,x_72118= -2,x_72266=0,x_72290=0,x_72652=0,x_72676=0,x_72700= -1,x_72724=0],functions:[]}
+
+--- SAT MODEL ---
+
+--- CLPQ Constraints ---
+((((((true,_10164:int=_10164:int,_10188:int=_10188:int,_10212:int=_10212:int,_10236:int=_10236:int,not(_10164=<_10188+_10212),_10236=<0),_10164:int=_10164:int,_10188:int=_10188:int,_10212:int=_10212:int,_10236:int=_10236:int,_10384:int=_10384:int,_10408:int=_10408:int,_10236=ite(_10212=<_10384,- 2+_10408,1+_10408),_10164=1+_10384),_10164:int=_10164:int,_10188:int=_10188:int,_10212:int=_10212:int,_10236:int=_10236:int,_10384:int=_10384:int,_10408:int=_10408:int,_10630:int=_10630:int,_10654:int=_10654:int,_10408=ite(_10212=<_10630,- 2+_10654,1+_10654),_10384=1+_10630),_10164:int=_10164:int,_10188:int=_10188:int,_10212:int=_10212:int,_10236:int=_10236:int,_10384:int=_10384:int,_10408:int=_10408:int,_10630:int=_10630:int,_10654:int=_10654:int,_10924:int=_10924:int,_10948:int=_10948:int,_10654=ite(_10212=<_10924,- 2+_10948,1+_10948),_10630=1+_10924),_10164:int=_10164:int,_10188:int=_10188:int,_10212:int=_10212:int,_10236:int=_10236:int,_10384:int=_10384:int,_10408:int=_10408:int,_10630:int=_10630:int,_10654:int=_10654:int,_10924:int=_10924:int,_10948:int=_10948:int,_11266:int=_11266:int,_11290:int=_11290:int,_10948=ite(_10212=<_11266,- 2+_11290,1+_11290),_10924=1+_11266),_10164:int=_10164:int,_10188:int=_10188:int,_10212:int=_10212:int,_10236:int=_10236:int,_10384:int=_10384:int,_10408:int=_10408:int,_10630:int=_10630:int,_10654:int=_10654:int,_10924:int=_10924:int,_10948:int=_10948:int,_11266:int=_11266:int,_11290:int=_11290:int,_11656:int=_11656:int,_11680:int=_11680:int,_11290=ite(_10212=<_11656,- 2+_11680,1+_11680),_11266=1+_11656),_10164:int=_10164:int,_10188:int=_10188:int,_10212:int=_10212:int,_10236:int=_10236:int,_10384:int=_10384:int,_10408:int=_10408:int,_10630:int=_10630:int,_10654:int=_10654:int,_10924:int=_10924:int,_10948:int=_10948:int,_11266:int=_11266:int,_11290:int=_11290:int,_11656:int=_11656:int,_11680:int=_11680:int,_11656=0,not(_10188=<_10212),_11680=0
+
+--- FINAL MODEL (Z3) ---
+Z3 Model:
+model{constants:[x_10164=5,x_10188=1,x_10212=0,x_10236= -10,x_10384=4,x_10408= -8,x_10630=3,x_10654= -6,x_10924=2,x_10948= -4,x_11266=1,x_11290= -2,x_11656=0,x_11680=0,x_12386=4,x_12410=1,x_12434=0,x_12458= -8,x_12606=3,x_12630= -6,x_12852=2,x_12876= -4,x_13146=1,x_13170= -2,x_13488=0,x_13512=0,x_69790=3,x_69814=1,x_69838=0,x_69862= -6,x_70010=2,x_70034= -4,x_70256=1,x_70280= -2,x_70550=0,x_70574=0,x_71108=2,x_71132=0,x_71156= -1,x_71180= -4,x_71328=1,x_71352= -2,x_71574=0,x_71598=0,x_72046=1,x_72070=0,x_72094= -1,x_72118= -2,x_72266=0,x_72290=0,x_72652=0,x_72676=0,x_72700= -1,x_72724=0],functions:[]}
+
+--- SAT MODEL ---
+
+--- CLPQ Constraints ---
+(((((((true,_7418:int=_7418:int,_7442:int=_7442:int,_7466:int=_7466:int,_7490:int=_7490:int,not(_7418=<_7442+_7466),_7490=<0),_7418:int=_7418:int,_7442:int=_7442:int,_7466:int=_7466:int,_7490:int=_7490:int,_7638:int=_7638:int,_7662:int=_7662:int,_7490=ite(_7466=<_7638,- 2+_7662,1+_7662),_7418=1+_7638),_7418:int=_7418:int,_7442:int=_7442:int,_7466:int=_7466:int,_7490:int=_7490:int,_7638:int=_7638:int,_7662:int=_7662:int,_7884:int=_7884:int,_7908:int=_7908:int,_7662=ite(_7466=<_7884,- 2+_7908,1+_7908),_7638=1+_7884),_7418:int=_7418:int,_7442:int=_7442:int,_7466:int=_7466:int,_7490:int=_7490:int,_7638:int=_7638:int,_7662:int=_7662:int,_7884:int=_7884:int,_7908:int=_7908:int,_8178:int=_8178:int,_8202:int=_8202:int,_7908=ite(_7466=<_8178,- 2+_8202,1+_8202),_7884=1+_8178),_7418:int=_7418:int,_7442:int=_7442:int,_7466:int=_7466:int,_7490:int=_7490:int,_7638:int=_7638:int,_7662:int=_7662:int,_7884:int=_7884:int,_7908:int=_7908:int,_8178:int=_8178:int,_8202:int=_8202:int,_8520:int=_8520:int,_8544:int=_8544:int,_8202=ite(_7466=<_8520,- 2+_8544,1+_8544),_8178=1+_8520),_7418:int=_7418:int,_7442:int=_7442:int,_7466:int=_7466:int,_7490:int=_7490:int,_7638:int=_7638:int,_7662:int=_7662:int,_7884:int=_7884:int,_7908:int=_7908:int,_8178:int=_8178:int,_8202:int=_8202:int,_8520:int=_8520:int,_8544:int=_8544:int,_8910:int=_8910:int,_8934:int=_8934:int,_8544=ite(_7466=<_8910,- 2+_8934,1+_8934),_8520=1+_8910),_7418:int=_7418:int,_7442:int=_7442:int,_7466:int=_7466:int,_7490:int=_7490:int,_7638:int=_7638:int,_7662:int=_7662:int,_7884:int=_7884:int,_7908:int=_7908:int,_8178:int=_8178:int,_8202:int=_8202:int,_8520:int=_8520:int,_8544:int=_8544:int,_8910:int=_8910:int,_8934:int=_8934:int,_9348:int=_9348:int,_9372:int=_9372:int,_8934=ite(_7466=<_9348,- 2+_9372,1+_9372),_8910=1+_9348),_7418:int=_7418:int,_7442:int=_7442:int,_7466:int=_7466:int,_7490:int=_7490:int,_7638:int=_7638:int,_7662:int=_7662:int,_7884:int=_7884:int,_7908:int=_7908:int,_8178:int=_8178:int,_8202:int=_8202:int,_8520:int=_8520:int,_8544:int=_8544:int,_8910:int=_8910:int,_8934:int=_8934:int,_9348:int=_9348:int,_9372:int=_9372:int,_9348=0,not(_7442=<_7466),_9372=0
+
+--- FINAL MODEL (Z3) ---
+Z3 Model:
+model{constants:[x_10164=5,x_10188=1,x_10212=0,x_10236= -10,x_10384=4,x_10408= -8,x_10630=3,x_10654= -6,x_10924=2,x_10948= -4,x_11266=1,x_11290= -2,x_11656=0,x_11680=0,x_12386=4,x_12410=1,x_12434=0,x_12458= -8,x_12606=3,x_12630= -6,x_12852=2,x_12876= -4,x_13146=1,x_13170= -2,x_13488=0,x_13512=0,x_69790=3,x_69814=1,x_69838=0,x_69862= -6,x_70010=2,x_70034= -4,x_70256=1,x_70280= -2,x_70550=0,x_70574=0,x_71108=2,x_71132=0,x_71156= -1,x_71180= -4,x_71328=1,x_71352= -2,x_71574=0,x_71598=0,x_72046=1,x_72070=0,x_72094= -1,x_72118= -2,x_72266=0,x_72290=0,x_72652=0,x_72676=0,x_72700= -1,x_72724=0,x_7418=6,x_7442=1,x_7466=0,x_7490= -12,x_7638=5,x_7662= -10,x_7884=4,x_7908= -8,x_8178=3,x_8202= -6,x_8520=2,x_8544= -4,x_8910=1,x_8934= -2,x_9348=0,x_9372=0],functions:[]}
+
+--- SAT MODEL ---
+
+--- CLPQ Constraints ---
+((((((((true,_4100:int=_4100:int,_4124:int=_4124:int,_4148:int=_4148:int,_4172:int=_4172:int,not(_4100=<_4124+_4148),_4172=<0),_4100:int=_4100:int,_4124:int=_4124:int,_4148:int=_4148:int,_4172:int=_4172:int,_4320:int=_4320:int,_4344:int=_4344:int,_4172=ite(_4148=<_4320,- 2+_4344,1+_4344),_4100=1+_4320),_4100:int=_4100:int,_4124:int=_4124:int,_4148:int=_4148:int,_4172:int=_4172:int,_4320:int=_4320:int,_4344:int=_4344:int,_4566:int=_4566:int,_4590:int=_4590:int,_4344=ite(_4148=<_4566,- 2+_4590,1+_4590),_4320=1+_4566),_4100:int=_4100:int,_4124:int=_4124:int,_4148:int=_4148:int,_4172:int=_4172:int,_4320:int=_4320:int,_4344:int=_4344:int,_4566:int=_4566:int,_4590:int=_4590:int,_4860:int=_4860:int,_4884:int=_4884:int,_4590=ite(_4148=<_4860,- 2+_4884,1+_4884),_4566=1+_4860),_4100:int=_4100:int,_4124:int=_4124:int,_4148:int=_4148:int,_4172:int=_4172:int,_4320:int=_4320:int,_4344:int=_4344:int,_4566:int=_4566:int,_4590:int=_4590:int,_4860:int=_4860:int,_4884:int=_4884:int,_5202:int=_5202:int,_5226:int=_5226:int,_4884=ite(_4148=<_5202,- 2+_5226,1+_5226),_4860=1+_5202),_4100:int=_4100:int,_4124:int=_4124:int,_4148:int=_4148:int,_4172:int=_4172:int,_4320:int=_4320:int,_4344:int=_4344:int,_4566:int=_4566:int,_4590:int=_4590:int,_4860:int=_4860:int,_4884:int=_4884:int,_5202:int=_5202:int,_5226:int=_5226:int,_5592:int=_5592:int,_5616:int=_5616:int,_5226=ite(_4148=<_5592,- 2+_5616,1+_5616),_5202=1+_5592),_4100:int=_4100:int,_4124:int=_4124:int,_4148:int=_4148:int,_4172:int=_4172:int,_4320:int=_4320:int,_4344:int=_4344:int,_4566:int=_4566:int,_4590:int=_4590:int,_4860:int=_4860:int,_4884:int=_4884:int,_5202:int=_5202:int,_5226:int=_5226:int,_5592:int=_5592:int,_5616:int=_5616:int,_6030:int=_6030:int,_6054:int=_6054:int,_5616=ite(_4148=<_6030,- 2+_6054,1+_6054),_5592=1+_6030),_4100:int=_4100:int,_4124:int=_4124:int,_4148:int=_4148:int,_4172:int=_4172:int,_4320:int=_4320:int,_4344:int=_4344:int,_4566:int=_4566:int,_4590:int=_4590:int,_4860:int=_4860:int,_4884:int=_4884:int,_5202:int=_5202:int,_5226:int=_5226:int,_5592:int=_5592:int,_5616:int=_5616:int,_6030:int=_6030:int,_6054:int=_6054:int,_6516:int=_6516:int,_6540:int=_6540:int,_6054=ite(_4148=<_6516,- 2+_6540,1+_6540),_6030=1+_6516),_4100:int=_4100:int,_4124:int=_4124:int,_4148:int=_4148:int,_4172:int=_4172:int,_4320:int=_4320:int,_4344:int=_4344:int,_4566:int=_4566:int,_4590:int=_4590:int,_4860:int=_4860:int,_4884:int=_4884:int,_5202:int=_5202:int,_5226:int=_5226:int,_5592:int=_5592:int,_5616:int=_5616:int,_6030:int=_6030:int,_6054:int=_6054:int,_6516:int=_6516:int,_6540:int=_6540:int,_6516=0,not(_4124=<_4148),_6540=0
+
+--- FINAL MODEL (Z3) ---
+Z3 Model:
+model{constants:[x_10164=5,x_10188=1,x_10212=0,x_10236= -10,x_10384=4,x_10408= -8,x_10630=3,x_10654= -6,x_10924=2,x_10948= -4,x_11266=1,x_11290= -2,x_11656=0,x_11680=0,x_12386=4,x_12410=1,x_12434=0,x_12458= -8,x_12606=3,x_12630= -6,x_12852=2,x_12876= -4,x_13146=1,x_13170= -2,x_13488=0,x_13512=0,x_4100=7,x_4124=1,x_4148=0,x_4172= -14,x_4320=6,x_4344= -12,x_4566=5,x_4590= -10,x_4860=4,x_4884= -8,x_5202=3,x_5226= -6,x_5592=2,x_5616= -4,x_6030=1,x_6054= -2,x_6516=0,x_6540=0,x_69790=3,x_69814=1,x_69838=0,x_69862= -6,x_70010=2,x_70034= -4,x_70256=1,x_70280= -2,x_70550=0,x_70574=0,x_71108=2,x_71132=0,x_71156= -1,x_71180= -4,x_71328=1,x_71352= -2,x_71574=0,x_71598=0,x_72046=1,x_72070=0,x_72094= -1,x_72118= -2,x_72266=0,x_72290=0,x_72652=0,x_72676=0,x_72700= -1,x_72724=0,x_7418=6,x_7442=1,x_7466=0,x_7490= -12,x_7638=5,x_7662= -10,x_7884=4,x_7908= -8,x_8178=3,x_8202= -6,x_8520=2,x_8544= -4,x_8910=1,x_8934= -2,x_9348=0,x_9372=0],functions:[]}
+
+--- SAT MODEL ---
+
+--- CLPQ Constraints ---
+(((((((((true,_162:int=_162:int,_186:int=_186:int,_210:int=_210:int,_234:int=_234:int,not(_162=<_186+_210),_234=<0),_162:int=_162:int,_186:int=_186:int,_210:int=_210:int,_234:int=_234:int,_382:int=_382:int,_406:int=_406:int,_234=ite(_210=<_382,- 2+_406,1+_406),_162=1+_382),_162:int=_162:int,_186:int=_186:int,_210:int=_210:int,_234:int=_234:int,_382:int=_382:int,_406:int=_406:int,_628:int=_628:int,_652:int=_652:int,_406=ite(_210=<_628,- 2+_652,1+_652),_382=1+_628),_162:int=_162:int,_186:int=_186:int,_210:int=_210:int,_234:int=_234:int,_382:int=_382:int,_406:int=_406:int,_628:int=_628:int,_652:int=_652:int,_922:int=_922:int,_946:int=_946:int,_652=ite(_210=<_922,- 2+_946,1+_946),_628=1+_922),_162:int=_162:int,_186:int=_186:int,_210:int=_210:int,_234:int=_234:int,_382:int=_382:int,_406:int=_406:int,_628:int=_628:int,_652:int=_652:int,_922:int=_922:int,_946:int=_946:int,_1264:int=_1264:int,_1288:int=_1288:int,_946=ite(_210=<_1264,- 2+_1288,1+_1288),_922=1+_1264),_162:int=_162:int,_186:int=_186:int,_210:int=_210:int,_234:int=_234:int,_382:int=_382:int,_406:int=_406:int,_628:int=_628:int,_652:int=_652:int,_922:int=_922:int,_946:int=_946:int,_1264:int=_1264:int,_1288:int=_1288:int,_1654:int=_1654:int,_1678:int=_1678:int,_1288=ite(_210=<_1654,- 2+_1678,1+_1678),_1264=1+_1654),_162:int=_162:int,_186:int=_186:int,_210:int=_210:int,_234:int=_234:int,_382:int=_382:int,_406:int=_406:int,_628:int=_628:int,_652:int=_652:int,_922:int=_922:int,_946:int=_946:int,_1264:int=_1264:int,_1288:int=_1288:int,_1654:int=_1654:int,_1678:int=_1678:int,_2092:int=_2092:int,_2116:int=_2116:int,_1678=ite(_210=<_2092,- 2+_2116,1+_2116),_1654=1+_2092),_162:int=_162:int,_186:int=_186:int,_210:int=_210:int,_234:int=_234:int,_382:int=_382:int,_406:int=_406:int,_628:int=_628:int,_652:int=_652:int,_922:int=_922:int,_946:int=_946:int,_1264:int=_1264:int,_1288:int=_1288:int,_1654:int=_1654:int,_1678:int=_1678:int,_2092:int=_2092:int,_2116:int=_2116:int,_2578:int=_2578:int,_2602:int=_2602:int,_2116=ite(_210=<_2578,- 2+_2602,1+_2602),_2092=1+_2578),_162:int=_162:int,_186:int=_186:int,_210:int=_210:int,_234:int=_234:int,_382:int=_382:int,_406:int=_406:int,_628:int=_628:int,_652:int=_652:int,_922:int=_922:int,_946:int=_946:int,_1264:int=_1264:int,_1288:int=_1288:int,_1654:int=_1654:int,_1678:int=_1678:int,_2092:int=_2092:int,_2116:int=_2116:int,_2578:int=_2578:int,_2602:int=_2602:int,_3112:int=_3112:int,_3136:int=_3136:int,_2602=ite(_210=<_3112,- 2+_3136,1+_3136),_2578=1+_3112),_162:int=_162:int,_186:int=_186:int,_210:int=_210:int,_234:int=_234:int,_382:int=_382:int,_406:int=_406:int,_628:int=_628:int,_652:int=_652:int,_922:int=_922:int,_946:int=_946:int,_1264:int=_1264:int,_1288:int=_1288:int,_1654:int=_1654:int,_1678:int=_1678:int,_2092:int=_2092:int,_2116:int=_2116:int,_2578:int=_2578:int,_2602:int=_2602:int,_3112:int=_3112:int,_3136:int=_3136:int,_3112=0,not(_186=<_210),_3136=0
+
+--- FINAL MODEL (Z3) ---
+Z3 Model:
+model{constants:[x_10164=5,x_10188=1,x_10212=0,x_10236= -10,x_10384=4,x_10408= -8,x_10630=3,x_10654= -6,x_10924=2,x_10948= -4,x_11266=1,x_11290= -2,x_11656=0,x_11680=0,x_12386=4,x_12410=1,x_12434=0,x_12458= -8,x_12606=3,x_12630= -6,x_1264=4,x_12852=2,x_12876= -4,x_1288= -8,x_13146=1,x_13170= -2,x_13488=0,x_13512=0,x_162=8,x_1654=3,x_1678= -6,x_186=1,x_2092=2,x_210=0,x_2116= -4,x_234= -16,x_2578=1,x_2602= -2,x_3112=0,x_3136=0,x_382=7,x_406= -14,x_4100=7,x_4124=1,x_4148=0,x_4172= -14,x_4320=6,x_4344= -12,x_4566=5,x_4590= -10,x_4860=4,x_4884= -8,x_5202=3,x_5226= -6,x_5592=2,x_5616= -4,x_6030=1,x_6054= -2,x_628=6,x_6516=0,x_652= -12,x_6540=0,x_69790=3,x_69814=1,x_69838=0,x_69862= -6,x_70010=2,x_70034= -4,x_70256=1,x_70280= -2,x_70550=0,x_70574=0,x_71108=2,x_71132=0,x_71156= -1,x_71180= -4,x_71328=1,x_71352= -2,x_71574=0,x_71598=0,x_72046=1,x_72070=0,x_72094= -1,x_72118= -2,x_72266=0,x_72290=0,x_72652=0,x_72676=0,x_72700= -1,x_72724=0,x_7418=6,x_7442=1,x_7466=0,x_7490= -12,x_7638=5,x_7662= -10,x_7884=4,x_7908= -8,x_8178=3,x_8202= -6,x_8520=2,x_8544= -4,x_8910=1,x_8934= -2,x_922=5,x_9348=0,x_9372=0,x_946= -10],functions:[]}
+

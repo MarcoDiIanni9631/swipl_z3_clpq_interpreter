@@ -111,12 +111,21 @@ zmi_aux(constr(C), Z3In, CLPQIn, SymTab, _, Z3Out, CLPQOut, constr(Normalized)) 
 
 
 zmi_aux(Head, Z3In, CLPQIn,SymTabIn, Steps, Z3Out, CLPQOut, SubTree => Head) :-
+
     Steps > 0,
     Head \= true,
     Head \= (_, _),
     Head \= constr(_),
+    writeln('Mi trovo in questa head'),
+    writeln(Head),
     clause(Head, RawBody),
+
+    writeln('Stampo Rawbody'),
+
+
+    writeln(RawBody),
     reorder_body(RawBody, TempBody),
+
     conj_to_list(TempBody, BodyList),
     extend_type_table(Head, SymTabIn, SymTabMid),
     extend_type_tableBody(BodyList, SymTabMid, SymTabFinal),
@@ -125,13 +134,16 @@ zmi_aux(Head, Z3In, CLPQIn,SymTabIn, Steps, Z3Out, CLPQOut, SubTree => Head) :-
     %Head =.. [_|Args],
     %format('📌 Variabili in Head: ~w~n', [Args]),
     maplist(rewrite_constr(Head, SymTabFinal), BodyList, RewrittenList),
-    writeln('Mi trovo in questa head'),
-    writeln(Head),
+
    % writeln('📌 BodyList riscritta:'),
    % maplist(writeln, RewrittenList),
     %maplist(rewrite_constr(Head), BodyList, RewrittenList),
     build_conjunct(RewrittenList, Body),
     NewSteps is Steps - 1,
+        writeln('Stampo Body prima di zmi'),
+
+
+    writeln(Body),
     zmi_aux(Body, Z3In, CLPQIn,SymTabFinal, NewSteps, Z3Out, CLPQOut, SubTree).
 
 

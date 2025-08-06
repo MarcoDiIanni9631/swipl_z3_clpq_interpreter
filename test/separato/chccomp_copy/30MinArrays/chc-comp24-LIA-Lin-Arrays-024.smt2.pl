@@ -13,7 +13,7 @@
 :- ignore constr/1.
 
 'main@entry'(A,B) :- constr((true)).
-'main@entry.split' :- 'main@entry'(A,B), 
-          constr((~ ((0=<C)=D)&(E=true&(F=true&(D=true&(G=true&(and(E,H)&(not(E)&(I=<0&(not(J=<0)&(I=<0&(not(K=<0)&(~ (I=<0)&(L=select(M,J)&(J=I+C&(K=I&(N=A&(M=store(B,K,0)&(F=(L=0)& ~ ((C=< - 1)=G)))))))))))))))))))).
+'main@entry.split' :- 'main@entry'(A,B).
+         % constr((~ ((0=<C)=D)&(E=true&(F=true&(D=true&(G=true&(and(E,H)&(not(E)&(I=<0&(not(J=<0)&(I=<0&(not(K=<0)&(~ (I=<0)&(L=select(M,J)&(J=I+C&(K=I&(N=A&(M=store(B,K,0)&(F=(L=0)& ~ ((C=< - 1)=G)))))))))))))))))))).
 ff :- 'main@entry.split', constr((true)).
 

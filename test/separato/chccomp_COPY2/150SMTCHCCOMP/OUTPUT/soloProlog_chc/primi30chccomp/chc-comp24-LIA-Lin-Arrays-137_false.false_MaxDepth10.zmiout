@@ -1,0 +1,109 @@
+failed to parse: ":- pred end_query."
+skipping(:- mode 'inv_rec_g^g_pre'(in,in,in,in).)
+skipping(:- mode 'inv_rec_g^g'(in,in,in,in,in,in,in,in).)
+failed to parse: ":- pred ff."
+skipping(:- query ff/0.)
+skipping(:- mode constr(in).)
+skipping(:- ignore constr/1.)
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/type_inference.pl:248:
+Warning:    Singleton variables: [Y]
+Installing Z3 package
+Using Z3 version Z3 4.15.3.0
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:895:
+Warning:    Singleton variables: [N,M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:907:
+Warning:    Singleton variables: [M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:922:
+Warning:    Singleton variables: [N]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:931:
+Warning:    Singleton variables: [N,O,A]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:943:
+Warning:    Singleton variables: [N]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:957:
+Warning:    Singleton variables: [N,M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:970:
+Warning:    Loading module plunit_z3_push_test_equal22222223445 abolished: [plunit_z3_push_test_equal22222223445:'unit body'/2,plunit_z3_push_test_equal22222223445:'unit test'/4]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:972:
+Warning:    Singleton variables: [O,A,M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:988:
+Warning:    Singleton variables: [M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:1001:
+Warning:    Singleton variables: [M]
+ℹ️ MaxDepth impostato a: 10
+Mi trovo in questa head
+ff
+Stampo Rawbody
+end_query,constr(true)
+Stampo Body prima di zmi
+constr(true),end_query
+Entrato in constr c
+Stampo flatList
+[true]
+
+Mi trovo in questa head
+end_query
+Stampo Rawbody
+inv_rec_g^g(_3904,_3906,_3908,_3910,_3912,_3914,_3916,_3918),constr((_3928=(not(_3916=_3918)or not(select(_3916,_3904)=select(_3918,_3908)))&(_3906=_3910&(_3928&(_3904=_3908&_4002=_4004)))))
+✅ Inserita in rewrite: _3904:int
+✅ Inserita in rewrite: _3906:array(int,int)
+✅ Inserita in rewrite: _3908:int
+✅ Inserita in rewrite: _3910:array(int,int)
+✅ Inserita in rewrite: _3912:int
+✅ Inserita in rewrite: _3914:int
+✅ Inserita in rewrite: _3916:array(int,int)
+✅ Inserita in rewrite: _3918:array(int,int)
+Stampo Body prima di zmi
+constr((_3904:int=_3904:int,_3906:array(int,int)=_3906:array(int,int),_3908:int=_3908:int,_3910:array(int,int)=_3910:array(int,int),_3912:int=_3912:int,_3914:int=_3914:int,_3916:array(int,int)=_3916:array(int,int),_3918:array(int,int)=_3918:array(int,int),_3928=(not(_3916=_3918)or not(select(_3916,_3904)=select(_3918,_3908)))and _3906=_3910 and (_3928&(_3904=_3908&_4002=_4004)))),inv_rec_g^g(_3904,_3906,_3908,_3910,_3912,_3914,_3916,_3918)
+Entrato in constr c
+Stampo flatList
+[_3904:int=_3904:int,_3906:array(int,int)=_3906:array(int,int),_3908:int=_3908:int,_3910:array(int,int)=_3910:array(int,int),_3912:int=_3912:int,_3914:int=_3914:int,_3916:array(int,int)=_3916:array(int,int),_3918:array(int,int)=_3918:array(int,int),(true,true),_3904:int=_3904:int,_3906:array(int,int)=_3906:array(int,int),_3908:int=_3908:int,_3910:array(int,int)=_3910:array(int,int),_3912:int=_3912:int,_3914:int=_3914:int,_3916:array(int,int)=_3916:array(int,int),_3918:array(int,int)=_3918:array(int,int),_3928=(not(_3916=_3918)or not(select(_3916,_3904)=select(_3918,_3908))),_3906=_3910,(_3928&(_3904=_3908&_4002=_4004))]
+
+Mi trovo in questa head
+inv_rec_g^g(_3904,_3906,_3908,_3910,_3912,_3914,_3916,_3918)
+Stampo Rawbody
+inv_rec_g^g_pre(_3904,_3906,_3908,_3910),constr((0=_3914&(0=_3912&(_3916=store(_3906,_3904,1)&_3918=store(_3910,_3908,1)))))
+✅ Inserita in rewrite: _3904:int
+✅ Inserita in rewrite: _3906:array(int,int)
+✅ Inserita in rewrite: _3908:int
+✅ Inserita in rewrite: _3910:array(int,int)
+✅ Inserita in rewrite: _3912:int
+✅ Inserita in rewrite: _3914:int
+✅ Inserita in rewrite: _3916:array(int,int)
+✅ Inserita in rewrite: _3918:array(int,int)
+Stampo Body prima di zmi
+constr((_3904:int=_3904:int,_3906:array(int,int)=_3906:array(int,int),_3908:int=_3908:int,_3910:array(int,int)=_3910:array(int,int),_3912:int=_3912:int,_3914:int=_3914:int,_3916:array(int,int)=_3916:array(int,int),_3918:array(int,int)=_3918:array(int,int),0=_3914 and 0=_3912 and _3916=store(_3906,_3904,1)and _3918=store(_3910,_3908,1))),inv_rec_g^g_pre(_3904,_3906,_3908,_3910)
+Entrato in constr c
+Stampo flatList
+[_3904:int=_3904:int,_3906:array(int,int)=_3906:array(int,int),_3908:int=_3908:int,_3910:array(int,int)=_3910:array(int,int),_3912:int=_3912:int,_3914:int=_3914:int,_3916:array(int,int)=_3916:array(int,int),_3918:array(int,int)=_3918:array(int,int),((true,true),_3904:int=_3904:int,_3906:array(int,int)=_3906:array(int,int),_3908:int=_3908:int,_3910:array(int,int)=_3910:array(int,int),_3912:int=_3912:int,_3914:int=_3914:int,_3916:array(int,int)=_3916:array(int,int),_3918:array(int,int)=_3918:array(int,int),_3928=(not(_3916=_3918)or not(select(_3916,_3904)=select(_3918,_3908))),_3906=_3910,_3928&(_3904=_3908&_4002=_4004)),_3904:int=_3904:int,_3906:array(int,int)=_3906:array(int,int),_3908:int=_3908:int,_3910:array(int,int)=_3910:array(int,int),_3912:int=_3912:int,_3914:int=_3914:int,_3916:array(int,int)=_3916:array(int,int),_3918:array(int,int)=_3918:array(int,int),0=_3914,0=_3912,_3916=store(_3906,_3904,1),_3918=store(_3910,_3908,1)]
+
+Mi trovo in questa head
+inv_rec_g^g_pre(_260,_262,_264,_266)
+Stampo Rawbody
+constr((_262=_266&(_24288=_24290&_260=_264)))
+✅ Inserita in rewrite: _260:int
+✅ Inserita in rewrite: _262:array(int,int)
+✅ Inserita in rewrite: _264:int
+✅ Inserita in rewrite: _266:array(int,int)
+✅ Inserita in rewrite: _268:int
+✅ Inserita in rewrite: _270:int
+✅ Inserita in rewrite: _272:array(int,int)
+✅ Inserita in rewrite: _274:array(int,int)
+Stampo Body prima di zmi
+constr((_260:int=_260:int,_262:array(int,int)=_262:array(int,int),_264:int=_264:int,_266:array(int,int)=_266:array(int,int),_268:int=_268:int,_270:int=_270:int,_272:array(int,int)=_272:array(int,int),_274:array(int,int)=_274:array(int,int),_262=_266 and _24288=_24290 and _260=_264))
+Entrato in constr c
+Stampo flatList
+[_260:int=_260:int,_262:array(int,int)=_262:array(int,int),_264:int=_264:int,_266:array(int,int)=_266:array(int,int),_268:int=_268:int,_270:int=_270:int,_272:array(int,int)=_272:array(int,int),_274:array(int,int)=_274:array(int,int),(((true,true),_260:int=_260:int,_262:array(int,int)=_262:array(int,int),_264:int=_264:int,_266:array(int,int)=_266:array(int,int),_268:int=_268:int,_270:int=_270:int,_272:array(int,int)=_272:array(int,int),_274:array(int,int)=_274:array(int,int),_284=(not(_272=_274)or not(select(_272,_260)=select(_274,_264))),_262=_266,_284&(_260=_264&_358=_360)),_260:int=_260:int,_262:array(int,int)=_262:array(int,int),_264:int=_264:int,_266:array(int,int)=_266:array(int,int),_268:int=_268:int,_270:int=_270:int,_272:array(int,int)=_272:array(int,int),_274:array(int,int)=_274:array(int,int),0=_270,0=_268,_272=store(_262,_260,1),_274=store(_266,_264,1)),_260:int=_260:int,_262:array(int,int)=_262:array(int,int),_264:int=_264:int,_266:array(int,int)=_266:array(int,int),_268:int=_268:int,_270:int=_270:int,_272:array(int,int)=_272:array(int,int),_274:array(int,int)=_274:array(int,int),_262=_266,_24288=_24290,_260=_264]
+
+Sto per fare di nuovo un check occhio
+(((true,true),_260:int=_260:int,_262:array(int,int)=_262:array(int,int),_264:int=_264:int,_266:array(int,int)=_266:array(int,int),_268:int=_268:int,_270:int=_270:int,_272:array(int,int)=_272:array(int,int),_274:array(int,int)=_274:array(int,int),_284=(not(_272=_274)or not(select(_272,_260)=select(_274,_264))),_262=_266,_284&(_260=_264&_358=_360)),_260:int=_260:int,_262:array(int,int)=_262:array(int,int),_264:int=_264:int,_266:array(int,int)=_266:array(int,int),_268:int=_268:int,_270:int=_270:int,_272:array(int,int)=_272:array(int,int),_274:array(int,int)=_274:array(int,int),0=_270,0=_268,_272=store(_262,_260,1),_274=store(_266,_264,1)),_260:int=_260:int,_262:array(int,int)=_262:array(int,int),_264:int=_264:int,_266:array(int,int)=_266:array(int,int),_268:int=_268:int,_270:int=_270:int,_272:array(int,int)=_272:array(int,int),_274:array(int,int)=_274:array(int,int),_262=_266,_3254=_3256,_260=_264
+✅ INCORRECT/FF FOUND: (((true,true),_260:int=_260:int,_262:array(int,int)=_262:array(int,int),_264:int=_264:int,_266:array(int,int)=_266:array(int,int),_268:int=_268:int,_270:int=_270:int,_272:array(int,int)=_272:array(int,int),_274:array(int,int)=_274:array(int,int),_284=(not(_272=_274)or not(select(_272,_260)=select(_274,_264))),_262=_266,_284&(_260=_264&_358=_360)),_260:int=_260:int,_262:array(int,int)=_262:array(int,int),_264:int=_264:int,_266:array(int,int)=_266:array(int,int),_268:int=_268:int,_270:int=_270:int,_272:array(int,int)=_272:array(int,int),_274:array(int,int)=_274:array(int,int),0=_270,0=_268,_272=store(_262,_260,1),_274=store(_266,_264,1)),_260:int=_260:int,_262:array(int,int)=_262:array(int,int),_264:int=_264:int,_266:array(int,int)=_266:array(int,int),_268:int=_268:int,_270:int=_270:int,_272:array(int,int)=_272:array(int,int),_274:array(int,int)=_274:array(int,int),_262=_266,_3254=_3256,_260=_264
+--- ALL SAT BRANCHES FOUND (MaxDepths = 10) ---
+--- SAT MODEL ---
+
+--- CLPQ Constraints ---
+(((true,true),_51096:int=_51096:int,_51120:array(int,int)=_51120:array(int,int),_51150:int=_51150:int,_51174:array(int,int)=_51174:array(int,int),_51204:int=_51204:int,_51228:int=_51228:int,_51252:array(int,int)=_51252:array(int,int),_51282:array(int,int)=_51282:array(int,int),_51306=(not(_51252=_51282)or not(select(_51252,_51096)=select(_51282,_51150))),_51120=_51174,_51306&(_51096=_51150&_51380=_51382)),_51096:int=_51096:int,_51120:array(int,int)=_51120:array(int,int),_51150:int=_51150:int,_51174:array(int,int)=_51174:array(int,int),_51204:int=_51204:int,_51228:int=_51228:int,_51252:array(int,int)=_51252:array(int,int),_51282:array(int,int)=_51282:array(int,int),0=_51228,0=_51204,_51252=store(_51120,_51096,1),_51282=store(_51174,_51150,1)),_51096:int=_51096:int,_51120:array(int,int)=_51120:array(int,int),_51150:int=_51150:int,_51174:array(int,int)=_51174:array(int,int),_51204:int=_51204:int,_51228:int=_51228:int,_51252:array(int,int)=_51252:array(int,int),_51282:array(int,int)=_51282:array(int,int),_51120=_51174,_51846=_51848,_51096=_51150
+
+--- FINAL MODEL (Z3) ---
+Z3 Model:
+model{constants:[x_51096=2,x_51120=const(3),x_51150=2,x_51174=const(3),x_51204=0,x_51228=0,x_51252=store(const(3),2,1),x_51282=store(const(3),2,1),x_51306=false,x_51380=uninterpreted!val!0,x_51382=uninterpreted!val!1,x_51846=uninterpreted!val!2,x_51848=uninterpreted!val!2],functions:[(false&false)=true,((&)/2=else)=false]}
+

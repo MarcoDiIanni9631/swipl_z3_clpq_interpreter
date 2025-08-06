@@ -1,0 +1,54 @@
+failed to parse: ":- pred 'main@precall.split'."
+skipping(:- mode 'main@entry'(in).)
+failed to parse: ":- pred ff."
+skipping(:- query ff/0.)
+skipping(:- mode constr(in).)
+skipping(:- ignore constr/1.)
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/type_inference.pl:248:
+Warning:    Singleton variables: [Y]
+Installing Z3 package
+Using Z3 version Z3 4.15.3.0
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:895:
+Warning:    Singleton variables: [N,M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:907:
+Warning:    Singleton variables: [M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:922:
+Warning:    Singleton variables: [N]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:931:
+Warning:    Singleton variables: [N,O,A]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:943:
+Warning:    Singleton variables: [N]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:957:
+Warning:    Singleton variables: [N,M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:970:
+Warning:    Loading module plunit_z3_push_test_equal22222223445 abolished: [plunit_z3_push_test_equal22222223445:'unit body'/2,plunit_z3_push_test_equal22222223445:'unit test'/4]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:972:
+Warning:    Singleton variables: [O,A,M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:988:
+Warning:    Singleton variables: [M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:1001:
+Warning:    Singleton variables: [M]
+ℹ️ MaxDepth impostato a: 10
+Mi trovo in questa head
+ff
+Stampo Rawbody
+main@precall.split,constr(true)
+Stampo Body prima di zmi
+constr(true),main@precall.split
+Entrato in constr c
+Stampo flatList
+[true]
+
+Mi trovo in questa head
+main@precall.split
+Stampo Rawbody
+main@entry(_1804),constr((_1814=store(_1804,_1822,0)&(_1834=true&(_1834 and _1848&(not(_1834)&(_1868 and _1848&(not(_1848)&(not(_1890)&(not(_1868)&(not(_1848)&(_1920=_1922&(not(_1868)&(not(_1848)&(_1952=_1920&(not(_1868)&(not(_1848)&_1922=store(_1814,_1822,1)))))))))))))))))
+✅ Inserita in rewrite: _1804:array(int,int)
+Stampo Body prima di zmi
+constr((_1804:array(int,int)=_1804:array(int,int),_1814=store(_1804,_1822,0)and _1834=true and (_1834 and _1848)and not(_1834)and(_1868 and _1848)and not(_1848)and not(_1890)and not(_1868)and not(_1848)and _1920=_1922 and not(_1868)and not(_1848)and _1952=_1920 and not(_1868)and not(_1848)and _1922=store(_1814,_1822,1))),main@entry(_1804)
+Entrato in constr c
+Stampo flatList
+[_1804:array(int,int)=_1804:array(int,int),(true,true),_1804:array(int,int)=_1804:array(int,int),_1814=store(_1804,_1822,0),_1834=true,_1834 and _1848,not(_1834),_1868 and _1848,not(_1848),not(_1890),not(_1868),not(_1848),_1920=_1922,not(_1868),not(_1848),_1952=_1920,not(_1868),not(_1848),_1922=store(_1814,_1822,1)]
+
+No SAT branches found in MaxDepths = 10.
+ERROR: -g load_clean('/home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/test/separato/chccomp_COPY2/150SMTCHCCOMP/OUTPUT/soloProlog_chc/primi30chccomp/chc-comp24-LIA-Lin-Arrays-004_true.smt2.pl'),set_solver(turibe),zmi(ff),halt.: false
