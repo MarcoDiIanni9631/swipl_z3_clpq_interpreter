@@ -415,3 +415,48 @@ test(level4_inv_ff_mod_int) :-
 
 :- end_tests(level4_inv_ff_mod_int).
 
+
+:- begin_tests(smt_plus_nary_sat, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
+
+test(smt_plus_nary_sat) :-
+    % x = 1+2+3+8+12  ==> x = 26
+    user:assertz((incorrect :- constr((X:int = smt_plus(1,2,3,8,12))))),
+    zmi(incorrect).
+
+:- end_tests(smt_plus_nary_sat).
+
+
+:- begin_tests(smt_plus_vars_sat, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
+
+test(smt_plus_vars_sat) :-
+    % a=2, b=5, c = a+b+3  ==> c=10
+    user:assertz((facts :- constr((A:int = 2 & B:int = 5)))),
+    user:assertz((incorrect :- facts, constr((C:int = smt_plus(A,B,3))))),
+    zmi(incorrect).
+
+:- end_tests(smt_plus_vars_sat).
+
+
+:- begin_tests(smt_plus_nested_sat, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
+
+test(smt_plus_nested_sat) :-
+    % x = (1+2) + (3+4)  ==> x = 10
+    user:assertz((incorrect :- constr((X:int = smt_plus(smt_plus(1,2), smt_plus(3,4)))))),
+    zmi(incorrect).
+
+:- end_tests(smt_plus_nested_sat).
+
+
+
+:- begin_tests(smt_plus_eq_zero_sat, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
+
+test(smt_plus_eq_zero_sat) :-
+    % C + E - H = 0  ==> modello consistente
+    user:assertz((incorrect :- constr((smt_plus(C:int, E:int, -1*H:int) = 0)))),
+    zmi(incorrect).
+
+:- end_tests(smt_plus_eq_zero_sat).
+
+
+
+
