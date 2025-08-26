@@ -29,7 +29,18 @@ normalize_bool_expr(Expr, Expr) :-
     var(Expr), !.
 
 %Posso aggiungere qui se c'è una costante ((true,false,integer)
+% Normalizza select(Array, Index) come termine generico
+normalize_bool_expr(select(A, I), select(NA, NI)) :-
+    !,
+    normalize_bool_expr(A, NA),
+    normalize_bool_expr(I, NI).
 
+% Normalizza store(Array, Index, Value) come termine generico
+normalize_bool_expr(store(A, I, V), store(NA, NI, NV)) :-
+    !,
+    normalize_bool_expr(A, NA),
+    normalize_bool_expr(I, NI),
+    normalize_bool_expr(V, NV).
 
 
 % % Caso base: uguaglianze/relazioni aritmetiche (STOP ricorsione)
@@ -190,8 +201,60 @@ normalize_bool_expr(Expr, Expr) :-
     Expr =.. [Op, N],
     Op == (-), number(N), !.
 
+% ---------- smt_plus: somma n-aria -> catena di + ----------
+normalize_bool_expr(Expr, NExpr) :-
+    nonvar(Expr),
+    Expr =.. [smt_plus | Args],
+    !,
+    maplist(normalize_bool_expr, Args, NArgs),
+    build_plus_chain(NArgs, NExpr).
 
+build_plus_chain([X], X) :- !.
+build_plus_chain([X,Y|Rest], Expr) :-
+    Tmp =.. [+, X, Y],
+    build_plus_chain([Tmp|Rest], Expr).
+
+
+
+% % Normalizza select(Array, Index) come termine generico
+% normalize_bool_expr(select(A, I), select(NA, NI)) :-
+%     !,
+%     normalize_bool_expr(A, NA),
+%     normalize_bool_expr(I, NI).
+
+% % Normalizza store(Array, Index, Value) come termine generico
+% normalize_bool_expr(store(A, I, V), store(NA, NI, NV)) :-
+%     !,
+%     normalize_bool_expr(A, NA),
+%     normalize_bool_expr(I, NI),
+%     normalize_bool_expr(V, NV).
+
+% % Variabile con tipo come termine intero
+% normalize_bool_expr(Var:Type, Var:Type) :-
+%     var(Var), atom(Type), !.
 % ----------------------------
+
+
+% Normalizza prodotto N*X
+normalize_bool_expr(Expr, NExpr) :-
+    nonvar(Expr),
+    Expr =.. [*, A, B],
+    !,
+    normalize_bool_expr(A, NA),
+    normalize_bool_expr(B, NB),
+    NExpr = NA*NB.
+
+
+% --- Ricorsione sugli operatori aritmetici binari ---
+normalize_bool_expr(Expr, NExpr) :-
+    nonvar(Expr),
+    Expr =.. [Op, X, Y],
+    member(Op, [+, -, *, div, mod]),
+    !,
+    normalize_bool_expr(X, NX),
+    normalize_bool_expr(Y, NY),
+    NExpr =.. [Op, NX, NY].
+
 % Fallback finale
 % ----------------------------
 normalize_bool_expr(A, A) :- 

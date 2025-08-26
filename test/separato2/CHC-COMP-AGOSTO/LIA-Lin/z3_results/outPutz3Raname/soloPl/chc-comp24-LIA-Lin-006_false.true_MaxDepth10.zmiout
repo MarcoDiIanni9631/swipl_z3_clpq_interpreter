@@ -1,3 +1,8 @@
+Warning: /home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/logic_utils.pl:239:
+Warning:    Clauses of logic_utils:normalize_bool_expr/2 are not together in the source-file
+Warning:    Earlier definition at /home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/logic_utils.pl:28
+Warning:    Current predicate: logic_utils:build_plus_chain/2
+Warning:    Use :- discontiguous logic_utils:normalize_bool_expr/2. to suppress this message
 skipped parse: ":- pred 'main@entry'."
 skipping(:- mode 'main@tailrecurse.i'(in,in,in,in).)
 skipped parse: ":- pred 'main@sum.exit.split'."
@@ -22,7 +27,7 @@ Warning:    Singleton variables: [N]
 Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:958:
 Warning:    Singleton variables: [N,M]
 Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:971:
-Warning:    Loading module plunit_z3_push_test_equal22222223445 abolished: [plunit_z3_push_test_equal22222223445:'unit body'/2,plunit_z3_push_test_equal22222223445:'unit test'/4]
+Warning:    Loading module plunit_z3_push_test_equal22222223445 abolished: [plunit_z3_push_test_equal22222223445:'unit test'/4,plunit_z3_push_test_equal22222223445:'unit body'/2]
 Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:973:
 Warning:    Singleton variables: [O,A,M]
 Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:989:
@@ -32,44 +37,20 @@ Warning:    Singleton variables: [M]
 ℹ️ MaxDepth impostato a: 10
 Mi trovo in questa head
 ff
-Stampo Rawbody
-main@sum.exit.split,constr(true)
-Stampo Body prima di zmi
-constr(true),main@sum.exit.split
 Entrato in constr c
-Stampo flatList
-[true]
 
 Stampa prima di inviare
 trueMi trovo in questa head
 main@sum.exit.split
-Stampo Rawbody
-main@entry,constr((_4358=(_4364=0)&(_4376=true&(_4376 and _4390&(not(_4376)&(_4404&(not(_4390)&(_4426 and _4390&(not(_4390)&(_4448=_4454+_4364&(not(_4390)&(_4404=(_4482=_4448)&(not(_4390)&(not(_4390)&(_4358&(not(_4426)&(not(_4390)&(_4482=_4542&(not(_4426)&(not(_4390)&(_4542=_4454&not(_4426))))))))))))))))))))))
-⚠️ Formula non normalizzata: _4454+_4364
-Stampo Body prima di zmi
-constr(_4358=(_4364=0)and _4376=true and (_4376,_4390)and not(_4376)and _4404 and not(_4390)and(_4426,_4390)and not(_4390)and _4448=_4454+_4364 and not(_4390)and _4404=(_4482=_4448)and not(_4390)and not(_4390)and _4358 and not(_4426)and not(_4390)and _4482=_4542 and not(_4426)and not(_4390)and _4542=_4454 and not(_4426)),main@entry
 Entrato in constr c
-⚠️ Formula non normalizzata: _4454+_4364
-Stampo flatList
-[(true,true),_4358=(_4364=0),_4376=true,(_4376,_4390),not(_4376),_4404,not(_4390),(_4426,_4390),not(_4390),_4448=_4454+_4364,not(_4390),_4404=(_4482=_4448),not(_4390),not(_4390),_4358,not(_4426),not(_4390),_4482=_4542,not(_4426),not(_4390),_4542=_4454,not(_4426)]
 
 Stampa prima di inviare
-true and x_4358=(x_4364=0)and x_4376=true and (x_4376 and x_4390)and not(x_4376)and x_4404 and not(x_4390)and(x_4426 and x_4390)and not(x_4390)and x_4448=x_4454+x_4364 and not(x_4390)and x_4404=(x_4482=x_4448)and not(x_4390)and not(x_4390)and x_4358 and not(x_4426)and not(x_4390)and x_4482=x_4542 and not(x_4426)and not(x_4390)and x_4542=x_4454 and not(x_4426)Stampo Rawbody
-main@tailrecurse.i(_23058,_23060,_23062,_23064),constr((_23074=(_23080=0)&(_23092=true&(_23104 and _23106&(not(_23104)&(_23092 and _23128&(not(_23092)&(_23142&(not(_23128)&(_23104 and _23128&(not(_23128)&(_23186=_23058+_23060&(not(_23128)&(_23142=(_23220=_23186)&(not(_23128)&(not(_23128)&(_23220=_23254&(not(_23104)&(not(_23128)&(_23254=_23286&(not(_23104)&(_23074&(not(_23106)&(not(_23104)&(_23286=_23334&(not(_23106)&(not(_23104)&(_23334=_23366&(not(_23106)&(not(_23104)&(_23366=1+_23064&_23080= - 1+_23062)))))))))))))))))))))))))))))))
-⚠️ Formula non normalizzata: _23058+_23060
-⚠️ Formula non normalizzata: - 1+_23062
-✅ Inserita in rewrite: _23058:int
-✅ Inserita in rewrite: _23060:int
-✅ Inserita in rewrite: _23062:int
-✅ Inserita in rewrite: _23064:int
-Stampo Body prima di zmi
-constr((_23058:int=_23058:int,_23060:int=_23060:int,_23062:int=_23062:int,_23064:int=_23064:int,_23074=(_23080=0)and _23092=true and (_23104,_23106)and not(_23104)and(_23092,_23128)and not(_23092)and _23142 and not(_23128)and(_23104,_23128)and not(_23128)and _23186=_23058+_23060 and not(_23128)and _23142=(_23220=_23186)and not(_23128)and not(_23128)and _23220=_23254 and not(_23104)and not(_23128)and _23254=_23286 and not(_23104)and _23074 and not(_23106)and not(_23104)and _23286=_23334 and not(_23106)and not(_23104)and _23334=_23366 and not(_23106)and not(_23104)and _23366=1+_23064 and _23080= - 1+_23062)),main@tailrecurse.i(_23058,_23060,_23062,_23064)
+true and x_15582=(x_15588=0)and x_15600=true and (x_15600 and x_15614)and not(x_15600)and x_15628 and not(x_15614)and(x_15650 and x_15614)and not(x_15614)and x_15672=x_15678+x_15588 and not(x_15614)and x_15628=(x_15706=x_15672)and not(x_15614)and not(x_15614)and x_15582 and not(x_15650)and not(x_15614)and x_15706=x_15766 and not(x_15650)and not(x_15614)and x_15766=x_15678 and not(x_15650)✅ Inserita in rewrite: _7134:int
+✅ Inserita in rewrite: _7136:int
+✅ Inserita in rewrite: _7138:int
+✅ Inserita in rewrite: _7140:int
 Entrato in constr c
-⚠️ Formula non normalizzata: _23058+_23060
-⚠️ Formula non normalizzata: - 1+_23062
-Stampo flatList
-[_23058:int=_23058:int,_23060:int=_23060:int,_23062:int=_23062:int,_23064:int=_23064:int,(true,true),_23058=_23058,_23060=_23060,_23062=_23062,_23064=_23064,_23074=(_23080=0),_23092=true,(_23104,_23106),not(_23104),(_23092,_23128),not(_23092),_23142,not(_23128),(_23104,_23128),not(_23128),_23186=_23058+_23060,not(_23128),_23142=(_23220=_23186),not(_23128),not(_23128),_23220=_23254,not(_23104),not(_23128),_23254=_23286,not(_23104),_23074,not(_23106),not(_23104),_23286=_23334,not(_23106),not(_23104),_23334=_23366,not(_23106),not(_23104),_23366=1+_23064,_23080= - 1+_23062]
 
 Stampa prima di inviare
-x_23058:int=x_23058:int and x_23060:int=x_23060:int and x_23062:int=x_23062:int and x_23064:int=x_23064:int and true and x_23058=x_23058 and x_23060=x_23060 and x_23062=x_23062 and x_23064=x_23064 and x_23074=(x_23080=0)and x_23092=true and (x_23104 and x_23106)and not(x_23104)and(x_23092 and x_23128)and not(x_23092)and x_23142 and not(x_23128)and(x_23104 and x_23128)and not(x_23128)and x_23186=x_23058+x_23060 and not(x_23128)and x_23142=(x_23220=x_23186)and not(x_23128)and not(x_23128)and x_23220=x_23254 and not(x_23104)and not(x_23128)and x_23254=x_23286 and not(x_23104)and x_23074 and not(x_23106)and not(x_23104)and x_23286=x_23334 and not(x_23106)and not(x_23104)and x_23334=x_23366 and not(x_23106)and not(x_23104)and x_23366=1+x_23064 and x_23080= - 1+x_23062No SAT branches found in MaxDepths = 10.
-ERROR: -g load_clean('/home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/test/separato2/CHC-COMP-AGOSTO/LIA-Lin/z3_results/outPutz3Raname/soloPl//chc-comp24-LIA-Lin-006_false.smt2.pl'),set_solver(turibe),zmi(ff),halt.: false
+x_7134:int=x_7134:int and x_7136:int=x_7136:int and x_7138:int=x_7138:int and x_7140:int=x_7140:int and true and x_7134=x_7134 and x_7136=x_7136 and x_7138=x_7138 and x_7140=x_7140 and x_7150=(x_7156=0)and x_7168=true and (x_7180 and x_7182)and not(x_7180)and(x_7168 and x_7204)and not(x_7168)and x_7218 and not(x_7204)and(x_7180 and x_7204)and not(x_7204)and x_7262=x_7134+x_7136 and not(x_7204)and x_7218=(x_7296=x_7262)and not(x_7204)and not(x_7204)and x_7296=x_7330 and not(x_7180)and not(x_7204)and x_7330=x_7362 and not(x_7180)and x_7150 and not(x_7182)and not(x_7180)and x_7362=x_7410 and not(x_7182)and not(x_7180)and x_7410=x_7442 and not(x_7182)and not(x_7180)and x_7442=1+x_7140 and x_7156= - 1+x_7138No SAT branches found in MaxDepths = 10.
+ERROR: -g load_clean('/home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/test/separato2/CHC-COMP-AGOSTO/LIA-Lin/z3_results/outPutz3Raname/soloPl/chc-comp24-LIA-Lin-006_false.smt2.pl'),set_solver(turibe),zmi(ff),halt.: false

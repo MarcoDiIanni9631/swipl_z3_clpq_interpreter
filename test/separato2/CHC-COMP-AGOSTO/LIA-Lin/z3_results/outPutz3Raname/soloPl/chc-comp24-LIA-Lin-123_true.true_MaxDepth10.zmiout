@@ -1,3 +1,8 @@
+Warning: /home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/logic_utils.pl:239:
+Warning:    Clauses of logic_utils:normalize_bool_expr/2 are not together in the source-file
+Warning:    Earlier definition at /home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/logic_utils.pl:28
+Warning:    Current predicate: logic_utils:build_plus_chain/2
+Warning:    Use :- discontiguous logic_utils:normalize_bool_expr/2. to suppress this message
 skipping(:- mode 'f$unknown:2'(in,in).)
 skipping(:- mode 'f$unknown:1'(in).)
 skipping(:- mode 'h$unknown:6'(in,in).)
@@ -22,7 +27,7 @@ Warning:    Singleton variables: [N]
 Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:958:
 Warning:    Singleton variables: [N,M]
 Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:971:
-Warning:    Loading module plunit_z3_push_test_equal22222223445 abolished: [plunit_z3_push_test_equal22222223445:'unit body'/2,plunit_z3_push_test_equal22222223445:'unit test'/4]
+Warning:    Loading module plunit_z3_push_test_equal22222223445 abolished: [plunit_z3_push_test_equal22222223445:'unit test'/4,plunit_z3_push_test_equal22222223445:'unit body'/2]
 Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:973:
 Warning:    Singleton variables: [O,A,M]
 Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:989:
@@ -32,42 +37,24 @@ Warning:    Singleton variables: [M]
 ℹ️ MaxDepth impostato a: 10
 Mi trovo in questa head
 ff
-Stampo Rawbody
-h$unknown:6(_590,_592),constr(((0=_610)=(_590=<_592)&0=_610))
-✅ Inserita in rewrite: _590:int
-✅ Inserita in rewrite: _592:int
-Stampo Body prima di zmi
-constr((_590:int=_590:int,_592:int=_592:int,(0=_610)=(_590=<_592)and 0=_610)),h$unknown:6(_590,_592)
+✅ Inserita in rewrite: _11814:int
+✅ Inserita in rewrite: _11816:int
 Entrato in constr c
-Stampo flatList
-[_590:int=_590:int,_592:int=_592:int,true,_590=_590,_592=_592,(0=_610)=(_590=<_592),0=_610]
 
 Stampa prima di inviare
-x_590:int=x_590:int and x_592:int=x_592:int and x_590=x_590 and x_592=x_592 and (0=x_610)=(x_590=<x_592)and 0=x_610Mi trovo in questa head
-h$unknown:6(_590,_592)
-Stampo Rawbody
-f$unknown:2(_590,_592),constr((~ (0=_14552)=(_592>=0)& ~0=_14552))
-✅ Inserita in rewrite: _590:int
-✅ Inserita in rewrite: _592:int
-Stampo Body prima di zmi
-constr((_590:int=_590:int,_592:int=_592:int,not((0=_14552)=(_592>=0))and not(0=_14552))),f$unknown:2(_590,_592)
+x_11814:int=x_11814:int and x_11816:int=x_11816:int and x_11814=x_11814 and x_11816=x_11816 and (0=x_11834)=(x_11814=<x_11816)and 0=x_11834Mi trovo in questa head
+h$unknown:6(_11814,_11816)
+✅ Inserita in rewrite: _11814:int
+✅ Inserita in rewrite: _11816:int
 Entrato in constr c
-Stampo flatList
-[_590:int=_590:int,_592:int=_592:int,(true,_590=_590,_592=_592,(0=_610)=(_590=<_592),0=_610),_590=_590,_592=_592,not((0=_14552)=(_592>=0)),not(0=_14552)]
 
 Stampa prima di inviare
-x_590:int=x_590:int and x_592:int=x_592:int and (x_590=x_590 and x_592=x_592 and (0=x_610)=(x_590=<x_592)and 0=x_610)and x_590=x_590 and x_592=x_592 and not((0=x_14552)=(x_592>=0))and not(0=x_14552)Mi trovo in questa head
-f$unknown:2(_590,_592)
-Stampo Rawbody
-f$unknown:1(_592),constr(_590=1+_592)
-✅ Inserita in rewrite: _590:int
-✅ Inserita in rewrite: _592:int
-Stampo Body prima di zmi
-constr((_590:int=_590:int,_592:int=_592:int,_590=1+_592)),f$unknown:1(_592)
+x_11814:int=x_11814:int and x_11816:int=x_11816:int and (x_11814=x_11814 and x_11816=x_11816 and (0=x_11834)=(x_11814=<x_11816)and 0=x_11834)and x_11814=x_11814 and x_11816=x_11816 and not((0=x_25776)=(x_11816>=0))and not(0=x_25776)Mi trovo in questa head
+f$unknown:2(_130,_132)
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
 Entrato in constr c
-Stampo flatList
-[_590:int=_590:int,_592:int=_592:int,((true,_590=_590,_592=_592,(0=_610)=(_590=<_592),0=_610),_590=_590,_592=_592,not((0=_14552)=(_592>=0)),not(0=_14552)),_590=_590,_592=_592,_590=1+_592]
 
 Stampa prima di inviare
-x_590:int=x_590:int and x_592:int=x_592:int and ((x_590=x_590 and x_592=x_592 and (0=x_610)=(x_590=<x_592)and 0=x_610)and x_590=x_590 and x_592=x_592 and not((0=x_14552)=(x_592>=0))and not(0=x_14552))and x_590=x_590 and x_592=x_592 and x_590=1+x_592No SAT branches found in MaxDepths = 10.
-ERROR: -g load_clean('/home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/test/separato2/CHC-COMP-AGOSTO/LIA-Lin/z3_results/outPutz3Raname/soloPl//chc-comp24-LIA-Lin-123_true.smt2.pl'),set_solver(turibe),zmi(ff),halt.: false
+x_130:int=x_130:int and x_132:int=x_132:int and ((x_130=x_130 and x_132=x_132 and (0=x_150)=(x_130=<x_132)and 0=x_150)and x_130=x_130 and x_132=x_132 and not((0=x_680)=(x_132>=0))and not(0=x_680))and x_130=x_130 and x_132=x_132 and x_130=1+x_132No SAT branches found in MaxDepths = 10.
+ERROR: -g load_clean('/home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/test/separato2/CHC-COMP-AGOSTO/LIA-Lin/z3_results/outPutz3Raname/soloPl/chc-comp24-LIA-Lin-123_true.smt2.pl'),set_solver(turibe),zmi(ff),halt.: false

@@ -1,3 +1,8 @@
+Warning: /home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/logic_utils.pl:239:
+Warning:    Clauses of logic_utils:normalize_bool_expr/2 are not together in the source-file
+Warning:    Earlier definition at /home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/logic_utils.pl:28
+Warning:    Current predicate: logic_utils:build_plus_chain/2
+Warning:    Use :- discontiguous logic_utils:normalize_bool_expr/2. to suppress this message
 skipped parse: ":- pred '<main: void main(jayarray_java_lang_string)>_block6_2'(int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int)."
 skipping(:- mode '<main: void main(jayarray_java_lang_string)>_block6_2'(in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in).)
 skipped parse: ":- pred '<main: void main(jayarray_java_lang_string)>_pre'(int,int,int,int,int,int,int,int,int,int)."
@@ -48,36 +53,18 @@ Warning:    Singleton variables: [M]
 ℹ️ MaxDepth impostato a: 10
 Mi trovo in questa head
 ff
-Stampo Rawbody
-assert #0: main.java, line 13,constr(true)
-Stampo Body prima di zmi
-constr(true),assert #0: main.java, line 13
 Entrato in constr c
-Stampo flatList
-[true]
 
 Stampa prima di inviare
 trueMi trovo in questa head
 assert #0: main.java, line 13
-Stampo Rawbody
-<main: void main(jayarray_java_lang_string)>_block6_7(_5514,_5516,_5518,_5520,_5522,_5524,_5526,_5528,_5530,_5532,_5534,_5536,_5538,_5540,_5542,_5544,_5546,_5548),constr(~_5534=0)
-Stampo Body prima di zmi
-constr(not(_5534=0)),<main: void main(jayarray_java_lang_string)>_block6_7(_5514,_5516,_5518,_5520,_5522,_5524,_5526,_5528,_5530,_5532,_5534,_5536,_5538,_5540,_5542,_5544,_5546,_5548)
 Entrato in constr c
-Stampo flatList
-[(true,true),not(_5534=0)]
 
 Stampa prima di inviare
-true and not(x_5534=0)Mi trovo in questa head
-<main: void main(jayarray_java_lang_string)>_block6_7(_5514,_5516,_5518,_5520,_5522,_5524,_5526,_5528,_5530,_5532,_5534,_5536,_5538,_5540,_5542,_5544,_5546,_5548)
-Stampo Rawbody
-<main: void main(jayarray_java_lang_string)>_block6_6(_5514,_5516,_5518,_5520,_5522,_5524,_5526,_5528,_5530,_5532,_5536,_5538,_5540,_5542,_5544,_5546,_5548),constr(_5534=0)
-Stampo Body prima di zmi
-constr(_5534=0),<main: void main(jayarray_java_lang_string)>_block6_6(_5514,_5516,_5518,_5520,_5522,_5524,_5526,_5528,_5530,_5532,_5536,_5538,_5540,_5542,_5544,_5546,_5548)
+true and not(x_26140=0)Mi trovo in questa head
+<main: void main(jayarray_java_lang_string)>_block6_7(_260,_262,_264,_266,_268,_270,_272,_274,_276,_278,_280,_282,_284,_286,_288,_290,_292,_294)
 Entrato in constr c
-Stampo flatList
-[((true,true),not(_5534=0)),_5534=0]
 
 Stampa prima di inviare
-(true and not(x_5534=0))and x_5534=0No SAT branches found in MaxDepths = 10.
-ERROR: -g load_clean('/home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/test/separato2/CHC-COMP-AGOSTO/LIA-Lin/z3_results/outPutz3Raname/soloPl//chc-comp24-LIA-Lin-287_true.smt2.pl'),set_solver(turibe),zmi(ff),halt.: false
+(true and not(x_280=0))and x_280=0No SAT branches found in MaxDepths = 10.
+ERROR: -g load_clean('/home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/test/separato2/CHC-COMP-AGOSTO/LIA-Lin/z3_results/outPutz3Raname/soloPl/chc-comp24-LIA-Lin-287_true.smt2.pl'),set_solver(turibe),zmi(ff),halt.: false

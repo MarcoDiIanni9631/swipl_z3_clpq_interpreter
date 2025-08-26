@@ -1,3 +1,8 @@
+Warning: /home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/logic_utils.pl:239:
+Warning:    Clauses of logic_utils:normalize_bool_expr/2 are not together in the source-file
+Warning:    Earlier definition at /home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/logic_utils.pl:28
+Warning:    Current predicate: logic_utils:build_plus_chain/2
+Warning:    Use :- discontiguous logic_utils:normalize_bool_expr/2. to suppress this message
 skipping(:- mode 'f$unknown:4'(in,in).)
 skipping(:- mode 'decr$unknown:2'(in,in).)
 skipping(:- mode 'f$unknown:6'(in,in).)
@@ -22,7 +27,7 @@ Warning:    Singleton variables: [N]
 Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:958:
 Warning:    Singleton variables: [N,M]
 Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:971:
-Warning:    Loading module plunit_z3_push_test_equal22222223445 abolished: [plunit_z3_push_test_equal22222223445:'unit body'/2,plunit_z3_push_test_equal22222223445:'unit test'/4]
+Warning:    Loading module plunit_z3_push_test_equal22222223445 abolished: [plunit_z3_push_test_equal22222223445:'unit test'/4,plunit_z3_push_test_equal22222223445:'unit body'/2]
 Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:973:
 Warning:    Singleton variables: [O,A,M]
 Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:989:
@@ -32,71 +37,39 @@ Warning:    Singleton variables: [M]
 ℹ️ MaxDepth impostato a: 10
 Mi trovo in questa head
 ff
-Stampo Rawbody
-f$unknown:6(_590,_592),constr(((0=_610)=(_590=<0)&(_592=3&0=_610)))
-✅ Inserita in rewrite: _590:int
-✅ Inserita in rewrite: _592:int
-Stampo Body prima di zmi
-constr((_590:int=_590:int,_592:int=_592:int,(0=_610)=(_590=<0)and _592=3 and 0=_610)),f$unknown:6(_590,_592)
+✅ Inserita in rewrite: _11814:int
+✅ Inserita in rewrite: _11816:int
 Entrato in constr c
-Stampo flatList
-[_590:int=_590:int,_592:int=_592:int,true,_590=_590,_592=_592,(0=_610)=(_590=<0),_592=3,0=_610]
 
 Stampa prima di inviare
-x_590:int=x_590:int and x_592:int=x_592:int and x_590=x_590 and x_592=x_592 and (0=x_610)=(x_590=<0)and x_592=3 and 0=x_610Mi trovo in questa head
-f$unknown:6(_590,_592)
-Stampo Rawbody
-f$unknown:4(_15068,_592),constr(((0=_15088)=(_592=<0)&(_590=_15068& ~0=_15088)))
-✅ Inserita in rewrite: _590:int
-✅ Inserita in rewrite: _592:int
-✅ Inserita in rewrite: _15068:int
-Stampo Body prima di zmi
-constr((_590:int=_590:int,_592:int=_592:int,_15068:int=_15068:int,(0=_15088)=(_592=<0)and _590=_15068 and not(0=_15088))),f$unknown:4(_15068,_592)
+x_11814:int=x_11814:int and x_11816:int=x_11816:int and x_11814=x_11814 and x_11816=x_11816 and (0=x_11834)=(x_11814=<0)and x_11816=3 and 0=x_11834Mi trovo in questa head
+f$unknown:6(_11814,_11816)
+✅ Inserita in rewrite: _11814:int
+✅ Inserita in rewrite: _11816:int
+✅ Inserita in rewrite: _26292:int
 Entrato in constr c
-Stampo flatList
-[_590:int=_590:int,_592:int=_592:int,_15068:int=_15068:int,(true,_590=_590,_592=_592,(0=_610)=(_590=<0),_592=3,0=_610),_590=_590,_592=_592,_15068=_15068,(0=_15088)=(_592=<0),_590=_15068,not(0=_15088)]
 
 Stampa prima di inviare
-x_590:int=x_590:int and x_592:int=x_592:int and x_15068:int=x_15068:int and (x_590=x_590 and x_592=x_592 and (0=x_610)=(x_590=<0)and x_592=3 and 0=x_610)and x_590=x_590 and x_592=x_592 and x_15068=x_15068 and (0=x_15088)=(x_592=<0)and x_590=x_15068 and not(0=x_15088)Mi trovo in questa head
-f$unknown:4(_15068,_592)
-Stampo Rawbody
-decr$unknown:2(_15068,_592),constr(_24966=3)
-✅ Inserita in rewrite: _590:int
-✅ Inserita in rewrite: _592:int
-✅ Inserita in rewrite: _15068:int
-Stampo Body prima di zmi
-constr((_590:int=_590:int,_592:int=_592:int,_15068:int=_15068:int,_24966=3)),decr$unknown:2(_15068,_592)
-Entrato in constr c
-Stampo flatList
-[_590:int=_590:int,_592:int=_592:int,_15068:int=_15068:int,((true,_590=_590,_592=_592,(0=_610)=(_590=<0),_592=3,0=_610),_590=_590,_592=_592,_15068=_15068,(0=_15088)=(_592=<0),_590=_15068,not(0=_15088)),_590=_590,_592=_592,_15068=_15068,_24966=3]
-
-Stampa prima di inviare
-x_590:int=x_590:int and x_592:int=x_592:int and x_15068:int=x_15068:int and ((x_590=x_590 and x_592=x_592 and (0=x_610)=(x_590=<0)and x_592=3 and 0=x_610)and x_590=x_590 and x_592=x_592 and x_15068=x_15068 and (0=x_15088)=(x_592=<0)and x_590=x_15068 and not(0=x_15088))and x_590=x_590 and x_592=x_592 and x_15068=x_15068 and x_24966=3Mi trovo in questa head
-decr$unknown:2(_710,_132)
-Stampo Rawbody
-constr(_710= - 1+_132)
-⚠️ Formula non normalizzata: - 1+_132
+x_11814:int=x_11814:int and x_11816:int=x_11816:int and x_26292:int=x_26292:int and (x_11814=x_11814 and x_11816=x_11816 and (0=x_11834)=(x_11814=<0)and x_11816=3 and 0=x_11834)and x_11814=x_11814 and x_11816=x_11816 and x_26292=x_26292 and (0=x_26312)=(x_11816=<0)and x_11814=x_26292 and not(0=x_26312)Mi trovo in questa head
+f$unknown:4(_710,_132)
 ✅ Inserita in rewrite: _130:int
 ✅ Inserita in rewrite: _132:int
 ✅ Inserita in rewrite: _710:int
-Stampo Body prima di zmi
-constr((_130:int=_130:int,_132:int=_132:int,_710:int=_710:int,_710= - 1+_132))
 Entrato in constr c
-⚠️ Formula non normalizzata: - 1+_132
-Stampo flatList
-[_130:int=_130:int,_132:int=_132:int,_710:int=_710:int,(((true,_130=_130,_132=_132,(0=_150)=(_130=<0),_132=3,0=_150),_130=_130,_132=_132,_710=_710,(0=_730)=(_132=<0),_130=_710,not(0=_730)),_130=_130,_132=_132,_710=_710,_1476=3),_130=_130,_132=_132,_710=_710,_710= - 1+_132]
 
 Stampa prima di inviare
-x_130:int=x_130:int and x_132:int=x_132:int and x_710:int=x_710:int and (((x_130=x_130 and x_132=x_132 and (0=x_150)=(x_130=<0)and x_132=3 and 0=x_150)and x_130=x_130 and x_132=x_132 and x_710=x_710 and (0=x_730)=(x_132=<0)and x_130=x_710 and not(0=x_730))and x_130=x_130 and x_132=x_132 and x_710=x_710 and x_1476=3)and x_130=x_130 and x_132=x_132 and x_710=x_710 and x_710= - 1+x_132Stampo Rawbody
-constr(((0=_17534)=(_132=<0)&(_130=1&0=_17534)))
+x_130:int=x_130:int and x_132:int=x_132:int and x_710:int=x_710:int and ((x_130=x_130 and x_132=x_132 and (0=x_150)=(x_130=<0)and x_132=3 and 0=x_150)and x_130=x_130 and x_132=x_132 and x_710=x_710 and (0=x_730)=(x_132=<0)and x_130=x_710 and not(0=x_730))and x_130=x_130 and x_132=x_132 and x_710=x_710 and x_5254=3Mi trovo in questa head
+decr$unknown:2(_710,_132)
 ✅ Inserita in rewrite: _130:int
 ✅ Inserita in rewrite: _132:int
-Stampo Body prima di zmi
-constr((_130:int=_130:int,_132:int=_132:int,(0=_17534)=(_132=<0)and _130=1 and 0=_17534))
+✅ Inserita in rewrite: _710:int
 Entrato in constr c
-Stampo flatList
-[_130:int=_130:int,_132:int=_132:int,(true,_130=_130,_132=_132,(0=_150)=(_130=<0),_132=3,0=_150),_130=_130,_132=_132,(0=_17534)=(_132=<0),_130=1,0=_17534]
 
 Stampa prima di inviare
-x_130:int=x_130:int and x_132:int=x_132:int and (x_130=x_130 and x_132=x_132 and (0=x_150)=(x_130=<0)and x_132=3 and 0=x_150)and x_130=x_130 and x_132=x_132 and (0=x_17534)=(x_132=<0)and x_130=1 and 0=x_17534No SAT branches found in MaxDepths = 10.
-ERROR: -g load_clean('/home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/test/separato2/CHC-COMP-AGOSTO/LIA-Lin/z3_results/outPutz3Raname/soloPl//chc-comp24-LIA-Lin-141_true.smt2.pl'),set_solver(turibe),zmi(ff),halt.: false
+x_130:int=x_130:int and x_132:int=x_132:int and x_710:int=x_710:int and (((x_130=x_130 and x_132=x_132 and (0=x_150)=(x_130=<0)and x_132=3 and 0=x_150)and x_130=x_130 and x_132=x_132 and x_710=x_710 and (0=x_730)=(x_132=<0)and x_130=x_710 and not(0=x_730))and x_130=x_130 and x_132=x_132 and x_710=x_710 and x_5254=3)and x_130=x_130 and x_132=x_132 and x_710=x_710 and x_710= - 1+x_132✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+Entrato in constr c
+
+Stampa prima di inviare
+x_130:int=x_130:int and x_132:int=x_132:int and (x_130=x_130 and x_132=x_132 and (0=x_150)=(x_130=<0)and x_132=3 and 0=x_150)and x_130=x_130 and x_132=x_132 and (0=x_27884)=(x_132=<0)and x_130=1 and 0=x_27884No SAT branches found in MaxDepths = 10.
+ERROR: -g load_clean('/home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/test/separato2/CHC-COMP-AGOSTO/LIA-Lin/z3_results/outPutz3Raname/soloPl/chc-comp24-LIA-Lin-141_true.smt2.pl'),set_solver(turibe),zmi(ff),halt.: false

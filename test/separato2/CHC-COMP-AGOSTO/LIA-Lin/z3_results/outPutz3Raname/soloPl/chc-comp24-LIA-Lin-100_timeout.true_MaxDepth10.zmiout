@@ -1,3 +1,8 @@
+Warning: /home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/logic_utils.pl:239:
+Warning:    Clauses of logic_utils:normalize_bool_expr/2 are not together in the source-file
+Warning:    Earlier definition at /home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/logic_utils.pl:28
+Warning:    Current predicate: logic_utils:build_plus_chain/2
+Warning:    Use :- discontiguous logic_utils:normalize_bool_expr/2. to suppress this message
 skipping(:- mode itp(in,in,in).)
 skipped parse: ":- pred ff."
 skipping(:- query ff/0.)
@@ -30,17 +35,11 @@ Warning:    Singleton variables: [M]
 ℹ️ MaxDepth impostato a: 10
 Mi trovo in questa head
 ff
-Stampo Rawbody
-itp(_29472,_29474,_29476),constr((~_29474>=3& ~_29474=<1012))
-✅ Inserita in rewrite: _29472:int
-✅ Inserita in rewrite: _29474:int
-✅ Inserita in rewrite: _29476:int
-Stampo Body prima di zmi
-constr((_29472:int=_29472:int,_29474:int=_29474:int,_29476:int=_29476:int,not(_29474>=3)and not(_29474=<1012))),itp(_29472,_29474,_29476)
+✅ Inserita in rewrite: _11814:int
+✅ Inserita in rewrite: _11816:int
+✅ Inserita in rewrite: _11818:int
 Entrato in constr c
-Stampo flatList
-[_29472:int=_29472:int,_29474:int=_29474:int,_29476:int=_29476:int,true,_29472=_29472,_29474=_29474,_29476=_29476,not(_29474>=3),not(_29474=<1012)]
 
 Stampa prima di inviare
-x_29472:int=x_29472:int and x_29474:int=x_29474:int and x_29476:int=x_29476:int and x_29472=x_29472 and x_29474=x_29474 and x_29476=x_29476 and not(x_29474>=3)and not(x_29474=<1012)No SAT branches found in MaxDepths = 10.
-ERROR: -g load_clean('/home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/test/separato2/CHC-COMP-AGOSTO/LIA-Lin/z3_results/outPutz3Raname/soloPl//chc-comp24-LIA-Lin-100_timeout.smt2.pl'),set_solver(turibe),zmi(ff),halt.: false
+x_11814:int=x_11814:int and x_11816:int=x_11816:int and x_11818:int=x_11818:int and x_11814=x_11814 and x_11816=x_11816 and x_11818=x_11818 and not(x_11816>=3)and not(x_11816=<1012)No SAT branches found in MaxDepths = 10.
+ERROR: -g load_clean('/home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/test/separato2/CHC-COMP-AGOSTO/LIA-Lin/z3_results/outPutz3Raname/soloPl/chc-comp24-LIA-Lin-100_timeout.smt2.pl'),set_solver(turibe),zmi(ff),halt.: false

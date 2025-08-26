@@ -1,3 +1,8 @@
+Warning: /home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/logic_utils.pl:239:
+Warning:    Clauses of logic_utils:normalize_bool_expr/2 are not together in the source-file
+Warning:    Earlier definition at /home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/logic_utils.pl:28
+Warning:    Current predicate: logic_utils:build_plus_chain/2
+Warning:    Use :- discontiguous logic_utils:normalize_bool_expr/2. to suppress this message
 skipped parse: ":- pred 'assert #0: main.java, line 13'."
 skipped parse: ":- pred '<main: void main(jayarray_java_lang_string)>_block14_3'(int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int)."
 skipping(:- mode '<main: void main(jayarray_java_lang_string)>_block14_3'(in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in).)
@@ -32,7 +37,7 @@ Warning:    Singleton variables: [N]
 Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:958:
 Warning:    Singleton variables: [N,M]
 Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:971:
-Warning:    Loading module plunit_z3_push_test_equal22222223445 abolished: [plunit_z3_push_test_equal22222223445:'unit test'/4,plunit_z3_push_test_equal22222223445:'unit body'/2]
+Warning:    Loading module plunit_z3_push_test_equal22222223445 abolished: [plunit_z3_push_test_equal22222223445:'unit body'/2,plunit_z3_push_test_equal22222223445:'unit test'/4]
 Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:973:
 Warning:    Singleton variables: [O,A,M]
 Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:989:
@@ -42,36 +47,18 @@ Warning:    Singleton variables: [M]
 ℹ️ MaxDepth impostato a: 10
 Mi trovo in questa head
 ff
-Stampo Rawbody
-assert #0: main.java, line 13,constr(true)
-Stampo Body prima di zmi
-constr(true),assert #0: main.java, line 13
 Entrato in constr c
-Stampo flatList
-[true]
 
 Stampa prima di inviare
 trueMi trovo in questa head
 assert #0: main.java, line 13
-Stampo Rawbody
-<main: void main(jayarray_java_lang_string)>_block14_4(_4352,_4354,_4356,_4358,_4360,_4362,_4364,_4366,_4368,_4370,_4372,_4374,_4376,_4378,_4380,_4382,_4384,_4386,_4388,_4390,_4392),constr((~_4368=0&(_4382=_4358&(_4380=_4356&(_4378=_4354&_4376=_4352)))))
-Stampo Body prima di zmi
-constr(not(_4368=0)and _4382=_4358 and _4380=_4356 and _4378=_4354 and _4376=_4352),<main: void main(jayarray_java_lang_string)>_block14_4(_4352,_4354,_4356,_4358,_4360,_4362,_4364,_4366,_4368,_4370,_4372,_4374,_4376,_4378,_4380,_4382,_4384,_4386,_4388,_4390,_4392)
 Entrato in constr c
-Stampo flatList
-[(true,true),not(_4368=0),_4382=_4358,_4380=_4356,_4378=_4354,_4376=_4352]
 
 Stampa prima di inviare
-true and not(x_4368=0)and x_4382=x_4358 and x_4380=x_4356 and x_4378=x_4354 and x_4376=x_4352Mi trovo in questa head
-<main: void main(jayarray_java_lang_string)>_block14_4(_4352,_4354,_4356,_4358,_4360,_4362,_4364,_4366,_4368,_4370,_4372,_4374,_4376,_4378,_4380,_4382,_4384,_4386,_4388,_4390,_4392)
-Stampo Rawbody
-<main: void main(jayarray_java_lang_string)>_block14_3(_4352,_4354,_4356,_4358,_4360,_4362,_4364,_4366,_4370,_4372,_4374,_16950,_16952,_16954,_16956,_4384,_4386,_4388,_4390,_4392),constr((_4382=_4358&(_4380=_4356&(_4378=_4354&(_4376=_4352&(_4368=0&(_16956=_4358&(_16954=_4356&(_16952=_4354&_16950=_4352)))))))))
-Stampo Body prima di zmi
-constr(_4382=_4358 and _4380=_4356 and _4378=_4354 and _4376=_4352 and _4368=0 and _16956=_4358 and _16954=_4356 and _16952=_4354 and _16950=_4352),<main: void main(jayarray_java_lang_string)>_block14_3(_4352,_4354,_4356,_4358,_4360,_4362,_4364,_4366,_4370,_4372,_4374,_16950,_16952,_16954,_16956,_4384,_4386,_4388,_4390,_4392)
+true and not(x_15592=0)and x_15606=x_15582 and x_15604=x_15580 and x_15602=x_15578 and x_15600=x_15576Mi trovo in questa head
+<main: void main(jayarray_java_lang_string)>_block14_4(_15576,_15578,_15580,_15582,_15584,_15586,_15588,_15590,_15592,_15594,_15596,_15598,_15600,_15602,_15604,_15606,_15608,_15610,_15612,_15614,_15616)
 Entrato in constr c
-Stampo flatList
-[((true,true),not(_4368=0),_4382=_4358,_4380=_4356,_4378=_4354,_4376=_4352),_4382=_4358,_4380=_4356,_4378=_4354,_4376=_4352,_4368=0,_16956=_4358,_16954=_4356,_16952=_4354,_16950=_4352]
 
 Stampa prima di inviare
-(true and not(x_4368=0)and x_4382=x_4358 and x_4380=x_4356 and x_4378=x_4354 and x_4376=x_4352)and x_4382=x_4358 and x_4380=x_4356 and x_4378=x_4354 and x_4376=x_4352 and x_4368=0 and x_16956=x_4358 and x_16954=x_4356 and x_16952=x_4354 and x_16950=x_4352No SAT branches found in MaxDepths = 10.
-ERROR: -g load_clean('/home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/test/separato2/CHC-COMP-AGOSTO/LIA-Lin/z3_results/outPutz3Raname/soloPl//chc-comp24-LIA-Lin-297_true.smt2.pl'),set_solver(turibe),zmi(ff),halt.: false
+(true and not(x_15592=0)and x_15606=x_15582 and x_15604=x_15580 and x_15602=x_15578 and x_15600=x_15576)and x_15606=x_15582 and x_15604=x_15580 and x_15602=x_15578 and x_15600=x_15576 and x_15592=0 and x_28180=x_15582 and x_28178=x_15580 and x_28176=x_15578 and x_28174=x_15576No SAT branches found in MaxDepths = 10.
+ERROR: -g load_clean('/home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/test/separato2/CHC-COMP-AGOSTO/LIA-Lin/z3_results/outPutz3Raname/soloPl/chc-comp24-LIA-Lin-297_true.smt2.pl'),set_solver(turibe),zmi(ff),halt.: false

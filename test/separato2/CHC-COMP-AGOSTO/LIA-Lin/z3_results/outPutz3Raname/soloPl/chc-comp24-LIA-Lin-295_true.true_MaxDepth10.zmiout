@@ -1,3 +1,8 @@
+Warning: /home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/logic_utils.pl:239:
+Warning:    Clauses of logic_utils:normalize_bool_expr/2 are not together in the source-file
+Warning:    Earlier definition at /home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/logic_utils.pl:28
+Warning:    Current predicate: logic_utils:build_plus_chain/2
+Warning:    Use :- discontiguous logic_utils:normalize_bool_expr/2. to suppress this message
 skipped parse: ":- pred 'assert #0: main.java, line 13'."
 skipped parse: ":- pred '<main: void main(jayarray_java_lang_string)>_pre'(int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int)."
 skipping(:- mode '<main: void main(jayarray_java_lang_string)>_pre'(in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in).)
@@ -46,36 +51,18 @@ Warning:    Singleton variables: [M]
 ℹ️ MaxDepth impostato a: 10
 Mi trovo in questa head
 ff
-Stampo Rawbody
-assert #0: main.java, line 13,constr(true)
-Stampo Body prima di zmi
-constr(true),assert #0: main.java, line 13
 Entrato in constr c
-Stampo flatList
-[true]
 
 Stampa prima di inviare
 trueMi trovo in questa head
 assert #0: main.java, line 13
-Stampo Rawbody
-<main: void main(jayarray_java_lang_string)>_block13_6(_15576,_15578,_15580,_15582,_15584,_15586,_15588,_15590,_15592,_15594,_15596,_15598,_15600,_15602,_15604,_15606,_15608,_15610,_15612,_15614,_15616,_15618,_15620,_15622,_15624,_15626,_15628,_15630,_15632,_15634,_15636,_15638,_15640,_15642,_15644,_15646,_15648,_15650,_15652,_15654,_15656,_15658,_15660,_15662,_15664,_15666,_15668,_15670,_15672,_15674,_15676,_15678,_15680,_15682,_15684,_15686,_15688,_15690,_15692,_15694,_15696,_15698,_15700,_15702,_15704,_15706,_15708,_15710,_15712,_15714,_15716,_15718),constr(~_15646=0)
-Stampo Body prima di zmi
-constr(not(_15646=0)),<main: void main(jayarray_java_lang_string)>_block13_6(_15576,_15578,_15580,_15582,_15584,_15586,_15588,_15590,_15592,_15594,_15596,_15598,_15600,_15602,_15604,_15606,_15608,_15610,_15612,_15614,_15616,_15618,_15620,_15622,_15624,_15626,_15628,_15630,_15632,_15634,_15636,_15638,_15640,_15642,_15644,_15646,_15648,_15650,_15652,_15654,_15656,_15658,_15660,_15662,_15664,_15666,_15668,_15670,_15672,_15674,_15676,_15678,_15680,_15682,_15684,_15686,_15688,_15690,_15692,_15694,_15696,_15698,_15700,_15702,_15704,_15706,_15708,_15710,_15712,_15714,_15716,_15718)
 Entrato in constr c
-Stampo flatList
-[(true,true),not(_15646=0)]
 
 Stampa prima di inviare
-true and not(x_15646=0)Mi trovo in questa head
-<main: void main(jayarray_java_lang_string)>_block13_6(_15576,_15578,_15580,_15582,_15584,_15586,_15588,_15590,_15592,_15594,_15596,_15598,_15600,_15602,_15604,_15606,_15608,_15610,_15612,_15614,_15616,_15618,_15620,_15622,_15624,_15626,_15628,_15630,_15632,_15634,_15636,_15638,_15640,_15642,_15644,_15646,_15648,_15650,_15652,_15654,_15656,_15658,_15660,_15662,_15664,_15666,_15668,_15670,_15672,_15674,_15676,_15678,_15680,_15682,_15684,_15686,_15688,_15690,_15692,_15694,_15696,_15698,_15700,_15702,_15704,_15706,_15708,_15710,_15712,_15714,_15716,_15718)
-Stampo Rawbody
-<main: void main(jayarray_java_lang_string)>_block13_5(_15576,_15578,_15580,_15582,_15584,_15586,_15588,_15590,_15592,_15594,_15596,_15598,_15600,_15602,_15604,_15606,_15608,_15610,_15612,_15614,_15616,_15618,_15620,_15622,_15624,_15626,_15628,_15630,_15632,_15634,_15636,_15638,_15640,_15642,_15644,_15648,_15650,_15652,_15654,_15656,_15658,_15660,_15662,_15664,_15666,_15668,_15670,_15672,_15674,_15676,_15678,_15680,_15682,_15684,_15686,_15688,_15690,_15692,_15694,_15696,_15698,_15700,_15702,_15704,_15706,_15708,_15710,_15712,_15714,_15716,_15718),constr(_15646=0)
-Stampo Body prima di zmi
-constr(_15646=0),<main: void main(jayarray_java_lang_string)>_block13_5(_15576,_15578,_15580,_15582,_15584,_15586,_15588,_15590,_15592,_15594,_15596,_15598,_15600,_15602,_15604,_15606,_15608,_15610,_15612,_15614,_15616,_15618,_15620,_15622,_15624,_15626,_15628,_15630,_15632,_15634,_15636,_15638,_15640,_15642,_15644,_15648,_15650,_15652,_15654,_15656,_15658,_15660,_15662,_15664,_15666,_15668,_15670,_15672,_15674,_15676,_15678,_15680,_15682,_15684,_15686,_15688,_15690,_15692,_15694,_15696,_15698,_15700,_15702,_15704,_15706,_15708,_15710,_15712,_15714,_15716,_15718)
+true and not(x_26692=0)Mi trovo in questa head
+<main: void main(jayarray_java_lang_string)>_block13_6(_260,_262,_264,_266,_268,_270,_272,_274,_276,_278,_280,_282,_284,_286,_288,_290,_292,_294,_296,_298,_300,_302,_304,_306,_308,_310,_312,_314,_316,_318,_320,_322,_324,_326,_328,_330,_332,_334,_336,_338,_340,_342,_344,_346,_348,_350,_352,_354,_356,_358,_360,_362,_364,_366,_368,_370,_372,_374,_376,_378,_380,_382,_384,_386,_388,_390,_392,_394,_396,_398,_400,_402)
 Entrato in constr c
-Stampo flatList
-[((true,true),not(_15646=0)),_15646=0]
 
 Stampa prima di inviare
-(true and not(x_15646=0))and x_15646=0No SAT branches found in MaxDepths = 10.
-ERROR: -g load_clean('/home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/test/separato2/CHC-COMP-AGOSTO/LIA-Lin/z3_results/outPutz3Raname/soloPl//chc-comp24-LIA-Lin-295_true.smt2.pl'),set_solver(turibe),zmi(ff),halt.: false
+(true and not(x_330=0))and x_330=0No SAT branches found in MaxDepths = 10.
+ERROR: -g load_clean('/home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/test/separato2/CHC-COMP-AGOSTO/LIA-Lin/z3_results/outPutz3Raname/soloPl/chc-comp24-LIA-Lin-295_true.smt2.pl'),set_solver(turibe),zmi(ff),halt.: false

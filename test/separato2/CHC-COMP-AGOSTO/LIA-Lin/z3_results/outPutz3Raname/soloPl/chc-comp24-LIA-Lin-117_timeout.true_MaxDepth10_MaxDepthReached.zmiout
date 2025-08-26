@@ -1,3 +1,8 @@
+Warning: /home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/logic_utils.pl:239:
+Warning:    Clauses of logic_utils:normalize_bool_expr/2 are not together in the source-file
+Warning:    Earlier definition at /home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/logic_utils.pl:28
+Warning:    Current predicate: logic_utils:build_plus_chain/2
+Warning:    Use :- discontiguous logic_utils:normalize_bool_expr/2. to suppress this message
 skipping(:- mode inv(in,in,in,in).)
 skipping(:- mode itp(in,in,in,in).)
 skipped parse: ":- pred ff."
@@ -21,7 +26,7 @@ Warning:    Singleton variables: [N]
 Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:958:
 Warning:    Singleton variables: [N,M]
 Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:971:
-Warning:    Loading module plunit_z3_push_test_equal22222223445 abolished: [plunit_z3_push_test_equal22222223445:'unit body'/2,plunit_z3_push_test_equal22222223445:'unit test'/4]
+Warning:    Loading module plunit_z3_push_test_equal22222223445 abolished: [plunit_z3_push_test_equal22222223445:'unit test'/4,plunit_z3_push_test_equal22222223445:'unit body'/2]
 Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:973:
 Warning:    Singleton variables: [O,A,M]
 Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:989:
@@ -31,272 +36,140 @@ Warning:    Singleton variables: [M]
 ℹ️ MaxDepth impostato a: 10
 Mi trovo in questa head
 ff
-Stampo Rawbody
-inv(_29472,_29474,_29476,_29478),constr(_29478=< - 1+_29476)
-⚠️ Formula non normalizzata: - 1+_29476
-✅ Inserita in rewrite: _29472:int
-✅ Inserita in rewrite: _29474:int
-✅ Inserita in rewrite: _29476:int
-✅ Inserita in rewrite: _29478:int
-Stampo Body prima di zmi
-constr((_29472:int=_29472:int,_29474:int=_29474:int,_29476:int=_29476:int,_29478:int=_29478:int,_29478=< - 1+_29476)),inv(_29472,_29474,_29476,_29478)
+✅ Inserita in rewrite: _11814:int
+✅ Inserita in rewrite: _11816:int
+✅ Inserita in rewrite: _11818:int
+✅ Inserita in rewrite: _11820:int
 Entrato in constr c
-⚠️ Formula non normalizzata: - 1+_29476
-Stampo flatList
-[_29472:int=_29472:int,_29474:int=_29474:int,_29476:int=_29476:int,_29478:int=_29478:int,true,_29472=_29472,_29474=_29474,_29476=_29476,_29478=_29478,_29478=< - 1+_29476]
 
 Stampa prima di inviare
-x_29472:int=x_29472:int and x_29474:int=x_29474:int and x_29476:int=x_29476:int and x_29478:int=x_29478:int and x_29472=x_29472 and x_29474=x_29474 and x_29476=x_29476 and x_29478=x_29478 and x_29478=< - 1+x_29476Mi trovo in questa head
-inv(_130,_132,_134,_136)
-Stampo Rawbody
-constr((_136=0&(_130=0&(_132=0&_134=0))))
-✅ Inserita in rewrite: _130:int
-✅ Inserita in rewrite: _132:int
-✅ Inserita in rewrite: _134:int
-✅ Inserita in rewrite: _136:int
-Stampo Body prima di zmi
-constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_136=0 and _130=0 and _132=0 and _134=0))
+x_11814:int=x_11814:int and x_11816:int=x_11816:int and x_11818:int=x_11818:int and x_11820:int=x_11820:int and x_11814=x_11814 and x_11816=x_11816 and x_11818=x_11818 and x_11820=x_11820 and x_11820=< - 1+x_11818Mi trovo in questa head
+inv(_11814,_11816,_11818,_11820)
+✅ Inserita in rewrite: _11814:int
+✅ Inserita in rewrite: _11816:int
+✅ Inserita in rewrite: _11818:int
+✅ Inserita in rewrite: _11820:int
 Entrato in constr c
-Stampo flatList
-[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,(true,_130=_130,_132=_132,_134=_134,_136=_136,_136=< - 1+_134),_130=_130,_132=_132,_134=_134,_136=_136,_136=0,_130=0,_132=0,_134=0]
 
 Stampa prima di inviare
-x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:int=x_136:int and (x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_136=< - 1+x_134)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_136=0 and x_130=0 and x_132=0 and x_134=0Stampo Rawbody
-itp(_130,_132,_134,_136),constr(true)
-Stampo Body prima di zmi
-constr(true),itp(_130,_132,_134,_136)
-Entrato in constr c
-Stampo flatList
-[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,(true,_130=_130,_132=_132,_134=_134,_136=_136,_136=< - 1+_134)]
+x_11814:int=x_11814:int and x_11816:int=x_11816:int and x_11818:int=x_11818:int and x_11820:int=x_11820:int and (x_11814=x_11814 and x_11816=x_11816 and x_11818=x_11818 and x_11820=x_11820 and x_11820=< - 1+x_11818)and x_11814=x_11814 and x_11816=x_11816 and x_11818=x_11818 and x_11820=x_11820 and x_11820=0 and x_11814=0 and x_11816=0 and x_11818=0Entrato in constr c
 
 Stampa prima di inviare
 x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:int=x_136:int and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_136=< - 1+x_134Mi trovo in questa head
 itp(_130,_132,_134,_136)
-Stampo Rawbody
-inv(_130,_132,_134,_136),constr(true)
-Stampo Body prima di zmi
-constr(true),inv(_130,_132,_134,_136)
 Entrato in constr c
-Stampo flatList
-[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,((true,_130=_130,_132=_132,_134=_134,_136=_136,_136=< - 1+_134),true)]
 
 Stampa prima di inviare
 x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:int=x_136:int and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_136=< - 1+x_134Mi trovo in questa head
 inv(_130,_132,_134,_136)
-Stampo Rawbody
-constr((_136=0&(_130=0&(_132=0&_134=0))))
 ✅ Inserita in rewrite: _130:int
 ✅ Inserita in rewrite: _132:int
 ✅ Inserita in rewrite: _134:int
 ✅ Inserita in rewrite: _136:int
-Stampo Body prima di zmi
-constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_136=0 and _130=0 and _132=0 and _134=0))
 Entrato in constr c
-Stampo flatList
-[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,(((true,_130=_130,_132=_132,_134=_134,_136=_136,_136=< - 1+_134),true),true),_130=_130,_132=_132,_134=_134,_136=_136,_136=0,_130=0,_132=0,_134=0]
 
 Stampa prima di inviare
-x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:int=x_136:int and (x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_136=< - 1+x_134)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_136=0 and x_130=0 and x_132=0 and x_134=0Stampo Rawbody
-itp(_130,_132,_134,_136),constr(true)
-Stampo Body prima di zmi
-constr(true),itp(_130,_132,_134,_136)
-Entrato in constr c
-Stampo flatList
-[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,(((true,_130=_130,_132=_132,_134=_134,_136=_136,_136=< - 1+_134),true),true)]
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:int=x_136:int and (x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_136=< - 1+x_134)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_136=0 and x_130=0 and x_132=0 and x_134=0Entrato in constr c
 
 Stampa prima di inviare
 x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:int=x_136:int and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_136=< - 1+x_134Mi trovo in questa head
 itp(_130,_132,_134,_136)
-Stampo Rawbody
-inv(_130,_132,_134,_136),constr(true)
-Stampo Body prima di zmi
-constr(true),inv(_130,_132,_134,_136)
 Entrato in constr c
-Stampo flatList
-[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,((((true,_130=_130,_132=_132,_134=_134,_136=_136,_136=< - 1+_134),true),true),true)]
 
 Stampa prima di inviare
 x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:int=x_136:int and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_136=< - 1+x_134Mi trovo in questa head
 inv(_130,_132,_134,_136)
-Stampo Rawbody
-constr((_136=0&(_130=0&(_132=0&_134=0))))
 ✅ Inserita in rewrite: _130:int
 ✅ Inserita in rewrite: _132:int
 ✅ Inserita in rewrite: _134:int
 ✅ Inserita in rewrite: _136:int
-Stampo Body prima di zmi
-constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_136=0 and _130=0 and _132=0 and _134=0))
 Entrato in constr c
-Stampo flatList
-[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,(((((true,_130=_130,_132=_132,_134=_134,_136=_136,_136=< - 1+_134),true),true),true),true),_130=_130,_132=_132,_134=_134,_136=_136,_136=0,_130=0,_132=0,_134=0]
 
 Stampa prima di inviare
-x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:int=x_136:int and (x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_136=< - 1+x_134)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_136=0 and x_130=0 and x_132=0 and x_134=0Stampo Rawbody
-itp(_130,_132,_134,_136),constr(true)
-Stampo Body prima di zmi
-constr(true),itp(_130,_132,_134,_136)
-Entrato in constr c
-Stampo flatList
-[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,(((((true,_130=_130,_132=_132,_134=_134,_136=_136,_136=< - 1+_134),true),true),true),true)]
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:int=x_136:int and (x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_136=< - 1+x_134)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_136=0 and x_130=0 and x_132=0 and x_134=0Entrato in constr c
 
 Stampa prima di inviare
 x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:int=x_136:int and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_136=< - 1+x_134Mi trovo in questa head
 itp(_130,_132,_134,_136)
-Stampo Rawbody
-inv(_130,_132,_134,_136),constr(true)
-Stampo Body prima di zmi
-constr(true),inv(_130,_132,_134,_136)
 Entrato in constr c
-Stampo flatList
-[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,((((((true,_130=_130,_132=_132,_134=_134,_136=_136,_136=< - 1+_134),true),true),true),true),true)]
 
 Stampa prima di inviare
 x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:int=x_136:int and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_136=< - 1+x_134Mi trovo in questa head
 inv(_130,_132,_134,_136)
-Stampo Rawbody
-constr((_136=0&(_130=0&(_132=0&_134=0))))
 ✅ Inserita in rewrite: _130:int
 ✅ Inserita in rewrite: _132:int
 ✅ Inserita in rewrite: _134:int
 ✅ Inserita in rewrite: _136:int
-Stampo Body prima di zmi
-constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_136=0 and _130=0 and _132=0 and _134=0))
 Entrato in constr c
-Stampo flatList
-[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,(((((((true,_130=_130,_132=_132,_134=_134,_136=_136,_136=< - 1+_134),true),true),true),true),true),true),_130=_130,_132=_132,_134=_134,_136=_136,_136=0,_130=0,_132=0,_134=0]
 
 Stampa prima di inviare
-x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:int=x_136:int and (x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_136=< - 1+x_134)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_136=0 and x_130=0 and x_132=0 and x_134=0Stampo Rawbody
-itp(_130,_132,_134,_136),constr(true)
-Stampo Body prima di zmi
-constr(true),itp(_130,_132,_134,_136)
-Entrato in constr c
-Stampo flatList
-[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,(((((((true,_130=_130,_132=_132,_134=_134,_136=_136,_136=< - 1+_134),true),true),true),true),true),true)]
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:int=x_136:int and (x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_136=< - 1+x_134)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_136=0 and x_130=0 and x_132=0 and x_134=0Entrato in constr c
 
 Stampa prima di inviare
 x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:int=x_136:int and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_136=< - 1+x_134Mi trovo in questa head
 itp(_130,_132,_134,_136)
-Stampo Rawbody
-inv(_130,_132,_134,_136),constr(true)
-Stampo Body prima di zmi
-constr(true),inv(_130,_132,_134,_136)
 Entrato in constr c
-Stampo flatList
-[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,((((((((true,_130=_130,_132=_132,_134=_134,_136=_136,_136=< - 1+_134),true),true),true),true),true),true),true)]
 
 Stampa prima di inviare
 x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:int=x_136:int and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_136=< - 1+x_134Mi trovo in questa head
 inv(_130,_132,_134,_136)
-Stampo Rawbody
-constr((_136=0&(_130=0&(_132=0&_134=0))))
 ✅ Inserita in rewrite: _130:int
 ✅ Inserita in rewrite: _132:int
 ✅ Inserita in rewrite: _134:int
 ✅ Inserita in rewrite: _136:int
-Stampo Body prima di zmi
-constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_136=0 and _130=0 and _132=0 and _134=0))
 Limite MaxDepth raggiunto
 Entrato in constr c
-Stampo flatList
-[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,(((((((((true,_130=_130,_132=_132,_134=_134,_136=_136,_136=< - 1+_134),true),true),true),true),true),true),true),true),_130=_130,_132=_132,_134=_134,_136=_136,_136=0,_130=0,_132=0,_134=0]
 
 Stampa prima di inviare
-x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:int=x_136:int and (x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_136=< - 1+x_134)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_136=0 and x_130=0 and x_132=0 and x_134=0Stampo Rawbody
-itp(_130,_132,_134,_136),constr(true)
-Stampo Body prima di zmi
-constr(true),itp(_130,_132,_134,_136)
-Limite MaxDepth raggiunto
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:int=x_136:int and (x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_136=< - 1+x_134)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_136=0 and x_130=0 and x_132=0 and x_134=0Limite MaxDepth raggiunto
 Limite MaxDepth raggiunto
 Entrato in constr c
-Stampo flatList
-[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,(((((((((true,_130=_130,_132=_132,_134=_134,_136=_136,_136=< - 1+_134),true),true),true),true),true),true),true),true)]
 
 Stampa prima di inviare
 x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:int=x_136:int and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_136=< - 1+x_134Limite MaxDepth raggiunto
-Stampo Rawbody
-itp(_26304,_26306,_26308,_26310),constr((_26320=_26310+_132&(_136=1+_26320&(_136=_26320&(_130=1+_26304&(_132=1+_26306&_134=_26308+_130))))))
-⚠️ Formula non normalizzata: _26310+_132
-⚠️ Formula non normalizzata: _26308+_130
 ✅ Inserita in rewrite: _130:int
 ✅ Inserita in rewrite: _132:int
 ✅ Inserita in rewrite: _134:int
 ✅ Inserita in rewrite: _136:int
-✅ Inserita in rewrite: _26304:int
-✅ Inserita in rewrite: _26306:int
-✅ Inserita in rewrite: _26308:int
-✅ Inserita in rewrite: _26310:int
-Stampo Body prima di zmi
-constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_26304:int=_26304:int,_26306:int=_26306:int,_26308:int=_26308:int,_26310:int=_26310:int,_26320=_26310+_132 and _136=1+_26320 and _136=_26320 and _130=1+_26304 and _132=1+_26306 and _134=_26308+_130)),itp(_26304,_26306,_26308,_26310)
+✅ Inserita in rewrite: _12200:int
+✅ Inserita in rewrite: _12202:int
+✅ Inserita in rewrite: _12204:int
+✅ Inserita in rewrite: _12206:int
 Entrato in constr c
-⚠️ Formula non normalizzata: _26310+_132
-⚠️ Formula non normalizzata: _26308+_130
-Stampo flatList
-[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_26304:int=_26304:int,_26306:int=_26306:int,_26308:int=_26308:int,_26310:int=_26310:int,((((((((true,_130=_130,_132=_132,_134=_134,_136=_136,_136=< - 1+_134),true),true),true),true),true),true),true),_130=_130,_132=_132,_134=_134,_136=_136,_26304=_26304,_26306=_26306,_26308=_26308,_26310=_26310,_26320=_26310+_132,_136=1+_26320,_136=_26320,_130=1+_26304,_132=1+_26306,_134=_26308+_130]
 
 Stampa prima di inviare
-x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:int=x_136:int and x_26304:int=x_26304:int and x_26306:int=x_26306:int and x_26308:int=x_26308:int and x_26310:int=x_26310:int and (x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_136=< - 1+x_134)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_26304=x_26304 and x_26306=x_26306 and x_26308=x_26308 and x_26310=x_26310 and x_26320=x_26310+x_132 and x_136=1+x_26320 and x_136=x_26320 and x_130=1+x_26304 and x_132=1+x_26306 and x_134=x_26308+x_130Stampo Rawbody
-itp(_17846,_17848,_17850,_17852),constr((_17862=_17852+_132&(_136=1+_17862&(_136=_17862&(_130=1+_17846&(_132=1+_17848&_134=_17850+_130))))))
-⚠️ Formula non normalizzata: _17852+_132
-⚠️ Formula non normalizzata: _17850+_130
-✅ Inserita in rewrite: _130:int
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:int=x_136:int and x_12200:int=x_12200:int and x_12202:int=x_12202:int and x_12204:int=x_12204:int and x_12206:int=x_12206:int and (x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_136=< - 1+x_134)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_12200=x_12200 and x_12202=x_12202 and x_12204=x_12204 and x_12206=x_12206 and x_12216=x_12206+x_132 and x_136=1+x_12216 and x_136=x_12216 and x_130=1+x_12200 and x_132=1+x_12202 and x_134=x_12204+x_130✅ Inserita in rewrite: _130:int
 ✅ Inserita in rewrite: _132:int
 ✅ Inserita in rewrite: _134:int
 ✅ Inserita in rewrite: _136:int
-✅ Inserita in rewrite: _17846:int
-✅ Inserita in rewrite: _17848:int
-✅ Inserita in rewrite: _17850:int
-✅ Inserita in rewrite: _17852:int
-Stampo Body prima di zmi
-constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_17846:int=_17846:int,_17848:int=_17848:int,_17850:int=_17850:int,_17852:int=_17852:int,_17862=_17852+_132 and _136=1+_17862 and _136=_17862 and _130=1+_17846 and _132=1+_17848 and _134=_17850+_130)),itp(_17846,_17848,_17850,_17852)
+✅ Inserita in rewrite: _30518:int
+✅ Inserita in rewrite: _30520:int
+✅ Inserita in rewrite: _30522:int
+✅ Inserita in rewrite: _30524:int
 Entrato in constr c
-⚠️ Formula non normalizzata: _17852+_132
-⚠️ Formula non normalizzata: _17850+_130
-Stampo flatList
-[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_17846:int=_17846:int,_17848:int=_17848:int,_17850:int=_17850:int,_17852:int=_17852:int,((((((true,_130=_130,_132=_132,_134=_134,_136=_136,_136=< - 1+_134),true),true),true),true),true),_130=_130,_132=_132,_134=_134,_136=_136,_17846=_17846,_17848=_17848,_17850=_17850,_17852=_17852,_17862=_17852+_132,_136=1+_17862,_136=_17862,_130=1+_17846,_132=1+_17848,_134=_17850+_130]
 
 Stampa prima di inviare
-x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:int=x_136:int and x_17846:int=x_17846:int and x_17848:int=x_17848:int and x_17850:int=x_17850:int and x_17852:int=x_17852:int and (x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_136=< - 1+x_134)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_17846=x_17846 and x_17848=x_17848 and x_17850=x_17850 and x_17852=x_17852 and x_17862=x_17852+x_132 and x_136=1+x_17862 and x_136=x_17862 and x_130=1+x_17846 and x_132=1+x_17848 and x_134=x_17850+x_130Stampo Rawbody
-itp(_35776,_35778,_35780,_35782),constr((_35792=_35782+_132&(_136=1+_35792&(_136=_35792&(_130=1+_35776&(_132=1+_35778&_134=_35780+_130))))))
-⚠️ Formula non normalizzata: _35782+_132
-⚠️ Formula non normalizzata: _35780+_130
-✅ Inserita in rewrite: _130:int
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:int=x_136:int and x_3414:int=x_3414:int and x_3416:int=x_3416:int and x_3418:int=x_3418:int and x_3420:int=x_3420:int and (x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_136=< - 1+x_134)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_3414=x_3414 and x_3416=x_3416 and x_3418=x_3418 and x_3420=x_3420 and x_3430=x_3420+x_132 and x_136=1+x_3430 and x_136=x_3430 and x_130=1+x_3414 and x_132=1+x_3416 and x_134=x_3418+x_130✅ Inserita in rewrite: _130:int
 ✅ Inserita in rewrite: _132:int
 ✅ Inserita in rewrite: _134:int
 ✅ Inserita in rewrite: _136:int
-✅ Inserita in rewrite: _35776:int
-✅ Inserita in rewrite: _35778:int
-✅ Inserita in rewrite: _35780:int
-✅ Inserita in rewrite: _35782:int
-Stampo Body prima di zmi
-constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_35776:int=_35776:int,_35778:int=_35778:int,_35780:int=_35780:int,_35782:int=_35782:int,_35792=_35782+_132 and _136=1+_35792 and _136=_35792 and _130=1+_35776 and _132=1+_35778 and _134=_35780+_130)),itp(_35776,_35778,_35780,_35782)
+✅ Inserita in rewrite: _20086:int
+✅ Inserita in rewrite: _20088:int
+✅ Inserita in rewrite: _20090:int
+✅ Inserita in rewrite: _20092:int
 Entrato in constr c
-⚠️ Formula non normalizzata: _35782+_132
-⚠️ Formula non normalizzata: _35780+_130
-Stampo flatList
-[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_35776:int=_35776:int,_35778:int=_35778:int,_35780:int=_35780:int,_35782:int=_35782:int,((((true,_130=_130,_132=_132,_134=_134,_136=_136,_136=< - 1+_134),true),true),true),_130=_130,_132=_132,_134=_134,_136=_136,_35776=_35776,_35778=_35778,_35780=_35780,_35782=_35782,_35792=_35782+_132,_136=1+_35792,_136=_35792,_130=1+_35776,_132=1+_35778,_134=_35780+_130]
 
 Stampa prima di inviare
-x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:int=x_136:int and x_35776:int=x_35776:int and x_35778:int=x_35778:int and x_35780:int=x_35780:int and x_35782:int=x_35782:int and (x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_136=< - 1+x_134)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_35776=x_35776 and x_35778=x_35778 and x_35780=x_35780 and x_35782=x_35782 and x_35792=x_35782+x_132 and x_136=1+x_35792 and x_136=x_35792 and x_130=1+x_35776 and x_132=1+x_35778 and x_134=x_35780+x_130Stampo Rawbody
-itp(_53694,_53696,_53698,_53700),constr((_53710=_53700+_132&(_136=1+_53710&(_136=_53710&(_130=1+_53694&(_132=1+_53696&_134=_53698+_130))))))
-⚠️ Formula non normalizzata: _53700+_132
-⚠️ Formula non normalizzata: _53698+_130
-✅ Inserita in rewrite: _130:int
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:int=x_136:int and x_20086:int=x_20086:int and x_20088:int=x_20088:int and x_20090:int=x_20090:int and x_20092:int=x_20092:int and (x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_136=< - 1+x_134)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_20086=x_20086 and x_20088=x_20088 and x_20090=x_20090 and x_20092=x_20092 and x_20102=x_20092+x_132 and x_136=1+x_20102 and x_136=x_20102 and x_130=1+x_20086 and x_132=1+x_20088 and x_134=x_20090+x_130✅ Inserita in rewrite: _130:int
 ✅ Inserita in rewrite: _132:int
 ✅ Inserita in rewrite: _134:int
 ✅ Inserita in rewrite: _136:int
-✅ Inserita in rewrite: _53694:int
-✅ Inserita in rewrite: _53696:int
-✅ Inserita in rewrite: _53698:int
-✅ Inserita in rewrite: _53700:int
-Stampo Body prima di zmi
-constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_53694:int=_53694:int,_53696:int=_53696:int,_53698:int=_53698:int,_53700:int=_53700:int,_53710=_53700+_132 and _136=1+_53710 and _136=_53710 and _130=1+_53694 and _132=1+_53696 and _134=_53698+_130)),itp(_53694,_53696,_53698,_53700)
+✅ Inserita in rewrite: _10030:int
+✅ Inserita in rewrite: _10032:int
+✅ Inserita in rewrite: _10034:int
+✅ Inserita in rewrite: _10036:int
 Entrato in constr c
-⚠️ Formula non normalizzata: _53700+_132
-⚠️ Formula non normalizzata: _53698+_130
-Stampo flatList
-[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_53694:int=_53694:int,_53696:int=_53696:int,_53698:int=_53698:int,_53700:int=_53700:int,((true,_130=_130,_132=_132,_134=_134,_136=_136,_136=< - 1+_134),true),_130=_130,_132=_132,_134=_134,_136=_136,_53694=_53694,_53696=_53696,_53698=_53698,_53700=_53700,_53710=_53700+_132,_136=1+_53710,_136=_53710,_130=1+_53694,_132=1+_53696,_134=_53698+_130]
 
 Stampa prima di inviare
-x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:int=x_136:int and x_53694:int=x_53694:int and x_53696:int=x_53696:int and x_53698:int=x_53698:int and x_53700:int=x_53700:int and (x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_136=< - 1+x_134)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_53694=x_53694 and x_53696=x_53696 and x_53698=x_53698 and x_53700=x_53700 and x_53710=x_53700+x_132 and x_136=1+x_53710 and x_136=x_53710 and x_130=1+x_53694 and x_132=1+x_53696 and x_134=x_53698+x_130No SAT branches found in MaxDepths = 10.
-ERROR: -g load_clean('/home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/test/separato2/CHC-COMP-AGOSTO/LIA-Lin/z3_results/outPutz3Raname/soloPl//chc-comp24-LIA-Lin-117_timeout.smt2.pl'),set_solver(turibe),zmi(ff),halt.: false
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:int=x_136:int and x_10030:int=x_10030:int and x_10032:int=x_10032:int and x_10034:int=x_10034:int and x_10036:int=x_10036:int and (x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_136=< - 1+x_134)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_10030=x_10030 and x_10032=x_10032 and x_10034=x_10034 and x_10036=x_10036 and x_10046=x_10036+x_132 and x_136=1+x_10046 and x_136=x_10046 and x_130=1+x_10030 and x_132=1+x_10032 and x_134=x_10034+x_130No SAT branches found in MaxDepths = 10.
+ERROR: -g load_clean('/home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/test/separato2/CHC-COMP-AGOSTO/LIA-Lin/z3_results/outPutz3Raname/soloPl/chc-comp24-LIA-Lin-117_timeout.smt2.pl'),set_solver(turibe),zmi(ff),halt.: false

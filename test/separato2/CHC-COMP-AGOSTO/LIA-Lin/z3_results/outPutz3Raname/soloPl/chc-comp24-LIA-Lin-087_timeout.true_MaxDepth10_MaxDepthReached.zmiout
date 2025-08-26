@@ -1,3 +1,8 @@
+Warning: /home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/logic_utils.pl:239:
+Warning:    Clauses of logic_utils:normalize_bool_expr/2 are not together in the source-file
+Warning:    Earlier definition at /home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/logic_utils.pl:28
+Warning:    Current predicate: logic_utils:build_plus_chain/2
+Warning:    Use :- discontiguous logic_utils:normalize_bool_expr/2. to suppress this message
 skipping(:- mode inv(in,in,in).)
 skipped parse: ":- pred ff."
 skipping(:- query ff/0.)
@@ -30,437 +35,303 @@ Warning:    Singleton variables: [M]
 ℹ️ MaxDepth impostato a: 10
 Mi trovo in questa head
 ff
-Stampo Rawbody
-inv(_29472,_29474,_29476),constr((_29486=not(_29472=<1000+1000*_29474)&(_29476=1000&_29486)))
-⚠️ Formula non normalizzata: 1000+1000*_29474
-✅ Inserita in rewrite: _29472:int
-✅ Inserita in rewrite: _29474:int
-✅ Inserita in rewrite: _29476:int
-Stampo Body prima di zmi
-constr((_29472:int=_29472:int,_29474:int=_29474:int,_29476:int=_29476:int,_29486=not(_29472=<1000+1000*_29474)and _29476=1000 and _29486)),inv(_29472,_29474,_29476)
+✅ Inserita in rewrite: _11814:int
+✅ Inserita in rewrite: _11816:int
+✅ Inserita in rewrite: _11818:int
 Entrato in constr c
-⚠️ Formula non normalizzata: 1000+1000*_29474
-Stampo flatList
-[_29472:int=_29472:int,_29474:int=_29474:int,_29476:int=_29476:int,true,_29472=_29472,_29474=_29474,_29476=_29476,true=not(_29472=<1000+1000*_29474),_29476=1000]
 
 Stampa prima di inviare
-x_29472:int=x_29472:int and x_29474:int=x_29474:int and x_29476:int=x_29476:int and x_29472=x_29472 and x_29474=x_29474 and x_29476=x_29476 and true=not(x_29472=<1000+1000*x_29474)and x_29476=1000Mi trovo in questa head
-inv(_130,_132,_134)
-Stampo Rawbody
-constr((_130=0&(_132>=0&_134=0)))
+x_11814:int=x_11814:int and x_11816:int=x_11816:int and x_11818:int=x_11818:int and x_11814=x_11814 and x_11816=x_11816 and x_11818=x_11818 and true=not(x_11814=<1000+1000*x_11816)and x_11818=1000Mi trovo in questa head
+inv(_11814,_11816,_11818)
+✅ Inserita in rewrite: _11814:int
+✅ Inserita in rewrite: _11816:int
+✅ Inserita in rewrite: _11818:int
+Entrato in constr c
+
+Stampa prima di inviare
+x_11814:int=x_11814:int and x_11816:int=x_11816:int and x_11818:int=x_11818:int and (x_11814=x_11814 and x_11816=x_11816 and x_11818=x_11818 and true=not(x_11814=<1000+1000*x_11816)and x_11818=1000)and x_11814=x_11814 and x_11816=x_11816 and x_11818=x_11818 and x_11814=0 and x_11816>=0 and x_11818=0✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _4012:int
+✅ Inserita in rewrite: _4016:int
+Entrato in constr c
+
+Stampa prima di inviare
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_4012:int=x_4012:int and x_4016:int=x_4016:int and (x_130=x_130 and x_132=x_132 and x_134=x_134 and true=not(x_130=<1000+1000*x_132)and x_134=1000)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_4012=x_4012 and x_4016=x_4016 and x_4026=(x_134=ite(x_132=x_4012 div 1000,1+x_4016,x_4016))and x_4026 and x_130=1+x_4012Mi trovo in questa head
+inv(_4012,_132,_4016)
 ✅ Inserita in rewrite: _130:int
 ✅ Inserita in rewrite: _132:int
 ✅ Inserita in rewrite: _134:int
-Stampo Body prima di zmi
-constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_130=0 and _132>=0 and _134=0))
+✅ Inserita in rewrite: _4012:int
+✅ Inserita in rewrite: _4016:int
 Entrato in constr c
-Stampo flatList
-[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,(true,_130=_130,_132=_132,_134=_134,true=not(_130=<1000+1000*_132),_134=1000,true),_130=_130,_132=_132,_134=_134,_130=0,_132>=0,_134=0]
 
 Stampa prima di inviare
-x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and (x_130=x_130 and x_132=x_132 and x_134=x_134 and true=not(x_130=<1000+1000*x_132)and x_134=1000)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_130=0 and x_132>=0 and x_134=0Stampo Rawbody
-inv(_20708,_132,_20712),constr((_20722=(_134=ite(_132=_20708 div 1000,1+_20712,_20712))&(_20722&_130=1+_20708)))
-⚠️ Formula non normalizzata: _20708 div 1000
-✅ Inserita in rewrite: _130:int
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_4012:int=x_4012:int and x_4016:int=x_4016:int and ((x_130=x_130 and x_132=x_132 and x_134=x_134 and true=not(x_130=<1000+1000*x_132)and x_134=1000)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_4012=x_4012 and x_4016=x_4016 and x_4026=(x_134=ite(x_132=x_4012 div 1000,1+x_4016,x_4016))and x_4026 and x_130=1+x_4012)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_4012=x_4012 and x_4016=x_4016 and x_4012=0 and x_132>=0 and x_4016=0✅ Inserita in rewrite: _130:int
 ✅ Inserita in rewrite: _132:int
 ✅ Inserita in rewrite: _134:int
-✅ Inserita in rewrite: _20708:int
-✅ Inserita in rewrite: _20712:int
-Stampo Body prima di zmi
-constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_20708:int=_20708:int,_20712:int=_20712:int,_20722=(_134=ite(_132=_20708 div 1000,1+_20712,_20712))and _20722 and _130=1+_20708)),inv(_20708,_132,_20712)
+✅ Inserita in rewrite: _824:int
+✅ Inserita in rewrite: _828:int
+✅ Inserita in rewrite: _3130:int
+✅ Inserita in rewrite: _3134:int
 Entrato in constr c
-⚠️ Formula non normalizzata: _20708 div 1000
-Stampo flatList
-[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_20708:int=_20708:int,_20712:int=_20712:int,(true,_130=_130,_132=_132,_134=_134,true=not(_130=<1000+1000*_132),_134=1000,true),_130=_130,_132=_132,_134=_134,_20708=_20708,_20712=_20712,_20722=(_134=ite(_132=_20708 div 1000,1+_20712,_20712)),_20722,_130=1+_20708]
 
 Stampa prima di inviare
-x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_20708:int=x_20708:int and x_20712:int=x_20712:int and (x_130=x_130 and x_132=x_132 and x_134=x_134 and true=not(x_130=<1000+1000*x_132)and x_134=1000)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_20708=x_20708 and x_20712=x_20712 and x_20722=(x_134=ite(x_132=x_20708 div 1000,1+x_20712,x_20712))and x_20722 and x_130=1+x_20708Mi trovo in questa head
-inv(_824,_132,_828)
-Stampo Rawbody
-constr((_824=0&(_132>=0&_828=0)))
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_824:int=x_824:int and x_828:int=x_828:int and x_3130:int=x_3130:int and x_3134:int=x_3134:int and ((x_130=x_130 and x_132=x_132 and x_134=x_134 and true=not(x_130=<1000+1000*x_132)and x_134=1000)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_838=(x_134=ite(x_132=x_824 div 1000,1+x_828,x_828))and x_838 and x_130=1+x_824)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_3130=x_3130 and x_3134=x_3134 and x_3144=(x_828=ite(x_132=x_3130 div 1000,1+x_3134,x_3134))and x_3144 and x_824=1+x_3130Mi trovo in questa head
+inv(_3130,_132,_3134)
 ✅ Inserita in rewrite: _130:int
 ✅ Inserita in rewrite: _132:int
 ✅ Inserita in rewrite: _134:int
 ✅ Inserita in rewrite: _824:int
 ✅ Inserita in rewrite: _828:int
-Stampo Body prima di zmi
-constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_824:int=_824:int,_828:int=_828:int,_824=0 and _132>=0 and _828=0))
+✅ Inserita in rewrite: _3130:int
+✅ Inserita in rewrite: _3134:int
 Entrato in constr c
-Stampo flatList
-[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_824:int=_824:int,_828:int=_828:int,((true,_130=_130,_132=_132,_134=_134,true=not(_130=<1000+1000*_132),_134=1000,true),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_838=(_134=ite(_132=_824 div 1000,1+_828,_828)),_838,_130=1+_824),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_824=0,_132>=0,_828=0]
 
 Stampa prima di inviare
-x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_824:int=x_824:int and x_828:int=x_828:int and ((x_130=x_130 and x_132=x_132 and x_134=x_134 and true=not(x_130=<1000+1000*x_132)and x_134=1000)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_838=(x_134=ite(x_132=x_824 div 1000,1+x_828,x_828))and x_838 and x_130=1+x_824)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_824=0 and x_132>=0 and x_828=0Stampo Rawbody
-inv(_18060,_132,_18064),constr((_18074=(_828=ite(_132=_18060 div 1000,1+_18064,_18064))&(_18074&_824=1+_18060)))
-⚠️ Formula non normalizzata: _18060 div 1000
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_824:int=x_824:int and x_828:int=x_828:int and x_3130:int=x_3130:int and x_3134:int=x_3134:int and (((x_130=x_130 and x_132=x_132 and x_134=x_134 and true=not(x_130=<1000+1000*x_132)and x_134=1000)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_838=(x_134=ite(x_132=x_824 div 1000,1+x_828,x_828))and x_838 and x_130=1+x_824)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_3130=x_3130 and x_3134=x_3134 and x_3144=(x_828=ite(x_132=x_3130 div 1000,1+x_3134,x_3134))and x_3144 and x_824=1+x_3130)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_3130=x_3130 and x_3134=x_3134 and x_3130=0 and x_132>=0 and x_3134=0✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _824:int
+✅ Inserita in rewrite: _828:int
+✅ Inserita in rewrite: _1848:int
+✅ Inserita in rewrite: _1852:int
+✅ Inserita in rewrite: _18534:int
+✅ Inserita in rewrite: _18538:int
+Entrato in constr c
+
+Stampa prima di inviare
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_824:int=x_824:int and x_828:int=x_828:int and x_1848:int=x_1848:int and x_1852:int=x_1852:int and x_18534:int=x_18534:int and x_18538:int=x_18538:int and (((x_130=x_130 and x_132=x_132 and x_134=x_134 and true=not(x_130=<1000+1000*x_132)and x_134=1000)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_838=(x_134=ite(x_132=x_824 div 1000,1+x_828,x_828))and x_838 and x_130=1+x_824)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_1862=(x_828=ite(x_132=x_1848 div 1000,1+x_1852,x_1852))and x_1862 and x_824=1+x_1848)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_18534=x_18534 and x_18538=x_18538 and x_18548=(x_1852=ite(x_132=x_18534 div 1000,1+x_18538,x_18538))and x_18548 and x_1848=1+x_18534Mi trovo in questa head
+inv(_3128,_132,_3132)
 ✅ Inserita in rewrite: _130:int
 ✅ Inserita in rewrite: _132:int
 ✅ Inserita in rewrite: _134:int
 ✅ Inserita in rewrite: _824:int
 ✅ Inserita in rewrite: _828:int
-✅ Inserita in rewrite: _18060:int
-✅ Inserita in rewrite: _18064:int
-Stampo Body prima di zmi
-constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_824:int=_824:int,_828:int=_828:int,_18060:int=_18060:int,_18064:int=_18064:int,_18074=(_828=ite(_132=_18060 div 1000,1+_18064,_18064))and _18074 and _824=1+_18060)),inv(_18060,_132,_18064)
+✅ Inserita in rewrite: _1848:int
+✅ Inserita in rewrite: _1852:int
+✅ Inserita in rewrite: _3128:int
+✅ Inserita in rewrite: _3132:int
 Entrato in constr c
-⚠️ Formula non normalizzata: _18060 div 1000
-Stampo flatList
-[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_824:int=_824:int,_828:int=_828:int,_18060:int=_18060:int,_18064:int=_18064:int,((true,_130=_130,_132=_132,_134=_134,true=not(_130=<1000+1000*_132),_134=1000,true),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_838=(_134=ite(_132=_824 div 1000,1+_828,_828)),_838,_130=1+_824),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_18060=_18060,_18064=_18064,_18074=(_828=ite(_132=_18060 div 1000,1+_18064,_18064)),_18074,_824=1+_18060]
 
 Stampa prima di inviare
-x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_824:int=x_824:int and x_828:int=x_828:int and x_18060:int=x_18060:int and x_18064:int=x_18064:int and ((x_130=x_130 and x_132=x_132 and x_134=x_134 and true=not(x_130=<1000+1000*x_132)and x_134=1000)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_838=(x_134=ite(x_132=x_824 div 1000,1+x_828,x_828))and x_838 and x_130=1+x_824)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_18060=x_18060 and x_18064=x_18064 and x_18074=(x_828=ite(x_132=x_18060 div 1000,1+x_18064,x_18064))and x_18074 and x_824=1+x_18060Mi trovo in questa head
-inv(_1878,_132,_1882)
-Stampo Rawbody
-constr((_1878=0&(_132>=0&_1882=0)))
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_824:int=x_824:int and x_828:int=x_828:int and x_1848:int=x_1848:int and x_1852:int=x_1852:int and x_3128:int=x_3128:int and x_3132:int=x_3132:int and ((((x_130=x_130 and x_132=x_132 and x_134=x_134 and true=not(x_130=<1000+1000*x_132)and x_134=1000)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_838=(x_134=ite(x_132=x_824 div 1000,1+x_828,x_828))and x_838 and x_130=1+x_824)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_1862=(x_828=ite(x_132=x_1848 div 1000,1+x_1852,x_1852))and x_1862 and x_824=1+x_1848)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_3128=x_3128 and x_3132=x_3132 and x_3142=(x_1852=ite(x_132=x_3128 div 1000,1+x_3132,x_3132))and x_3142 and x_1848=1+x_3128)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_3128=x_3128 and x_3132=x_3132 and x_3128=0 and x_132>=0 and x_3132=0✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _824:int
+✅ Inserita in rewrite: _828:int
+✅ Inserita in rewrite: _1848:int
+✅ Inserita in rewrite: _1852:int
+✅ Inserita in rewrite: _3128:int
+✅ Inserita in rewrite: _3132:int
+✅ Inserita in rewrite: _51128:int
+✅ Inserita in rewrite: _51132:int
+Entrato in constr c
+
+Stampa prima di inviare
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_824:int=x_824:int and x_828:int=x_828:int and x_1848:int=x_1848:int and x_1852:int=x_1852:int and x_3128:int=x_3128:int and x_3132:int=x_3132:int and x_51128:int=x_51128:int and x_51132:int=x_51132:int and ((((x_130=x_130 and x_132=x_132 and x_134=x_134 and true=not(x_130=<1000+1000*x_132)and x_134=1000)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_838=(x_134=ite(x_132=x_824 div 1000,1+x_828,x_828))and x_838 and x_130=1+x_824)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_1862=(x_828=ite(x_132=x_1848 div 1000,1+x_1852,x_1852))and x_1862 and x_824=1+x_1848)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_3128=x_3128 and x_3132=x_3132 and x_3142=(x_1852=ite(x_132=x_3128 div 1000,1+x_3132,x_3132))and x_3142 and x_1848=1+x_3128)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_3128=x_3128 and x_3132=x_3132 and x_51128=x_51128 and x_51132=x_51132 and x_51142=(x_3132=ite(x_132=x_51128 div 1000,1+x_51132,x_51132))and x_51142 and x_3128=1+x_51128Mi trovo in questa head
+inv(_4730,_132,_4734)
 ✅ Inserita in rewrite: _130:int
 ✅ Inserita in rewrite: _132:int
 ✅ Inserita in rewrite: _134:int
 ✅ Inserita in rewrite: _824:int
 ✅ Inserita in rewrite: _828:int
-✅ Inserita in rewrite: _1878:int
-✅ Inserita in rewrite: _1882:int
-Stampo Body prima di zmi
-constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_824:int=_824:int,_828:int=_828:int,_1878:int=_1878:int,_1882:int=_1882:int,_1878=0 and _132>=0 and _1882=0))
+✅ Inserita in rewrite: _1848:int
+✅ Inserita in rewrite: _1852:int
+✅ Inserita in rewrite: _3128:int
+✅ Inserita in rewrite: _3132:int
+✅ Inserita in rewrite: _4730:int
+✅ Inserita in rewrite: _4734:int
 Entrato in constr c
-Stampo flatList
-[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_824:int=_824:int,_828:int=_828:int,_1878:int=_1878:int,_1882:int=_1882:int,(((true,_130=_130,_132=_132,_134=_134,true=not(_130=<1000+1000*_132),_134=1000,true),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_838=(_134=ite(_132=_824 div 1000,1+_828,_828)),_838,_130=1+_824),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_1892=(_828=ite(_132=_1878 div 1000,1+_1882,_1882)),_1892,_824=1+_1878),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_1878=0,_132>=0,_1882=0]
 
 Stampa prima di inviare
-x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_824:int=x_824:int and x_828:int=x_828:int and x_1878:int=x_1878:int and x_1882:int=x_1882:int and (((x_130=x_130 and x_132=x_132 and x_134=x_134 and true=not(x_130=<1000+1000*x_132)and x_134=1000)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_838=(x_134=ite(x_132=x_824 div 1000,1+x_828,x_828))and x_838 and x_130=1+x_824)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_1892=(x_828=ite(x_132=x_1878 div 1000,1+x_1882,x_1882))and x_1892 and x_824=1+x_1878)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_1878=0 and x_132>=0 and x_1882=0Stampo Rawbody
-inv(_4950,_132,_4954),constr((_4964=(_1882=ite(_132=_4950 div 1000,1+_4954,_4954))&(_4964&_1878=1+_4950)))
-⚠️ Formula non normalizzata: _4950 div 1000
-✅ Inserita in rewrite: _130:int
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_824:int=x_824:int and x_828:int=x_828:int and x_1848:int=x_1848:int and x_1852:int=x_1852:int and x_3128:int=x_3128:int and x_3132:int=x_3132:int and x_4730:int=x_4730:int and x_4734:int=x_4734:int and (((((x_130=x_130 and x_132=x_132 and x_134=x_134 and true=not(x_130=<1000+1000*x_132)and x_134=1000)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_838=(x_134=ite(x_132=x_824 div 1000,1+x_828,x_828))and x_838 and x_130=1+x_824)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_1862=(x_828=ite(x_132=x_1848 div 1000,1+x_1852,x_1852))and x_1862 and x_824=1+x_1848)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_3128=x_3128 and x_3132=x_3132 and x_3142=(x_1852=ite(x_132=x_3128 div 1000,1+x_3132,x_3132))and x_3142 and x_1848=1+x_3128)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_3128=x_3128 and x_3132=x_3132 and x_4730=x_4730 and x_4734=x_4734 and x_4744=(x_3132=ite(x_132=x_4730 div 1000,1+x_4734,x_4734))and x_4744 and x_3128=1+x_4730)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_3128=x_3128 and x_3132=x_3132 and x_4730=x_4730 and x_4734=x_4734 and x_4730=0 and x_132>=0 and x_4734=0✅ Inserita in rewrite: _130:int
 ✅ Inserita in rewrite: _132:int
 ✅ Inserita in rewrite: _134:int
 ✅ Inserita in rewrite: _824:int
 ✅ Inserita in rewrite: _828:int
-✅ Inserita in rewrite: _1878:int
-✅ Inserita in rewrite: _1882:int
-✅ Inserita in rewrite: _4950:int
-✅ Inserita in rewrite: _4954:int
-Stampo Body prima di zmi
-constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_824:int=_824:int,_828:int=_828:int,_1878:int=_1878:int,_1882:int=_1882:int,_4950:int=_4950:int,_4954:int=_4954:int,_4964=(_1882=ite(_132=_4950 div 1000,1+_4954,_4954))and _4964 and _1878=1+_4950)),inv(_4950,_132,_4954)
-Entrato in constr c
-⚠️ Formula non normalizzata: _4950 div 1000
-Stampo flatList
-[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_824:int=_824:int,_828:int=_828:int,_1878:int=_1878:int,_1882:int=_1882:int,_4950:int=_4950:int,_4954:int=_4954:int,(((true,_130=_130,_132=_132,_134=_134,true=not(_130=<1000+1000*_132),_134=1000,true),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_838=(_134=ite(_132=_824 div 1000,1+_828,_828)),_838,_130=1+_824),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_1892=(_828=ite(_132=_1878 div 1000,1+_1882,_1882)),_1892,_824=1+_1878),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_4950=_4950,_4954=_4954,_4964=(_1882=ite(_132=_4950 div 1000,1+_4954,_4954)),_4964,_1878=1+_4950]
-
-Stampa prima di inviare
-x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_824:int=x_824:int and x_828:int=x_828:int and x_1878:int=x_1878:int and x_1882:int=x_1882:int and x_4950:int=x_4950:int and x_4954:int=x_4954:int and (((x_130=x_130 and x_132=x_132 and x_134=x_134 and true=not(x_130=<1000+1000*x_132)and x_134=1000)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_838=(x_134=ite(x_132=x_824 div 1000,1+x_828,x_828))and x_838 and x_130=1+x_824)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_1892=(x_828=ite(x_132=x_1878 div 1000,1+x_1882,x_1882))and x_1892 and x_824=1+x_1878)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_4950=x_4950 and x_4954=x_4954 and x_4964=(x_1882=ite(x_132=x_4950 div 1000,1+x_4954,x_4954))and x_4964 and x_1878=1+x_4950Mi trovo in questa head
-inv(_4950,_132,_4954)
-Stampo Rawbody
-constr((_4950=0&(_132>=0&_4954=0)))
-✅ Inserita in rewrite: _130:int
-✅ Inserita in rewrite: _132:int
-✅ Inserita in rewrite: _134:int
-✅ Inserita in rewrite: _824:int
-✅ Inserita in rewrite: _828:int
-✅ Inserita in rewrite: _1878:int
-✅ Inserita in rewrite: _1882:int
-✅ Inserita in rewrite: _4950:int
-✅ Inserita in rewrite: _4954:int
-Stampo Body prima di zmi
-constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_824:int=_824:int,_828:int=_828:int,_1878:int=_1878:int,_1882:int=_1882:int,_4950:int=_4950:int,_4954:int=_4954:int,_4950=0 and _132>=0 and _4954=0))
-Entrato in constr c
-Stampo flatList
-[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_824:int=_824:int,_828:int=_828:int,_1878:int=_1878:int,_1882:int=_1882:int,_4950:int=_4950:int,_4954:int=_4954:int,((((true,_130=_130,_132=_132,_134=_134,true=not(_130=<1000+1000*_132),_134=1000,true),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_838=(_134=ite(_132=_824 div 1000,1+_828,_828)),_838,_130=1+_824),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_1892=(_828=ite(_132=_1878 div 1000,1+_1882,_1882)),_1892,_824=1+_1878),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_4950=_4950,_4954=_4954,_4964=(_1882=ite(_132=_4950 div 1000,1+_4954,_4954)),_4964,_1878=1+_4950),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_4950=_4950,_4954=_4954,_4950=0,_132>=0,_4954=0]
-
-Stampa prima di inviare
-x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_824:int=x_824:int and x_828:int=x_828:int and x_1878:int=x_1878:int and x_1882:int=x_1882:int and x_4950:int=x_4950:int and x_4954:int=x_4954:int and ((((x_130=x_130 and x_132=x_132 and x_134=x_134 and true=not(x_130=<1000+1000*x_132)and x_134=1000)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_838=(x_134=ite(x_132=x_824 div 1000,1+x_828,x_828))and x_838 and x_130=1+x_824)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_1892=(x_828=ite(x_132=x_1878 div 1000,1+x_1882,x_1882))and x_1892 and x_824=1+x_1878)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_4950=x_4950 and x_4954=x_4954 and x_4964=(x_1882=ite(x_132=x_4950 div 1000,1+x_4954,x_4954))and x_4964 and x_1878=1+x_4950)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_4950=x_4950 and x_4954=x_4954 and x_4950=0 and x_132>=0 and x_4954=0Stampo Rawbody
-inv(_6966,_132,_6970),constr((_6980=(_3204=ite(_132=_6966 div 1000,1+_6970,_6970))&(_6980&_3200=1+_6966)))
-⚠️ Formula non normalizzata: _6966 div 1000
-✅ Inserita in rewrite: _130:int
-✅ Inserita in rewrite: _132:int
-✅ Inserita in rewrite: _134:int
-✅ Inserita in rewrite: _824:int
-✅ Inserita in rewrite: _828:int
-✅ Inserita in rewrite: _1878:int
-✅ Inserita in rewrite: _1882:int
-✅ Inserita in rewrite: _3200:int
-✅ Inserita in rewrite: _3204:int
-✅ Inserita in rewrite: _6966:int
-✅ Inserita in rewrite: _6970:int
-Stampo Body prima di zmi
-constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_824:int=_824:int,_828:int=_828:int,_1878:int=_1878:int,_1882:int=_1882:int,_3200:int=_3200:int,_3204:int=_3204:int,_6966:int=_6966:int,_6970:int=_6970:int,_6980=(_3204=ite(_132=_6966 div 1000,1+_6970,_6970))and _6980 and _3200=1+_6966)),inv(_6966,_132,_6970)
-Entrato in constr c
-⚠️ Formula non normalizzata: _6966 div 1000
-Stampo flatList
-[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_824:int=_824:int,_828:int=_828:int,_1878:int=_1878:int,_1882:int=_1882:int,_3200:int=_3200:int,_3204:int=_3204:int,_6966:int=_6966:int,_6970:int=_6970:int,((((true,_130=_130,_132=_132,_134=_134,true=not(_130=<1000+1000*_132),_134=1000,true),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_838=(_134=ite(_132=_824 div 1000,1+_828,_828)),_838,_130=1+_824),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_1892=(_828=ite(_132=_1878 div 1000,1+_1882,_1882)),_1892,_824=1+_1878),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_3200=_3200,_3204=_3204,_3214=(_1882=ite(_132=_3200 div 1000,1+_3204,_3204)),_3214,_1878=1+_3200),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_3200=_3200,_3204=_3204,_6966=_6966,_6970=_6970,_6980=(_3204=ite(_132=_6966 div 1000,1+_6970,_6970)),_6980,_3200=1+_6966]
-
-Stampa prima di inviare
-x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_824:int=x_824:int and x_828:int=x_828:int and x_1878:int=x_1878:int and x_1882:int=x_1882:int and x_3200:int=x_3200:int and x_3204:int=x_3204:int and x_6966:int=x_6966:int and x_6970:int=x_6970:int and ((((x_130=x_130 and x_132=x_132 and x_134=x_134 and true=not(x_130=<1000+1000*x_132)and x_134=1000)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_838=(x_134=ite(x_132=x_824 div 1000,1+x_828,x_828))and x_838 and x_130=1+x_824)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_1892=(x_828=ite(x_132=x_1878 div 1000,1+x_1882,x_1882))and x_1892 and x_824=1+x_1878)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_3200=x_3200 and x_3204=x_3204 and x_3214=(x_1882=ite(x_132=x_3200 div 1000,1+x_3204,x_3204))and x_3214 and x_1878=1+x_3200)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_3200=x_3200 and x_3204=x_3204 and x_6966=x_6966 and x_6970=x_6970 and x_6980=(x_3204=ite(x_132=x_6966 div 1000,1+x_6970,x_6970))and x_6980 and x_3200=1+x_6966Mi trovo in questa head
-inv(_6966,_132,_6970)
-Stampo Rawbody
-constr((_6966=0&(_132>=0&_6970=0)))
-✅ Inserita in rewrite: _130:int
-✅ Inserita in rewrite: _132:int
-✅ Inserita in rewrite: _134:int
-✅ Inserita in rewrite: _824:int
-✅ Inserita in rewrite: _828:int
-✅ Inserita in rewrite: _1878:int
-✅ Inserita in rewrite: _1882:int
-✅ Inserita in rewrite: _3200:int
-✅ Inserita in rewrite: _3204:int
-✅ Inserita in rewrite: _6966:int
-✅ Inserita in rewrite: _6970:int
-Stampo Body prima di zmi
-constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_824:int=_824:int,_828:int=_828:int,_1878:int=_1878:int,_1882:int=_1882:int,_3200:int=_3200:int,_3204:int=_3204:int,_6966:int=_6966:int,_6970:int=_6970:int,_6966=0 and _132>=0 and _6970=0))
-Entrato in constr c
-Stampo flatList
-[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_824:int=_824:int,_828:int=_828:int,_1878:int=_1878:int,_1882:int=_1882:int,_3200:int=_3200:int,_3204:int=_3204:int,_6966:int=_6966:int,_6970:int=_6970:int,(((((true,_130=_130,_132=_132,_134=_134,true=not(_130=<1000+1000*_132),_134=1000,true),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_838=(_134=ite(_132=_824 div 1000,1+_828,_828)),_838,_130=1+_824),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_1892=(_828=ite(_132=_1878 div 1000,1+_1882,_1882)),_1892,_824=1+_1878),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_3200=_3200,_3204=_3204,_3214=(_1882=ite(_132=_3200 div 1000,1+_3204,_3204)),_3214,_1878=1+_3200),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_3200=_3200,_3204=_3204,_6966=_6966,_6970=_6970,_6980=(_3204=ite(_132=_6966 div 1000,1+_6970,_6970)),_6980,_3200=1+_6966),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_3200=_3200,_3204=_3204,_6966=_6966,_6970=_6970,_6966=0,_132>=0,_6970=0]
-
-Stampa prima di inviare
-x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_824:int=x_824:int and x_828:int=x_828:int and x_1878:int=x_1878:int and x_1882:int=x_1882:int and x_3200:int=x_3200:int and x_3204:int=x_3204:int and x_6966:int=x_6966:int and x_6970:int=x_6970:int and (((((x_130=x_130 and x_132=x_132 and x_134=x_134 and true=not(x_130=<1000+1000*x_132)and x_134=1000)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_838=(x_134=ite(x_132=x_824 div 1000,1+x_828,x_828))and x_838 and x_130=1+x_824)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_1892=(x_828=ite(x_132=x_1878 div 1000,1+x_1882,x_1882))and x_1892 and x_824=1+x_1878)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_3200=x_3200 and x_3204=x_3204 and x_3214=(x_1882=ite(x_132=x_3200 div 1000,1+x_3204,x_3204))and x_3214 and x_1878=1+x_3200)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_3200=x_3200 and x_3204=x_3204 and x_6966=x_6966 and x_6970=x_6970 and x_6980=(x_3204=ite(x_132=x_6966 div 1000,1+x_6970,x_6970))and x_6980 and x_3200=1+x_6966)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_3200=x_3200 and x_3204=x_3204 and x_6966=x_6966 and x_6970=x_6970 and x_6966=0 and x_132>=0 and x_6970=0Stampo Rawbody
-inv(_29228,_132,_29232),constr((_29242=(_4728=ite(_132=_29228 div 1000,1+_29232,_29232))&(_29242&_4724=1+_29228)))
-⚠️ Formula non normalizzata: _29228 div 1000
-✅ Inserita in rewrite: _130:int
-✅ Inserita in rewrite: _132:int
-✅ Inserita in rewrite: _134:int
-✅ Inserita in rewrite: _824:int
-✅ Inserita in rewrite: _828:int
-✅ Inserita in rewrite: _1878:int
-✅ Inserita in rewrite: _1882:int
-✅ Inserita in rewrite: _3200:int
-✅ Inserita in rewrite: _3204:int
-✅ Inserita in rewrite: _4724:int
+✅ Inserita in rewrite: _1848:int
+✅ Inserita in rewrite: _1852:int
+✅ Inserita in rewrite: _3128:int
+✅ Inserita in rewrite: _3132:int
 ✅ Inserita in rewrite: _4728:int
-✅ Inserita in rewrite: _29228:int
-✅ Inserita in rewrite: _29232:int
-Stampo Body prima di zmi
-constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_824:int=_824:int,_828:int=_828:int,_1878:int=_1878:int,_1882:int=_1882:int,_3200:int=_3200:int,_3204:int=_3204:int,_4724:int=_4724:int,_4728:int=_4728:int,_29228:int=_29228:int,_29232:int=_29232:int,_29242=(_4728=ite(_132=_29228 div 1000,1+_29232,_29232))and _29242 and _4724=1+_29228)),inv(_29228,_132,_29232)
+✅ Inserita in rewrite: _4732:int
+✅ Inserita in rewrite: _17922:int
+✅ Inserita in rewrite: _17926:int
 Entrato in constr c
-⚠️ Formula non normalizzata: _29228 div 1000
-Stampo flatList
-[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_824:int=_824:int,_828:int=_828:int,_1878:int=_1878:int,_1882:int=_1882:int,_3200:int=_3200:int,_3204:int=_3204:int,_4724:int=_4724:int,_4728:int=_4728:int,_29228:int=_29228:int,_29232:int=_29232:int,(((((true,_130=_130,_132=_132,_134=_134,true=not(_130=<1000+1000*_132),_134=1000,true),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_838=(_134=ite(_132=_824 div 1000,1+_828,_828)),_838,_130=1+_824),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_1892=(_828=ite(_132=_1878 div 1000,1+_1882,_1882)),_1892,_824=1+_1878),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_3200=_3200,_3204=_3204,_3214=(_1882=ite(_132=_3200 div 1000,1+_3204,_3204)),_3214,_1878=1+_3200),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_3200=_3200,_3204=_3204,_4724=_4724,_4728=_4728,_4738=(_3204=ite(_132=_4724 div 1000,1+_4728,_4728)),_4738,_3200=1+_4724),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_3200=_3200,_3204=_3204,_4724=_4724,_4728=_4728,_29228=_29228,_29232=_29232,_29242=(_4728=ite(_132=_29228 div 1000,1+_29232,_29232)),_29242,_4724=1+_29228]
 
 Stampa prima di inviare
-x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_824:int=x_824:int and x_828:int=x_828:int and x_1878:int=x_1878:int and x_1882:int=x_1882:int and x_3200:int=x_3200:int and x_3204:int=x_3204:int and x_4724:int=x_4724:int and x_4728:int=x_4728:int and x_29228:int=x_29228:int and x_29232:int=x_29232:int and (((((x_130=x_130 and x_132=x_132 and x_134=x_134 and true=not(x_130=<1000+1000*x_132)and x_134=1000)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_838=(x_134=ite(x_132=x_824 div 1000,1+x_828,x_828))and x_838 and x_130=1+x_824)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_1892=(x_828=ite(x_132=x_1878 div 1000,1+x_1882,x_1882))and x_1892 and x_824=1+x_1878)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_3200=x_3200 and x_3204=x_3204 and x_3214=(x_1882=ite(x_132=x_3200 div 1000,1+x_3204,x_3204))and x_3214 and x_1878=1+x_3200)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_3200=x_3200 and x_3204=x_3204 and x_4724=x_4724 and x_4728=x_4728 and x_4738=(x_3204=ite(x_132=x_4724 div 1000,1+x_4728,x_4728))and x_4738 and x_3200=1+x_4724)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_3200=x_3200 and x_3204=x_3204 and x_4724=x_4724 and x_4728=x_4728 and x_29228=x_29228 and x_29232=x_29232 and x_29242=(x_4728=ite(x_132=x_29228 div 1000,1+x_29232,x_29232))and x_29242 and x_4724=1+x_29228Mi trovo in questa head
-inv(_6504,_132,_6508)
-Stampo Rawbody
-constr((_6504=0&(_132>=0&_6508=0)))
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_824:int=x_824:int and x_828:int=x_828:int and x_1848:int=x_1848:int and x_1852:int=x_1852:int and x_3128:int=x_3128:int and x_3132:int=x_3132:int and x_4728:int=x_4728:int and x_4732:int=x_4732:int and x_17922:int=x_17922:int and x_17926:int=x_17926:int and (((((x_130=x_130 and x_132=x_132 and x_134=x_134 and true=not(x_130=<1000+1000*x_132)and x_134=1000)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_838=(x_134=ite(x_132=x_824 div 1000,1+x_828,x_828))and x_838 and x_130=1+x_824)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_1862=(x_828=ite(x_132=x_1848 div 1000,1+x_1852,x_1852))and x_1862 and x_824=1+x_1848)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_3128=x_3128 and x_3132=x_3132 and x_3142=(x_1852=ite(x_132=x_3128 div 1000,1+x_3132,x_3132))and x_3142 and x_1848=1+x_3128)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_3128=x_3128 and x_3132=x_3132 and x_4728=x_4728 and x_4732=x_4732 and x_4742=(x_3132=ite(x_132=x_4728 div 1000,1+x_4732,x_4732))and x_4742 and x_3128=1+x_4728)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_3128=x_3128 and x_3132=x_3132 and x_4728=x_4728 and x_4732=x_4732 and x_17922=x_17922 and x_17926=x_17926 and x_17936=(x_4732=ite(x_132=x_17922 div 1000,1+x_17926,x_17926))and x_17936 and x_4728=1+x_17922Mi trovo in questa head
+inv(_6598,_132,_6602)
 ✅ Inserita in rewrite: _130:int
 ✅ Inserita in rewrite: _132:int
 ✅ Inserita in rewrite: _134:int
 ✅ Inserita in rewrite: _824:int
 ✅ Inserita in rewrite: _828:int
-✅ Inserita in rewrite: _1878:int
-✅ Inserita in rewrite: _1882:int
-✅ Inserita in rewrite: _3200:int
-✅ Inserita in rewrite: _3204:int
-✅ Inserita in rewrite: _4724:int
+✅ Inserita in rewrite: _1848:int
+✅ Inserita in rewrite: _1852:int
+✅ Inserita in rewrite: _3128:int
+✅ Inserita in rewrite: _3132:int
 ✅ Inserita in rewrite: _4728:int
-✅ Inserita in rewrite: _6504:int
-✅ Inserita in rewrite: _6508:int
-Stampo Body prima di zmi
-constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_824:int=_824:int,_828:int=_828:int,_1878:int=_1878:int,_1882:int=_1882:int,_3200:int=_3200:int,_3204:int=_3204:int,_4724:int=_4724:int,_4728:int=_4728:int,_6504:int=_6504:int,_6508:int=_6508:int,_6504=0 and _132>=0 and _6508=0))
+✅ Inserita in rewrite: _4732:int
+✅ Inserita in rewrite: _6598:int
+✅ Inserita in rewrite: _6602:int
 Entrato in constr c
-Stampo flatList
-[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_824:int=_824:int,_828:int=_828:int,_1878:int=_1878:int,_1882:int=_1882:int,_3200:int=_3200:int,_3204:int=_3204:int,_4724:int=_4724:int,_4728:int=_4728:int,_6504:int=_6504:int,_6508:int=_6508:int,((((((true,_130=_130,_132=_132,_134=_134,true=not(_130=<1000+1000*_132),_134=1000,true),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_838=(_134=ite(_132=_824 div 1000,1+_828,_828)),_838,_130=1+_824),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_1892=(_828=ite(_132=_1878 div 1000,1+_1882,_1882)),_1892,_824=1+_1878),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_3200=_3200,_3204=_3204,_3214=(_1882=ite(_132=_3200 div 1000,1+_3204,_3204)),_3214,_1878=1+_3200),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_3200=_3200,_3204=_3204,_4724=_4724,_4728=_4728,_4738=(_3204=ite(_132=_4724 div 1000,1+_4728,_4728)),_4738,_3200=1+_4724),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_3200=_3200,_3204=_3204,_4724=_4724,_4728=_4728,_6504=_6504,_6508=_6508,_6518=(_4728=ite(_132=_6504 div 1000,1+_6508,_6508)),_6518,_4724=1+_6504),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_3200=_3200,_3204=_3204,_4724=_4724,_4728=_4728,_6504=_6504,_6508=_6508,_6504=0,_132>=0,_6508=0]
 
 Stampa prima di inviare
-x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_824:int=x_824:int and x_828:int=x_828:int and x_1878:int=x_1878:int and x_1882:int=x_1882:int and x_3200:int=x_3200:int and x_3204:int=x_3204:int and x_4724:int=x_4724:int and x_4728:int=x_4728:int and x_6504:int=x_6504:int and x_6508:int=x_6508:int and ((((((x_130=x_130 and x_132=x_132 and x_134=x_134 and true=not(x_130=<1000+1000*x_132)and x_134=1000)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_838=(x_134=ite(x_132=x_824 div 1000,1+x_828,x_828))and x_838 and x_130=1+x_824)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_1892=(x_828=ite(x_132=x_1878 div 1000,1+x_1882,x_1882))and x_1892 and x_824=1+x_1878)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_3200=x_3200 and x_3204=x_3204 and x_3214=(x_1882=ite(x_132=x_3200 div 1000,1+x_3204,x_3204))and x_3214 and x_1878=1+x_3200)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_3200=x_3200 and x_3204=x_3204 and x_4724=x_4724 and x_4728=x_4728 and x_4738=(x_3204=ite(x_132=x_4724 div 1000,1+x_4728,x_4728))and x_4738 and x_3200=1+x_4724)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_3200=x_3200 and x_3204=x_3204 and x_4724=x_4724 and x_4728=x_4728 and x_6504=x_6504 and x_6508=x_6508 and x_6518=(x_4728=ite(x_132=x_6504 div 1000,1+x_6508,x_6508))and x_6518 and x_4724=1+x_6504)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_3200=x_3200 and x_3204=x_3204 and x_4724=x_4724 and x_4728=x_4728 and x_6504=x_6504 and x_6508=x_6508 and x_6504=0 and x_132>=0 and x_6508=0Stampo Rawbody
-inv(_74054,_132,_74058),constr((_74068=(_6508=ite(_132=_74054 div 1000,1+_74058,_74058))&(_74068&_6504=1+_74054)))
-⚠️ Formula non normalizzata: _74054 div 1000
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_824:int=x_824:int and x_828:int=x_828:int and x_1848:int=x_1848:int and x_1852:int=x_1852:int and x_3128:int=x_3128:int and x_3132:int=x_3132:int and x_4728:int=x_4728:int and x_4732:int=x_4732:int and x_6598:int=x_6598:int and x_6602:int=x_6602:int and ((((((x_130=x_130 and x_132=x_132 and x_134=x_134 and true=not(x_130=<1000+1000*x_132)and x_134=1000)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_838=(x_134=ite(x_132=x_824 div 1000,1+x_828,x_828))and x_838 and x_130=1+x_824)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_1862=(x_828=ite(x_132=x_1848 div 1000,1+x_1852,x_1852))and x_1862 and x_824=1+x_1848)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_3128=x_3128 and x_3132=x_3132 and x_3142=(x_1852=ite(x_132=x_3128 div 1000,1+x_3132,x_3132))and x_3142 and x_1848=1+x_3128)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_3128=x_3128 and x_3132=x_3132 and x_4728=x_4728 and x_4732=x_4732 and x_4742=(x_3132=ite(x_132=x_4728 div 1000,1+x_4732,x_4732))and x_4742 and x_3128=1+x_4728)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_3128=x_3128 and x_3132=x_3132 and x_4728=x_4728 and x_4732=x_4732 and x_6598=x_6598 and x_6602=x_6602 and x_6612=(x_4732=ite(x_132=x_6598 div 1000,1+x_6602,x_6602))and x_6612 and x_4728=1+x_6598)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_3128=x_3128 and x_3132=x_3132 and x_4728=x_4728 and x_4732=x_4732 and x_6598=x_6598 and x_6602=x_6602 and x_6598=0 and x_132>=0 and x_6602=0✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _824:int
+✅ Inserita in rewrite: _828:int
+✅ Inserita in rewrite: _1848:int
+✅ Inserita in rewrite: _1852:int
+✅ Inserita in rewrite: _3128:int
+✅ Inserita in rewrite: _3132:int
+✅ Inserita in rewrite: _4728:int
+✅ Inserita in rewrite: _4732:int
+✅ Inserita in rewrite: _6598:int
+✅ Inserita in rewrite: _6602:int
+✅ Inserita in rewrite: _11942:int
+✅ Inserita in rewrite: _11946:int
+Entrato in constr c
+
+Stampa prima di inviare
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_824:int=x_824:int and x_828:int=x_828:int and x_1848:int=x_1848:int and x_1852:int=x_1852:int and x_3128:int=x_3128:int and x_3132:int=x_3132:int and x_4728:int=x_4728:int and x_4732:int=x_4732:int and x_6598:int=x_6598:int and x_6602:int=x_6602:int and x_11942:int=x_11942:int and x_11946:int=x_11946:int and ((((((x_130=x_130 and x_132=x_132 and x_134=x_134 and true=not(x_130=<1000+1000*x_132)and x_134=1000)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_838=(x_134=ite(x_132=x_824 div 1000,1+x_828,x_828))and x_838 and x_130=1+x_824)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_1862=(x_828=ite(x_132=x_1848 div 1000,1+x_1852,x_1852))and x_1862 and x_824=1+x_1848)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_3128=x_3128 and x_3132=x_3132 and x_3142=(x_1852=ite(x_132=x_3128 div 1000,1+x_3132,x_3132))and x_3142 and x_1848=1+x_3128)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_3128=x_3128 and x_3132=x_3132 and x_4728=x_4728 and x_4732=x_4732 and x_4742=(x_3132=ite(x_132=x_4728 div 1000,1+x_4732,x_4732))and x_4742 and x_3128=1+x_4728)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_3128=x_3128 and x_3132=x_3132 and x_4728=x_4728 and x_4732=x_4732 and x_6598=x_6598 and x_6602=x_6602 and x_6612=(x_4732=ite(x_132=x_6598 div 1000,1+x_6602,x_6602))and x_6612 and x_4728=1+x_6598)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_3128=x_3128 and x_3132=x_3132 and x_4728=x_4728 and x_4732=x_4732 and x_6598=x_6598 and x_6602=x_6602 and x_11942=x_11942 and x_11946=x_11946 and x_11956=(x_6602=ite(x_132=x_11942 div 1000,1+x_11946,x_11946))and x_11956 and x_6598=1+x_11942Mi trovo in questa head
+inv(_11942,_132,_11946)
 ✅ Inserita in rewrite: _130:int
 ✅ Inserita in rewrite: _132:int
 ✅ Inserita in rewrite: _134:int
 ✅ Inserita in rewrite: _824:int
 ✅ Inserita in rewrite: _828:int
-✅ Inserita in rewrite: _1878:int
-✅ Inserita in rewrite: _1882:int
-✅ Inserita in rewrite: _3200:int
-✅ Inserita in rewrite: _3204:int
-✅ Inserita in rewrite: _4724:int
+✅ Inserita in rewrite: _1848:int
+✅ Inserita in rewrite: _1852:int
+✅ Inserita in rewrite: _3128:int
+✅ Inserita in rewrite: _3132:int
 ✅ Inserita in rewrite: _4728:int
-✅ Inserita in rewrite: _6504:int
-✅ Inserita in rewrite: _6508:int
-✅ Inserita in rewrite: _74054:int
-✅ Inserita in rewrite: _74058:int
-Stampo Body prima di zmi
-constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_824:int=_824:int,_828:int=_828:int,_1878:int=_1878:int,_1882:int=_1882:int,_3200:int=_3200:int,_3204:int=_3204:int,_4724:int=_4724:int,_4728:int=_4728:int,_6504:int=_6504:int,_6508:int=_6508:int,_74054:int=_74054:int,_74058:int=_74058:int,_74068=(_6508=ite(_132=_74054 div 1000,1+_74058,_74058))and _74068 and _6504=1+_74054)),inv(_74054,_132,_74058)
+✅ Inserita in rewrite: _4732:int
+✅ Inserita in rewrite: _6598:int
+✅ Inserita in rewrite: _6602:int
+✅ Inserita in rewrite: _11942:int
+✅ Inserita in rewrite: _11946:int
 Entrato in constr c
-⚠️ Formula non normalizzata: _74054 div 1000
-Stampo flatList
-[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_824:int=_824:int,_828:int=_828:int,_1878:int=_1878:int,_1882:int=_1882:int,_3200:int=_3200:int,_3204:int=_3204:int,_4724:int=_4724:int,_4728:int=_4728:int,_6504:int=_6504:int,_6508:int=_6508:int,_74054:int=_74054:int,_74058:int=_74058:int,((((((true,_130=_130,_132=_132,_134=_134,true=not(_130=<1000+1000*_132),_134=1000,true),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_838=(_134=ite(_132=_824 div 1000,1+_828,_828)),_838,_130=1+_824),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_1892=(_828=ite(_132=_1878 div 1000,1+_1882,_1882)),_1892,_824=1+_1878),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_3200=_3200,_3204=_3204,_3214=(_1882=ite(_132=_3200 div 1000,1+_3204,_3204)),_3214,_1878=1+_3200),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_3200=_3200,_3204=_3204,_4724=_4724,_4728=_4728,_4738=(_3204=ite(_132=_4724 div 1000,1+_4728,_4728)),_4738,_3200=1+_4724),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_3200=_3200,_3204=_3204,_4724=_4724,_4728=_4728,_6504=_6504,_6508=_6508,_6518=(_4728=ite(_132=_6504 div 1000,1+_6508,_6508)),_6518,_4724=1+_6504),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_3200=_3200,_3204=_3204,_4724=_4724,_4728=_4728,_6504=_6504,_6508=_6508,_74054=_74054,_74058=_74058,_74068=(_6508=ite(_132=_74054 div 1000,1+_74058,_74058)),_74068,_6504=1+_74054]
 
 Stampa prima di inviare
-x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_824:int=x_824:int and x_828:int=x_828:int and x_1878:int=x_1878:int and x_1882:int=x_1882:int and x_3200:int=x_3200:int and x_3204:int=x_3204:int and x_4724:int=x_4724:int and x_4728:int=x_4728:int and x_6504:int=x_6504:int and x_6508:int=x_6508:int and x_74054:int=x_74054:int and x_74058:int=x_74058:int and ((((((x_130=x_130 and x_132=x_132 and x_134=x_134 and true=not(x_130=<1000+1000*x_132)and x_134=1000)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_838=(x_134=ite(x_132=x_824 div 1000,1+x_828,x_828))and x_838 and x_130=1+x_824)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_1892=(x_828=ite(x_132=x_1878 div 1000,1+x_1882,x_1882))and x_1892 and x_824=1+x_1878)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_3200=x_3200 and x_3204=x_3204 and x_3214=(x_1882=ite(x_132=x_3200 div 1000,1+x_3204,x_3204))and x_3214 and x_1878=1+x_3200)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_3200=x_3200 and x_3204=x_3204 and x_4724=x_4724 and x_4728=x_4728 and x_4738=(x_3204=ite(x_132=x_4724 div 1000,1+x_4728,x_4728))and x_4738 and x_3200=1+x_4724)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_3200=x_3200 and x_3204=x_3204 and x_4724=x_4724 and x_4728=x_4728 and x_6504=x_6504 and x_6508=x_6508 and x_6518=(x_4728=ite(x_132=x_6504 div 1000,1+x_6508,x_6508))and x_6518 and x_4724=1+x_6504)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_3200=x_3200 and x_3204=x_3204 and x_4724=x_4724 and x_4728=x_4728 and x_6504=x_6504 and x_6508=x_6508 and x_74054=x_74054 and x_74058=x_74058 and x_74068=(x_6508=ite(x_132=x_74054 div 1000,1+x_74058,x_74058))and x_74068 and x_6504=1+x_74054Mi trovo in questa head
-inv(_8632,_132,_8636)
-Stampo Rawbody
-constr((_8632=0&(_132>=0&_8636=0)))
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_824:int=x_824:int and x_828:int=x_828:int and x_1848:int=x_1848:int and x_1852:int=x_1852:int and x_3128:int=x_3128:int and x_3132:int=x_3132:int and x_4728:int=x_4728:int and x_4732:int=x_4732:int and x_6598:int=x_6598:int and x_6602:int=x_6602:int and x_11942:int=x_11942:int and x_11946:int=x_11946:int and (((((((x_130=x_130 and x_132=x_132 and x_134=x_134 and true=not(x_130=<1000+1000*x_132)and x_134=1000)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_838=(x_134=ite(x_132=x_824 div 1000,1+x_828,x_828))and x_838 and x_130=1+x_824)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_1862=(x_828=ite(x_132=x_1848 div 1000,1+x_1852,x_1852))and x_1862 and x_824=1+x_1848)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_3128=x_3128 and x_3132=x_3132 and x_3142=(x_1852=ite(x_132=x_3128 div 1000,1+x_3132,x_3132))and x_3142 and x_1848=1+x_3128)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_3128=x_3128 and x_3132=x_3132 and x_4728=x_4728 and x_4732=x_4732 and x_4742=(x_3132=ite(x_132=x_4728 div 1000,1+x_4732,x_4732))and x_4742 and x_3128=1+x_4728)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_3128=x_3128 and x_3132=x_3132 and x_4728=x_4728 and x_4732=x_4732 and x_6598=x_6598 and x_6602=x_6602 and x_6612=(x_4732=ite(x_132=x_6598 div 1000,1+x_6602,x_6602))and x_6612 and x_4728=1+x_6598)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_3128=x_3128 and x_3132=x_3132 and x_4728=x_4728 and x_4732=x_4732 and x_6598=x_6598 and x_6602=x_6602 and x_11942=x_11942 and x_11946=x_11946 and x_11956=(x_6602=ite(x_132=x_11942 div 1000,1+x_11946,x_11946))and x_11956 and x_6598=1+x_11942)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_3128=x_3128 and x_3132=x_3132 and x_4728=x_4728 and x_4732=x_4732 and x_6598=x_6598 and x_6602=x_6602 and x_11942=x_11942 and x_11946=x_11946 and x_11942=0 and x_132>=0 and x_11946=0✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _824:int
+✅ Inserita in rewrite: _828:int
+✅ Inserita in rewrite: _1848:int
+✅ Inserita in rewrite: _1852:int
+✅ Inserita in rewrite: _3128:int
+✅ Inserita in rewrite: _3132:int
+✅ Inserita in rewrite: _4728:int
+✅ Inserita in rewrite: _4732:int
+✅ Inserita in rewrite: _6598:int
+✅ Inserita in rewrite: _6602:int
+✅ Inserita in rewrite: _8646:int
+✅ Inserita in rewrite: _8650:int
+✅ Inserita in rewrite: _16872:int
+✅ Inserita in rewrite: _16876:int
+Entrato in constr c
+
+Stampa prima di inviare
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_824:int=x_824:int and x_828:int=x_828:int and x_1848:int=x_1848:int and x_1852:int=x_1852:int and x_3128:int=x_3128:int and x_3132:int=x_3132:int and x_4728:int=x_4728:int and x_4732:int=x_4732:int and x_6598:int=x_6598:int and x_6602:int=x_6602:int and x_8646:int=x_8646:int and x_8650:int=x_8650:int and x_16872:int=x_16872:int and x_16876:int=x_16876:int and (((((((x_130=x_130 and x_132=x_132 and x_134=x_134 and true=not(x_130=<1000+1000*x_132)and x_134=1000)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_838=(x_134=ite(x_132=x_824 div 1000,1+x_828,x_828))and x_838 and x_130=1+x_824)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_1862=(x_828=ite(x_132=x_1848 div 1000,1+x_1852,x_1852))and x_1862 and x_824=1+x_1848)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_3128=x_3128 and x_3132=x_3132 and x_3142=(x_1852=ite(x_132=x_3128 div 1000,1+x_3132,x_3132))and x_3142 and x_1848=1+x_3128)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_3128=x_3128 and x_3132=x_3132 and x_4728=x_4728 and x_4732=x_4732 and x_4742=(x_3132=ite(x_132=x_4728 div 1000,1+x_4732,x_4732))and x_4742 and x_3128=1+x_4728)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_3128=x_3128 and x_3132=x_3132 and x_4728=x_4728 and x_4732=x_4732 and x_6598=x_6598 and x_6602=x_6602 and x_6612=(x_4732=ite(x_132=x_6598 div 1000,1+x_6602,x_6602))and x_6612 and x_4728=1+x_6598)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_3128=x_3128 and x_3132=x_3132 and x_4728=x_4728 and x_4732=x_4732 and x_6598=x_6598 and x_6602=x_6602 and x_8646=x_8646 and x_8650=x_8650 and x_8660=(x_6602=ite(x_132=x_8646 div 1000,1+x_8650,x_8650))and x_8660 and x_6598=1+x_8646)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_3128=x_3128 and x_3132=x_3132 and x_4728=x_4728 and x_4732=x_4732 and x_6598=x_6598 and x_6602=x_6602 and x_8646=x_8646 and x_8650=x_8650 and x_16872=x_16872 and x_16876=x_16876 and x_16886=(x_8650=ite(x_132=x_16872 div 1000,1+x_16876,x_16876))and x_16886 and x_8646=1+x_16872Mi trovo in questa head
+inv(_16872,_132,_16876)
 ✅ Inserita in rewrite: _130:int
 ✅ Inserita in rewrite: _132:int
 ✅ Inserita in rewrite: _134:int
 ✅ Inserita in rewrite: _824:int
 ✅ Inserita in rewrite: _828:int
-✅ Inserita in rewrite: _1878:int
-✅ Inserita in rewrite: _1882:int
-✅ Inserita in rewrite: _3200:int
-✅ Inserita in rewrite: _3204:int
-✅ Inserita in rewrite: _4724:int
+✅ Inserita in rewrite: _1848:int
+✅ Inserita in rewrite: _1852:int
+✅ Inserita in rewrite: _3128:int
+✅ Inserita in rewrite: _3132:int
 ✅ Inserita in rewrite: _4728:int
-✅ Inserita in rewrite: _6504:int
-✅ Inserita in rewrite: _6508:int
-✅ Inserita in rewrite: _8632:int
-✅ Inserita in rewrite: _8636:int
-Stampo Body prima di zmi
-constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_824:int=_824:int,_828:int=_828:int,_1878:int=_1878:int,_1882:int=_1882:int,_3200:int=_3200:int,_3204:int=_3204:int,_4724:int=_4724:int,_4728:int=_4728:int,_6504:int=_6504:int,_6508:int=_6508:int,_8632:int=_8632:int,_8636:int=_8636:int,_8632=0 and _132>=0 and _8636=0))
+✅ Inserita in rewrite: _4732:int
+✅ Inserita in rewrite: _6598:int
+✅ Inserita in rewrite: _6602:int
+✅ Inserita in rewrite: _8646:int
+✅ Inserita in rewrite: _8650:int
+✅ Inserita in rewrite: _16872:int
+✅ Inserita in rewrite: _16876:int
 Entrato in constr c
-Stampo flatList
-[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_824:int=_824:int,_828:int=_828:int,_1878:int=_1878:int,_1882:int=_1882:int,_3200:int=_3200:int,_3204:int=_3204:int,_4724:int=_4724:int,_4728:int=_4728:int,_6504:int=_6504:int,_6508:int=_6508:int,_8632:int=_8632:int,_8636:int=_8636:int,(((((((true,_130=_130,_132=_132,_134=_134,true=not(_130=<1000+1000*_132),_134=1000,true),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_838=(_134=ite(_132=_824 div 1000,1+_828,_828)),_838,_130=1+_824),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_1892=(_828=ite(_132=_1878 div 1000,1+_1882,_1882)),_1892,_824=1+_1878),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_3200=_3200,_3204=_3204,_3214=(_1882=ite(_132=_3200 div 1000,1+_3204,_3204)),_3214,_1878=1+_3200),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_3200=_3200,_3204=_3204,_4724=_4724,_4728=_4728,_4738=(_3204=ite(_132=_4724 div 1000,1+_4728,_4728)),_4738,_3200=1+_4724),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_3200=_3200,_3204=_3204,_4724=_4724,_4728=_4728,_6504=_6504,_6508=_6508,_6518=(_4728=ite(_132=_6504 div 1000,1+_6508,_6508)),_6518,_4724=1+_6504),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_3200=_3200,_3204=_3204,_4724=_4724,_4728=_4728,_6504=_6504,_6508=_6508,_8632=_8632,_8636=_8636,_8646=(_6508=ite(_132=_8632 div 1000,1+_8636,_8636)),_8646,_6504=1+_8632),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_3200=_3200,_3204=_3204,_4724=_4724,_4728=_4728,_6504=_6504,_6508=_6508,_8632=_8632,_8636=_8636,_8632=0,_132>=0,_8636=0]
 
 Stampa prima di inviare
-x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_824:int=x_824:int and x_828:int=x_828:int and x_1878:int=x_1878:int and x_1882:int=x_1882:int and x_3200:int=x_3200:int and x_3204:int=x_3204:int and x_4724:int=x_4724:int and x_4728:int=x_4728:int and x_6504:int=x_6504:int and x_6508:int=x_6508:int and x_8632:int=x_8632:int and x_8636:int=x_8636:int and (((((((x_130=x_130 and x_132=x_132 and x_134=x_134 and true=not(x_130=<1000+1000*x_132)and x_134=1000)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_838=(x_134=ite(x_132=x_824 div 1000,1+x_828,x_828))and x_838 and x_130=1+x_824)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_1892=(x_828=ite(x_132=x_1878 div 1000,1+x_1882,x_1882))and x_1892 and x_824=1+x_1878)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_3200=x_3200 and x_3204=x_3204 and x_3214=(x_1882=ite(x_132=x_3200 div 1000,1+x_3204,x_3204))and x_3214 and x_1878=1+x_3200)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_3200=x_3200 and x_3204=x_3204 and x_4724=x_4724 and x_4728=x_4728 and x_4738=(x_3204=ite(x_132=x_4724 div 1000,1+x_4728,x_4728))and x_4738 and x_3200=1+x_4724)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_3200=x_3200 and x_3204=x_3204 and x_4724=x_4724 and x_4728=x_4728 and x_6504=x_6504 and x_6508=x_6508 and x_6518=(x_4728=ite(x_132=x_6504 div 1000,1+x_6508,x_6508))and x_6518 and x_4724=1+x_6504)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_3200=x_3200 and x_3204=x_3204 and x_4724=x_4724 and x_4728=x_4728 and x_6504=x_6504 and x_6508=x_6508 and x_8632=x_8632 and x_8636=x_8636 and x_8646=(x_6508=ite(x_132=x_8632 div 1000,1+x_8636,x_8636))and x_8646 and x_6504=1+x_8632)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_3200=x_3200 and x_3204=x_3204 and x_4724=x_4724 and x_4728=x_4728 and x_6504=x_6504 and x_6508=x_6508 and x_8632=x_8632 and x_8636=x_8636 and x_8632=0 and x_132>=0 and x_8636=0Stampo Rawbody
-inv(_76518,_132,_76522),constr((_76532=(_8636=ite(_132=_76518 div 1000,1+_76522,_76522))&(_76532&_8632=1+_76518)))
-⚠️ Formula non normalizzata: _76518 div 1000
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_824:int=x_824:int and x_828:int=x_828:int and x_1848:int=x_1848:int and x_1852:int=x_1852:int and x_3128:int=x_3128:int and x_3132:int=x_3132:int and x_4728:int=x_4728:int and x_4732:int=x_4732:int and x_6598:int=x_6598:int and x_6602:int=x_6602:int and x_8646:int=x_8646:int and x_8650:int=x_8650:int and x_16872:int=x_16872:int and x_16876:int=x_16876:int and ((((((((x_130=x_130 and x_132=x_132 and x_134=x_134 and true=not(x_130=<1000+1000*x_132)and x_134=1000)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_838=(x_134=ite(x_132=x_824 div 1000,1+x_828,x_828))and x_838 and x_130=1+x_824)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_1862=(x_828=ite(x_132=x_1848 div 1000,1+x_1852,x_1852))and x_1862 and x_824=1+x_1848)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_3128=x_3128 and x_3132=x_3132 and x_3142=(x_1852=ite(x_132=x_3128 div 1000,1+x_3132,x_3132))and x_3142 and x_1848=1+x_3128)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_3128=x_3128 and x_3132=x_3132 and x_4728=x_4728 and x_4732=x_4732 and x_4742=(x_3132=ite(x_132=x_4728 div 1000,1+x_4732,x_4732))and x_4742 and x_3128=1+x_4728)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_3128=x_3128 and x_3132=x_3132 and x_4728=x_4728 and x_4732=x_4732 and x_6598=x_6598 and x_6602=x_6602 and x_6612=(x_4732=ite(x_132=x_6598 div 1000,1+x_6602,x_6602))and x_6612 and x_4728=1+x_6598)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_3128=x_3128 and x_3132=x_3132 and x_4728=x_4728 and x_4732=x_4732 and x_6598=x_6598 and x_6602=x_6602 and x_8646=x_8646 and x_8650=x_8650 and x_8660=(x_6602=ite(x_132=x_8646 div 1000,1+x_8650,x_8650))and x_8660 and x_6598=1+x_8646)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_3128=x_3128 and x_3132=x_3132 and x_4728=x_4728 and x_4732=x_4732 and x_6598=x_6598 and x_6602=x_6602 and x_8646=x_8646 and x_8650=x_8650 and x_16872=x_16872 and x_16876=x_16876 and x_16886=(x_8650=ite(x_132=x_16872 div 1000,1+x_16876,x_16876))and x_16886 and x_8646=1+x_16872)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_3128=x_3128 and x_3132=x_3132 and x_4728=x_4728 and x_4732=x_4732 and x_6598=x_6598 and x_6602=x_6602 and x_8646=x_8646 and x_8650=x_8650 and x_16872=x_16872 and x_16876=x_16876 and x_16872=0 and x_132>=0 and x_16876=0✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _824:int
+✅ Inserita in rewrite: _828:int
+✅ Inserita in rewrite: _1848:int
+✅ Inserita in rewrite: _1852:int
+✅ Inserita in rewrite: _3128:int
+✅ Inserita in rewrite: _3132:int
+✅ Inserita in rewrite: _4728:int
+✅ Inserita in rewrite: _4732:int
+✅ Inserita in rewrite: _6598:int
+✅ Inserita in rewrite: _6602:int
+✅ Inserita in rewrite: _8646:int
+✅ Inserita in rewrite: _8650:int
+✅ Inserita in rewrite: _10950:int
+✅ Inserita in rewrite: _10954:int
+✅ Inserita in rewrite: _48916:int
+✅ Inserita in rewrite: _48920:int
+Entrato in constr c
+
+Stampa prima di inviare
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_824:int=x_824:int and x_828:int=x_828:int and x_1848:int=x_1848:int and x_1852:int=x_1852:int and x_3128:int=x_3128:int and x_3132:int=x_3132:int and x_4728:int=x_4728:int and x_4732:int=x_4732:int and x_6598:int=x_6598:int and x_6602:int=x_6602:int and x_8646:int=x_8646:int and x_8650:int=x_8650:int and x_10950:int=x_10950:int and x_10954:int=x_10954:int and x_48916:int=x_48916:int and x_48920:int=x_48920:int and ((((((((x_130=x_130 and x_132=x_132 and x_134=x_134 and true=not(x_130=<1000+1000*x_132)and x_134=1000)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_838=(x_134=ite(x_132=x_824 div 1000,1+x_828,x_828))and x_838 and x_130=1+x_824)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_1862=(x_828=ite(x_132=x_1848 div 1000,1+x_1852,x_1852))and x_1862 and x_824=1+x_1848)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_3128=x_3128 and x_3132=x_3132 and x_3142=(x_1852=ite(x_132=x_3128 div 1000,1+x_3132,x_3132))and x_3142 and x_1848=1+x_3128)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_3128=x_3128 and x_3132=x_3132 and x_4728=x_4728 and x_4732=x_4732 and x_4742=(x_3132=ite(x_132=x_4728 div 1000,1+x_4732,x_4732))and x_4742 and x_3128=1+x_4728)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_3128=x_3128 and x_3132=x_3132 and x_4728=x_4728 and x_4732=x_4732 and x_6598=x_6598 and x_6602=x_6602 and x_6612=(x_4732=ite(x_132=x_6598 div 1000,1+x_6602,x_6602))and x_6612 and x_4728=1+x_6598)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_3128=x_3128 and x_3132=x_3132 and x_4728=x_4728 and x_4732=x_4732 and x_6598=x_6598 and x_6602=x_6602 and x_8646=x_8646 and x_8650=x_8650 and x_8660=(x_6602=ite(x_132=x_8646 div 1000,1+x_8650,x_8650))and x_8660 and x_6598=1+x_8646)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_3128=x_3128 and x_3132=x_3132 and x_4728=x_4728 and x_4732=x_4732 and x_6598=x_6598 and x_6602=x_6602 and x_8646=x_8646 and x_8650=x_8650 and x_10950=x_10950 and x_10954=x_10954 and x_10964=(x_8650=ite(x_132=x_10950 div 1000,1+x_10954,x_10954))and x_10964 and x_8646=1+x_10950)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_3128=x_3128 and x_3132=x_3132 and x_4728=x_4728 and x_4732=x_4732 and x_6598=x_6598 and x_6602=x_6602 and x_8646=x_8646 and x_8650=x_8650 and x_10950=x_10950 and x_10954=x_10954 and x_48916=x_48916 and x_48920=x_48920 and x_48930=(x_10954=ite(x_132=x_48916 div 1000,1+x_48920,x_48920))and x_48930 and x_10950=1+x_48916Mi trovo in questa head
+inv(_13510,_132,_13514)
 ✅ Inserita in rewrite: _130:int
 ✅ Inserita in rewrite: _132:int
 ✅ Inserita in rewrite: _134:int
 ✅ Inserita in rewrite: _824:int
 ✅ Inserita in rewrite: _828:int
-✅ Inserita in rewrite: _1878:int
-✅ Inserita in rewrite: _1882:int
-✅ Inserita in rewrite: _3200:int
-✅ Inserita in rewrite: _3204:int
-✅ Inserita in rewrite: _4724:int
+✅ Inserita in rewrite: _1848:int
+✅ Inserita in rewrite: _1852:int
+✅ Inserita in rewrite: _3128:int
+✅ Inserita in rewrite: _3132:int
 ✅ Inserita in rewrite: _4728:int
-✅ Inserita in rewrite: _6504:int
-✅ Inserita in rewrite: _6508:int
-✅ Inserita in rewrite: _8632:int
-✅ Inserita in rewrite: _8636:int
-✅ Inserita in rewrite: _76518:int
-✅ Inserita in rewrite: _76522:int
-Stampo Body prima di zmi
-constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_824:int=_824:int,_828:int=_828:int,_1878:int=_1878:int,_1882:int=_1882:int,_3200:int=_3200:int,_3204:int=_3204:int,_4724:int=_4724:int,_4728:int=_4728:int,_6504:int=_6504:int,_6508:int=_6508:int,_8632:int=_8632:int,_8636:int=_8636:int,_76518:int=_76518:int,_76522:int=_76522:int,_76532=(_8636=ite(_132=_76518 div 1000,1+_76522,_76522))and _76532 and _8632=1+_76518)),inv(_76518,_132,_76522)
-Entrato in constr c
-⚠️ Formula non normalizzata: _76518 div 1000
-Stampo flatList
-[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_824:int=_824:int,_828:int=_828:int,_1878:int=_1878:int,_1882:int=_1882:int,_3200:int=_3200:int,_3204:int=_3204:int,_4724:int=_4724:int,_4728:int=_4728:int,_6504:int=_6504:int,_6508:int=_6508:int,_8632:int=_8632:int,_8636:int=_8636:int,_76518:int=_76518:int,_76522:int=_76522:int,(((((((true,_130=_130,_132=_132,_134=_134,true=not(_130=<1000+1000*_132),_134=1000,true),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_838=(_134=ite(_132=_824 div 1000,1+_828,_828)),_838,_130=1+_824),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_1892=(_828=ite(_132=_1878 div 1000,1+_1882,_1882)),_1892,_824=1+_1878),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_3200=_3200,_3204=_3204,_3214=(_1882=ite(_132=_3200 div 1000,1+_3204,_3204)),_3214,_1878=1+_3200),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_3200=_3200,_3204=_3204,_4724=_4724,_4728=_4728,_4738=(_3204=ite(_132=_4724 div 1000,1+_4728,_4728)),_4738,_3200=1+_4724),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_3200=_3200,_3204=_3204,_4724=_4724,_4728=_4728,_6504=_6504,_6508=_6508,_6518=(_4728=ite(_132=_6504 div 1000,1+_6508,_6508)),_6518,_4724=1+_6504),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_3200=_3200,_3204=_3204,_4724=_4724,_4728=_4728,_6504=_6504,_6508=_6508,_8632=_8632,_8636=_8636,_8646=(_6508=ite(_132=_8632 div 1000,1+_8636,_8636)),_8646,_6504=1+_8632),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_3200=_3200,_3204=_3204,_4724=_4724,_4728=_4728,_6504=_6504,_6508=_6508,_8632=_8632,_8636=_8636,_76518=_76518,_76522=_76522,_76532=(_8636=ite(_132=_76518 div 1000,1+_76522,_76522)),_76532,_8632=1+_76518]
-
-Stampa prima di inviare
-x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_824:int=x_824:int and x_828:int=x_828:int and x_1878:int=x_1878:int and x_1882:int=x_1882:int and x_3200:int=x_3200:int and x_3204:int=x_3204:int and x_4724:int=x_4724:int and x_4728:int=x_4728:int and x_6504:int=x_6504:int and x_6508:int=x_6508:int and x_8632:int=x_8632:int and x_8636:int=x_8636:int and x_76518:int=x_76518:int and x_76522:int=x_76522:int and (((((((x_130=x_130 and x_132=x_132 and x_134=x_134 and true=not(x_130=<1000+1000*x_132)and x_134=1000)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_838=(x_134=ite(x_132=x_824 div 1000,1+x_828,x_828))and x_838 and x_130=1+x_824)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_1892=(x_828=ite(x_132=x_1878 div 1000,1+x_1882,x_1882))and x_1892 and x_824=1+x_1878)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_3200=x_3200 and x_3204=x_3204 and x_3214=(x_1882=ite(x_132=x_3200 div 1000,1+x_3204,x_3204))and x_3214 and x_1878=1+x_3200)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_3200=x_3200 and x_3204=x_3204 and x_4724=x_4724 and x_4728=x_4728 and x_4738=(x_3204=ite(x_132=x_4724 div 1000,1+x_4728,x_4728))and x_4738 and x_3200=1+x_4724)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_3200=x_3200 and x_3204=x_3204 and x_4724=x_4724 and x_4728=x_4728 and x_6504=x_6504 and x_6508=x_6508 and x_6518=(x_4728=ite(x_132=x_6504 div 1000,1+x_6508,x_6508))and x_6518 and x_4724=1+x_6504)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_3200=x_3200 and x_3204=x_3204 and x_4724=x_4724 and x_4728=x_4728 and x_6504=x_6504 and x_6508=x_6508 and x_8632=x_8632 and x_8636=x_8636 and x_8646=(x_6508=ite(x_132=x_8632 div 1000,1+x_8636,x_8636))and x_8646 and x_6504=1+x_8632)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_3200=x_3200 and x_3204=x_3204 and x_4724=x_4724 and x_4728=x_4728 and x_6504=x_6504 and x_6508=x_6508 and x_8632=x_8632 and x_8636=x_8636 and x_76518=x_76518 and x_76522=x_76522 and x_76532=(x_8636=ite(x_132=x_76518 div 1000,1+x_76522,x_76522))and x_76532 and x_8632=1+x_76518Mi trovo in questa head
-inv(_10922,_132,_10926)
-Stampo Rawbody
-constr((_10922=0&(_132>=0&_10926=0)))
-✅ Inserita in rewrite: _130:int
-✅ Inserita in rewrite: _132:int
-✅ Inserita in rewrite: _134:int
-✅ Inserita in rewrite: _824:int
-✅ Inserita in rewrite: _828:int
-✅ Inserita in rewrite: _1878:int
-✅ Inserita in rewrite: _1882:int
-✅ Inserita in rewrite: _3200:int
-✅ Inserita in rewrite: _3204:int
-✅ Inserita in rewrite: _4724:int
-✅ Inserita in rewrite: _4728:int
-✅ Inserita in rewrite: _6504:int
-✅ Inserita in rewrite: _6508:int
-✅ Inserita in rewrite: _8630:int
-✅ Inserita in rewrite: _8634:int
-✅ Inserita in rewrite: _10922:int
-✅ Inserita in rewrite: _10926:int
-Stampo Body prima di zmi
-constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_824:int=_824:int,_828:int=_828:int,_1878:int=_1878:int,_1882:int=_1882:int,_3200:int=_3200:int,_3204:int=_3204:int,_4724:int=_4724:int,_4728:int=_4728:int,_6504:int=_6504:int,_6508:int=_6508:int,_8630:int=_8630:int,_8634:int=_8634:int,_10922:int=_10922:int,_10926:int=_10926:int,_10922=0 and _132>=0 and _10926=0))
-Entrato in constr c
-Stampo flatList
-[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_824:int=_824:int,_828:int=_828:int,_1878:int=_1878:int,_1882:int=_1882:int,_3200:int=_3200:int,_3204:int=_3204:int,_4724:int=_4724:int,_4728:int=_4728:int,_6504:int=_6504:int,_6508:int=_6508:int,_8630:int=_8630:int,_8634:int=_8634:int,_10922:int=_10922:int,_10926:int=_10926:int,((((((((true,_130=_130,_132=_132,_134=_134,true=not(_130=<1000+1000*_132),_134=1000,true),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_838=(_134=ite(_132=_824 div 1000,1+_828,_828)),_838,_130=1+_824),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_1892=(_828=ite(_132=_1878 div 1000,1+_1882,_1882)),_1892,_824=1+_1878),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_3200=_3200,_3204=_3204,_3214=(_1882=ite(_132=_3200 div 1000,1+_3204,_3204)),_3214,_1878=1+_3200),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_3200=_3200,_3204=_3204,_4724=_4724,_4728=_4728,_4738=(_3204=ite(_132=_4724 div 1000,1+_4728,_4728)),_4738,_3200=1+_4724),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_3200=_3200,_3204=_3204,_4724=_4724,_4728=_4728,_6504=_6504,_6508=_6508,_6518=(_4728=ite(_132=_6504 div 1000,1+_6508,_6508)),_6518,_4724=1+_6504),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_3200=_3200,_3204=_3204,_4724=_4724,_4728=_4728,_6504=_6504,_6508=_6508,_8630=_8630,_8634=_8634,_8644=(_6508=ite(_132=_8630 div 1000,1+_8634,_8634)),_8644,_6504=1+_8630),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_3200=_3200,_3204=_3204,_4724=_4724,_4728=_4728,_6504=_6504,_6508=_6508,_8630=_8630,_8634=_8634,_10922=_10922,_10926=_10926,_10936=(_8634=ite(_132=_10922 div 1000,1+_10926,_10926)),_10936,_8630=1+_10922),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_3200=_3200,_3204=_3204,_4724=_4724,_4728=_4728,_6504=_6504,_6508=_6508,_8630=_8630,_8634=_8634,_10922=_10922,_10926=_10926,_10922=0,_132>=0,_10926=0]
-
-Stampa prima di inviare
-x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_824:int=x_824:int and x_828:int=x_828:int and x_1878:int=x_1878:int and x_1882:int=x_1882:int and x_3200:int=x_3200:int and x_3204:int=x_3204:int and x_4724:int=x_4724:int and x_4728:int=x_4728:int and x_6504:int=x_6504:int and x_6508:int=x_6508:int and x_8630:int=x_8630:int and x_8634:int=x_8634:int and x_10922:int=x_10922:int and x_10926:int=x_10926:int and ((((((((x_130=x_130 and x_132=x_132 and x_134=x_134 and true=not(x_130=<1000+1000*x_132)and x_134=1000)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_838=(x_134=ite(x_132=x_824 div 1000,1+x_828,x_828))and x_838 and x_130=1+x_824)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_1892=(x_828=ite(x_132=x_1878 div 1000,1+x_1882,x_1882))and x_1892 and x_824=1+x_1878)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_3200=x_3200 and x_3204=x_3204 and x_3214=(x_1882=ite(x_132=x_3200 div 1000,1+x_3204,x_3204))and x_3214 and x_1878=1+x_3200)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_3200=x_3200 and x_3204=x_3204 and x_4724=x_4724 and x_4728=x_4728 and x_4738=(x_3204=ite(x_132=x_4724 div 1000,1+x_4728,x_4728))and x_4738 and x_3200=1+x_4724)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_3200=x_3200 and x_3204=x_3204 and x_4724=x_4724 and x_4728=x_4728 and x_6504=x_6504 and x_6508=x_6508 and x_6518=(x_4728=ite(x_132=x_6504 div 1000,1+x_6508,x_6508))and x_6518 and x_4724=1+x_6504)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_3200=x_3200 and x_3204=x_3204 and x_4724=x_4724 and x_4728=x_4728 and x_6504=x_6504 and x_6508=x_6508 and x_8630=x_8630 and x_8634=x_8634 and x_8644=(x_6508=ite(x_132=x_8630 div 1000,1+x_8634,x_8634))and x_8644 and x_6504=1+x_8630)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_3200=x_3200 and x_3204=x_3204 and x_4724=x_4724 and x_4728=x_4728 and x_6504=x_6504 and x_6508=x_6508 and x_8630=x_8630 and x_8634=x_8634 and x_10922=x_10922 and x_10926=x_10926 and x_10936=(x_8634=ite(x_132=x_10922 div 1000,1+x_10926,x_10926))and x_10936 and x_8630=1+x_10922)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_3200=x_3200 and x_3204=x_3204 and x_4724=x_4724 and x_4728=x_4728 and x_6504=x_6504 and x_6508=x_6508 and x_8630=x_8630 and x_8634=x_8634 and x_10922=x_10922 and x_10926=x_10926 and x_10922=0 and x_132>=0 and x_10926=0Stampo Rawbody
-inv(_108490,_132,_108494),constr((_108504=(_10926=ite(_132=_108490 div 1000,1+_108494,_108494))&(_108504&_10922=1+_108490)))
-⚠️ Formula non normalizzata: _108490 div 1000
-✅ Inserita in rewrite: _130:int
-✅ Inserita in rewrite: _132:int
-✅ Inserita in rewrite: _134:int
-✅ Inserita in rewrite: _824:int
-✅ Inserita in rewrite: _828:int
-✅ Inserita in rewrite: _1878:int
-✅ Inserita in rewrite: _1882:int
-✅ Inserita in rewrite: _3200:int
-✅ Inserita in rewrite: _3204:int
-✅ Inserita in rewrite: _4724:int
-✅ Inserita in rewrite: _4728:int
-✅ Inserita in rewrite: _6504:int
-✅ Inserita in rewrite: _6508:int
-✅ Inserita in rewrite: _8630:int
-✅ Inserita in rewrite: _8634:int
-✅ Inserita in rewrite: _10922:int
-✅ Inserita in rewrite: _10926:int
-✅ Inserita in rewrite: _108490:int
-✅ Inserita in rewrite: _108494:int
-Stampo Body prima di zmi
-constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_824:int=_824:int,_828:int=_828:int,_1878:int=_1878:int,_1882:int=_1882:int,_3200:int=_3200:int,_3204:int=_3204:int,_4724:int=_4724:int,_4728:int=_4728:int,_6504:int=_6504:int,_6508:int=_6508:int,_8630:int=_8630:int,_8634:int=_8634:int,_10922:int=_10922:int,_10926:int=_10926:int,_108490:int=_108490:int,_108494:int=_108494:int,_108504=(_10926=ite(_132=_108490 div 1000,1+_108494,_108494))and _108504 and _10922=1+_108490)),inv(_108490,_132,_108494)
-Entrato in constr c
-⚠️ Formula non normalizzata: _108490 div 1000
-Stampo flatList
-[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_824:int=_824:int,_828:int=_828:int,_1878:int=_1878:int,_1882:int=_1882:int,_3200:int=_3200:int,_3204:int=_3204:int,_4724:int=_4724:int,_4728:int=_4728:int,_6504:int=_6504:int,_6508:int=_6508:int,_8630:int=_8630:int,_8634:int=_8634:int,_10922:int=_10922:int,_10926:int=_10926:int,_108490:int=_108490:int,_108494:int=_108494:int,((((((((true,_130=_130,_132=_132,_134=_134,true=not(_130=<1000+1000*_132),_134=1000,true),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_838=(_134=ite(_132=_824 div 1000,1+_828,_828)),_838,_130=1+_824),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_1892=(_828=ite(_132=_1878 div 1000,1+_1882,_1882)),_1892,_824=1+_1878),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_3200=_3200,_3204=_3204,_3214=(_1882=ite(_132=_3200 div 1000,1+_3204,_3204)),_3214,_1878=1+_3200),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_3200=_3200,_3204=_3204,_4724=_4724,_4728=_4728,_4738=(_3204=ite(_132=_4724 div 1000,1+_4728,_4728)),_4738,_3200=1+_4724),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_3200=_3200,_3204=_3204,_4724=_4724,_4728=_4728,_6504=_6504,_6508=_6508,_6518=(_4728=ite(_132=_6504 div 1000,1+_6508,_6508)),_6518,_4724=1+_6504),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_3200=_3200,_3204=_3204,_4724=_4724,_4728=_4728,_6504=_6504,_6508=_6508,_8630=_8630,_8634=_8634,_8644=(_6508=ite(_132=_8630 div 1000,1+_8634,_8634)),_8644,_6504=1+_8630),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_3200=_3200,_3204=_3204,_4724=_4724,_4728=_4728,_6504=_6504,_6508=_6508,_8630=_8630,_8634=_8634,_10922=_10922,_10926=_10926,_10936=(_8634=ite(_132=_10922 div 1000,1+_10926,_10926)),_10936,_8630=1+_10922),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_3200=_3200,_3204=_3204,_4724=_4724,_4728=_4728,_6504=_6504,_6508=_6508,_8630=_8630,_8634=_8634,_10922=_10922,_10926=_10926,_108490=_108490,_108494=_108494,_108504=(_10926=ite(_132=_108490 div 1000,1+_108494,_108494)),_108504,_10922=1+_108490]
-
-Stampa prima di inviare
-x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_824:int=x_824:int and x_828:int=x_828:int and x_1878:int=x_1878:int and x_1882:int=x_1882:int and x_3200:int=x_3200:int and x_3204:int=x_3204:int and x_4724:int=x_4724:int and x_4728:int=x_4728:int and x_6504:int=x_6504:int and x_6508:int=x_6508:int and x_8630:int=x_8630:int and x_8634:int=x_8634:int and x_10922:int=x_10922:int and x_10926:int=x_10926:int and x_108490:int=x_108490:int and x_108494:int=x_108494:int and ((((((((x_130=x_130 and x_132=x_132 and x_134=x_134 and true=not(x_130=<1000+1000*x_132)and x_134=1000)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_838=(x_134=ite(x_132=x_824 div 1000,1+x_828,x_828))and x_838 and x_130=1+x_824)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_1892=(x_828=ite(x_132=x_1878 div 1000,1+x_1882,x_1882))and x_1892 and x_824=1+x_1878)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_3200=x_3200 and x_3204=x_3204 and x_3214=(x_1882=ite(x_132=x_3200 div 1000,1+x_3204,x_3204))and x_3214 and x_1878=1+x_3200)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_3200=x_3200 and x_3204=x_3204 and x_4724=x_4724 and x_4728=x_4728 and x_4738=(x_3204=ite(x_132=x_4724 div 1000,1+x_4728,x_4728))and x_4738 and x_3200=1+x_4724)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_3200=x_3200 and x_3204=x_3204 and x_4724=x_4724 and x_4728=x_4728 and x_6504=x_6504 and x_6508=x_6508 and x_6518=(x_4728=ite(x_132=x_6504 div 1000,1+x_6508,x_6508))and x_6518 and x_4724=1+x_6504)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_3200=x_3200 and x_3204=x_3204 and x_4724=x_4724 and x_4728=x_4728 and x_6504=x_6504 and x_6508=x_6508 and x_8630=x_8630 and x_8634=x_8634 and x_8644=(x_6508=ite(x_132=x_8630 div 1000,1+x_8634,x_8634))and x_8644 and x_6504=1+x_8630)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_3200=x_3200 and x_3204=x_3204 and x_4724=x_4724 and x_4728=x_4728 and x_6504=x_6504 and x_6508=x_6508 and x_8630=x_8630 and x_8634=x_8634 and x_10922=x_10922 and x_10926=x_10926 and x_10936=(x_8634=ite(x_132=x_10922 div 1000,1+x_10926,x_10926))and x_10936 and x_8630=1+x_10922)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_3200=x_3200 and x_3204=x_3204 and x_4724=x_4724 and x_4728=x_4728 and x_6504=x_6504 and x_6508=x_6508 and x_8630=x_8630 and x_8634=x_8634 and x_10922=x_10922 and x_10926=x_10926 and x_108490=x_108490 and x_108494=x_108494 and x_108504=(x_10926=ite(x_132=x_108490 div 1000,1+x_108494,x_108494))and x_108504 and x_10922=1+x_108490Mi trovo in questa head
-inv(_13586,_132,_13590)
-Stampo Rawbody
-constr((_13586=0&(_132>=0&_13590=0)))
-✅ Inserita in rewrite: _130:int
-✅ Inserita in rewrite: _132:int
-✅ Inserita in rewrite: _134:int
-✅ Inserita in rewrite: _824:int
-✅ Inserita in rewrite: _828:int
-✅ Inserita in rewrite: _1878:int
-✅ Inserita in rewrite: _1882:int
-✅ Inserita in rewrite: _3200:int
-✅ Inserita in rewrite: _3204:int
-✅ Inserita in rewrite: _4724:int
-✅ Inserita in rewrite: _4728:int
-✅ Inserita in rewrite: _6504:int
-✅ Inserita in rewrite: _6508:int
-✅ Inserita in rewrite: _8630:int
-✅ Inserita in rewrite: _8634:int
-✅ Inserita in rewrite: _10922:int
-✅ Inserita in rewrite: _10926:int
-✅ Inserita in rewrite: _13586:int
-✅ Inserita in rewrite: _13590:int
-Stampo Body prima di zmi
-constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_824:int=_824:int,_828:int=_828:int,_1878:int=_1878:int,_1882:int=_1882:int,_3200:int=_3200:int,_3204:int=_3204:int,_4724:int=_4724:int,_4728:int=_4728:int,_6504:int=_6504:int,_6508:int=_6508:int,_8630:int=_8630:int,_8634:int=_8634:int,_10922:int=_10922:int,_10926:int=_10926:int,_13586:int=_13586:int,_13590:int=_13590:int,_13586=0 and _132>=0 and _13590=0))
+✅ Inserita in rewrite: _4732:int
+✅ Inserita in rewrite: _6598:int
+✅ Inserita in rewrite: _6602:int
+✅ Inserita in rewrite: _8646:int
+✅ Inserita in rewrite: _8650:int
+✅ Inserita in rewrite: _10950:int
+✅ Inserita in rewrite: _10954:int
+✅ Inserita in rewrite: _13510:int
+✅ Inserita in rewrite: _13514:int
 Limite MaxDepth raggiunto
 Entrato in constr c
-Stampo flatList
-[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_824:int=_824:int,_828:int=_828:int,_1878:int=_1878:int,_1882:int=_1882:int,_3200:int=_3200:int,_3204:int=_3204:int,_4724:int=_4724:int,_4728:int=_4728:int,_6504:int=_6504:int,_6508:int=_6508:int,_8630:int=_8630:int,_8634:int=_8634:int,_10922:int=_10922:int,_10926:int=_10926:int,_13586:int=_13586:int,_13590:int=_13590:int,(((((((((true,_130=_130,_132=_132,_134=_134,true=not(_130=<1000+1000*_132),_134=1000,true),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_838=(_134=ite(_132=_824 div 1000,1+_828,_828)),_838,_130=1+_824),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_1892=(_828=ite(_132=_1878 div 1000,1+_1882,_1882)),_1892,_824=1+_1878),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_3200=_3200,_3204=_3204,_3214=(_1882=ite(_132=_3200 div 1000,1+_3204,_3204)),_3214,_1878=1+_3200),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_3200=_3200,_3204=_3204,_4724=_4724,_4728=_4728,_4738=(_3204=ite(_132=_4724 div 1000,1+_4728,_4728)),_4738,_3200=1+_4724),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_3200=_3200,_3204=_3204,_4724=_4724,_4728=_4728,_6504=_6504,_6508=_6508,_6518=(_4728=ite(_132=_6504 div 1000,1+_6508,_6508)),_6518,_4724=1+_6504),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_3200=_3200,_3204=_3204,_4724=_4724,_4728=_4728,_6504=_6504,_6508=_6508,_8630=_8630,_8634=_8634,_8644=(_6508=ite(_132=_8630 div 1000,1+_8634,_8634)),_8644,_6504=1+_8630),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_3200=_3200,_3204=_3204,_4724=_4724,_4728=_4728,_6504=_6504,_6508=_6508,_8630=_8630,_8634=_8634,_10922=_10922,_10926=_10926,_10936=(_8634=ite(_132=_10922 div 1000,1+_10926,_10926)),_10936,_8630=1+_10922),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_3200=_3200,_3204=_3204,_4724=_4724,_4728=_4728,_6504=_6504,_6508=_6508,_8630=_8630,_8634=_8634,_10922=_10922,_10926=_10926,_13586=_13586,_13590=_13590,_13600=(_10926=ite(_132=_13586 div 1000,1+_13590,_13590)),_13600,_10922=1+_13586),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_3200=_3200,_3204=_3204,_4724=_4724,_4728=_4728,_6504=_6504,_6508=_6508,_8630=_8630,_8634=_8634,_10922=_10922,_10926=_10926,_13586=_13586,_13590=_13590,_13586=0,_132>=0,_13590=0]
 
 Stampa prima di inviare
-x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_824:int=x_824:int and x_828:int=x_828:int and x_1878:int=x_1878:int and x_1882:int=x_1882:int and x_3200:int=x_3200:int and x_3204:int=x_3204:int and x_4724:int=x_4724:int and x_4728:int=x_4728:int and x_6504:int=x_6504:int and x_6508:int=x_6508:int and x_8630:int=x_8630:int and x_8634:int=x_8634:int and x_10922:int=x_10922:int and x_10926:int=x_10926:int and x_13586:int=x_13586:int and x_13590:int=x_13590:int and (((((((((x_130=x_130 and x_132=x_132 and x_134=x_134 and true=not(x_130=<1000+1000*x_132)and x_134=1000)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_838=(x_134=ite(x_132=x_824 div 1000,1+x_828,x_828))and x_838 and x_130=1+x_824)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_1892=(x_828=ite(x_132=x_1878 div 1000,1+x_1882,x_1882))and x_1892 and x_824=1+x_1878)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_3200=x_3200 and x_3204=x_3204 and x_3214=(x_1882=ite(x_132=x_3200 div 1000,1+x_3204,x_3204))and x_3214 and x_1878=1+x_3200)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_3200=x_3200 and x_3204=x_3204 and x_4724=x_4724 and x_4728=x_4728 and x_4738=(x_3204=ite(x_132=x_4724 div 1000,1+x_4728,x_4728))and x_4738 and x_3200=1+x_4724)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_3200=x_3200 and x_3204=x_3204 and x_4724=x_4724 and x_4728=x_4728 and x_6504=x_6504 and x_6508=x_6508 and x_6518=(x_4728=ite(x_132=x_6504 div 1000,1+x_6508,x_6508))and x_6518 and x_4724=1+x_6504)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_3200=x_3200 and x_3204=x_3204 and x_4724=x_4724 and x_4728=x_4728 and x_6504=x_6504 and x_6508=x_6508 and x_8630=x_8630 and x_8634=x_8634 and x_8644=(x_6508=ite(x_132=x_8630 div 1000,1+x_8634,x_8634))and x_8644 and x_6504=1+x_8630)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_3200=x_3200 and x_3204=x_3204 and x_4724=x_4724 and x_4728=x_4728 and x_6504=x_6504 and x_6508=x_6508 and x_8630=x_8630 and x_8634=x_8634 and x_10922=x_10922 and x_10926=x_10926 and x_10936=(x_8634=ite(x_132=x_10922 div 1000,1+x_10926,x_10926))and x_10936 and x_8630=1+x_10922)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_3200=x_3200 and x_3204=x_3204 and x_4724=x_4724 and x_4728=x_4728 and x_6504=x_6504 and x_6508=x_6508 and x_8630=x_8630 and x_8634=x_8634 and x_10922=x_10922 and x_10926=x_10926 and x_13586=x_13586 and x_13590=x_13590 and x_13600=(x_10926=ite(x_132=x_13586 div 1000,1+x_13590,x_13590))and x_13600 and x_10922=1+x_13586)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_3200=x_3200 and x_3204=x_3204 and x_4724=x_4724 and x_4728=x_4728 and x_6504=x_6504 and x_6508=x_6508 and x_8630=x_8630 and x_8634=x_8634 and x_10922=x_10922 and x_10926=x_10926 and x_13586=x_13586 and x_13590=x_13590 and x_13586=0 and x_132>=0 and x_13590=0Stampo Rawbody
-inv(_58374,_132,_58378),constr((_58388=(_13588=ite(_132=_58374 div 1000,1+_58378,_58378))&(_58388&_13584=1+_58374)))
-⚠️ Formula non normalizzata: _58374 div 1000
-✅ Inserita in rewrite: _130:int
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_824:int=x_824:int and x_828:int=x_828:int and x_1848:int=x_1848:int and x_1852:int=x_1852:int and x_3128:int=x_3128:int and x_3132:int=x_3132:int and x_4728:int=x_4728:int and x_4732:int=x_4732:int and x_6598:int=x_6598:int and x_6602:int=x_6602:int and x_8646:int=x_8646:int and x_8650:int=x_8650:int and x_10950:int=x_10950:int and x_10954:int=x_10954:int and x_13510:int=x_13510:int and x_13514:int=x_13514:int and (((((((((x_130=x_130 and x_132=x_132 and x_134=x_134 and true=not(x_130=<1000+1000*x_132)and x_134=1000)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_838=(x_134=ite(x_132=x_824 div 1000,1+x_828,x_828))and x_838 and x_130=1+x_824)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_1862=(x_828=ite(x_132=x_1848 div 1000,1+x_1852,x_1852))and x_1862 and x_824=1+x_1848)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_3128=x_3128 and x_3132=x_3132 and x_3142=(x_1852=ite(x_132=x_3128 div 1000,1+x_3132,x_3132))and x_3142 and x_1848=1+x_3128)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_3128=x_3128 and x_3132=x_3132 and x_4728=x_4728 and x_4732=x_4732 and x_4742=(x_3132=ite(x_132=x_4728 div 1000,1+x_4732,x_4732))and x_4742 and x_3128=1+x_4728)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_3128=x_3128 and x_3132=x_3132 and x_4728=x_4728 and x_4732=x_4732 and x_6598=x_6598 and x_6602=x_6602 and x_6612=(x_4732=ite(x_132=x_6598 div 1000,1+x_6602,x_6602))and x_6612 and x_4728=1+x_6598)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_3128=x_3128 and x_3132=x_3132 and x_4728=x_4728 and x_4732=x_4732 and x_6598=x_6598 and x_6602=x_6602 and x_8646=x_8646 and x_8650=x_8650 and x_8660=(x_6602=ite(x_132=x_8646 div 1000,1+x_8650,x_8650))and x_8660 and x_6598=1+x_8646)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_3128=x_3128 and x_3132=x_3132 and x_4728=x_4728 and x_4732=x_4732 and x_6598=x_6598 and x_6602=x_6602 and x_8646=x_8646 and x_8650=x_8650 and x_10950=x_10950 and x_10954=x_10954 and x_10964=(x_8650=ite(x_132=x_10950 div 1000,1+x_10954,x_10954))and x_10964 and x_8646=1+x_10950)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_3128=x_3128 and x_3132=x_3132 and x_4728=x_4728 and x_4732=x_4732 and x_6598=x_6598 and x_6602=x_6602 and x_8646=x_8646 and x_8650=x_8650 and x_10950=x_10950 and x_10954=x_10954 and x_13510=x_13510 and x_13514=x_13514 and x_13524=(x_10954=ite(x_132=x_13510 div 1000,1+x_13514,x_13514))and x_13524 and x_10950=1+x_13510)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_3128=x_3128 and x_3132=x_3132 and x_4728=x_4728 and x_4732=x_4732 and x_6598=x_6598 and x_6602=x_6602 and x_8646=x_8646 and x_8650=x_8650 and x_10950=x_10950 and x_10954=x_10954 and x_13510=x_13510 and x_13514=x_13514 and x_13510=0 and x_132>=0 and x_13514=0✅ Inserita in rewrite: _130:int
 ✅ Inserita in rewrite: _132:int
 ✅ Inserita in rewrite: _134:int
 ✅ Inserita in rewrite: _824:int
 ✅ Inserita in rewrite: _828:int
-✅ Inserita in rewrite: _1878:int
-✅ Inserita in rewrite: _1882:int
-✅ Inserita in rewrite: _3200:int
-✅ Inserita in rewrite: _3204:int
-✅ Inserita in rewrite: _4724:int
+✅ Inserita in rewrite: _1848:int
+✅ Inserita in rewrite: _1852:int
+✅ Inserita in rewrite: _3128:int
+✅ Inserita in rewrite: _3132:int
 ✅ Inserita in rewrite: _4728:int
-✅ Inserita in rewrite: _6504:int
-✅ Inserita in rewrite: _6508:int
-✅ Inserita in rewrite: _8630:int
-✅ Inserita in rewrite: _8634:int
-✅ Inserita in rewrite: _10922:int
-✅ Inserita in rewrite: _10926:int
-✅ Inserita in rewrite: _13584:int
-✅ Inserita in rewrite: _13588:int
-✅ Inserita in rewrite: _58374:int
-✅ Inserita in rewrite: _58378:int
-Stampo Body prima di zmi
-constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_824:int=_824:int,_828:int=_828:int,_1878:int=_1878:int,_1882:int=_1882:int,_3200:int=_3200:int,_3204:int=_3204:int,_4724:int=_4724:int,_4728:int=_4728:int,_6504:int=_6504:int,_6508:int=_6508:int,_8630:int=_8630:int,_8634:int=_8634:int,_10922:int=_10922:int,_10926:int=_10926:int,_13584:int=_13584:int,_13588:int=_13588:int,_58374:int=_58374:int,_58378:int=_58378:int,_58388=(_13588=ite(_132=_58374 div 1000,1+_58378,_58378))and _58388 and _13584=1+_58374)),inv(_58374,_132,_58378)
+✅ Inserita in rewrite: _4732:int
+✅ Inserita in rewrite: _6598:int
+✅ Inserita in rewrite: _6602:int
+✅ Inserita in rewrite: _8646:int
+✅ Inserita in rewrite: _8650:int
+✅ Inserita in rewrite: _10950:int
+✅ Inserita in rewrite: _10954:int
+✅ Inserita in rewrite: _13510:int
+✅ Inserita in rewrite: _13514:int
+✅ Inserita in rewrite: _108298:int
+✅ Inserita in rewrite: _108302:int
 Limite MaxDepth raggiunto
 Limite MaxDepth raggiunto
 Entrato in constr c
-⚠️ Formula non normalizzata: _58374 div 1000
-Stampo flatList
-[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_824:int=_824:int,_828:int=_828:int,_1878:int=_1878:int,_1882:int=_1882:int,_3200:int=_3200:int,_3204:int=_3204:int,_4724:int=_4724:int,_4728:int=_4728:int,_6504:int=_6504:int,_6508:int=_6508:int,_8630:int=_8630:int,_8634:int=_8634:int,_10922:int=_10922:int,_10926:int=_10926:int,_13584:int=_13584:int,_13588:int=_13588:int,_58374:int=_58374:int,_58378:int=_58378:int,(((((((((true,_130=_130,_132=_132,_134=_134,true=not(_130=<1000+1000*_132),_134=1000,true),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_838=(_134=ite(_132=_824 div 1000,1+_828,_828)),_838,_130=1+_824),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_1892=(_828=ite(_132=_1878 div 1000,1+_1882,_1882)),_1892,_824=1+_1878),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_3200=_3200,_3204=_3204,_3214=(_1882=ite(_132=_3200 div 1000,1+_3204,_3204)),_3214,_1878=1+_3200),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_3200=_3200,_3204=_3204,_4724=_4724,_4728=_4728,_4738=(_3204=ite(_132=_4724 div 1000,1+_4728,_4728)),_4738,_3200=1+_4724),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_3200=_3200,_3204=_3204,_4724=_4724,_4728=_4728,_6504=_6504,_6508=_6508,_6518=(_4728=ite(_132=_6504 div 1000,1+_6508,_6508)),_6518,_4724=1+_6504),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_3200=_3200,_3204=_3204,_4724=_4724,_4728=_4728,_6504=_6504,_6508=_6508,_8630=_8630,_8634=_8634,_8644=(_6508=ite(_132=_8630 div 1000,1+_8634,_8634)),_8644,_6504=1+_8630),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_3200=_3200,_3204=_3204,_4724=_4724,_4728=_4728,_6504=_6504,_6508=_6508,_8630=_8630,_8634=_8634,_10922=_10922,_10926=_10926,_10936=(_8634=ite(_132=_10922 div 1000,1+_10926,_10926)),_10936,_8630=1+_10922),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_3200=_3200,_3204=_3204,_4724=_4724,_4728=_4728,_6504=_6504,_6508=_6508,_8630=_8630,_8634=_8634,_10922=_10922,_10926=_10926,_13584=_13584,_13588=_13588,_13598=(_10926=ite(_132=_13584 div 1000,1+_13588,_13588)),_13598,_10922=1+_13584),_130=_130,_132=_132,_134=_134,_824=_824,_828=_828,_1878=_1878,_1882=_1882,_3200=_3200,_3204=_3204,_4724=_4724,_4728=_4728,_6504=_6504,_6508=_6508,_8630=_8630,_8634=_8634,_10922=_10922,_10926=_10926,_13584=_13584,_13588=_13588,_58374=_58374,_58378=_58378,_58388=(_13588=ite(_132=_58374 div 1000,1+_58378,_58378)),_58388,_13584=1+_58374]
 
 Stampa prima di inviare
-x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_824:int=x_824:int and x_828:int=x_828:int and x_1878:int=x_1878:int and x_1882:int=x_1882:int and x_3200:int=x_3200:int and x_3204:int=x_3204:int and x_4724:int=x_4724:int and x_4728:int=x_4728:int and x_6504:int=x_6504:int and x_6508:int=x_6508:int and x_8630:int=x_8630:int and x_8634:int=x_8634:int and x_10922:int=x_10922:int and x_10926:int=x_10926:int and x_13584:int=x_13584:int and x_13588:int=x_13588:int and x_58374:int=x_58374:int and x_58378:int=x_58378:int and (((((((((x_130=x_130 and x_132=x_132 and x_134=x_134 and true=not(x_130=<1000+1000*x_132)and x_134=1000)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_838=(x_134=ite(x_132=x_824 div 1000,1+x_828,x_828))and x_838 and x_130=1+x_824)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_1892=(x_828=ite(x_132=x_1878 div 1000,1+x_1882,x_1882))and x_1892 and x_824=1+x_1878)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_3200=x_3200 and x_3204=x_3204 and x_3214=(x_1882=ite(x_132=x_3200 div 1000,1+x_3204,x_3204))and x_3214 and x_1878=1+x_3200)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_3200=x_3200 and x_3204=x_3204 and x_4724=x_4724 and x_4728=x_4728 and x_4738=(x_3204=ite(x_132=x_4724 div 1000,1+x_4728,x_4728))and x_4738 and x_3200=1+x_4724)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_3200=x_3200 and x_3204=x_3204 and x_4724=x_4724 and x_4728=x_4728 and x_6504=x_6504 and x_6508=x_6508 and x_6518=(x_4728=ite(x_132=x_6504 div 1000,1+x_6508,x_6508))and x_6518 and x_4724=1+x_6504)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_3200=x_3200 and x_3204=x_3204 and x_4724=x_4724 and x_4728=x_4728 and x_6504=x_6504 and x_6508=x_6508 and x_8630=x_8630 and x_8634=x_8634 and x_8644=(x_6508=ite(x_132=x_8630 div 1000,1+x_8634,x_8634))and x_8644 and x_6504=1+x_8630)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_3200=x_3200 and x_3204=x_3204 and x_4724=x_4724 and x_4728=x_4728 and x_6504=x_6504 and x_6508=x_6508 and x_8630=x_8630 and x_8634=x_8634 and x_10922=x_10922 and x_10926=x_10926 and x_10936=(x_8634=ite(x_132=x_10922 div 1000,1+x_10926,x_10926))and x_10936 and x_8630=1+x_10922)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_3200=x_3200 and x_3204=x_3204 and x_4724=x_4724 and x_4728=x_4728 and x_6504=x_6504 and x_6508=x_6508 and x_8630=x_8630 and x_8634=x_8634 and x_10922=x_10922 and x_10926=x_10926 and x_13584=x_13584 and x_13588=x_13588 and x_13598=(x_10926=ite(x_132=x_13584 div 1000,1+x_13588,x_13588))and x_13598 and x_10922=1+x_13584)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1878=x_1878 and x_1882=x_1882 and x_3200=x_3200 and x_3204=x_3204 and x_4724=x_4724 and x_4728=x_4728 and x_6504=x_6504 and x_6508=x_6508 and x_8630=x_8630 and x_8634=x_8634 and x_10922=x_10922 and x_10926=x_10926 and x_13584=x_13584 and x_13588=x_13588 and x_58374=x_58374 and x_58378=x_58378 and x_58388=(x_13588=ite(x_132=x_58374 div 1000,1+x_58378,x_58378))and x_58388 and x_13584=1+x_58374Limite MaxDepth raggiunto
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_824:int=x_824:int and x_828:int=x_828:int and x_1848:int=x_1848:int and x_1852:int=x_1852:int and x_3128:int=x_3128:int and x_3132:int=x_3132:int and x_4728:int=x_4728:int and x_4732:int=x_4732:int and x_6598:int=x_6598:int and x_6602:int=x_6602:int and x_8646:int=x_8646:int and x_8650:int=x_8650:int and x_10950:int=x_10950:int and x_10954:int=x_10954:int and x_13510:int=x_13510:int and x_13514:int=x_13514:int and x_108298:int=x_108298:int and x_108302:int=x_108302:int and (((((((((x_130=x_130 and x_132=x_132 and x_134=x_134 and true=not(x_130=<1000+1000*x_132)and x_134=1000)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_838=(x_134=ite(x_132=x_824 div 1000,1+x_828,x_828))and x_838 and x_130=1+x_824)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_1862=(x_828=ite(x_132=x_1848 div 1000,1+x_1852,x_1852))and x_1862 and x_824=1+x_1848)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_3128=x_3128 and x_3132=x_3132 and x_3142=(x_1852=ite(x_132=x_3128 div 1000,1+x_3132,x_3132))and x_3142 and x_1848=1+x_3128)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_3128=x_3128 and x_3132=x_3132 and x_4728=x_4728 and x_4732=x_4732 and x_4742=(x_3132=ite(x_132=x_4728 div 1000,1+x_4732,x_4732))and x_4742 and x_3128=1+x_4728)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_3128=x_3128 and x_3132=x_3132 and x_4728=x_4728 and x_4732=x_4732 and x_6598=x_6598 and x_6602=x_6602 and x_6612=(x_4732=ite(x_132=x_6598 div 1000,1+x_6602,x_6602))and x_6612 and x_4728=1+x_6598)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_3128=x_3128 and x_3132=x_3132 and x_4728=x_4728 and x_4732=x_4732 and x_6598=x_6598 and x_6602=x_6602 and x_8646=x_8646 and x_8650=x_8650 and x_8660=(x_6602=ite(x_132=x_8646 div 1000,1+x_8650,x_8650))and x_8660 and x_6598=1+x_8646)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_3128=x_3128 and x_3132=x_3132 and x_4728=x_4728 and x_4732=x_4732 and x_6598=x_6598 and x_6602=x_6602 and x_8646=x_8646 and x_8650=x_8650 and x_10950=x_10950 and x_10954=x_10954 and x_10964=(x_8650=ite(x_132=x_10950 div 1000,1+x_10954,x_10954))and x_10964 and x_8646=1+x_10950)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_3128=x_3128 and x_3132=x_3132 and x_4728=x_4728 and x_4732=x_4732 and x_6598=x_6598 and x_6602=x_6602 and x_8646=x_8646 and x_8650=x_8650 and x_10950=x_10950 and x_10954=x_10954 and x_13510=x_13510 and x_13514=x_13514 and x_13524=(x_10954=ite(x_132=x_13510 div 1000,1+x_13514,x_13514))and x_13524 and x_10950=1+x_13510)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_824=x_824 and x_828=x_828 and x_1848=x_1848 and x_1852=x_1852 and x_3128=x_3128 and x_3132=x_3132 and x_4728=x_4728 and x_4732=x_4732 and x_6598=x_6598 and x_6602=x_6602 and x_8646=x_8646 and x_8650=x_8650 and x_10950=x_10950 and x_10954=x_10954 and x_13510=x_13510 and x_13514=x_13514 and x_108298=x_108298 and x_108302=x_108302 and x_108312=(x_13514=ite(x_132=x_108298 div 1000,1+x_108302,x_108302))and x_108312 and x_13510=1+x_108298Limite MaxDepth raggiunto
 No SAT branches found in MaxDepths = 10.
-ERROR: -g load_clean('/home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/test/separato2/CHC-COMP-AGOSTO/LIA-Lin/z3_results/outPutz3Raname/soloPl//chc-comp24-LIA-Lin-087_timeout.smt2.pl'),set_solver(turibe),zmi(ff),halt.: false
+ERROR: -g load_clean('/home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/test/separato2/CHC-COMP-AGOSTO/LIA-Lin/z3_results/outPutz3Raname/soloPl/chc-comp24-LIA-Lin-087_timeout.smt2.pl'),set_solver(turibe),zmi(ff),halt.: false

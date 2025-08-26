@@ -1,3 +1,8 @@
+Warning: /home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/logic_utils.pl:239:
+Warning:    Clauses of logic_utils:normalize_bool_expr/2 are not together in the source-file
+Warning:    Earlier definition at /home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/logic_utils.pl:28
+Warning:    Current predicate: logic_utils:build_plus_chain/2
+Warning:    Use :- discontiguous logic_utils:normalize_bool_expr/2. to suppress this message
 skipping(:- mode inv(in,in,in,in,in).)
 skipping(:- mode inv1(in,in).)
 skipped parse: ":- pred ff."
@@ -21,7 +26,7 @@ Warning:    Singleton variables: [N]
 Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:958:
 Warning:    Singleton variables: [N,M]
 Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:971:
-Warning:    Loading module plunit_z3_push_test_equal22222223445 abolished: [plunit_z3_push_test_equal22222223445:'unit body'/2,plunit_z3_push_test_equal22222223445:'unit test'/4]
+Warning:    Loading module plunit_z3_push_test_equal22222223445 abolished: [plunit_z3_push_test_equal22222223445:'unit test'/4,plunit_z3_push_test_equal22222223445:'unit body'/2]
 Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:973:
 Warning:    Singleton variables: [O,A,M]
 Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:989:
@@ -31,57 +36,35 @@ Warning:    Singleton variables: [M]
 ℹ️ MaxDepth impostato a: 10
 Mi trovo in questa head
 ff
-Stampo Rawbody
-inv(_29472,_29474,_29476,_29478,_29480),constr((_29478>=_29480&_29476=<_29480))
-✅ Inserita in rewrite: _29472:int
-✅ Inserita in rewrite: _29474:int
-✅ Inserita in rewrite: _29476:int
-✅ Inserita in rewrite: _29478:int
-✅ Inserita in rewrite: _29480:int
-Stampo Body prima di zmi
-constr((_29472:int=_29472:int,_29474:int=_29474:int,_29476:int=_29476:int,_29478:int=_29478:int,_29480:int=_29480:int,_29478>=_29480 and _29476=<_29480)),inv(_29472,_29474,_29476,_29478,_29480)
+✅ Inserita in rewrite: _11814:int
+✅ Inserita in rewrite: _11816:int
+✅ Inserita in rewrite: _11818:int
+✅ Inserita in rewrite: _11820:int
+✅ Inserita in rewrite: _11822:int
 Entrato in constr c
-Stampo flatList
-[_29472:int=_29472:int,_29474:int=_29474:int,_29476:int=_29476:int,_29478:int=_29478:int,_29480:int=_29480:int,true,_29472=_29472,_29474=_29474,_29476=_29476,_29478=_29478,_29480=_29480,_29478>=_29480,_29476=<_29480]
 
 Stampa prima di inviare
-x_29472:int=x_29472:int and x_29474:int=x_29474:int and x_29476:int=x_29476:int and x_29478:int=x_29478:int and x_29480:int=x_29480:int and x_29472=x_29472 and x_29474=x_29474 and x_29476=x_29476 and x_29478=x_29478 and x_29480=x_29480 and x_29478>=x_29480 and x_29476=<x_29480Mi trovo in questa head
-inv(_130,_132,_134,_136,_138)
-Stampo Rawbody
-inv1(_130,_132),constr((_136=0&(~_138=<0&(~10=<_138&_134=0))))
-✅ Inserita in rewrite: _130:int
+x_11814:int=x_11814:int and x_11816:int=x_11816:int and x_11818:int=x_11818:int and x_11820:int=x_11820:int and x_11822:int=x_11822:int and x_11814=x_11814 and x_11816=x_11816 and x_11818=x_11818 and x_11820=x_11820 and x_11822=x_11822 and x_11820>=x_11822 and x_11818=<x_11822Mi trovo in questa head
+inv(_11814,_11816,_11818,_11820,_11822)
+✅ Inserita in rewrite: _11814:int
+✅ Inserita in rewrite: _11816:int
+✅ Inserita in rewrite: _11818:int
+✅ Inserita in rewrite: _11820:int
+✅ Inserita in rewrite: _11822:int
+Entrato in constr c
+
+Stampa prima di inviare
+x_11814:int=x_11814:int and x_11816:int=x_11816:int and x_11818:int=x_11818:int and x_11820:int=x_11820:int and x_11822:int=x_11822:int and (x_11814=x_11814 and x_11816=x_11816 and x_11818=x_11818 and x_11820=x_11820 and x_11822=x_11822 and x_11820>=x_11822 and x_11818=<x_11822)and x_11814=x_11814 and x_11816=x_11816 and x_11818=x_11818 and x_11820=x_11820 and x_11822=x_11822 and x_11820=0 and not(x_11822=<0)and not(10=<x_11822)and x_11818=0✅ Inserita in rewrite: _130:int
 ✅ Inserita in rewrite: _132:int
 ✅ Inserita in rewrite: _134:int
 ✅ Inserita in rewrite: _136:int
 ✅ Inserita in rewrite: _138:int
-Stampo Body prima di zmi
-constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_138:int=_138:int,_136=0 and not(_138=<0)and not(10=<_138)and _134=0)),inv1(_130,_132)
+✅ Inserita in rewrite: _10512:int
+✅ Inserita in rewrite: _10514:int
 Entrato in constr c
-Stampo flatList
-[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_138:int=_138:int,(true,_130=_130,_132=_132,_134=_134,_136=_136,_138=_138,_136>=_138,_134=<_138),_130=_130,_132=_132,_134=_134,_136=_136,_138=_138,_136=0,not(_138=<0),not(10=<_138),_134=0]
-
-Stampa prima di inviare
-x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:int=x_136:int and x_138:int=x_138:int and (x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_136>=x_138 and x_134=<x_138)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_136=0 and not(x_138=<0)and not(10=<x_138)and x_134=0Stampo Rawbody
-inv(_130,_132,_26924,_26926,_138),constr((_26938=ite(_26952=0,0,1)&(~_138=<_26926&(_134=ite(_26938=0,_26924+_130,_26924+_132)&(_136=1+_26926&_26952=_27036 mod 2)))))
-⚠️ Formula non normalizzata: _26924+_130
-⚠️ Formula non normalizzata: _26924+_132
-✅ Inserita in rewrite: _130:int
-✅ Inserita in rewrite: _132:int
-✅ Inserita in rewrite: _134:int
-✅ Inserita in rewrite: _136:int
-✅ Inserita in rewrite: _138:int
-✅ Inserita in rewrite: _26924:int
-✅ Inserita in rewrite: _26926:int
-Stampo Body prima di zmi
-constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_138:int=_138:int,_26924:int=_26924:int,_26926:int=_26926:int,_26938=ite(_26952=0,0,1)and not(_138=<_26926)and _134=ite(_26938=0,_26924+_130,_26924+_132)and _136=1+_26926 and _26952=_27036 mod 2)),inv(_130,_132,_26924,_26926,_138)
-Entrato in constr c
-⚠️ Formula non normalizzata: _26924+_130
-⚠️ Formula non normalizzata: _26924+_132
-Stampo flatList
-[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_138:int=_138:int,_26924:int=_26924:int,_26926:int=_26926:int,(true,_130=_130,_132=_132,_134=_134,_136=_136,_138=_138,_136>=_138,_134=<_138),_130=_130,_132=_132,_134=_134,_136=_136,_138=_138,_26924=_26924,_26926=_26926,_26938=ite(_26952=0,0,1),not(_138=<_26926),_134=ite(_26938=0,_26924+_130,_26924+_132),_136=1+_26926,_26952=_27036 mod 2]
 
 Stampa prima di inviare
 Z3 ERROR: code 12l Sort mismatch at argument #1 for function (declare-fun mod (Int Int) Int) supplied sort is uninterpreted
-ERROR: z3_assert/2: could not make Z3 formula x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_26924=x_26924 and x_26926=x_26926 and (x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_136>=x_138 and x_134=<x_138)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_26924=x_26924 and x_26926=x_26926 and x_26938=ite(x_26952=0,0,1)and not(x_138=<x_26926)and x_134=ite(x_26938=0,x_26924+x_130,x_26924+x_132)and x_136=1+x_26926 and x_26952=x_27036 mod 2
-x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:int=x_136:int and x_138:int=x_138:int and x_26924:int=x_26924:int and x_26926:int=x_26926:int and (x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_136>=x_138 and x_134=<x_138)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_26924=x_26924 and x_26926=x_26926 and x_26938=ite(x_26952=0,0,1)and not(x_138=<x_26926)and x_134=ite(x_26938=0,x_26924+x_130,x_26924+x_132)and x_136=1+x_26926 and x_26952=x_27036 mod 2No SAT branches found in MaxDepths = 10.
-ERROR: -g load_clean('/home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/test/separato2/CHC-COMP-AGOSTO/LIA-Lin/z3_results/outPutz3Raname/soloPl//chc-comp24-LIA-Lin-108_timeout.smt2.pl'),set_solver(turibe),zmi(ff),halt.: false
+ERROR: z3_assert/2: could not make Z3 formula x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_10512=x_10512 and x_10514=x_10514 and (x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_136>=x_138 and x_134=<x_138)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_10512=x_10512 and x_10514=x_10514 and x_10526=ite(x_10540=0,0,1)and not(x_138=<x_10514)and x_134=ite(x_10526=0,x_10512+x_130,x_10512+x_132)and x_136=1+x_10514 and x_10540=x_10624 mod 2
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:int=x_136:int and x_138:int=x_138:int and x_10512:int=x_10512:int and x_10514:int=x_10514:int and (x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_136>=x_138 and x_134=<x_138)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_10512=x_10512 and x_10514=x_10514 and x_10526=ite(x_10540=0,0,1)and not(x_138=<x_10514)and x_134=ite(x_10526=0,x_10512+x_130,x_10512+x_132)and x_136=1+x_10514 and x_10540=x_10624 mod 2No SAT branches found in MaxDepths = 10.
+ERROR: -g load_clean('/home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/test/separato2/CHC-COMP-AGOSTO/LIA-Lin/z3_results/outPutz3Raname/soloPl/chc-comp24-LIA-Lin-108_timeout.smt2.pl'),set_solver(turibe),zmi(ff),halt.: false

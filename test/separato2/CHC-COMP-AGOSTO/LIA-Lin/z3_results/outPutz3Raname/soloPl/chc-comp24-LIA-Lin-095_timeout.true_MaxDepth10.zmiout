@@ -1,3 +1,8 @@
+Warning: /home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/logic_utils.pl:239:
+Warning:    Clauses of logic_utils:normalize_bool_expr/2 are not together in the source-file
+Warning:    Earlier definition at /home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/logic_utils.pl:28
+Warning:    Current predicate: logic_utils:build_plus_chain/2
+Warning:    Use :- discontiguous logic_utils:normalize_bool_expr/2. to suppress this message
 skipping(:- mode sad(in,in).)
 skipping(:- mode fun(in,in,in,in,in).)
 skipped parse: ":- pred ff."
@@ -21,7 +26,7 @@ Warning:    Singleton variables: [N]
 Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:958:
 Warning:    Singleton variables: [N,M]
 Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:971:
-Warning:    Loading module plunit_z3_push_test_equal22222223445 abolished: [plunit_z3_push_test_equal22222223445:'unit body'/2,plunit_z3_push_test_equal22222223445:'unit test'/4]
+Warning:    Loading module plunit_z3_push_test_equal22222223445 abolished: [plunit_z3_push_test_equal22222223445:'unit test'/4,plunit_z3_push_test_equal22222223445:'unit body'/2]
 Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:973:
 Warning:    Singleton variables: [O,A,M]
 Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:989:
@@ -31,48 +36,28 @@ Warning:    Singleton variables: [M]
 ℹ️ MaxDepth impostato a: 10
 Mi trovo in questa head
 ff
-Stampo Rawbody
-sad(_590,_592),constr((_592>=5&_592>=_590))
-✅ Inserita in rewrite: _590:int
-✅ Inserita in rewrite: _592:int
-Stampo Body prima di zmi
-constr((_590:int=_590:int,_592:int=_592:int,_592>=5 and _592>=_590)),sad(_590,_592)
+✅ Inserita in rewrite: _11814:int
+✅ Inserita in rewrite: _11816:int
 Entrato in constr c
-Stampo flatList
-[_590:int=_590:int,_592:int=_592:int,true,_590=_590,_592=_592,_592>=5,_592>=_590]
 
 Stampa prima di inviare
-x_590:int=x_590:int and x_592:int=x_592:int and x_590=x_590 and x_592=x_592 and x_592>=5 and x_592>=x_590Mi trovo in questa head
-sad(_590,_592)
-Stampo Rawbody
-fun(_13530,_13532,_13534,_13536,_13538),constr((_13548=(_590=ite(_13538=1,smt_plus(2,_13536,- 2*_13534),1))&(_592=0&_13548)))
-⚠️ Formula non normalizzata: smt_plus(2,_13536,- 2*_13534)
-✅ Inserita in rewrite: _590:int
-✅ Inserita in rewrite: _592:int
-✅ Inserita in rewrite: _13530:int
-✅ Inserita in rewrite: _13532:int
-✅ Inserita in rewrite: _13534:int
-✅ Inserita in rewrite: _13536:int
-✅ Inserita in rewrite: _13538:int
-Stampo Body prima di zmi
-constr((_590:int=_590:int,_592:int=_592:int,_13530:int=_13530:int,_13532:int=_13532:int,_13534:int=_13534:int,_13536:int=_13536:int,_13538:int=_13538:int,_13548=(_590=ite(_13538=1,smt_plus(2,_13536,- 2*_13534),1))and _592=0 and _13548)),fun(_13530,_13532,_13534,_13536,_13538)
+x_11814:int=x_11814:int and x_11816:int=x_11816:int and x_11814=x_11814 and x_11816=x_11816 and x_11816>=5 and x_11816>=x_11814Mi trovo in questa head
+sad(_11814,_11816)
+✅ Inserita in rewrite: _11814:int
+✅ Inserita in rewrite: _11816:int
+✅ Inserita in rewrite: _24754:int
+✅ Inserita in rewrite: _24756:int
+✅ Inserita in rewrite: _24758:int
+✅ Inserita in rewrite: _24760:int
+✅ Inserita in rewrite: _24762:int
 Entrato in constr c
-⚠️ Formula non normalizzata: smt_plus(2,_13536,- 2*_13534)
-Stampo flatList
-[_590:int=_590:int,_592:int=_592:int,_13530:int=_13530:int,_13532:int=_13532:int,_13534:int=_13534:int,_13536:int=_13536:int,_13538:int=_13538:int,(true,_590=_590,_592=_592,_592>=5,_592>=_590),_590=_590,_592=_592,_13530=_13530,_13532=_13532,_13534=_13534,_13536=_13536,_13538=_13538,true=(_590=ite(_13538=1,smt_plus(2,_13536,- 2*_13534),1)),_592=0]
 
 Stampa prima di inviare
-x_590:int=x_590:int and x_592:int=x_592:int and x_13530:int=x_13530:int and x_13532:int=x_13532:int and x_13534:int=x_13534:int and x_13536:int=x_13536:int and x_13538:int=x_13538:int and (x_590=x_590 and x_592=x_592 and x_592>=5 and x_592>=x_590)and x_590=x_590 and x_592=x_592 and x_13530=x_13530 and x_13532=x_13532 and x_13534=x_13534 and x_13536=x_13536 and x_13538=x_13538 and true=(x_590=ite(x_13538=1,smt_plus(2,x_13536,- 2*x_13534),1))and x_592=0Stampo Rawbody
-sad(_590,_27950),constr((_27950=<_590&(_592=2+_27950&_592=1+_27950)))
-✅ Inserita in rewrite: _590:int
-✅ Inserita in rewrite: _592:int
-✅ Inserita in rewrite: _27950:int
-Stampo Body prima di zmi
-constr((_590:int=_590:int,_592:int=_592:int,_27950:int=_27950:int,_27950=<_590 and _592=2+_27950 and _592=1+_27950)),sad(_590,_27950)
+x_11814:int=x_11814:int and x_11816:int=x_11816:int and x_24754:int=x_24754:int and x_24756:int=x_24756:int and x_24758:int=x_24758:int and x_24760:int=x_24760:int and x_24762:int=x_24762:int and (x_11814=x_11814 and x_11816=x_11816 and x_11816>=5 and x_11816>=x_11814)and x_11814=x_11814 and x_11816=x_11816 and x_24754=x_24754 and x_24756=x_24756 and x_24758=x_24758 and x_24760=x_24760 and x_24762=x_24762 and true=(x_11814=ite(x_24762=1,2+x_24760+ - 2*x_24758,1))and x_11816=0✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _8482:int
 Entrato in constr c
-Stampo flatList
-[_590:int=_590:int,_592:int=_592:int,_27950:int=_27950:int,(true,_590=_590,_592=_592,_592>=5,_592>=_590),_590=_590,_592=_592,_27950=_27950,_27950=<_590,_592=2+_27950,_592=1+_27950]
 
 Stampa prima di inviare
-x_590:int=x_590:int and x_592:int=x_592:int and x_27950:int=x_27950:int and (x_590=x_590 and x_592=x_592 and x_592>=5 and x_592>=x_590)and x_590=x_590 and x_592=x_592 and x_27950=x_27950 and x_27950=<x_590 and x_592=2+x_27950 and x_592=1+x_27950No SAT branches found in MaxDepths = 10.
-ERROR: -g load_clean('/home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/test/separato2/CHC-COMP-AGOSTO/LIA-Lin/z3_results/outPutz3Raname/soloPl//chc-comp24-LIA-Lin-095_timeout.smt2.pl'),set_solver(turibe),zmi(ff),halt.: false
+x_130:int=x_130:int and x_132:int=x_132:int and x_8482:int=x_8482:int and (x_130=x_130 and x_132=x_132 and x_132>=5 and x_132>=x_130)and x_130=x_130 and x_132=x_132 and x_8482=x_8482 and x_8482=<x_130 and x_132=2+x_8482 and x_132=1+x_8482No SAT branches found in MaxDepths = 10.
+ERROR: -g load_clean('/home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/test/separato2/CHC-COMP-AGOSTO/LIA-Lin/z3_results/outPutz3Raname/soloPl/chc-comp24-LIA-Lin-095_timeout.smt2.pl'),set_solver(turibe),zmi(ff),halt.: false

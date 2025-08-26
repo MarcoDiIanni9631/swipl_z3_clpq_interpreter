@@ -1,3 +1,8 @@
+Warning: /home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/logic_utils.pl:239:
+Warning:    Clauses of logic_utils:normalize_bool_expr/2 are not together in the source-file
+Warning:    Earlier definition at /home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/logic_utils.pl:28
+Warning:    Current predicate: logic_utils:build_plus_chain/2
+Warning:    Use :- discontiguous logic_utils:normalize_bool_expr/2. to suppress this message
 skipping(:- mode state(in,in,in,in,in,in,in,in,in,in).)
 skipped parse: ":- pred ff."
 skipping(:- query ff/0.)
@@ -20,7 +25,7 @@ Warning:    Singleton variables: [N]
 Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:958:
 Warning:    Singleton variables: [N,M]
 Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:971:
-Warning:    Loading module plunit_z3_push_test_equal22222223445 abolished: [plunit_z3_push_test_equal22222223445:'unit test'/4,plunit_z3_push_test_equal22222223445:'unit body'/2]
+Warning:    Loading module plunit_z3_push_test_equal22222223445 abolished: [plunit_z3_push_test_equal22222223445:'unit body'/2,plunit_z3_push_test_equal22222223445:'unit test'/4]
 Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:973:
 Warning:    Singleton variables: [O,A,M]
 Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:989:
@@ -30,24 +35,18 @@ Warning:    Singleton variables: [M]
 ℹ️ MaxDepth impostato a: 10
 Mi trovo in questa head
 ff
-Stampo Rawbody
-state(_11814,_11816,_11818,_11820,_11822,_11824,_11826,_11828,_11830,_11832),constr((not(_11818)&(not(_11816)&(not(_11814)&(not(_11820)&(_11824&(_11822&(_11818&(_11816&(_11814&(_11820&(_11824&(not(_11822)&(_11818&(not(_11816)&(_11814&(_11820&(_11824&(not(_11822)&(_11818&(_11816&(not(_11814)&(_11820&(_11824&(not(_11822)&(_11818&(not(_11816)&(not(_11814)&(_11820&(_11824&not(_11822)))))))))))))))))))))))))))))))
-✅ Inserita in rewrite: _11814:bool
-✅ Inserita in rewrite: _11816:bool
-✅ Inserita in rewrite: _11818:bool
-✅ Inserita in rewrite: _11820:bool
-✅ Inserita in rewrite: _11822:bool
-✅ Inserita in rewrite: _11824:bool
-✅ Inserita in rewrite: _11826:int
-✅ Inserita in rewrite: _11828:int
-✅ Inserita in rewrite: _11830:int
-✅ Inserita in rewrite: _11832:int
-Stampo Body prima di zmi
-constr((_11814:bool=_11814:bool,_11816:bool=_11816:bool,_11818:bool=_11818:bool,_11820:bool=_11820:bool,_11822:bool=_11822:bool,_11824:bool=_11824:bool,_11826:int=_11826:int,_11828:int=_11828:int,_11830:int=_11830:int,_11832:int=_11832:int,not(_11818)and not(_11816)and not(_11814)and not(_11820)and _11824 and _11822 and _11818 and _11816 and _11814 and _11820 and _11824 and not(_11822)and _11818 and not(_11816)and _11814 and _11820 and _11824 and not(_11822)and _11818 and _11816 and not(_11814)and _11820 and _11824 and not(_11822)and _11818 and not(_11816)and not(_11814)and _11820 and _11824 and not(_11822))),state(_11814,_11816,_11818,_11820,_11822,_11824,_11826,_11828,_11830,_11832)
+✅ Inserita in rewrite: _22358:bool
+✅ Inserita in rewrite: _22360:bool
+✅ Inserita in rewrite: _22362:bool
+✅ Inserita in rewrite: _22364:bool
+✅ Inserita in rewrite: _22366:bool
+✅ Inserita in rewrite: _22368:bool
+✅ Inserita in rewrite: _22370:int
+✅ Inserita in rewrite: _22372:int
+✅ Inserita in rewrite: _22374:int
+✅ Inserita in rewrite: _22376:int
 Entrato in constr c
-Stampo flatList
-[_11814:bool=_11814:bool,_11816:bool=_11816:bool,_11818:bool=_11818:bool,_11820:bool=_11820:bool,_11822:bool=_11822:bool,_11824:bool=_11824:bool,_11826:int=_11826:int,_11828:int=_11828:int,_11830:int=_11830:int,_11832:int=_11832:int,true,_11814=_11814,_11816=_11816,_11818=_11818,_11820=_11820,_11822=_11822,_11824=_11824,_11826=_11826,_11828=_11828,_11830=_11830,_11832=_11832,not(_11818),not(_11816),not(_11814),not(_11820),_11824,_11822,_11818,_11816,_11814,_11820,_11824,not(_11822),_11818,not(_11816),_11814,_11820,_11824,not(_11822),_11818,_11816,not(_11814),_11820,_11824,not(_11822),_11818,not(_11816),not(_11814),_11820,_11824,not(_11822)]
 
 Stampa prima di inviare
-x_11814:bool=x_11814:bool and x_11816:bool=x_11816:bool and x_11818:bool=x_11818:bool and x_11820:bool=x_11820:bool and x_11822:bool=x_11822:bool and x_11824:bool=x_11824:bool and x_11826:int=x_11826:int and x_11828:int=x_11828:int and x_11830:int=x_11830:int and x_11832:int=x_11832:int and x_11814=x_11814 and x_11816=x_11816 and x_11818=x_11818 and x_11820=x_11820 and x_11822=x_11822 and x_11824=x_11824 and x_11826=x_11826 and x_11828=x_11828 and x_11830=x_11830 and x_11832=x_11832 and not(x_11818)and not(x_11816)and not(x_11814)and not(x_11820)and x_11824 and x_11822 and x_11818 and x_11816 and x_11814 and x_11820 and x_11824 and not(x_11822)and x_11818 and not(x_11816)and x_11814 and x_11820 and x_11824 and not(x_11822)and x_11818 and x_11816 and not(x_11814)and x_11820 and x_11824 and not(x_11822)and x_11818 and not(x_11816)and not(x_11814)and x_11820 and x_11824 and not(x_11822)No SAT branches found in MaxDepths = 10.
-ERROR: -g load_clean('/home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/test/separato2/CHC-COMP-AGOSTO/LIA-Lin/z3_results/outPutz3Raname/soloPl//chc-comp24-LIA-Lin-029_true.smt2.pl'),set_solver(turibe),zmi(ff),halt.: false
+x_22358:bool=x_22358:bool and x_22360:bool=x_22360:bool and x_22362:bool=x_22362:bool and x_22364:bool=x_22364:bool and x_22366:bool=x_22366:bool and x_22368:bool=x_22368:bool and x_22370:int=x_22370:int and x_22372:int=x_22372:int and x_22374:int=x_22374:int and x_22376:int=x_22376:int and x_22358=x_22358 and x_22360=x_22360 and x_22362=x_22362 and x_22364=x_22364 and x_22366=x_22366 and x_22368=x_22368 and x_22370=x_22370 and x_22372=x_22372 and x_22374=x_22374 and x_22376=x_22376 and not(x_22362)and not(x_22360)and not(x_22358)and not(x_22364)and x_22368 and x_22366 and x_22362 and x_22360 and x_22358 and x_22364 and x_22368 and not(x_22366)and x_22362 and not(x_22360)and x_22358 and x_22364 and x_22368 and not(x_22366)and x_22362 and x_22360 and not(x_22358)and x_22364 and x_22368 and not(x_22366)and x_22362 and not(x_22360)and not(x_22358)and x_22364 and x_22368 and not(x_22366)No SAT branches found in MaxDepths = 10.
+ERROR: -g load_clean('/home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/test/separato2/CHC-COMP-AGOSTO/LIA-Lin/z3_results/outPutz3Raname/soloPl/chc-comp24-LIA-Lin-029_true.smt2.pl'),set_solver(turibe),zmi(ff),halt.: false

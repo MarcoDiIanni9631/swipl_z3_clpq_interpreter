@@ -1,3 +1,8 @@
+Warning: /home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/logic_utils.pl:239:
+Warning:    Clauses of logic_utils:normalize_bool_expr/2 are not together in the source-file
+Warning:    Earlier definition at /home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/logic_utils.pl:28
+Warning:    Current predicate: logic_utils:build_plus_chain/2
+Warning:    Use :- discontiguous logic_utils:normalize_bool_expr/2. to suppress this message
 skipping(:- mode inv(in,in).)
 skipped parse: ":- pred ff."
 skipping(:- query ff/0.)
@@ -30,44 +35,26 @@ Warning:    Singleton variables: [M]
 ℹ️ MaxDepth impostato a: 10
 Mi trovo in questa head
 ff
-Stampo Rawbody
-inv(_29472,_29474),constr((~_29474=100&_29472=100))
-✅ Inserita in rewrite: _29472:int
-✅ Inserita in rewrite: _29474:int
-Stampo Body prima di zmi
-constr((_29472:int=_29472:int,_29474:int=_29474:int,not(_29474=100)and _29472=100)),inv(_29472,_29474)
+✅ Inserita in rewrite: _11814:int
+✅ Inserita in rewrite: _11816:int
 Entrato in constr c
-Stampo flatList
-[_29472:int=_29472:int,_29474:int=_29474:int,true,_29472=_29472,_29474=_29474,not(_29474=100),_29472=100]
 
 Stampa prima di inviare
-x_29472:int=x_29472:int and x_29474:int=x_29474:int and x_29472=x_29472 and x_29474=x_29474 and not(x_29474=100)and x_29472=100Mi trovo in questa head
-inv(_130,_132)
-Stampo Rawbody
-constr((_132=50&_130=0))
-✅ Inserita in rewrite: _130:int
-✅ Inserita in rewrite: _132:int
-Stampo Body prima di zmi
-constr((_130:int=_130:int,_132:int=_132:int,_132=50 and _130=0))
+x_11814:int=x_11814:int and x_11816:int=x_11816:int and x_11814=x_11814 and x_11816=x_11816 and not(x_11816=100)and x_11814=100Mi trovo in questa head
+inv(_11814,_11816)
+✅ Inserita in rewrite: _11814:int
+✅ Inserita in rewrite: _11816:int
 Entrato in constr c
-Stampo flatList
-[_130:int=_130:int,_132:int=_132:int,(true,_130=_130,_132=_132,not(_132=100),_130=100),_130=_130,_132=_132,_132=50,_130=0]
 
 Stampa prima di inviare
-x_130:int=x_130:int and x_132:int=x_132:int and (x_130=x_130 and x_132=x_132 and not(x_132=100)and x_130=100)and x_130=x_130 and x_132=x_132 and x_132=50 and x_130=0Stampo Rawbody
-ite(_130=<50,_132=_15604,_132=1+_15604),inv(_15628,_15604),constr((~100=<_15628&_130=1+_15628))
-✅ Inserita in rewrite: _130:int
-✅ Inserita in rewrite: _132:int
-✅ Inserita in rewrite: _15604:int
-✅ Inserita in rewrite: _15628:int
-Stampo Body prima di zmi
-constr((_130:int=_130:int,_132:int=_132:int,_15604:int=_15604:int,_15628:int=_15628:int,not(100=<_15628)and _130=1+_15628)),ite(_130=<50,_132=_15604,_132=1+_15604),inv(_15628,_15604)
+x_11814:int=x_11814:int and x_11816:int=x_11816:int and (x_11814=x_11814 and x_11816=x_11816 and not(x_11816=100)and x_11814=100)and x_11814=x_11814 and x_11816=x_11816 and x_11816=50 and x_11814=0✅ Inserita in rewrite: _11814:int
+✅ Inserita in rewrite: _11816:int
+✅ Inserita in rewrite: _29892:int
+✅ Inserita in rewrite: _29916:int
 Entrato in constr c
-Stampo flatList
-[_130:int=_130:int,_132:int=_132:int,_15604:int=_15604:int,_15628:int=_15628:int,(true,_130=_130,_132=_132,not(_132=100),_130=100),_130=_130,_132=_132,_15604=_15604,_15628=_15628,not(100=<_15628),_130=1+_15628]
 
 Stampa prima di inviare
-x_130:int=x_130:int and x_132:int=x_132:int and x_15604:int=x_15604:int and x_15628:int=x_15628:int and (x_130=x_130 and x_132=x_132 and not(x_132=100)and x_130=100)and x_130=x_130 and x_132=x_132 and x_15604=x_15604 and x_15628=x_15628 and not(100=<x_15628)and x_130=1+x_15628Mi trovo in questa head
-ite(_130=<50,_132=_15604,_132=1+_15604)
+x_11814:int=x_11814:int and x_11816:int=x_11816:int and x_29892:int=x_29892:int and x_29916:int=x_29916:int and (x_11814=x_11814 and x_11816=x_11816 and not(x_11816=100)and x_11814=100)and x_11814=x_11814 and x_11816=x_11816 and x_29892=x_29892 and x_29916=x_29916 and not(100=<x_29916)and x_11814=1+x_29916Mi trovo in questa head
+ite(_130=<50,_132=_622,_132=1+_622)
 No SAT branches found in MaxDepths = 10.
-ERROR: -g load_clean('/home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/test/separato2/CHC-COMP-AGOSTO/LIA-Lin/z3_results/outPutz3Raname/soloPl//chc-comp24-LIA-Lin-094_true.smt2.pl'),set_solver(turibe),zmi(ff),halt.: false
+ERROR: -g load_clean('/home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/test/separato2/CHC-COMP-AGOSTO/LIA-Lin/z3_results/outPutz3Raname/soloPl/chc-comp24-LIA-Lin-094_true.smt2.pl'),set_solver(turibe),zmi(ff),halt.: false

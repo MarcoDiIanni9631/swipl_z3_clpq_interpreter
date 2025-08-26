@@ -1,3 +1,8 @@
+Warning: /home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/logic_utils.pl:239:
+Warning:    Clauses of logic_utils:normalize_bool_expr/2 are not together in the source-file
+Warning:    Earlier definition at /home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/logic_utils.pl:28
+Warning:    Current predicate: logic_utils:build_plus_chain/2
+Warning:    Use :- discontiguous logic_utils:normalize_bool_expr/2. to suppress this message
 skipped parse: ":- pred 'assert #0: main.java, line 13'."
 skipped parse: ":- pred '<main: void main(jayarray_java_lang_string)>_block13_2'(int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int)."
 skipping(:- mode '<main: void main(jayarray_java_lang_string)>_block13_2'(in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in,in).)
@@ -46,36 +51,18 @@ Warning:    Singleton variables: [M]
 ℹ️ MaxDepth impostato a: 10
 Mi trovo in questa head
 ff
-Stampo Rawbody
-assert #0: main.java, line 13,constr(true)
-Stampo Body prima di zmi
-constr(true),assert #0: main.java, line 13
 Entrato in constr c
-Stampo flatList
-[true]
 
 Stampa prima di inviare
 trueMi trovo in questa head
 assert #0: main.java, line 13
-Stampo Rawbody
-<main: void main(jayarray_java_lang_string)>_block13_6(_9704,_9706,_9708,_9710,_9712,_9714,_9716,_9718,_9720,_9722,_9724,_9726,_9728,_9730,_9732,_9734,_9736,_9738,_9740,_9742,_9744,_9746,_9748,_9750,_9752,_9754,_9756,_9758,_9760,_9762,_9764,_9766,_9768,_9770,_9772,_9774,_9776,_9778,_9780,_9782,_9784,_9786),constr(~_9744=0)
-Stampo Body prima di zmi
-constr(not(_9744=0)),<main: void main(jayarray_java_lang_string)>_block13_6(_9704,_9706,_9708,_9710,_9712,_9714,_9716,_9718,_9720,_9722,_9724,_9726,_9728,_9730,_9732,_9734,_9736,_9738,_9740,_9742,_9744,_9746,_9748,_9750,_9752,_9754,_9756,_9758,_9760,_9762,_9764,_9766,_9768,_9770,_9772,_9774,_9776,_9778,_9780,_9782,_9784,_9786)
 Entrato in constr c
-Stampo flatList
-[(true,true),not(_9744=0)]
 
 Stampa prima di inviare
-true and not(x_9744=0)Mi trovo in questa head
-<main: void main(jayarray_java_lang_string)>_block13_6(_9704,_9706,_9708,_9710,_9712,_9714,_9716,_9718,_9720,_9722,_9724,_9726,_9728,_9730,_9732,_9734,_9736,_9738,_9740,_9742,_9744,_9746,_9748,_9750,_9752,_9754,_9756,_9758,_9760,_9762,_9764,_9766,_9768,_9770,_9772,_9774,_9776,_9778,_9780,_9782,_9784,_9786)
-Stampo Rawbody
-<main: void main(jayarray_java_lang_string)>_block13_5(_9704,_9706,_9708,_9710,_9712,_9714,_9716,_9718,_9720,_9722,_9724,_9726,_9728,_9730,_9732,_9734,_9736,_9738,_9740,_9742,_9746,_9748,_9750,_9752,_9754,_9756,_9758,_9760,_9762,_9764,_9766,_9768,_9770,_9772,_9774,_9776,_9778,_9780,_9782,_9784,_9786),constr(_9744=0)
-Stampo Body prima di zmi
-constr(_9744=0),<main: void main(jayarray_java_lang_string)>_block13_5(_9704,_9706,_9708,_9710,_9712,_9714,_9716,_9718,_9720,_9722,_9724,_9726,_9728,_9730,_9732,_9734,_9736,_9738,_9740,_9742,_9746,_9748,_9750,_9752,_9754,_9756,_9758,_9760,_9762,_9764,_9766,_9768,_9770,_9772,_9774,_9776,_9778,_9780,_9782,_9784,_9786)
+true and not(x_26160=0)Mi trovo in questa head
+<main: void main(jayarray_java_lang_string)>_block13_6(_260,_262,_264,_266,_268,_270,_272,_274,_276,_278,_280,_282,_284,_286,_288,_290,_292,_294,_296,_298,_300,_302,_304,_306,_308,_310,_312,_314,_316,_318,_320,_322,_324,_326,_328,_330,_332,_334,_336,_338,_340,_342)
 Entrato in constr c
-Stampo flatList
-[((true,true),not(_9744=0)),_9744=0]
 
 Stampa prima di inviare
-(true and not(x_9744=0))and x_9744=0No SAT branches found in MaxDepths = 10.
-ERROR: -g load_clean('/home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/test/separato2/CHC-COMP-AGOSTO/LIA-Lin/z3_results/outPutz3Raname/soloPl//chc-comp24-LIA-Lin-296_true.smt2.pl'),set_solver(turibe),zmi(ff),halt.: false
+(true and not(x_300=0))and x_300=0No SAT branches found in MaxDepths = 10.
+ERROR: -g load_clean('/home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/test/separato2/CHC-COMP-AGOSTO/LIA-Lin/z3_results/outPutz3Raname/soloPl/chc-comp24-LIA-Lin-296_true.smt2.pl'),set_solver(turibe),zmi(ff),halt.: false

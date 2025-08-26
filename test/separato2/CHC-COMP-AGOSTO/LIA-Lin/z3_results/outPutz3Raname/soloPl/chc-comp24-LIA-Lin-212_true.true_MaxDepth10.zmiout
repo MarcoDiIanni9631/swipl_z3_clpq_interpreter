@@ -1,3 +1,8 @@
+Warning: /home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/logic_utils.pl:239:
+Warning:    Clauses of logic_utils:normalize_bool_expr/2 are not together in the source-file
+Warning:    Earlier definition at /home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/logic_utils.pl:28
+Warning:    Current predicate: logic_utils:build_plus_chain/2
+Warning:    Use :- discontiguous logic_utils:normalize_bool_expr/2. to suppress this message
 skipping(:- mode inv_main5(in,in).)
 skipping(:- mode inv_main4(in,in).)
 skipped parse: ":- pred ff."
@@ -21,7 +26,7 @@ Warning:    Singleton variables: [N]
 Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:958:
 Warning:    Singleton variables: [N,M]
 Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:971:
-Warning:    Loading module plunit_z3_push_test_equal22222223445 abolished: [plunit_z3_push_test_equal22222223445:'unit body'/2,plunit_z3_push_test_equal22222223445:'unit test'/4]
+Warning:    Loading module plunit_z3_push_test_equal22222223445 abolished: [plunit_z3_push_test_equal22222223445:'unit test'/4,plunit_z3_push_test_equal22222223445:'unit body'/2]
 Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:973:
 Warning:    Singleton variables: [O,A,M]
 Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:989:
@@ -31,18 +36,10 @@ Warning:    Singleton variables: [M]
 ℹ️ MaxDepth impostato a: 10
 Mi trovo in questa head
 ff
-Stampo Rawbody
-inv_main5(_29472,_29474),constr((_29474=3*_29498+_29492&(_29474=< - 1&(not(_29492=< - 1)&(1=<_29474&(not(1=<_29492)&(_29492=<2&(0=<_29474&(0=<_29472&(- 2=<_29492&_29492=0))))))))))
-⚠️ Formula non normalizzata: 3*_29498+_29492
-✅ Inserita in rewrite: _29472:int
-✅ Inserita in rewrite: _29474:int
-Stampo Body prima di zmi
-constr((_29472:int=_29472:int,_29474:int=_29474:int,_29474=3*_29498+_29492 and _29474=< - 1 and not(_29492=< - 1)and 1=<_29474 and not(1=<_29492)and _29492=<2 and 0=<_29474 and 0=<_29472 and - 2=<_29492 and _29492=0)),inv_main5(_29472,_29474)
+✅ Inserita in rewrite: _11814:int
+✅ Inserita in rewrite: _11816:int
 Entrato in constr c
-⚠️ Formula non normalizzata: 3*_29498+_29492
-Stampo flatList
-[_130:int=_130:int,_132:int=_132:int,true,_130=_130,_132=_132,_132=3*_156+_150,_132=< - 1,not(_150=< - 1),1=<_132,not(1=<_150),_150=<2,0=<_132,0=<_130,- 2=<_150,_150=0]
 
 Stampa prima di inviare
-x_130:int=x_130:int and x_132:int=x_132:int and x_130=x_130 and x_132=x_132 and x_132=3*x_156+x_150 and x_132=< - 1 and not(x_150=< - 1)and 1=<x_132 and not(1=<x_150)and x_150=<2 and 0=<x_132 and 0=<x_130 and - 2=<x_150 and x_150=0No SAT branches found in MaxDepths = 10.
-ERROR: -g load_clean('/home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/test/separato2/CHC-COMP-AGOSTO/LIA-Lin/z3_results/outPutz3Raname/soloPl//chc-comp24-LIA-Lin-212_true.smt2.pl'),set_solver(turibe),zmi(ff),halt.: false
+x_11814:int=x_11814:int and x_11816:int=x_11816:int and x_11814=x_11814 and x_11816=x_11816 and x_11816=3*x_11840+x_11834 and x_11816=< - 1 and not(x_11834=< - 1)and 1=<x_11816 and not(1=<x_11834)and x_11834=<2 and 0=<x_11816 and 0=<x_11814 and - 2=<x_11834 and x_11834=0No SAT branches found in MaxDepths = 10.
+ERROR: -g load_clean('/home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/test/separato2/CHC-COMP-AGOSTO/LIA-Lin/z3_results/outPutz3Raname/soloPl/chc-comp24-LIA-Lin-212_true.smt2.pl'),set_solver(turibe),zmi(ff),halt.: false
