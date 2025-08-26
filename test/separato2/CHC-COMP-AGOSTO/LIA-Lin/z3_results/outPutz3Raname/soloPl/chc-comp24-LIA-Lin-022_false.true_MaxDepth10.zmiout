@@ -1,0 +1,66 @@
+skipping(:- mode 'main@entry'(in).)
+skipped parse: ":- pred 'main@verifier.error.split'."
+skipping(:- mode 'main@_bb'(in,in,in).)
+skipped parse: ":- pred ff."
+skipping(:- query ff/0.)
+skipping(:- mode constr(in).)
+skipping(:- ignore constr/1.)
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/type_inference.pl:248:
+Warning:    Singleton variables: [Y]
+Installing Z3 package
+Using Z3 version Z3 4.15.3.0
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:895:
+Warning:    Singleton variables: [R]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:908:
+Warning:    Singleton variables: [M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:923:
+Warning:    Singleton variables: [N]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:932:
+Warning:    Singleton variables: [N,O,A]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:944:
+Warning:    Singleton variables: [N]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:958:
+Warning:    Singleton variables: [N,M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:971:
+Warning:    Loading module plunit_z3_push_test_equal22222223445 abolished: [plunit_z3_push_test_equal22222223445:'unit body'/2,plunit_z3_push_test_equal22222223445:'unit test'/4]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:973:
+Warning:    Singleton variables: [O,A,M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:989:
+Warning:    Singleton variables: [M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:1002:
+Warning:    Singleton variables: [M]
+ℹ️ MaxDepth impostato a: 10
+Mi trovo in questa head
+ff
+Stampo Rawbody
+main@verifier.error.split,constr(true)
+Stampo Body prima di zmi
+constr(true),main@verifier.error.split
+Entrato in constr c
+Stampo flatList
+[true]
+
+Stampa prima di inviare
+trueMi trovo in questa head
+main@verifier.error.split
+Stampo Rawbody
+main@_bb(_4352,_4354,_4356),constr((~ (_4356=<_4352)=_4372&(_4388=true&(not(_4400)&(_4404&(_4388 and _4418&(not(_4388)&(_4418 and _4440&(not(_4418)&(_4440 and _4400&(not(_4440)&(_4400 and _4484&(not(_4400)&(_4404=(_4510=0)&(not(_4400)&(_4484 and _4534&(not(_4484)&(not(_4554)&(not(_4534)&(_4534 and _4576&(not(_4534)&(_4510=ite(_4602,1,0)&(not(_4534)&(_4626=2*_4352&(not(_4534)&(_4654=(_4354=_4626)&(not(_4534)&(_4602=(_4654 or _4690)&(not(_4534)&(_4690=(_4354=0)&(not(_4534)&(not(_4576)&(_4372&not(_4534))))))))))))))))))))))))))))))))))
+⚠️ Formula non normalizzata: 2*_4352
+✅ Inserita in rewrite: _4352:int
+✅ Inserita in rewrite: _4354:int
+✅ Inserita in rewrite: _4356:int
+Stampo Body prima di zmi
+constr((_4352:int=_4352:int,_4354:int=_4354:int,_4356:int=_4356:int,not((_4356=<_4352)=_4372)and _4388=true and not(_4400)and _4404 and (_4388,_4418)and not(_4388)and(_4418,_4440)and not(_4418)and(_4440,_4400)and not(_4440)and(_4400,_4484)and not(_4400)and _4404=(_4510=0)and not(_4400)and(_4484,_4534)and not(_4484)and not(_4554)and not(_4534)and(_4534,_4576)and not(_4534)and _4510=ite(_4602,1,0)and not(_4534)and _4626=2*_4352 and not(_4534)and _4654=(_4354=_4626)and not(_4534)and _4602=(_4654 or _4690)and not(_4534)and _4690=(_4354=0)and not(_4534)and not(_4576)and _4372 and not(_4534))),main@_bb(_4352,_4354,_4356)
+Entrato in constr c
+⚠️ Formula non normalizzata: 2*_4352
+Stampo flatList
+[_4352:int=_4352:int,_4354:int=_4354:int,_4356:int=_4356:int,(true,true),_4352=_4352,_4354=_4354,_4356=_4356,not((_4356=<_4352)=_4372),_4388=true,not(_4400),_4404,(_4388,_4418),not(_4388),(_4418,_4440),not(_4418),(_4440,_4400),not(_4440),(_4400,_4484),not(_4400),_4404=(_4510=0),not(_4400),(_4484,_4534),not(_4484),not(_4554),not(_4534),(_4534,_4576),not(_4534),_4510=ite(_4602,1,0),not(_4534),_4626=2*_4352,not(_4534),_4654=(_4354=_4626),not(_4534),_4602=(_4654 or _4690),not(_4534),_4690=(_4354=0),not(_4534),not(_4576),_4372,not(_4534)]
+
+Stampa prima di inviare
+x_4352:int=x_4352:int and x_4354:int=x_4354:int and x_4356:int=x_4356:int and true and x_4352=x_4352 and x_4354=x_4354 and x_4356=x_4356 and not((x_4356=<x_4352)=x_4372)and x_4388=true and not(x_4400)and x_4404 and (x_4388 and x_4418)and not(x_4388)and(x_4418 and x_4440)and not(x_4418)and(x_4440 and x_4400)and not(x_4440)and(x_4400 and x_4484)and not(x_4400)and x_4404=(x_4510=0)and not(x_4400)and(x_4484 and x_4534)and not(x_4484)and not(x_4554)and not(x_4534)and(x_4534 and x_4576)and not(x_4534)and x_4510=ite(x_4602,1,0)and not(x_4534)and x_4626=2*x_4352 and not(x_4534)and x_4654=(x_4354=x_4626)and not(x_4534)and x_4602=(x_4654 or x_4690)and not(x_4534)and x_4690=(x_4354=0)and not(x_4534)and not(x_4576)and x_4372 and not(x_4534)⚠️ Formula non normalizzata: _562 or _598
+Stampo flatList
+[_260:int=_260:int,_262:int=_262:int,_264:int=_264:int,(true,true),_260=_260,_262=_262,_264=_264,not((_264=<_260)=_280),_296=true,not(_308),_312,(_296,_326),not(_296),(_326,_348),not(_326),(_348,_308),not(_348),(_308,_392),not(_308),_312=(_418=0),not(_308),(_392,_442),not(_392),not(_462),not(_442),(_442,_484),not(_442),_418=ite(_510,1,0),not(_442),_534=2*_260,not(_442),_562=(_262=_534),not(_442),_510=(_562 or _598),not(_442),_598=(_262=0),not(_442),not(_484),_280,not(_442)]
+
+Stampa prima di inviare
+x_260:int=x_260:int and x_262:int=x_262:int and x_264:int=x_264:int and true and x_260=x_260 and x_262=x_262 and x_264=x_264 and not((x_264=<x_260)=x_280)and x_296=true and not(x_308)and x_312 and (x_296 and x_326)and not(x_296)and(x_326 and x_348)and not(x_326)and(x_348 and x_308)and not(x_348)and(x_308 and x_392)and not(x_308)and x_312=(x_418=0)and not(x_308)and(x_392 and x_442)and not(x_392)and not(x_462)and not(x_442)and(x_442 and x_484)and not(x_442)and x_418=ite(x_510,1,0)and not(x_442)and x_534=2*x_260 and not(x_442)and x_562=(x_262=x_534)and not(x_442)and x_510=(x_562 or x_598)and not(x_442)and x_598=(x_262=0)and not(x_442)and not(x_484)and x_280 and not(x_442)No SAT branches found in MaxDepths = 10.
+ERROR: -g load_clean('/home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/test/separato2/CHC-COMP-AGOSTO/LIA-Lin/z3_results/outPutz3Raname/soloPl//chc-comp24-LIA-Lin-022_false.smt2.pl'),set_solver(turibe),zmi(ff),halt.: false

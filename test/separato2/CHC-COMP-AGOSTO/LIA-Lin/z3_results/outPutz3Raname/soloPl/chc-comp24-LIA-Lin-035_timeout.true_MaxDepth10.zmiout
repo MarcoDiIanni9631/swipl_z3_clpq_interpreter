@@ -1,0 +1,53 @@
+skipping(:- mode state(in,in,in,in,in,in,in,in,in,in).)
+skipped parse: ":- pred ff."
+skipping(:- query ff/0.)
+skipping(:- mode constr(in).)
+skipping(:- ignore constr/1.)
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/type_inference.pl:248:
+Warning:    Singleton variables: [Y]
+Installing Z3 package
+Using Z3 version Z3 4.15.3.0
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:895:
+Warning:    Singleton variables: [R]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:908:
+Warning:    Singleton variables: [M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:923:
+Warning:    Singleton variables: [N]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:932:
+Warning:    Singleton variables: [N,O,A]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:944:
+Warning:    Singleton variables: [N]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:958:
+Warning:    Singleton variables: [N,M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:971:
+Warning:    Loading module plunit_z3_push_test_equal22222223445 abolished: [plunit_z3_push_test_equal22222223445:'unit test'/4,plunit_z3_push_test_equal22222223445:'unit body'/2]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:973:
+Warning:    Singleton variables: [O,A,M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:989:
+Warning:    Singleton variables: [M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:1002:
+Warning:    Singleton variables: [M]
+ℹ️ MaxDepth impostato a: 10
+Mi trovo in questa head
+ff
+Stampo Rawbody
+state(_5942,_5944,_5946,_5948,_5950,_5952,_5954,_5956,_5958,_5960),constr((not(_5942)&(not(_5944)&(_5948&(not(_5946)&(_5950&(_5942&(_5944&(not(_5948)&(not(_5946)&(_5950&(not(_5942)&(_5944&(not(_5948)&(not(_5946)&_5950)))))))))))))))
+✅ Inserita in rewrite: _5942:bool
+✅ Inserita in rewrite: _5944:bool
+✅ Inserita in rewrite: _5946:bool
+✅ Inserita in rewrite: _5948:bool
+✅ Inserita in rewrite: _5950:bool
+✅ Inserita in rewrite: _5952:int
+✅ Inserita in rewrite: _5954:int
+✅ Inserita in rewrite: _5956:int
+✅ Inserita in rewrite: _5958:int
+✅ Inserita in rewrite: _5960:int
+Stampo Body prima di zmi
+constr((_5942:bool=_5942:bool,_5944:bool=_5944:bool,_5946:bool=_5946:bool,_5948:bool=_5948:bool,_5950:bool=_5950:bool,_5952:int=_5952:int,_5954:int=_5954:int,_5956:int=_5956:int,_5958:int=_5958:int,_5960:int=_5960:int,not(_5942)and not(_5944)and _5948 and not(_5946)and _5950 and _5942 and _5944 and not(_5948)and not(_5946)and _5950 and not(_5942)and _5944 and not(_5948)and not(_5946)and _5950)),state(_5942,_5944,_5946,_5948,_5950,_5952,_5954,_5956,_5958,_5960)
+Entrato in constr c
+Stampo flatList
+[_5942:bool=_5942:bool,_5944:bool=_5944:bool,_5946:bool=_5946:bool,_5948:bool=_5948:bool,true:bool=true:bool,_5952:int=_5952:int,_5954:int=_5954:int,_5956:int=_5956:int,_5958:int=_5958:int,_5960:int=_5960:int,true,_5942=_5942,_5944=_5944,_5946=_5946,_5948=_5948,true=true,_5952=_5952,_5954=_5954,_5956=_5956,_5958=_5958,_5960=_5960,not(_5942),not(_5944),_5948,not(_5946),true,_5942,_5944,not(_5948),not(_5946),true,not(_5942),_5944,not(_5948),not(_5946)]
+
+Stampa prima di inviare
+x_5942:bool=x_5942:bool and x_5944:bool=x_5944:bool and x_5946:bool=x_5946:bool and x_5948:bool=x_5948:bool and true:bool=true:bool and x_5952:int=x_5952:int and x_5954:int=x_5954:int and x_5956:int=x_5956:int and x_5958:int=x_5958:int and x_5960:int=x_5960:int and x_5942=x_5942 and x_5944=x_5944 and x_5946=x_5946 and x_5948=x_5948 and true=true and x_5952=x_5952 and x_5954=x_5954 and x_5956=x_5956 and x_5958=x_5958 and x_5960=x_5960 and not(x_5942)and not(x_5944)and x_5948 and not(x_5946)and x_5942 and x_5944 and not(x_5948)and not(x_5946)and not(x_5942)and x_5944 and not(x_5948)and not(x_5946)No SAT branches found in MaxDepths = 10.
+ERROR: -g load_clean('/home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/test/separato2/CHC-COMP-AGOSTO/LIA-Lin/z3_results/outPutz3Raname/soloPl//chc-comp24-LIA-Lin-035_timeout.smt2.pl'),set_solver(turibe),zmi(ff),halt.: false

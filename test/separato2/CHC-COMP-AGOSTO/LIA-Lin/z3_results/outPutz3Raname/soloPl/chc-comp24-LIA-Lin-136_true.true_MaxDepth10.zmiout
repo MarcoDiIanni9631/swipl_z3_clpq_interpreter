@@ -1,0 +1,80 @@
+skipping(:- mode 'fib_1030$unknown:7'(in,in,in).)
+skipping(:- mode 'fail$unknown:3'(in).)
+skipped parse: ":- pred ff."
+skipping(:- query ff/0.)
+skipping(:- mode constr(in).)
+skipping(:- ignore constr/1.)
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/type_inference.pl:248:
+Warning:    Singleton variables: [Y]
+Installing Z3 package
+Using Z3 version Z3 4.15.3.0
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:895:
+Warning:    Singleton variables: [R]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:908:
+Warning:    Singleton variables: [M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:923:
+Warning:    Singleton variables: [N]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:932:
+Warning:    Singleton variables: [N,O,A]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:944:
+Warning:    Singleton variables: [N]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:958:
+Warning:    Singleton variables: [N,M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:971:
+Warning:    Loading module plunit_z3_push_test_equal22222223445 abolished: [plunit_z3_push_test_equal22222223445:'unit body'/2,plunit_z3_push_test_equal22222223445:'unit test'/4]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:973:
+Warning:    Singleton variables: [O,A,M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:989:
+Warning:    Singleton variables: [M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:1002:
+Warning:    Singleton variables: [M]
+ℹ️ MaxDepth impostato a: 10
+Mi trovo in questa head
+ff
+Stampo Rawbody
+fail$unknown:3(_590),constr(true)
+Stampo Body prima di zmi
+constr(true),fail$unknown:3(_590)
+Entrato in constr c
+Stampo flatList
+[_590:int=_590:int,true]
+
+Stampa prima di inviare
+x_590:int=x_590:intMi trovo in questa head
+fail$unknown:3(_590)
+Stampo Rawbody
+fib_1030$unknown:7(_10080,_10082,_10084),constr((_10094=((0=_10108)=(not(0=_10124)and not(0=_10134)))&((0=_10134)=(_10156=<_10158)&(_10168=_10174+_10176&(_590=1&(_10198=0&(_10210=_10082&(_10156=_10198+_10210&(_10240=0&(_10252=_10080&(_10158=_10240+_10252&(_10174=0&(_10176=_10080&(0=_10108&(not(0=_10084)&(not((0=_10124)=(_10168>=0))&not(_10094)))))))))))))))))
+⚠️ Formula non normalizzata: _10174+_10176
+⚠️ Formula non normalizzata: _10198+_10210
+⚠️ Formula non normalizzata: _10240+_10252
+✅ Inserita in rewrite: _590:int
+✅ Inserita in rewrite: _10080:int
+✅ Inserita in rewrite: _10082:int
+✅ Inserita in rewrite: _10084:int
+Stampo Body prima di zmi
+constr((_590:int=_590:int,_10080:int=_10080:int,_10082:int=_10082:int,_10084:int=_10084:int,_10094=((0=_10108)=(not(0=_10124),not(0=_10134)))and(0=_10134)=(_10156=<_10158)and _10168=_10174+_10176 and _590=1 and _10198=0 and _10210=_10082 and _10156=_10198+_10210 and _10240=0 and _10252=_10080 and _10158=_10240+_10252 and _10174=0 and _10176=_10080 and 0=_10108 and not(0=_10084)and not((0=_10124)=(_10168>=0))and not(_10094))),fib_1030$unknown:7(_10080,_10082,_10084)
+Entrato in constr c
+⚠️ Formula non normalizzata: _10174+_10176
+⚠️ Formula non normalizzata: _10198+_10210
+⚠️ Formula non normalizzata: _10240+_10252
+Stampo flatList
+[_590:int=_590:int,_10080:int=_10080:int,_10082:int=_10082:int,_10084:int=_10084:int,(true,true),_590=_590,_10080=_10080,_10082=_10082,_10084=_10084,_10094=((0=_10108)=(not(0=_10124),not(0=_10134))),(0=_10134)=(_10156=<_10158),_10168=_10174+_10176,_590=1,_10198=0,_10210=_10082,_10156=_10198+_10210,_10240=0,_10252=_10080,_10158=_10240+_10252,_10174=0,_10176=_10080,0=_10108,not(0=_10084),not((0=_10124)=(_10168>=0)),not(_10094)]
+
+Stampa prima di inviare
+x_590:int=x_590:int and x_10080:int=x_10080:int and x_10082:int=x_10082:int and x_10084:int=x_10084:int and true and x_590=x_590 and x_10080=x_10080 and x_10082=x_10082 and x_10084=x_10084 and x_10094=((0=x_10108)=(not(0=x_10124),not(0=x_10134)))and(0=x_10134)=(x_10156=<x_10158)and x_10168=x_10174+x_10176 and x_590=1 and x_10198=0 and x_10210=x_10082 and x_10156=x_10198+x_10210 and x_10240=0 and x_10252=x_10080 and x_10158=x_10240+x_10252 and x_10174=0 and x_10176=x_10080 and 0=x_10108 and not(0=x_10084)and not((0=x_10124)=(x_10168>=0))and not(x_10094)Mi trovo in questa head
+fib_1030$unknown:7(_336,_338,_340)
+Stampo Rawbody
+constr((_338=0&_340=0))
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _336:int
+✅ Inserita in rewrite: _338:int
+✅ Inserita in rewrite: _340:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_336:int=_336:int,_338:int=_338:int,_340:int=_340:int,_338=0 and _340=0))
+Entrato in constr c
+Stampo flatList
+[_130:int=_130:int,_336:int=_336:int,_338:int=_338:int,_340:int=_340:int,((true,true),_130=_130,_336=_336,_338=_338,_340=_340,_350=((0=_364)=(not(0=_380),not(0=_390))),(0=_390)=(_412=<_414),_424=_430+_432,_130=1,_454=0,_466=_338,_412=_454+_466,_496=0,_508=_336,_414=_496+_508,_430=0,_432=_336,0=_364,not(0=_340),not((0=_380)=(_424>=0)),not(_350)),_130=_130,_336=_336,_338=_338,_340=_340,_338=0,_340=0]
+
+Stampa prima di inviare
+x_130:int=x_130:int and x_336:int=x_336:int and x_338:int=x_338:int and x_340:int=x_340:int and (true and x_130=x_130 and x_336=x_336 and x_338=x_338 and x_340=x_340 and x_350=((0=x_364)=(not(0=x_380),not(0=x_390)))and(0=x_390)=(x_412=<x_414)and x_424=x_430+x_432 and x_130=1 and x_454=0 and x_466=x_338 and x_412=x_454+x_466 and x_496=0 and x_508=x_336 and x_414=x_496+x_508 and x_430=0 and x_432=x_336 and 0=x_364 and not(0=x_340)and not((0=x_380)=(x_424>=0))and not(x_350))and x_130=x_130 and x_336=x_336 and x_338=x_338 and x_340=x_340 and x_338=0 and x_340=0No SAT branches found in MaxDepths = 10.
+ERROR: -g load_clean('/home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/test/separato2/CHC-COMP-AGOSTO/LIA-Lin/z3_results/outPutz3Raname/soloPl//chc-comp24-LIA-Lin-136_true.smt2.pl'),set_solver(turibe),zmi(ff),halt.: false

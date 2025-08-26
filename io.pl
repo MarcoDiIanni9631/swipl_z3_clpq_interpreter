@@ -80,7 +80,7 @@ try_parse_pred_line(Line) :-
     ( catch(extract_pred_type(S), Err,
             (print_message(error, Err), fail)) ->
         true
-    ; format("failed to parse: ~q~n", [S])
+    ; format("skipped parse: ~q~n", [S])
     ).
 
 extract_pred_type(Line) :-

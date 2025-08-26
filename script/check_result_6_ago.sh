@@ -15,11 +15,20 @@ HTML_OUT="$DIR/${BASENAME}_report.html"
 
 echo "<!DOCTYPE html>" > "$HTML_OUT"
 echo "<html><head><meta charset=\"UTF-8\"><title>Report: $BASENAME</title>" >> "$HTML_OUT"
-echo "<style>table {border-collapse: collapse;} th, td {border: 1px solid black; padding: 5px;} .ok {background: #cfc} .err {background: #f99}</style>" >> "$HTML_OUT"
+echo "<style>
+  table {border-collapse: collapse;}
+  th, td {border: 1px solid black; padding: 5px;}
+  .ok {background: #9f9;}         /* verde */
+  .warn {background: #ff9;}       /* giallo */
+  .err {background: #f66;}        /* rosso */
+  .orange {background: #fc6;}     /* arancione */
+  .missing {background: #ddd;}    /* grigio */
+</style>" >> "$HTML_OUT"
+
 echo "</head><body>" >> "$HTML_OUT"
 echo "<h2>Verifica Corrispondenza Risultati - $BASENAME</h2>" >> "$HTML_OUT"
 echo "<table>" >> "$HTML_OUT"
-echo "<tr><th>File</th><th>SMT Out</th><th>ZMI Result</th><th>Timeout</th><th>MaxDepth</th><th>Match</th></tr>" >> "$HTML_OUT"
+echo "<tr><th>File</th><th>SMT Out</th><th>ZMI Result</th><th>Timeout</th><th>MaxDepth</th><th>MaxDepthReached</th><th>Match</th></tr>" >> "$HTML_OUT"
 
 shopt -s nullglob
 
@@ -41,6 +50,8 @@ for smtfile in "$DIR"/*.smt2.pl; do
   label_zmi="missing"
   timeout_flag="✘"
   maxdepth="?"
+  maxdepth_disp="?"
+  maxdepth_reached_flag="✘"
 
   for candidate in "$prefix".*.zmiout; do
     [ -f "$candidate" ] || continue
@@ -50,9 +61,20 @@ for smtfile in "$DIR"/*.smt2.pl; do
     # Timeout?
     [[ "$filename" == *timeout* ]] && timeout_flag="✔"
 
-    # MaxDepth? (estrai numero dopo "maxstep")
+    # MaxDepth? (estrai numero dopo "MaxDepth")
     if [[ "$filename" =~ MaxDepth([0-9]+) ]]; then
       maxdepth="${BASH_REMATCH[1]}"
+      maxdepth_disp="$maxdepth"
+    fi
+
+    # MaxDepthReached?
+    if [[ "$filename" == *MaxDepthReached* ]]; then
+      maxdepth_reached_flag="✔"
+      if [[ "$maxdepth" != "?" ]]; then
+        maxdepth_disp="$maxdepth (MaxDepthReached)"
+      else
+        maxdepth_disp="MaxDepthReached"
+      fi
     fi
 
     # Priorità per tipo di risultato
@@ -86,16 +108,43 @@ for smtfile in "$DIR"/*.smt2.pl; do
     label_zmi_disp="$label_zmi"
   fi
 
-  # Confronto etichette
-  if [[ "$label_zmi" == "$label_smt" && "$label_zmi" != "missing" ]]; then
-    match="✔"
-    rowclass="ok"
-  else
+  # Confronto etichette con nuove regole
+  if [[ "$label_smt" == "unknown" ]]; then
+    rowclass="missing"
     match="✘"
+
+  elif [[ "$label_zmi" == "missing" ]]; then
+    rowclass="missing"
+    match="✘"
+
+  elif [[ "$label_zmi" == "timeout" || "$label_zmi" == "unknown" ]]; then
+    rowclass="warn"
+    match="✘"
+
+  # Match corretto
+  elif [[ "$label_smt" == "true" && "$label_zmi" == "true" ]]; then
+    rowclass="ok"
+    match="✔"
+  elif [[ "$label_smt" == "false" && "$label_zmi" == "false" ]]; then
+    rowclass="ok"
+    match="✔"
+
+  # Caso grave: true Z3 vs derivable ZMI
+  elif [[ "$label_smt" == "true" && "$label_zmi" == "false" ]]; then
     rowclass="err"
+    match="✘"
+
+  # Caso arancione: false Z3 vs non derivable ZMI
+  elif [[ "$label_smt" == "false" && "$label_zmi" == "true" ]]; then
+    rowclass="orange"
+    match="✘"
+
+  else
+    rowclass="err"
+    match="✘"
   fi
 
-  echo "<tr class=\"$rowclass\"><td>$base</td><td>$label_smt</td><td>$label_zmi_disp</td><td>$timeout_flag</td><td>$maxdepth</td><td>$match</td></tr>" >> "$HTML_OUT"
+  echo "<tr class=\"$rowclass\"><td>$base</td><td>$label_smt</td><td>$label_zmi_disp</td><td>$timeout_flag</td><td>$maxdepth_disp</td><td>$maxdepth_reached_flag</td><td>$match</td></tr>" >> "$HTML_OUT"
 done
 
 shopt -u nullglob

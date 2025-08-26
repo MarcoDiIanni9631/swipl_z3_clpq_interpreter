@@ -1,0 +1,82 @@
+skipped parse: ":- pred incorrect."
+skipping(:- mode new1(in,in,in,in,in,in,in,in,in,in,in,in).)
+skipped parse: ":- pred ff."
+skipping(:- query ff/0.)
+skipping(:- mode constr(in).)
+skipping(:- ignore constr/1.)
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/type_inference.pl:248:
+Warning:    Singleton variables: [Y]
+Installing Z3 package
+Using Z3 version Z3 4.15.3.0
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:895:
+Warning:    Singleton variables: [R]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:908:
+Warning:    Singleton variables: [M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:923:
+Warning:    Singleton variables: [N]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:932:
+Warning:    Singleton variables: [N,O,A]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:944:
+Warning:    Singleton variables: [N]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:958:
+Warning:    Singleton variables: [N,M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:971:
+Warning:    Loading module plunit_z3_push_test_equal22222223445 abolished: [plunit_z3_push_test_equal22222223445:'unit body'/2,plunit_z3_push_test_equal22222223445:'unit test'/4]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:973:
+Warning:    Singleton variables: [O,A,M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:989:
+Warning:    Singleton variables: [M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:1002:
+Warning:    Singleton variables: [M]
+ℹ️ MaxDepth impostato a: 10
+Mi trovo in questa head
+incorrect
+Stampo Rawbody
+new1(_590,_592,_594,_596,_598,_600,_602,_604,_606,_608,_610,_612),constr((_594>=1&(_590=0&_640=1)))
+✅ Inserita in rewrite: _590:int
+✅ Inserita in rewrite: _592:int
+✅ Inserita in rewrite: _594:int
+✅ Inserita in rewrite: _600:int
+✅ Inserita in rewrite: _602:int
+✅ Inserita in rewrite: _604:int
+✅ Inserita in rewrite: _606:int
+✅ Inserita in rewrite: _608:int
+✅ Inserita in rewrite: _610:int
+✅ Inserita in rewrite: _612:int
+Stampo Body prima di zmi
+constr((_590:int=_590:int,_592:int=_592:int,_594:int=_594:int,_600:int=_600:int,_602:int=_602:int,_604:int=_604:int,_606:int=_606:int,_608:int=_608:int,_610:int=_610:int,_612:int=_612:int,_594>=1 and _590=0 and _640=1)),new1(_590,_592,_594,_596,_598,_600,_602,_604,_606,_608,_610,_612)
+Entrato in constr c
+Stampo flatList
+[_590:int=_590:int,_592:int=_592:int,_594:int=_594:int,_600:int=_600:int,_602:int=_602:int,_604:int=_604:int,_606:int=_606:int,_608:int=_608:int,_610:int=_610:int,_612:int=_612:int,true,_590=_590,_592=_592,_594=_594,_600=_600,_602=_602,_604=_604,_606=_606,_608=_608,_610=_610,_612=_612,_594>=1,_590=0,_640=1]
+
+Stampa prima di inviare
+x_590:int=x_590:int and x_592:int=x_592:int and x_594:int=x_594:int and x_600:int=x_600:int and x_602:int=x_602:int and x_604:int=x_604:int and x_606:int=x_606:int and x_608:int=x_608:int and x_610:int=x_610:int and x_612:int=x_612:int and x_590=x_590 and x_592=x_592 and x_594=x_594 and x_600=x_600 and x_602=x_602 and x_604=x_604 and x_606=x_606 and x_608=x_608 and x_610=x_610 and x_612=x_612 and x_594>=1 and x_590=0 and x_640=1Mi trovo in questa head
+new1(_590,_592,_594,_596,_598,_600,_602,_604,_606,_608,_610,_612)
+Stampo Rawbody
+new1(_26100,_592,_594,_26106,_598,_600,_602,_604,_606,_608,_610,_612),constr((store(_596,_590,_26142)=_26106&(select(_598,_590)=_26142&(_592-_590>=1&(_26188=1&_26100=1+_590)))))
+⚠️ Formula non normalizzata: store(_596,_590,_26142)
+⚠️ Formula non normalizzata: select(_598,_590)
+⚠️ Formula non normalizzata: _592-_590
+✅ Inserita in rewrite: _590:int
+✅ Inserita in rewrite: _592:int
+✅ Inserita in rewrite: _594:int
+✅ Inserita in rewrite: _600:int
+✅ Inserita in rewrite: _602:int
+✅ Inserita in rewrite: _604:int
+✅ Inserita in rewrite: _606:int
+✅ Inserita in rewrite: _608:int
+✅ Inserita in rewrite: _610:int
+✅ Inserita in rewrite: _612:int
+✅ Inserita in rewrite: _26100:int
+Stampo Body prima di zmi
+constr((_590:int=_590:int,_592:int=_592:int,_594:int=_594:int,_600:int=_600:int,_602:int=_602:int,_604:int=_604:int,_606:int=_606:int,_608:int=_608:int,_610:int=_610:int,_612:int=_612:int,_26100:int=_26100:int,store(_596,_590,_26142)=_26106 and select(_598,_590)=_26142 and _592-_590>=1 and _26188=1 and _26100=1+_590)),new1(_26100,_592,_594,_26106,_598,_600,_602,_604,_606,_608,_610,_612)
+Entrato in constr c
+⚠️ Formula non normalizzata: store(_596,_590,_26142)
+⚠️ Formula non normalizzata: select(_598,_590)
+⚠️ Formula non normalizzata: _592-_590
+Stampo flatList
+[_590:int=_590:int,_592:int=_592:int,_594:int=_594:int,_600:int=_600:int,_602:int=_602:int,_604:int=_604:int,_606:int=_606:int,_608:int=_608:int,_610:int=_610:int,_612:int=_612:int,_26100:int=_26100:int,(true,_590=_590,_592=_592,_594=_594,_600=_600,_602=_602,_604=_604,_606=_606,_608=_608,_610=_610,_612=_612,_594>=1,_590=0,_640=1),_590=_590,_592=_592,_594=_594,_600=_600,_602=_602,_604=_604,_606=_606,_608=_608,_610=_610,_612=_612,_26100=_26100,store(_596,_590,_26142)=_26106,select(_598,_590)=_26142,_592-_590>=1,_26188=1,_26100=1+_590]
+
+Stampa prima di inviare
+x_590:int=x_590:int and x_592:int=x_592:int and x_594:int=x_594:int and x_600:int=x_600:int and x_602:int=x_602:int and x_604:int=x_604:int and x_606:int=x_606:int and x_608:int=x_608:int and x_610:int=x_610:int and x_612:int=x_612:int and x_26100:int=x_26100:int and (x_590=x_590 and x_592=x_592 and x_594=x_594 and x_600=x_600 and x_602=x_602 and x_604=x_604 and x_606=x_606 and x_608=x_608 and x_610=x_610 and x_612=x_612 and x_594>=1 and x_590=0 and x_640=1)and x_590=x_590 and x_592=x_592 and x_594=x_594 and x_600=x_600 and x_602=x_602 and x_604=x_604 and x_606=x_606 and x_608=x_608 and x_610=x_610 and x_612=x_612 and x_26100=x_26100 and store(x_596,x_590,x_26142)=x_26106 and select(x_598,x_590)=x_26142 and x_592-x_590>=1 and x_26188=1 and x_26100=1+x_590
+ERROR: -g load_clean('/home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/test/separato2/vmap/array_lug_small_ago/solo_prolog_da_analizzare_post_modifica/verimap-copy-partial_VeriMAP_true.c.transform.smt.smt2.pl'),set_solver(turibe),zmi(incorrect),halt.: Arguments are not sufficiently instantiated

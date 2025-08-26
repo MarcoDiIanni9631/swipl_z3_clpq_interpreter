@@ -1,0 +1,73 @@
+skipping(:- mode inv(in,in).)
+skipped parse: ":- pred ff."
+skipping(:- query ff/0.)
+skipping(:- mode constr(in).)
+skipping(:- ignore constr/1.)
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/type_inference.pl:248:
+Warning:    Singleton variables: [Y]
+Installing Z3 package
+Using Z3 version Z3 4.15.3.0
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:895:
+Warning:    Singleton variables: [R]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:908:
+Warning:    Singleton variables: [M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:923:
+Warning:    Singleton variables: [N]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:932:
+Warning:    Singleton variables: [N,O,A]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:944:
+Warning:    Singleton variables: [N]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:958:
+Warning:    Singleton variables: [N,M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:971:
+Warning:    Loading module plunit_z3_push_test_equal22222223445 abolished: [plunit_z3_push_test_equal22222223445:'unit body'/2,plunit_z3_push_test_equal22222223445:'unit test'/4]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:973:
+Warning:    Singleton variables: [O,A,M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:989:
+Warning:    Singleton variables: [M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:1002:
+Warning:    Singleton variables: [M]
+ℹ️ MaxDepth impostato a: 10
+Mi trovo in questa head
+ff
+Stampo Rawbody
+inv(_29472,_29474),constr((~_29474=100&_29472=100))
+✅ Inserita in rewrite: _29472:int
+✅ Inserita in rewrite: _29474:int
+Stampo Body prima di zmi
+constr((_29472:int=_29472:int,_29474:int=_29474:int,not(_29474=100)and _29472=100)),inv(_29472,_29474)
+Entrato in constr c
+Stampo flatList
+[_29472:int=_29472:int,_29474:int=_29474:int,true,_29472=_29472,_29474=_29474,not(_29474=100),_29472=100]
+
+Stampa prima di inviare
+x_29472:int=x_29472:int and x_29474:int=x_29474:int and x_29472=x_29472 and x_29474=x_29474 and not(x_29474=100)and x_29472=100Mi trovo in questa head
+inv(_130,_132)
+Stampo Rawbody
+constr((_132=50&_130=0))
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_132=50 and _130=0))
+Entrato in constr c
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,(true,_130=_130,_132=_132,not(_132=100),_130=100),_130=_130,_132=_132,_132=50,_130=0]
+
+Stampa prima di inviare
+x_130:int=x_130:int and x_132:int=x_132:int and (x_130=x_130 and x_132=x_132 and not(x_132=100)and x_130=100)and x_130=x_130 and x_132=x_132 and x_132=50 and x_130=0Stampo Rawbody
+ite(_130=<50,_132=_15604,_132=1+_15604),inv(_15628,_15604),constr((~100=<_15628&_130=1+_15628))
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _15604:int
+✅ Inserita in rewrite: _15628:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_15604:int=_15604:int,_15628:int=_15628:int,not(100=<_15628)and _130=1+_15628)),ite(_130=<50,_132=_15604,_132=1+_15604),inv(_15628,_15604)
+Entrato in constr c
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_15604:int=_15604:int,_15628:int=_15628:int,(true,_130=_130,_132=_132,not(_132=100),_130=100),_130=_130,_132=_132,_15604=_15604,_15628=_15628,not(100=<_15628),_130=1+_15628]
+
+Stampa prima di inviare
+x_130:int=x_130:int and x_132:int=x_132:int and x_15604:int=x_15604:int and x_15628:int=x_15628:int and (x_130=x_130 and x_132=x_132 and not(x_132=100)and x_130=100)and x_130=x_130 and x_132=x_132 and x_15604=x_15604 and x_15628=x_15628 and not(100=<x_15628)and x_130=1+x_15628Mi trovo in questa head
+ite(_130=<50,_132=_15604,_132=1+_15604)
+No SAT branches found in MaxDepths = 10.
+ERROR: -g load_clean('/home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/test/separato2/chccomp_8ago2025/TestOKqui/LIA-Lin_copy_ago/first30lialinchc/z3_results/output/soloTrueFalse/soloPl/chc-comp24-LIA-Lin-094_false.smt2.pl'),set_solver(turibe),zmi(ff),halt.: false

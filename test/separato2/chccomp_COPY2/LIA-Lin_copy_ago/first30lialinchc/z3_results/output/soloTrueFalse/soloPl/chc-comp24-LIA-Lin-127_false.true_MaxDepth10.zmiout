@@ -1,0 +1,56 @@
+skipping(:- mode 'f$unknown:2'(in,in).)
+failed to parse: ":- pred ff."
+skipping(:- query ff/0.)
+skipping(:- mode constr(in).)
+skipping(:- ignore constr/1.)
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/type_inference.pl:248:
+Warning:    Singleton variables: [Y]
+Installing Z3 package
+Using Z3 version Z3 4.15.3.0
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:895:
+Warning:    Singleton variables: [N,M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:907:
+Warning:    Singleton variables: [M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:922:
+Warning:    Singleton variables: [N]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:931:
+Warning:    Singleton variables: [N,O,A]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:943:
+Warning:    Singleton variables: [N]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:957:
+Warning:    Singleton variables: [N,M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:970:
+Warning:    Loading module plunit_z3_push_test_equal22222223445 abolished: [plunit_z3_push_test_equal22222223445:'unit body'/2,plunit_z3_push_test_equal22222223445:'unit test'/4]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:972:
+Warning:    Singleton variables: [O,A,M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:988:
+Warning:    Singleton variables: [M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:1001:
+Warning:    Singleton variables: [M]
+ℹ️ MaxDepth impostato a: 10
+Mi trovo in questa head
+ff
+Stampo Rawbody
+f$unknown:2(_29358,_29360),constr((_29370=((0=_29384)=(not(0=_29400)and not(0=_29410)))&(not(_29370)&(0=_29432&(not((0=_29432)=(0=_29384))&((0=_29400)=(_29360=<0)&not((0=_29410)=(_29358=<0))))))))
+✅ Inserita in rewrite: _29358:int
+✅ Inserita in rewrite: _29360:int
+Stampo Body prima di zmi
+constr((_29358:int=_29358:int,_29360:int=_29360:int,_29370=((0=_29384)=(not(0=_29400)and not(0=_29410)))and not(_29370)and 0=_29432 and not((0=_29432)=(0=_29384))and(0=_29400)=(_29360=<0)and not((0=_29410)=(_29358=<0)))),f$unknown:2(_29358,_29360)
+Entrato in constr c
+Stampo flatList
+[_29358:int=_29358:int,_29360:int=_29360:int,true,_29358:int=_29358:int,_29360:int=_29360:int,_29370=((0=_29384)=(not(0=_29400)and not(0=_29410))),not(_29370),0=_29432,not((0=_29432)=(0=_29384)),(0=_29400)=(_29360=<0),not((0=_29410)=(_29358=<0))]
+
+Mi trovo in questa head
+f$unknown:2(_130,_132)
+Stampo Rawbody
+constr(_132=_130)
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_132=_130))
+Entrato in constr c
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,(true,_130:int=_130:int,_132:int=_132:int,_142=((0=_156)=(not(0=_172)and not(0=_182))),not(_142),0=_204,not((0=_204)=(0=_156)),(0=_172)=(_132=<0),not((0=_182)=(_130=<0))),_130:int=_130:int,_132:int=_132:int,_132=_130]
+
+No SAT branches found in MaxDepths = 10.
+ERROR: -g load_clean('/home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/test/separato/chccomp_COPY2/LIA-Lin_copy_ago/first30lialinchc/z3_results/output/soloTrueFalse/soloPl/chc-comp24-LIA-Lin-127_false.smt2.pl'),set_solver(turibe),zmi(ff),halt.: false

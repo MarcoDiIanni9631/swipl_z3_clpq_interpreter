@@ -1,0 +1,891 @@
+skipped parse: ":- pred incorrect."
+skipping(:- mode new1(in,in,in,in,in).)
+skipped parse: ":- pred ff."
+skipping(:- query ff/0.)
+skipping(:- mode constr(in).)
+skipping(:- ignore constr/1.)
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/type_inference.pl:248:
+Warning:    Singleton variables: [Y]
+Installing Z3 package
+Using Z3 version Z3 4.15.3.0
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:895:
+Warning:    Singleton variables: [R]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:908:
+Warning:    Singleton variables: [M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:923:
+Warning:    Singleton variables: [N]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:932:
+Warning:    Singleton variables: [N,O,A]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:944:
+Warning:    Singleton variables: [N]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:958:
+Warning:    Singleton variables: [N,M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:971:
+Warning:    Loading module plunit_z3_push_test_equal22222223445 abolished: [plunit_z3_push_test_equal22222223445:'unit body'/2,plunit_z3_push_test_equal22222223445:'unit test'/4]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:973:
+Warning:    Singleton variables: [O,A,M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:989:
+Warning:    Singleton variables: [M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:1002:
+Warning:    Singleton variables: [M]
+ℹ️ MaxDepth impostato a: 10
+Mi trovo in questa head
+incorrect
+Stampo Rawbody
+new1(_590,_592,_594,_596,_598),constr((_594>=1&(_590=0&(_592= - 1&_642=1))))
+✅ Inserita in rewrite: _590:int
+✅ Inserita in rewrite: _592:int
+✅ Inserita in rewrite: _594:int
+✅ Inserita in rewrite: _598:int
+Stampo Body prima di zmi
+constr((_590:int=_590:int,_592:int=_592:int,_594:int=_594:int,_598:int=_598:int,_594>=1 and _590=0 and _592= - 1 and _642=1)),new1(_590,_592,_594,_596,_598)
+Entrato in constr c
+Stampo flatList
+[_590:int=_590:int,_592:int=_592:int,_594:int=_594:int,_598:int=_598:int,true,_590=_590,_592=_592,_594=_594,_598=_598,_594>=1,_590=0,_592= - 1,_642=1]
+
+Stampa prima di inviare
+x_590:int=x_590:int and x_592:int=x_592:int and x_594:int=x_594:int and x_598:int=x_598:int and x_590=x_590 and x_592=x_592 and x_594=x_594 and x_598=x_598 and x_594>=1 and x_590=0 and x_592= - 1 and x_642=1Mi trovo in questa head
+new1(_590,_592,_594,_596,_598)
+Stampo Rawbody
+constr((select(_596,_590)=_17896&(select(_596,_590)=_17914&(_594-_590>=1&(_590>=0&(_17914>=1&(_17896=0&(_17984=0&(_17996=0&(_18008=0&(_18020=0&_598=0)))))))))))
+⚠️ Formula non normalizzata: select(_596,_590)
+⚠️ Formula non normalizzata: select(_596,_590)
+⚠️ Formula non normalizzata: _594-_590
+✅ Inserita in rewrite: _590:int
+✅ Inserita in rewrite: _592:int
+✅ Inserita in rewrite: _594:int
+✅ Inserita in rewrite: _598:int
+Stampo Body prima di zmi
+constr((_590:int=_590:int,_592:int=_592:int,_594:int=_594:int,_598:int=_598:int,select(_596,_590)=_17896 and select(_596,_590)=_17914 and _594-_590>=1 and _590>=0 and _17914>=1 and _17896=0 and _17984=0 and _17996=0 and _18008=0 and _18020=0 and _598=0))
+Entrato in constr c
+⚠️ Formula non normalizzata: select(_596,_590)
+⚠️ Formula non normalizzata: select(_596,_590)
+⚠️ Formula non normalizzata: _594-_590
+Stampo flatList
+[_590:int=_590:int,_592:int=_592:int,_594:int=_594:int,_598:int=_598:int,(true,_590=_590,_592=_592,_594=_594,_598=_598,_594>=1,_590=0,_592= - 1,_642=1),_590=_590,_592=_592,_594=_594,_598=_598,select(_596,_590)=_17896,select(_596,_590)=_17914,_594-_590>=1,_590>=0,_17914>=1,_17896=0,_17984=0,_17996=0,_18008=0,_18020=0,_598=0]
+
+Stampa prima di inviare
+x_590:int=x_590:int and x_592:int=x_592:int and x_594:int=x_594:int and x_598:int=x_598:int and (x_590=x_590 and x_592=x_592 and x_594=x_594 and x_598=x_598 and x_594>=1 and x_590=0 and x_592= - 1 and x_642=1)and x_590=x_590 and x_592=x_592 and x_594=x_594 and x_598=x_598 and select(x_596,x_590)=x_17896 and select(x_596,x_590)=x_17914 and x_594-x_590>=1 and x_590>=0 and x_17914>=1 and x_17896=0 and x_17984=0 and x_17996=0 and x_18008=0 and x_18020=0 and x_598=0Stampo Rawbody
+constr((select(_136,_130)=_7524&(select(_136,_130)=_7542&(_134-_130>=1&(_130>=0&(_7542=< - 1&(_7524=0&(_7616=0&(_7628=0&(_7640=0&(_7652=0&_138=0)))))))))))
+⚠️ Formula non normalizzata: select(_136,_130)
+⚠️ Formula non normalizzata: select(_136,_130)
+⚠️ Formula non normalizzata: _134-_130
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _138:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,select(_136,_130)=_7524 and select(_136,_130)=_7542 and _134-_130>=1 and _130>=0 and _7542=< - 1 and _7524=0 and _7616=0 and _7628=0 and _7640=0 and _7652=0 and _138=0))
+Entrato in constr c
+⚠️ Formula non normalizzata: select(_136,_130)
+⚠️ Formula non normalizzata: select(_136,_130)
+⚠️ Formula non normalizzata: _134-_130
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,(true,_130=_130,_132=_132,_134=_134,_138=_138,_134>=1,_130=0,_132= - 1,_182=1),_130=_130,_132=_132,_134=_134,_138=_138,select(_136,_130)=_7524,select(_136,_130)=_7542,_134-_130>=1,_130>=0,_7542=< - 1,_7524=0,_7616=0,_7628=0,_7640=0,_7652=0,_138=0]
+
+Stampa prima di inviare
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_138:int=x_138:int and (x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_134>=1 and x_130=0 and x_132= - 1 and x_182=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and select(x_136,x_130)=x_7524 and select(x_136,x_130)=x_7542 and x_134-x_130>=1 and x_130>=0 and x_7542=< - 1 and x_7524=0 and x_7616=0 and x_7628=0 and x_7640=0 and x_7652=0 and x_138=0Stampo Rawbody
+new1(_25636,_132,_134,_136,_138),constr((select(_136,_130)=_25656&(_134-_130>=1&(_25690=1&(_25636=1+_130&(_25656=0&(_25732=0&_25738=0)))))))
+⚠️ Formula non normalizzata: select(_136,_130)
+⚠️ Formula non normalizzata: _134-_130
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _138:int
+✅ Inserita in rewrite: _25636:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,_25636:int=_25636:int,select(_136,_130)=_25656 and _134-_130>=1 and _25690=1 and _25636=1+_130 and _25656=0 and _25732=0 and _25738=0)),new1(_25636,_132,_134,_136,_138)
+Entrato in constr c
+⚠️ Formula non normalizzata: select(_136,_130)
+⚠️ Formula non normalizzata: _134-_130
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,_25636:int=_25636:int,(true,_130=_130,_132=_132,_134=_134,_138=_138,_134>=1,_130=0,_132= - 1,_182=1),_130=_130,_132=_132,_134=_134,_138=_138,_25636=_25636,select(_136,_130)=_25656,_134-_130>=1,_25690=1,_25636=1+_130,_25656=0,_25732=0,_25738=0]
+
+Stampa prima di inviare
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_138:int=x_138:int and x_25636:int=x_25636:int and (x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_134>=1 and x_130=0 and x_132= - 1 and x_182=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_25636=x_25636 and select(x_136,x_130)=x_25656 and x_134-x_130>=1 and x_25690=1 and x_25636=1+x_130 and x_25656=0 and x_25732=0 and x_25738=0Mi trovo in questa head
+new1(_992,_132,_134,_136,_138)
+Stampo Rawbody
+constr((select(_136,_992)=_13214&(select(_136,_992)=_13232&(_134-_992>=1&(_992>=0&(_13232>=1&(_13214=0&(_13302=0&(_13314=0&(_13326=0&(_13338=0&_138=0)))))))))))
+⚠️ Formula non normalizzata: select(_136,_992)
+⚠️ Formula non normalizzata: select(_136,_992)
+⚠️ Formula non normalizzata: _134-_992
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _138:int
+✅ Inserita in rewrite: _992:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,_992:int=_992:int,select(_136,_992)=_13214 and select(_136,_992)=_13232 and _134-_992>=1 and _992>=0 and _13232>=1 and _13214=0 and _13302=0 and _13314=0 and _13326=0 and _13338=0 and _138=0))
+Entrato in constr c
+⚠️ Formula non normalizzata: select(_136,_992)
+⚠️ Formula non normalizzata: select(_136,_992)
+⚠️ Formula non normalizzata: _134-_992
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,_992:int=_992:int,((true,_130=_130,_132=_132,_134=_134,_138=_138,_134>=1,_130=0,_132= - 1,_182=1),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,select(_136,_130)=_1012,_134-_130>=1,_1046=1,_992=1+_130,_1012=0,_1088=0,_1094=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,select(_136,_992)=_13214,select(_136,_992)=_13232,_134-_992>=1,_992>=0,_13232>=1,_13214=0,_13302=0,_13314=0,_13326=0,_13338=0,_138=0]
+
+Stampa prima di inviare
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_138:int=x_138:int and x_992:int=x_992:int and ((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_134>=1 and x_130=0 and x_132= - 1 and x_182=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and select(x_136,x_130)=x_1012 and x_134-x_130>=1 and x_1046=1 and x_992=1+x_130 and x_1012=0 and x_1088=0 and x_1094=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and select(x_136,x_992)=x_13214 and select(x_136,x_992)=x_13232 and x_134-x_992>=1 and x_992>=0 and x_13232>=1 and x_13214=0 and x_13302=0 and x_13314=0 and x_13326=0 and x_13338=0 and x_138=0Stampo Rawbody
+constr((select(_136,_992)=_12334&(select(_136,_992)=_12352&(_134-_992>=1&(_992>=0&(_12352=< - 1&(_12334=0&(_12426=0&(_12438=0&(_12450=0&(_12462=0&_138=0)))))))))))
+⚠️ Formula non normalizzata: select(_136,_992)
+⚠️ Formula non normalizzata: select(_136,_992)
+⚠️ Formula non normalizzata: _134-_992
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _138:int
+✅ Inserita in rewrite: _992:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,_992:int=_992:int,select(_136,_992)=_12334 and select(_136,_992)=_12352 and _134-_992>=1 and _992>=0 and _12352=< - 1 and _12334=0 and _12426=0 and _12438=0 and _12450=0 and _12462=0 and _138=0))
+Entrato in constr c
+⚠️ Formula non normalizzata: select(_136,_992)
+⚠️ Formula non normalizzata: select(_136,_992)
+⚠️ Formula non normalizzata: _134-_992
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,_992:int=_992:int,((true,_130=_130,_132=_132,_134=_134,_138=_138,_134>=1,_130=0,_132= - 1,_182=1),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,select(_136,_130)=_1012,_134-_130>=1,_1046=1,_992=1+_130,_1012=0,_1088=0,_1094=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,select(_136,_992)=_12334,select(_136,_992)=_12352,_134-_992>=1,_992>=0,_12352=< - 1,_12334=0,_12426=0,_12438=0,_12450=0,_12462=0,_138=0]
+
+Stampa prima di inviare
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_138:int=x_138:int and x_992:int=x_992:int and ((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_134>=1 and x_130=0 and x_132= - 1 and x_182=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and select(x_136,x_130)=x_1012 and x_134-x_130>=1 and x_1046=1 and x_992=1+x_130 and x_1012=0 and x_1088=0 and x_1094=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and select(x_136,x_992)=x_12334 and select(x_136,x_992)=x_12352 and x_134-x_992>=1 and x_992>=0 and x_12352=< - 1 and x_12334=0 and x_12426=0 and x_12438=0 and x_12450=0 and x_12462=0 and x_138=0Stampo Rawbody
+new1(_39048,_132,_134,_136,_138),constr((select(_136,_992)=_39068&(_134-_992>=1&(_39102=1&(_39048=1+_992&(_39068=0&(_39144=0&_39150=0)))))))
+⚠️ Formula non normalizzata: select(_136,_992)
+⚠️ Formula non normalizzata: _134-_992
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _138:int
+✅ Inserita in rewrite: _992:int
+✅ Inserita in rewrite: _39048:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,_992:int=_992:int,_39048:int=_39048:int,select(_136,_992)=_39068 and _134-_992>=1 and _39102=1 and _39048=1+_992 and _39068=0 and _39144=0 and _39150=0)),new1(_39048,_132,_134,_136,_138)
+Entrato in constr c
+⚠️ Formula non normalizzata: select(_136,_992)
+⚠️ Formula non normalizzata: _134-_992
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,_992:int=_992:int,_39048:int=_39048:int,((true,_130=_130,_132=_132,_134=_134,_138=_138,_134>=1,_130=0,_132= - 1,_182=1),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,select(_136,_130)=_1012,_134-_130>=1,_1046=1,_992=1+_130,_1012=0,_1088=0,_1094=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_39048=_39048,select(_136,_992)=_39068,_134-_992>=1,_39102=1,_39048=1+_992,_39068=0,_39144=0,_39150=0]
+
+Stampa prima di inviare
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_138:int=x_138:int and x_992:int=x_992:int and x_39048:int=x_39048:int and ((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_134>=1 and x_130=0 and x_132= - 1 and x_182=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and select(x_136,x_130)=x_1012 and x_134-x_130>=1 and x_1046=1 and x_992=1+x_130 and x_1012=0 and x_1088=0 and x_1094=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_39048=x_39048 and select(x_136,x_992)=x_39068 and x_134-x_992>=1 and x_39102=1 and x_39048=1+x_992 and x_39068=0 and x_39144=0 and x_39150=0Mi trovo in questa head
+new1(_39048,_132,_134,_136,_138)
+Stampo Rawbody
+constr((select(_136,_2376)=_3910&(select(_136,_2376)=_3928&(_134-_2376>=1&(_2376>=0&(_3928>=1&(_3910=0&(_3998=0&(_4010=0&(_4022=0&(_4034=0&_138=0)))))))))))
+⚠️ Formula non normalizzata: select(_136,_2376)
+⚠️ Formula non normalizzata: select(_136,_2376)
+⚠️ Formula non normalizzata: _134-_2376
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _138:int
+✅ Inserita in rewrite: _992:int
+✅ Inserita in rewrite: _2376:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,_992:int=_992:int,_2376:int=_2376:int,select(_136,_2376)=_3910 and select(_136,_2376)=_3928 and _134-_2376>=1 and _2376>=0 and _3928>=1 and _3910=0 and _3998=0 and _4010=0 and _4022=0 and _4034=0 and _138=0))
+Entrato in constr c
+⚠️ Formula non normalizzata: select(_136,_2376)
+⚠️ Formula non normalizzata: select(_136,_2376)
+⚠️ Formula non normalizzata: _134-_2376
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,_992:int=_992:int,_2376:int=_2376:int,(((true,_130=_130,_132=_132,_134=_134,_138=_138,_134>=1,_130=0,_132= - 1,_182=1),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,select(_136,_130)=_1012,_134-_130>=1,_1046=1,_992=1+_130,_1012=0,_1088=0,_1094=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,select(_136,_992)=_2396,_134-_992>=1,_2430=1,_2376=1+_992,_2396=0,_2472=0,_2478=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,select(_136,_2376)=_3910,select(_136,_2376)=_3928,_134-_2376>=1,_2376>=0,_3928>=1,_3910=0,_3998=0,_4010=0,_4022=0,_4034=0,_138=0]
+
+Stampa prima di inviare
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_138:int=x_138:int and x_992:int=x_992:int and x_2376:int=x_2376:int and (((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_134>=1 and x_130=0 and x_132= - 1 and x_182=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and select(x_136,x_130)=x_1012 and x_134-x_130>=1 and x_1046=1 and x_992=1+x_130 and x_1012=0 and x_1088=0 and x_1094=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and select(x_136,x_992)=x_2396 and x_134-x_992>=1 and x_2430=1 and x_2376=1+x_992 and x_2396=0 and x_2472=0 and x_2478=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and select(x_136,x_2376)=x_3910 and select(x_136,x_2376)=x_3928 and x_134-x_2376>=1 and x_2376>=0 and x_3928>=1 and x_3910=0 and x_3998=0 and x_4010=0 and x_4022=0 and x_4034=0 and x_138=0Stampo Rawbody
+constr((select(_136,_2376)=_38378&(select(_136,_2376)=_38396&(_134-_2376>=1&(_2376>=0&(_38396=< - 1&(_38378=0&(_38470=0&(_38482=0&(_38494=0&(_38506=0&_138=0)))))))))))
+⚠️ Formula non normalizzata: select(_136,_2376)
+⚠️ Formula non normalizzata: select(_136,_2376)
+⚠️ Formula non normalizzata: _134-_2376
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _138:int
+✅ Inserita in rewrite: _992:int
+✅ Inserita in rewrite: _2376:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,_992:int=_992:int,_2376:int=_2376:int,select(_136,_2376)=_38378 and select(_136,_2376)=_38396 and _134-_2376>=1 and _2376>=0 and _38396=< - 1 and _38378=0 and _38470=0 and _38482=0 and _38494=0 and _38506=0 and _138=0))
+Entrato in constr c
+⚠️ Formula non normalizzata: select(_136,_2376)
+⚠️ Formula non normalizzata: select(_136,_2376)
+⚠️ Formula non normalizzata: _134-_2376
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,_992:int=_992:int,_2376:int=_2376:int,(((true,_130=_130,_132=_132,_134=_134,_138=_138,_134>=1,_130=0,_132= - 1,_182=1),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,select(_136,_130)=_1012,_134-_130>=1,_1046=1,_992=1+_130,_1012=0,_1088=0,_1094=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,select(_136,_992)=_2396,_134-_992>=1,_2430=1,_2376=1+_992,_2396=0,_2472=0,_2478=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,select(_136,_2376)=_38378,select(_136,_2376)=_38396,_134-_2376>=1,_2376>=0,_38396=< - 1,_38378=0,_38470=0,_38482=0,_38494=0,_38506=0,_138=0]
+
+Stampa prima di inviare
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_138:int=x_138:int and x_992:int=x_992:int and x_2376:int=x_2376:int and (((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_134>=1 and x_130=0 and x_132= - 1 and x_182=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and select(x_136,x_130)=x_1012 and x_134-x_130>=1 and x_1046=1 and x_992=1+x_130 and x_1012=0 and x_1088=0 and x_1094=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and select(x_136,x_992)=x_2396 and x_134-x_992>=1 and x_2430=1 and x_2376=1+x_992 and x_2396=0 and x_2472=0 and x_2478=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and select(x_136,x_2376)=x_38378 and select(x_136,x_2376)=x_38396 and x_134-x_2376>=1 and x_2376>=0 and x_38396=< - 1 and x_38378=0 and x_38470=0 and x_38482=0 and x_38494=0 and x_38506=0 and x_138=0Stampo Rawbody
+new1(_15854,_132,_134,_136,_138),constr((select(_136,_2376)=_15874&(_134-_2376>=1&(_15908=1&(_15854=1+_2376&(_15874=0&(_15950=0&_15956=0)))))))
+⚠️ Formula non normalizzata: select(_136,_2376)
+⚠️ Formula non normalizzata: _134-_2376
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _138:int
+✅ Inserita in rewrite: _992:int
+✅ Inserita in rewrite: _2376:int
+✅ Inserita in rewrite: _15854:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,_992:int=_992:int,_2376:int=_2376:int,_15854:int=_15854:int,select(_136,_2376)=_15874 and _134-_2376>=1 and _15908=1 and _15854=1+_2376 and _15874=0 and _15950=0 and _15956=0)),new1(_15854,_132,_134,_136,_138)
+Entrato in constr c
+⚠️ Formula non normalizzata: select(_136,_2376)
+⚠️ Formula non normalizzata: _134-_2376
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,_992:int=_992:int,_2376:int=_2376:int,_15854:int=_15854:int,(((true,_130=_130,_132=_132,_134=_134,_138=_138,_134>=1,_130=0,_132= - 1,_182=1),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,select(_136,_130)=_1012,_134-_130>=1,_1046=1,_992=1+_130,_1012=0,_1088=0,_1094=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,select(_136,_992)=_2396,_134-_992>=1,_2430=1,_2376=1+_992,_2396=0,_2472=0,_2478=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_15854=_15854,select(_136,_2376)=_15874,_134-_2376>=1,_15908=1,_15854=1+_2376,_15874=0,_15950=0,_15956=0]
+
+Stampa prima di inviare
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_138:int=x_138:int and x_992:int=x_992:int and x_2376:int=x_2376:int and x_15854:int=x_15854:int and (((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_134>=1 and x_130=0 and x_132= - 1 and x_182=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and select(x_136,x_130)=x_1012 and x_134-x_130>=1 and x_1046=1 and x_992=1+x_130 and x_1012=0 and x_1088=0 and x_1094=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and select(x_136,x_992)=x_2396 and x_134-x_992>=1 and x_2430=1 and x_2376=1+x_992 and x_2396=0 and x_2472=0 and x_2478=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_15854=x_15854 and select(x_136,x_2376)=x_15874 and x_134-x_2376>=1 and x_15908=1 and x_15854=1+x_2376 and x_15874=0 and x_15950=0 and x_15956=0Mi trovo in questa head
+new1(_15854,_132,_134,_136,_138)
+Stampo Rawbody
+constr((select(_136,_15854)=_50896&(select(_136,_15854)=_50914&(_134-_15854>=1&(_15854>=0&(_50914>=1&(_50896=0&(_50984=0&(_50996=0&(_51008=0&(_51020=0&_138=0)))))))))))
+⚠️ Formula non normalizzata: select(_136,_15854)
+⚠️ Formula non normalizzata: select(_136,_15854)
+⚠️ Formula non normalizzata: _134-_15854
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _138:int
+✅ Inserita in rewrite: _992:int
+✅ Inserita in rewrite: _2376:int
+✅ Inserita in rewrite: _15854:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,_992:int=_992:int,_2376:int=_2376:int,_15854:int=_15854:int,select(_136,_15854)=_50896 and select(_136,_15854)=_50914 and _134-_15854>=1 and _15854>=0 and _50914>=1 and _50896=0 and _50984=0 and _50996=0 and _51008=0 and _51020=0 and _138=0))
+Entrato in constr c
+⚠️ Formula non normalizzata: select(_136,_15854)
+⚠️ Formula non normalizzata: select(_136,_15854)
+⚠️ Formula non normalizzata: _134-_15854
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,_992:int=_992:int,_2376:int=_2376:int,_15854:int=_15854:int,((((true,_130=_130,_132=_132,_134=_134,_138=_138,_134>=1,_130=0,_132= - 1,_182=1),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,select(_136,_130)=_1012,_134-_130>=1,_1046=1,_992=1+_130,_1012=0,_1088=0,_1094=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,select(_136,_992)=_2396,_134-_992>=1,_2430=1,_2376=1+_992,_2396=0,_2472=0,_2478=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_15854=_15854,select(_136,_2376)=_15874,_134-_2376>=1,_15908=1,_15854=1+_2376,_15874=0,_15950=0,_15956=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_15854=_15854,select(_136,_15854)=_50896,select(_136,_15854)=_50914,_134-_15854>=1,_15854>=0,_50914>=1,_50896=0,_50984=0,_50996=0,_51008=0,_51020=0,_138=0]
+
+Stampa prima di inviare
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_138:int=x_138:int and x_992:int=x_992:int and x_2376:int=x_2376:int and x_15854:int=x_15854:int and ((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_134>=1 and x_130=0 and x_132= - 1 and x_182=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and select(x_136,x_130)=x_1012 and x_134-x_130>=1 and x_1046=1 and x_992=1+x_130 and x_1012=0 and x_1088=0 and x_1094=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and select(x_136,x_992)=x_2396 and x_134-x_992>=1 and x_2430=1 and x_2376=1+x_992 and x_2396=0 and x_2472=0 and x_2478=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_15854=x_15854 and select(x_136,x_2376)=x_15874 and x_134-x_2376>=1 and x_15908=1 and x_15854=1+x_2376 and x_15874=0 and x_15950=0 and x_15956=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_15854=x_15854 and select(x_136,x_15854)=x_50896 and select(x_136,x_15854)=x_50914 and x_134-x_15854>=1 and x_15854>=0 and x_50914>=1 and x_50896=0 and x_50984=0 and x_50996=0 and x_51008=0 and x_51020=0 and x_138=0Stampo Rawbody
+constr((select(_136,_3888)=_37184&(select(_136,_3888)=_37202&(_134-_3888>=1&(_3888>=0&(_37202=< - 1&(_37184=0&(_37276=0&(_37288=0&(_37300=0&(_37312=0&_138=0)))))))))))
+⚠️ Formula non normalizzata: select(_136,_3888)
+⚠️ Formula non normalizzata: select(_136,_3888)
+⚠️ Formula non normalizzata: _134-_3888
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _138:int
+✅ Inserita in rewrite: _992:int
+✅ Inserita in rewrite: _2376:int
+✅ Inserita in rewrite: _3888:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,_992:int=_992:int,_2376:int=_2376:int,_3888:int=_3888:int,select(_136,_3888)=_37184 and select(_136,_3888)=_37202 and _134-_3888>=1 and _3888>=0 and _37202=< - 1 and _37184=0 and _37276=0 and _37288=0 and _37300=0 and _37312=0 and _138=0))
+Entrato in constr c
+⚠️ Formula non normalizzata: select(_136,_3888)
+⚠️ Formula non normalizzata: select(_136,_3888)
+⚠️ Formula non normalizzata: _134-_3888
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,_992:int=_992:int,_2376:int=_2376:int,_3888:int=_3888:int,((((true,_130=_130,_132=_132,_134=_134,_138=_138,_134>=1,_130=0,_132= - 1,_182=1),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,select(_136,_130)=_1012,_134-_130>=1,_1046=1,_992=1+_130,_1012=0,_1088=0,_1094=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,select(_136,_992)=_2396,_134-_992>=1,_2430=1,_2376=1+_992,_2396=0,_2472=0,_2478=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,select(_136,_2376)=_3908,_134-_2376>=1,_3942=1,_3888=1+_2376,_3908=0,_3984=0,_3990=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,select(_136,_3888)=_37184,select(_136,_3888)=_37202,_134-_3888>=1,_3888>=0,_37202=< - 1,_37184=0,_37276=0,_37288=0,_37300=0,_37312=0,_138=0]
+
+Stampa prima di inviare
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_138:int=x_138:int and x_992:int=x_992:int and x_2376:int=x_2376:int and x_3888:int=x_3888:int and ((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_134>=1 and x_130=0 and x_132= - 1 and x_182=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and select(x_136,x_130)=x_1012 and x_134-x_130>=1 and x_1046=1 and x_992=1+x_130 and x_1012=0 and x_1088=0 and x_1094=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and select(x_136,x_992)=x_2396 and x_134-x_992>=1 and x_2430=1 and x_2376=1+x_992 and x_2396=0 and x_2472=0 and x_2478=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and select(x_136,x_2376)=x_3908 and x_134-x_2376>=1 and x_3942=1 and x_3888=1+x_2376 and x_3908=0 and x_3984=0 and x_3990=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and select(x_136,x_3888)=x_37184 and select(x_136,x_3888)=x_37202 and x_134-x_3888>=1 and x_3888>=0 and x_37202=< - 1 and x_37184=0 and x_37276=0 and x_37288=0 and x_37300=0 and x_37312=0 and x_138=0Stampo Rawbody
+new1(_24120,_132,_134,_136,_138),constr((select(_136,_3888)=_24140&(_134-_3888>=1&(_24174=1&(_24120=1+_3888&(_24140=0&(_24216=0&_24222=0)))))))
+⚠️ Formula non normalizzata: select(_136,_3888)
+⚠️ Formula non normalizzata: _134-_3888
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _138:int
+✅ Inserita in rewrite: _992:int
+✅ Inserita in rewrite: _2376:int
+✅ Inserita in rewrite: _3888:int
+✅ Inserita in rewrite: _24120:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,_992:int=_992:int,_2376:int=_2376:int,_3888:int=_3888:int,_24120:int=_24120:int,select(_136,_3888)=_24140 and _134-_3888>=1 and _24174=1 and _24120=1+_3888 and _24140=0 and _24216=0 and _24222=0)),new1(_24120,_132,_134,_136,_138)
+Entrato in constr c
+⚠️ Formula non normalizzata: select(_136,_3888)
+⚠️ Formula non normalizzata: _134-_3888
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,_992:int=_992:int,_2376:int=_2376:int,_3888:int=_3888:int,_24120:int=_24120:int,((((true,_130=_130,_132=_132,_134=_134,_138=_138,_134>=1,_130=0,_132= - 1,_182=1),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,select(_136,_130)=_1012,_134-_130>=1,_1046=1,_992=1+_130,_1012=0,_1088=0,_1094=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,select(_136,_992)=_2396,_134-_992>=1,_2430=1,_2376=1+_992,_2396=0,_2472=0,_2478=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,select(_136,_2376)=_3908,_134-_2376>=1,_3942=1,_3888=1+_2376,_3908=0,_3984=0,_3990=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_24120=_24120,select(_136,_3888)=_24140,_134-_3888>=1,_24174=1,_24120=1+_3888,_24140=0,_24216=0,_24222=0]
+
+Stampa prima di inviare
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_138:int=x_138:int and x_992:int=x_992:int and x_2376:int=x_2376:int and x_3888:int=x_3888:int and x_24120:int=x_24120:int and ((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_134>=1 and x_130=0 and x_132= - 1 and x_182=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and select(x_136,x_130)=x_1012 and x_134-x_130>=1 and x_1046=1 and x_992=1+x_130 and x_1012=0 and x_1088=0 and x_1094=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and select(x_136,x_992)=x_2396 and x_134-x_992>=1 and x_2430=1 and x_2376=1+x_992 and x_2396=0 and x_2472=0 and x_2478=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and select(x_136,x_2376)=x_3908 and x_134-x_2376>=1 and x_3942=1 and x_3888=1+x_2376 and x_3908=0 and x_3984=0 and x_3990=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_24120=x_24120 and select(x_136,x_3888)=x_24140 and x_134-x_3888>=1 and x_24174=1 and x_24120=1+x_3888 and x_24140=0 and x_24216=0 and x_24222=0Mi trovo in questa head
+new1(_5592,_132,_134,_136,_138)
+Stampo Rawbody
+constr((select(_136,_5592)=_11888&(select(_136,_5592)=_11906&(_134-_5592>=1&(_5592>=0&(_11906>=1&(_11888=0&(_11976=0&(_11988=0&(_12000=0&(_12012=0&_138=0)))))))))))
+⚠️ Formula non normalizzata: select(_136,_5592)
+⚠️ Formula non normalizzata: select(_136,_5592)
+⚠️ Formula non normalizzata: _134-_5592
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _138:int
+✅ Inserita in rewrite: _992:int
+✅ Inserita in rewrite: _2376:int
+✅ Inserita in rewrite: _3888:int
+✅ Inserita in rewrite: _5592:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,_992:int=_992:int,_2376:int=_2376:int,_3888:int=_3888:int,_5592:int=_5592:int,select(_136,_5592)=_11888 and select(_136,_5592)=_11906 and _134-_5592>=1 and _5592>=0 and _11906>=1 and _11888=0 and _11976=0 and _11988=0 and _12000=0 and _12012=0 and _138=0))
+Entrato in constr c
+⚠️ Formula non normalizzata: select(_136,_5592)
+⚠️ Formula non normalizzata: select(_136,_5592)
+⚠️ Formula non normalizzata: _134-_5592
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,_992:int=_992:int,_2376:int=_2376:int,_3888:int=_3888:int,_5592:int=_5592:int,(((((true,_130=_130,_132=_132,_134=_134,_138=_138,_134>=1,_130=0,_132= - 1,_182=1),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,select(_136,_130)=_1012,_134-_130>=1,_1046=1,_992=1+_130,_1012=0,_1088=0,_1094=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,select(_136,_992)=_2396,_134-_992>=1,_2430=1,_2376=1+_992,_2396=0,_2472=0,_2478=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,select(_136,_2376)=_3908,_134-_2376>=1,_3942=1,_3888=1+_2376,_3908=0,_3984=0,_3990=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,select(_136,_3888)=_5612,_134-_3888>=1,_5646=1,_5592=1+_3888,_5612=0,_5688=0,_5694=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,select(_136,_5592)=_11888,select(_136,_5592)=_11906,_134-_5592>=1,_5592>=0,_11906>=1,_11888=0,_11976=0,_11988=0,_12000=0,_12012=0,_138=0]
+
+Stampa prima di inviare
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_138:int=x_138:int and x_992:int=x_992:int and x_2376:int=x_2376:int and x_3888:int=x_3888:int and x_5592:int=x_5592:int and (((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_134>=1 and x_130=0 and x_132= - 1 and x_182=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and select(x_136,x_130)=x_1012 and x_134-x_130>=1 and x_1046=1 and x_992=1+x_130 and x_1012=0 and x_1088=0 and x_1094=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and select(x_136,x_992)=x_2396 and x_134-x_992>=1 and x_2430=1 and x_2376=1+x_992 and x_2396=0 and x_2472=0 and x_2478=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and select(x_136,x_2376)=x_3908 and x_134-x_2376>=1 and x_3942=1 and x_3888=1+x_2376 and x_3908=0 and x_3984=0 and x_3990=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and select(x_136,x_3888)=x_5612 and x_134-x_3888>=1 and x_5646=1 and x_5592=1+x_3888 and x_5612=0 and x_5688=0 and x_5694=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and select(x_136,x_5592)=x_11888 and select(x_136,x_5592)=x_11906 and x_134-x_5592>=1 and x_5592>=0 and x_11906>=1 and x_11888=0 and x_11976=0 and x_11988=0 and x_12000=0 and x_12012=0 and x_138=0Stampo Rawbody
+constr((select(_136,_5592)=_10916&(select(_136,_5592)=_10934&(_134-_5592>=1&(_5592>=0&(_10934=< - 1&(_10916=0&(_11008=0&(_11020=0&(_11032=0&(_11044=0&_138=0)))))))))))
+⚠️ Formula non normalizzata: select(_136,_5592)
+⚠️ Formula non normalizzata: select(_136,_5592)
+⚠️ Formula non normalizzata: _134-_5592
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _138:int
+✅ Inserita in rewrite: _992:int
+✅ Inserita in rewrite: _2376:int
+✅ Inserita in rewrite: _3888:int
+✅ Inserita in rewrite: _5592:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,_992:int=_992:int,_2376:int=_2376:int,_3888:int=_3888:int,_5592:int=_5592:int,select(_136,_5592)=_10916 and select(_136,_5592)=_10934 and _134-_5592>=1 and _5592>=0 and _10934=< - 1 and _10916=0 and _11008=0 and _11020=0 and _11032=0 and _11044=0 and _138=0))
+Entrato in constr c
+⚠️ Formula non normalizzata: select(_136,_5592)
+⚠️ Formula non normalizzata: select(_136,_5592)
+⚠️ Formula non normalizzata: _134-_5592
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,_992:int=_992:int,_2376:int=_2376:int,_3888:int=_3888:int,_5592:int=_5592:int,(((((true,_130=_130,_132=_132,_134=_134,_138=_138,_134>=1,_130=0,_132= - 1,_182=1),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,select(_136,_130)=_1012,_134-_130>=1,_1046=1,_992=1+_130,_1012=0,_1088=0,_1094=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,select(_136,_992)=_2396,_134-_992>=1,_2430=1,_2376=1+_992,_2396=0,_2472=0,_2478=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,select(_136,_2376)=_3908,_134-_2376>=1,_3942=1,_3888=1+_2376,_3908=0,_3984=0,_3990=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,select(_136,_3888)=_5612,_134-_3888>=1,_5646=1,_5592=1+_3888,_5612=0,_5688=0,_5694=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,select(_136,_5592)=_10916,select(_136,_5592)=_10934,_134-_5592>=1,_5592>=0,_10934=< - 1,_10916=0,_11008=0,_11020=0,_11032=0,_11044=0,_138=0]
+
+Stampa prima di inviare
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_138:int=x_138:int and x_992:int=x_992:int and x_2376:int=x_2376:int and x_3888:int=x_3888:int and x_5592:int=x_5592:int and (((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_134>=1 and x_130=0 and x_132= - 1 and x_182=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and select(x_136,x_130)=x_1012 and x_134-x_130>=1 and x_1046=1 and x_992=1+x_130 and x_1012=0 and x_1088=0 and x_1094=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and select(x_136,x_992)=x_2396 and x_134-x_992>=1 and x_2430=1 and x_2376=1+x_992 and x_2396=0 and x_2472=0 and x_2478=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and select(x_136,x_2376)=x_3908 and x_134-x_2376>=1 and x_3942=1 and x_3888=1+x_2376 and x_3908=0 and x_3984=0 and x_3990=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and select(x_136,x_3888)=x_5612 and x_134-x_3888>=1 and x_5646=1 and x_5592=1+x_3888 and x_5612=0 and x_5688=0 and x_5694=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and select(x_136,x_5592)=x_10916 and select(x_136,x_5592)=x_10934 and x_134-x_5592>=1 and x_5592>=0 and x_10934=< - 1 and x_10916=0 and x_11008=0 and x_11020=0 and x_11032=0 and x_11044=0 and x_138=0Stampo Rawbody
+new1(_10916,_132,_134,_136,_138),constr((select(_136,_5592)=_10936&(_134-_5592>=1&(_10970=1&(_10916=1+_5592&(_10936=0&(_11012=0&_11018=0)))))))
+⚠️ Formula non normalizzata: select(_136,_5592)
+⚠️ Formula non normalizzata: _134-_5592
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _138:int
+✅ Inserita in rewrite: _992:int
+✅ Inserita in rewrite: _2376:int
+✅ Inserita in rewrite: _3888:int
+✅ Inserita in rewrite: _5592:int
+✅ Inserita in rewrite: _10916:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,_992:int=_992:int,_2376:int=_2376:int,_3888:int=_3888:int,_5592:int=_5592:int,_10916:int=_10916:int,select(_136,_5592)=_10936 and _134-_5592>=1 and _10970=1 and _10916=1+_5592 and _10936=0 and _11012=0 and _11018=0)),new1(_10916,_132,_134,_136,_138)
+Entrato in constr c
+⚠️ Formula non normalizzata: select(_136,_5592)
+⚠️ Formula non normalizzata: _134-_5592
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,_992:int=_992:int,_2376:int=_2376:int,_3888:int=_3888:int,_5592:int=_5592:int,_10916:int=_10916:int,(((((true,_130=_130,_132=_132,_134=_134,_138=_138,_134>=1,_130=0,_132= - 1,_182=1),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,select(_136,_130)=_1012,_134-_130>=1,_1046=1,_992=1+_130,_1012=0,_1088=0,_1094=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,select(_136,_992)=_2396,_134-_992>=1,_2430=1,_2376=1+_992,_2396=0,_2472=0,_2478=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,select(_136,_2376)=_3908,_134-_2376>=1,_3942=1,_3888=1+_2376,_3908=0,_3984=0,_3990=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,select(_136,_3888)=_5612,_134-_3888>=1,_5646=1,_5592=1+_3888,_5612=0,_5688=0,_5694=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,_10916=_10916,select(_136,_5592)=_10936,_134-_5592>=1,_10970=1,_10916=1+_5592,_10936=0,_11012=0,_11018=0]
+
+Stampa prima di inviare
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_138:int=x_138:int and x_992:int=x_992:int and x_2376:int=x_2376:int and x_3888:int=x_3888:int and x_5592:int=x_5592:int and x_10916:int=x_10916:int and (((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_134>=1 and x_130=0 and x_132= - 1 and x_182=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and select(x_136,x_130)=x_1012 and x_134-x_130>=1 and x_1046=1 and x_992=1+x_130 and x_1012=0 and x_1088=0 and x_1094=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and select(x_136,x_992)=x_2396 and x_134-x_992>=1 and x_2430=1 and x_2376=1+x_992 and x_2396=0 and x_2472=0 and x_2478=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and select(x_136,x_2376)=x_3908 and x_134-x_2376>=1 and x_3942=1 and x_3888=1+x_2376 and x_3908=0 and x_3984=0 and x_3990=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and select(x_136,x_3888)=x_5612 and x_134-x_3888>=1 and x_5646=1 and x_5592=1+x_3888 and x_5612=0 and x_5688=0 and x_5694=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and x_10916=x_10916 and select(x_136,x_5592)=x_10936 and x_134-x_5592>=1 and x_10970=1 and x_10916=1+x_5592 and x_10936=0 and x_11012=0 and x_11018=0Mi trovo in questa head
+new1(_10916,_132,_134,_136,_138)
+Stampo Rawbody
+constr((select(_136,_10916)=_65316&(select(_136,_10916)=_65334&(_134-_10916>=1&(_10916>=0&(_65334>=1&(_65316=0&(_65404=0&(_65416=0&(_65428=0&(_65440=0&_138=0)))))))))))
+⚠️ Formula non normalizzata: select(_136,_7576)
+⚠️ Formula non normalizzata: select(_136,_7576)
+⚠️ Formula non normalizzata: _134-_7576
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _138:int
+✅ Inserita in rewrite: _992:int
+✅ Inserita in rewrite: _2376:int
+✅ Inserita in rewrite: _3888:int
+✅ Inserita in rewrite: _5592:int
+✅ Inserita in rewrite: _7576:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,_992:int=_992:int,_2376:int=_2376:int,_3888:int=_3888:int,_5592:int=_5592:int,_7576:int=_7576:int,select(_136,_7576)=_9682 and select(_136,_7576)=_9700 and _134-_7576>=1 and _7576>=0 and _9700>=1 and _9682=0 and _9770=0 and _9782=0 and _9794=0 and _9806=0 and _138=0))
+Entrato in constr c
+⚠️ Formula non normalizzata: select(_136,_7576)
+⚠️ Formula non normalizzata: select(_136,_7576)
+⚠️ Formula non normalizzata: _134-_7576
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,_992:int=_992:int,_2376:int=_2376:int,_3888:int=_3888:int,_5592:int=_5592:int,_7576:int=_7576:int,((((((true,_130=_130,_132=_132,_134=_134,_138=_138,_134>=1,_130=0,_132= - 1,_182=1),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,select(_136,_130)=_1012,_134-_130>=1,_1046=1,_992=1+_130,_1012=0,_1088=0,_1094=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,select(_136,_992)=_2396,_134-_992>=1,_2430=1,_2376=1+_992,_2396=0,_2472=0,_2478=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,select(_136,_2376)=_3908,_134-_2376>=1,_3942=1,_3888=1+_2376,_3908=0,_3984=0,_3990=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,select(_136,_3888)=_5612,_134-_3888>=1,_5646=1,_5592=1+_3888,_5612=0,_5688=0,_5694=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,_7576=_7576,select(_136,_5592)=_7596,_134-_5592>=1,_7630=1,_7576=1+_5592,_7596=0,_7672=0,_7678=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,_7576=_7576,select(_136,_7576)=_9682,select(_136,_7576)=_9700,_134-_7576>=1,_7576>=0,_9700>=1,_9682=0,_9770=0,_9782=0,_9794=0,_9806=0,_138=0]
+
+Stampa prima di inviare
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_138:int=x_138:int and x_992:int=x_992:int and x_2376:int=x_2376:int and x_3888:int=x_3888:int and x_5592:int=x_5592:int and x_7576:int=x_7576:int and ((((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_134>=1 and x_130=0 and x_132= - 1 and x_182=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and select(x_136,x_130)=x_1012 and x_134-x_130>=1 and x_1046=1 and x_992=1+x_130 and x_1012=0 and x_1088=0 and x_1094=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and select(x_136,x_992)=x_2396 and x_134-x_992>=1 and x_2430=1 and x_2376=1+x_992 and x_2396=0 and x_2472=0 and x_2478=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and select(x_136,x_2376)=x_3908 and x_134-x_2376>=1 and x_3942=1 and x_3888=1+x_2376 and x_3908=0 and x_3984=0 and x_3990=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and select(x_136,x_3888)=x_5612 and x_134-x_3888>=1 and x_5646=1 and x_5592=1+x_3888 and x_5612=0 and x_5688=0 and x_5694=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and x_7576=x_7576 and select(x_136,x_5592)=x_7596 and x_134-x_5592>=1 and x_7630=1 and x_7576=1+x_5592 and x_7596=0 and x_7672=0 and x_7678=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and x_7576=x_7576 and select(x_136,x_7576)=x_9682 and select(x_136,x_7576)=x_9700 and x_134-x_7576>=1 and x_7576>=0 and x_9700>=1 and x_9682=0 and x_9770=0 and x_9782=0 and x_9794=0 and x_9806=0 and x_138=0Stampo Rawbody
+constr((select(_136,_7576)=_71420&(select(_136,_7576)=_71438&(_134-_7576>=1&(_7576>=0&(_71438=< - 1&(_71420=0&(_71512=0&(_71524=0&(_71536=0&(_71548=0&_138=0)))))))))))
+⚠️ Formula non normalizzata: select(_136,_7576)
+⚠️ Formula non normalizzata: select(_136,_7576)
+⚠️ Formula non normalizzata: _134-_7576
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _138:int
+✅ Inserita in rewrite: _992:int
+✅ Inserita in rewrite: _2376:int
+✅ Inserita in rewrite: _3888:int
+✅ Inserita in rewrite: _5592:int
+✅ Inserita in rewrite: _7576:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,_992:int=_992:int,_2376:int=_2376:int,_3888:int=_3888:int,_5592:int=_5592:int,_7576:int=_7576:int,select(_136,_7576)=_71420 and select(_136,_7576)=_71438 and _134-_7576>=1 and _7576>=0 and _71438=< - 1 and _71420=0 and _71512=0 and _71524=0 and _71536=0 and _71548=0 and _138=0))
+Entrato in constr c
+⚠️ Formula non normalizzata: select(_136,_7576)
+⚠️ Formula non normalizzata: select(_136,_7576)
+⚠️ Formula non normalizzata: _134-_7576
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,_992:int=_992:int,_2376:int=_2376:int,_3888:int=_3888:int,_5592:int=_5592:int,_7576:int=_7576:int,((((((true,_130=_130,_132=_132,_134=_134,_138=_138,_134>=1,_130=0,_132= - 1,_182=1),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,select(_136,_130)=_1012,_134-_130>=1,_1046=1,_992=1+_130,_1012=0,_1088=0,_1094=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,select(_136,_992)=_2396,_134-_992>=1,_2430=1,_2376=1+_992,_2396=0,_2472=0,_2478=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,select(_136,_2376)=_3908,_134-_2376>=1,_3942=1,_3888=1+_2376,_3908=0,_3984=0,_3990=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,select(_136,_3888)=_5612,_134-_3888>=1,_5646=1,_5592=1+_3888,_5612=0,_5688=0,_5694=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,_7576=_7576,select(_136,_5592)=_7596,_134-_5592>=1,_7630=1,_7576=1+_5592,_7596=0,_7672=0,_7678=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,_7576=_7576,select(_136,_7576)=_71420,select(_136,_7576)=_71438,_134-_7576>=1,_7576>=0,_71438=< - 1,_71420=0,_71512=0,_71524=0,_71536=0,_71548=0,_138=0]
+
+Stampa prima di inviare
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_138:int=x_138:int and x_992:int=x_992:int and x_2376:int=x_2376:int and x_3888:int=x_3888:int and x_5592:int=x_5592:int and x_7576:int=x_7576:int and ((((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_134>=1 and x_130=0 and x_132= - 1 and x_182=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and select(x_136,x_130)=x_1012 and x_134-x_130>=1 and x_1046=1 and x_992=1+x_130 and x_1012=0 and x_1088=0 and x_1094=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and select(x_136,x_992)=x_2396 and x_134-x_992>=1 and x_2430=1 and x_2376=1+x_992 and x_2396=0 and x_2472=0 and x_2478=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and select(x_136,x_2376)=x_3908 and x_134-x_2376>=1 and x_3942=1 and x_3888=1+x_2376 and x_3908=0 and x_3984=0 and x_3990=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and select(x_136,x_3888)=x_5612 and x_134-x_3888>=1 and x_5646=1 and x_5592=1+x_3888 and x_5612=0 and x_5688=0 and x_5694=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and x_7576=x_7576 and select(x_136,x_5592)=x_7596 and x_134-x_5592>=1 and x_7630=1 and x_7576=1+x_5592 and x_7596=0 and x_7672=0 and x_7678=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and x_7576=x_7576 and select(x_136,x_7576)=x_71420 and select(x_136,x_7576)=x_71438 and x_134-x_7576>=1 and x_7576>=0 and x_71438=< - 1 and x_71420=0 and x_71512=0 and x_71524=0 and x_71536=0 and x_71548=0 and x_138=0Stampo Rawbody
+new1(_16380,_132,_134,_136,_138),constr((select(_136,_7576)=_16400&(_134-_7576>=1&(_16434=1&(_16380=1+_7576&(_16400=0&(_16476=0&_16482=0)))))))
+⚠️ Formula non normalizzata: select(_136,_7576)
+⚠️ Formula non normalizzata: _134-_7576
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _138:int
+✅ Inserita in rewrite: _992:int
+✅ Inserita in rewrite: _2376:int
+✅ Inserita in rewrite: _3888:int
+✅ Inserita in rewrite: _5592:int
+✅ Inserita in rewrite: _7576:int
+✅ Inserita in rewrite: _16380:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,_992:int=_992:int,_2376:int=_2376:int,_3888:int=_3888:int,_5592:int=_5592:int,_7576:int=_7576:int,_16380:int=_16380:int,select(_136,_7576)=_16400 and _134-_7576>=1 and _16434=1 and _16380=1+_7576 and _16400=0 and _16476=0 and _16482=0)),new1(_16380,_132,_134,_136,_138)
+Entrato in constr c
+⚠️ Formula non normalizzata: select(_136,_7576)
+⚠️ Formula non normalizzata: _134-_7576
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,_992:int=_992:int,_2376:int=_2376:int,_3888:int=_3888:int,_5592:int=_5592:int,_7576:int=_7576:int,_16380:int=_16380:int,((((((true,_130=_130,_132=_132,_134=_134,_138=_138,_134>=1,_130=0,_132= - 1,_182=1),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,select(_136,_130)=_1012,_134-_130>=1,_1046=1,_992=1+_130,_1012=0,_1088=0,_1094=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,select(_136,_992)=_2396,_134-_992>=1,_2430=1,_2376=1+_992,_2396=0,_2472=0,_2478=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,select(_136,_2376)=_3908,_134-_2376>=1,_3942=1,_3888=1+_2376,_3908=0,_3984=0,_3990=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,select(_136,_3888)=_5612,_134-_3888>=1,_5646=1,_5592=1+_3888,_5612=0,_5688=0,_5694=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,_7576=_7576,select(_136,_5592)=_7596,_134-_5592>=1,_7630=1,_7576=1+_5592,_7596=0,_7672=0,_7678=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,_7576=_7576,_16380=_16380,select(_136,_7576)=_16400,_134-_7576>=1,_16434=1,_16380=1+_7576,_16400=0,_16476=0,_16482=0]
+
+Stampa prima di inviare
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_138:int=x_138:int and x_992:int=x_992:int and x_2376:int=x_2376:int and x_3888:int=x_3888:int and x_5592:int=x_5592:int and x_7576:int=x_7576:int and x_16380:int=x_16380:int and ((((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_134>=1 and x_130=0 and x_132= - 1 and x_182=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and select(x_136,x_130)=x_1012 and x_134-x_130>=1 and x_1046=1 and x_992=1+x_130 and x_1012=0 and x_1088=0 and x_1094=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and select(x_136,x_992)=x_2396 and x_134-x_992>=1 and x_2430=1 and x_2376=1+x_992 and x_2396=0 and x_2472=0 and x_2478=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and select(x_136,x_2376)=x_3908 and x_134-x_2376>=1 and x_3942=1 and x_3888=1+x_2376 and x_3908=0 and x_3984=0 and x_3990=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and select(x_136,x_3888)=x_5612 and x_134-x_3888>=1 and x_5646=1 and x_5592=1+x_3888 and x_5612=0 and x_5688=0 and x_5694=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and x_7576=x_7576 and select(x_136,x_5592)=x_7596 and x_134-x_5592>=1 and x_7630=1 and x_7576=1+x_5592 and x_7596=0 and x_7672=0 and x_7678=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and x_7576=x_7576 and x_16380=x_16380 and select(x_136,x_7576)=x_16400 and x_134-x_7576>=1 and x_16434=1 and x_16380=1+x_7576 and x_16400=0 and x_16476=0 and x_16482=0Mi trovo in questa head
+new1(_16380,_132,_134,_136,_138)
+Stampo Rawbody
+constr((select(_136,_16380)=_81584&(select(_136,_16380)=_81602&(_134-_16380>=1&(_16380>=0&(_81602>=1&(_81584=0&(_81672=0&(_81684=0&(_81696=0&(_81708=0&_138=0)))))))))))
+⚠️ Formula non normalizzata: select(_136,_16380)
+⚠️ Formula non normalizzata: select(_136,_16380)
+⚠️ Formula non normalizzata: _134-_16380
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _138:int
+✅ Inserita in rewrite: _992:int
+✅ Inserita in rewrite: _2376:int
+✅ Inserita in rewrite: _3888:int
+✅ Inserita in rewrite: _5592:int
+✅ Inserita in rewrite: _7576:int
+✅ Inserita in rewrite: _16380:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,_992:int=_992:int,_2376:int=_2376:int,_3888:int=_3888:int,_5592:int=_5592:int,_7576:int=_7576:int,_16380:int=_16380:int,select(_136,_16380)=_81584 and select(_136,_16380)=_81602 and _134-_16380>=1 and _16380>=0 and _81602>=1 and _81584=0 and _81672=0 and _81684=0 and _81696=0 and _81708=0 and _138=0))
+Entrato in constr c
+⚠️ Formula non normalizzata: select(_136,_16380)
+⚠️ Formula non normalizzata: select(_136,_16380)
+⚠️ Formula non normalizzata: _134-_16380
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,_992:int=_992:int,_2376:int=_2376:int,_3888:int=_3888:int,_5592:int=_5592:int,_7576:int=_7576:int,_16380:int=_16380:int,(((((((true,_130=_130,_132=_132,_134=_134,_138=_138,_134>=1,_130=0,_132= - 1,_182=1),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,select(_136,_130)=_1012,_134-_130>=1,_1046=1,_992=1+_130,_1012=0,_1088=0,_1094=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,select(_136,_992)=_2396,_134-_992>=1,_2430=1,_2376=1+_992,_2396=0,_2472=0,_2478=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,select(_136,_2376)=_3908,_134-_2376>=1,_3942=1,_3888=1+_2376,_3908=0,_3984=0,_3990=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,select(_136,_3888)=_5612,_134-_3888>=1,_5646=1,_5592=1+_3888,_5612=0,_5688=0,_5694=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,_7576=_7576,select(_136,_5592)=_7596,_134-_5592>=1,_7630=1,_7576=1+_5592,_7596=0,_7672=0,_7678=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,_7576=_7576,_16380=_16380,select(_136,_7576)=_16400,_134-_7576>=1,_16434=1,_16380=1+_7576,_16400=0,_16476=0,_16482=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,_7576=_7576,_16380=_16380,select(_136,_16380)=_81584,select(_136,_16380)=_81602,_134-_16380>=1,_16380>=0,_81602>=1,_81584=0,_81672=0,_81684=0,_81696=0,_81708=0,_138=0]
+
+Stampa prima di inviare
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_138:int=x_138:int and x_992:int=x_992:int and x_2376:int=x_2376:int and x_3888:int=x_3888:int and x_5592:int=x_5592:int and x_7576:int=x_7576:int and x_16380:int=x_16380:int and (((((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_134>=1 and x_130=0 and x_132= - 1 and x_182=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and select(x_136,x_130)=x_1012 and x_134-x_130>=1 and x_1046=1 and x_992=1+x_130 and x_1012=0 and x_1088=0 and x_1094=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and select(x_136,x_992)=x_2396 and x_134-x_992>=1 and x_2430=1 and x_2376=1+x_992 and x_2396=0 and x_2472=0 and x_2478=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and select(x_136,x_2376)=x_3908 and x_134-x_2376>=1 and x_3942=1 and x_3888=1+x_2376 and x_3908=0 and x_3984=0 and x_3990=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and select(x_136,x_3888)=x_5612 and x_134-x_3888>=1 and x_5646=1 and x_5592=1+x_3888 and x_5612=0 and x_5688=0 and x_5694=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and x_7576=x_7576 and select(x_136,x_5592)=x_7596 and x_134-x_5592>=1 and x_7630=1 and x_7576=1+x_5592 and x_7596=0 and x_7672=0 and x_7678=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and x_7576=x_7576 and x_16380=x_16380 and select(x_136,x_7576)=x_16400 and x_134-x_7576>=1 and x_16434=1 and x_16380=1+x_7576 and x_16400=0 and x_16476=0 and x_16482=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and x_7576=x_7576 and x_16380=x_16380 and select(x_136,x_16380)=x_81584 and select(x_136,x_16380)=x_81602 and x_134-x_16380>=1 and x_16380>=0 and x_81602>=1 and x_81584=0 and x_81672=0 and x_81684=0 and x_81696=0 and x_81708=0 and x_138=0Stampo Rawbody
+constr((select(_136,_9670)=_41156&(select(_136,_9670)=_41174&(_134-_9670>=1&(_9670>=0&(_41174=< - 1&(_41156=0&(_41248=0&(_41260=0&(_41272=0&(_41284=0&_138=0)))))))))))
+⚠️ Formula non normalizzata: select(_136,_9670)
+⚠️ Formula non normalizzata: select(_136,_9670)
+⚠️ Formula non normalizzata: _134-_9670
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _138:int
+✅ Inserita in rewrite: _992:int
+✅ Inserita in rewrite: _2376:int
+✅ Inserita in rewrite: _3888:int
+✅ Inserita in rewrite: _5592:int
+✅ Inserita in rewrite: _7576:int
+✅ Inserita in rewrite: _9670:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,_992:int=_992:int,_2376:int=_2376:int,_3888:int=_3888:int,_5592:int=_5592:int,_7576:int=_7576:int,_9670:int=_9670:int,select(_136,_9670)=_41156 and select(_136,_9670)=_41174 and _134-_9670>=1 and _9670>=0 and _41174=< - 1 and _41156=0 and _41248=0 and _41260=0 and _41272=0 and _41284=0 and _138=0))
+Entrato in constr c
+⚠️ Formula non normalizzata: select(_136,_9670)
+⚠️ Formula non normalizzata: select(_136,_9670)
+⚠️ Formula non normalizzata: _134-_9670
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,_992:int=_992:int,_2376:int=_2376:int,_3888:int=_3888:int,_5592:int=_5592:int,_7576:int=_7576:int,_9670:int=_9670:int,(((((((true,_130=_130,_132=_132,_134=_134,_138=_138,_134>=1,_130=0,_132= - 1,_182=1),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,select(_136,_130)=_1012,_134-_130>=1,_1046=1,_992=1+_130,_1012=0,_1088=0,_1094=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,select(_136,_992)=_2396,_134-_992>=1,_2430=1,_2376=1+_992,_2396=0,_2472=0,_2478=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,select(_136,_2376)=_3908,_134-_2376>=1,_3942=1,_3888=1+_2376,_3908=0,_3984=0,_3990=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,select(_136,_3888)=_5612,_134-_3888>=1,_5646=1,_5592=1+_3888,_5612=0,_5688=0,_5694=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,_7576=_7576,select(_136,_5592)=_7596,_134-_5592>=1,_7630=1,_7576=1+_5592,_7596=0,_7672=0,_7678=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,_7576=_7576,_9670=_9670,select(_136,_7576)=_9690,_134-_7576>=1,_9724=1,_9670=1+_7576,_9690=0,_9766=0,_9772=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,_7576=_7576,_9670=_9670,select(_136,_9670)=_41156,select(_136,_9670)=_41174,_134-_9670>=1,_9670>=0,_41174=< - 1,_41156=0,_41248=0,_41260=0,_41272=0,_41284=0,_138=0]
+
+Stampa prima di inviare
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_138:int=x_138:int and x_992:int=x_992:int and x_2376:int=x_2376:int and x_3888:int=x_3888:int and x_5592:int=x_5592:int and x_7576:int=x_7576:int and x_9670:int=x_9670:int and (((((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_134>=1 and x_130=0 and x_132= - 1 and x_182=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and select(x_136,x_130)=x_1012 and x_134-x_130>=1 and x_1046=1 and x_992=1+x_130 and x_1012=0 and x_1088=0 and x_1094=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and select(x_136,x_992)=x_2396 and x_134-x_992>=1 and x_2430=1 and x_2376=1+x_992 and x_2396=0 and x_2472=0 and x_2478=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and select(x_136,x_2376)=x_3908 and x_134-x_2376>=1 and x_3942=1 and x_3888=1+x_2376 and x_3908=0 and x_3984=0 and x_3990=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and select(x_136,x_3888)=x_5612 and x_134-x_3888>=1 and x_5646=1 and x_5592=1+x_3888 and x_5612=0 and x_5688=0 and x_5694=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and x_7576=x_7576 and select(x_136,x_5592)=x_7596 and x_134-x_5592>=1 and x_7630=1 and x_7576=1+x_5592 and x_7596=0 and x_7672=0 and x_7678=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and x_7576=x_7576 and x_9670=x_9670 and select(x_136,x_7576)=x_9690 and x_134-x_7576>=1 and x_9724=1 and x_9670=1+x_7576 and x_9690=0 and x_9766=0 and x_9772=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and x_7576=x_7576 and x_9670=x_9670 and select(x_136,x_9670)=x_41156 and select(x_136,x_9670)=x_41174 and x_134-x_9670>=1 and x_9670>=0 and x_41174=< - 1 and x_41156=0 and x_41248=0 and x_41260=0 and x_41272=0 and x_41284=0 and x_138=0Stampo Rawbody
+new1(_114038,_132,_134,_136,_138),constr((select(_136,_9670)=_114058&(_134-_9670>=1&(_114092=1&(_114038=1+_9670&(_114058=0&(_114134=0&_114140=0)))))))
+⚠️ Formula non normalizzata: select(_136,_9670)
+⚠️ Formula non normalizzata: _134-_9670
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _138:int
+✅ Inserita in rewrite: _992:int
+✅ Inserita in rewrite: _2376:int
+✅ Inserita in rewrite: _3888:int
+✅ Inserita in rewrite: _5592:int
+✅ Inserita in rewrite: _7576:int
+✅ Inserita in rewrite: _9670:int
+✅ Inserita in rewrite: _114038:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,_992:int=_992:int,_2376:int=_2376:int,_3888:int=_3888:int,_5592:int=_5592:int,_7576:int=_7576:int,_9670:int=_9670:int,_114038:int=_114038:int,select(_136,_9670)=_114058 and _134-_9670>=1 and _114092=1 and _114038=1+_9670 and _114058=0 and _114134=0 and _114140=0)),new1(_114038,_132,_134,_136,_138)
+Entrato in constr c
+⚠️ Formula non normalizzata: select(_136,_9670)
+⚠️ Formula non normalizzata: _134-_9670
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,_992:int=_992:int,_2376:int=_2376:int,_3888:int=_3888:int,_5592:int=_5592:int,_7576:int=_7576:int,_9670:int=_9670:int,_114038:int=_114038:int,(((((((true,_130=_130,_132=_132,_134=_134,_138=_138,_134>=1,_130=0,_132= - 1,_182=1),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,select(_136,_130)=_1012,_134-_130>=1,_1046=1,_992=1+_130,_1012=0,_1088=0,_1094=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,select(_136,_992)=_2396,_134-_992>=1,_2430=1,_2376=1+_992,_2396=0,_2472=0,_2478=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,select(_136,_2376)=_3908,_134-_2376>=1,_3942=1,_3888=1+_2376,_3908=0,_3984=0,_3990=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,select(_136,_3888)=_5612,_134-_3888>=1,_5646=1,_5592=1+_3888,_5612=0,_5688=0,_5694=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,_7576=_7576,select(_136,_5592)=_7596,_134-_5592>=1,_7630=1,_7576=1+_5592,_7596=0,_7672=0,_7678=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,_7576=_7576,_9670=_9670,select(_136,_7576)=_9690,_134-_7576>=1,_9724=1,_9670=1+_7576,_9690=0,_9766=0,_9772=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,_7576=_7576,_9670=_9670,_114038=_114038,select(_136,_9670)=_114058,_134-_9670>=1,_114092=1,_114038=1+_9670,_114058=0,_114134=0,_114140=0]
+
+Stampa prima di inviare
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_138:int=x_138:int and x_992:int=x_992:int and x_2376:int=x_2376:int and x_3888:int=x_3888:int and x_5592:int=x_5592:int and x_7576:int=x_7576:int and x_9670:int=x_9670:int and x_114038:int=x_114038:int and (((((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_134>=1 and x_130=0 and x_132= - 1 and x_182=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and select(x_136,x_130)=x_1012 and x_134-x_130>=1 and x_1046=1 and x_992=1+x_130 and x_1012=0 and x_1088=0 and x_1094=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and select(x_136,x_992)=x_2396 and x_134-x_992>=1 and x_2430=1 and x_2376=1+x_992 and x_2396=0 and x_2472=0 and x_2478=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and select(x_136,x_2376)=x_3908 and x_134-x_2376>=1 and x_3942=1 and x_3888=1+x_2376 and x_3908=0 and x_3984=0 and x_3990=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and select(x_136,x_3888)=x_5612 and x_134-x_3888>=1 and x_5646=1 and x_5592=1+x_3888 and x_5612=0 and x_5688=0 and x_5694=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and x_7576=x_7576 and select(x_136,x_5592)=x_7596 and x_134-x_5592>=1 and x_7630=1 and x_7576=1+x_5592 and x_7596=0 and x_7672=0 and x_7678=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and x_7576=x_7576 and x_9670=x_9670 and select(x_136,x_7576)=x_9690 and x_134-x_7576>=1 and x_9724=1 and x_9670=1+x_7576 and x_9690=0 and x_9766=0 and x_9772=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and x_7576=x_7576 and x_9670=x_9670 and x_114038=x_114038 and select(x_136,x_9670)=x_114058 and x_134-x_9670>=1 and x_114092=1 and x_114038=1+x_9670 and x_114058=0 and x_114134=0 and x_114140=0Mi trovo in questa head
+new1(_11952,_132,_134,_136,_138)
+Stampo Rawbody
+constr((select(_136,_11952)=_75518&(select(_136,_11952)=_75536&(_134-_11952>=1&(_11952>=0&(_75536>=1&(_75518=0&(_75606=0&(_75618=0&(_75630=0&(_75642=0&_138=0)))))))))))
+⚠️ Formula non normalizzata: select(_136,_11952)
+⚠️ Formula non normalizzata: select(_136,_11952)
+⚠️ Formula non normalizzata: _134-_11952
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _138:int
+✅ Inserita in rewrite: _992:int
+✅ Inserita in rewrite: _2376:int
+✅ Inserita in rewrite: _3888:int
+✅ Inserita in rewrite: _5592:int
+✅ Inserita in rewrite: _7576:int
+✅ Inserita in rewrite: _9670:int
+✅ Inserita in rewrite: _11952:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,_992:int=_992:int,_2376:int=_2376:int,_3888:int=_3888:int,_5592:int=_5592:int,_7576:int=_7576:int,_9670:int=_9670:int,_11952:int=_11952:int,select(_136,_11952)=_75518 and select(_136,_11952)=_75536 and _134-_11952>=1 and _11952>=0 and _75536>=1 and _75518=0 and _75606=0 and _75618=0 and _75630=0 and _75642=0 and _138=0))
+Entrato in constr c
+⚠️ Formula non normalizzata: select(_136,_11952)
+⚠️ Formula non normalizzata: select(_136,_11952)
+⚠️ Formula non normalizzata: _134-_11952
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,_992:int=_992:int,_2376:int=_2376:int,_3888:int=_3888:int,_5592:int=_5592:int,_7576:int=_7576:int,_9670:int=_9670:int,_11952:int=_11952:int,((((((((true,_130=_130,_132=_132,_134=_134,_138=_138,_134>=1,_130=0,_132= - 1,_182=1),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,select(_136,_130)=_1012,_134-_130>=1,_1046=1,_992=1+_130,_1012=0,_1088=0,_1094=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,select(_136,_992)=_2396,_134-_992>=1,_2430=1,_2376=1+_992,_2396=0,_2472=0,_2478=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,select(_136,_2376)=_3908,_134-_2376>=1,_3942=1,_3888=1+_2376,_3908=0,_3984=0,_3990=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,select(_136,_3888)=_5612,_134-_3888>=1,_5646=1,_5592=1+_3888,_5612=0,_5688=0,_5694=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,_7576=_7576,select(_136,_5592)=_7596,_134-_5592>=1,_7630=1,_7576=1+_5592,_7596=0,_7672=0,_7678=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,_7576=_7576,_9670=_9670,select(_136,_7576)=_9690,_134-_7576>=1,_9724=1,_9670=1+_7576,_9690=0,_9766=0,_9772=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,_7576=_7576,_9670=_9670,_11952=_11952,select(_136,_9670)=_11972,_134-_9670>=1,_12006=1,_11952=1+_9670,_11972=0,_12048=0,_12054=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,_7576=_7576,_9670=_9670,_11952=_11952,select(_136,_11952)=_75518,select(_136,_11952)=_75536,_134-_11952>=1,_11952>=0,_75536>=1,_75518=0,_75606=0,_75618=0,_75630=0,_75642=0,_138=0]
+
+Stampa prima di inviare
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_138:int=x_138:int and x_992:int=x_992:int and x_2376:int=x_2376:int and x_3888:int=x_3888:int and x_5592:int=x_5592:int and x_7576:int=x_7576:int and x_9670:int=x_9670:int and x_11952:int=x_11952:int and ((((((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_134>=1 and x_130=0 and x_132= - 1 and x_182=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and select(x_136,x_130)=x_1012 and x_134-x_130>=1 and x_1046=1 and x_992=1+x_130 and x_1012=0 and x_1088=0 and x_1094=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and select(x_136,x_992)=x_2396 and x_134-x_992>=1 and x_2430=1 and x_2376=1+x_992 and x_2396=0 and x_2472=0 and x_2478=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and select(x_136,x_2376)=x_3908 and x_134-x_2376>=1 and x_3942=1 and x_3888=1+x_2376 and x_3908=0 and x_3984=0 and x_3990=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and select(x_136,x_3888)=x_5612 and x_134-x_3888>=1 and x_5646=1 and x_5592=1+x_3888 and x_5612=0 and x_5688=0 and x_5694=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and x_7576=x_7576 and select(x_136,x_5592)=x_7596 and x_134-x_5592>=1 and x_7630=1 and x_7576=1+x_5592 and x_7596=0 and x_7672=0 and x_7678=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and x_7576=x_7576 and x_9670=x_9670 and select(x_136,x_7576)=x_9690 and x_134-x_7576>=1 and x_9724=1 and x_9670=1+x_7576 and x_9690=0 and x_9766=0 and x_9772=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and x_7576=x_7576 and x_9670=x_9670 and x_11952=x_11952 and select(x_136,x_9670)=x_11972 and x_134-x_9670>=1 and x_12006=1 and x_11952=1+x_9670 and x_11972=0 and x_12048=0 and x_12054=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and x_7576=x_7576 and x_9670=x_9670 and x_11952=x_11952 and select(x_136,x_11952)=x_75518 and select(x_136,x_11952)=x_75536 and x_134-x_11952>=1 and x_11952>=0 and x_75536>=1 and x_75518=0 and x_75606=0 and x_75618=0 and x_75630=0 and x_75642=0 and x_138=0Stampo Rawbody
+constr((select(_136,_11952)=_49056&(select(_136,_11952)=_49074&(_134-_11952>=1&(_11952>=0&(_49074=< - 1&(_49056=0&(_49148=0&(_49160=0&(_49172=0&(_49184=0&_138=0)))))))))))
+⚠️ Formula non normalizzata: select(_136,_11952)
+⚠️ Formula non normalizzata: select(_136,_11952)
+⚠️ Formula non normalizzata: _134-_11952
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _138:int
+✅ Inserita in rewrite: _992:int
+✅ Inserita in rewrite: _2376:int
+✅ Inserita in rewrite: _3888:int
+✅ Inserita in rewrite: _5592:int
+✅ Inserita in rewrite: _7576:int
+✅ Inserita in rewrite: _9670:int
+✅ Inserita in rewrite: _11952:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,_992:int=_992:int,_2376:int=_2376:int,_3888:int=_3888:int,_5592:int=_5592:int,_7576:int=_7576:int,_9670:int=_9670:int,_11952:int=_11952:int,select(_136,_11952)=_49056 and select(_136,_11952)=_49074 and _134-_11952>=1 and _11952>=0 and _49074=< - 1 and _49056=0 and _49148=0 and _49160=0 and _49172=0 and _49184=0 and _138=0))
+Entrato in constr c
+⚠️ Formula non normalizzata: select(_136,_11952)
+⚠️ Formula non normalizzata: select(_136,_11952)
+⚠️ Formula non normalizzata: _134-_11952
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,_992:int=_992:int,_2376:int=_2376:int,_3888:int=_3888:int,_5592:int=_5592:int,_7576:int=_7576:int,_9670:int=_9670:int,_11952:int=_11952:int,((((((((true,_130=_130,_132=_132,_134=_134,_138=_138,_134>=1,_130=0,_132= - 1,_182=1),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,select(_136,_130)=_1012,_134-_130>=1,_1046=1,_992=1+_130,_1012=0,_1088=0,_1094=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,select(_136,_992)=_2396,_134-_992>=1,_2430=1,_2376=1+_992,_2396=0,_2472=0,_2478=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,select(_136,_2376)=_3908,_134-_2376>=1,_3942=1,_3888=1+_2376,_3908=0,_3984=0,_3990=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,select(_136,_3888)=_5612,_134-_3888>=1,_5646=1,_5592=1+_3888,_5612=0,_5688=0,_5694=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,_7576=_7576,select(_136,_5592)=_7596,_134-_5592>=1,_7630=1,_7576=1+_5592,_7596=0,_7672=0,_7678=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,_7576=_7576,_9670=_9670,select(_136,_7576)=_9690,_134-_7576>=1,_9724=1,_9670=1+_7576,_9690=0,_9766=0,_9772=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,_7576=_7576,_9670=_9670,_11952=_11952,select(_136,_9670)=_11972,_134-_9670>=1,_12006=1,_11952=1+_9670,_11972=0,_12048=0,_12054=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,_7576=_7576,_9670=_9670,_11952=_11952,select(_136,_11952)=_49056,select(_136,_11952)=_49074,_134-_11952>=1,_11952>=0,_49074=< - 1,_49056=0,_49148=0,_49160=0,_49172=0,_49184=0,_138=0]
+
+Stampa prima di inviare
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_138:int=x_138:int and x_992:int=x_992:int and x_2376:int=x_2376:int and x_3888:int=x_3888:int and x_5592:int=x_5592:int and x_7576:int=x_7576:int and x_9670:int=x_9670:int and x_11952:int=x_11952:int and ((((((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_134>=1 and x_130=0 and x_132= - 1 and x_182=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and select(x_136,x_130)=x_1012 and x_134-x_130>=1 and x_1046=1 and x_992=1+x_130 and x_1012=0 and x_1088=0 and x_1094=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and select(x_136,x_992)=x_2396 and x_134-x_992>=1 and x_2430=1 and x_2376=1+x_992 and x_2396=0 and x_2472=0 and x_2478=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and select(x_136,x_2376)=x_3908 and x_134-x_2376>=1 and x_3942=1 and x_3888=1+x_2376 and x_3908=0 and x_3984=0 and x_3990=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and select(x_136,x_3888)=x_5612 and x_134-x_3888>=1 and x_5646=1 and x_5592=1+x_3888 and x_5612=0 and x_5688=0 and x_5694=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and x_7576=x_7576 and select(x_136,x_5592)=x_7596 and x_134-x_5592>=1 and x_7630=1 and x_7576=1+x_5592 and x_7596=0 and x_7672=0 and x_7678=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and x_7576=x_7576 and x_9670=x_9670 and select(x_136,x_7576)=x_9690 and x_134-x_7576>=1 and x_9724=1 and x_9670=1+x_7576 and x_9690=0 and x_9766=0 and x_9772=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and x_7576=x_7576 and x_9670=x_9670 and x_11952=x_11952 and select(x_136,x_9670)=x_11972 and x_134-x_9670>=1 and x_12006=1 and x_11952=1+x_9670 and x_11972=0 and x_12048=0 and x_12054=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and x_7576=x_7576 and x_9670=x_9670 and x_11952=x_11952 and select(x_136,x_11952)=x_49056 and select(x_136,x_11952)=x_49074 and x_134-x_11952>=1 and x_11952>=0 and x_49074=< - 1 and x_49056=0 and x_49148=0 and x_49160=0 and x_49172=0 and x_49184=0 and x_138=0Stampo Rawbody
+new1(_21192,_132,_134,_136,_138),constr((select(_136,_11952)=_21212&(_134-_11952>=1&(_21246=1&(_21192=1+_11952&(_21212=0&(_21288=0&_21294=0)))))))
+⚠️ Formula non normalizzata: select(_136,_11952)
+⚠️ Formula non normalizzata: _134-_11952
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _138:int
+✅ Inserita in rewrite: _992:int
+✅ Inserita in rewrite: _2376:int
+✅ Inserita in rewrite: _3888:int
+✅ Inserita in rewrite: _5592:int
+✅ Inserita in rewrite: _7576:int
+✅ Inserita in rewrite: _9670:int
+✅ Inserita in rewrite: _11952:int
+✅ Inserita in rewrite: _21192:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,_992:int=_992:int,_2376:int=_2376:int,_3888:int=_3888:int,_5592:int=_5592:int,_7576:int=_7576:int,_9670:int=_9670:int,_11952:int=_11952:int,_21192:int=_21192:int,select(_136,_11952)=_21212 and _134-_11952>=1 and _21246=1 and _21192=1+_11952 and _21212=0 and _21288=0 and _21294=0)),new1(_21192,_132,_134,_136,_138)
+Entrato in constr c
+⚠️ Formula non normalizzata: select(_136,_11952)
+⚠️ Formula non normalizzata: _134-_11952
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,_992:int=_992:int,_2376:int=_2376:int,_3888:int=_3888:int,_5592:int=_5592:int,_7576:int=_7576:int,_9670:int=_9670:int,_11952:int=_11952:int,_21192:int=_21192:int,((((((((true,_130=_130,_132=_132,_134=_134,_138=_138,_134>=1,_130=0,_132= - 1,_182=1),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,select(_136,_130)=_1012,_134-_130>=1,_1046=1,_992=1+_130,_1012=0,_1088=0,_1094=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,select(_136,_992)=_2396,_134-_992>=1,_2430=1,_2376=1+_992,_2396=0,_2472=0,_2478=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,select(_136,_2376)=_3908,_134-_2376>=1,_3942=1,_3888=1+_2376,_3908=0,_3984=0,_3990=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,select(_136,_3888)=_5612,_134-_3888>=1,_5646=1,_5592=1+_3888,_5612=0,_5688=0,_5694=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,_7576=_7576,select(_136,_5592)=_7596,_134-_5592>=1,_7630=1,_7576=1+_5592,_7596=0,_7672=0,_7678=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,_7576=_7576,_9670=_9670,select(_136,_7576)=_9690,_134-_7576>=1,_9724=1,_9670=1+_7576,_9690=0,_9766=0,_9772=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,_7576=_7576,_9670=_9670,_11952=_11952,select(_136,_9670)=_11972,_134-_9670>=1,_12006=1,_11952=1+_9670,_11972=0,_12048=0,_12054=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,_7576=_7576,_9670=_9670,_11952=_11952,_21192=_21192,select(_136,_11952)=_21212,_134-_11952>=1,_21246=1,_21192=1+_11952,_21212=0,_21288=0,_21294=0]
+
+Stampa prima di inviare
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_138:int=x_138:int and x_992:int=x_992:int and x_2376:int=x_2376:int and x_3888:int=x_3888:int and x_5592:int=x_5592:int and x_7576:int=x_7576:int and x_9670:int=x_9670:int and x_11952:int=x_11952:int and x_21192:int=x_21192:int and ((((((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_134>=1 and x_130=0 and x_132= - 1 and x_182=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and select(x_136,x_130)=x_1012 and x_134-x_130>=1 and x_1046=1 and x_992=1+x_130 and x_1012=0 and x_1088=0 and x_1094=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and select(x_136,x_992)=x_2396 and x_134-x_992>=1 and x_2430=1 and x_2376=1+x_992 and x_2396=0 and x_2472=0 and x_2478=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and select(x_136,x_2376)=x_3908 and x_134-x_2376>=1 and x_3942=1 and x_3888=1+x_2376 and x_3908=0 and x_3984=0 and x_3990=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and select(x_136,x_3888)=x_5612 and x_134-x_3888>=1 and x_5646=1 and x_5592=1+x_3888 and x_5612=0 and x_5688=0 and x_5694=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and x_7576=x_7576 and select(x_136,x_5592)=x_7596 and x_134-x_5592>=1 and x_7630=1 and x_7576=1+x_5592 and x_7596=0 and x_7672=0 and x_7678=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and x_7576=x_7576 and x_9670=x_9670 and select(x_136,x_7576)=x_9690 and x_134-x_7576>=1 and x_9724=1 and x_9670=1+x_7576 and x_9690=0 and x_9766=0 and x_9772=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and x_7576=x_7576 and x_9670=x_9670 and x_11952=x_11952 and select(x_136,x_9670)=x_11972 and x_134-x_9670>=1 and x_12006=1 and x_11952=1+x_9670 and x_11972=0 and x_12048=0 and x_12054=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and x_7576=x_7576 and x_9670=x_9670 and x_11952=x_11952 and x_21192=x_21192 and select(x_136,x_11952)=x_21212 and x_134-x_11952>=1 and x_21246=1 and x_21192=1+x_11952 and x_21212=0 and x_21288=0 and x_21294=0Mi trovo in questa head
+new1(_21192,_132,_134,_136,_138)
+Stampo Rawbody
+constr((select(_136,_21192)=_109254&(select(_136,_21192)=_109272&(_134-_21192>=1&(_21192>=0&(_109272>=1&(_109254=0&(_109342=0&(_109354=0&(_109366=0&(_109378=0&_138=0)))))))))))
+⚠️ Formula non normalizzata: select(_136,_21192)
+⚠️ Formula non normalizzata: select(_136,_21192)
+⚠️ Formula non normalizzata: _134-_21192
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _138:int
+✅ Inserita in rewrite: _992:int
+✅ Inserita in rewrite: _2376:int
+✅ Inserita in rewrite: _3888:int
+✅ Inserita in rewrite: _5592:int
+✅ Inserita in rewrite: _7576:int
+✅ Inserita in rewrite: _9670:int
+✅ Inserita in rewrite: _11952:int
+✅ Inserita in rewrite: _21192:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,_992:int=_992:int,_2376:int=_2376:int,_3888:int=_3888:int,_5592:int=_5592:int,_7576:int=_7576:int,_9670:int=_9670:int,_11952:int=_11952:int,_21192:int=_21192:int,select(_136,_21192)=_109254 and select(_136,_21192)=_109272 and _134-_21192>=1 and _21192>=0 and _109272>=1 and _109254=0 and _109342=0 and _109354=0 and _109366=0 and _109378=0 and _138=0))
+Limite MaxDepth raggiunto
+Entrato in constr c
+⚠️ Formula non normalizzata: select(_136,_21192)
+⚠️ Formula non normalizzata: select(_136,_21192)
+⚠️ Formula non normalizzata: _134-_21192
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,_992:int=_992:int,_2376:int=_2376:int,_3888:int=_3888:int,_5592:int=_5592:int,_7576:int=_7576:int,_9670:int=_9670:int,_11952:int=_11952:int,_21192:int=_21192:int,(((((((((true,_130=_130,_132=_132,_134=_134,_138=_138,_134>=1,_130=0,_132= - 1,_182=1),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,select(_136,_130)=_1012,_134-_130>=1,_1046=1,_992=1+_130,_1012=0,_1088=0,_1094=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,select(_136,_992)=_2396,_134-_992>=1,_2430=1,_2376=1+_992,_2396=0,_2472=0,_2478=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,select(_136,_2376)=_3908,_134-_2376>=1,_3942=1,_3888=1+_2376,_3908=0,_3984=0,_3990=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,select(_136,_3888)=_5612,_134-_3888>=1,_5646=1,_5592=1+_3888,_5612=0,_5688=0,_5694=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,_7576=_7576,select(_136,_5592)=_7596,_134-_5592>=1,_7630=1,_7576=1+_5592,_7596=0,_7672=0,_7678=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,_7576=_7576,_9670=_9670,select(_136,_7576)=_9690,_134-_7576>=1,_9724=1,_9670=1+_7576,_9690=0,_9766=0,_9772=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,_7576=_7576,_9670=_9670,_11952=_11952,select(_136,_9670)=_11972,_134-_9670>=1,_12006=1,_11952=1+_9670,_11972=0,_12048=0,_12054=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,_7576=_7576,_9670=_9670,_11952=_11952,_21192=_21192,select(_136,_11952)=_21212,_134-_11952>=1,_21246=1,_21192=1+_11952,_21212=0,_21288=0,_21294=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,_7576=_7576,_9670=_9670,_11952=_11952,_21192=_21192,select(_136,_21192)=_109254,select(_136,_21192)=_109272,_134-_21192>=1,_21192>=0,_109272>=1,_109254=0,_109342=0,_109354=0,_109366=0,_109378=0,_138=0]
+
+Stampa prima di inviare
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_138:int=x_138:int and x_992:int=x_992:int and x_2376:int=x_2376:int and x_3888:int=x_3888:int and x_5592:int=x_5592:int and x_7576:int=x_7576:int and x_9670:int=x_9670:int and x_11952:int=x_11952:int and x_21192:int=x_21192:int and (((((((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_134>=1 and x_130=0 and x_132= - 1 and x_182=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and select(x_136,x_130)=x_1012 and x_134-x_130>=1 and x_1046=1 and x_992=1+x_130 and x_1012=0 and x_1088=0 and x_1094=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and select(x_136,x_992)=x_2396 and x_134-x_992>=1 and x_2430=1 and x_2376=1+x_992 and x_2396=0 and x_2472=0 and x_2478=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and select(x_136,x_2376)=x_3908 and x_134-x_2376>=1 and x_3942=1 and x_3888=1+x_2376 and x_3908=0 and x_3984=0 and x_3990=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and select(x_136,x_3888)=x_5612 and x_134-x_3888>=1 and x_5646=1 and x_5592=1+x_3888 and x_5612=0 and x_5688=0 and x_5694=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and x_7576=x_7576 and select(x_136,x_5592)=x_7596 and x_134-x_5592>=1 and x_7630=1 and x_7576=1+x_5592 and x_7596=0 and x_7672=0 and x_7678=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and x_7576=x_7576 and x_9670=x_9670 and select(x_136,x_7576)=x_9690 and x_134-x_7576>=1 and x_9724=1 and x_9670=1+x_7576 and x_9690=0 and x_9766=0 and x_9772=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and x_7576=x_7576 and x_9670=x_9670 and x_11952=x_11952 and select(x_136,x_9670)=x_11972 and x_134-x_9670>=1 and x_12006=1 and x_11952=1+x_9670 and x_11972=0 and x_12048=0 and x_12054=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and x_7576=x_7576 and x_9670=x_9670 and x_11952=x_11952 and x_21192=x_21192 and select(x_136,x_11952)=x_21212 and x_134-x_11952>=1 and x_21246=1 and x_21192=1+x_11952 and x_21212=0 and x_21288=0 and x_21294=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and x_7576=x_7576 and x_9670=x_9670 and x_11952=x_11952 and x_21192=x_21192 and select(x_136,x_21192)=x_109254 and select(x_136,x_21192)=x_109272 and x_134-x_21192>=1 and x_21192>=0 and x_109272>=1 and x_109254=0 and x_109342=0 and x_109354=0 and x_109366=0 and x_109378=0 and x_138=0Stampo Rawbody
+constr((select(_136,_14532)=_96028&(select(_136,_14532)=_96046&(_134-_14532>=1&(_14532>=0&(_96046=< - 1&(_96028=0&(_96120=0&(_96132=0&(_96144=0&(_96156=0&_138=0)))))))))))
+⚠️ Formula non normalizzata: select(_136,_14532)
+⚠️ Formula non normalizzata: select(_136,_14532)
+⚠️ Formula non normalizzata: _134-_14532
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _138:int
+✅ Inserita in rewrite: _992:int
+✅ Inserita in rewrite: _2376:int
+✅ Inserita in rewrite: _3888:int
+✅ Inserita in rewrite: _5592:int
+✅ Inserita in rewrite: _7576:int
+✅ Inserita in rewrite: _9670:int
+✅ Inserita in rewrite: _11952:int
+✅ Inserita in rewrite: _14532:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,_992:int=_992:int,_2376:int=_2376:int,_3888:int=_3888:int,_5592:int=_5592:int,_7576:int=_7576:int,_9670:int=_9670:int,_11952:int=_11952:int,_14532:int=_14532:int,select(_136,_14532)=_96028 and select(_136,_14532)=_96046 and _134-_14532>=1 and _14532>=0 and _96046=< - 1 and _96028=0 and _96120=0 and _96132=0 and _96144=0 and _96156=0 and _138=0))
+Limite MaxDepth raggiunto
+Entrato in constr c
+⚠️ Formula non normalizzata: select(_136,_14532)
+⚠️ Formula non normalizzata: select(_136,_14532)
+⚠️ Formula non normalizzata: _134-_14532
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,_992:int=_992:int,_2376:int=_2376:int,_3888:int=_3888:int,_5592:int=_5592:int,_7576:int=_7576:int,_9670:int=_9670:int,_11952:int=_11952:int,_14532:int=_14532:int,(((((((((true,_130=_130,_132=_132,_134=_134,_138=_138,_134>=1,_130=0,_132= - 1,_182=1),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,select(_136,_130)=_1012,_134-_130>=1,_1046=1,_992=1+_130,_1012=0,_1088=0,_1094=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,select(_136,_992)=_2396,_134-_992>=1,_2430=1,_2376=1+_992,_2396=0,_2472=0,_2478=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,select(_136,_2376)=_3908,_134-_2376>=1,_3942=1,_3888=1+_2376,_3908=0,_3984=0,_3990=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,select(_136,_3888)=_5612,_134-_3888>=1,_5646=1,_5592=1+_3888,_5612=0,_5688=0,_5694=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,_7576=_7576,select(_136,_5592)=_7596,_134-_5592>=1,_7630=1,_7576=1+_5592,_7596=0,_7672=0,_7678=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,_7576=_7576,_9670=_9670,select(_136,_7576)=_9690,_134-_7576>=1,_9724=1,_9670=1+_7576,_9690=0,_9766=0,_9772=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,_7576=_7576,_9670=_9670,_11952=_11952,select(_136,_9670)=_11972,_134-_9670>=1,_12006=1,_11952=1+_9670,_11972=0,_12048=0,_12054=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,_7576=_7576,_9670=_9670,_11952=_11952,_14532=_14532,select(_136,_11952)=_14552,_134-_11952>=1,_14586=1,_14532=1+_11952,_14552=0,_14628=0,_14634=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,_7576=_7576,_9670=_9670,_11952=_11952,_14532=_14532,select(_136,_14532)=_96028,select(_136,_14532)=_96046,_134-_14532>=1,_14532>=0,_96046=< - 1,_96028=0,_96120=0,_96132=0,_96144=0,_96156=0,_138=0]
+
+Stampa prima di inviare
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_138:int=x_138:int and x_992:int=x_992:int and x_2376:int=x_2376:int and x_3888:int=x_3888:int and x_5592:int=x_5592:int and x_7576:int=x_7576:int and x_9670:int=x_9670:int and x_11952:int=x_11952:int and x_14532:int=x_14532:int and (((((((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_134>=1 and x_130=0 and x_132= - 1 and x_182=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and select(x_136,x_130)=x_1012 and x_134-x_130>=1 and x_1046=1 and x_992=1+x_130 and x_1012=0 and x_1088=0 and x_1094=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and select(x_136,x_992)=x_2396 and x_134-x_992>=1 and x_2430=1 and x_2376=1+x_992 and x_2396=0 and x_2472=0 and x_2478=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and select(x_136,x_2376)=x_3908 and x_134-x_2376>=1 and x_3942=1 and x_3888=1+x_2376 and x_3908=0 and x_3984=0 and x_3990=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and select(x_136,x_3888)=x_5612 and x_134-x_3888>=1 and x_5646=1 and x_5592=1+x_3888 and x_5612=0 and x_5688=0 and x_5694=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and x_7576=x_7576 and select(x_136,x_5592)=x_7596 and x_134-x_5592>=1 and x_7630=1 and x_7576=1+x_5592 and x_7596=0 and x_7672=0 and x_7678=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and x_7576=x_7576 and x_9670=x_9670 and select(x_136,x_7576)=x_9690 and x_134-x_7576>=1 and x_9724=1 and x_9670=1+x_7576 and x_9690=0 and x_9766=0 and x_9772=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and x_7576=x_7576 and x_9670=x_9670 and x_11952=x_11952 and select(x_136,x_9670)=x_11972 and x_134-x_9670>=1 and x_12006=1 and x_11952=1+x_9670 and x_11972=0 and x_12048=0 and x_12054=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and x_7576=x_7576 and x_9670=x_9670 and x_11952=x_11952 and x_14532=x_14532 and select(x_136,x_11952)=x_14552 and x_134-x_11952>=1 and x_14586=1 and x_14532=1+x_11952 and x_14552=0 and x_14628=0 and x_14634=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and x_7576=x_7576 and x_9670=x_9670 and x_11952=x_11952 and x_14532=x_14532 and select(x_136,x_14532)=x_96028 and select(x_136,x_14532)=x_96046 and x_134-x_14532>=1 and x_14532>=0 and x_96046=< - 1 and x_96028=0 and x_96120=0 and x_96132=0 and x_96144=0 and x_96156=0 and x_138=0Stampo Rawbody
+new1(_82712,_132,_134,_136,_138),constr((select(_136,_14532)=_82732&(_134-_14532>=1&(_82766=1&(_82712=1+_14532&(_82732=0&(_82808=0&_82814=0)))))))
+⚠️ Formula non normalizzata: select(_136,_14532)
+⚠️ Formula non normalizzata: _134-_14532
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _138:int
+✅ Inserita in rewrite: _992:int
+✅ Inserita in rewrite: _2376:int
+✅ Inserita in rewrite: _3888:int
+✅ Inserita in rewrite: _5592:int
+✅ Inserita in rewrite: _7576:int
+✅ Inserita in rewrite: _9670:int
+✅ Inserita in rewrite: _11952:int
+✅ Inserita in rewrite: _14532:int
+✅ Inserita in rewrite: _82712:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,_992:int=_992:int,_2376:int=_2376:int,_3888:int=_3888:int,_5592:int=_5592:int,_7576:int=_7576:int,_9670:int=_9670:int,_11952:int=_11952:int,_14532:int=_14532:int,_82712:int=_82712:int,select(_136,_14532)=_82732 and _134-_14532>=1 and _82766=1 and _82712=1+_14532 and _82732=0 and _82808=0 and _82814=0)),new1(_82712,_132,_134,_136,_138)
+Limite MaxDepth raggiunto
+Limite MaxDepth raggiunto
+Entrato in constr c
+⚠️ Formula non normalizzata: select(_136,_14532)
+⚠️ Formula non normalizzata: _134-_14532
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,_992:int=_992:int,_2376:int=_2376:int,_3888:int=_3888:int,_5592:int=_5592:int,_7576:int=_7576:int,_9670:int=_9670:int,_11952:int=_11952:int,_14532:int=_14532:int,_82712:int=_82712:int,(((((((((true,_130=_130,_132=_132,_134=_134,_138=_138,_134>=1,_130=0,_132= - 1,_182=1),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,select(_136,_130)=_1012,_134-_130>=1,_1046=1,_992=1+_130,_1012=0,_1088=0,_1094=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,select(_136,_992)=_2396,_134-_992>=1,_2430=1,_2376=1+_992,_2396=0,_2472=0,_2478=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,select(_136,_2376)=_3908,_134-_2376>=1,_3942=1,_3888=1+_2376,_3908=0,_3984=0,_3990=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,select(_136,_3888)=_5612,_134-_3888>=1,_5646=1,_5592=1+_3888,_5612=0,_5688=0,_5694=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,_7576=_7576,select(_136,_5592)=_7596,_134-_5592>=1,_7630=1,_7576=1+_5592,_7596=0,_7672=0,_7678=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,_7576=_7576,_9670=_9670,select(_136,_7576)=_9690,_134-_7576>=1,_9724=1,_9670=1+_7576,_9690=0,_9766=0,_9772=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,_7576=_7576,_9670=_9670,_11952=_11952,select(_136,_9670)=_11972,_134-_9670>=1,_12006=1,_11952=1+_9670,_11972=0,_12048=0,_12054=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,_7576=_7576,_9670=_9670,_11952=_11952,_14532=_14532,select(_136,_11952)=_14552,_134-_11952>=1,_14586=1,_14532=1+_11952,_14552=0,_14628=0,_14634=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,_7576=_7576,_9670=_9670,_11952=_11952,_14532=_14532,_82712=_82712,select(_136,_14532)=_82732,_134-_14532>=1,_82766=1,_82712=1+_14532,_82732=0,_82808=0,_82814=0]
+
+Stampa prima di inviare
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_138:int=x_138:int and x_992:int=x_992:int and x_2376:int=x_2376:int and x_3888:int=x_3888:int and x_5592:int=x_5592:int and x_7576:int=x_7576:int and x_9670:int=x_9670:int and x_11952:int=x_11952:int and x_14532:int=x_14532:int and x_82712:int=x_82712:int and (((((((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_134>=1 and x_130=0 and x_132= - 1 and x_182=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and select(x_136,x_130)=x_1012 and x_134-x_130>=1 and x_1046=1 and x_992=1+x_130 and x_1012=0 and x_1088=0 and x_1094=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and select(x_136,x_992)=x_2396 and x_134-x_992>=1 and x_2430=1 and x_2376=1+x_992 and x_2396=0 and x_2472=0 and x_2478=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and select(x_136,x_2376)=x_3908 and x_134-x_2376>=1 and x_3942=1 and x_3888=1+x_2376 and x_3908=0 and x_3984=0 and x_3990=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and select(x_136,x_3888)=x_5612 and x_134-x_3888>=1 and x_5646=1 and x_5592=1+x_3888 and x_5612=0 and x_5688=0 and x_5694=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and x_7576=x_7576 and select(x_136,x_5592)=x_7596 and x_134-x_5592>=1 and x_7630=1 and x_7576=1+x_5592 and x_7596=0 and x_7672=0 and x_7678=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and x_7576=x_7576 and x_9670=x_9670 and select(x_136,x_7576)=x_9690 and x_134-x_7576>=1 and x_9724=1 and x_9670=1+x_7576 and x_9690=0 and x_9766=0 and x_9772=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and x_7576=x_7576 and x_9670=x_9670 and x_11952=x_11952 and select(x_136,x_9670)=x_11972 and x_134-x_9670>=1 and x_12006=1 and x_11952=1+x_9670 and x_11972=0 and x_12048=0 and x_12054=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and x_7576=x_7576 and x_9670=x_9670 and x_11952=x_11952 and x_14532=x_14532 and select(x_136,x_11952)=x_14552 and x_134-x_11952>=1 and x_14586=1 and x_14532=1+x_11952 and x_14552=0 and x_14628=0 and x_14634=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and x_7576=x_7576 and x_9670=x_9670 and x_11952=x_11952 and x_14532=x_14532 and x_82712=x_82712 and select(x_136,x_14532)=x_82732 and x_134-x_14532>=1 and x_82766=1 and x_82712=1+x_14532 and x_82732=0 and x_82808=0 and x_82814=0Limite MaxDepth raggiunto
+Stampo Rawbody
+constr((select(_136,_132)=_67626&(_134-_132>=1&(_14532-_134>=0&(_132>=0&(_67626=0&(_67702=0&(_67714=0&(_67726=0&_138=0)))))))))
+⚠️ Formula non normalizzata: select(_136,_132)
+⚠️ Formula non normalizzata: _134-_132
+⚠️ Formula non normalizzata: _14532-_134
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _138:int
+✅ Inserita in rewrite: _992:int
+✅ Inserita in rewrite: _2376:int
+✅ Inserita in rewrite: _3888:int
+✅ Inserita in rewrite: _5592:int
+✅ Inserita in rewrite: _7576:int
+✅ Inserita in rewrite: _9670:int
+✅ Inserita in rewrite: _11952:int
+✅ Inserita in rewrite: _14532:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,_992:int=_992:int,_2376:int=_2376:int,_3888:int=_3888:int,_5592:int=_5592:int,_7576:int=_7576:int,_9670:int=_9670:int,_11952:int=_11952:int,_14532:int=_14532:int,select(_136,_132)=_67626 and _134-_132>=1 and _14532-_134>=0 and _132>=0 and _67626=0 and _67702=0 and _67714=0 and _67726=0 and _138=0))
+Limite MaxDepth raggiunto
+Entrato in constr c
+⚠️ Formula non normalizzata: select(_136,_132)
+⚠️ Formula non normalizzata: _134-_132
+⚠️ Formula non normalizzata: _14532-_134
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,_992:int=_992:int,_2376:int=_2376:int,_3888:int=_3888:int,_5592:int=_5592:int,_7576:int=_7576:int,_9670:int=_9670:int,_11952:int=_11952:int,_14532:int=_14532:int,(((((((((true,_130=_130,_132=_132,_134=_134,_138=_138,_134>=1,_130=0,_132= - 1,_182=1),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,select(_136,_130)=_1012,_134-_130>=1,_1046=1,_992=1+_130,_1012=0,_1088=0,_1094=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,select(_136,_992)=_2396,_134-_992>=1,_2430=1,_2376=1+_992,_2396=0,_2472=0,_2478=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,select(_136,_2376)=_3908,_134-_2376>=1,_3942=1,_3888=1+_2376,_3908=0,_3984=0,_3990=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,select(_136,_3888)=_5612,_134-_3888>=1,_5646=1,_5592=1+_3888,_5612=0,_5688=0,_5694=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,_7576=_7576,select(_136,_5592)=_7596,_134-_5592>=1,_7630=1,_7576=1+_5592,_7596=0,_7672=0,_7678=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,_7576=_7576,_9670=_9670,select(_136,_7576)=_9690,_134-_7576>=1,_9724=1,_9670=1+_7576,_9690=0,_9766=0,_9772=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,_7576=_7576,_9670=_9670,_11952=_11952,select(_136,_9670)=_11972,_134-_9670>=1,_12006=1,_11952=1+_9670,_11972=0,_12048=0,_12054=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,_7576=_7576,_9670=_9670,_11952=_11952,_14532=_14532,select(_136,_11952)=_14552,_134-_11952>=1,_14586=1,_14532=1+_11952,_14552=0,_14628=0,_14634=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,_7576=_7576,_9670=_9670,_11952=_11952,_14532=_14532,select(_136,_132)=_67626,_134-_132>=1,_14532-_134>=0,_132>=0,_67626=0,_67702=0,_67714=0,_67726=0,_138=0]
+
+Stampa prima di inviare
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_138:int=x_138:int and x_992:int=x_992:int and x_2376:int=x_2376:int and x_3888:int=x_3888:int and x_5592:int=x_5592:int and x_7576:int=x_7576:int and x_9670:int=x_9670:int and x_11952:int=x_11952:int and x_14532:int=x_14532:int and (((((((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_134>=1 and x_130=0 and x_132= - 1 and x_182=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and select(x_136,x_130)=x_1012 and x_134-x_130>=1 and x_1046=1 and x_992=1+x_130 and x_1012=0 and x_1088=0 and x_1094=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and select(x_136,x_992)=x_2396 and x_134-x_992>=1 and x_2430=1 and x_2376=1+x_992 and x_2396=0 and x_2472=0 and x_2478=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and select(x_136,x_2376)=x_3908 and x_134-x_2376>=1 and x_3942=1 and x_3888=1+x_2376 and x_3908=0 and x_3984=0 and x_3990=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and select(x_136,x_3888)=x_5612 and x_134-x_3888>=1 and x_5646=1 and x_5592=1+x_3888 and x_5612=0 and x_5688=0 and x_5694=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and x_7576=x_7576 and select(x_136,x_5592)=x_7596 and x_134-x_5592>=1 and x_7630=1 and x_7576=1+x_5592 and x_7596=0 and x_7672=0 and x_7678=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and x_7576=x_7576 and x_9670=x_9670 and select(x_136,x_7576)=x_9690 and x_134-x_7576>=1 and x_9724=1 and x_9670=1+x_7576 and x_9690=0 and x_9766=0 and x_9772=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and x_7576=x_7576 and x_9670=x_9670 and x_11952=x_11952 and select(x_136,x_9670)=x_11972 and x_134-x_9670>=1 and x_12006=1 and x_11952=1+x_9670 and x_11972=0 and x_12048=0 and x_12054=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and x_7576=x_7576 and x_9670=x_9670 and x_11952=x_11952 and x_14532=x_14532 and select(x_136,x_11952)=x_14552 and x_134-x_11952>=1 and x_14586=1 and x_14532=1+x_11952 and x_14552=0 and x_14628=0 and x_14634=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and x_7576=x_7576 and x_9670=x_9670 and x_11952=x_11952 and x_14532=x_14532 and select(x_136,x_132)=x_67626 and x_134-x_132>=1 and x_14532-x_134>=0 and x_132>=0 and x_67626=0 and x_67702=0 and x_67714=0 and x_67726=0 and x_138=0Stampo Rawbody
+constr((select(_136,_132)=_53916&(_134-_132>=1&(_11952-_134>=0&(_132>=0&(_53916=0&(_53992=0&(_54004=0&(_54016=0&_138=0)))))))))
+⚠️ Formula non normalizzata: select(_136,_132)
+⚠️ Formula non normalizzata: _134-_132
+⚠️ Formula non normalizzata: _11952-_134
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _138:int
+✅ Inserita in rewrite: _992:int
+✅ Inserita in rewrite: _2376:int
+✅ Inserita in rewrite: _3888:int
+✅ Inserita in rewrite: _5592:int
+✅ Inserita in rewrite: _7576:int
+✅ Inserita in rewrite: _9670:int
+✅ Inserita in rewrite: _11952:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,_992:int=_992:int,_2376:int=_2376:int,_3888:int=_3888:int,_5592:int=_5592:int,_7576:int=_7576:int,_9670:int=_9670:int,_11952:int=_11952:int,select(_136,_132)=_53916 and _134-_132>=1 and _11952-_134>=0 and _132>=0 and _53916=0 and _53992=0 and _54004=0 and _54016=0 and _138=0))
+Entrato in constr c
+⚠️ Formula non normalizzata: select(_136,_132)
+⚠️ Formula non normalizzata: _134-_132
+⚠️ Formula non normalizzata: _11952-_134
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,_992:int=_992:int,_2376:int=_2376:int,_3888:int=_3888:int,_5592:int=_5592:int,_7576:int=_7576:int,_9670:int=_9670:int,_11952:int=_11952:int,((((((((true,_130=_130,_132=_132,_134=_134,_138=_138,_134>=1,_130=0,_132= - 1,_182=1),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,select(_136,_130)=_1012,_134-_130>=1,_1046=1,_992=1+_130,_1012=0,_1088=0,_1094=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,select(_136,_992)=_2396,_134-_992>=1,_2430=1,_2376=1+_992,_2396=0,_2472=0,_2478=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,select(_136,_2376)=_3908,_134-_2376>=1,_3942=1,_3888=1+_2376,_3908=0,_3984=0,_3990=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,select(_136,_3888)=_5612,_134-_3888>=1,_5646=1,_5592=1+_3888,_5612=0,_5688=0,_5694=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,_7576=_7576,select(_136,_5592)=_7596,_134-_5592>=1,_7630=1,_7576=1+_5592,_7596=0,_7672=0,_7678=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,_7576=_7576,_9670=_9670,select(_136,_7576)=_9690,_134-_7576>=1,_9724=1,_9670=1+_7576,_9690=0,_9766=0,_9772=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,_7576=_7576,_9670=_9670,_11952=_11952,select(_136,_9670)=_11972,_134-_9670>=1,_12006=1,_11952=1+_9670,_11972=0,_12048=0,_12054=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,_7576=_7576,_9670=_9670,_11952=_11952,select(_136,_132)=_53916,_134-_132>=1,_11952-_134>=0,_132>=0,_53916=0,_53992=0,_54004=0,_54016=0,_138=0]
+
+Stampa prima di inviare
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_138:int=x_138:int and x_992:int=x_992:int and x_2376:int=x_2376:int and x_3888:int=x_3888:int and x_5592:int=x_5592:int and x_7576:int=x_7576:int and x_9670:int=x_9670:int and x_11952:int=x_11952:int and ((((((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_134>=1 and x_130=0 and x_132= - 1 and x_182=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and select(x_136,x_130)=x_1012 and x_134-x_130>=1 and x_1046=1 and x_992=1+x_130 and x_1012=0 and x_1088=0 and x_1094=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and select(x_136,x_992)=x_2396 and x_134-x_992>=1 and x_2430=1 and x_2376=1+x_992 and x_2396=0 and x_2472=0 and x_2478=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and select(x_136,x_2376)=x_3908 and x_134-x_2376>=1 and x_3942=1 and x_3888=1+x_2376 and x_3908=0 and x_3984=0 and x_3990=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and select(x_136,x_3888)=x_5612 and x_134-x_3888>=1 and x_5646=1 and x_5592=1+x_3888 and x_5612=0 and x_5688=0 and x_5694=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and x_7576=x_7576 and select(x_136,x_5592)=x_7596 and x_134-x_5592>=1 and x_7630=1 and x_7576=1+x_5592 and x_7596=0 and x_7672=0 and x_7678=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and x_7576=x_7576 and x_9670=x_9670 and select(x_136,x_7576)=x_9690 and x_134-x_7576>=1 and x_9724=1 and x_9670=1+x_7576 and x_9690=0 and x_9766=0 and x_9772=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and x_7576=x_7576 and x_9670=x_9670 and x_11952=x_11952 and select(x_136,x_9670)=x_11972 and x_134-x_9670>=1 and x_12006=1 and x_11952=1+x_9670 and x_11972=0 and x_12048=0 and x_12054=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and x_7576=x_7576 and x_9670=x_9670 and x_11952=x_11952 and select(x_136,x_132)=x_53916 and x_134-x_132>=1 and x_11952-x_134>=0 and x_132>=0 and x_53916=0 and x_53992=0 and x_54004=0 and x_54016=0 and x_138=0Stampo Rawbody
+constr((select(_136,_132)=_23790&(_134-_132>=1&(_9670-_134>=0&(_132>=0&(_23790=0&(_23866=0&(_23878=0&(_23890=0&_138=0)))))))))
+⚠️ Formula non normalizzata: select(_136,_132)
+⚠️ Formula non normalizzata: _134-_132
+⚠️ Formula non normalizzata: _9670-_134
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _138:int
+✅ Inserita in rewrite: _992:int
+✅ Inserita in rewrite: _2376:int
+✅ Inserita in rewrite: _3888:int
+✅ Inserita in rewrite: _5592:int
+✅ Inserita in rewrite: _7576:int
+✅ Inserita in rewrite: _9670:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,_992:int=_992:int,_2376:int=_2376:int,_3888:int=_3888:int,_5592:int=_5592:int,_7576:int=_7576:int,_9670:int=_9670:int,select(_136,_132)=_23790 and _134-_132>=1 and _9670-_134>=0 and _132>=0 and _23790=0 and _23866=0 and _23878=0 and _23890=0 and _138=0))
+Entrato in constr c
+⚠️ Formula non normalizzata: select(_136,_132)
+⚠️ Formula non normalizzata: _134-_132
+⚠️ Formula non normalizzata: _9670-_134
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,_992:int=_992:int,_2376:int=_2376:int,_3888:int=_3888:int,_5592:int=_5592:int,_7576:int=_7576:int,_9670:int=_9670:int,(((((((true,_130=_130,_132=_132,_134=_134,_138=_138,_134>=1,_130=0,_132= - 1,_182=1),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,select(_136,_130)=_1012,_134-_130>=1,_1046=1,_992=1+_130,_1012=0,_1088=0,_1094=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,select(_136,_992)=_2396,_134-_992>=1,_2430=1,_2376=1+_992,_2396=0,_2472=0,_2478=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,select(_136,_2376)=_3908,_134-_2376>=1,_3942=1,_3888=1+_2376,_3908=0,_3984=0,_3990=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,select(_136,_3888)=_5612,_134-_3888>=1,_5646=1,_5592=1+_3888,_5612=0,_5688=0,_5694=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,_7576=_7576,select(_136,_5592)=_7596,_134-_5592>=1,_7630=1,_7576=1+_5592,_7596=0,_7672=0,_7678=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,_7576=_7576,_9670=_9670,select(_136,_7576)=_9690,_134-_7576>=1,_9724=1,_9670=1+_7576,_9690=0,_9766=0,_9772=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,_7576=_7576,_9670=_9670,select(_136,_132)=_23790,_134-_132>=1,_9670-_134>=0,_132>=0,_23790=0,_23866=0,_23878=0,_23890=0,_138=0]
+
+Stampa prima di inviare
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_138:int=x_138:int and x_992:int=x_992:int and x_2376:int=x_2376:int and x_3888:int=x_3888:int and x_5592:int=x_5592:int and x_7576:int=x_7576:int and x_9670:int=x_9670:int and (((((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_134>=1 and x_130=0 and x_132= - 1 and x_182=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and select(x_136,x_130)=x_1012 and x_134-x_130>=1 and x_1046=1 and x_992=1+x_130 and x_1012=0 and x_1088=0 and x_1094=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and select(x_136,x_992)=x_2396 and x_134-x_992>=1 and x_2430=1 and x_2376=1+x_992 and x_2396=0 and x_2472=0 and x_2478=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and select(x_136,x_2376)=x_3908 and x_134-x_2376>=1 and x_3942=1 and x_3888=1+x_2376 and x_3908=0 and x_3984=0 and x_3990=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and select(x_136,x_3888)=x_5612 and x_134-x_3888>=1 and x_5646=1 and x_5592=1+x_3888 and x_5612=0 and x_5688=0 and x_5694=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and x_7576=x_7576 and select(x_136,x_5592)=x_7596 and x_134-x_5592>=1 and x_7630=1 and x_7576=1+x_5592 and x_7596=0 and x_7672=0 and x_7678=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and x_7576=x_7576 and x_9670=x_9670 and select(x_136,x_7576)=x_9690 and x_134-x_7576>=1 and x_9724=1 and x_9670=1+x_7576 and x_9690=0 and x_9766=0 and x_9772=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and x_7576=x_7576 and x_9670=x_9670 and select(x_136,x_132)=x_23790 and x_134-x_132>=1 and x_9670-x_134>=0 and x_132>=0 and x_23790=0 and x_23866=0 and x_23878=0 and x_23890=0 and x_138=0Stampo Rawbody
+constr((select(_136,_132)=_94430&(_134-_132>=1&(_7576-_134>=0&(_132>=0&(_94430=0&(_94506=0&(_94518=0&(_94530=0&_138=0)))))))))
+⚠️ Formula non normalizzata: select(_136,_132)
+⚠️ Formula non normalizzata: _134-_132
+⚠️ Formula non normalizzata: _7576-_134
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _138:int
+✅ Inserita in rewrite: _992:int
+✅ Inserita in rewrite: _2376:int
+✅ Inserita in rewrite: _3888:int
+✅ Inserita in rewrite: _5592:int
+✅ Inserita in rewrite: _7576:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,_992:int=_992:int,_2376:int=_2376:int,_3888:int=_3888:int,_5592:int=_5592:int,_7576:int=_7576:int,select(_136,_132)=_94430 and _134-_132>=1 and _7576-_134>=0 and _132>=0 and _94430=0 and _94506=0 and _94518=0 and _94530=0 and _138=0))
+Entrato in constr c
+⚠️ Formula non normalizzata: select(_136,_132)
+⚠️ Formula non normalizzata: _134-_132
+⚠️ Formula non normalizzata: _7576-_134
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,_992:int=_992:int,_2376:int=_2376:int,_3888:int=_3888:int,_5592:int=_5592:int,_7576:int=_7576:int,((((((true,_130=_130,_132=_132,_134=_134,_138=_138,_134>=1,_130=0,_132= - 1,_182=1),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,select(_136,_130)=_1012,_134-_130>=1,_1046=1,_992=1+_130,_1012=0,_1088=0,_1094=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,select(_136,_992)=_2396,_134-_992>=1,_2430=1,_2376=1+_992,_2396=0,_2472=0,_2478=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,select(_136,_2376)=_3908,_134-_2376>=1,_3942=1,_3888=1+_2376,_3908=0,_3984=0,_3990=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,select(_136,_3888)=_5612,_134-_3888>=1,_5646=1,_5592=1+_3888,_5612=0,_5688=0,_5694=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,_7576=_7576,select(_136,_5592)=_7596,_134-_5592>=1,_7630=1,_7576=1+_5592,_7596=0,_7672=0,_7678=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,_7576=_7576,select(_136,_132)=_94430,_134-_132>=1,_7576-_134>=0,_132>=0,_94430=0,_94506=0,_94518=0,_94530=0,_138=0]
+
+Stampa prima di inviare
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_138:int=x_138:int and x_992:int=x_992:int and x_2376:int=x_2376:int and x_3888:int=x_3888:int and x_5592:int=x_5592:int and x_7576:int=x_7576:int and ((((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_134>=1 and x_130=0 and x_132= - 1 and x_182=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and select(x_136,x_130)=x_1012 and x_134-x_130>=1 and x_1046=1 and x_992=1+x_130 and x_1012=0 and x_1088=0 and x_1094=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and select(x_136,x_992)=x_2396 and x_134-x_992>=1 and x_2430=1 and x_2376=1+x_992 and x_2396=0 and x_2472=0 and x_2478=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and select(x_136,x_2376)=x_3908 and x_134-x_2376>=1 and x_3942=1 and x_3888=1+x_2376 and x_3908=0 and x_3984=0 and x_3990=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and select(x_136,x_3888)=x_5612 and x_134-x_3888>=1 and x_5646=1 and x_5592=1+x_3888 and x_5612=0 and x_5688=0 and x_5694=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and x_7576=x_7576 and select(x_136,x_5592)=x_7596 and x_134-x_5592>=1 and x_7630=1 and x_7576=1+x_5592 and x_7596=0 and x_7672=0 and x_7678=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and x_7576=x_7576 and select(x_136,x_132)=x_94430 and x_134-x_132>=1 and x_7576-x_134>=0 and x_132>=0 and x_94430=0 and x_94506=0 and x_94518=0 and x_94530=0 and x_138=0Stampo Rawbody
+constr((select(_136,_132)=_36612&(_134-_132>=1&(_5592-_134>=0&(_132>=0&(_36612=0&(_36688=0&(_36700=0&(_36712=0&_138=0)))))))))
+⚠️ Formula non normalizzata: select(_136,_132)
+⚠️ Formula non normalizzata: _134-_132
+⚠️ Formula non normalizzata: _5592-_134
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _138:int
+✅ Inserita in rewrite: _992:int
+✅ Inserita in rewrite: _2376:int
+✅ Inserita in rewrite: _3888:int
+✅ Inserita in rewrite: _5592:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,_992:int=_992:int,_2376:int=_2376:int,_3888:int=_3888:int,_5592:int=_5592:int,select(_136,_132)=_36612 and _134-_132>=1 and _5592-_134>=0 and _132>=0 and _36612=0 and _36688=0 and _36700=0 and _36712=0 and _138=0))
+Entrato in constr c
+⚠️ Formula non normalizzata: select(_136,_132)
+⚠️ Formula non normalizzata: _134-_132
+⚠️ Formula non normalizzata: _5592-_134
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,_992:int=_992:int,_2376:int=_2376:int,_3888:int=_3888:int,_5592:int=_5592:int,(((((true,_130=_130,_132=_132,_134=_134,_138=_138,_134>=1,_130=0,_132= - 1,_182=1),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,select(_136,_130)=_1012,_134-_130>=1,_1046=1,_992=1+_130,_1012=0,_1088=0,_1094=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,select(_136,_992)=_2396,_134-_992>=1,_2430=1,_2376=1+_992,_2396=0,_2472=0,_2478=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,select(_136,_2376)=_3908,_134-_2376>=1,_3942=1,_3888=1+_2376,_3908=0,_3984=0,_3990=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,select(_136,_3888)=_5612,_134-_3888>=1,_5646=1,_5592=1+_3888,_5612=0,_5688=0,_5694=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,_5592=_5592,select(_136,_132)=_36612,_134-_132>=1,_5592-_134>=0,_132>=0,_36612=0,_36688=0,_36700=0,_36712=0,_138=0]
+
+Stampa prima di inviare
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_138:int=x_138:int and x_992:int=x_992:int and x_2376:int=x_2376:int and x_3888:int=x_3888:int and x_5592:int=x_5592:int and (((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_134>=1 and x_130=0 and x_132= - 1 and x_182=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and select(x_136,x_130)=x_1012 and x_134-x_130>=1 and x_1046=1 and x_992=1+x_130 and x_1012=0 and x_1088=0 and x_1094=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and select(x_136,x_992)=x_2396 and x_134-x_992>=1 and x_2430=1 and x_2376=1+x_992 and x_2396=0 and x_2472=0 and x_2478=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and select(x_136,x_2376)=x_3908 and x_134-x_2376>=1 and x_3942=1 and x_3888=1+x_2376 and x_3908=0 and x_3984=0 and x_3990=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and select(x_136,x_3888)=x_5612 and x_134-x_3888>=1 and x_5646=1 and x_5592=1+x_3888 and x_5612=0 and x_5688=0 and x_5694=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and x_5592=x_5592 and select(x_136,x_132)=x_36612 and x_134-x_132>=1 and x_5592-x_134>=0 and x_132>=0 and x_36612=0 and x_36688=0 and x_36700=0 and x_36712=0 and x_138=0Stampo Rawbody
+constr((select(_136,_132)=_86658&(_134-_132>=1&(_3888-_134>=0&(_132>=0&(_86658=0&(_86734=0&(_86746=0&(_86758=0&_138=0)))))))))
+⚠️ Formula non normalizzata: select(_136,_132)
+⚠️ Formula non normalizzata: _134-_132
+⚠️ Formula non normalizzata: _3888-_134
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _138:int
+✅ Inserita in rewrite: _992:int
+✅ Inserita in rewrite: _2376:int
+✅ Inserita in rewrite: _3888:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,_992:int=_992:int,_2376:int=_2376:int,_3888:int=_3888:int,select(_136,_132)=_86658 and _134-_132>=1 and _3888-_134>=0 and _132>=0 and _86658=0 and _86734=0 and _86746=0 and _86758=0 and _138=0))
+Entrato in constr c
+⚠️ Formula non normalizzata: select(_136,_132)
+⚠️ Formula non normalizzata: _134-_132
+⚠️ Formula non normalizzata: _3888-_134
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,_992:int=_992:int,_2376:int=_2376:int,_3888:int=_3888:int,((((true,_130=_130,_132=_132,_134=_134,_138=_138,_134>=1,_130=0,_132= - 1,_182=1),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,select(_136,_130)=_1012,_134-_130>=1,_1046=1,_992=1+_130,_1012=0,_1088=0,_1094=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,select(_136,_992)=_2396,_134-_992>=1,_2430=1,_2376=1+_992,_2396=0,_2472=0,_2478=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,select(_136,_2376)=_3908,_134-_2376>=1,_3942=1,_3888=1+_2376,_3908=0,_3984=0,_3990=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,_3888=_3888,select(_136,_132)=_86658,_134-_132>=1,_3888-_134>=0,_132>=0,_86658=0,_86734=0,_86746=0,_86758=0,_138=0]
+
+Stampa prima di inviare
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_138:int=x_138:int and x_992:int=x_992:int and x_2376:int=x_2376:int and x_3888:int=x_3888:int and ((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_134>=1 and x_130=0 and x_132= - 1 and x_182=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and select(x_136,x_130)=x_1012 and x_134-x_130>=1 and x_1046=1 and x_992=1+x_130 and x_1012=0 and x_1088=0 and x_1094=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and select(x_136,x_992)=x_2396 and x_134-x_992>=1 and x_2430=1 and x_2376=1+x_992 and x_2396=0 and x_2472=0 and x_2478=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and select(x_136,x_2376)=x_3908 and x_134-x_2376>=1 and x_3942=1 and x_3888=1+x_2376 and x_3908=0 and x_3984=0 and x_3990=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and x_3888=x_3888 and select(x_136,x_132)=x_86658 and x_134-x_132>=1 and x_3888-x_134>=0 and x_132>=0 and x_86658=0 and x_86734=0 and x_86746=0 and x_86758=0 and x_138=0Stampo Rawbody
+constr((select(_136,_132)=_127478&(_134-_132>=1&(_2376-_134>=0&(_132>=0&(_127478=0&(_127554=0&(_127566=0&(_127578=0&_138=0)))))))))
+⚠️ Formula non normalizzata: select(_136,_132)
+⚠️ Formula non normalizzata: _134-_132
+⚠️ Formula non normalizzata: _2376-_134
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _138:int
+✅ Inserita in rewrite: _992:int
+✅ Inserita in rewrite: _2376:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,_992:int=_992:int,_2376:int=_2376:int,select(_136,_132)=_127478 and _134-_132>=1 and _2376-_134>=0 and _132>=0 and _127478=0 and _127554=0 and _127566=0 and _127578=0 and _138=0))
+Entrato in constr c
+⚠️ Formula non normalizzata: select(_136,_132)
+⚠️ Formula non normalizzata: _134-_132
+⚠️ Formula non normalizzata: _2376-_134
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,_992:int=_992:int,_2376:int=_2376:int,(((true,_130=_130,_132=_132,_134=_134,_138=_138,_134>=1,_130=0,_132= - 1,_182=1),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,select(_136,_130)=_1012,_134-_130>=1,_1046=1,_992=1+_130,_1012=0,_1088=0,_1094=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,select(_136,_992)=_2396,_134-_992>=1,_2430=1,_2376=1+_992,_2396=0,_2472=0,_2478=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,_2376=_2376,select(_136,_132)=_3896,_134-_132>=1,_2376-_134>=0,_132>=0,_3896=0,_3972=0,_3984=0,_3996=0,_138=0]
+
+Stampa prima di inviare
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_138:int=x_138:int and x_992:int=x_992:int and x_2376:int=x_2376:int and (((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_134>=1 and x_130=0 and x_132= - 1 and x_182=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and select(x_136,x_130)=x_1012 and x_134-x_130>=1 and x_1046=1 and x_992=1+x_130 and x_1012=0 and x_1088=0 and x_1094=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and select(x_136,x_992)=x_2396 and x_134-x_992>=1 and x_2430=1 and x_2376=1+x_992 and x_2396=0 and x_2472=0 and x_2478=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and x_2376=x_2376 and select(x_136,x_132)=x_3896 and x_134-x_132>=1 and x_2376-x_134>=0 and x_132>=0 and x_3896=0 and x_3972=0 and x_3984=0 and x_3996=0 and x_138=0Stampo Rawbody
+constr((select(_136,_132)=_33742&(_134-_132>=1&(_992-_134>=0&(_132>=0&(_33742=0&(_33818=0&(_33830=0&(_33842=0&_138=0)))))))))
+⚠️ Formula non normalizzata: select(_136,_132)
+⚠️ Formula non normalizzata: _134-_132
+⚠️ Formula non normalizzata: _992-_134
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _138:int
+✅ Inserita in rewrite: _992:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,_992:int=_992:int,select(_136,_132)=_33742 and _134-_132>=1 and _992-_134>=0 and _132>=0 and _33742=0 and _33818=0 and _33830=0 and _33842=0 and _138=0))
+Entrato in constr c
+⚠️ Formula non normalizzata: select(_136,_132)
+⚠️ Formula non normalizzata: _134-_132
+⚠️ Formula non normalizzata: _992-_134
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,_992:int=_992:int,((true,_130=_130,_132=_132,_134=_134,_138=_138,_134>=1,_130=0,_132= - 1,_182=1),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,select(_136,_130)=_1012,_134-_130>=1,_1046=1,_992=1+_130,_1012=0,_1088=0,_1094=0),_130=_130,_132=_132,_134=_134,_138=_138,_992=_992,select(_136,_132)=_33742,_134-_132>=1,_992-_134>=0,_132>=0,_33742=0,_33818=0,_33830=0,_33842=0,_138=0]
+
+Stampa prima di inviare
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_138:int=x_138:int and x_992:int=x_992:int and ((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_134>=1 and x_130=0 and x_132= - 1 and x_182=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and select(x_136,x_130)=x_1012 and x_134-x_130>=1 and x_1046=1 and x_992=1+x_130 and x_1012=0 and x_1088=0 and x_1094=0)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_992=x_992 and select(x_136,x_132)=x_33742 and x_134-x_132>=1 and x_992-x_134>=0 and x_132>=0 and x_33742=0 and x_33818=0 and x_33830=0 and x_33842=0 and x_138=0Stampo Rawbody
+constr((select(_136,_132)=_57898&(_134-_132>=1&(_130-_134>=0&(_132>=0&(_57898=0&(_57974=0&(_57986=0&(_57998=0&_138=0)))))))))
+⚠️ Formula non normalizzata: select(_136,_132)
+⚠️ Formula non normalizzata: _134-_132
+⚠️ Formula non normalizzata: _130-_134
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _138:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,select(_136,_132)=_57898 and _134-_132>=1 and _130-_134>=0 and _132>=0 and _57898=0 and _57974=0 and _57986=0 and _57998=0 and _138=0))
+Entrato in constr c
+⚠️ Formula non normalizzata: select(_136,_132)
+⚠️ Formula non normalizzata: _134-_132
+⚠️ Formula non normalizzata: _130-_134
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_138:int=_138:int,(true,_130=_130,_132=_132,_134=_134,_138=_138,_134>=1,_130=0,_132= - 1,_182=1),_130=_130,_132=_132,_134=_134,_138=_138,select(_136,_132)=_57898,_134-_132>=1,_130-_134>=0,_132>=0,_57898=0,_57974=0,_57986=0,_57998=0,_138=0]
+
+Stampa prima di inviare
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_138:int=x_138:int and (x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_134>=1 and x_130=0 and x_132= - 1 and x_182=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and select(x_136,x_132)=x_57898 and x_134-x_132>=1 and x_130-x_134>=0 and x_132>=0 and x_57898=0 and x_57974=0 and x_57986=0 and x_57998=0 and x_138=0No SAT branches found in MaxDepths = 10.
+ERROR: -g load_clean('/home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/test/separato2/vmap/array_lug_small_ago/solo_prolog_da_analizzare_post_modifica/verimap-find-first-nonnull_VeriMAP_true.c.transform.smt.smt2.pl'),set_solver(turibe),zmi(incorrect),halt.: false

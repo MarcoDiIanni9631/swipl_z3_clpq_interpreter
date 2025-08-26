@@ -1,0 +1,102 @@
+skipping(:- mode 'f$unknown:4'(in,in).)
+skipping(:- mode 'decr$unknown:2'(in,in).)
+skipping(:- mode 'f$unknown:6'(in,in).)
+skipped parse: ":- pred ff."
+skipping(:- query ff/0.)
+skipping(:- mode constr(in).)
+skipping(:- ignore constr/1.)
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/type_inference.pl:248:
+Warning:    Singleton variables: [Y]
+Installing Z3 package
+Using Z3 version Z3 4.15.3.0
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:895:
+Warning:    Singleton variables: [R]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:908:
+Warning:    Singleton variables: [M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:923:
+Warning:    Singleton variables: [N]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:932:
+Warning:    Singleton variables: [N,O,A]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:944:
+Warning:    Singleton variables: [N]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:958:
+Warning:    Singleton variables: [N,M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:971:
+Warning:    Loading module plunit_z3_push_test_equal22222223445 abolished: [plunit_z3_push_test_equal22222223445:'unit body'/2,plunit_z3_push_test_equal22222223445:'unit test'/4]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:973:
+Warning:    Singleton variables: [O,A,M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:989:
+Warning:    Singleton variables: [M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:1002:
+Warning:    Singleton variables: [M]
+ℹ️ MaxDepth impostato a: 10
+Mi trovo in questa head
+ff
+Stampo Rawbody
+f$unknown:6(_590,_592),constr(((0=_610)=(_590=<0)&(_592=3&0=_610)))
+✅ Inserita in rewrite: _590:int
+✅ Inserita in rewrite: _592:int
+Stampo Body prima di zmi
+constr((_590:int=_590:int,_592:int=_592:int,(0=_610)=(_590=<0)and _592=3 and 0=_610)),f$unknown:6(_590,_592)
+Entrato in constr c
+Stampo flatList
+[_590:int=_590:int,_592:int=_592:int,true,_590=_590,_592=_592,(0=_610)=(_590=<0),_592=3,0=_610]
+
+Stampa prima di inviare
+x_590:int=x_590:int and x_592:int=x_592:int and x_590=x_590 and x_592=x_592 and (0=x_610)=(x_590=<0)and x_592=3 and 0=x_610Mi trovo in questa head
+f$unknown:6(_590,_592)
+Stampo Rawbody
+f$unknown:4(_15068,_592),constr(((0=_15088)=(_592=<0)&(_590=_15068& ~0=_15088)))
+✅ Inserita in rewrite: _590:int
+✅ Inserita in rewrite: _592:int
+✅ Inserita in rewrite: _15068:int
+Stampo Body prima di zmi
+constr((_590:int=_590:int,_592:int=_592:int,_15068:int=_15068:int,(0=_15088)=(_592=<0)and _590=_15068 and not(0=_15088))),f$unknown:4(_15068,_592)
+Entrato in constr c
+Stampo flatList
+[_590:int=_590:int,_592:int=_592:int,_15068:int=_15068:int,(true,_590=_590,_592=_592,(0=_610)=(_590=<0),_592=3,0=_610),_590=_590,_592=_592,_15068=_15068,(0=_15088)=(_592=<0),_590=_15068,not(0=_15088)]
+
+Stampa prima di inviare
+x_590:int=x_590:int and x_592:int=x_592:int and x_15068:int=x_15068:int and (x_590=x_590 and x_592=x_592 and (0=x_610)=(x_590=<0)and x_592=3 and 0=x_610)and x_590=x_590 and x_592=x_592 and x_15068=x_15068 and (0=x_15088)=(x_592=<0)and x_590=x_15068 and not(0=x_15088)Mi trovo in questa head
+f$unknown:4(_15068,_592)
+Stampo Rawbody
+decr$unknown:2(_15068,_592),constr(_24966=3)
+✅ Inserita in rewrite: _590:int
+✅ Inserita in rewrite: _592:int
+✅ Inserita in rewrite: _15068:int
+Stampo Body prima di zmi
+constr((_590:int=_590:int,_592:int=_592:int,_15068:int=_15068:int,_24966=3)),decr$unknown:2(_15068,_592)
+Entrato in constr c
+Stampo flatList
+[_590:int=_590:int,_592:int=_592:int,_15068:int=_15068:int,((true,_590=_590,_592=_592,(0=_610)=(_590=<0),_592=3,0=_610),_590=_590,_592=_592,_15068=_15068,(0=_15088)=(_592=<0),_590=_15068,not(0=_15088)),_590=_590,_592=_592,_15068=_15068,_24966=3]
+
+Stampa prima di inviare
+x_590:int=x_590:int and x_592:int=x_592:int and x_15068:int=x_15068:int and ((x_590=x_590 and x_592=x_592 and (0=x_610)=(x_590=<0)and x_592=3 and 0=x_610)and x_590=x_590 and x_592=x_592 and x_15068=x_15068 and (0=x_15088)=(x_592=<0)and x_590=x_15068 and not(0=x_15088))and x_590=x_590 and x_592=x_592 and x_15068=x_15068 and x_24966=3Mi trovo in questa head
+decr$unknown:2(_710,_132)
+Stampo Rawbody
+constr(_710= - 1+_132)
+⚠️ Formula non normalizzata: - 1+_132
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _710:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_710:int=_710:int,_710= - 1+_132))
+Entrato in constr c
+⚠️ Formula non normalizzata: - 1+_132
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_710:int=_710:int,(((true,_130=_130,_132=_132,(0=_150)=(_130=<0),_132=3,0=_150),_130=_130,_132=_132,_710=_710,(0=_730)=(_132=<0),_130=_710,not(0=_730)),_130=_130,_132=_132,_710=_710,_1476=3),_130=_130,_132=_132,_710=_710,_710= - 1+_132]
+
+Stampa prima di inviare
+x_130:int=x_130:int and x_132:int=x_132:int and x_710:int=x_710:int and (((x_130=x_130 and x_132=x_132 and (0=x_150)=(x_130=<0)and x_132=3 and 0=x_150)and x_130=x_130 and x_132=x_132 and x_710=x_710 and (0=x_730)=(x_132=<0)and x_130=x_710 and not(0=x_730))and x_130=x_130 and x_132=x_132 and x_710=x_710 and x_1476=3)and x_130=x_130 and x_132=x_132 and x_710=x_710 and x_710= - 1+x_132Stampo Rawbody
+constr(((0=_17534)=(_132=<0)&(_130=1&0=_17534)))
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,(0=_17534)=(_132=<0)and _130=1 and 0=_17534))
+Entrato in constr c
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,(true,_130=_130,_132=_132,(0=_150)=(_130=<0),_132=3,0=_150),_130=_130,_132=_132,(0=_17534)=(_132=<0),_130=1,0=_17534]
+
+Stampa prima di inviare
+x_130:int=x_130:int and x_132:int=x_132:int and (x_130=x_130 and x_132=x_132 and (0=x_150)=(x_130=<0)and x_132=3 and 0=x_150)and x_130=x_130 and x_132=x_132 and (0=x_17534)=(x_132=<0)and x_130=1 and 0=x_17534No SAT branches found in MaxDepths = 10.
+ERROR: -g load_clean('/home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/test/separato2/CHC-COMP-AGOSTO/LIA-Lin/z3_results/outPutz3Raname/soloPl//chc-comp24-LIA-Lin-141_true.smt2.pl'),set_solver(turibe),zmi(ff),halt.: false

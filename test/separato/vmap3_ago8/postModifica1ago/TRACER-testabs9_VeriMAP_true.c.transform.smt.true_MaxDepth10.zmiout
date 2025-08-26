@@ -1,0 +1,99 @@
+skipping(:- mode new3(in,in,in).)
+skipping(:- mode new2(in,in).)
+skipped parse: ":- pred new1."
+skipped parse: ":- pred incorrect."
+skipped parse: ":- pred ff."
+skipping(:- query ff/0.)
+skipping(:- mode constr(in).)
+skipping(:- ignore constr/1.)
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/type_inference.pl:248:
+Warning:    Singleton variables: [Y]
+Installing Z3 package
+Using Z3 version Z3 4.15.3.0
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:895:
+Warning:    Singleton variables: [N,M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:907:
+Warning:    Singleton variables: [M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:922:
+Warning:    Singleton variables: [N]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:931:
+Warning:    Singleton variables: [N,O,A]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:943:
+Warning:    Singleton variables: [N]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:957:
+Warning:    Singleton variables: [N,M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:970:
+Warning:    Loading module plunit_z3_push_test_equal22222223445 abolished: [plunit_z3_push_test_equal22222223445:'unit body'/2,plunit_z3_push_test_equal22222223445:'unit test'/4]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:972:
+Warning:    Singleton variables: [O,A,M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:988:
+Warning:    Singleton variables: [M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:1001:
+Warning:    Singleton variables: [M]
+ℹ️ MaxDepth impostato a: 10
+Mi trovo in questa head
+incorrect
+Stampo Rawbody
+new1,constr(true)
+Stampo Body prima di zmi
+constr(true),new1
+Entrato in constr c
+Stampo flatList
+[true]
+
+Stampa prima di inviare
+trueMi trovo in questa head
+new1
+Stampo Rawbody
+new2(_1802,_1804),constr((_1802=0&_1804=99))
+✅ Inserita in rewrite: _1802:int
+✅ Inserita in rewrite: _1804:int
+Stampo Body prima di zmi
+constr((_1802:int=_1802:int,_1804:int=_1804:int,_1802=0 and _1804=99)),new2(_1802,_1804)
+Entrato in constr c
+Stampo flatList
+[_1802:int=_1802:int,_1804:int=_1804:int,(true,true),_1802:int=_1802:int,_1804:int=_1804:int,_1802=0,_1804=99]
+
+Stampa prima di inviare
+x_1802:int=x_1802:int and x_1804:int=x_1804:int and true and x_1802:int=x_1802:int and x_1804:int=x_1804:int and x_1802=0 and x_1804=99Mi trovo in questa head
+new2(_1802,_1804)
+Stampo Rawbody
+new3(_11530,_1802,_1804),constr((_1802>=0&(_11556=0&_11530=1)))
+✅ Inserita in rewrite: _1802:int
+✅ Inserita in rewrite: _1804:int
+✅ Inserita in rewrite: _11530:int
+Stampo Body prima di zmi
+constr((_1802:int=_1802:int,_1804:int=_1804:int,_11530:int=_11530:int,_1802>=0 and _11556=0 and _11530=1)),new3(_11530,_1802,_1804)
+Entrato in constr c
+Stampo flatList
+[_1802:int=_1802:int,_1804:int=_1804:int,_11530:int=_11530:int,((true,true),_1802:int=_1802:int,_1804:int=_1804:int,_1802=0,_1804=99),_1802:int=_1802:int,_1804:int=_1804:int,_11530:int=_11530:int,_1802>=0,_11556=0,_11530=1]
+
+Stampa prima di inviare
+x_1802:int=x_1802:int and x_1804:int=x_1804:int and x_11530:int=x_11530:int and (true and x_1802:int=x_1802:int and x_1804:int=x_1804:int and x_1802=0 and x_1804=99)and x_1802:int=x_1802:int and x_1804:int=x_1804:int and x_11530:int=x_11530:int and x_1802>=0 and x_11556=0 and x_11530=1Mi trovo in questa head
+new3(_11530,_1802,_1804)
+Stampo Rawbody
+constr((_19810=0&(_19822=0&_11530=0)))
+✅ Inserita in rewrite: _1802:int
+✅ Inserita in rewrite: _1804:int
+✅ Inserita in rewrite: _11530:int
+Stampo Body prima di zmi
+constr((_1802:int=_1802:int,_1804:int=_1804:int,_11530:int=_11530:int,_19810=0 and _19822=0 and _11530=0))
+Entrato in constr c
+Stampo flatList
+[_1802:int=_1802:int,_1804:int=_1804:int,_11530:int=_11530:int,(((true,true),_1802:int=_1802:int,_1804:int=_1804:int,_1802=0,_1804=99),_1802:int=_1802:int,_1804:int=_1804:int,_11530:int=_11530:int,_1802>=0,_11556=0,_11530=1),_1802:int=_1802:int,_1804:int=_1804:int,_11530:int=_11530:int,_19810=0,_19822=0,_11530=0]
+
+Stampa prima di inviare
+x_1802:int=x_1802:int and x_1804:int=x_1804:int and x_11530:int=x_11530:int and ((true and x_1802:int=x_1802:int and x_1804:int=x_1804:int and x_1802=0 and x_1804=99)and x_1802:int=x_1802:int and x_1804:int=x_1804:int and x_11530:int=x_11530:int and x_1802>=0 and x_11556=0 and x_11530=1)and x_1802:int=x_1802:int and x_1804:int=x_1804:int and x_11530:int=x_11530:int and x_19810=0 and x_19822=0 and x_11530=0Stampo Rawbody
+new3(_29994,_1802,_1804),constr((_1802=< - 1&(_30024=0&_29994=0)))
+✅ Inserita in rewrite: _1802:int
+✅ Inserita in rewrite: _1804:int
+✅ Inserita in rewrite: _29994:int
+Stampo Body prima di zmi
+constr((_1802:int=_1802:int,_1804:int=_1804:int,_29994:int=_29994:int,_1802=< - 1 and _30024=0 and _29994=0)),new3(_29994,_1802,_1804)
+Entrato in constr c
+Stampo flatList
+[_1802:int=_1802:int,_1804:int=_1804:int,_29994:int=_29994:int,((true,true),_1802:int=_1802:int,_1804:int=_1804:int,_1802=0,_1804=99),_1802:int=_1802:int,_1804:int=_1804:int,_29994:int=_29994:int,_1802=< - 1,_30024=0,_29994=0]
+
+Stampa prima di inviare
+x_1802:int=x_1802:int and x_1804:int=x_1804:int and x_29994:int=x_29994:int and (true and x_1802:int=x_1802:int and x_1804:int=x_1804:int and x_1802=0 and x_1804=99)and x_1802:int=x_1802:int and x_1804:int=x_1804:int and x_29994:int=x_29994:int and x_1802=< - 1 and x_30024=0 and x_29994=0No SAT branches found in MaxDepths = 10.
+ERROR: -g load_clean('/home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/test/separato/vmap3_ago8/postModifica1ago/TRACER-testabs9_VeriMAP_true.c.transform.smt.smt2.pl'),set_solver(turibe),zmi(incorrect),halt.: false

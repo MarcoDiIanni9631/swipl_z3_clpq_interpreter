@@ -1,0 +1,107 @@
+skipping(:- mode new4(in,in).)
+skipping(:- mode new3(in).)
+skipping(:- mode new2(in).)
+skipped parse: ":- pred new1."
+skipped parse: ":- pred incorrect."
+skipped parse: ":- pred ff."
+skipping(:- query ff/0.)
+skipping(:- mode constr(in).)
+skipping(:- ignore constr/1.)
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/type_inference.pl:248:
+Warning:    Singleton variables: [Y]
+Installing Z3 package
+Using Z3 version Z3 4.15.3.0
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:895:
+Warning:    Singleton variables: [N,M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:907:
+Warning:    Singleton variables: [M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:922:
+Warning:    Singleton variables: [N]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:931:
+Warning:    Singleton variables: [N,O,A]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:943:
+Warning:    Singleton variables: [N]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:957:
+Warning:    Singleton variables: [N,M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:970:
+Warning:    Loading module plunit_z3_push_test_equal22222223445 abolished: [plunit_z3_push_test_equal22222223445:'unit body'/2,plunit_z3_push_test_equal22222223445:'unit test'/4]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:972:
+Warning:    Singleton variables: [O,A,M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:988:
+Warning:    Singleton variables: [M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:1001:
+Warning:    Singleton variables: [M]
+ℹ️ MaxDepth impostato a: 10
+Mi trovo in questa head
+incorrect
+Stampo Rawbody
+new1,constr(true)
+Stampo Body prima di zmi
+constr(true),new1
+Entrato in constr c
+Stampo flatList
+[true]
+
+Stampa prima di inviare
+trueMi trovo in questa head
+new1
+Stampo Rawbody
+new2(_3904),constr(true)
+Stampo Body prima di zmi
+constr(true),new2(_3904)
+Entrato in constr c
+Stampo flatList
+[_3904:int=_3904:int,(true,true)]
+
+Stampa prima di inviare
+x_3904:int=x_3904:int and trueMi trovo in questa head
+new2(_3904)
+Stampo Rawbody
+new3(_3904),constr((_3904>=11&_10348=10))
+✅ Inserita in rewrite: _3904:int
+Stampo Body prima di zmi
+constr((_3904:int=_3904:int,_3904>=11 and _10348=10)),new3(_3904)
+Entrato in constr c
+Stampo flatList
+[_3904:int=_3904:int,((true,true),true),_3904:int=_3904:int,_3904>=11,_10348=10]
+
+Stampa prima di inviare
+x_3904:int=x_3904:int and true and x_3904:int=x_3904:int and x_3904>=11 and x_10348=10Mi trovo in questa head
+new3(_3904)
+Stampo Rawbody
+new4(_14150,_3904),constr((_3904>=5&(_14174=5&_14150=1)))
+✅ Inserita in rewrite: _3904:int
+✅ Inserita in rewrite: _14150:int
+Stampo Body prima di zmi
+constr((_3904:int=_3904:int,_14150:int=_14150:int,_3904>=5 and _14174=5 and _14150=1)),new4(_14150,_3904)
+Entrato in constr c
+Stampo flatList
+[_3904:int=_3904:int,_14150:int=_14150:int,(((true,true),true),_3904:int=_3904:int,_3904>=11,_10348=10),_3904:int=_3904:int,_14150:int=_14150:int,_3904>=5,_14174=5,_14150=1]
+
+Stampa prima di inviare
+x_3904:int=x_3904:int and x_14150:int=x_14150:int and (true and x_3904:int=x_3904:int and x_3904>=11 and x_10348=10)and x_3904:int=x_3904:int and x_14150:int=x_14150:int and x_3904>=5 and x_14174=5 and x_14150=1Mi trovo in questa head
+new4(_14150,_3904)
+Stampo Rawbody
+constr((_20926=0&(_20938=0&_14150=0)))
+✅ Inserita in rewrite: _3904:int
+✅ Inserita in rewrite: _14150:int
+Stampo Body prima di zmi
+constr((_3904:int=_3904:int,_14150:int=_14150:int,_20926=0 and _20938=0 and _14150=0))
+Entrato in constr c
+Stampo flatList
+[_3904:int=_3904:int,_14150:int=_14150:int,((((true,true),true),_3904:int=_3904:int,_3904>=11,_10348=10),_3904:int=_3904:int,_14150:int=_14150:int,_3904>=5,_14174=5,_14150=1),_3904:int=_3904:int,_14150:int=_14150:int,_20926=0,_20938=0,_14150=0]
+
+Stampa prima di inviare
+x_3904:int=x_3904:int and x_14150:int=x_14150:int and ((true and x_3904:int=x_3904:int and x_3904>=11 and x_10348=10)and x_3904:int=x_3904:int and x_14150:int=x_14150:int and x_3904>=5 and x_14174=5 and x_14150=1)and x_3904:int=x_3904:int and x_14150:int=x_14150:int and x_20926=0 and x_20938=0 and x_14150=0Stampo Rawbody
+new4(_29540,_3904),constr((_3904=<4&(_29564=5&_29540=0)))
+✅ Inserita in rewrite: _3904:int
+✅ Inserita in rewrite: _29540:int
+Stampo Body prima di zmi
+constr((_3904:int=_3904:int,_29540:int=_29540:int,_3904=<4 and _29564=5 and _29540=0)),new4(_29540,_3904)
+Entrato in constr c
+Stampo flatList
+[_3904:int=_3904:int,_29540:int=_29540:int,(((true,true),true),_3904:int=_3904:int,_3904>=11,_10348=10),_3904:int=_3904:int,_29540:int=_29540:int,_3904=<4,_29564=5,_29540=0]
+
+Stampa prima di inviare
+x_3904:int=x_3904:int and x_29540:int=x_29540:int and (true and x_3904:int=x_3904:int and x_3904>=11 and x_10348=10)and x_3904:int=x_3904:int and x_29540:int=x_29540:int and x_3904=<4 and x_29564=5 and x_29540=0No SAT branches found in MaxDepths = 10.
+ERROR: -g load_clean('/home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/test/separato/vmap3_ago8/postModifica1ago/TRACER-testwp9_VeriMAP_true.c.transform.smt.smt2.pl'),set_solver(turibe),zmi(incorrect),halt.: false

@@ -1,0 +1,663 @@
+skipping(:- mode inv(in,in,in,in).)
+skipped parse: ":- pred ff."
+skipping(:- query ff/0.)
+skipping(:- mode constr(in).)
+skipping(:- ignore constr/1.)
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/type_inference.pl:248:
+Warning:    Singleton variables: [Y]
+Installing Z3 package
+Using Z3 version Z3 4.15.3.0
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:895:
+Warning:    Singleton variables: [R]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:908:
+Warning:    Singleton variables: [M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:923:
+Warning:    Singleton variables: [N]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:932:
+Warning:    Singleton variables: [N,O,A]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:944:
+Warning:    Singleton variables: [N]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:958:
+Warning:    Singleton variables: [N,M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:971:
+Warning:    Loading module plunit_z3_push_test_equal22222223445 abolished: [plunit_z3_push_test_equal22222223445:'unit body'/2,plunit_z3_push_test_equal22222223445:'unit test'/4]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:973:
+Warning:    Singleton variables: [O,A,M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:989:
+Warning:    Singleton variables: [M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:1002:
+Warning:    Singleton variables: [M]
+ℹ️ MaxDepth impostato a: 10
+Mi trovo in questa head
+ff
+Stampo Rawbody
+inv(_29472,_29474,_29476,_29478),constr((_29474=2250&_29476=_29478))
+✅ Inserita in rewrite: _29472:int
+✅ Inserita in rewrite: _29474:int
+✅ Inserita in rewrite: _29476:int
+✅ Inserita in rewrite: _29478:int
+Stampo Body prima di zmi
+constr((_29472:int=_29472:int,_29474:int=_29474:int,_29476:int=_29476:int,_29478:int=_29478:int,_29474=2250 and _29476=_29478)),inv(_29472,_29474,_29476,_29478)
+Entrato in constr c
+Stampo flatList
+[_29472:int=_29472:int,_29474:int=_29474:int,_29476:int=_29476:int,_29478:int=_29478:int,true,_29472=_29472,_29474=_29474,_29476=_29476,_29478=_29478,_29474=2250,_29476=_29478]
+
+Stampa prima di inviare
+x_29472:int=x_29472:int and x_29474:int=x_29474:int and x_29476:int=x_29476:int and x_29478:int=x_29478:int and x_29472=x_29472 and x_29474=x_29474 and x_29476=x_29476 and x_29478=x_29478 and x_29474=2250 and x_29476=x_29478Mi trovo in questa head
+inv(_130,_132,_134,_136)
+Stampo Rawbody
+constr((_130=0&(_136=500&(_134=0&_132=0))))
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _136:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_130=0 and _136=500 and _134=0 and _132=0))
+Entrato in constr c
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,(true,_130=_130,_132=_132,_134=_134,_136=_136,_132=2250,_134=_136),_130=_130,_132=_132,_134=_134,_136=_136,_130=0,_136=500,_134=0,_132=0]
+
+Stampa prima di inviare
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:int=x_136:int and (x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_132=2250 and x_134=x_136)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_130=0 and x_136=500 and x_134=0 and x_132=0Stampo Rawbody
+inv(_22866,_22868,_22870,_22872),constr((_130=(1+_22866)mod 1000&(_136=ite(_22866>=500,1+_22872,- 1+_22872)&(_134=ite(500=<_22866,- 1+_22870,1+_22870)&_132=1+_22868))))
+⚠️ Formula non normalizzata: - 1+_22872
+⚠️ Formula non normalizzata: - 1+_22870
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _136:int
+✅ Inserita in rewrite: _22866:int
+✅ Inserita in rewrite: _22868:int
+✅ Inserita in rewrite: _22870:int
+✅ Inserita in rewrite: _22872:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_22866:int=_22866:int,_22868:int=_22868:int,_22870:int=_22870:int,_22872:int=_22872:int,_130=(1+_22866)mod 1000 and _136=ite(_22866>=500,1+_22872,- 1+_22872)and _134=ite(500=<_22866,- 1+_22870,1+_22870)and _132=1+_22868)),inv(_22866,_22868,_22870,_22872)
+Entrato in constr c
+⚠️ Formula non normalizzata: - 1+_22872
+⚠️ Formula non normalizzata: - 1+_22870
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_22866:int=_22866:int,_22868:int=_22868:int,_22870:int=_22870:int,_22872:int=_22872:int,(true,_130=_130,_132=_132,_134=_134,_136=_136,_132=2250,_134=_136),_130=_130,_132=_132,_134=_134,_136=_136,_22866=_22866,_22868=_22868,_22870=_22870,_22872=_22872,_130=(1+_22866)mod 1000,_136=ite(_22866>=500,1+_22872,- 1+_22872),_134=ite(500=<_22866,- 1+_22870,1+_22870),_132=1+_22868]
+
+Stampa prima di inviare
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:int=x_136:int and x_22866:int=x_22866:int and x_22868:int=x_22868:int and x_22870:int=x_22870:int and x_22872:int=x_22872:int and (x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_132=2250 and x_134=x_136)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_22866=x_22866 and x_22868=x_22868 and x_22870=x_22870 and x_22872=x_22872 and x_130=(1+x_22866)mod 1000 and x_136=ite(x_22866>=500,1+x_22872,- 1+x_22872)and x_134=ite(500=<x_22866,- 1+x_22870,1+x_22870)and x_132=1+x_22868Mi trovo in questa head
+inv(_888,_890,_892,_894)
+Stampo Rawbody
+constr((_888=0&(_894=500&(_892=0&_890=0))))
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _136:int
+✅ Inserita in rewrite: _888:int
+✅ Inserita in rewrite: _890:int
+✅ Inserita in rewrite: _892:int
+✅ Inserita in rewrite: _894:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_888:int=_888:int,_890:int=_890:int,_892:int=_892:int,_894:int=_894:int,_888=0 and _894=500 and _892=0 and _890=0))
+Entrato in constr c
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_888:int=_888:int,_890:int=_890:int,_892:int=_892:int,_894:int=_894:int,((true,_130=_130,_132=_132,_134=_134,_136=_136,_132=2250,_134=_136),_130=_130,_132=_132,_134=_134,_136=_136,_888=_888,_890=_890,_892=_892,_894=_894,_130=(1+_888)mod 1000,_136=ite(_888>=500,1+_894,- 1+_894),_134=ite(500=<_888,- 1+_892,1+_892),_132=1+_890),_130=_130,_132=_132,_134=_134,_136=_136,_888=_888,_890=_890,_892=_892,_894=_894,_888=0,_894=500,_892=0,_890=0]
+
+Stampa prima di inviare
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:int=x_136:int and x_888:int=x_888:int and x_890:int=x_890:int and x_892:int=x_892:int and x_894:int=x_894:int and ((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_132=2250 and x_134=x_136)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_894=x_894 and x_130=(1+x_888)mod 1000 and x_136=ite(x_888>=500,1+x_894,- 1+x_894)and x_134=ite(500=<x_888,- 1+x_892,1+x_892)and x_132=1+x_890)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_894=x_894 and x_888=0 and x_894=500 and x_892=0 and x_890=0Stampo Rawbody
+inv(_8768,_8770,_8772,_8774),constr((_886=(1+_8768)mod 1000&(_892=ite(_8768>=500,1+_8774,- 1+_8774)&(_890=ite(500=<_8768,- 1+_8772,1+_8772)&_888=1+_8770))))
+⚠️ Formula non normalizzata: - 1+_8774
+⚠️ Formula non normalizzata: - 1+_8772
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _136:int
+✅ Inserita in rewrite: _886:int
+✅ Inserita in rewrite: _888:int
+✅ Inserita in rewrite: _890:int
+✅ Inserita in rewrite: _892:int
+✅ Inserita in rewrite: _8768:int
+✅ Inserita in rewrite: _8770:int
+✅ Inserita in rewrite: _8772:int
+✅ Inserita in rewrite: _8774:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_886:int=_886:int,_888:int=_888:int,_890:int=_890:int,_892:int=_892:int,_8768:int=_8768:int,_8770:int=_8770:int,_8772:int=_8772:int,_8774:int=_8774:int,_886=(1+_8768)mod 1000 and _892=ite(_8768>=500,1+_8774,- 1+_8774)and _890=ite(500=<_8768,- 1+_8772,1+_8772)and _888=1+_8770)),inv(_8768,_8770,_8772,_8774)
+Entrato in constr c
+⚠️ Formula non normalizzata: - 1+_8774
+⚠️ Formula non normalizzata: - 1+_8772
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_886:int=_886:int,_888:int=_888:int,_890:int=_890:int,_892:int=_892:int,_8768:int=_8768:int,_8770:int=_8770:int,_8772:int=_8772:int,_8774:int=_8774:int,((true,_130=_130,_132=_132,_134=_134,_136=_136,_132=2250,_134=_136),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_130=(1+_886)mod 1000,_136=ite(_886>=500,1+_892,- 1+_892),_134=ite(500=<_886,- 1+_890,1+_890),_132=1+_888),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_8768=_8768,_8770=_8770,_8772=_8772,_8774=_8774,_886=(1+_8768)mod 1000,_892=ite(_8768>=500,1+_8774,- 1+_8774),_890=ite(500=<_8768,- 1+_8772,1+_8772),_888=1+_8770]
+
+Stampa prima di inviare
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:int=x_136:int and x_886:int=x_886:int and x_888:int=x_888:int and x_890:int=x_890:int and x_892:int=x_892:int and x_8768:int=x_8768:int and x_8770:int=x_8770:int and x_8772:int=x_8772:int and x_8774:int=x_8774:int and ((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_132=2250 and x_134=x_136)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_130=(1+x_886)mod 1000 and x_136=ite(x_886>=500,1+x_892,- 1+x_892)and x_134=ite(500=<x_886,- 1+x_890,1+x_890)and x_132=1+x_888)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_8768=x_8768 and x_8770=x_8770 and x_8772=x_8772 and x_8774=x_8774 and x_886=(1+x_8768)mod 1000 and x_892=ite(x_8768>=500,1+x_8774,- 1+x_8774)and x_890=ite(500=<x_8768,- 1+x_8772,1+x_8772)and x_888=1+x_8770Mi trovo in questa head
+inv(_8768,_8770,_8772,_8774)
+Stampo Rawbody
+constr((_8768=0&(_8774=500&(_8772=0&_8770=0))))
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _136:int
+✅ Inserita in rewrite: _886:int
+✅ Inserita in rewrite: _888:int
+✅ Inserita in rewrite: _890:int
+✅ Inserita in rewrite: _892:int
+✅ Inserita in rewrite: _8768:int
+✅ Inserita in rewrite: _8770:int
+✅ Inserita in rewrite: _8772:int
+✅ Inserita in rewrite: _8774:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_886:int=_886:int,_888:int=_888:int,_890:int=_890:int,_892:int=_892:int,_8768:int=_8768:int,_8770:int=_8770:int,_8772:int=_8772:int,_8774:int=_8774:int,_8768=0 and _8774=500 and _8772=0 and _8770=0))
+Entrato in constr c
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_886:int=_886:int,_888:int=_888:int,_890:int=_890:int,_892:int=_892:int,_8768:int=_8768:int,_8770:int=_8770:int,_8772:int=_8772:int,_8774:int=_8774:int,(((true,_130=_130,_132=_132,_134=_134,_136=_136,_132=2250,_134=_136),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_130=(1+_886)mod 1000,_136=ite(_886>=500,1+_892,- 1+_892),_134=ite(500=<_886,- 1+_890,1+_890),_132=1+_888),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_8768=_8768,_8770=_8770,_8772=_8772,_8774=_8774,_886=(1+_8768)mod 1000,_892=ite(_8768>=500,1+_8774,- 1+_8774),_890=ite(500=<_8768,- 1+_8772,1+_8772),_888=1+_8770),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_8768=_8768,_8770=_8770,_8772=_8772,_8774=_8774,_8768=0,_8774=500,_8772=0,_8770=0]
+
+Stampa prima di inviare
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:int=x_136:int and x_886:int=x_886:int and x_888:int=x_888:int and x_890:int=x_890:int and x_892:int=x_892:int and x_8768:int=x_8768:int and x_8770:int=x_8770:int and x_8772:int=x_8772:int and x_8774:int=x_8774:int and (((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_132=2250 and x_134=x_136)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_130=(1+x_886)mod 1000 and x_136=ite(x_886>=500,1+x_892,- 1+x_892)and x_134=ite(500=<x_886,- 1+x_890,1+x_890)and x_132=1+x_888)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_8768=x_8768 and x_8770=x_8770 and x_8772=x_8772 and x_8774=x_8774 and x_886=(1+x_8768)mod 1000 and x_892=ite(x_8768>=500,1+x_8774,- 1+x_8774)and x_890=ite(500=<x_8768,- 1+x_8772,1+x_8772)and x_888=1+x_8770)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_8768=x_8768 and x_8770=x_8770 and x_8772=x_8772 and x_8774=x_8774 and x_8768=0 and x_8774=500 and x_8772=0 and x_8770=0Stampo Rawbody
+inv(_19154,_19156,_19158,_19160),constr((_2490=(1+_19154)mod 1000&(_2496=ite(_19154>=500,1+_19160,- 1+_19160)&(_2494=ite(500=<_19154,- 1+_19158,1+_19158)&_2492=1+_19156))))
+⚠️ Formula non normalizzata: - 1+_19160
+⚠️ Formula non normalizzata: - 1+_19158
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _136:int
+✅ Inserita in rewrite: _886:int
+✅ Inserita in rewrite: _888:int
+✅ Inserita in rewrite: _890:int
+✅ Inserita in rewrite: _892:int
+✅ Inserita in rewrite: _2490:int
+✅ Inserita in rewrite: _2492:int
+✅ Inserita in rewrite: _2494:int
+✅ Inserita in rewrite: _2496:int
+✅ Inserita in rewrite: _19154:int
+✅ Inserita in rewrite: _19156:int
+✅ Inserita in rewrite: _19158:int
+✅ Inserita in rewrite: _19160:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_886:int=_886:int,_888:int=_888:int,_890:int=_890:int,_892:int=_892:int,_2490:int=_2490:int,_2492:int=_2492:int,_2494:int=_2494:int,_2496:int=_2496:int,_19154:int=_19154:int,_19156:int=_19156:int,_19158:int=_19158:int,_19160:int=_19160:int,_2490=(1+_19154)mod 1000 and _2496=ite(_19154>=500,1+_19160,- 1+_19160)and _2494=ite(500=<_19154,- 1+_19158,1+_19158)and _2492=1+_19156)),inv(_19154,_19156,_19158,_19160)
+Entrato in constr c
+⚠️ Formula non normalizzata: - 1+_19160
+⚠️ Formula non normalizzata: - 1+_19158
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_886:int=_886:int,_888:int=_888:int,_890:int=_890:int,_892:int=_892:int,_2490:int=_2490:int,_2492:int=_2492:int,_2494:int=_2494:int,_2496:int=_2496:int,_19154:int=_19154:int,_19156:int=_19156:int,_19158:int=_19158:int,_19160:int=_19160:int,(((true,_130=_130,_132=_132,_134=_134,_136=_136,_132=2250,_134=_136),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_130=(1+_886)mod 1000,_136=ite(_886>=500,1+_892,- 1+_892),_134=ite(500=<_886,- 1+_890,1+_890),_132=1+_888),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_886=(1+_2490)mod 1000,_892=ite(_2490>=500,1+_2496,- 1+_2496),_890=ite(500=<_2490,- 1+_2494,1+_2494),_888=1+_2492),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_19154=_19154,_19156=_19156,_19158=_19158,_19160=_19160,_2490=(1+_19154)mod 1000,_2496=ite(_19154>=500,1+_19160,- 1+_19160),_2494=ite(500=<_19154,- 1+_19158,1+_19158),_2492=1+_19156]
+
+Stampa prima di inviare
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:int=x_136:int and x_886:int=x_886:int and x_888:int=x_888:int and x_890:int=x_890:int and x_892:int=x_892:int and x_2490:int=x_2490:int and x_2492:int=x_2492:int and x_2494:int=x_2494:int and x_2496:int=x_2496:int and x_19154:int=x_19154:int and x_19156:int=x_19156:int and x_19158:int=x_19158:int and x_19160:int=x_19160:int and (((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_132=2250 and x_134=x_136)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_130=(1+x_886)mod 1000 and x_136=ite(x_886>=500,1+x_892,- 1+x_892)and x_134=ite(500=<x_886,- 1+x_890,1+x_890)and x_132=1+x_888)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_886=(1+x_2490)mod 1000 and x_892=ite(x_2490>=500,1+x_2496,- 1+x_2496)and x_890=ite(500=<x_2490,- 1+x_2494,1+x_2494)and x_888=1+x_2492)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_19154=x_19154 and x_19156=x_19156 and x_19158=x_19158 and x_19160=x_19160 and x_2490=(1+x_19154)mod 1000 and x_2496=ite(x_19154>=500,1+x_19160,- 1+x_19160)and x_2494=ite(500=<x_19154,- 1+x_19158,1+x_19158)and x_2492=1+x_19156Mi trovo in questa head
+inv(_4498,_4500,_4502,_4504)
+Stampo Rawbody
+constr((_4498=0&(_4504=500&(_4502=0&_4500=0))))
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _136:int
+✅ Inserita in rewrite: _886:int
+✅ Inserita in rewrite: _888:int
+✅ Inserita in rewrite: _890:int
+✅ Inserita in rewrite: _892:int
+✅ Inserita in rewrite: _2490:int
+✅ Inserita in rewrite: _2492:int
+✅ Inserita in rewrite: _2494:int
+✅ Inserita in rewrite: _2496:int
+✅ Inserita in rewrite: _4498:int
+✅ Inserita in rewrite: _4500:int
+✅ Inserita in rewrite: _4502:int
+✅ Inserita in rewrite: _4504:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_886:int=_886:int,_888:int=_888:int,_890:int=_890:int,_892:int=_892:int,_2490:int=_2490:int,_2492:int=_2492:int,_2494:int=_2494:int,_2496:int=_2496:int,_4498:int=_4498:int,_4500:int=_4500:int,_4502:int=_4502:int,_4504:int=_4504:int,_4498=0 and _4504=500 and _4502=0 and _4500=0))
+Entrato in constr c
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_886:int=_886:int,_888:int=_888:int,_890:int=_890:int,_892:int=_892:int,_2490:int=_2490:int,_2492:int=_2492:int,_2494:int=_2494:int,_2496:int=_2496:int,_4498:int=_4498:int,_4500:int=_4500:int,_4502:int=_4502:int,_4504:int=_4504:int,((((true,_130=_130,_132=_132,_134=_134,_136=_136,_132=2250,_134=_136),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_130=(1+_886)mod 1000,_136=ite(_886>=500,1+_892,- 1+_892),_134=ite(500=<_886,- 1+_890,1+_890),_132=1+_888),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_886=(1+_2490)mod 1000,_892=ite(_2490>=500,1+_2496,- 1+_2496),_890=ite(500=<_2490,- 1+_2494,1+_2494),_888=1+_2492),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_4498=_4498,_4500=_4500,_4502=_4502,_4504=_4504,_2490=(1+_4498)mod 1000,_2496=ite(_4498>=500,1+_4504,- 1+_4504),_2494=ite(500=<_4498,- 1+_4502,1+_4502),_2492=1+_4500),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_4498=_4498,_4500=_4500,_4502=_4502,_4504=_4504,_4498=0,_4504=500,_4502=0,_4500=0]
+
+Stampa prima di inviare
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:int=x_136:int and x_886:int=x_886:int and x_888:int=x_888:int and x_890:int=x_890:int and x_892:int=x_892:int and x_2490:int=x_2490:int and x_2492:int=x_2492:int and x_2494:int=x_2494:int and x_2496:int=x_2496:int and x_4498:int=x_4498:int and x_4500:int=x_4500:int and x_4502:int=x_4502:int and x_4504:int=x_4504:int and ((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_132=2250 and x_134=x_136)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_130=(1+x_886)mod 1000 and x_136=ite(x_886>=500,1+x_892,- 1+x_892)and x_134=ite(500=<x_886,- 1+x_890,1+x_890)and x_132=1+x_888)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_886=(1+x_2490)mod 1000 and x_892=ite(x_2490>=500,1+x_2496,- 1+x_2496)and x_890=ite(500=<x_2490,- 1+x_2494,1+x_2494)and x_888=1+x_2492)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_4498=x_4498 and x_4500=x_4500 and x_4502=x_4502 and x_4504=x_4504 and x_2490=(1+x_4498)mod 1000 and x_2496=ite(x_4498>=500,1+x_4504,- 1+x_4504)and x_2494=ite(500=<x_4498,- 1+x_4502,1+x_4502)and x_2492=1+x_4500)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_4498=x_4498 and x_4500=x_4500 and x_4502=x_4502 and x_4504=x_4504 and x_4498=0 and x_4504=500 and x_4502=0 and x_4500=0Stampo Rawbody
+inv(_10652,_10654,_10656,_10658),constr((_4498=(1+_10652)mod 1000&(_4504=ite(_10652>=500,1+_10658,- 1+_10658)&(_4502=ite(500=<_10652,- 1+_10656,1+_10656)&_4500=1+_10654))))
+⚠️ Formula non normalizzata: - 1+_10658
+⚠️ Formula non normalizzata: - 1+_10656
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _136:int
+✅ Inserita in rewrite: _886:int
+✅ Inserita in rewrite: _888:int
+✅ Inserita in rewrite: _890:int
+✅ Inserita in rewrite: _892:int
+✅ Inserita in rewrite: _2490:int
+✅ Inserita in rewrite: _2492:int
+✅ Inserita in rewrite: _2494:int
+✅ Inserita in rewrite: _2496:int
+✅ Inserita in rewrite: _4498:int
+✅ Inserita in rewrite: _4500:int
+✅ Inserita in rewrite: _4502:int
+✅ Inserita in rewrite: _4504:int
+✅ Inserita in rewrite: _10652:int
+✅ Inserita in rewrite: _10654:int
+✅ Inserita in rewrite: _10656:int
+✅ Inserita in rewrite: _10658:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_886:int=_886:int,_888:int=_888:int,_890:int=_890:int,_892:int=_892:int,_2490:int=_2490:int,_2492:int=_2492:int,_2494:int=_2494:int,_2496:int=_2496:int,_4498:int=_4498:int,_4500:int=_4500:int,_4502:int=_4502:int,_4504:int=_4504:int,_10652:int=_10652:int,_10654:int=_10654:int,_10656:int=_10656:int,_10658:int=_10658:int,_4498=(1+_10652)mod 1000 and _4504=ite(_10652>=500,1+_10658,- 1+_10658)and _4502=ite(500=<_10652,- 1+_10656,1+_10656)and _4500=1+_10654)),inv(_10652,_10654,_10656,_10658)
+Entrato in constr c
+⚠️ Formula non normalizzata: - 1+_10658
+⚠️ Formula non normalizzata: - 1+_10656
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_886:int=_886:int,_888:int=_888:int,_890:int=_890:int,_892:int=_892:int,_2490:int=_2490:int,_2492:int=_2492:int,_2494:int=_2494:int,_2496:int=_2496:int,_4498:int=_4498:int,_4500:int=_4500:int,_4502:int=_4502:int,_4504:int=_4504:int,_10652:int=_10652:int,_10654:int=_10654:int,_10656:int=_10656:int,_10658:int=_10658:int,((((true,_130=_130,_132=_132,_134=_134,_136=_136,_132=2250,_134=_136),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_130=(1+_886)mod 1000,_136=ite(_886>=500,1+_892,- 1+_892),_134=ite(500=<_886,- 1+_890,1+_890),_132=1+_888),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_886=(1+_2490)mod 1000,_892=ite(_2490>=500,1+_2496,- 1+_2496),_890=ite(500=<_2490,- 1+_2494,1+_2494),_888=1+_2492),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_4498=_4498,_4500=_4500,_4502=_4502,_4504=_4504,_2490=(1+_4498)mod 1000,_2496=ite(_4498>=500,1+_4504,- 1+_4504),_2494=ite(500=<_4498,- 1+_4502,1+_4502),_2492=1+_4500),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_4498=_4498,_4500=_4500,_4502=_4502,_4504=_4504,_10652=_10652,_10654=_10654,_10656=_10656,_10658=_10658,_4498=(1+_10652)mod 1000,_4504=ite(_10652>=500,1+_10658,- 1+_10658),_4502=ite(500=<_10652,- 1+_10656,1+_10656),_4500=1+_10654]
+
+Stampa prima di inviare
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:int=x_136:int and x_886:int=x_886:int and x_888:int=x_888:int and x_890:int=x_890:int and x_892:int=x_892:int and x_2490:int=x_2490:int and x_2492:int=x_2492:int and x_2494:int=x_2494:int and x_2496:int=x_2496:int and x_4498:int=x_4498:int and x_4500:int=x_4500:int and x_4502:int=x_4502:int and x_4504:int=x_4504:int and x_10652:int=x_10652:int and x_10654:int=x_10654:int and x_10656:int=x_10656:int and x_10658:int=x_10658:int and ((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_132=2250 and x_134=x_136)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_130=(1+x_886)mod 1000 and x_136=ite(x_886>=500,1+x_892,- 1+x_892)and x_134=ite(500=<x_886,- 1+x_890,1+x_890)and x_132=1+x_888)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_886=(1+x_2490)mod 1000 and x_892=ite(x_2490>=500,1+x_2496,- 1+x_2496)and x_890=ite(500=<x_2490,- 1+x_2494,1+x_2494)and x_888=1+x_2492)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_4498=x_4498 and x_4500=x_4500 and x_4502=x_4502 and x_4504=x_4504 and x_2490=(1+x_4498)mod 1000 and x_2496=ite(x_4498>=500,1+x_4504,- 1+x_4504)and x_2494=ite(500=<x_4498,- 1+x_4502,1+x_4502)and x_2492=1+x_4500)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_4498=x_4498 and x_4500=x_4500 and x_4502=x_4502 and x_4504=x_4504 and x_10652=x_10652 and x_10654=x_10654 and x_10656=x_10656 and x_10658=x_10658 and x_4498=(1+x_10652)mod 1000 and x_4504=ite(x_10652>=500,1+x_10658,- 1+x_10658)and x_4502=ite(500=<x_10652,- 1+x_10656,1+x_10656)and x_4500=1+x_10654Mi trovo in questa head
+inv(_10652,_10654,_10656,_10658)
+Stampo Rawbody
+constr((_10652=0&(_10658=500&(_10656=0&_10654=0))))
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _136:int
+✅ Inserita in rewrite: _886:int
+✅ Inserita in rewrite: _888:int
+✅ Inserita in rewrite: _890:int
+✅ Inserita in rewrite: _892:int
+✅ Inserita in rewrite: _2490:int
+✅ Inserita in rewrite: _2492:int
+✅ Inserita in rewrite: _2494:int
+✅ Inserita in rewrite: _2496:int
+✅ Inserita in rewrite: _4498:int
+✅ Inserita in rewrite: _4500:int
+✅ Inserita in rewrite: _4502:int
+✅ Inserita in rewrite: _4504:int
+✅ Inserita in rewrite: _10652:int
+✅ Inserita in rewrite: _10654:int
+✅ Inserita in rewrite: _10656:int
+✅ Inserita in rewrite: _10658:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_886:int=_886:int,_888:int=_888:int,_890:int=_890:int,_892:int=_892:int,_2490:int=_2490:int,_2492:int=_2492:int,_2494:int=_2494:int,_2496:int=_2496:int,_4498:int=_4498:int,_4500:int=_4500:int,_4502:int=_4502:int,_4504:int=_4504:int,_10652:int=_10652:int,_10654:int=_10654:int,_10656:int=_10656:int,_10658:int=_10658:int,_10652=0 and _10658=500 and _10656=0 and _10654=0))
+Entrato in constr c
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_886:int=_886:int,_888:int=_888:int,_890:int=_890:int,_892:int=_892:int,_2490:int=_2490:int,_2492:int=_2492:int,_2494:int=_2494:int,_2496:int=_2496:int,_4498:int=_4498:int,_4500:int=_4500:int,_4502:int=_4502:int,_4504:int=_4504:int,_10652:int=_10652:int,_10654:int=_10654:int,_10656:int=_10656:int,_10658:int=_10658:int,(((((true,_130=_130,_132=_132,_134=_134,_136=_136,_132=2250,_134=_136),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_130=(1+_886)mod 1000,_136=ite(_886>=500,1+_892,- 1+_892),_134=ite(500=<_886,- 1+_890,1+_890),_132=1+_888),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_886=(1+_2490)mod 1000,_892=ite(_2490>=500,1+_2496,- 1+_2496),_890=ite(500=<_2490,- 1+_2494,1+_2494),_888=1+_2492),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_4498=_4498,_4500=_4500,_4502=_4502,_4504=_4504,_2490=(1+_4498)mod 1000,_2496=ite(_4498>=500,1+_4504,- 1+_4504),_2494=ite(500=<_4498,- 1+_4502,1+_4502),_2492=1+_4500),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_4498=_4498,_4500=_4500,_4502=_4502,_4504=_4504,_10652=_10652,_10654=_10654,_10656=_10656,_10658=_10658,_4498=(1+_10652)mod 1000,_4504=ite(_10652>=500,1+_10658,- 1+_10658),_4502=ite(500=<_10652,- 1+_10656,1+_10656),_4500=1+_10654),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_4498=_4498,_4500=_4500,_4502=_4502,_4504=_4504,_10652=_10652,_10654=_10654,_10656=_10656,_10658=_10658,_10652=0,_10658=500,_10656=0,_10654=0]
+
+Stampa prima di inviare
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:int=x_136:int and x_886:int=x_886:int and x_888:int=x_888:int and x_890:int=x_890:int and x_892:int=x_892:int and x_2490:int=x_2490:int and x_2492:int=x_2492:int and x_2494:int=x_2494:int and x_2496:int=x_2496:int and x_4498:int=x_4498:int and x_4500:int=x_4500:int and x_4502:int=x_4502:int and x_4504:int=x_4504:int and x_10652:int=x_10652:int and x_10654:int=x_10654:int and x_10656:int=x_10656:int and x_10658:int=x_10658:int and (((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_132=2250 and x_134=x_136)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_130=(1+x_886)mod 1000 and x_136=ite(x_886>=500,1+x_892,- 1+x_892)and x_134=ite(500=<x_886,- 1+x_890,1+x_890)and x_132=1+x_888)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_886=(1+x_2490)mod 1000 and x_892=ite(x_2490>=500,1+x_2496,- 1+x_2496)and x_890=ite(500=<x_2490,- 1+x_2494,1+x_2494)and x_888=1+x_2492)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_4498=x_4498 and x_4500=x_4500 and x_4502=x_4502 and x_4504=x_4504 and x_2490=(1+x_4498)mod 1000 and x_2496=ite(x_4498>=500,1+x_4504,- 1+x_4504)and x_2494=ite(500=<x_4498,- 1+x_4502,1+x_4502)and x_2492=1+x_4500)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_4498=x_4498 and x_4500=x_4500 and x_4502=x_4502 and x_4504=x_4504 and x_10652=x_10652 and x_10654=x_10654 and x_10656=x_10656 and x_10658=x_10658 and x_4498=(1+x_10652)mod 1000 and x_4504=ite(x_10652>=500,1+x_10658,- 1+x_10658)and x_4502=ite(500=<x_10652,- 1+x_10656,1+x_10656)and x_4500=1+x_10654)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_4498=x_4498 and x_4500=x_4500 and x_4502=x_4502 and x_4504=x_4504 and x_10652=x_10652 and x_10654=x_10654 and x_10656=x_10656 and x_10658=x_10658 and x_10652=0 and x_10658=500 and x_10656=0 and x_10654=0Stampo Rawbody
+inv(_31364,_31366,_31368,_31370),constr((_6978=(1+_31364)mod 1000&(_6984=ite(_31364>=500,1+_31370,- 1+_31370)&(_6982=ite(500=<_31364,- 1+_31368,1+_31368)&_6980=1+_31366))))
+⚠️ Formula non normalizzata: - 1+_31370
+⚠️ Formula non normalizzata: - 1+_31368
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _136:int
+✅ Inserita in rewrite: _886:int
+✅ Inserita in rewrite: _888:int
+✅ Inserita in rewrite: _890:int
+✅ Inserita in rewrite: _892:int
+✅ Inserita in rewrite: _2490:int
+✅ Inserita in rewrite: _2492:int
+✅ Inserita in rewrite: _2494:int
+✅ Inserita in rewrite: _2496:int
+✅ Inserita in rewrite: _4498:int
+✅ Inserita in rewrite: _4500:int
+✅ Inserita in rewrite: _4502:int
+✅ Inserita in rewrite: _4504:int
+✅ Inserita in rewrite: _6978:int
+✅ Inserita in rewrite: _6980:int
+✅ Inserita in rewrite: _6982:int
+✅ Inserita in rewrite: _6984:int
+✅ Inserita in rewrite: _31364:int
+✅ Inserita in rewrite: _31366:int
+✅ Inserita in rewrite: _31368:int
+✅ Inserita in rewrite: _31370:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_886:int=_886:int,_888:int=_888:int,_890:int=_890:int,_892:int=_892:int,_2490:int=_2490:int,_2492:int=_2492:int,_2494:int=_2494:int,_2496:int=_2496:int,_4498:int=_4498:int,_4500:int=_4500:int,_4502:int=_4502:int,_4504:int=_4504:int,_6978:int=_6978:int,_6980:int=_6980:int,_6982:int=_6982:int,_6984:int=_6984:int,_31364:int=_31364:int,_31366:int=_31366:int,_31368:int=_31368:int,_31370:int=_31370:int,_6978=(1+_31364)mod 1000 and _6984=ite(_31364>=500,1+_31370,- 1+_31370)and _6982=ite(500=<_31364,- 1+_31368,1+_31368)and _6980=1+_31366)),inv(_31364,_31366,_31368,_31370)
+Entrato in constr c
+⚠️ Formula non normalizzata: - 1+_31370
+⚠️ Formula non normalizzata: - 1+_31368
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_886:int=_886:int,_888:int=_888:int,_890:int=_890:int,_892:int=_892:int,_2490:int=_2490:int,_2492:int=_2492:int,_2494:int=_2494:int,_2496:int=_2496:int,_4498:int=_4498:int,_4500:int=_4500:int,_4502:int=_4502:int,_4504:int=_4504:int,_6978:int=_6978:int,_6980:int=_6980:int,_6982:int=_6982:int,_6984:int=_6984:int,_31364:int=_31364:int,_31366:int=_31366:int,_31368:int=_31368:int,_31370:int=_31370:int,(((((true,_130=_130,_132=_132,_134=_134,_136=_136,_132=2250,_134=_136),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_130=(1+_886)mod 1000,_136=ite(_886>=500,1+_892,- 1+_892),_134=ite(500=<_886,- 1+_890,1+_890),_132=1+_888),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_886=(1+_2490)mod 1000,_892=ite(_2490>=500,1+_2496,- 1+_2496),_890=ite(500=<_2490,- 1+_2494,1+_2494),_888=1+_2492),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_4498=_4498,_4500=_4500,_4502=_4502,_4504=_4504,_2490=(1+_4498)mod 1000,_2496=ite(_4498>=500,1+_4504,- 1+_4504),_2494=ite(500=<_4498,- 1+_4502,1+_4502),_2492=1+_4500),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_4498=_4498,_4500=_4500,_4502=_4502,_4504=_4504,_6978=_6978,_6980=_6980,_6982=_6982,_6984=_6984,_4498=(1+_6978)mod 1000,_4504=ite(_6978>=500,1+_6984,- 1+_6984),_4502=ite(500=<_6978,- 1+_6982,1+_6982),_4500=1+_6980),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_4498=_4498,_4500=_4500,_4502=_4502,_4504=_4504,_6978=_6978,_6980=_6980,_6982=_6982,_6984=_6984,_31364=_31364,_31366=_31366,_31368=_31368,_31370=_31370,_6978=(1+_31364)mod 1000,_6984=ite(_31364>=500,1+_31370,- 1+_31370),_6982=ite(500=<_31364,- 1+_31368,1+_31368),_6980=1+_31366]
+
+Stampa prima di inviare
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:int=x_136:int and x_886:int=x_886:int and x_888:int=x_888:int and x_890:int=x_890:int and x_892:int=x_892:int and x_2490:int=x_2490:int and x_2492:int=x_2492:int and x_2494:int=x_2494:int and x_2496:int=x_2496:int and x_4498:int=x_4498:int and x_4500:int=x_4500:int and x_4502:int=x_4502:int and x_4504:int=x_4504:int and x_6978:int=x_6978:int and x_6980:int=x_6980:int and x_6982:int=x_6982:int and x_6984:int=x_6984:int and x_31364:int=x_31364:int and x_31366:int=x_31366:int and x_31368:int=x_31368:int and x_31370:int=x_31370:int and (((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_132=2250 and x_134=x_136)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_130=(1+x_886)mod 1000 and x_136=ite(x_886>=500,1+x_892,- 1+x_892)and x_134=ite(500=<x_886,- 1+x_890,1+x_890)and x_132=1+x_888)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_886=(1+x_2490)mod 1000 and x_892=ite(x_2490>=500,1+x_2496,- 1+x_2496)and x_890=ite(500=<x_2490,- 1+x_2494,1+x_2494)and x_888=1+x_2492)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_4498=x_4498 and x_4500=x_4500 and x_4502=x_4502 and x_4504=x_4504 and x_2490=(1+x_4498)mod 1000 and x_2496=ite(x_4498>=500,1+x_4504,- 1+x_4504)and x_2494=ite(500=<x_4498,- 1+x_4502,1+x_4502)and x_2492=1+x_4500)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_4498=x_4498 and x_4500=x_4500 and x_4502=x_4502 and x_4504=x_4504 and x_6978=x_6978 and x_6980=x_6980 and x_6982=x_6982 and x_6984=x_6984 and x_4498=(1+x_6978)mod 1000 and x_4504=ite(x_6978>=500,1+x_6984,- 1+x_6984)and x_4502=ite(500=<x_6978,- 1+x_6982,1+x_6982)and x_4500=1+x_6980)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_4498=x_4498 and x_4500=x_4500 and x_4502=x_4502 and x_4504=x_4504 and x_6978=x_6978 and x_6980=x_6980 and x_6982=x_6982 and x_6984=x_6984 and x_31364=x_31364 and x_31366=x_31366 and x_31368=x_31368 and x_31370=x_31370 and x_6978=(1+x_31364)mod 1000 and x_6984=ite(x_31364>=500,1+x_31370,- 1+x_31370)and x_6982=ite(500=<x_31364,- 1+x_31368,1+x_31368)and x_6980=1+x_31366Mi trovo in questa head
+inv(_31364,_31366,_31368,_31370)
+Stampo Rawbody
+constr((_31364=0&(_31370=500&(_31368=0&_31366=0))))
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _136:int
+✅ Inserita in rewrite: _886:int
+✅ Inserita in rewrite: _888:int
+✅ Inserita in rewrite: _890:int
+✅ Inserita in rewrite: _892:int
+✅ Inserita in rewrite: _2490:int
+✅ Inserita in rewrite: _2492:int
+✅ Inserita in rewrite: _2494:int
+✅ Inserita in rewrite: _2496:int
+✅ Inserita in rewrite: _4498:int
+✅ Inserita in rewrite: _4500:int
+✅ Inserita in rewrite: _4502:int
+✅ Inserita in rewrite: _4504:int
+✅ Inserita in rewrite: _6978:int
+✅ Inserita in rewrite: _6980:int
+✅ Inserita in rewrite: _6982:int
+✅ Inserita in rewrite: _6984:int
+✅ Inserita in rewrite: _31364:int
+✅ Inserita in rewrite: _31366:int
+✅ Inserita in rewrite: _31368:int
+✅ Inserita in rewrite: _31370:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_886:int=_886:int,_888:int=_888:int,_890:int=_890:int,_892:int=_892:int,_2490:int=_2490:int,_2492:int=_2492:int,_2494:int=_2494:int,_2496:int=_2496:int,_4498:int=_4498:int,_4500:int=_4500:int,_4502:int=_4502:int,_4504:int=_4504:int,_6978:int=_6978:int,_6980:int=_6980:int,_6982:int=_6982:int,_6984:int=_6984:int,_31364:int=_31364:int,_31366:int=_31366:int,_31368:int=_31368:int,_31370:int=_31370:int,_31364=0 and _31370=500 and _31368=0 and _31366=0))
+Entrato in constr c
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_886:int=_886:int,_888:int=_888:int,_890:int=_890:int,_892:int=_892:int,_2490:int=_2490:int,_2492:int=_2492:int,_2494:int=_2494:int,_2496:int=_2496:int,_4498:int=_4498:int,_4500:int=_4500:int,_4502:int=_4502:int,_4504:int=_4504:int,_6978:int=_6978:int,_6980:int=_6980:int,_6982:int=_6982:int,_6984:int=_6984:int,_31364:int=_31364:int,_31366:int=_31366:int,_31368:int=_31368:int,_31370:int=_31370:int,((((((true,_130=_130,_132=_132,_134=_134,_136=_136,_132=2250,_134=_136),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_130=(1+_886)mod 1000,_136=ite(_886>=500,1+_892,- 1+_892),_134=ite(500=<_886,- 1+_890,1+_890),_132=1+_888),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_886=(1+_2490)mod 1000,_892=ite(_2490>=500,1+_2496,- 1+_2496),_890=ite(500=<_2490,- 1+_2494,1+_2494),_888=1+_2492),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_4498=_4498,_4500=_4500,_4502=_4502,_4504=_4504,_2490=(1+_4498)mod 1000,_2496=ite(_4498>=500,1+_4504,- 1+_4504),_2494=ite(500=<_4498,- 1+_4502,1+_4502),_2492=1+_4500),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_4498=_4498,_4500=_4500,_4502=_4502,_4504=_4504,_6978=_6978,_6980=_6980,_6982=_6982,_6984=_6984,_4498=(1+_6978)mod 1000,_4504=ite(_6978>=500,1+_6984,- 1+_6984),_4502=ite(500=<_6978,- 1+_6982,1+_6982),_4500=1+_6980),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_4498=_4498,_4500=_4500,_4502=_4502,_4504=_4504,_6978=_6978,_6980=_6980,_6982=_6982,_6984=_6984,_31364=_31364,_31366=_31366,_31368=_31368,_31370=_31370,_6978=(1+_31364)mod 1000,_6984=ite(_31364>=500,1+_31370,- 1+_31370),_6982=ite(500=<_31364,- 1+_31368,1+_31368),_6980=1+_31366),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_4498=_4498,_4500=_4500,_4502=_4502,_4504=_4504,_6978=_6978,_6980=_6980,_6982=_6982,_6984=_6984,_31364=_31364,_31366=_31366,_31368=_31368,_31370=_31370,_31364=0,_31370=500,_31368=0,_31366=0]
+
+Stampa prima di inviare
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:int=x_136:int and x_886:int=x_886:int and x_888:int=x_888:int and x_890:int=x_890:int and x_892:int=x_892:int and x_2490:int=x_2490:int and x_2492:int=x_2492:int and x_2494:int=x_2494:int and x_2496:int=x_2496:int and x_4498:int=x_4498:int and x_4500:int=x_4500:int and x_4502:int=x_4502:int and x_4504:int=x_4504:int and x_6978:int=x_6978:int and x_6980:int=x_6980:int and x_6982:int=x_6982:int and x_6984:int=x_6984:int and x_31364:int=x_31364:int and x_31366:int=x_31366:int and x_31368:int=x_31368:int and x_31370:int=x_31370:int and ((((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_132=2250 and x_134=x_136)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_130=(1+x_886)mod 1000 and x_136=ite(x_886>=500,1+x_892,- 1+x_892)and x_134=ite(500=<x_886,- 1+x_890,1+x_890)and x_132=1+x_888)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_886=(1+x_2490)mod 1000 and x_892=ite(x_2490>=500,1+x_2496,- 1+x_2496)and x_890=ite(500=<x_2490,- 1+x_2494,1+x_2494)and x_888=1+x_2492)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_4498=x_4498 and x_4500=x_4500 and x_4502=x_4502 and x_4504=x_4504 and x_2490=(1+x_4498)mod 1000 and x_2496=ite(x_4498>=500,1+x_4504,- 1+x_4504)and x_2494=ite(500=<x_4498,- 1+x_4502,1+x_4502)and x_2492=1+x_4500)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_4498=x_4498 and x_4500=x_4500 and x_4502=x_4502 and x_4504=x_4504 and x_6978=x_6978 and x_6980=x_6980 and x_6982=x_6982 and x_6984=x_6984 and x_4498=(1+x_6978)mod 1000 and x_4504=ite(x_6978>=500,1+x_6984,- 1+x_6984)and x_4502=ite(500=<x_6978,- 1+x_6982,1+x_6982)and x_4500=1+x_6980)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_4498=x_4498 and x_4500=x_4500 and x_4502=x_4502 and x_4504=x_4504 and x_6978=x_6978 and x_6980=x_6980 and x_6982=x_6982 and x_6984=x_6984 and x_31364=x_31364 and x_31366=x_31366 and x_31368=x_31368 and x_31370=x_31370 and x_6978=(1+x_31364)mod 1000 and x_6984=ite(x_31364>=500,1+x_31370,- 1+x_31370)and x_6982=ite(500=<x_31364,- 1+x_31368,1+x_31368)and x_6980=1+x_31366)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_4498=x_4498 and x_4500=x_4500 and x_4502=x_4502 and x_4504=x_4504 and x_6978=x_6978 and x_6980=x_6980 and x_6982=x_6982 and x_6984=x_6984 and x_31364=x_31364 and x_31366=x_31366 and x_31368=x_31368 and x_31370=x_31370 and x_31364=0 and x_31370=500 and x_31368=0 and x_31366=0Stampo Rawbody
+inv(_92666,_92668,_92670,_92672),constr((_9930=(1+_92666)mod 1000&(_9936=ite(_92666>=500,1+_92672,- 1+_92672)&(_9934=ite(500=<_92666,- 1+_92670,1+_92670)&_9932=1+_92668))))
+⚠️ Formula non normalizzata: - 1+_92672
+⚠️ Formula non normalizzata: - 1+_92670
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _136:int
+✅ Inserita in rewrite: _886:int
+✅ Inserita in rewrite: _888:int
+✅ Inserita in rewrite: _890:int
+✅ Inserita in rewrite: _892:int
+✅ Inserita in rewrite: _2490:int
+✅ Inserita in rewrite: _2492:int
+✅ Inserita in rewrite: _2494:int
+✅ Inserita in rewrite: _2496:int
+✅ Inserita in rewrite: _4498:int
+✅ Inserita in rewrite: _4500:int
+✅ Inserita in rewrite: _4502:int
+✅ Inserita in rewrite: _4504:int
+✅ Inserita in rewrite: _6978:int
+✅ Inserita in rewrite: _6980:int
+✅ Inserita in rewrite: _6982:int
+✅ Inserita in rewrite: _6984:int
+✅ Inserita in rewrite: _9930:int
+✅ Inserita in rewrite: _9932:int
+✅ Inserita in rewrite: _9934:int
+✅ Inserita in rewrite: _9936:int
+✅ Inserita in rewrite: _92666:int
+✅ Inserita in rewrite: _92668:int
+✅ Inserita in rewrite: _92670:int
+✅ Inserita in rewrite: _92672:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_886:int=_886:int,_888:int=_888:int,_890:int=_890:int,_892:int=_892:int,_2490:int=_2490:int,_2492:int=_2492:int,_2494:int=_2494:int,_2496:int=_2496:int,_4498:int=_4498:int,_4500:int=_4500:int,_4502:int=_4502:int,_4504:int=_4504:int,_6978:int=_6978:int,_6980:int=_6980:int,_6982:int=_6982:int,_6984:int=_6984:int,_9930:int=_9930:int,_9932:int=_9932:int,_9934:int=_9934:int,_9936:int=_9936:int,_92666:int=_92666:int,_92668:int=_92668:int,_92670:int=_92670:int,_92672:int=_92672:int,_9930=(1+_92666)mod 1000 and _9936=ite(_92666>=500,1+_92672,- 1+_92672)and _9934=ite(500=<_92666,- 1+_92670,1+_92670)and _9932=1+_92668)),inv(_92666,_92668,_92670,_92672)
+Entrato in constr c
+⚠️ Formula non normalizzata: - 1+_92672
+⚠️ Formula non normalizzata: - 1+_92670
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_886:int=_886:int,_888:int=_888:int,_890:int=_890:int,_892:int=_892:int,_2490:int=_2490:int,_2492:int=_2492:int,_2494:int=_2494:int,_2496:int=_2496:int,_4498:int=_4498:int,_4500:int=_4500:int,_4502:int=_4502:int,_4504:int=_4504:int,_6978:int=_6978:int,_6980:int=_6980:int,_6982:int=_6982:int,_6984:int=_6984:int,_9930:int=_9930:int,_9932:int=_9932:int,_9934:int=_9934:int,_9936:int=_9936:int,_92666:int=_92666:int,_92668:int=_92668:int,_92670:int=_92670:int,_92672:int=_92672:int,((((((true,_130=_130,_132=_132,_134=_134,_136=_136,_132=2250,_134=_136),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_130=(1+_886)mod 1000,_136=ite(_886>=500,1+_892,- 1+_892),_134=ite(500=<_886,- 1+_890,1+_890),_132=1+_888),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_886=(1+_2490)mod 1000,_892=ite(_2490>=500,1+_2496,- 1+_2496),_890=ite(500=<_2490,- 1+_2494,1+_2494),_888=1+_2492),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_4498=_4498,_4500=_4500,_4502=_4502,_4504=_4504,_2490=(1+_4498)mod 1000,_2496=ite(_4498>=500,1+_4504,- 1+_4504),_2494=ite(500=<_4498,- 1+_4502,1+_4502),_2492=1+_4500),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_4498=_4498,_4500=_4500,_4502=_4502,_4504=_4504,_6978=_6978,_6980=_6980,_6982=_6982,_6984=_6984,_4498=(1+_6978)mod 1000,_4504=ite(_6978>=500,1+_6984,- 1+_6984),_4502=ite(500=<_6978,- 1+_6982,1+_6982),_4500=1+_6980),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_4498=_4498,_4500=_4500,_4502=_4502,_4504=_4504,_6978=_6978,_6980=_6980,_6982=_6982,_6984=_6984,_9930=_9930,_9932=_9932,_9934=_9934,_9936=_9936,_6978=(1+_9930)mod 1000,_6984=ite(_9930>=500,1+_9936,- 1+_9936),_6982=ite(500=<_9930,- 1+_9934,1+_9934),_6980=1+_9932),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_4498=_4498,_4500=_4500,_4502=_4502,_4504=_4504,_6978=_6978,_6980=_6980,_6982=_6982,_6984=_6984,_9930=_9930,_9932=_9932,_9934=_9934,_9936=_9936,_92666=_92666,_92668=_92668,_92670=_92670,_92672=_92672,_9930=(1+_92666)mod 1000,_9936=ite(_92666>=500,1+_92672,- 1+_92672),_9934=ite(500=<_92666,- 1+_92670,1+_92670),_9932=1+_92668]
+
+Stampa prima di inviare
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:int=x_136:int and x_886:int=x_886:int and x_888:int=x_888:int and x_890:int=x_890:int and x_892:int=x_892:int and x_2490:int=x_2490:int and x_2492:int=x_2492:int and x_2494:int=x_2494:int and x_2496:int=x_2496:int and x_4498:int=x_4498:int and x_4500:int=x_4500:int and x_4502:int=x_4502:int and x_4504:int=x_4504:int and x_6978:int=x_6978:int and x_6980:int=x_6980:int and x_6982:int=x_6982:int and x_6984:int=x_6984:int and x_9930:int=x_9930:int and x_9932:int=x_9932:int and x_9934:int=x_9934:int and x_9936:int=x_9936:int and x_92666:int=x_92666:int and x_92668:int=x_92668:int and x_92670:int=x_92670:int and x_92672:int=x_92672:int and ((((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_132=2250 and x_134=x_136)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_130=(1+x_886)mod 1000 and x_136=ite(x_886>=500,1+x_892,- 1+x_892)and x_134=ite(500=<x_886,- 1+x_890,1+x_890)and x_132=1+x_888)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_886=(1+x_2490)mod 1000 and x_892=ite(x_2490>=500,1+x_2496,- 1+x_2496)and x_890=ite(500=<x_2490,- 1+x_2494,1+x_2494)and x_888=1+x_2492)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_4498=x_4498 and x_4500=x_4500 and x_4502=x_4502 and x_4504=x_4504 and x_2490=(1+x_4498)mod 1000 and x_2496=ite(x_4498>=500,1+x_4504,- 1+x_4504)and x_2494=ite(500=<x_4498,- 1+x_4502,1+x_4502)and x_2492=1+x_4500)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_4498=x_4498 and x_4500=x_4500 and x_4502=x_4502 and x_4504=x_4504 and x_6978=x_6978 and x_6980=x_6980 and x_6982=x_6982 and x_6984=x_6984 and x_4498=(1+x_6978)mod 1000 and x_4504=ite(x_6978>=500,1+x_6984,- 1+x_6984)and x_4502=ite(500=<x_6978,- 1+x_6982,1+x_6982)and x_4500=1+x_6980)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_4498=x_4498 and x_4500=x_4500 and x_4502=x_4502 and x_4504=x_4504 and x_6978=x_6978 and x_6980=x_6980 and x_6982=x_6982 and x_6984=x_6984 and x_9930=x_9930 and x_9932=x_9932 and x_9934=x_9934 and x_9936=x_9936 and x_6978=(1+x_9930)mod 1000 and x_6984=ite(x_9930>=500,1+x_9936,- 1+x_9936)and x_6982=ite(500=<x_9930,- 1+x_9934,1+x_9934)and x_6980=1+x_9932)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_4498=x_4498 and x_4500=x_4500 and x_4502=x_4502 and x_4504=x_4504 and x_6978=x_6978 and x_6980=x_6980 and x_6982=x_6982 and x_6984=x_6984 and x_9930=x_9930 and x_9932=x_9932 and x_9934=x_9934 and x_9936=x_9936 and x_92666=x_92666 and x_92668=x_92668 and x_92670=x_92670 and x_92672=x_92672 and x_9930=(1+x_92666)mod 1000 and x_9936=ite(x_92666>=500,1+x_92672,- 1+x_92672)and x_9934=ite(500=<x_92666,- 1+x_92670,1+x_92670)and x_9932=1+x_92668Mi trovo in questa head
+inv(_13354,_13356,_13358,_13360)
+Stampo Rawbody
+constr((_13354=0&(_13360=500&(_13358=0&_13356=0))))
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _136:int
+✅ Inserita in rewrite: _886:int
+✅ Inserita in rewrite: _888:int
+✅ Inserita in rewrite: _890:int
+✅ Inserita in rewrite: _892:int
+✅ Inserita in rewrite: _2490:int
+✅ Inserita in rewrite: _2492:int
+✅ Inserita in rewrite: _2494:int
+✅ Inserita in rewrite: _2496:int
+✅ Inserita in rewrite: _4498:int
+✅ Inserita in rewrite: _4500:int
+✅ Inserita in rewrite: _4502:int
+✅ Inserita in rewrite: _4504:int
+✅ Inserita in rewrite: _6978:int
+✅ Inserita in rewrite: _6980:int
+✅ Inserita in rewrite: _6982:int
+✅ Inserita in rewrite: _6984:int
+✅ Inserita in rewrite: _9930:int
+✅ Inserita in rewrite: _9932:int
+✅ Inserita in rewrite: _9934:int
+✅ Inserita in rewrite: _9936:int
+✅ Inserita in rewrite: _13354:int
+✅ Inserita in rewrite: _13356:int
+✅ Inserita in rewrite: _13358:int
+✅ Inserita in rewrite: _13360:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_886:int=_886:int,_888:int=_888:int,_890:int=_890:int,_892:int=_892:int,_2490:int=_2490:int,_2492:int=_2492:int,_2494:int=_2494:int,_2496:int=_2496:int,_4498:int=_4498:int,_4500:int=_4500:int,_4502:int=_4502:int,_4504:int=_4504:int,_6978:int=_6978:int,_6980:int=_6980:int,_6982:int=_6982:int,_6984:int=_6984:int,_9930:int=_9930:int,_9932:int=_9932:int,_9934:int=_9934:int,_9936:int=_9936:int,_13354:int=_13354:int,_13356:int=_13356:int,_13358:int=_13358:int,_13360:int=_13360:int,_13354=0 and _13360=500 and _13358=0 and _13356=0))
+Entrato in constr c
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_886:int=_886:int,_888:int=_888:int,_890:int=_890:int,_892:int=_892:int,_2490:int=_2490:int,_2492:int=_2492:int,_2494:int=_2494:int,_2496:int=_2496:int,_4498:int=_4498:int,_4500:int=_4500:int,_4502:int=_4502:int,_4504:int=_4504:int,_6978:int=_6978:int,_6980:int=_6980:int,_6982:int=_6982:int,_6984:int=_6984:int,_9930:int=_9930:int,_9932:int=_9932:int,_9934:int=_9934:int,_9936:int=_9936:int,_13354:int=_13354:int,_13356:int=_13356:int,_13358:int=_13358:int,_13360:int=_13360:int,(((((((true,_130=_130,_132=_132,_134=_134,_136=_136,_132=2250,_134=_136),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_130=(1+_886)mod 1000,_136=ite(_886>=500,1+_892,- 1+_892),_134=ite(500=<_886,- 1+_890,1+_890),_132=1+_888),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_886=(1+_2490)mod 1000,_892=ite(_2490>=500,1+_2496,- 1+_2496),_890=ite(500=<_2490,- 1+_2494,1+_2494),_888=1+_2492),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_4498=_4498,_4500=_4500,_4502=_4502,_4504=_4504,_2490=(1+_4498)mod 1000,_2496=ite(_4498>=500,1+_4504,- 1+_4504),_2494=ite(500=<_4498,- 1+_4502,1+_4502),_2492=1+_4500),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_4498=_4498,_4500=_4500,_4502=_4502,_4504=_4504,_6978=_6978,_6980=_6980,_6982=_6982,_6984=_6984,_4498=(1+_6978)mod 1000,_4504=ite(_6978>=500,1+_6984,- 1+_6984),_4502=ite(500=<_6978,- 1+_6982,1+_6982),_4500=1+_6980),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_4498=_4498,_4500=_4500,_4502=_4502,_4504=_4504,_6978=_6978,_6980=_6980,_6982=_6982,_6984=_6984,_9930=_9930,_9932=_9932,_9934=_9934,_9936=_9936,_6978=(1+_9930)mod 1000,_6984=ite(_9930>=500,1+_9936,- 1+_9936),_6982=ite(500=<_9930,- 1+_9934,1+_9934),_6980=1+_9932),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_4498=_4498,_4500=_4500,_4502=_4502,_4504=_4504,_6978=_6978,_6980=_6980,_6982=_6982,_6984=_6984,_9930=_9930,_9932=_9932,_9934=_9934,_9936=_9936,_13354=_13354,_13356=_13356,_13358=_13358,_13360=_13360,_9930=(1+_13354)mod 1000,_9936=ite(_13354>=500,1+_13360,- 1+_13360),_9934=ite(500=<_13354,- 1+_13358,1+_13358),_9932=1+_13356),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_4498=_4498,_4500=_4500,_4502=_4502,_4504=_4504,_6978=_6978,_6980=_6980,_6982=_6982,_6984=_6984,_9930=_9930,_9932=_9932,_9934=_9934,_9936=_9936,_13354=_13354,_13356=_13356,_13358=_13358,_13360=_13360,_13354=0,_13360=500,_13358=0,_13356=0]
+
+Stampa prima di inviare
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:int=x_136:int and x_886:int=x_886:int and x_888:int=x_888:int and x_890:int=x_890:int and x_892:int=x_892:int and x_2490:int=x_2490:int and x_2492:int=x_2492:int and x_2494:int=x_2494:int and x_2496:int=x_2496:int and x_4498:int=x_4498:int and x_4500:int=x_4500:int and x_4502:int=x_4502:int and x_4504:int=x_4504:int and x_6978:int=x_6978:int and x_6980:int=x_6980:int and x_6982:int=x_6982:int and x_6984:int=x_6984:int and x_9930:int=x_9930:int and x_9932:int=x_9932:int and x_9934:int=x_9934:int and x_9936:int=x_9936:int and x_13354:int=x_13354:int and x_13356:int=x_13356:int and x_13358:int=x_13358:int and x_13360:int=x_13360:int and (((((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_132=2250 and x_134=x_136)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_130=(1+x_886)mod 1000 and x_136=ite(x_886>=500,1+x_892,- 1+x_892)and x_134=ite(500=<x_886,- 1+x_890,1+x_890)and x_132=1+x_888)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_886=(1+x_2490)mod 1000 and x_892=ite(x_2490>=500,1+x_2496,- 1+x_2496)and x_890=ite(500=<x_2490,- 1+x_2494,1+x_2494)and x_888=1+x_2492)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_4498=x_4498 and x_4500=x_4500 and x_4502=x_4502 and x_4504=x_4504 and x_2490=(1+x_4498)mod 1000 and x_2496=ite(x_4498>=500,1+x_4504,- 1+x_4504)and x_2494=ite(500=<x_4498,- 1+x_4502,1+x_4502)and x_2492=1+x_4500)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_4498=x_4498 and x_4500=x_4500 and x_4502=x_4502 and x_4504=x_4504 and x_6978=x_6978 and x_6980=x_6980 and x_6982=x_6982 and x_6984=x_6984 and x_4498=(1+x_6978)mod 1000 and x_4504=ite(x_6978>=500,1+x_6984,- 1+x_6984)and x_4502=ite(500=<x_6978,- 1+x_6982,1+x_6982)and x_4500=1+x_6980)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_4498=x_4498 and x_4500=x_4500 and x_4502=x_4502 and x_4504=x_4504 and x_6978=x_6978 and x_6980=x_6980 and x_6982=x_6982 and x_6984=x_6984 and x_9930=x_9930 and x_9932=x_9932 and x_9934=x_9934 and x_9936=x_9936 and x_6978=(1+x_9930)mod 1000 and x_6984=ite(x_9930>=500,1+x_9936,- 1+x_9936)and x_6982=ite(500=<x_9930,- 1+x_9934,1+x_9934)and x_6980=1+x_9932)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_4498=x_4498 and x_4500=x_4500 and x_4502=x_4502 and x_4504=x_4504 and x_6978=x_6978 and x_6980=x_6980 and x_6982=x_6982 and x_6984=x_6984 and x_9930=x_9930 and x_9932=x_9932 and x_9934=x_9934 and x_9936=x_9936 and x_13354=x_13354 and x_13356=x_13356 and x_13358=x_13358 and x_13360=x_13360 and x_9930=(1+x_13354)mod 1000 and x_9936=ite(x_13354>=500,1+x_13360,- 1+x_13360)and x_9934=ite(500=<x_13354,- 1+x_13358,1+x_13358)and x_9932=1+x_13356)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_4498=x_4498 and x_4500=x_4500 and x_4502=x_4502 and x_4504=x_4504 and x_6978=x_6978 and x_6980=x_6980 and x_6982=x_6982 and x_6984=x_6984 and x_9930=x_9930 and x_9932=x_9932 and x_9934=x_9934 and x_9936=x_9936 and x_13354=x_13354 and x_13356=x_13356 and x_13358=x_13358 and x_13360=x_13360 and x_13354=0 and x_13360=500 and x_13358=0 and x_13356=0Stampo Rawbody
+inv(_90910,_90912,_90914,_90916),constr((_13354=(1+_90910)mod 1000&(_13360=ite(_90910>=500,1+_90916,- 1+_90916)&(_13358=ite(500=<_90910,- 1+_90914,1+_90914)&_13356=1+_90912))))
+⚠️ Formula non normalizzata: - 1+_90916
+⚠️ Formula non normalizzata: - 1+_90914
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _136:int
+✅ Inserita in rewrite: _886:int
+✅ Inserita in rewrite: _888:int
+✅ Inserita in rewrite: _890:int
+✅ Inserita in rewrite: _892:int
+✅ Inserita in rewrite: _2490:int
+✅ Inserita in rewrite: _2492:int
+✅ Inserita in rewrite: _2494:int
+✅ Inserita in rewrite: _2496:int
+✅ Inserita in rewrite: _4498:int
+✅ Inserita in rewrite: _4500:int
+✅ Inserita in rewrite: _4502:int
+✅ Inserita in rewrite: _4504:int
+✅ Inserita in rewrite: _6978:int
+✅ Inserita in rewrite: _6980:int
+✅ Inserita in rewrite: _6982:int
+✅ Inserita in rewrite: _6984:int
+✅ Inserita in rewrite: _9930:int
+✅ Inserita in rewrite: _9932:int
+✅ Inserita in rewrite: _9934:int
+✅ Inserita in rewrite: _9936:int
+✅ Inserita in rewrite: _13354:int
+✅ Inserita in rewrite: _13356:int
+✅ Inserita in rewrite: _13358:int
+✅ Inserita in rewrite: _13360:int
+✅ Inserita in rewrite: _90910:int
+✅ Inserita in rewrite: _90912:int
+✅ Inserita in rewrite: _90914:int
+✅ Inserita in rewrite: _90916:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_886:int=_886:int,_888:int=_888:int,_890:int=_890:int,_892:int=_892:int,_2490:int=_2490:int,_2492:int=_2492:int,_2494:int=_2494:int,_2496:int=_2496:int,_4498:int=_4498:int,_4500:int=_4500:int,_4502:int=_4502:int,_4504:int=_4504:int,_6978:int=_6978:int,_6980:int=_6980:int,_6982:int=_6982:int,_6984:int=_6984:int,_9930:int=_9930:int,_9932:int=_9932:int,_9934:int=_9934:int,_9936:int=_9936:int,_13354:int=_13354:int,_13356:int=_13356:int,_13358:int=_13358:int,_13360:int=_13360:int,_90910:int=_90910:int,_90912:int=_90912:int,_90914:int=_90914:int,_90916:int=_90916:int,_13354=(1+_90910)mod 1000 and _13360=ite(_90910>=500,1+_90916,- 1+_90916)and _13358=ite(500=<_90910,- 1+_90914,1+_90914)and _13356=1+_90912)),inv(_90910,_90912,_90914,_90916)
+Entrato in constr c
+⚠️ Formula non normalizzata: - 1+_90916
+⚠️ Formula non normalizzata: - 1+_90914
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_886:int=_886:int,_888:int=_888:int,_890:int=_890:int,_892:int=_892:int,_2490:int=_2490:int,_2492:int=_2492:int,_2494:int=_2494:int,_2496:int=_2496:int,_4498:int=_4498:int,_4500:int=_4500:int,_4502:int=_4502:int,_4504:int=_4504:int,_6978:int=_6978:int,_6980:int=_6980:int,_6982:int=_6982:int,_6984:int=_6984:int,_9930:int=_9930:int,_9932:int=_9932:int,_9934:int=_9934:int,_9936:int=_9936:int,_13354:int=_13354:int,_13356:int=_13356:int,_13358:int=_13358:int,_13360:int=_13360:int,_90910:int=_90910:int,_90912:int=_90912:int,_90914:int=_90914:int,_90916:int=_90916:int,(((((((true,_130=_130,_132=_132,_134=_134,_136=_136,_132=2250,_134=_136),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_130=(1+_886)mod 1000,_136=ite(_886>=500,1+_892,- 1+_892),_134=ite(500=<_886,- 1+_890,1+_890),_132=1+_888),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_886=(1+_2490)mod 1000,_892=ite(_2490>=500,1+_2496,- 1+_2496),_890=ite(500=<_2490,- 1+_2494,1+_2494),_888=1+_2492),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_4498=_4498,_4500=_4500,_4502=_4502,_4504=_4504,_2490=(1+_4498)mod 1000,_2496=ite(_4498>=500,1+_4504,- 1+_4504),_2494=ite(500=<_4498,- 1+_4502,1+_4502),_2492=1+_4500),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_4498=_4498,_4500=_4500,_4502=_4502,_4504=_4504,_6978=_6978,_6980=_6980,_6982=_6982,_6984=_6984,_4498=(1+_6978)mod 1000,_4504=ite(_6978>=500,1+_6984,- 1+_6984),_4502=ite(500=<_6978,- 1+_6982,1+_6982),_4500=1+_6980),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_4498=_4498,_4500=_4500,_4502=_4502,_4504=_4504,_6978=_6978,_6980=_6980,_6982=_6982,_6984=_6984,_9930=_9930,_9932=_9932,_9934=_9934,_9936=_9936,_6978=(1+_9930)mod 1000,_6984=ite(_9930>=500,1+_9936,- 1+_9936),_6982=ite(500=<_9930,- 1+_9934,1+_9934),_6980=1+_9932),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_4498=_4498,_4500=_4500,_4502=_4502,_4504=_4504,_6978=_6978,_6980=_6980,_6982=_6982,_6984=_6984,_9930=_9930,_9932=_9932,_9934=_9934,_9936=_9936,_13354=_13354,_13356=_13356,_13358=_13358,_13360=_13360,_9930=(1+_13354)mod 1000,_9936=ite(_13354>=500,1+_13360,- 1+_13360),_9934=ite(500=<_13354,- 1+_13358,1+_13358),_9932=1+_13356),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_4498=_4498,_4500=_4500,_4502=_4502,_4504=_4504,_6978=_6978,_6980=_6980,_6982=_6982,_6984=_6984,_9930=_9930,_9932=_9932,_9934=_9934,_9936=_9936,_13354=_13354,_13356=_13356,_13358=_13358,_13360=_13360,_90910=_90910,_90912=_90912,_90914=_90914,_90916=_90916,_13354=(1+_90910)mod 1000,_13360=ite(_90910>=500,1+_90916,- 1+_90916),_13358=ite(500=<_90910,- 1+_90914,1+_90914),_13356=1+_90912]
+
+Stampa prima di inviare
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:int=x_136:int and x_886:int=x_886:int and x_888:int=x_888:int and x_890:int=x_890:int and x_892:int=x_892:int and x_2490:int=x_2490:int and x_2492:int=x_2492:int and x_2494:int=x_2494:int and x_2496:int=x_2496:int and x_4498:int=x_4498:int and x_4500:int=x_4500:int and x_4502:int=x_4502:int and x_4504:int=x_4504:int and x_6978:int=x_6978:int and x_6980:int=x_6980:int and x_6982:int=x_6982:int and x_6984:int=x_6984:int and x_9930:int=x_9930:int and x_9932:int=x_9932:int and x_9934:int=x_9934:int and x_9936:int=x_9936:int and x_13354:int=x_13354:int and x_13356:int=x_13356:int and x_13358:int=x_13358:int and x_13360:int=x_13360:int and x_90910:int=x_90910:int and x_90912:int=x_90912:int and x_90914:int=x_90914:int and x_90916:int=x_90916:int and (((((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_132=2250 and x_134=x_136)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_130=(1+x_886)mod 1000 and x_136=ite(x_886>=500,1+x_892,- 1+x_892)and x_134=ite(500=<x_886,- 1+x_890,1+x_890)and x_132=1+x_888)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_886=(1+x_2490)mod 1000 and x_892=ite(x_2490>=500,1+x_2496,- 1+x_2496)and x_890=ite(500=<x_2490,- 1+x_2494,1+x_2494)and x_888=1+x_2492)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_4498=x_4498 and x_4500=x_4500 and x_4502=x_4502 and x_4504=x_4504 and x_2490=(1+x_4498)mod 1000 and x_2496=ite(x_4498>=500,1+x_4504,- 1+x_4504)and x_2494=ite(500=<x_4498,- 1+x_4502,1+x_4502)and x_2492=1+x_4500)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_4498=x_4498 and x_4500=x_4500 and x_4502=x_4502 and x_4504=x_4504 and x_6978=x_6978 and x_6980=x_6980 and x_6982=x_6982 and x_6984=x_6984 and x_4498=(1+x_6978)mod 1000 and x_4504=ite(x_6978>=500,1+x_6984,- 1+x_6984)and x_4502=ite(500=<x_6978,- 1+x_6982,1+x_6982)and x_4500=1+x_6980)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_4498=x_4498 and x_4500=x_4500 and x_4502=x_4502 and x_4504=x_4504 and x_6978=x_6978 and x_6980=x_6980 and x_6982=x_6982 and x_6984=x_6984 and x_9930=x_9930 and x_9932=x_9932 and x_9934=x_9934 and x_9936=x_9936 and x_6978=(1+x_9930)mod 1000 and x_6984=ite(x_9930>=500,1+x_9936,- 1+x_9936)and x_6982=ite(500=<x_9930,- 1+x_9934,1+x_9934)and x_6980=1+x_9932)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_4498=x_4498 and x_4500=x_4500 and x_4502=x_4502 and x_4504=x_4504 and x_6978=x_6978 and x_6980=x_6980 and x_6982=x_6982 and x_6984=x_6984 and x_9930=x_9930 and x_9932=x_9932 and x_9934=x_9934 and x_9936=x_9936 and x_13354=x_13354 and x_13356=x_13356 and x_13358=x_13358 and x_13360=x_13360 and x_9930=(1+x_13354)mod 1000 and x_9936=ite(x_13354>=500,1+x_13360,- 1+x_13360)and x_9934=ite(500=<x_13354,- 1+x_13358,1+x_13358)and x_9932=1+x_13356)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_4498=x_4498 and x_4500=x_4500 and x_4502=x_4502 and x_4504=x_4504 and x_6978=x_6978 and x_6980=x_6980 and x_6982=x_6982 and x_6984=x_6984 and x_9930=x_9930 and x_9932=x_9932 and x_9934=x_9934 and x_9936=x_9936 and x_13354=x_13354 and x_13356=x_13356 and x_13358=x_13358 and x_13360=x_13360 and x_90910=x_90910 and x_90912=x_90912 and x_90914=x_90914 and x_90916=x_90916 and x_13354=(1+x_90910)mod 1000 and x_13360=ite(x_90910>=500,1+x_90916,- 1+x_90916)and x_13358=ite(500=<x_90910,- 1+x_90914,1+x_90914)and x_13356=1+x_90912Mi trovo in questa head
+inv(_17436,_17438,_17440,_17442)
+Stampo Rawbody
+constr((_17436=0&(_17442=500&(_17440=0&_17438=0))))
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _136:int
+✅ Inserita in rewrite: _886:int
+✅ Inserita in rewrite: _888:int
+✅ Inserita in rewrite: _890:int
+✅ Inserita in rewrite: _892:int
+✅ Inserita in rewrite: _2490:int
+✅ Inserita in rewrite: _2492:int
+✅ Inserita in rewrite: _2494:int
+✅ Inserita in rewrite: _2496:int
+✅ Inserita in rewrite: _4498:int
+✅ Inserita in rewrite: _4500:int
+✅ Inserita in rewrite: _4502:int
+✅ Inserita in rewrite: _4504:int
+✅ Inserita in rewrite: _6978:int
+✅ Inserita in rewrite: _6980:int
+✅ Inserita in rewrite: _6982:int
+✅ Inserita in rewrite: _6984:int
+✅ Inserita in rewrite: _9930:int
+✅ Inserita in rewrite: _9932:int
+✅ Inserita in rewrite: _9934:int
+✅ Inserita in rewrite: _9936:int
+✅ Inserita in rewrite: _13354:int
+✅ Inserita in rewrite: _13356:int
+✅ Inserita in rewrite: _13358:int
+✅ Inserita in rewrite: _13360:int
+✅ Inserita in rewrite: _17436:int
+✅ Inserita in rewrite: _17438:int
+✅ Inserita in rewrite: _17440:int
+✅ Inserita in rewrite: _17442:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_886:int=_886:int,_888:int=_888:int,_890:int=_890:int,_892:int=_892:int,_2490:int=_2490:int,_2492:int=_2492:int,_2494:int=_2494:int,_2496:int=_2496:int,_4498:int=_4498:int,_4500:int=_4500:int,_4502:int=_4502:int,_4504:int=_4504:int,_6978:int=_6978:int,_6980:int=_6980:int,_6982:int=_6982:int,_6984:int=_6984:int,_9930:int=_9930:int,_9932:int=_9932:int,_9934:int=_9934:int,_9936:int=_9936:int,_13354:int=_13354:int,_13356:int=_13356:int,_13358:int=_13358:int,_13360:int=_13360:int,_17436:int=_17436:int,_17438:int=_17438:int,_17440:int=_17440:int,_17442:int=_17442:int,_17436=0 and _17442=500 and _17440=0 and _17438=0))
+Entrato in constr c
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_886:int=_886:int,_888:int=_888:int,_890:int=_890:int,_892:int=_892:int,_2490:int=_2490:int,_2492:int=_2492:int,_2494:int=_2494:int,_2496:int=_2496:int,_4498:int=_4498:int,_4500:int=_4500:int,_4502:int=_4502:int,_4504:int=_4504:int,_6978:int=_6978:int,_6980:int=_6980:int,_6982:int=_6982:int,_6984:int=_6984:int,_9930:int=_9930:int,_9932:int=_9932:int,_9934:int=_9934:int,_9936:int=_9936:int,_13354:int=_13354:int,_13356:int=_13356:int,_13358:int=_13358:int,_13360:int=_13360:int,_17436:int=_17436:int,_17438:int=_17438:int,_17440:int=_17440:int,_17442:int=_17442:int,((((((((true,_130=_130,_132=_132,_134=_134,_136=_136,_132=2250,_134=_136),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_130=(1+_886)mod 1000,_136=ite(_886>=500,1+_892,- 1+_892),_134=ite(500=<_886,- 1+_890,1+_890),_132=1+_888),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_886=(1+_2490)mod 1000,_892=ite(_2490>=500,1+_2496,- 1+_2496),_890=ite(500=<_2490,- 1+_2494,1+_2494),_888=1+_2492),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_4498=_4498,_4500=_4500,_4502=_4502,_4504=_4504,_2490=(1+_4498)mod 1000,_2496=ite(_4498>=500,1+_4504,- 1+_4504),_2494=ite(500=<_4498,- 1+_4502,1+_4502),_2492=1+_4500),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_4498=_4498,_4500=_4500,_4502=_4502,_4504=_4504,_6978=_6978,_6980=_6980,_6982=_6982,_6984=_6984,_4498=(1+_6978)mod 1000,_4504=ite(_6978>=500,1+_6984,- 1+_6984),_4502=ite(500=<_6978,- 1+_6982,1+_6982),_4500=1+_6980),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_4498=_4498,_4500=_4500,_4502=_4502,_4504=_4504,_6978=_6978,_6980=_6980,_6982=_6982,_6984=_6984,_9930=_9930,_9932=_9932,_9934=_9934,_9936=_9936,_6978=(1+_9930)mod 1000,_6984=ite(_9930>=500,1+_9936,- 1+_9936),_6982=ite(500=<_9930,- 1+_9934,1+_9934),_6980=1+_9932),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_4498=_4498,_4500=_4500,_4502=_4502,_4504=_4504,_6978=_6978,_6980=_6980,_6982=_6982,_6984=_6984,_9930=_9930,_9932=_9932,_9934=_9934,_9936=_9936,_13354=_13354,_13356=_13356,_13358=_13358,_13360=_13360,_9930=(1+_13354)mod 1000,_9936=ite(_13354>=500,1+_13360,- 1+_13360),_9934=ite(500=<_13354,- 1+_13358,1+_13358),_9932=1+_13356),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_4498=_4498,_4500=_4500,_4502=_4502,_4504=_4504,_6978=_6978,_6980=_6980,_6982=_6982,_6984=_6984,_9930=_9930,_9932=_9932,_9934=_9934,_9936=_9936,_13354=_13354,_13356=_13356,_13358=_13358,_13360=_13360,_17436=_17436,_17438=_17438,_17440=_17440,_17442=_17442,_13354=(1+_17436)mod 1000,_13360=ite(_17436>=500,1+_17442,- 1+_17442),_13358=ite(500=<_17436,- 1+_17440,1+_17440),_13356=1+_17438),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_4498=_4498,_4500=_4500,_4502=_4502,_4504=_4504,_6978=_6978,_6980=_6980,_6982=_6982,_6984=_6984,_9930=_9930,_9932=_9932,_9934=_9934,_9936=_9936,_13354=_13354,_13356=_13356,_13358=_13358,_13360=_13360,_17436=_17436,_17438=_17438,_17440=_17440,_17442=_17442,_17436=0,_17442=500,_17440=0,_17438=0]
+
+Stampa prima di inviare
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:int=x_136:int and x_886:int=x_886:int and x_888:int=x_888:int and x_890:int=x_890:int and x_892:int=x_892:int and x_2490:int=x_2490:int and x_2492:int=x_2492:int and x_2494:int=x_2494:int and x_2496:int=x_2496:int and x_4498:int=x_4498:int and x_4500:int=x_4500:int and x_4502:int=x_4502:int and x_4504:int=x_4504:int and x_6978:int=x_6978:int and x_6980:int=x_6980:int and x_6982:int=x_6982:int and x_6984:int=x_6984:int and x_9930:int=x_9930:int and x_9932:int=x_9932:int and x_9934:int=x_9934:int and x_9936:int=x_9936:int and x_13354:int=x_13354:int and x_13356:int=x_13356:int and x_13358:int=x_13358:int and x_13360:int=x_13360:int and x_17436:int=x_17436:int and x_17438:int=x_17438:int and x_17440:int=x_17440:int and x_17442:int=x_17442:int and ((((((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_132=2250 and x_134=x_136)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_130=(1+x_886)mod 1000 and x_136=ite(x_886>=500,1+x_892,- 1+x_892)and x_134=ite(500=<x_886,- 1+x_890,1+x_890)and x_132=1+x_888)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_886=(1+x_2490)mod 1000 and x_892=ite(x_2490>=500,1+x_2496,- 1+x_2496)and x_890=ite(500=<x_2490,- 1+x_2494,1+x_2494)and x_888=1+x_2492)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_4498=x_4498 and x_4500=x_4500 and x_4502=x_4502 and x_4504=x_4504 and x_2490=(1+x_4498)mod 1000 and x_2496=ite(x_4498>=500,1+x_4504,- 1+x_4504)and x_2494=ite(500=<x_4498,- 1+x_4502,1+x_4502)and x_2492=1+x_4500)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_4498=x_4498 and x_4500=x_4500 and x_4502=x_4502 and x_4504=x_4504 and x_6978=x_6978 and x_6980=x_6980 and x_6982=x_6982 and x_6984=x_6984 and x_4498=(1+x_6978)mod 1000 and x_4504=ite(x_6978>=500,1+x_6984,- 1+x_6984)and x_4502=ite(500=<x_6978,- 1+x_6982,1+x_6982)and x_4500=1+x_6980)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_4498=x_4498 and x_4500=x_4500 and x_4502=x_4502 and x_4504=x_4504 and x_6978=x_6978 and x_6980=x_6980 and x_6982=x_6982 and x_6984=x_6984 and x_9930=x_9930 and x_9932=x_9932 and x_9934=x_9934 and x_9936=x_9936 and x_6978=(1+x_9930)mod 1000 and x_6984=ite(x_9930>=500,1+x_9936,- 1+x_9936)and x_6982=ite(500=<x_9930,- 1+x_9934,1+x_9934)and x_6980=1+x_9932)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_4498=x_4498 and x_4500=x_4500 and x_4502=x_4502 and x_4504=x_4504 and x_6978=x_6978 and x_6980=x_6980 and x_6982=x_6982 and x_6984=x_6984 and x_9930=x_9930 and x_9932=x_9932 and x_9934=x_9934 and x_9936=x_9936 and x_13354=x_13354 and x_13356=x_13356 and x_13358=x_13358 and x_13360=x_13360 and x_9930=(1+x_13354)mod 1000 and x_9936=ite(x_13354>=500,1+x_13360,- 1+x_13360)and x_9934=ite(500=<x_13354,- 1+x_13358,1+x_13358)and x_9932=1+x_13356)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_4498=x_4498 and x_4500=x_4500 and x_4502=x_4502 and x_4504=x_4504 and x_6978=x_6978 and x_6980=x_6980 and x_6982=x_6982 and x_6984=x_6984 and x_9930=x_9930 and x_9932=x_9932 and x_9934=x_9934 and x_9936=x_9936 and x_13354=x_13354 and x_13356=x_13356 and x_13358=x_13358 and x_13360=x_13360 and x_17436=x_17436 and x_17438=x_17438 and x_17440=x_17440 and x_17442=x_17442 and x_13354=(1+x_17436)mod 1000 and x_13360=ite(x_17436>=500,1+x_17442,- 1+x_17442)and x_13358=ite(500=<x_17436,- 1+x_17440,1+x_17440)and x_13356=1+x_17438)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_4498=x_4498 and x_4500=x_4500 and x_4502=x_4502 and x_4504=x_4504 and x_6978=x_6978 and x_6980=x_6980 and x_6982=x_6982 and x_6984=x_6984 and x_9930=x_9930 and x_9932=x_9932 and x_9934=x_9934 and x_9936=x_9936 and x_13354=x_13354 and x_13356=x_13356 and x_13358=x_13358 and x_13360=x_13360 and x_17436=x_17436 and x_17438=x_17438 and x_17440=x_17440 and x_17442=x_17442 and x_17436=0 and x_17442=500 and x_17440=0 and x_17438=0Stampo Rawbody
+inv(_145422,_145424,_145426,_145428),constr((_17436=(1+_145422)mod 1000&(_17442=ite(_145422>=500,1+_145428,- 1+_145428)&(_17440=ite(500=<_145422,- 1+_145426,1+_145426)&_17438=1+_145424))))
+⚠️ Formula non normalizzata: - 1+_145428
+⚠️ Formula non normalizzata: - 1+_145426
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _136:int
+✅ Inserita in rewrite: _886:int
+✅ Inserita in rewrite: _888:int
+✅ Inserita in rewrite: _890:int
+✅ Inserita in rewrite: _892:int
+✅ Inserita in rewrite: _2490:int
+✅ Inserita in rewrite: _2492:int
+✅ Inserita in rewrite: _2494:int
+✅ Inserita in rewrite: _2496:int
+✅ Inserita in rewrite: _4498:int
+✅ Inserita in rewrite: _4500:int
+✅ Inserita in rewrite: _4502:int
+✅ Inserita in rewrite: _4504:int
+✅ Inserita in rewrite: _6978:int
+✅ Inserita in rewrite: _6980:int
+✅ Inserita in rewrite: _6982:int
+✅ Inserita in rewrite: _6984:int
+✅ Inserita in rewrite: _9930:int
+✅ Inserita in rewrite: _9932:int
+✅ Inserita in rewrite: _9934:int
+✅ Inserita in rewrite: _9936:int
+✅ Inserita in rewrite: _13354:int
+✅ Inserita in rewrite: _13356:int
+✅ Inserita in rewrite: _13358:int
+✅ Inserita in rewrite: _13360:int
+✅ Inserita in rewrite: _17436:int
+✅ Inserita in rewrite: _17438:int
+✅ Inserita in rewrite: _17440:int
+✅ Inserita in rewrite: _17442:int
+✅ Inserita in rewrite: _145422:int
+✅ Inserita in rewrite: _145424:int
+✅ Inserita in rewrite: _145426:int
+✅ Inserita in rewrite: _145428:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_886:int=_886:int,_888:int=_888:int,_890:int=_890:int,_892:int=_892:int,_2490:int=_2490:int,_2492:int=_2492:int,_2494:int=_2494:int,_2496:int=_2496:int,_4498:int=_4498:int,_4500:int=_4500:int,_4502:int=_4502:int,_4504:int=_4504:int,_6978:int=_6978:int,_6980:int=_6980:int,_6982:int=_6982:int,_6984:int=_6984:int,_9930:int=_9930:int,_9932:int=_9932:int,_9934:int=_9934:int,_9936:int=_9936:int,_13354:int=_13354:int,_13356:int=_13356:int,_13358:int=_13358:int,_13360:int=_13360:int,_17436:int=_17436:int,_17438:int=_17438:int,_17440:int=_17440:int,_17442:int=_17442:int,_145422:int=_145422:int,_145424:int=_145424:int,_145426:int=_145426:int,_145428:int=_145428:int,_17436=(1+_145422)mod 1000 and _17442=ite(_145422>=500,1+_145428,- 1+_145428)and _17440=ite(500=<_145422,- 1+_145426,1+_145426)and _17438=1+_145424)),inv(_145422,_145424,_145426,_145428)
+Entrato in constr c
+⚠️ Formula non normalizzata: - 1+_145428
+⚠️ Formula non normalizzata: - 1+_145426
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_886:int=_886:int,_888:int=_888:int,_890:int=_890:int,_892:int=_892:int,_2490:int=_2490:int,_2492:int=_2492:int,_2494:int=_2494:int,_2496:int=_2496:int,_4498:int=_4498:int,_4500:int=_4500:int,_4502:int=_4502:int,_4504:int=_4504:int,_6978:int=_6978:int,_6980:int=_6980:int,_6982:int=_6982:int,_6984:int=_6984:int,_9930:int=_9930:int,_9932:int=_9932:int,_9934:int=_9934:int,_9936:int=_9936:int,_13354:int=_13354:int,_13356:int=_13356:int,_13358:int=_13358:int,_13360:int=_13360:int,_17436:int=_17436:int,_17438:int=_17438:int,_17440:int=_17440:int,_17442:int=_17442:int,_145422:int=_145422:int,_145424:int=_145424:int,_145426:int=_145426:int,_145428:int=_145428:int,((((((((true,_130=_130,_132=_132,_134=_134,_136=_136,_132=2250,_134=_136),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_130=(1+_886)mod 1000,_136=ite(_886>=500,1+_892,- 1+_892),_134=ite(500=<_886,- 1+_890,1+_890),_132=1+_888),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_886=(1+_2490)mod 1000,_892=ite(_2490>=500,1+_2496,- 1+_2496),_890=ite(500=<_2490,- 1+_2494,1+_2494),_888=1+_2492),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_4498=_4498,_4500=_4500,_4502=_4502,_4504=_4504,_2490=(1+_4498)mod 1000,_2496=ite(_4498>=500,1+_4504,- 1+_4504),_2494=ite(500=<_4498,- 1+_4502,1+_4502),_2492=1+_4500),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_4498=_4498,_4500=_4500,_4502=_4502,_4504=_4504,_6978=_6978,_6980=_6980,_6982=_6982,_6984=_6984,_4498=(1+_6978)mod 1000,_4504=ite(_6978>=500,1+_6984,- 1+_6984),_4502=ite(500=<_6978,- 1+_6982,1+_6982),_4500=1+_6980),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_4498=_4498,_4500=_4500,_4502=_4502,_4504=_4504,_6978=_6978,_6980=_6980,_6982=_6982,_6984=_6984,_9930=_9930,_9932=_9932,_9934=_9934,_9936=_9936,_6978=(1+_9930)mod 1000,_6984=ite(_9930>=500,1+_9936,- 1+_9936),_6982=ite(500=<_9930,- 1+_9934,1+_9934),_6980=1+_9932),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_4498=_4498,_4500=_4500,_4502=_4502,_4504=_4504,_6978=_6978,_6980=_6980,_6982=_6982,_6984=_6984,_9930=_9930,_9932=_9932,_9934=_9934,_9936=_9936,_13354=_13354,_13356=_13356,_13358=_13358,_13360=_13360,_9930=(1+_13354)mod 1000,_9936=ite(_13354>=500,1+_13360,- 1+_13360),_9934=ite(500=<_13354,- 1+_13358,1+_13358),_9932=1+_13356),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_4498=_4498,_4500=_4500,_4502=_4502,_4504=_4504,_6978=_6978,_6980=_6980,_6982=_6982,_6984=_6984,_9930=_9930,_9932=_9932,_9934=_9934,_9936=_9936,_13354=_13354,_13356=_13356,_13358=_13358,_13360=_13360,_17436=_17436,_17438=_17438,_17440=_17440,_17442=_17442,_13354=(1+_17436)mod 1000,_13360=ite(_17436>=500,1+_17442,- 1+_17442),_13358=ite(500=<_17436,- 1+_17440,1+_17440),_13356=1+_17438),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_4498=_4498,_4500=_4500,_4502=_4502,_4504=_4504,_6978=_6978,_6980=_6980,_6982=_6982,_6984=_6984,_9930=_9930,_9932=_9932,_9934=_9934,_9936=_9936,_13354=_13354,_13356=_13356,_13358=_13358,_13360=_13360,_17436=_17436,_17438=_17438,_17440=_17440,_17442=_17442,_145422=_145422,_145424=_145424,_145426=_145426,_145428=_145428,_17436=(1+_145422)mod 1000,_17442=ite(_145422>=500,1+_145428,- 1+_145428),_17440=ite(500=<_145422,- 1+_145426,1+_145426),_17438=1+_145424]
+
+Stampa prima di inviare
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:int=x_136:int and x_886:int=x_886:int and x_888:int=x_888:int and x_890:int=x_890:int and x_892:int=x_892:int and x_2490:int=x_2490:int and x_2492:int=x_2492:int and x_2494:int=x_2494:int and x_2496:int=x_2496:int and x_4498:int=x_4498:int and x_4500:int=x_4500:int and x_4502:int=x_4502:int and x_4504:int=x_4504:int and x_6978:int=x_6978:int and x_6980:int=x_6980:int and x_6982:int=x_6982:int and x_6984:int=x_6984:int and x_9930:int=x_9930:int and x_9932:int=x_9932:int and x_9934:int=x_9934:int and x_9936:int=x_9936:int and x_13354:int=x_13354:int and x_13356:int=x_13356:int and x_13358:int=x_13358:int and x_13360:int=x_13360:int and x_17436:int=x_17436:int and x_17438:int=x_17438:int and x_17440:int=x_17440:int and x_17442:int=x_17442:int and x_145422:int=x_145422:int and x_145424:int=x_145424:int and x_145426:int=x_145426:int and x_145428:int=x_145428:int and ((((((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_132=2250 and x_134=x_136)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_130=(1+x_886)mod 1000 and x_136=ite(x_886>=500,1+x_892,- 1+x_892)and x_134=ite(500=<x_886,- 1+x_890,1+x_890)and x_132=1+x_888)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_886=(1+x_2490)mod 1000 and x_892=ite(x_2490>=500,1+x_2496,- 1+x_2496)and x_890=ite(500=<x_2490,- 1+x_2494,1+x_2494)and x_888=1+x_2492)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_4498=x_4498 and x_4500=x_4500 and x_4502=x_4502 and x_4504=x_4504 and x_2490=(1+x_4498)mod 1000 and x_2496=ite(x_4498>=500,1+x_4504,- 1+x_4504)and x_2494=ite(500=<x_4498,- 1+x_4502,1+x_4502)and x_2492=1+x_4500)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_4498=x_4498 and x_4500=x_4500 and x_4502=x_4502 and x_4504=x_4504 and x_6978=x_6978 and x_6980=x_6980 and x_6982=x_6982 and x_6984=x_6984 and x_4498=(1+x_6978)mod 1000 and x_4504=ite(x_6978>=500,1+x_6984,- 1+x_6984)and x_4502=ite(500=<x_6978,- 1+x_6982,1+x_6982)and x_4500=1+x_6980)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_4498=x_4498 and x_4500=x_4500 and x_4502=x_4502 and x_4504=x_4504 and x_6978=x_6978 and x_6980=x_6980 and x_6982=x_6982 and x_6984=x_6984 and x_9930=x_9930 and x_9932=x_9932 and x_9934=x_9934 and x_9936=x_9936 and x_6978=(1+x_9930)mod 1000 and x_6984=ite(x_9930>=500,1+x_9936,- 1+x_9936)and x_6982=ite(500=<x_9930,- 1+x_9934,1+x_9934)and x_6980=1+x_9932)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_4498=x_4498 and x_4500=x_4500 and x_4502=x_4502 and x_4504=x_4504 and x_6978=x_6978 and x_6980=x_6980 and x_6982=x_6982 and x_6984=x_6984 and x_9930=x_9930 and x_9932=x_9932 and x_9934=x_9934 and x_9936=x_9936 and x_13354=x_13354 and x_13356=x_13356 and x_13358=x_13358 and x_13360=x_13360 and x_9930=(1+x_13354)mod 1000 and x_9936=ite(x_13354>=500,1+x_13360,- 1+x_13360)and x_9934=ite(500=<x_13354,- 1+x_13358,1+x_13358)and x_9932=1+x_13356)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_4498=x_4498 and x_4500=x_4500 and x_4502=x_4502 and x_4504=x_4504 and x_6978=x_6978 and x_6980=x_6980 and x_6982=x_6982 and x_6984=x_6984 and x_9930=x_9930 and x_9932=x_9932 and x_9934=x_9934 and x_9936=x_9936 and x_13354=x_13354 and x_13356=x_13356 and x_13358=x_13358 and x_13360=x_13360 and x_17436=x_17436 and x_17438=x_17438 and x_17440=x_17440 and x_17442=x_17442 and x_13354=(1+x_17436)mod 1000 and x_13360=ite(x_17436>=500,1+x_17442,- 1+x_17442)and x_13358=ite(500=<x_17436,- 1+x_17440,1+x_17440)and x_13356=1+x_17438)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_4498=x_4498 and x_4500=x_4500 and x_4502=x_4502 and x_4504=x_4504 and x_6978=x_6978 and x_6980=x_6980 and x_6982=x_6982 and x_6984=x_6984 and x_9930=x_9930 and x_9932=x_9932 and x_9934=x_9934 and x_9936=x_9936 and x_13354=x_13354 and x_13356=x_13356 and x_13358=x_13358 and x_13360=x_13360 and x_17436=x_17436 and x_17438=x_17438 and x_17440=x_17440 and x_17442=x_17442 and x_145422=x_145422 and x_145424=x_145424 and x_145426=x_145426 and x_145428=x_145428 and x_17436=(1+x_145422)mod 1000 and x_17442=ite(x_145422>=500,1+x_145428,- 1+x_145428)and x_17440=ite(500=<x_145422,- 1+x_145426,1+x_145426)and x_17438=1+x_145424Mi trovo in questa head
+inv(_22014,_22016,_22018,_22020)
+Stampo Rawbody
+constr((_22014=0&(_22020=500&(_22018=0&_22016=0))))
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _136:int
+✅ Inserita in rewrite: _886:int
+✅ Inserita in rewrite: _888:int
+✅ Inserita in rewrite: _890:int
+✅ Inserita in rewrite: _892:int
+✅ Inserita in rewrite: _2490:int
+✅ Inserita in rewrite: _2492:int
+✅ Inserita in rewrite: _2494:int
+✅ Inserita in rewrite: _2496:int
+✅ Inserita in rewrite: _4498:int
+✅ Inserita in rewrite: _4500:int
+✅ Inserita in rewrite: _4502:int
+✅ Inserita in rewrite: _4504:int
+✅ Inserita in rewrite: _6978:int
+✅ Inserita in rewrite: _6980:int
+✅ Inserita in rewrite: _6982:int
+✅ Inserita in rewrite: _6984:int
+✅ Inserita in rewrite: _9930:int
+✅ Inserita in rewrite: _9932:int
+✅ Inserita in rewrite: _9934:int
+✅ Inserita in rewrite: _9936:int
+✅ Inserita in rewrite: _13354:int
+✅ Inserita in rewrite: _13356:int
+✅ Inserita in rewrite: _13358:int
+✅ Inserita in rewrite: _13360:int
+✅ Inserita in rewrite: _17436:int
+✅ Inserita in rewrite: _17438:int
+✅ Inserita in rewrite: _17440:int
+✅ Inserita in rewrite: _17442:int
+✅ Inserita in rewrite: _22014:int
+✅ Inserita in rewrite: _22016:int
+✅ Inserita in rewrite: _22018:int
+✅ Inserita in rewrite: _22020:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_886:int=_886:int,_888:int=_888:int,_890:int=_890:int,_892:int=_892:int,_2490:int=_2490:int,_2492:int=_2492:int,_2494:int=_2494:int,_2496:int=_2496:int,_4498:int=_4498:int,_4500:int=_4500:int,_4502:int=_4502:int,_4504:int=_4504:int,_6978:int=_6978:int,_6980:int=_6980:int,_6982:int=_6982:int,_6984:int=_6984:int,_9930:int=_9930:int,_9932:int=_9932:int,_9934:int=_9934:int,_9936:int=_9936:int,_13354:int=_13354:int,_13356:int=_13356:int,_13358:int=_13358:int,_13360:int=_13360:int,_17436:int=_17436:int,_17438:int=_17438:int,_17440:int=_17440:int,_17442:int=_17442:int,_22014:int=_22014:int,_22016:int=_22016:int,_22018:int=_22018:int,_22020:int=_22020:int,_22014=0 and _22020=500 and _22018=0 and _22016=0))
+Limite MaxDepth raggiunto
+Entrato in constr c
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_886:int=_886:int,_888:int=_888:int,_890:int=_890:int,_892:int=_892:int,_2490:int=_2490:int,_2492:int=_2492:int,_2494:int=_2494:int,_2496:int=_2496:int,_4498:int=_4498:int,_4500:int=_4500:int,_4502:int=_4502:int,_4504:int=_4504:int,_6978:int=_6978:int,_6980:int=_6980:int,_6982:int=_6982:int,_6984:int=_6984:int,_9930:int=_9930:int,_9932:int=_9932:int,_9934:int=_9934:int,_9936:int=_9936:int,_13354:int=_13354:int,_13356:int=_13356:int,_13358:int=_13358:int,_13360:int=_13360:int,_17436:int=_17436:int,_17438:int=_17438:int,_17440:int=_17440:int,_17442:int=_17442:int,_22014:int=_22014:int,_22016:int=_22016:int,_22018:int=_22018:int,_22020:int=_22020:int,(((((((((true,_130=_130,_132=_132,_134=_134,_136=_136,_132=2250,_134=_136),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_130=(1+_886)mod 1000,_136=ite(_886>=500,1+_892,- 1+_892),_134=ite(500=<_886,- 1+_890,1+_890),_132=1+_888),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_886=(1+_2490)mod 1000,_892=ite(_2490>=500,1+_2496,- 1+_2496),_890=ite(500=<_2490,- 1+_2494,1+_2494),_888=1+_2492),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_4498=_4498,_4500=_4500,_4502=_4502,_4504=_4504,_2490=(1+_4498)mod 1000,_2496=ite(_4498>=500,1+_4504,- 1+_4504),_2494=ite(500=<_4498,- 1+_4502,1+_4502),_2492=1+_4500),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_4498=_4498,_4500=_4500,_4502=_4502,_4504=_4504,_6978=_6978,_6980=_6980,_6982=_6982,_6984=_6984,_4498=(1+_6978)mod 1000,_4504=ite(_6978>=500,1+_6984,- 1+_6984),_4502=ite(500=<_6978,- 1+_6982,1+_6982),_4500=1+_6980),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_4498=_4498,_4500=_4500,_4502=_4502,_4504=_4504,_6978=_6978,_6980=_6980,_6982=_6982,_6984=_6984,_9930=_9930,_9932=_9932,_9934=_9934,_9936=_9936,_6978=(1+_9930)mod 1000,_6984=ite(_9930>=500,1+_9936,- 1+_9936),_6982=ite(500=<_9930,- 1+_9934,1+_9934),_6980=1+_9932),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_4498=_4498,_4500=_4500,_4502=_4502,_4504=_4504,_6978=_6978,_6980=_6980,_6982=_6982,_6984=_6984,_9930=_9930,_9932=_9932,_9934=_9934,_9936=_9936,_13354=_13354,_13356=_13356,_13358=_13358,_13360=_13360,_9930=(1+_13354)mod 1000,_9936=ite(_13354>=500,1+_13360,- 1+_13360),_9934=ite(500=<_13354,- 1+_13358,1+_13358),_9932=1+_13356),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_4498=_4498,_4500=_4500,_4502=_4502,_4504=_4504,_6978=_6978,_6980=_6980,_6982=_6982,_6984=_6984,_9930=_9930,_9932=_9932,_9934=_9934,_9936=_9936,_13354=_13354,_13356=_13356,_13358=_13358,_13360=_13360,_17436=_17436,_17438=_17438,_17440=_17440,_17442=_17442,_13354=(1+_17436)mod 1000,_13360=ite(_17436>=500,1+_17442,- 1+_17442),_13358=ite(500=<_17436,- 1+_17440,1+_17440),_13356=1+_17438),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_4498=_4498,_4500=_4500,_4502=_4502,_4504=_4504,_6978=_6978,_6980=_6980,_6982=_6982,_6984=_6984,_9930=_9930,_9932=_9932,_9934=_9934,_9936=_9936,_13354=_13354,_13356=_13356,_13358=_13358,_13360=_13360,_17436=_17436,_17438=_17438,_17440=_17440,_17442=_17442,_22014=_22014,_22016=_22016,_22018=_22018,_22020=_22020,_17436=(1+_22014)mod 1000,_17442=ite(_22014>=500,1+_22020,- 1+_22020),_17440=ite(500=<_22014,- 1+_22018,1+_22018),_17438=1+_22016),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_4498=_4498,_4500=_4500,_4502=_4502,_4504=_4504,_6978=_6978,_6980=_6980,_6982=_6982,_6984=_6984,_9930=_9930,_9932=_9932,_9934=_9934,_9936=_9936,_13354=_13354,_13356=_13356,_13358=_13358,_13360=_13360,_17436=_17436,_17438=_17438,_17440=_17440,_17442=_17442,_22014=_22014,_22016=_22016,_22018=_22018,_22020=_22020,_22014=0,_22020=500,_22018=0,_22016=0]
+
+Stampa prima di inviare
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:int=x_136:int and x_886:int=x_886:int and x_888:int=x_888:int and x_890:int=x_890:int and x_892:int=x_892:int and x_2490:int=x_2490:int and x_2492:int=x_2492:int and x_2494:int=x_2494:int and x_2496:int=x_2496:int and x_4498:int=x_4498:int and x_4500:int=x_4500:int and x_4502:int=x_4502:int and x_4504:int=x_4504:int and x_6978:int=x_6978:int and x_6980:int=x_6980:int and x_6982:int=x_6982:int and x_6984:int=x_6984:int and x_9930:int=x_9930:int and x_9932:int=x_9932:int and x_9934:int=x_9934:int and x_9936:int=x_9936:int and x_13354:int=x_13354:int and x_13356:int=x_13356:int and x_13358:int=x_13358:int and x_13360:int=x_13360:int and x_17436:int=x_17436:int and x_17438:int=x_17438:int and x_17440:int=x_17440:int and x_17442:int=x_17442:int and x_22014:int=x_22014:int and x_22016:int=x_22016:int and x_22018:int=x_22018:int and x_22020:int=x_22020:int and (((((((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_132=2250 and x_134=x_136)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_130=(1+x_886)mod 1000 and x_136=ite(x_886>=500,1+x_892,- 1+x_892)and x_134=ite(500=<x_886,- 1+x_890,1+x_890)and x_132=1+x_888)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_886=(1+x_2490)mod 1000 and x_892=ite(x_2490>=500,1+x_2496,- 1+x_2496)and x_890=ite(500=<x_2490,- 1+x_2494,1+x_2494)and x_888=1+x_2492)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_4498=x_4498 and x_4500=x_4500 and x_4502=x_4502 and x_4504=x_4504 and x_2490=(1+x_4498)mod 1000 and x_2496=ite(x_4498>=500,1+x_4504,- 1+x_4504)and x_2494=ite(500=<x_4498,- 1+x_4502,1+x_4502)and x_2492=1+x_4500)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_4498=x_4498 and x_4500=x_4500 and x_4502=x_4502 and x_4504=x_4504 and x_6978=x_6978 and x_6980=x_6980 and x_6982=x_6982 and x_6984=x_6984 and x_4498=(1+x_6978)mod 1000 and x_4504=ite(x_6978>=500,1+x_6984,- 1+x_6984)and x_4502=ite(500=<x_6978,- 1+x_6982,1+x_6982)and x_4500=1+x_6980)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_4498=x_4498 and x_4500=x_4500 and x_4502=x_4502 and x_4504=x_4504 and x_6978=x_6978 and x_6980=x_6980 and x_6982=x_6982 and x_6984=x_6984 and x_9930=x_9930 and x_9932=x_9932 and x_9934=x_9934 and x_9936=x_9936 and x_6978=(1+x_9930)mod 1000 and x_6984=ite(x_9930>=500,1+x_9936,- 1+x_9936)and x_6982=ite(500=<x_9930,- 1+x_9934,1+x_9934)and x_6980=1+x_9932)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_4498=x_4498 and x_4500=x_4500 and x_4502=x_4502 and x_4504=x_4504 and x_6978=x_6978 and x_6980=x_6980 and x_6982=x_6982 and x_6984=x_6984 and x_9930=x_9930 and x_9932=x_9932 and x_9934=x_9934 and x_9936=x_9936 and x_13354=x_13354 and x_13356=x_13356 and x_13358=x_13358 and x_13360=x_13360 and x_9930=(1+x_13354)mod 1000 and x_9936=ite(x_13354>=500,1+x_13360,- 1+x_13360)and x_9934=ite(500=<x_13354,- 1+x_13358,1+x_13358)and x_9932=1+x_13356)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_4498=x_4498 and x_4500=x_4500 and x_4502=x_4502 and x_4504=x_4504 and x_6978=x_6978 and x_6980=x_6980 and x_6982=x_6982 and x_6984=x_6984 and x_9930=x_9930 and x_9932=x_9932 and x_9934=x_9934 and x_9936=x_9936 and x_13354=x_13354 and x_13356=x_13356 and x_13358=x_13358 and x_13360=x_13360 and x_17436=x_17436 and x_17438=x_17438 and x_17440=x_17440 and x_17442=x_17442 and x_13354=(1+x_17436)mod 1000 and x_13360=ite(x_17436>=500,1+x_17442,- 1+x_17442)and x_13358=ite(500=<x_17436,- 1+x_17440,1+x_17440)and x_13356=1+x_17438)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_4498=x_4498 and x_4500=x_4500 and x_4502=x_4502 and x_4504=x_4504 and x_6978=x_6978 and x_6980=x_6980 and x_6982=x_6982 and x_6984=x_6984 and x_9930=x_9930 and x_9932=x_9932 and x_9934=x_9934 and x_9936=x_9936 and x_13354=x_13354 and x_13356=x_13356 and x_13358=x_13358 and x_13360=x_13360 and x_17436=x_17436 and x_17438=x_17438 and x_17440=x_17440 and x_17442=x_17442 and x_22014=x_22014 and x_22016=x_22016 and x_22018=x_22018 and x_22020=x_22020 and x_17436=(1+x_22014)mod 1000 and x_17442=ite(x_22014>=500,1+x_22020,- 1+x_22020)and x_17440=ite(500=<x_22014,- 1+x_22018,1+x_22018)and x_17438=1+x_22016)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_4498=x_4498 and x_4500=x_4500 and x_4502=x_4502 and x_4504=x_4504 and x_6978=x_6978 and x_6980=x_6980 and x_6982=x_6982 and x_6984=x_6984 and x_9930=x_9930 and x_9932=x_9932 and x_9934=x_9934 and x_9936=x_9936 and x_13354=x_13354 and x_13356=x_13356 and x_13358=x_13358 and x_13360=x_13360 and x_17436=x_17436 and x_17438=x_17438 and x_17440=x_17440 and x_17442=x_17442 and x_22014=x_22014 and x_22016=x_22016 and x_22018=x_22018 and x_22020=x_22020 and x_22014=0 and x_22020=500 and x_22018=0 and x_22016=0Stampo Rawbody
+inv(_233832,_233834,_233836,_233838),constr((_22014=(1+_233832)mod 1000&(_22020=ite(_233832>=500,1+_233838,- 1+_233838)&(_22018=ite(500=<_233832,- 1+_233836,1+_233836)&_22016=1+_233834))))
+⚠️ Formula non normalizzata: - 1+_233838
+⚠️ Formula non normalizzata: - 1+_233836
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _136:int
+✅ Inserita in rewrite: _886:int
+✅ Inserita in rewrite: _888:int
+✅ Inserita in rewrite: _890:int
+✅ Inserita in rewrite: _892:int
+✅ Inserita in rewrite: _2490:int
+✅ Inserita in rewrite: _2492:int
+✅ Inserita in rewrite: _2494:int
+✅ Inserita in rewrite: _2496:int
+✅ Inserita in rewrite: _4498:int
+✅ Inserita in rewrite: _4500:int
+✅ Inserita in rewrite: _4502:int
+✅ Inserita in rewrite: _4504:int
+✅ Inserita in rewrite: _6978:int
+✅ Inserita in rewrite: _6980:int
+✅ Inserita in rewrite: _6982:int
+✅ Inserita in rewrite: _6984:int
+✅ Inserita in rewrite: _9930:int
+✅ Inserita in rewrite: _9932:int
+✅ Inserita in rewrite: _9934:int
+✅ Inserita in rewrite: _9936:int
+✅ Inserita in rewrite: _13354:int
+✅ Inserita in rewrite: _13356:int
+✅ Inserita in rewrite: _13358:int
+✅ Inserita in rewrite: _13360:int
+✅ Inserita in rewrite: _17436:int
+✅ Inserita in rewrite: _17438:int
+✅ Inserita in rewrite: _17440:int
+✅ Inserita in rewrite: _17442:int
+✅ Inserita in rewrite: _22014:int
+✅ Inserita in rewrite: _22016:int
+✅ Inserita in rewrite: _22018:int
+✅ Inserita in rewrite: _22020:int
+✅ Inserita in rewrite: _233832:int
+✅ Inserita in rewrite: _233834:int
+✅ Inserita in rewrite: _233836:int
+✅ Inserita in rewrite: _233838:int
+Stampo Body prima di zmi
+constr((_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_886:int=_886:int,_888:int=_888:int,_890:int=_890:int,_892:int=_892:int,_2490:int=_2490:int,_2492:int=_2492:int,_2494:int=_2494:int,_2496:int=_2496:int,_4498:int=_4498:int,_4500:int=_4500:int,_4502:int=_4502:int,_4504:int=_4504:int,_6978:int=_6978:int,_6980:int=_6980:int,_6982:int=_6982:int,_6984:int=_6984:int,_9930:int=_9930:int,_9932:int=_9932:int,_9934:int=_9934:int,_9936:int=_9936:int,_13354:int=_13354:int,_13356:int=_13356:int,_13358:int=_13358:int,_13360:int=_13360:int,_17436:int=_17436:int,_17438:int=_17438:int,_17440:int=_17440:int,_17442:int=_17442:int,_22014:int=_22014:int,_22016:int=_22016:int,_22018:int=_22018:int,_22020:int=_22020:int,_233832:int=_233832:int,_233834:int=_233834:int,_233836:int=_233836:int,_233838:int=_233838:int,_22014=(1+_233832)mod 1000 and _22020=ite(_233832>=500,1+_233838,- 1+_233838)and _22018=ite(500=<_233832,- 1+_233836,1+_233836)and _22016=1+_233834)),inv(_233832,_233834,_233836,_233838)
+Limite MaxDepth raggiunto
+Limite MaxDepth raggiunto
+Entrato in constr c
+⚠️ Formula non normalizzata: - 1+_233838
+⚠️ Formula non normalizzata: - 1+_233836
+Stampo flatList
+[_130:int=_130:int,_132:int=_132:int,_134:int=_134:int,_136:int=_136:int,_886:int=_886:int,_888:int=_888:int,_890:int=_890:int,_892:int=_892:int,_2490:int=_2490:int,_2492:int=_2492:int,_2494:int=_2494:int,_2496:int=_2496:int,_4498:int=_4498:int,_4500:int=_4500:int,_4502:int=_4502:int,_4504:int=_4504:int,_6978:int=_6978:int,_6980:int=_6980:int,_6982:int=_6982:int,_6984:int=_6984:int,_9930:int=_9930:int,_9932:int=_9932:int,_9934:int=_9934:int,_9936:int=_9936:int,_13354:int=_13354:int,_13356:int=_13356:int,_13358:int=_13358:int,_13360:int=_13360:int,_17436:int=_17436:int,_17438:int=_17438:int,_17440:int=_17440:int,_17442:int=_17442:int,_22014:int=_22014:int,_22016:int=_22016:int,_22018:int=_22018:int,_22020:int=_22020:int,_233832:int=_233832:int,_233834:int=_233834:int,_233836:int=_233836:int,_233838:int=_233838:int,(((((((((true,_130=_130,_132=_132,_134=_134,_136=_136,_132=2250,_134=_136),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_130=(1+_886)mod 1000,_136=ite(_886>=500,1+_892,- 1+_892),_134=ite(500=<_886,- 1+_890,1+_890),_132=1+_888),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_886=(1+_2490)mod 1000,_892=ite(_2490>=500,1+_2496,- 1+_2496),_890=ite(500=<_2490,- 1+_2494,1+_2494),_888=1+_2492),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_4498=_4498,_4500=_4500,_4502=_4502,_4504=_4504,_2490=(1+_4498)mod 1000,_2496=ite(_4498>=500,1+_4504,- 1+_4504),_2494=ite(500=<_4498,- 1+_4502,1+_4502),_2492=1+_4500),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_4498=_4498,_4500=_4500,_4502=_4502,_4504=_4504,_6978=_6978,_6980=_6980,_6982=_6982,_6984=_6984,_4498=(1+_6978)mod 1000,_4504=ite(_6978>=500,1+_6984,- 1+_6984),_4502=ite(500=<_6978,- 1+_6982,1+_6982),_4500=1+_6980),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_4498=_4498,_4500=_4500,_4502=_4502,_4504=_4504,_6978=_6978,_6980=_6980,_6982=_6982,_6984=_6984,_9930=_9930,_9932=_9932,_9934=_9934,_9936=_9936,_6978=(1+_9930)mod 1000,_6984=ite(_9930>=500,1+_9936,- 1+_9936),_6982=ite(500=<_9930,- 1+_9934,1+_9934),_6980=1+_9932),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_4498=_4498,_4500=_4500,_4502=_4502,_4504=_4504,_6978=_6978,_6980=_6980,_6982=_6982,_6984=_6984,_9930=_9930,_9932=_9932,_9934=_9934,_9936=_9936,_13354=_13354,_13356=_13356,_13358=_13358,_13360=_13360,_9930=(1+_13354)mod 1000,_9936=ite(_13354>=500,1+_13360,- 1+_13360),_9934=ite(500=<_13354,- 1+_13358,1+_13358),_9932=1+_13356),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_4498=_4498,_4500=_4500,_4502=_4502,_4504=_4504,_6978=_6978,_6980=_6980,_6982=_6982,_6984=_6984,_9930=_9930,_9932=_9932,_9934=_9934,_9936=_9936,_13354=_13354,_13356=_13356,_13358=_13358,_13360=_13360,_17436=_17436,_17438=_17438,_17440=_17440,_17442=_17442,_13354=(1+_17436)mod 1000,_13360=ite(_17436>=500,1+_17442,- 1+_17442),_13358=ite(500=<_17436,- 1+_17440,1+_17440),_13356=1+_17438),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_4498=_4498,_4500=_4500,_4502=_4502,_4504=_4504,_6978=_6978,_6980=_6980,_6982=_6982,_6984=_6984,_9930=_9930,_9932=_9932,_9934=_9934,_9936=_9936,_13354=_13354,_13356=_13356,_13358=_13358,_13360=_13360,_17436=_17436,_17438=_17438,_17440=_17440,_17442=_17442,_22014=_22014,_22016=_22016,_22018=_22018,_22020=_22020,_17436=(1+_22014)mod 1000,_17442=ite(_22014>=500,1+_22020,- 1+_22020),_17440=ite(500=<_22014,- 1+_22018,1+_22018),_17438=1+_22016),_130=_130,_132=_132,_134=_134,_136=_136,_886=_886,_888=_888,_890=_890,_892=_892,_2490=_2490,_2492=_2492,_2494=_2494,_2496=_2496,_4498=_4498,_4500=_4500,_4502=_4502,_4504=_4504,_6978=_6978,_6980=_6980,_6982=_6982,_6984=_6984,_9930=_9930,_9932=_9932,_9934=_9934,_9936=_9936,_13354=_13354,_13356=_13356,_13358=_13358,_13360=_13360,_17436=_17436,_17438=_17438,_17440=_17440,_17442=_17442,_22014=_22014,_22016=_22016,_22018=_22018,_22020=_22020,_233832=_233832,_233834=_233834,_233836=_233836,_233838=_233838,_22014=(1+_233832)mod 1000,_22020=ite(_233832>=500,1+_233838,- 1+_233838),_22018=ite(500=<_233832,- 1+_233836,1+_233836),_22016=1+_233834]
+
+Stampa prima di inviare
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:int=x_136:int and x_886:int=x_886:int and x_888:int=x_888:int and x_890:int=x_890:int and x_892:int=x_892:int and x_2490:int=x_2490:int and x_2492:int=x_2492:int and x_2494:int=x_2494:int and x_2496:int=x_2496:int and x_4498:int=x_4498:int and x_4500:int=x_4500:int and x_4502:int=x_4502:int and x_4504:int=x_4504:int and x_6978:int=x_6978:int and x_6980:int=x_6980:int and x_6982:int=x_6982:int and x_6984:int=x_6984:int and x_9930:int=x_9930:int and x_9932:int=x_9932:int and x_9934:int=x_9934:int and x_9936:int=x_9936:int and x_13354:int=x_13354:int and x_13356:int=x_13356:int and x_13358:int=x_13358:int and x_13360:int=x_13360:int and x_17436:int=x_17436:int and x_17438:int=x_17438:int and x_17440:int=x_17440:int and x_17442:int=x_17442:int and x_22014:int=x_22014:int and x_22016:int=x_22016:int and x_22018:int=x_22018:int and x_22020:int=x_22020:int and x_233832:int=x_233832:int and x_233834:int=x_233834:int and x_233836:int=x_233836:int and x_233838:int=x_233838:int and (((((((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_132=2250 and x_134=x_136)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_130=(1+x_886)mod 1000 and x_136=ite(x_886>=500,1+x_892,- 1+x_892)and x_134=ite(500=<x_886,- 1+x_890,1+x_890)and x_132=1+x_888)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_886=(1+x_2490)mod 1000 and x_892=ite(x_2490>=500,1+x_2496,- 1+x_2496)and x_890=ite(500=<x_2490,- 1+x_2494,1+x_2494)and x_888=1+x_2492)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_4498=x_4498 and x_4500=x_4500 and x_4502=x_4502 and x_4504=x_4504 and x_2490=(1+x_4498)mod 1000 and x_2496=ite(x_4498>=500,1+x_4504,- 1+x_4504)and x_2494=ite(500=<x_4498,- 1+x_4502,1+x_4502)and x_2492=1+x_4500)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_4498=x_4498 and x_4500=x_4500 and x_4502=x_4502 and x_4504=x_4504 and x_6978=x_6978 and x_6980=x_6980 and x_6982=x_6982 and x_6984=x_6984 and x_4498=(1+x_6978)mod 1000 and x_4504=ite(x_6978>=500,1+x_6984,- 1+x_6984)and x_4502=ite(500=<x_6978,- 1+x_6982,1+x_6982)and x_4500=1+x_6980)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_4498=x_4498 and x_4500=x_4500 and x_4502=x_4502 and x_4504=x_4504 and x_6978=x_6978 and x_6980=x_6980 and x_6982=x_6982 and x_6984=x_6984 and x_9930=x_9930 and x_9932=x_9932 and x_9934=x_9934 and x_9936=x_9936 and x_6978=(1+x_9930)mod 1000 and x_6984=ite(x_9930>=500,1+x_9936,- 1+x_9936)and x_6982=ite(500=<x_9930,- 1+x_9934,1+x_9934)and x_6980=1+x_9932)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_4498=x_4498 and x_4500=x_4500 and x_4502=x_4502 and x_4504=x_4504 and x_6978=x_6978 and x_6980=x_6980 and x_6982=x_6982 and x_6984=x_6984 and x_9930=x_9930 and x_9932=x_9932 and x_9934=x_9934 and x_9936=x_9936 and x_13354=x_13354 and x_13356=x_13356 and x_13358=x_13358 and x_13360=x_13360 and x_9930=(1+x_13354)mod 1000 and x_9936=ite(x_13354>=500,1+x_13360,- 1+x_13360)and x_9934=ite(500=<x_13354,- 1+x_13358,1+x_13358)and x_9932=1+x_13356)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_4498=x_4498 and x_4500=x_4500 and x_4502=x_4502 and x_4504=x_4504 and x_6978=x_6978 and x_6980=x_6980 and x_6982=x_6982 and x_6984=x_6984 and x_9930=x_9930 and x_9932=x_9932 and x_9934=x_9934 and x_9936=x_9936 and x_13354=x_13354 and x_13356=x_13356 and x_13358=x_13358 and x_13360=x_13360 and x_17436=x_17436 and x_17438=x_17438 and x_17440=x_17440 and x_17442=x_17442 and x_13354=(1+x_17436)mod 1000 and x_13360=ite(x_17436>=500,1+x_17442,- 1+x_17442)and x_13358=ite(500=<x_17436,- 1+x_17440,1+x_17440)and x_13356=1+x_17438)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_4498=x_4498 and x_4500=x_4500 and x_4502=x_4502 and x_4504=x_4504 and x_6978=x_6978 and x_6980=x_6980 and x_6982=x_6982 and x_6984=x_6984 and x_9930=x_9930 and x_9932=x_9932 and x_9934=x_9934 and x_9936=x_9936 and x_13354=x_13354 and x_13356=x_13356 and x_13358=x_13358 and x_13360=x_13360 and x_17436=x_17436 and x_17438=x_17438 and x_17440=x_17440 and x_17442=x_17442 and x_22014=x_22014 and x_22016=x_22016 and x_22018=x_22018 and x_22020=x_22020 and x_17436=(1+x_22014)mod 1000 and x_17442=ite(x_22014>=500,1+x_22020,- 1+x_22020)and x_17440=ite(500=<x_22014,- 1+x_22018,1+x_22018)and x_17438=1+x_22016)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_886=x_886 and x_888=x_888 and x_890=x_890 and x_892=x_892 and x_2490=x_2490 and x_2492=x_2492 and x_2494=x_2494 and x_2496=x_2496 and x_4498=x_4498 and x_4500=x_4500 and x_4502=x_4502 and x_4504=x_4504 and x_6978=x_6978 and x_6980=x_6980 and x_6982=x_6982 and x_6984=x_6984 and x_9930=x_9930 and x_9932=x_9932 and x_9934=x_9934 and x_9936=x_9936 and x_13354=x_13354 and x_13356=x_13356 and x_13358=x_13358 and x_13360=x_13360 and x_17436=x_17436 and x_17438=x_17438 and x_17440=x_17440 and x_17442=x_17442 and x_22014=x_22014 and x_22016=x_22016 and x_22018=x_22018 and x_22020=x_22020 and x_233832=x_233832 and x_233834=x_233834 and x_233836=x_233836 and x_233838=x_233838 and x_22014=(1+x_233832)mod 1000 and x_22020=ite(x_233832>=500,1+x_233838,- 1+x_233838)and x_22018=ite(500=<x_233832,- 1+x_233836,1+x_233836)and x_22016=1+x_233834Limite MaxDepth raggiunto
+No SAT branches found in MaxDepths = 10.
+ERROR: -g load_clean('/home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/test/separato2/CHC-COMP-AGOSTO/LIA-Lin/z3_results/outPutz3Raname/soloPl//chc-comp24-LIA-Lin-077_timeout.smt2.pl'),set_solver(turibe),zmi(ff),halt.: false

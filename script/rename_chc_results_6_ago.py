@@ -10,9 +10,9 @@ def mapped_suffix(z3_filename: Path) -> str:
     """
     name = z3_filename.name.lower()
     if ".sat.z3out" in name:
-        return "_false"
-    if ".unsat.z3out" in name:
         return "_true"
+    if ".unsat.z3out" in name:
+        return "_false"
     if ".timeout.z3out" in name:
         return "_timeout"
     return "_unknown"

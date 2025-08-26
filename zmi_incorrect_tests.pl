@@ -329,3 +329,89 @@ test(assign_var_eq14) :-
     zmi(incorrect).
 
 :- end_tests(select).
+
+
+
+% ------------------------------------------------------------------
+% TEST Logic Modulo
+% ------------------------------------------------------------------
+:- begin_tests(level4_inv_ff, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
+
+test(level4_inv_ff) :-
+    user:assertz((inv(A,B) :- constr((B=0 & A=0)))),
+    user:assertz((inv(A,B) :- inv(C,D), constr((B=ite(D=0,1,0) & A=1+C)))),
+    user:assertz((ff :- constr((~ite(B=1, A mod 2=1, A mod 2=0))))),
+    zmi(ff).
+
+:- end_tests(level4_inv_ff).
+
+
+
+% ------------------------------------------------------------------
+% TEST Logic Modulo con tipi espliciti
+% ------------------------------------------------------------------
+:- begin_tests(level4_inv_ff2, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
+
+test(level4_inv_ff2) :-
+    user:assertz((inv(A:int,B:int) :- constr((B=0 & A=0)))),
+    user:assertz((inv(A:int,B:int) :- inv(C:int,D:int), constr((B=ite(D=0,1,0) & A=1+C)))),
+    user:assertz((ff :- constr((~ite(B=1, A:int mod 2=1, A:int mod 2=0))))),
+    zmi(ff).
+
+:- end_tests(level4_inv_ff2).
+
+
+
+
+% ------------------------------------------------------------------
+% TEST Logic Modulo riscritto senza mod
+% ------------------------------------------------------------------
+:- begin_tests(level4_inv_ff_no_mod, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
+
+test(level4_inv_ff_no_mod) :-
+    user:assertz((inv(A,B) :- constr((B=0 & A=0)))),
+    user:assertz((inv(A,B) :- inv(C,D), constr((B=ite(D=0,1,0) & A=1+C)))),
+    % Sostituito A mod 2 con due casi equivalenti (pari/dispari)
+    user:assertz((
+        ff :- constr(( ~ite(B=1, A = 2*K+1, A = 2*K) ))
+    )),
+    zmi(ff).
+
+:- end_tests(level4_inv_ff_no_mod).
+
+
+
+% ------------------------------------------------------------------
+% TEST Logic Modulo con mod(A,2)
+% ------------------------------------------------------------------
+:- begin_tests(level4_inv_ff_mod, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
+
+test(level4_inv_ff_mod) :-
+    user:assertz((inv(A,B) :- constr((B=0 & A=0)))),
+    user:assertz((inv(A,B) :- inv(C,D), constr((B=ite(D=0,1,0) & A=1+C)))),
+    % Uso mod(A,2) invece di A mod 2
+    user:assertz((
+        ff :- constr(( ~ite(B=1, mod(A,2)=1, mod(A,2)=0) ))
+    )),
+    zmi(ff).
+
+:- end_tests(level4_inv_ff_mod).
+
+
+
+% ------------------------------------------------------------------
+% TEST Logic Modulo con mod(A,2) e tipizzazione Int
+% ------------------------------------------------------------------
+:- begin_tests(level4_inv_ff_mod_int, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
+
+test(level4_inv_ff_mod_int) :-
+    user:assertz((inv(A:int,B:int) :- constr((B=0 & A=0)))),
+    user:assertz((inv(A:int,B:int) :- inv(C:int,D:int), constr((B=ite(D=0,1,0) & A=1+C)))),
+    % Uso mod(A,2) con A dichiarato int
+    user:assertz((
+        ff :- constr(( ~ite(B:int=1, mod(A:int,2)=1, mod(A:int,2)=0) ))
+    )),
+    zmi(ff).
+
+:- end_tests(level4_inv_ff_mod_int).
+

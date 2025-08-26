@@ -1,0 +1,665 @@
+skipping(:- mode new5(in,in,in,in).)
+skipping(:- mode new4(in,in,in,in).)
+skipping(:- mode new3(in,in,in,in).)
+skipping(:- mode new2(in,in,in,in).)
+skipped parse: ":- pred new1."
+skipped parse: ":- pred incorrect."
+skipped parse: ":- pred ff."
+skipping(:- query ff/0.)
+skipping(:- mode constr(in).)
+skipping(:- ignore constr/1.)
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/type_inference.pl:248:
+Warning:    Singleton variables: [Y]
+Installing Z3 package
+Using Z3 version Z3 4.15.3.0
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:895:
+Warning:    Singleton variables: [R]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:908:
+Warning:    Singleton variables: [M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:923:
+Warning:    Singleton variables: [N]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:932:
+Warning:    Singleton variables: [N,O,A]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:944:
+Warning:    Singleton variables: [N]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:958:
+Warning:    Singleton variables: [N,M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:971:
+Warning:    Loading module plunit_z3_push_test_equal22222223445 abolished: [plunit_z3_push_test_equal22222223445:'unit test'/4,plunit_z3_push_test_equal22222223445:'unit body'/2]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:973:
+Warning:    Singleton variables: [O,A,M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:989:
+Warning:    Singleton variables: [M]
+Warning: /home/marco/Desktop/27-giu/swi-prolog-z3_arrays3/z3.pl:1002:
+Warning:    Singleton variables: [M]
+ℹ️ MaxDepth impostato a: 10
+Mi trovo in questa head
+incorrect
+Stampo Rawbody
+new1,constr(true)
+Stampo Body prima di zmi
+constr(true),new1
+Entrato in constr c
+Stampo flatList
+[true]
+
+Stampa prima di inviare
+trueMi trovo in questa head
+new1
+Stampo Rawbody
+new2(_4352,_4354,_4352,_4354),constr(true)
+Stampo Body prima di zmi
+constr(true),new2(_4352,_4354,_4352,_4354)
+Entrato in constr c
+Stampo flatList
+[_4352:int=_4352:int,_4354:int=_4354:int,(true,true)]
+
+Stampa prima di inviare
+x_4352:int=x_4352:int and x_4354:int=x_4354:int and trueMi trovo in questa head
+new2(_4352,_4354,_4352,_4354)
+Stampo Rawbody
+new3(_4352,_4354,_4352,_4354),constr(true)
+Stampo Body prima di zmi
+constr(true),new3(_4352,_4354,_4352,_4354)
+Entrato in constr c
+Stampo flatList
+[_4352:int=_4352:int,_4354:int=_4354:int,((true,true),true)]
+
+Stampa prima di inviare
+x_4352:int=x_4352:int and x_4354:int=x_4354:int and trueMi trovo in questa head
+new3(_4352,_4354,_4352,_4354)
+Stampo Rawbody
+new2(_4352,_4354,_13830,_13832),constr((_4352>=1&(_13854=1&(_13832= - 1+_4354&(_13888=1&(_13830= - 1+_4352&_13916=0))))))
+⚠️ Formula non normalizzata: - 1+_4354
+⚠️ Formula non normalizzata: - 1+_4352
+✅ Inserita in rewrite: _4352:int
+✅ Inserita in rewrite: _4354:int
+✅ Inserita in rewrite: _13830:int
+✅ Inserita in rewrite: _13832:int
+Stampo Body prima di zmi
+constr((_4352:int=_4352:int,_4354:int=_4354:int,_13830:int=_13830:int,_13832:int=_13832:int,_4352>=1 and _13854=1 and _13832= - 1+_4354 and _13888=1 and _13830= - 1+_4352 and _13916=0)),new2(_4352,_4354,_13830,_13832)
+Entrato in constr c
+⚠️ Formula non normalizzata: - 1+_4354
+⚠️ Formula non normalizzata: - 1+_4352
+Stampo flatList
+[_4352:int=_4352:int,_4354:int=_4354:int,_13830:int=_13830:int,_13832:int=_13832:int,(((true,true),true),true),_4352=_4352,_4354=_4354,_13830=_13830,_13832=_13832,_4352>=1,_13854=1,_13832= - 1+_4354,_13888=1,_13830= - 1+_4352,_13916=0]
+
+Stampa prima di inviare
+x_4352:int=x_4352:int and x_4354:int=x_4354:int and x_13830:int=x_13830:int and x_13832:int=x_13832:int and true and x_4352=x_4352 and x_4354=x_4354 and x_13830=x_13830 and x_13832=x_13832 and x_4352>=1 and x_13854=1 and x_13832= - 1+x_4354 and x_13888=1 and x_13830= - 1+x_4352 and x_13916=0Mi trovo in questa head
+new2(_4352,_4354,_13830,_13832)
+Stampo Rawbody
+new3(_4352,_4354,_13830,_13832),constr(true)
+Stampo Body prima di zmi
+constr(true),new3(_4352,_4354,_13830,_13832)
+Entrato in constr c
+Stampo flatList
+[_4352:int=_4352:int,_4354:int=_4354:int,_13830:int=_13830:int,_13832:int=_13832:int,((((true,true),true),true),_4352=_4352,_4354=_4354,_13830=_13830,_13832=_13832,_4352>=1,_13854=1,_13832= - 1+_4354,_13888=1,_13830= - 1+_4352,_13916=0)]
+
+Stampa prima di inviare
+x_4352:int=x_4352:int and x_4354:int=x_4354:int and x_13830:int=x_13830:int and x_13832:int=x_13832:int and true and x_4352=x_4352 and x_4354=x_4354 and x_13830=x_13830 and x_13832=x_13832 and x_4352>=1 and x_13854=1 and x_13832= - 1+x_4354 and x_13888=1 and x_13830= - 1+x_4352 and x_13916=0Mi trovo in questa head
+new3(_260,_262,_978,_980)
+Stampo Rawbody
+new2(_260,_262,_5800,_5802),constr((_978>=1&(_5824=1&(_5802= - 1+_980&(_5858=1&(_5800= - 1+_978&_5886=0))))))
+⚠️ Formula non normalizzata: - 1+_980
+⚠️ Formula non normalizzata: - 1+_978
+✅ Inserita in rewrite: _260:int
+✅ Inserita in rewrite: _262:int
+✅ Inserita in rewrite: _978:int
+✅ Inserita in rewrite: _980:int
+✅ Inserita in rewrite: _5800:int
+✅ Inserita in rewrite: _5802:int
+Stampo Body prima di zmi
+constr((_260:int=_260:int,_262:int=_262:int,_978:int=_978:int,_980:int=_980:int,_5800:int=_5800:int,_5802:int=_5802:int,_978>=1 and _5824=1 and _5802= - 1+_980 and _5858=1 and _5800= - 1+_978 and _5886=0)),new2(_260,_262,_5800,_5802)
+Entrato in constr c
+⚠️ Formula non normalizzata: - 1+_980
+⚠️ Formula non normalizzata: - 1+_978
+Stampo flatList
+[_260:int=_260:int,_262:int=_262:int,_978:int=_978:int,_980:int=_980:int,_5800:int=_5800:int,_5802:int=_5802:int,(((((true,true),true),true),_260=_260,_262=_262,_978=_978,_980=_980,_260>=1,_1002=1,_980= - 1+_262,_1036=1,_978= - 1+_260,_1064=0),true),_260=_260,_262=_262,_978=_978,_980=_980,_5800=_5800,_5802=_5802,_978>=1,_5824=1,_5802= - 1+_980,_5858=1,_5800= - 1+_978,_5886=0]
+
+Stampa prima di inviare
+x_260:int=x_260:int and x_262:int=x_262:int and x_978:int=x_978:int and x_980:int=x_980:int and x_5800:int=x_5800:int and x_5802:int=x_5802:int and (true and x_260=x_260 and x_262=x_262 and x_978=x_978 and x_980=x_980 and x_260>=1 and x_1002=1 and x_980= - 1+x_262 and x_1036=1 and x_978= - 1+x_260 and x_1064=0)and x_260=x_260 and x_262=x_262 and x_978=x_978 and x_980=x_980 and x_5800=x_5800 and x_5802=x_5802 and x_978>=1 and x_5824=1 and x_5802= - 1+x_980 and x_5858=1 and x_5800= - 1+x_978 and x_5886=0Mi trovo in questa head
+new2(_260,_262,_5800,_5802)
+Stampo Rawbody
+new3(_260,_262,_5800,_5802),constr(true)
+Stampo Body prima di zmi
+constr(true),new3(_260,_262,_5800,_5802)
+Entrato in constr c
+Stampo flatList
+[_260:int=_260:int,_262:int=_262:int,_978:int=_978:int,_980:int=_980:int,_5800:int=_5800:int,_5802:int=_5802:int,((((((true,true),true),true),_260=_260,_262=_262,_978=_978,_980=_980,_260>=1,_1002=1,_980= - 1+_262,_1036=1,_978= - 1+_260,_1064=0),true),_260=_260,_262=_262,_978=_978,_980=_980,_5800=_5800,_5802=_5802,_978>=1,_5824=1,_5802= - 1+_980,_5858=1,_5800= - 1+_978,_5886=0)]
+
+Stampa prima di inviare
+x_260:int=x_260:int and x_262:int=x_262:int and x_978:int=x_978:int and x_980:int=x_980:int and x_5800:int=x_5800:int and x_5802:int=x_5802:int and (true and x_260=x_260 and x_262=x_262 and x_978=x_978 and x_980=x_980 and x_260>=1 and x_1002=1 and x_980= - 1+x_262 and x_1036=1 and x_978= - 1+x_260 and x_1064=0)and x_260=x_260 and x_262=x_262 and x_978=x_978 and x_980=x_980 and x_5800=x_5800 and x_5802=x_5802 and x_978>=1 and x_5824=1 and x_5802= - 1+x_980 and x_5858=1 and x_5800= - 1+x_978 and x_5886=0Mi trovo in questa head
+new3(_260,_262,_2628,_2630)
+Stampo Rawbody
+new2(_260,_262,_16016,_16018),constr((_2628>=1&(_16040=1&(_16018= - 1+_2630&(_16074=1&(_16016= - 1+_2628&_16102=0))))))
+⚠️ Formula non normalizzata: - 1+_2630
+⚠️ Formula non normalizzata: - 1+_2628
+✅ Inserita in rewrite: _260:int
+✅ Inserita in rewrite: _262:int
+✅ Inserita in rewrite: _976:int
+✅ Inserita in rewrite: _978:int
+✅ Inserita in rewrite: _2628:int
+✅ Inserita in rewrite: _2630:int
+✅ Inserita in rewrite: _16016:int
+✅ Inserita in rewrite: _16018:int
+Stampo Body prima di zmi
+constr((_260:int=_260:int,_262:int=_262:int,_976:int=_976:int,_978:int=_978:int,_2628:int=_2628:int,_2630:int=_2630:int,_16016:int=_16016:int,_16018:int=_16018:int,_2628>=1 and _16040=1 and _16018= - 1+_2630 and _16074=1 and _16016= - 1+_2628 and _16102=0)),new2(_260,_262,_16016,_16018)
+Entrato in constr c
+⚠️ Formula non normalizzata: - 1+_2630
+⚠️ Formula non normalizzata: - 1+_2628
+Stampo flatList
+[_260:int=_260:int,_262:int=_262:int,_976:int=_976:int,_978:int=_978:int,_2628:int=_2628:int,_2630:int=_2630:int,_16016:int=_16016:int,_16018:int=_16018:int,(((((((true,true),true),true),_260=_260,_262=_262,_976=_976,_978=_978,_260>=1,_1000=1,_978= - 1+_262,_1034=1,_976= - 1+_260,_1062=0),true),_260=_260,_262=_262,_976=_976,_978=_978,_2628=_2628,_2630=_2630,_976>=1,_2652=1,_2630= - 1+_978,_2686=1,_2628= - 1+_976,_2714=0),true),_260=_260,_262=_262,_976=_976,_978=_978,_2628=_2628,_2630=_2630,_16016=_16016,_16018=_16018,_2628>=1,_16040=1,_16018= - 1+_2630,_16074=1,_16016= - 1+_2628,_16102=0]
+
+Stampa prima di inviare
+x_260:int=x_260:int and x_262:int=x_262:int and x_976:int=x_976:int and x_978:int=x_978:int and x_2628:int=x_2628:int and x_2630:int=x_2630:int and x_16016:int=x_16016:int and x_16018:int=x_16018:int and ((true and x_260=x_260 and x_262=x_262 and x_976=x_976 and x_978=x_978 and x_260>=1 and x_1000=1 and x_978= - 1+x_262 and x_1034=1 and x_976= - 1+x_260 and x_1062=0)and x_260=x_260 and x_262=x_262 and x_976=x_976 and x_978=x_978 and x_2628=x_2628 and x_2630=x_2630 and x_976>=1 and x_2652=1 and x_2630= - 1+x_978 and x_2686=1 and x_2628= - 1+x_976 and x_2714=0)and x_260=x_260 and x_262=x_262 and x_976=x_976 and x_978=x_978 and x_2628=x_2628 and x_2630=x_2630 and x_16016=x_16016 and x_16018=x_16018 and x_2628>=1 and x_16040=1 and x_16018= - 1+x_2630 and x_16074=1 and x_16016= - 1+x_2628 and x_16102=0Mi trovo in questa head
+new2(_260,_262,_16016,_16018)
+Stampo Rawbody
+new3(_260,_262,_16016,_16018),constr(true)
+Stampo Body prima di zmi
+constr(true),new3(_260,_262,_16016,_16018)
+Entrato in constr c
+Stampo flatList
+[_260:int=_260:int,_262:int=_262:int,_976:int=_976:int,_978:int=_978:int,_2628:int=_2628:int,_2630:int=_2630:int,_16016:int=_16016:int,_16018:int=_16018:int,((((((((true,true),true),true),_260=_260,_262=_262,_976=_976,_978=_978,_260>=1,_1000=1,_978= - 1+_262,_1034=1,_976= - 1+_260,_1062=0),true),_260=_260,_262=_262,_976=_976,_978=_978,_2628=_2628,_2630=_2630,_976>=1,_2652=1,_2630= - 1+_978,_2686=1,_2628= - 1+_976,_2714=0),true),_260=_260,_262=_262,_976=_976,_978=_978,_2628=_2628,_2630=_2630,_16016=_16016,_16018=_16018,_2628>=1,_16040=1,_16018= - 1+_2630,_16074=1,_16016= - 1+_2628,_16102=0)]
+
+Stampa prima di inviare
+x_260:int=x_260:int and x_262:int=x_262:int and x_976:int=x_976:int and x_978:int=x_978:int and x_2628:int=x_2628:int and x_2630:int=x_2630:int and x_16016:int=x_16016:int and x_16018:int=x_16018:int and ((true and x_260=x_260 and x_262=x_262 and x_976=x_976 and x_978=x_978 and x_260>=1 and x_1000=1 and x_978= - 1+x_262 and x_1034=1 and x_976= - 1+x_260 and x_1062=0)and x_260=x_260 and x_262=x_262 and x_976=x_976 and x_978=x_978 and x_2628=x_2628 and x_2630=x_2630 and x_976>=1 and x_2652=1 and x_2630= - 1+x_978 and x_2686=1 and x_2628= - 1+x_976 and x_2714=0)and x_260=x_260 and x_262=x_262 and x_976=x_976 and x_978=x_978 and x_2628=x_2628 and x_2630=x_2630 and x_16016=x_16016 and x_16018=x_16018 and x_2628>=1 and x_16040=1 and x_16018= - 1+x_2630 and x_16074=1 and x_16016= - 1+x_2628 and x_16102=0Mi trovo in questa head
+new3(_260,_262,_4756,_4758)
+Stampo Rawbody
+new2(_260,_262,_16964,_16966),constr((_4756>=1&(_16988=1&(_16966= - 1+_4758&(_17022=1&(_16964= - 1+_4756&_17050=0))))))
+⚠️ Formula non normalizzata: - 1+_4758
+⚠️ Formula non normalizzata: - 1+_4756
+✅ Inserita in rewrite: _260:int
+✅ Inserita in rewrite: _262:int
+✅ Inserita in rewrite: _976:int
+✅ Inserita in rewrite: _978:int
+✅ Inserita in rewrite: _2626:int
+✅ Inserita in rewrite: _2628:int
+✅ Inserita in rewrite: _4756:int
+✅ Inserita in rewrite: _4758:int
+✅ Inserita in rewrite: _16964:int
+✅ Inserita in rewrite: _16966:int
+Stampo Body prima di zmi
+constr((_260:int=_260:int,_262:int=_262:int,_976:int=_976:int,_978:int=_978:int,_2626:int=_2626:int,_2628:int=_2628:int,_4756:int=_4756:int,_4758:int=_4758:int,_16964:int=_16964:int,_16966:int=_16966:int,_4756>=1 and _16988=1 and _16966= - 1+_4758 and _17022=1 and _16964= - 1+_4756 and _17050=0)),new2(_260,_262,_16964,_16966)
+Limite MaxDepth raggiunto
+Limite MaxDepth raggiunto
+Entrato in constr c
+⚠️ Formula non normalizzata: - 1+_4758
+⚠️ Formula non normalizzata: - 1+_4756
+Stampo flatList
+[_260:int=_260:int,_262:int=_262:int,_976:int=_976:int,_978:int=_978:int,_2626:int=_2626:int,_2628:int=_2628:int,_4756:int=_4756:int,_4758:int=_4758:int,_16964:int=_16964:int,_16966:int=_16966:int,(((((((((true,true),true),true),_260=_260,_262=_262,_976=_976,_978=_978,_260>=1,_1000=1,_978= - 1+_262,_1034=1,_976= - 1+_260,_1062=0),true),_260=_260,_262=_262,_976=_976,_978=_978,_2626=_2626,_2628=_2628,_976>=1,_2650=1,_2628= - 1+_978,_2684=1,_2626= - 1+_976,_2712=0),true),_260=_260,_262=_262,_976=_976,_978=_978,_2626=_2626,_2628=_2628,_4756=_4756,_4758=_4758,_2626>=1,_4780=1,_4758= - 1+_2628,_4814=1,_4756= - 1+_2626,_4842=0),true),_260=_260,_262=_262,_976=_976,_978=_978,_2626=_2626,_2628=_2628,_4756=_4756,_4758=_4758,_16964=_16964,_16966=_16966,_4756>=1,_16988=1,_16966= - 1+_4758,_17022=1,_16964= - 1+_4756,_17050=0]
+
+Stampa prima di inviare
+x_260:int=x_260:int and x_262:int=x_262:int and x_976:int=x_976:int and x_978:int=x_978:int and x_2626:int=x_2626:int and x_2628:int=x_2628:int and x_4756:int=x_4756:int and x_4758:int=x_4758:int and x_16964:int=x_16964:int and x_16966:int=x_16966:int and (((true and x_260=x_260 and x_262=x_262 and x_976=x_976 and x_978=x_978 and x_260>=1 and x_1000=1 and x_978= - 1+x_262 and x_1034=1 and x_976= - 1+x_260 and x_1062=0)and x_260=x_260 and x_262=x_262 and x_976=x_976 and x_978=x_978 and x_2626=x_2626 and x_2628=x_2628 and x_976>=1 and x_2650=1 and x_2628= - 1+x_978 and x_2684=1 and x_2626= - 1+x_976 and x_2712=0)and x_260=x_260 and x_262=x_262 and x_976=x_976 and x_978=x_978 and x_2626=x_2626 and x_2628=x_2628 and x_4756=x_4756 and x_4758=x_4758 and x_2626>=1 and x_4780=1 and x_4758= - 1+x_2628 and x_4814=1 and x_4756= - 1+x_2626 and x_4842=0)and x_260=x_260 and x_262=x_262 and x_976=x_976 and x_978=x_978 and x_2626=x_2626 and x_2628=x_2628 and x_4756=x_4756 and x_4758=x_4758 and x_16964=x_16964 and x_16966=x_16966 and x_4756>=1 and x_16988=1 and x_16966= - 1+x_4758 and x_17022=1 and x_16964= - 1+x_4756 and x_17050=0Limite MaxDepth raggiunto
+Stampo Rawbody
+new2(_260,_262,_54496,_54498),constr((_4756=< - 1&(_54524=1&(_54498= - 1+_4758&(_54558=1&(_54496= - 1+_4756&_54586=0))))))
+⚠️ Formula non normalizzata: - 1+_4758
+⚠️ Formula non normalizzata: - 1+_4756
+✅ Inserita in rewrite: _260:int
+✅ Inserita in rewrite: _262:int
+✅ Inserita in rewrite: _976:int
+✅ Inserita in rewrite: _978:int
+✅ Inserita in rewrite: _2626:int
+✅ Inserita in rewrite: _2628:int
+✅ Inserita in rewrite: _4756:int
+✅ Inserita in rewrite: _4758:int
+✅ Inserita in rewrite: _54496:int
+✅ Inserita in rewrite: _54498:int
+Stampo Body prima di zmi
+constr((_260:int=_260:int,_262:int=_262:int,_976:int=_976:int,_978:int=_978:int,_2626:int=_2626:int,_2628:int=_2628:int,_4756:int=_4756:int,_4758:int=_4758:int,_54496:int=_54496:int,_54498:int=_54498:int,_4756=< - 1 and _54524=1 and _54498= - 1+_4758 and _54558=1 and _54496= - 1+_4756 and _54586=0)),new2(_260,_262,_54496,_54498)
+Limite MaxDepth raggiunto
+Limite MaxDepth raggiunto
+Entrato in constr c
+⚠️ Formula non normalizzata: - 1+_4758
+⚠️ Formula non normalizzata: - 1+_4756
+Stampo flatList
+[_260:int=_260:int,_262:int=_262:int,_976:int=_976:int,_978:int=_978:int,_2626:int=_2626:int,_2628:int=_2628:int,_4756:int=_4756:int,_4758:int=_4758:int,_54496:int=_54496:int,_54498:int=_54498:int,(((((((((true,true),true),true),_260=_260,_262=_262,_976=_976,_978=_978,_260>=1,_1000=1,_978= - 1+_262,_1034=1,_976= - 1+_260,_1062=0),true),_260=_260,_262=_262,_976=_976,_978=_978,_2626=_2626,_2628=_2628,_976>=1,_2650=1,_2628= - 1+_978,_2684=1,_2626= - 1+_976,_2712=0),true),_260=_260,_262=_262,_976=_976,_978=_978,_2626=_2626,_2628=_2628,_4756=_4756,_4758=_4758,_2626>=1,_4780=1,_4758= - 1+_2628,_4814=1,_4756= - 1+_2626,_4842=0),true),_260=_260,_262=_262,_976=_976,_978=_978,_2626=_2626,_2628=_2628,_4756=_4756,_4758=_4758,_54496=_54496,_54498=_54498,_4756=< - 1,_54524=1,_54498= - 1+_4758,_54558=1,_54496= - 1+_4756,_54586=0]
+
+Stampa prima di inviare
+x_260:int=x_260:int and x_262:int=x_262:int and x_976:int=x_976:int and x_978:int=x_978:int and x_2626:int=x_2626:int and x_2628:int=x_2628:int and x_4756:int=x_4756:int and x_4758:int=x_4758:int and x_54496:int=x_54496:int and x_54498:int=x_54498:int and (((true and x_260=x_260 and x_262=x_262 and x_976=x_976 and x_978=x_978 and x_260>=1 and x_1000=1 and x_978= - 1+x_262 and x_1034=1 and x_976= - 1+x_260 and x_1062=0)and x_260=x_260 and x_262=x_262 and x_976=x_976 and x_978=x_978 and x_2626=x_2626 and x_2628=x_2628 and x_976>=1 and x_2650=1 and x_2628= - 1+x_978 and x_2684=1 and x_2626= - 1+x_976 and x_2712=0)and x_260=x_260 and x_262=x_262 and x_976=x_976 and x_978=x_978 and x_2626=x_2626 and x_2628=x_2628 and x_4756=x_4756 and x_4758=x_4758 and x_2626>=1 and x_4780=1 and x_4758= - 1+x_2628 and x_4814=1 and x_4756= - 1+x_2626 and x_4842=0)and x_260=x_260 and x_262=x_262 and x_976=x_976 and x_978=x_978 and x_2626=x_2626 and x_2628=x_2628 and x_4756=x_4756 and x_4758=x_4758 and x_54496=x_54496 and x_54498=x_54498 and x_4756=< - 1 and x_54524=1 and x_54498= - 1+x_4758 and x_54558=1 and x_54496= - 1+x_4756 and x_54586=0Stampo Rawbody
+new4(_260,_262,_4754,_4756),constr((_36776=0&(_36788=0&_4754=0)))
+✅ Inserita in rewrite: _260:int
+✅ Inserita in rewrite: _262:int
+✅ Inserita in rewrite: _976:int
+✅ Inserita in rewrite: _978:int
+✅ Inserita in rewrite: _2626:int
+✅ Inserita in rewrite: _2628:int
+✅ Inserita in rewrite: _4754:int
+✅ Inserita in rewrite: _4756:int
+Stampo Body prima di zmi
+constr((_260:int=_260:int,_262:int=_262:int,_976:int=_976:int,_978:int=_978:int,_2626:int=_2626:int,_2628:int=_2628:int,_4754:int=_4754:int,_4756:int=_4756:int,_36776=0 and _36788=0 and _4754=0)),new4(_260,_262,_4754,_4756)
+Limite MaxDepth raggiunto
+Limite MaxDepth raggiunto
+Entrato in constr c
+Stampo flatList
+[_260:int=_260:int,_262:int=_262:int,_976:int=_976:int,_978:int=_978:int,_2626:int=_2626:int,_2628:int=_2628:int,_4754:int=_4754:int,_4756:int=_4756:int,(((((((((true,true),true),true),_260=_260,_262=_262,_976=_976,_978=_978,_260>=1,_1000=1,_978= - 1+_262,_1034=1,_976= - 1+_260,_1062=0),true),_260=_260,_262=_262,_976=_976,_978=_978,_2626=_2626,_2628=_2628,_976>=1,_2650=1,_2628= - 1+_978,_2684=1,_2626= - 1+_976,_2712=0),true),_260=_260,_262=_262,_976=_976,_978=_978,_2626=_2626,_2628=_2628,_4754=_4754,_4756=_4756,_2626>=1,_4778=1,_4756= - 1+_2628,_4812=1,_4754= - 1+_2626,_4840=0),true),_260=_260,_262=_262,_976=_976,_978=_978,_2626=_2626,_2628=_2628,_4754=_4754,_4756=_4756,_36776=0,_36788=0,_4754=0]
+
+Stampa prima di inviare
+x_260:int=x_260:int and x_262:int=x_262:int and x_976:int=x_976:int and x_978:int=x_978:int and x_2626:int=x_2626:int and x_2628:int=x_2628:int and x_4754:int=x_4754:int and x_4756:int=x_4756:int and (((true and x_260=x_260 and x_262=x_262 and x_976=x_976 and x_978=x_978 and x_260>=1 and x_1000=1 and x_978= - 1+x_262 and x_1034=1 and x_976= - 1+x_260 and x_1062=0)and x_260=x_260 and x_262=x_262 and x_976=x_976 and x_978=x_978 and x_2626=x_2626 and x_2628=x_2628 and x_976>=1 and x_2650=1 and x_2628= - 1+x_978 and x_2684=1 and x_2626= - 1+x_976 and x_2712=0)and x_260=x_260 and x_262=x_262 and x_976=x_976 and x_978=x_978 and x_2626=x_2626 and x_2628=x_2628 and x_4754=x_4754 and x_4756=x_4756 and x_2626>=1 and x_4778=1 and x_4756= - 1+x_2628 and x_4812=1 and x_4754= - 1+x_2626 and x_4840=0)and x_260=x_260 and x_262=x_262 and x_976=x_976 and x_978=x_978 and x_2626=x_2626 and x_2628=x_2628 and x_4754=x_4754 and x_4756=x_4756 and x_36776=0 and x_36788=0 and x_4754=0Limite MaxDepth raggiunto
+Stampo Rawbody
+new2(_260,_262,_15744,_15746),constr((_2626=< - 1&(_15772=1&(_15746= - 1+_2628&(_15806=1&(_15744= - 1+_2626&_15834=0))))))
+⚠️ Formula non normalizzata: - 1+_2628
+⚠️ Formula non normalizzata: - 1+_2626
+✅ Inserita in rewrite: _260:int
+✅ Inserita in rewrite: _262:int
+✅ Inserita in rewrite: _976:int
+✅ Inserita in rewrite: _978:int
+✅ Inserita in rewrite: _2626:int
+✅ Inserita in rewrite: _2628:int
+✅ Inserita in rewrite: _15744:int
+✅ Inserita in rewrite: _15746:int
+Stampo Body prima di zmi
+constr((_260:int=_260:int,_262:int=_262:int,_976:int=_976:int,_978:int=_978:int,_2626:int=_2626:int,_2628:int=_2628:int,_15744:int=_15744:int,_15746:int=_15746:int,_2626=< - 1 and _15772=1 and _15746= - 1+_2628 and _15806=1 and _15744= - 1+_2626 and _15834=0)),new2(_260,_262,_15744,_15746)
+Entrato in constr c
+⚠️ Formula non normalizzata: - 1+_2628
+⚠️ Formula non normalizzata: - 1+_2626
+Stampo flatList
+[_260:int=_260:int,_262:int=_262:int,_976:int=_976:int,_978:int=_978:int,_2626:int=_2626:int,_2628:int=_2628:int,_15744:int=_15744:int,_15746:int=_15746:int,(((((((true,true),true),true),_260=_260,_262=_262,_976=_976,_978=_978,_260>=1,_1000=1,_978= - 1+_262,_1034=1,_976= - 1+_260,_1062=0),true),_260=_260,_262=_262,_976=_976,_978=_978,_2626=_2626,_2628=_2628,_976>=1,_2650=1,_2628= - 1+_978,_2684=1,_2626= - 1+_976,_2712=0),true),_260=_260,_262=_262,_976=_976,_978=_978,_2626=_2626,_2628=_2628,_15744=_15744,_15746=_15746,_2626=< - 1,_15772=1,_15746= - 1+_2628,_15806=1,_15744= - 1+_2626,_15834=0]
+
+Stampa prima di inviare
+x_260:int=x_260:int and x_262:int=x_262:int and x_976:int=x_976:int and x_978:int=x_978:int and x_2626:int=x_2626:int and x_2628:int=x_2628:int and x_15744:int=x_15744:int and x_15746:int=x_15746:int and ((true and x_260=x_260 and x_262=x_262 and x_976=x_976 and x_978=x_978 and x_260>=1 and x_1000=1 and x_978= - 1+x_262 and x_1034=1 and x_976= - 1+x_260 and x_1062=0)and x_260=x_260 and x_262=x_262 and x_976=x_976 and x_978=x_978 and x_2626=x_2626 and x_2628=x_2628 and x_976>=1 and x_2650=1 and x_2628= - 1+x_978 and x_2684=1 and x_2626= - 1+x_976 and x_2712=0)and x_260=x_260 and x_262=x_262 and x_976=x_976 and x_978=x_978 and x_2626=x_2626 and x_2628=x_2628 and x_15744=x_15744 and x_15746=x_15746 and x_2626=< - 1 and x_15772=1 and x_15746= - 1+x_2628 and x_15806=1 and x_15744= - 1+x_2626 and x_15834=0Stampo Rawbody
+new4(_260,_262,_2626,_2628),constr((_43582=0&(_43594=0&_2626=0)))
+✅ Inserita in rewrite: _260:int
+✅ Inserita in rewrite: _262:int
+✅ Inserita in rewrite: _976:int
+✅ Inserita in rewrite: _978:int
+✅ Inserita in rewrite: _2626:int
+✅ Inserita in rewrite: _2628:int
+Stampo Body prima di zmi
+constr((_260:int=_260:int,_262:int=_262:int,_976:int=_976:int,_978:int=_978:int,_2626:int=_2626:int,_2628:int=_2628:int,_43582=0 and _43594=0 and _2626=0)),new4(_260,_262,_2626,_2628)
+Entrato in constr c
+Stampo flatList
+[_260:int=_260:int,_262:int=_262:int,_976:int=_976:int,_978:int=_978:int,_2626:int=_2626:int,_2628:int=_2628:int,(((((((true,true),true),true),_260=_260,_262=_262,_976=_976,_978=_978,_260>=1,_1000=1,_978= - 1+_262,_1034=1,_976= - 1+_260,_1062=0),true),_260=_260,_262=_262,_976=_976,_978=_978,_2626=_2626,_2628=_2628,_976>=1,_2650=1,_2628= - 1+_978,_2684=1,_2626= - 1+_976,_2712=0),true),_260=_260,_262=_262,_976=_976,_978=_978,_2626=_2626,_2628=_2628,_43582=0,_43594=0,_2626=0]
+
+Stampa prima di inviare
+x_260:int=x_260:int and x_262:int=x_262:int and x_976:int=x_976:int and x_978:int=x_978:int and x_2626:int=x_2626:int and x_2628:int=x_2628:int and ((true and x_260=x_260 and x_262=x_262 and x_976=x_976 and x_978=x_978 and x_260>=1 and x_1000=1 and x_978= - 1+x_262 and x_1034=1 and x_976= - 1+x_260 and x_1062=0)and x_260=x_260 and x_262=x_262 and x_976=x_976 and x_978=x_978 and x_2626=x_2626 and x_2628=x_2628 and x_976>=1 and x_2650=1 and x_2628= - 1+x_978 and x_2684=1 and x_2626= - 1+x_976 and x_2712=0)and x_260=x_260 and x_262=x_262 and x_976=x_976 and x_978=x_978 and x_2626=x_2626 and x_2628=x_2628 and x_43582=0 and x_43594=0 and x_2626=0Mi trovo in questa head
+new4(_260,_262,_2626,_2628)
+Stampo Rawbody
+new5(_260,_260,_2626,_2628),constr(true)
+Stampo Body prima di zmi
+constr(true),new5(_260,_260,_2626,_2628)
+Entrato in constr c
+Stampo flatList
+[_260:int=_260:int,_976:int=_976:int,_978:int=_978:int,_2626:int=_2626:int,_2628:int=_2628:int,((((((((true,true),true),true),_260=_260,_260=_260,_976=_976,_978=_978,_260>=1,_1000=1,_978= - 1+_260,_1034=1,_976= - 1+_260,_1062=0),true),_260=_260,_260=_260,_976=_976,_978=_978,_2626=_2626,_2628=_2628,_976>=1,_2650=1,_2628= - 1+_978,_2684=1,_2626= - 1+_976,_2712=0),true),_260=_260,_260=_260,_976=_976,_978=_978,_2626=_2626,_2628=_2628,_4764=0,_4776=0,_2626=0)]
+
+Stampa prima di inviare
+x_260:int=x_260:int and x_976:int=x_976:int and x_978:int=x_978:int and x_2626:int=x_2626:int and x_2628:int=x_2628:int and ((true and x_260=x_260 and x_260=x_260 and x_976=x_976 and x_978=x_978 and x_260>=1 and x_1000=1 and x_978= - 1+x_260 and x_1034=1 and x_976= - 1+x_260 and x_1062=0)and x_260=x_260 and x_260=x_260 and x_976=x_976 and x_978=x_978 and x_2626=x_2626 and x_2628=x_2628 and x_976>=1 and x_2650=1 and x_2628= - 1+x_978 and x_2684=1 and x_2626= - 1+x_976 and x_2712=0)and x_260=x_260 and x_260=x_260 and x_976=x_976 and x_978=x_978 and x_2626=x_2626 and x_2628=x_2628 and x_4764=0 and x_4776=0 and x_2626=0Mi trovo in questa head
+new5(_260,_260,_2626,_2628)
+Stampo Rawbody
+constr((_2628>=1&_29138=0))
+✅ Inserita in rewrite: _260:int
+✅ Inserita in rewrite: _976:int
+✅ Inserita in rewrite: _978:int
+✅ Inserita in rewrite: _2626:int
+✅ Inserita in rewrite: _2628:int
+Stampo Body prima di zmi
+constr((_260:int=_260:int,_976:int=_976:int,_978:int=_978:int,_2626:int=_2626:int,_2628:int=_2628:int,_2628>=1 and _29138=0))
+Limite MaxDepth raggiunto
+Entrato in constr c
+Stampo flatList
+[_260:int=_260:int,_976:int=_976:int,_978:int=_978:int,_2626:int=_2626:int,_2628:int=_2628:int,(((((((((true,true),true),true),_260=_260,_260=_260,_976=_976,_978=_978,_260>=1,_1000=1,_978= - 1+_260,_1034=1,_976= - 1+_260,_1062=0),true),_260=_260,_260=_260,_976=_976,_978=_978,_2626=_2626,_2628=_2628,_976>=1,_2650=1,_2628= - 1+_978,_2684=1,_2626= - 1+_976,_2712=0),true),_260=_260,_260=_260,_976=_976,_978=_978,_2626=_2626,_2628=_2628,_4764=0,_4776=0,_2626=0),true),_260=_260,_976=_976,_978=_978,_2626=_2626,_2628=_2628,_2628>=1,_29138=0]
+
+Stampa prima di inviare
+x_260:int=x_260:int and x_976:int=x_976:int and x_978:int=x_978:int and x_2626:int=x_2626:int and x_2628:int=x_2628:int and (((true and x_260=x_260 and x_260=x_260 and x_976=x_976 and x_978=x_978 and x_260>=1 and x_1000=1 and x_978= - 1+x_260 and x_1034=1 and x_976= - 1+x_260 and x_1062=0)and x_260=x_260 and x_260=x_260 and x_976=x_976 and x_978=x_978 and x_2626=x_2626 and x_2628=x_2628 and x_976>=1 and x_2650=1 and x_2628= - 1+x_978 and x_2684=1 and x_2626= - 1+x_976 and x_2712=0)and x_260=x_260 and x_260=x_260 and x_976=x_976 and x_978=x_978 and x_2626=x_2626 and x_2628=x_2628 and x_4764=0 and x_4776=0 and x_2626=0)and x_260=x_260 and x_976=x_976 and x_978=x_978 and x_2626=x_2626 and x_2628=x_2628 and x_2628>=1 and x_29138=0Stampo Rawbody
+constr((_2628=< - 1&_52472=0))
+✅ Inserita in rewrite: _260:int
+✅ Inserita in rewrite: _976:int
+✅ Inserita in rewrite: _978:int
+✅ Inserita in rewrite: _2626:int
+✅ Inserita in rewrite: _2628:int
+Stampo Body prima di zmi
+constr((_260:int=_260:int,_976:int=_976:int,_978:int=_978:int,_2626:int=_2626:int,_2628:int=_2628:int,_2628=< - 1 and _52472=0))
+Limite MaxDepth raggiunto
+Entrato in constr c
+Stampo flatList
+[_260:int=_260:int,_976:int=_976:int,_978:int=_978:int,_2626:int=_2626:int,_2628:int=_2628:int,(((((((((true,true),true),true),_260=_260,_260=_260,_976=_976,_978=_978,_260>=1,_1000=1,_978= - 1+_260,_1034=1,_976= - 1+_260,_1062=0),true),_260=_260,_260=_260,_976=_976,_978=_978,_2626=_2626,_2628=_2628,_976>=1,_2650=1,_2628= - 1+_978,_2684=1,_2626= - 1+_976,_2712=0),true),_260=_260,_260=_260,_976=_976,_978=_978,_2626=_2626,_2628=_2628,_4764=0,_4776=0,_2626=0),true),_260=_260,_976=_976,_978=_978,_2626=_2626,_2628=_2628,_2628=< - 1,_52472=0]
+
+Stampa prima di inviare
+x_260:int=x_260:int and x_976:int=x_976:int and x_978:int=x_978:int and x_2626:int=x_2626:int and x_2628:int=x_2628:int and (((true and x_260=x_260 and x_260=x_260 and x_976=x_976 and x_978=x_978 and x_260>=1 and x_1000=1 and x_978= - 1+x_260 and x_1034=1 and x_976= - 1+x_260 and x_1062=0)and x_260=x_260 and x_260=x_260 and x_976=x_976 and x_978=x_978 and x_2626=x_2626 and x_2628=x_2628 and x_976>=1 and x_2650=1 and x_2628= - 1+x_978 and x_2684=1 and x_2626= - 1+x_976 and x_2712=0)and x_260=x_260 and x_260=x_260 and x_976=x_976 and x_978=x_978 and x_2626=x_2626 and x_2628=x_2628 and x_4764=0 and x_4776=0 and x_2626=0)and x_260=x_260 and x_976=x_976 and x_978=x_978 and x_2626=x_2626 and x_2628=x_2628 and x_2628=< - 1 and x_52472=0Stampo Rawbody
+new2(_260,_262,_19016,_19018),constr((_976=< - 1&(_19044=1&(_19018= - 1+_978&(_19078=1&(_19016= - 1+_976&_19106=0))))))
+⚠️ Formula non normalizzata: - 1+_978
+⚠️ Formula non normalizzata: - 1+_976
+✅ Inserita in rewrite: _260:int
+✅ Inserita in rewrite: _262:int
+✅ Inserita in rewrite: _976:int
+✅ Inserita in rewrite: _978:int
+✅ Inserita in rewrite: _19016:int
+✅ Inserita in rewrite: _19018:int
+Stampo Body prima di zmi
+constr((_260:int=_260:int,_262:int=_262:int,_976:int=_976:int,_978:int=_978:int,_19016:int=_19016:int,_19018:int=_19018:int,_976=< - 1 and _19044=1 and _19018= - 1+_978 and _19078=1 and _19016= - 1+_976 and _19106=0)),new2(_260,_262,_19016,_19018)
+Entrato in constr c
+⚠️ Formula non normalizzata: - 1+_978
+⚠️ Formula non normalizzata: - 1+_976
+Stampo flatList
+[_260:int=_260:int,_262:int=_262:int,_976:int=_976:int,_978:int=_978:int,_19016:int=_19016:int,_19018:int=_19018:int,(((((true,true),true),true),_260=_260,_262=_262,_976=_976,_978=_978,_260>=1,_1000=1,_978= - 1+_262,_1034=1,_976= - 1+_260,_1062=0),true),_260=_260,_262=_262,_976=_976,_978=_978,_19016=_19016,_19018=_19018,_976=< - 1,_19044=1,_19018= - 1+_978,_19078=1,_19016= - 1+_976,_19106=0]
+
+Stampa prima di inviare
+x_260:int=x_260:int and x_262:int=x_262:int and x_976:int=x_976:int and x_978:int=x_978:int and x_19016:int=x_19016:int and x_19018:int=x_19018:int and (true and x_260=x_260 and x_262=x_262 and x_976=x_976 and x_978=x_978 and x_260>=1 and x_1000=1 and x_978= - 1+x_262 and x_1034=1 and x_976= - 1+x_260 and x_1062=0)and x_260=x_260 and x_262=x_262 and x_976=x_976 and x_978=x_978 and x_19016=x_19016 and x_19018=x_19018 and x_976=< - 1 and x_19044=1 and x_19018= - 1+x_978 and x_19078=1 and x_19016= - 1+x_976 and x_19106=0Stampo Rawbody
+new4(_260,_262,_976,_978),constr((_38070=0&(_38082=0&_976=0)))
+✅ Inserita in rewrite: _260:int
+✅ Inserita in rewrite: _262:int
+✅ Inserita in rewrite: _976:int
+✅ Inserita in rewrite: _978:int
+Stampo Body prima di zmi
+constr((_260:int=_260:int,_262:int=_262:int,_976:int=_976:int,_978:int=_978:int,_38070=0 and _38082=0 and _976=0)),new4(_260,_262,_976,_978)
+Entrato in constr c
+Stampo flatList
+[_260:int=_260:int,_262:int=_262:int,_976:int=_976:int,_978:int=_978:int,(((((true,true),true),true),_260=_260,_262=_262,_976=_976,_978=_978,_260>=1,_1000=1,_978= - 1+_262,_1034=1,_976= - 1+_260,_1062=0),true),_260=_260,_262=_262,_976=_976,_978=_978,_38070=0,_38082=0,_976=0]
+
+Stampa prima di inviare
+x_260:int=x_260:int and x_262:int=x_262:int and x_976:int=x_976:int and x_978:int=x_978:int and (true and x_260=x_260 and x_262=x_262 and x_976=x_976 and x_978=x_978 and x_260>=1 and x_1000=1 and x_978= - 1+x_262 and x_1034=1 and x_976= - 1+x_260 and x_1062=0)and x_260=x_260 and x_262=x_262 and x_976=x_976 and x_978=x_978 and x_38070=0 and x_38082=0 and x_976=0Mi trovo in questa head
+new4(_260,_262,_976,_978)
+Stampo Rawbody
+new5(_260,_260,_976,_978),constr(true)
+Stampo Body prima di zmi
+constr(true),new5(_260,_260,_976,_978)
+Entrato in constr c
+Stampo flatList
+[_260:int=_260:int,_976:int=_976:int,_978:int=_978:int,((((((true,true),true),true),_260=_260,_260=_260,_976=_976,_978=_978,_260>=1,_1000=1,_978= - 1+_260,_1034=1,_976= - 1+_260,_1062=0),true),_260=_260,_260=_260,_976=_976,_978=_978,_38070=0,_38082=0,_976=0)]
+
+Stampa prima di inviare
+x_260:int=x_260:int and x_976:int=x_976:int and x_978:int=x_978:int and (true and x_260=x_260 and x_260=x_260 and x_976=x_976 and x_978=x_978 and x_260>=1 and x_1000=1 and x_978= - 1+x_260 and x_1034=1 and x_976= - 1+x_260 and x_1062=0)and x_260=x_260 and x_260=x_260 and x_976=x_976 and x_978=x_978 and x_38070=0 and x_38082=0 and x_976=0Mi trovo in questa head
+new5(_260,_260,_976,_978)
+Stampo Rawbody
+constr((_978>=1&_63838=0))
+✅ Inserita in rewrite: _260:int
+✅ Inserita in rewrite: _976:int
+✅ Inserita in rewrite: _978:int
+Stampo Body prima di zmi
+constr((_260:int=_260:int,_976:int=_976:int,_978:int=_978:int,_978>=1 and _63838=0))
+Entrato in constr c
+Stampo flatList
+[_260:int=_260:int,_976:int=_976:int,_978:int=_978:int,(((((((true,true),true),true),_260=_260,_260=_260,_976=_976,_978=_978,_260>=1,_1000=1,_978= - 1+_260,_1034=1,_976= - 1+_260,_1062=0),true),_260=_260,_260=_260,_976=_976,_978=_978,_38070=0,_38082=0,_976=0),true),_260=_260,_976=_976,_978=_978,_978>=1,_63838=0]
+
+Stampa prima di inviare
+x_260:int=x_260:int and x_976:int=x_976:int and x_978:int=x_978:int and ((true and x_260=x_260 and x_260=x_260 and x_976=x_976 and x_978=x_978 and x_260>=1 and x_1000=1 and x_978= - 1+x_260 and x_1034=1 and x_976= - 1+x_260 and x_1062=0)and x_260=x_260 and x_260=x_260 and x_976=x_976 and x_978=x_978 and x_38070=0 and x_38082=0 and x_976=0)and x_260=x_260 and x_976=x_976 and x_978=x_978 and x_978>=1 and x_63838=0Stampo Rawbody
+constr((_978=< - 1&_16832=0))
+✅ Inserita in rewrite: _260:int
+✅ Inserita in rewrite: _976:int
+✅ Inserita in rewrite: _978:int
+Stampo Body prima di zmi
+constr((_260:int=_260:int,_976:int=_976:int,_978:int=_978:int,_978=< - 1 and _16832=0))
+Entrato in constr c
+Stampo flatList
+[_260:int=_260:int,_976:int=_976:int,_978:int=_978:int,(((((((true,true),true),true),_260=_260,_260=_260,_976=_976,_978=_978,_260>=1,_1000=1,_978= - 1+_260,_1034=1,_976= - 1+_260,_1062=0),true),_260=_260,_260=_260,_976=_976,_978=_978,_2636=0,_2648=0,_976=0),true),_260=_260,_976=_976,_978=_978,_978=< - 1,_16832=0]
+
+Stampa prima di inviare
+x_260:int=x_260:int and x_976:int=x_976:int and x_978:int=x_978:int and ((true and x_260=x_260 and x_260=x_260 and x_976=x_976 and x_978=x_978 and x_260>=1 and x_1000=1 and x_978= - 1+x_260 and x_1034=1 and x_976= - 1+x_260 and x_1062=0)and x_260=x_260 and x_260=x_260 and x_976=x_976 and x_978=x_978 and x_2636=0 and x_2648=0 and x_976=0)and x_260=x_260 and x_976=x_976 and x_978=x_978 and x_978=< - 1 and x_16832=0Stampo Rawbody
+new2(_260,_262,_30674,_30676),constr((_260=< - 1&(_30702=1&(_30676= - 1+_262&(_30736=1&(_30674= - 1+_260&_30764=0))))))
+⚠️ Formula non normalizzata: - 1+_262
+⚠️ Formula non normalizzata: - 1+_260
+✅ Inserita in rewrite: _260:int
+✅ Inserita in rewrite: _262:int
+✅ Inserita in rewrite: _30674:int
+✅ Inserita in rewrite: _30676:int
+Stampo Body prima di zmi
+constr((_260:int=_260:int,_262:int=_262:int,_30674:int=_30674:int,_30676:int=_30676:int,_260=< - 1 and _30702=1 and _30676= - 1+_262 and _30736=1 and _30674= - 1+_260 and _30764=0)),new2(_260,_262,_30674,_30676)
+Entrato in constr c
+⚠️ Formula non normalizzata: - 1+_262
+⚠️ Formula non normalizzata: - 1+_260
+Stampo flatList
+[_260:int=_260:int,_262:int=_262:int,_30674:int=_30674:int,_30676:int=_30676:int,(((true,true),true),true),_260=_260,_262=_262,_30674=_30674,_30676=_30676,_260=< - 1,_30702=1,_30676= - 1+_262,_30736=1,_30674= - 1+_260,_30764=0]
+
+Stampa prima di inviare
+x_260:int=x_260:int and x_262:int=x_262:int and x_30674:int=x_30674:int and x_30676:int=x_30676:int and true and x_260=x_260 and x_262=x_262 and x_30674=x_30674 and x_30676=x_30676 and x_260=< - 1 and x_30702=1 and x_30676= - 1+x_262 and x_30736=1 and x_30674= - 1+x_260 and x_30764=0Mi trovo in questa head
+new2(_260,_262,_30674,_30676)
+Stampo Rawbody
+new3(_260,_262,_30674,_30676),constr(true)
+Stampo Body prima di zmi
+constr(true),new3(_260,_262,_30674,_30676)
+Entrato in constr c
+Stampo flatList
+[_260:int=_260:int,_262:int=_262:int,_30674:int=_30674:int,_30676:int=_30676:int,((((true,true),true),true),_260=_260,_262=_262,_30674=_30674,_30676=_30676,_260=< - 1,_30702=1,_30676= - 1+_262,_30736=1,_30674= - 1+_260,_30764=0)]
+
+Stampa prima di inviare
+x_260:int=x_260:int and x_262:int=x_262:int and x_30674:int=x_30674:int and x_30676:int=x_30676:int and true and x_260=x_260 and x_262=x_262 and x_30674=x_30674 and x_30676=x_30676 and x_260=< - 1 and x_30702=1 and x_30676= - 1+x_262 and x_30736=1 and x_30674= - 1+x_260 and x_30764=0Mi trovo in questa head
+new3(_260,_262,_30674,_30676)
+Stampo Rawbody
+new2(_260,_262,_51434,_51436),constr((_30674>=1&(_51458=1&(_51436= - 1+_30676&(_51492=1&(_51434= - 1+_30674&_51520=0))))))
+⚠️ Formula non normalizzata: - 1+_30676
+⚠️ Formula non normalizzata: - 1+_30674
+✅ Inserita in rewrite: _260:int
+✅ Inserita in rewrite: _262:int
+✅ Inserita in rewrite: _30674:int
+✅ Inserita in rewrite: _30676:int
+✅ Inserita in rewrite: _51434:int
+✅ Inserita in rewrite: _51436:int
+Stampo Body prima di zmi
+constr((_260:int=_260:int,_262:int=_262:int,_30674:int=_30674:int,_30676:int=_30676:int,_51434:int=_51434:int,_51436:int=_51436:int,_30674>=1 and _51458=1 and _51436= - 1+_30676 and _51492=1 and _51434= - 1+_30674 and _51520=0)),new2(_260,_262,_51434,_51436)
+Entrato in constr c
+⚠️ Formula non normalizzata: - 1+_30676
+⚠️ Formula non normalizzata: - 1+_30674
+Stampo flatList
+[_260:int=_260:int,_262:int=_262:int,_30674:int=_30674:int,_30676:int=_30676:int,_51434:int=_51434:int,_51436:int=_51436:int,(((((true,true),true),true),_260=_260,_262=_262,_30674=_30674,_30676=_30676,_260=< - 1,_30702=1,_30676= - 1+_262,_30736=1,_30674= - 1+_260,_30764=0),true),_260=_260,_262=_262,_30674=_30674,_30676=_30676,_51434=_51434,_51436=_51436,_30674>=1,_51458=1,_51436= - 1+_30676,_51492=1,_51434= - 1+_30674,_51520=0]
+
+Stampa prima di inviare
+x_260:int=x_260:int and x_262:int=x_262:int and x_30674:int=x_30674:int and x_30676:int=x_30676:int and x_51434:int=x_51434:int and x_51436:int=x_51436:int and (true and x_260=x_260 and x_262=x_262 and x_30674=x_30674 and x_30676=x_30676 and x_260=< - 1 and x_30702=1 and x_30676= - 1+x_262 and x_30736=1 and x_30674= - 1+x_260 and x_30764=0)and x_260=x_260 and x_262=x_262 and x_30674=x_30674 and x_30676=x_30676 and x_51434=x_51434 and x_51436=x_51436 and x_30674>=1 and x_51458=1 and x_51436= - 1+x_30676 and x_51492=1 and x_51434= - 1+x_30674 and x_51520=0Stampo Rawbody
+new2(_260,_262,_9610,_9612),constr((_978=< - 1&(_9638=1&(_9612= - 1+_980&(_9672=1&(_9610= - 1+_978&_9700=0))))))
+⚠️ Formula non normalizzata: - 1+_980
+⚠️ Formula non normalizzata: - 1+_978
+✅ Inserita in rewrite: _260:int
+✅ Inserita in rewrite: _262:int
+✅ Inserita in rewrite: _978:int
+✅ Inserita in rewrite: _980:int
+✅ Inserita in rewrite: _9610:int
+✅ Inserita in rewrite: _9612:int
+Stampo Body prima di zmi
+constr((_260:int=_260:int,_262:int=_262:int,_978:int=_978:int,_980:int=_980:int,_9610:int=_9610:int,_9612:int=_9612:int,_978=< - 1 and _9638=1 and _9612= - 1+_980 and _9672=1 and _9610= - 1+_978 and _9700=0)),new2(_260,_262,_9610,_9612)
+Entrato in constr c
+⚠️ Formula non normalizzata: - 1+_980
+⚠️ Formula non normalizzata: - 1+_978
+Stampo flatList
+[_260:int=_260:int,_262:int=_262:int,_978:int=_978:int,_980:int=_980:int,_9610:int=_9610:int,_9612:int=_9612:int,(((((true,true),true),true),_260=_260,_262=_262,_978=_978,_980=_980,_260=< - 1,_1006=1,_980= - 1+_262,_1040=1,_978= - 1+_260,_1068=0),true),_260=_260,_262=_262,_978=_978,_980=_980,_9610=_9610,_9612=_9612,_978=< - 1,_9638=1,_9612= - 1+_980,_9672=1,_9610= - 1+_978,_9700=0]
+
+Stampa prima di inviare
+x_260:int=x_260:int and x_262:int=x_262:int and x_978:int=x_978:int and x_980:int=x_980:int and x_9610:int=x_9610:int and x_9612:int=x_9612:int and (true and x_260=x_260 and x_262=x_262 and x_978=x_978 and x_980=x_980 and x_260=< - 1 and x_1006=1 and x_980= - 1+x_262 and x_1040=1 and x_978= - 1+x_260 and x_1068=0)and x_260=x_260 and x_262=x_262 and x_978=x_978 and x_980=x_980 and x_9610=x_9610 and x_9612=x_9612 and x_978=< - 1 and x_9638=1 and x_9612= - 1+x_980 and x_9672=1 and x_9610= - 1+x_978 and x_9700=0Mi trovo in questa head
+new2(_260,_262,_9610,_9612)
+Stampo Rawbody
+new3(_260,_262,_9610,_9612),constr(true)
+Stampo Body prima di zmi
+constr(true),new3(_260,_262,_9610,_9612)
+Entrato in constr c
+Stampo flatList
+[_260:int=_260:int,_262:int=_262:int,_978:int=_978:int,_980:int=_980:int,_9610:int=_9610:int,_9612:int=_9612:int,((((((true,true),true),true),_260=_260,_262=_262,_978=_978,_980=_980,_260=< - 1,_1006=1,_980= - 1+_262,_1040=1,_978= - 1+_260,_1068=0),true),_260=_260,_262=_262,_978=_978,_980=_980,_9610=_9610,_9612=_9612,_978=< - 1,_9638=1,_9612= - 1+_980,_9672=1,_9610= - 1+_978,_9700=0)]
+
+Stampa prima di inviare
+x_260:int=x_260:int and x_262:int=x_262:int and x_978:int=x_978:int and x_980:int=x_980:int and x_9610:int=x_9610:int and x_9612:int=x_9612:int and (true and x_260=x_260 and x_262=x_262 and x_978=x_978 and x_980=x_980 and x_260=< - 1 and x_1006=1 and x_980= - 1+x_262 and x_1040=1 and x_978= - 1+x_260 and x_1068=0)and x_260=x_260 and x_262=x_262 and x_978=x_978 and x_980=x_980 and x_9610=x_9610 and x_9612=x_9612 and x_978=< - 1 and x_9638=1 and x_9612= - 1+x_980 and x_9672=1 and x_9610= - 1+x_978 and x_9700=0Mi trovo in questa head
+new3(_260,_262,_9610,_9612)
+Stampo Rawbody
+new2(_260,_262,_47582,_47584),constr((_9610>=1&(_47606=1&(_47584= - 1+_9612&(_47640=1&(_47582= - 1+_9610&_47668=0))))))
+⚠️ Formula non normalizzata: - 1+_9612
+⚠️ Formula non normalizzata: - 1+_9610
+✅ Inserita in rewrite: _260:int
+✅ Inserita in rewrite: _262:int
+✅ Inserita in rewrite: _978:int
+✅ Inserita in rewrite: _980:int
+✅ Inserita in rewrite: _9610:int
+✅ Inserita in rewrite: _9612:int
+✅ Inserita in rewrite: _47582:int
+✅ Inserita in rewrite: _47584:int
+Stampo Body prima di zmi
+constr((_260:int=_260:int,_262:int=_262:int,_978:int=_978:int,_980:int=_980:int,_9610:int=_9610:int,_9612:int=_9612:int,_47582:int=_47582:int,_47584:int=_47584:int,_9610>=1 and _47606=1 and _47584= - 1+_9612 and _47640=1 and _47582= - 1+_9610 and _47668=0)),new2(_260,_262,_47582,_47584)
+Entrato in constr c
+⚠️ Formula non normalizzata: - 1+_9612
+⚠️ Formula non normalizzata: - 1+_9610
+Stampo flatList
+[_260:int=_260:int,_262:int=_262:int,_978:int=_978:int,_980:int=_980:int,_9610:int=_9610:int,_9612:int=_9612:int,_47582:int=_47582:int,_47584:int=_47584:int,(((((((true,true),true),true),_260=_260,_262=_262,_978=_978,_980=_980,_260=< - 1,_1006=1,_980= - 1+_262,_1040=1,_978= - 1+_260,_1068=0),true),_260=_260,_262=_262,_978=_978,_980=_980,_9610=_9610,_9612=_9612,_978=< - 1,_9638=1,_9612= - 1+_980,_9672=1,_9610= - 1+_978,_9700=0),true),_260=_260,_262=_262,_978=_978,_980=_980,_9610=_9610,_9612=_9612,_47582=_47582,_47584=_47584,_9610>=1,_47606=1,_47584= - 1+_9612,_47640=1,_47582= - 1+_9610,_47668=0]
+
+Stampa prima di inviare
+x_260:int=x_260:int and x_262:int=x_262:int and x_978:int=x_978:int and x_980:int=x_980:int and x_9610:int=x_9610:int and x_9612:int=x_9612:int and x_47582:int=x_47582:int and x_47584:int=x_47584:int and ((true and x_260=x_260 and x_262=x_262 and x_978=x_978 and x_980=x_980 and x_260=< - 1 and x_1006=1 and x_980= - 1+x_262 and x_1040=1 and x_978= - 1+x_260 and x_1068=0)and x_260=x_260 and x_262=x_262 and x_978=x_978 and x_980=x_980 and x_9610=x_9610 and x_9612=x_9612 and x_978=< - 1 and x_9638=1 and x_9612= - 1+x_980 and x_9672=1 and x_9610= - 1+x_978 and x_9700=0)and x_260=x_260 and x_262=x_262 and x_978=x_978 and x_980=x_980 and x_9610=x_9610 and x_9612=x_9612 and x_47582=x_47582 and x_47584=x_47584 and x_9610>=1 and x_47606=1 and x_47584= - 1+x_9612 and x_47640=1 and x_47582= - 1+x_9610 and x_47668=0Stampo Rawbody
+new2(_260,_262,_17186,_17188),constr((_2630=< - 1&(_17214=1&(_17188= - 1+_2632&(_17248=1&(_17186= - 1+_2630&_17276=0))))))
+⚠️ Formula non normalizzata: - 1+_2632
+⚠️ Formula non normalizzata: - 1+_2630
+✅ Inserita in rewrite: _260:int
+✅ Inserita in rewrite: _262:int
+✅ Inserita in rewrite: _978:int
+✅ Inserita in rewrite: _980:int
+✅ Inserita in rewrite: _2630:int
+✅ Inserita in rewrite: _2632:int
+✅ Inserita in rewrite: _17186:int
+✅ Inserita in rewrite: _17188:int
+Stampo Body prima di zmi
+constr((_260:int=_260:int,_262:int=_262:int,_978:int=_978:int,_980:int=_980:int,_2630:int=_2630:int,_2632:int=_2632:int,_17186:int=_17186:int,_17188:int=_17188:int,_2630=< - 1 and _17214=1 and _17188= - 1+_2632 and _17248=1 and _17186= - 1+_2630 and _17276=0)),new2(_260,_262,_17186,_17188)
+Entrato in constr c
+⚠️ Formula non normalizzata: - 1+_2632
+⚠️ Formula non normalizzata: - 1+_2630
+Stampo flatList
+[_260:int=_260:int,_262:int=_262:int,_978:int=_978:int,_980:int=_980:int,_2630:int=_2630:int,_2632:int=_2632:int,_17186:int=_17186:int,_17188:int=_17188:int,(((((((true,true),true),true),_260=_260,_262=_262,_978=_978,_980=_980,_260=< - 1,_1006=1,_980= - 1+_262,_1040=1,_978= - 1+_260,_1068=0),true),_260=_260,_262=_262,_978=_978,_980=_980,_2630=_2630,_2632=_2632,_978=< - 1,_2658=1,_2632= - 1+_980,_2692=1,_2630= - 1+_978,_2720=0),true),_260=_260,_262=_262,_978=_978,_980=_980,_2630=_2630,_2632=_2632,_17186=_17186,_17188=_17188,_2630=< - 1,_17214=1,_17188= - 1+_2632,_17248=1,_17186= - 1+_2630,_17276=0]
+
+Stampa prima di inviare
+x_260:int=x_260:int and x_262:int=x_262:int and x_978:int=x_978:int and x_980:int=x_980:int and x_2630:int=x_2630:int and x_2632:int=x_2632:int and x_17186:int=x_17186:int and x_17188:int=x_17188:int and ((true and x_260=x_260 and x_262=x_262 and x_978=x_978 and x_980=x_980 and x_260=< - 1 and x_1006=1 and x_980= - 1+x_262 and x_1040=1 and x_978= - 1+x_260 and x_1068=0)and x_260=x_260 and x_262=x_262 and x_978=x_978 and x_980=x_980 and x_2630=x_2630 and x_2632=x_2632 and x_978=< - 1 and x_2658=1 and x_2632= - 1+x_980 and x_2692=1 and x_2630= - 1+x_978 and x_2720=0)and x_260=x_260 and x_262=x_262 and x_978=x_978 and x_980=x_980 and x_2630=x_2630 and x_2632=x_2632 and x_17186=x_17186 and x_17188=x_17188 and x_2630=< - 1 and x_17214=1 and x_17188= - 1+x_2632 and x_17248=1 and x_17186= - 1+x_2630 and x_17276=0Mi trovo in questa head
+new2(_260,_262,_17186,_17188)
+Stampo Rawbody
+new3(_260,_262,_17186,_17188),constr(true)
+Stampo Body prima di zmi
+constr(true),new3(_260,_262,_17186,_17188)
+Entrato in constr c
+Stampo flatList
+[_260:int=_260:int,_262:int=_262:int,_978:int=_978:int,_980:int=_980:int,_2630:int=_2630:int,_2632:int=_2632:int,_17186:int=_17186:int,_17188:int=_17188:int,((((((((true,true),true),true),_260=_260,_262=_262,_978=_978,_980=_980,_260=< - 1,_1006=1,_980= - 1+_262,_1040=1,_978= - 1+_260,_1068=0),true),_260=_260,_262=_262,_978=_978,_980=_980,_2630=_2630,_2632=_2632,_978=< - 1,_2658=1,_2632= - 1+_980,_2692=1,_2630= - 1+_978,_2720=0),true),_260=_260,_262=_262,_978=_978,_980=_980,_2630=_2630,_2632=_2632,_17186=_17186,_17188=_17188,_2630=< - 1,_17214=1,_17188= - 1+_2632,_17248=1,_17186= - 1+_2630,_17276=0)]
+
+Stampa prima di inviare
+x_260:int=x_260:int and x_262:int=x_262:int and x_978:int=x_978:int and x_980:int=x_980:int and x_2630:int=x_2630:int and x_2632:int=x_2632:int and x_17186:int=x_17186:int and x_17188:int=x_17188:int and ((true and x_260=x_260 and x_262=x_262 and x_978=x_978 and x_980=x_980 and x_260=< - 1 and x_1006=1 and x_980= - 1+x_262 and x_1040=1 and x_978= - 1+x_260 and x_1068=0)and x_260=x_260 and x_262=x_262 and x_978=x_978 and x_980=x_980 and x_2630=x_2630 and x_2632=x_2632 and x_978=< - 1 and x_2658=1 and x_2632= - 1+x_980 and x_2692=1 and x_2630= - 1+x_978 and x_2720=0)and x_260=x_260 and x_262=x_262 and x_978=x_978 and x_980=x_980 and x_2630=x_2630 and x_2632=x_2632 and x_17186=x_17186 and x_17188=x_17188 and x_2630=< - 1 and x_17214=1 and x_17188= - 1+x_2632 and x_17248=1 and x_17186= - 1+x_2630 and x_17276=0Mi trovo in questa head
+new3(_260,_262,_4762,_4764)
+Stampo Rawbody
+new2(_260,_262,_18216,_18218),constr((_4762>=1&(_18240=1&(_18218= - 1+_4764&(_18274=1&(_18216= - 1+_4762&_18302=0))))))
+⚠️ Formula non normalizzata: - 1+_4764
+⚠️ Formula non normalizzata: - 1+_4762
+✅ Inserita in rewrite: _260:int
+✅ Inserita in rewrite: _262:int
+✅ Inserita in rewrite: _978:int
+✅ Inserita in rewrite: _980:int
+✅ Inserita in rewrite: _2630:int
+✅ Inserita in rewrite: _2632:int
+✅ Inserita in rewrite: _4762:int
+✅ Inserita in rewrite: _4764:int
+✅ Inserita in rewrite: _18216:int
+✅ Inserita in rewrite: _18218:int
+Stampo Body prima di zmi
+constr((_260:int=_260:int,_262:int=_262:int,_978:int=_978:int,_980:int=_980:int,_2630:int=_2630:int,_2632:int=_2632:int,_4762:int=_4762:int,_4764:int=_4764:int,_18216:int=_18216:int,_18218:int=_18218:int,_4762>=1 and _18240=1 and _18218= - 1+_4764 and _18274=1 and _18216= - 1+_4762 and _18302=0)),new2(_260,_262,_18216,_18218)
+Limite MaxDepth raggiunto
+Limite MaxDepth raggiunto
+Entrato in constr c
+⚠️ Formula non normalizzata: - 1+_4764
+⚠️ Formula non normalizzata: - 1+_4762
+Stampo flatList
+[_260:int=_260:int,_262:int=_262:int,_978:int=_978:int,_980:int=_980:int,_2630:int=_2630:int,_2632:int=_2632:int,_4762:int=_4762:int,_4764:int=_4764:int,_18216:int=_18216:int,_18218:int=_18218:int,(((((((((true,true),true),true),_260=_260,_262=_262,_978=_978,_980=_980,_260=< - 1,_1006=1,_980= - 1+_262,_1040=1,_978= - 1+_260,_1068=0),true),_260=_260,_262=_262,_978=_978,_980=_980,_2630=_2630,_2632=_2632,_978=< - 1,_2658=1,_2632= - 1+_980,_2692=1,_2630= - 1+_978,_2720=0),true),_260=_260,_262=_262,_978=_978,_980=_980,_2630=_2630,_2632=_2632,_4762=_4762,_4764=_4764,_2630=< - 1,_4790=1,_4764= - 1+_2632,_4824=1,_4762= - 1+_2630,_4852=0),true),_260=_260,_262=_262,_978=_978,_980=_980,_2630=_2630,_2632=_2632,_4762=_4762,_4764=_4764,_18216=_18216,_18218=_18218,_4762>=1,_18240=1,_18218= - 1+_4764,_18274=1,_18216= - 1+_4762,_18302=0]
+
+Stampa prima di inviare
+x_260:int=x_260:int and x_262:int=x_262:int and x_978:int=x_978:int and x_980:int=x_980:int and x_2630:int=x_2630:int and x_2632:int=x_2632:int and x_4762:int=x_4762:int and x_4764:int=x_4764:int and x_18216:int=x_18216:int and x_18218:int=x_18218:int and (((true and x_260=x_260 and x_262=x_262 and x_978=x_978 and x_980=x_980 and x_260=< - 1 and x_1006=1 and x_980= - 1+x_262 and x_1040=1 and x_978= - 1+x_260 and x_1068=0)and x_260=x_260 and x_262=x_262 and x_978=x_978 and x_980=x_980 and x_2630=x_2630 and x_2632=x_2632 and x_978=< - 1 and x_2658=1 and x_2632= - 1+x_980 and x_2692=1 and x_2630= - 1+x_978 and x_2720=0)and x_260=x_260 and x_262=x_262 and x_978=x_978 and x_980=x_980 and x_2630=x_2630 and x_2632=x_2632 and x_4762=x_4762 and x_4764=x_4764 and x_2630=< - 1 and x_4790=1 and x_4764= - 1+x_2632 and x_4824=1 and x_4762= - 1+x_2630 and x_4852=0)and x_260=x_260 and x_262=x_262 and x_978=x_978 and x_980=x_980 and x_2630=x_2630 and x_2632=x_2632 and x_4762=x_4762 and x_4764=x_4764 and x_18216=x_18216 and x_18218=x_18218 and x_4762>=1 and x_18240=1 and x_18218= - 1+x_4764 and x_18274=1 and x_18216= - 1+x_4762 and x_18302=0Stampo Rawbody
+new2(_260,_262,_55994,_55996),constr((_4762=< - 1&(_56022=1&(_55996= - 1+_4764&(_56056=1&(_55994= - 1+_4762&_56084=0))))))
+⚠️ Formula non normalizzata: - 1+_4764
+⚠️ Formula non normalizzata: - 1+_4762
+✅ Inserita in rewrite: _260:int
+✅ Inserita in rewrite: _262:int
+✅ Inserita in rewrite: _978:int
+✅ Inserita in rewrite: _980:int
+✅ Inserita in rewrite: _2630:int
+✅ Inserita in rewrite: _2632:int
+✅ Inserita in rewrite: _4762:int
+✅ Inserita in rewrite: _4764:int
+✅ Inserita in rewrite: _55994:int
+✅ Inserita in rewrite: _55996:int
+Stampo Body prima di zmi
+constr((_260:int=_260:int,_262:int=_262:int,_978:int=_978:int,_980:int=_980:int,_2630:int=_2630:int,_2632:int=_2632:int,_4762:int=_4762:int,_4764:int=_4764:int,_55994:int=_55994:int,_55996:int=_55996:int,_4762=< - 1 and _56022=1 and _55996= - 1+_4764 and _56056=1 and _55994= - 1+_4762 and _56084=0)),new2(_260,_262,_55994,_55996)
+Limite MaxDepth raggiunto
+Limite MaxDepth raggiunto
+Entrato in constr c
+⚠️ Formula non normalizzata: - 1+_4764
+⚠️ Formula non normalizzata: - 1+_4762
+Stampo flatList
+[_260:int=_260:int,_262:int=_262:int,_978:int=_978:int,_980:int=_980:int,_2630:int=_2630:int,_2632:int=_2632:int,_4762:int=_4762:int,_4764:int=_4764:int,_55994:int=_55994:int,_55996:int=_55996:int,(((((((((true,true),true),true),_260=_260,_262=_262,_978=_978,_980=_980,_260=< - 1,_1006=1,_980= - 1+_262,_1040=1,_978= - 1+_260,_1068=0),true),_260=_260,_262=_262,_978=_978,_980=_980,_2630=_2630,_2632=_2632,_978=< - 1,_2658=1,_2632= - 1+_980,_2692=1,_2630= - 1+_978,_2720=0),true),_260=_260,_262=_262,_978=_978,_980=_980,_2630=_2630,_2632=_2632,_4762=_4762,_4764=_4764,_2630=< - 1,_4790=1,_4764= - 1+_2632,_4824=1,_4762= - 1+_2630,_4852=0),true),_260=_260,_262=_262,_978=_978,_980=_980,_2630=_2630,_2632=_2632,_4762=_4762,_4764=_4764,_55994=_55994,_55996=_55996,_4762=< - 1,_56022=1,_55996= - 1+_4764,_56056=1,_55994= - 1+_4762,_56084=0]
+
+Stampa prima di inviare
+x_260:int=x_260:int and x_262:int=x_262:int and x_978:int=x_978:int and x_980:int=x_980:int and x_2630:int=x_2630:int and x_2632:int=x_2632:int and x_4762:int=x_4762:int and x_4764:int=x_4764:int and x_55994:int=x_55994:int and x_55996:int=x_55996:int and (((true and x_260=x_260 and x_262=x_262 and x_978=x_978 and x_980=x_980 and x_260=< - 1 and x_1006=1 and x_980= - 1+x_262 and x_1040=1 and x_978= - 1+x_260 and x_1068=0)and x_260=x_260 and x_262=x_262 and x_978=x_978 and x_980=x_980 and x_2630=x_2630 and x_2632=x_2632 and x_978=< - 1 and x_2658=1 and x_2632= - 1+x_980 and x_2692=1 and x_2630= - 1+x_978 and x_2720=0)and x_260=x_260 and x_262=x_262 and x_978=x_978 and x_980=x_980 and x_2630=x_2630 and x_2632=x_2632 and x_4762=x_4762 and x_4764=x_4764 and x_2630=< - 1 and x_4790=1 and x_4764= - 1+x_2632 and x_4824=1 and x_4762= - 1+x_2630 and x_4852=0)and x_260=x_260 and x_262=x_262 and x_978=x_978 and x_980=x_980 and x_2630=x_2630 and x_2632=x_2632 and x_4762=x_4762 and x_4764=x_4764 and x_55994=x_55994 and x_55996=x_55996 and x_4762=< - 1 and x_56022=1 and x_55996= - 1+x_4764 and x_56056=1 and x_55994= - 1+x_4762 and x_56084=0Limite MaxDepth raggiunto
+Stampo Rawbody
+new4(_260,_262,_4762,_4764),constr((_38222=0&(_38234=0&_4762=0)))
+✅ Inserita in rewrite: _260:int
+✅ Inserita in rewrite: _262:int
+✅ Inserita in rewrite: _978:int
+✅ Inserita in rewrite: _980:int
+✅ Inserita in rewrite: _2630:int
+✅ Inserita in rewrite: _2632:int
+✅ Inserita in rewrite: _4762:int
+✅ Inserita in rewrite: _4764:int
+Stampo Body prima di zmi
+constr((_260:int=_260:int,_262:int=_262:int,_978:int=_978:int,_980:int=_980:int,_2630:int=_2630:int,_2632:int=_2632:int,_4762:int=_4762:int,_4764:int=_4764:int,_38222=0 and _38234=0 and _4762=0)),new4(_260,_262,_4762,_4764)
+Limite MaxDepth raggiunto
+Limite MaxDepth raggiunto
+Entrato in constr c
+Stampo flatList
+[_260:int=_260:int,_262:int=_262:int,_978:int=_978:int,_980:int=_980:int,_2630:int=_2630:int,_2632:int=_2632:int,_4762:int=_4762:int,_4764:int=_4764:int,(((((((((true,true),true),true),_260=_260,_262=_262,_978=_978,_980=_980,_260=< - 1,_1006=1,_980= - 1+_262,_1040=1,_978= - 1+_260,_1068=0),true),_260=_260,_262=_262,_978=_978,_980=_980,_2630=_2630,_2632=_2632,_978=< - 1,_2658=1,_2632= - 1+_980,_2692=1,_2630= - 1+_978,_2720=0),true),_260=_260,_262=_262,_978=_978,_980=_980,_2630=_2630,_2632=_2632,_4762=_4762,_4764=_4764,_2630=< - 1,_4790=1,_4764= - 1+_2632,_4824=1,_4762= - 1+_2630,_4852=0),true),_260=_260,_262=_262,_978=_978,_980=_980,_2630=_2630,_2632=_2632,_4762=_4762,_4764=_4764,_38222=0,_38234=0,_4762=0]
+
+Stampa prima di inviare
+x_260:int=x_260:int and x_262:int=x_262:int and x_978:int=x_978:int and x_980:int=x_980:int and x_2630:int=x_2630:int and x_2632:int=x_2632:int and x_4762:int=x_4762:int and x_4764:int=x_4764:int and (((true and x_260=x_260 and x_262=x_262 and x_978=x_978 and x_980=x_980 and x_260=< - 1 and x_1006=1 and x_980= - 1+x_262 and x_1040=1 and x_978= - 1+x_260 and x_1068=0)and x_260=x_260 and x_262=x_262 and x_978=x_978 and x_980=x_980 and x_2630=x_2630 and x_2632=x_2632 and x_978=< - 1 and x_2658=1 and x_2632= - 1+x_980 and x_2692=1 and x_2630= - 1+x_978 and x_2720=0)and x_260=x_260 and x_262=x_262 and x_978=x_978 and x_980=x_980 and x_2630=x_2630 and x_2632=x_2632 and x_4762=x_4762 and x_4764=x_4764 and x_2630=< - 1 and x_4790=1 and x_4764= - 1+x_2632 and x_4824=1 and x_4762= - 1+x_2630 and x_4852=0)and x_260=x_260 and x_262=x_262 and x_978=x_978 and x_980=x_980 and x_2630=x_2630 and x_2632=x_2632 and x_4762=x_4762 and x_4764=x_4764 and x_38222=0 and x_38234=0 and x_4762=0Stampo Rawbody
+new4(_260,_262,_2630,_2632),constr((_16994=0&(_17006=0&_2630=0)))
+✅ Inserita in rewrite: _260:int
+✅ Inserita in rewrite: _262:int
+✅ Inserita in rewrite: _978:int
+✅ Inserita in rewrite: _980:int
+✅ Inserita in rewrite: _2630:int
+✅ Inserita in rewrite: _2632:int
+Stampo Body prima di zmi
+constr((_260:int=_260:int,_262:int=_262:int,_978:int=_978:int,_980:int=_980:int,_2630:int=_2630:int,_2632:int=_2632:int,_16994=0 and _17006=0 and _2630=0)),new4(_260,_262,_2630,_2632)
+Entrato in constr c
+Stampo flatList
+[_260:int=_260:int,_262:int=_262:int,_978:int=_978:int,_980:int=_980:int,_2630:int=_2630:int,_2632:int=_2632:int,(((((((true,true),true),true),_260=_260,_262=_262,_978=_978,_980=_980,_260=< - 1,_1006=1,_980= - 1+_262,_1040=1,_978= - 1+_260,_1068=0),true),_260=_260,_262=_262,_978=_978,_980=_980,_2630=_2630,_2632=_2632,_978=< - 1,_2658=1,_2632= - 1+_980,_2692=1,_2630= - 1+_978,_2720=0),true),_260=_260,_262=_262,_978=_978,_980=_980,_2630=_2630,_2632=_2632,_16994=0,_17006=0,_2630=0]
+
+Stampa prima di inviare
+x_260:int=x_260:int and x_262:int=x_262:int and x_978:int=x_978:int and x_980:int=x_980:int and x_2630:int=x_2630:int and x_2632:int=x_2632:int and ((true and x_260=x_260 and x_262=x_262 and x_978=x_978 and x_980=x_980 and x_260=< - 1 and x_1006=1 and x_980= - 1+x_262 and x_1040=1 and x_978= - 1+x_260 and x_1068=0)and x_260=x_260 and x_262=x_262 and x_978=x_978 and x_980=x_980 and x_2630=x_2630 and x_2632=x_2632 and x_978=< - 1 and x_2658=1 and x_2632= - 1+x_980 and x_2692=1 and x_2630= - 1+x_978 and x_2720=0)and x_260=x_260 and x_262=x_262 and x_978=x_978 and x_980=x_980 and x_2630=x_2630 and x_2632=x_2632 and x_16994=0 and x_17006=0 and x_2630=0Stampo Rawbody
+new4(_260,_262,_978,_980),constr((_39196=0&(_39208=0&_978=0)))
+✅ Inserita in rewrite: _260:int
+✅ Inserita in rewrite: _262:int
+✅ Inserita in rewrite: _978:int
+✅ Inserita in rewrite: _980:int
+Stampo Body prima di zmi
+constr((_260:int=_260:int,_262:int=_262:int,_978:int=_978:int,_980:int=_980:int,_39196=0 and _39208=0 and _978=0)),new4(_260,_262,_978,_980)
+Entrato in constr c
+Stampo flatList
+[_260:int=_260:int,_262:int=_262:int,_978:int=_978:int,_980:int=_980:int,(((((true,true),true),true),_260=_260,_262=_262,_978=_978,_980=_980,_260=< - 1,_1006=1,_980= - 1+_262,_1040=1,_978= - 1+_260,_1068=0),true),_260=_260,_262=_262,_978=_978,_980=_980,_39196=0,_39208=0,_978=0]
+
+Stampa prima di inviare
+x_260:int=x_260:int and x_262:int=x_262:int and x_978:int=x_978:int and x_980:int=x_980:int and (true and x_260=x_260 and x_262=x_262 and x_978=x_978 and x_980=x_980 and x_260=< - 1 and x_1006=1 and x_980= - 1+x_262 and x_1040=1 and x_978= - 1+x_260 and x_1068=0)and x_260=x_260 and x_262=x_262 and x_978=x_978 and x_980=x_980 and x_39196=0 and x_39208=0 and x_978=0Stampo Rawbody
+new4(_260,_262,_260,_262),constr((_52324=0&(_52336=0&_260=0)))
+✅ Inserita in rewrite: _260:int
+✅ Inserita in rewrite: _262:int
+Stampo Body prima di zmi
+constr((_260:int=_260:int,_262:int=_262:int,_52324=0 and _52336=0 and _260=0)),new4(_260,_262,_260,_262)
+Entrato in constr c
+Stampo flatList
+[_260:int=_260:int,_262:int=_262:int,(((true,true),true),true),_260=_260,_262=_262,_52324=0,_52336=0,_260=0]
+
+Stampa prima di inviare
+x_260:int=x_260:int and x_262:int=x_262:int and true and x_260=x_260 and x_262=x_262 and x_52324=0 and x_52336=0 and x_260=0Mi trovo in questa head
+new4(_260,_262,_260,_262)
+Stampo Rawbody
+new5(_260,_260,_260,_260),constr(true)
+Stampo Body prima di zmi
+constr(true),new5(_260,_260,_260,_260)
+Entrato in constr c
+Stampo flatList
+[_260:int=_260:int,((((true,true),true),true),_260=_260,_260=_260,_52324=0,_52336=0,_260=0)]
+
+Stampa prima di inviare
+x_260:int=x_260:int and true and x_260=x_260 and x_260=x_260 and x_52324=0 and x_52336=0 and x_260=0Mi trovo in questa head
+new5(_260,_260,_260,_260)
+Stampo Rawbody
+constr((_260>=1&_61822=0))
+✅ Inserita in rewrite: _260:int
+Stampo Body prima di zmi
+constr((_260:int=_260:int,_260>=1 and _61822=0))
+Entrato in constr c
+Stampo flatList
+[_260:int=_260:int,(((((true,true),true),true),_260=_260,_260=_260,_52324=0,_52336=0,_260=0),true),_260=_260,_260>=1,_61822=0]
+
+Stampa prima di inviare
+x_260:int=x_260:int and (true and x_260=x_260 and x_260=x_260 and x_52324=0 and x_52336=0 and x_260=0)and x_260=x_260 and x_260>=1 and x_61822=0Stampo Rawbody
+constr((_260=< - 1&_4208=0))
+✅ Inserita in rewrite: _260:int
+Stampo Body prima di zmi
+constr((_260:int=_260:int,_260=< - 1 and _4208=0))
+Entrato in constr c
+Stampo flatList
+[_260:int=_260:int,(((((true,true),true),true),_260=_260,_260=_260,_988=0,_1000=0,_260=0),true),_260=_260,_260=< - 1,_4208=0]
+
+Stampa prima di inviare
+x_260:int=x_260:int and (true and x_260=x_260 and x_260=x_260 and x_988=0 and x_1000=0 and x_260=0)and x_260=x_260 and x_260=< - 1 and x_4208=0No SAT branches found in MaxDepths = 10.
+ERROR: -g load_clean('/home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/test/separato2/vmap/postModifica1ago/INVGEN-ken-imp_VeriMAP_true.c.transform.smt.smt2.pl'),set_solver(turibe),zmi(incorrect),halt.: false
