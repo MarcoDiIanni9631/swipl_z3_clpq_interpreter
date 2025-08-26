@@ -28,11 +28,65 @@ build_conjunct([C|Rest], (C, R)) :- build_conjunct(Rest, R).
 normalize_bool_expr(Expr, Expr) :-
     var(Expr), !.
 
-% Caso base: uguaglianze/relazioni aritmetiche (STOP ricorsione)
-normalize_bool_expr(Expr, Expr) :-
+%Posso aggiungere qui se c'è una costante ((true,false,integer)
+
+
+
+% % Caso base: uguaglianze/relazioni aritmetiche (STOP ricorsione)
+% normalize_bool_expr(Expr, Expr) :-
+%     nonvar(Expr),
+%     Expr =.. [Op, _, _],
+%     member(Op, [=, <, >, =<, >=, \=, =:=, =\=]), !.
+
+normalize_bool_expr(Var:Type, Var) :-
+    var(Var),
+    atom(Type), !.
+
+% Gestione ite(Cond, Then, Else)
+normalize_bool_expr(ite(Cond, Then, Else), ite(NCond, NThen, NElse)) :-
+    !,
+    normalize_bool_expr(Cond, NCond),
+    normalize_bool_expr(Then, NThen),
+    normalize_bool_expr(Else, NElse).
+
+% Caso speciale: variabile tipizzata dentro mod → stacca il tipo
+normalize_bool_expr((V:T) mod B, mod(V, NB)) :-
+    var(V), atom(T), !,
+    normalize_bool_expr(B, NB).
+
+% Caso generale: A mod B → mod(A,B)
+normalize_bool_expr(A mod B, mod(NA, NB)) :-
+    !,
+    normalize_bool_expr(A, NA),
+    normalize_bool_expr(B, NB).
+
+% % Normalizza quando il tipo finisce "incollato" con mod
+% normalize_bool_expr(V:(T mod N), mod(V:T, N)) :-
+%     var(V), atom(T), number(N), !.
+
+%To test.
+% Caso base: uguaglianze/relazioni aritmetiche
+normalize_bool_expr(Expr, NExpr) :-
     nonvar(Expr),
-    Expr =.. [Op, _, _],
-    member(Op, [=, <, >, =<, >=, \=, =:=, =\=]), !.
+    Expr =.. [Op, A, B],
+    member(Op, [=, <, >, =<, >=, \=, =:=, =\=]), 
+    !,
+    normalize_bool_expr(A, NA),
+    normalize_bool_expr(B, NB),
+    NExpr =.. [Op, NA, NB].
+
+
+%array(bool),store(x,i,A&B) Anche qui dovrebbe andare il convertitore e convertire & in and...
+
+% % Gestione mod infisso → prefisso
+% normalize_bool_expr(Expr, Norm) :-
+%     nonvar(Expr),
+%     Expr =.. [mod, A, B], !,
+%     writeln('Ho trovato un mod e quindi ora gestisco anche le sottoOperazioni'),
+%     normalize_bool_expr(A, NA),
+%     normalize_bool_expr(B, NB),
+%     Norm =.. [mod, NA, NB].
+
 
 % Gestione store e select (a sinistra)
 normalize_bool_expr((A = B), Norm) :-
@@ -50,7 +104,7 @@ normalize_bool_expr(A v B, or(NA, NB)) :-
 
 % Operatore "or" funzionale
 normalize_bool_expr(or(A, B), or(NA, NB)) :-
-    nonvar(A), nonvar(B), !,
+  %  nonvar(A), nonvar(B), !,
     normalize_bool_expr(A, NA),
     normalize_bool_expr(B, NB).
 
@@ -62,25 +116,29 @@ normalize_bool_expr((A , B), Norm) :-
 
 % Operatore "and" funzionale
 normalize_bool_expr(and(A, B), Norm) :-
-    nonvar(A), nonvar(B), !,
+   % nonvar(A), nonvar(B), 
+   !,
     normalize_bool_expr(A, NA),
     normalize_bool_expr(B, NB),
     build_conjunct([NA, NB], Norm).
 
 % Operatore "&" infisso
 normalize_bool_expr(A & B, and(NA, NB)) :-
-    nonvar(A), nonvar(B), !,
+   % nonvar(A), nonvar(B), 
+   !,
     normalize_bool_expr(A, NA),
     normalize_bool_expr(B, NB).
 
 % Operatore "~" (not infisso)
 normalize_bool_expr(~A, not(NA)) :-
-    nonvar(A), !,
+   % nonvar(A),
+    !,
     normalize_bool_expr(A, NA).
 
 % Operatore "not" funzionale
 normalize_bool_expr(not(A), not(NA)) :-
-    nonvar(A), !,
+   % nonvar(A),
+    !,
     normalize_bool_expr(A, NA).
 
 % Conversioni logiche true/false
@@ -92,10 +150,50 @@ normalize_bool_expr((A = false), not(NA)) :-
     \+ A == true, \+ A == false, !,
     normalize_bool_expr(A, NA).
 
-normalize_bool_expr((_ = true), true) :- !.
-normalize_bool_expr((_ = false), false) :- !.
+
+%queste due non vannno bene. es. se false =true da true...sbagliato.
+
+% normalize_bool_expr((_ = true), true) :- !.
+% normalize_bool_expr((_ = false), false) :- !.
+
+% ----------------------------
+% Gestione numeri e variabili tipizzate
+% ----------------------------
+
+% Numeri
+normalize_bool_expr(N, N) :-
+    number(N), !.
+
+% % Variabili con tipo: lasciarle intatte
+% normalize_bool_expr(V:T, V:T) :-
+%     var(V), atom(T), !.
+
+
+
+% ----------------------------
+% Conversioni logiche true/false
+% ----------------------------
+
 normalize_bool_expr(true, true) :- !.
 normalize_bool_expr(false, false) :- !.
 
+
+% Lascia invariata una somma costante+variabile
+normalize_bool_expr(Expr, Expr) :-
+    nonvar(Expr),
+    Expr =.. [+, A, B],
+    number(A), var(B), !.
+
+
+normalize_bool_expr(Expr, Expr) :-
+    nonvar(Expr),
+    Expr =.. [Op, N],
+    Op == (-), number(N), !.
+
+
+% ----------------------------
 % Fallback finale
-normalize_bool_expr(A, A).
+% ----------------------------
+normalize_bool_expr(A, A) :- 
+    format('⚠️ Formula non normalizzata: ~w~n', [A]).
+

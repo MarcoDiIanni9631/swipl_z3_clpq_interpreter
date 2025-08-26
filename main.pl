@@ -66,8 +66,8 @@ zmi_branch_sat(Head, MaxDepths, model(FinalZ3, FinalCLPQ, Tree)) :-
     InitialZ3 = true,
     InitialCLPQ = true,
     zmi_aux(Head, InitialZ3, InitialCLPQ, [], MaxDepths, FinalZ3, FinalCLPQ, Tree),
-    writeln('Sto per fare di nuovo un check occhio'),
-    writeln(FinalZ3),
+    % writeln('Sto per fare di nuovo un check occhio'),
+    % writeln(FinalZ3),
     z3_sat_check(FinalZ3, sat),      
     format('✅ INCORRECT/FF FOUND: ~w\n', [FinalZ3]).
 
@@ -171,15 +171,36 @@ extend_type_table(Head, Old, New) :-
     append(Old, Pairs, Combined),
     sort(Combined, New).
 
+% ----------------------------
+% Costruzione coppie Var-Type
+% ----------------------------
+% ----------------------------
+% Costruzione coppie Var-Type
+% ----------------------------
+
 build_type_pairs(_, _, [], Acc, Acc).
 build_type_pairs(PredArity, Pos, [Var | Rest], AccIn, AccOut) :-
-    ( arg_type(PredArity, Pos, Type) ->
+    ( var(Var),                       % ✅ SOLO variabili pure
+      arg_type(PredArity, Pos, Type), % il tipo deve esistere
+      atom(Type)                      % deve essere un atomo (int, bool, ecc.)
+    ->
         Pair = Var-Type,
         AccNext = [Pair | AccIn]
-    ; AccNext = AccIn
+    ;   AccNext = AccIn               % altrimenti non aggiungere nulla
     ),
     Pos1 is Pos + 1,
     build_type_pairs(PredArity, Pos1, Rest, AccNext, AccOut).
+
+% ----------------------------
+% Costruzione vincoli di uguaglianza tipizzata
+% ----------------------------
+
+build_type_equality(Var-Type, (Var:Type = Var:Type)) :-
+    var(Var),       % ✅ solo variabile "pura"
+    atom(Type), !.  % ✅ e tipo atomico noto
+
+% fallback → non inserire vincoli spuri
+build_type_equality(_, true).
 
 
 rewrite_constr(_, _, constr(true), constr(true)) :- !.
@@ -197,7 +218,7 @@ forall(
     !.
 rewrite_constr(_, _, Other, Other).
 
-build_type_equality(Var-Type, (Var:Type = Var:Type)).
+% build_type_equality(Var-Type, (Var:Type = Var:Type)).
 
 
 % ----------------------------
