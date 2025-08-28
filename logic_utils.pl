@@ -108,20 +108,20 @@ normalize_bool_expr((A = B), Norm) :-
 %     normalize_bool_expr(A, NA).
 
 % (A = true)  -->  A   (senza legare la RHS)
-normalize_bool_expr(Expr, NA) :-
-    nonvar(Expr),
-    Expr =.. [=, A, RHS],
-    RHS == true,                        
-    \+ A == true, \+ A == false, !,
-    normalize_bool_expr(A, NA).
+% normalize_bool_expr(Expr, NA) :-
+%     nonvar(Expr),
+%     Expr =.. [=, A, RHS],
+%     RHS == true,                        
+%     \+ A == true, \+ A == false, !,
+%     normalize_bool_expr(A, NA).
 
-% (A = false) -->  not(A)   (senza legare la RHS)
-normalize_bool_expr(Expr, not(NA)) :-
-    nonvar(Expr),
-    Expr =.. [=, A, RHS],
-    RHS == false,                       
-    \+ A == true, \+ A == false, !,
-    normalize_bool_expr(A, NA).
+% % (A = false) -->  not(A)   (senza legare la RHS)
+% normalize_bool_expr(Expr, not(NA)) :-
+%     nonvar(Expr),
+%     Expr =.. [=, A, RHS],
+%     RHS == false,                       
+%     \+ A == true, \+ A == false, !,
+%     normalize_bool_expr(A, NA).
 
 %To test.
 % Caso base: uguaglianze/relazioni aritmetiche
