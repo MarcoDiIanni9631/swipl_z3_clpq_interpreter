@@ -1,14 +1,14 @@
-Warning: /home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/logic_utils.pl:208:
+Warning: /home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/logic_utils.pl:215:
 Warning:    Clauses of logic_utils:normalize_bool_expr/2 are not together in the source-file
 Warning:    Earlier definition at /home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/logic_utils.pl:28
 Warning:    Current predicate: logic_utils:build_xor_chain/2
 Warning:    Use :- discontiguous logic_utils:normalize_bool_expr/2. to suppress this message
-Warning: /home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/logic_utils.pl:296:
+Warning: /home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/logic_utils.pl:303:
 Warning:    Clauses of logic_utils:normalize_bool_expr/2 are not together in the source-file
 Warning:    Earlier definition at /home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/logic_utils.pl:28
 Warning:    Current predicate: logic_utils:build_plus_chain/2
 Warning:    Use :- discontiguous logic_utils:normalize_bool_expr/2. to suppress this message
-Warning: /home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/logic_utils.pl:333:
+Warning: /home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/logic_utils.pl:340:
 Warning:    Clauses of logic_utils:normalize_bool_expr/2 are not together in the source-file
 Warning:    Earlier definition at /home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/logic_utils.pl:28
 Warning:    Current predicate: logic_utils:build_minus_chain/2
@@ -29,6 +29,7 @@ incorrect
 ✅ Inserita in rewrite: _22134:int
 ✅ Inserita in rewrite: _22136:int
 ✅ Inserita in rewrite: _22138:int
+✅ Inserita in rewrite: _22140:array(int,int)
 ✅ Inserita in rewrite: _22142:int
 ✅ Inserita in rewrite: _22144:int
 ✅ Inserita in rewrite: _22146:int
@@ -39,189 +40,243 @@ Entrato in constr c
 % Making new z3.pl handle
 % Made new z3.pl handle
 Stampa prima di inviare
-x_22134:int=x_22134:int and x_22136:int=x_22136:int and x_22138:int=x_22138:int and x_22142:int=x_22142:int and x_22144:int=x_22144:int and x_22146:int=x_22146:int and x_22148:int=x_22148:int and x_22134=x_22134 and x_22136=x_22136 and x_22138=x_22138 and x_22142=x_22142 and x_22144=x_22144 and x_22146=x_22146 and x_22148=x_22148 and x_22138>=1 and x_22134=0 and x_22176=1
+x_22134:int=x_22134:int and x_22136:int=x_22136:int and x_22138:int=x_22138:int and x_22140:array(int,int)=x_22140:array(int,int)and x_22142:int=x_22142:int and x_22144:int=x_22144:int and x_22146:int=x_22146:int and x_22148:int=x_22148:int and x_22134=x_22134 and x_22136=x_22136 and x_22138=x_22138 and x_22140=x_22140 and x_22142=x_22142 and x_22144=x_22144 and x_22146=x_22146 and x_22148=x_22148 and x_22138>=1 and x_22134=0 and x_22176=1
 Mi trovo in questa head
 new1(_130,_132,_134,_136,_138,_140,_142,_144)
 ✅ Inserita in rewrite: _130:int
 ✅ Inserita in rewrite: _132:int
 ✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _136:array(int,int)
 ✅ Inserita in rewrite: _138:int
 ✅ Inserita in rewrite: _140:int
 ✅ Inserita in rewrite: _142:int
 ✅ Inserita in rewrite: _144:int
-✅ Inserita in rewrite: _16450:int
+✅ Inserita in rewrite: _18056:int
+✅ Inserita in rewrite: _18062:array(int,int)
 Entrato in constr c
 
 % Freeing old z3.pl handle
 % Making new z3.pl handle
 % Made new z3.pl handle
 Stampa prima di inviare
-x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_138:int=x_138:int and x_140:int=x_140:int and x_142:int=x_142:int and x_144:int=x_144:int and x_16450:int=x_16450:int and (x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_134>=1 and x_130=0 and x_172=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_16450=x_16450 and x_16456=store(x_136,x_130,x_132)and x_134-x_130>=1 and x_16512=1 and x_16450=1+x_130
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:array(int,int)=x_136:array(int,int)and x_138:int=x_138:int and x_140:int=x_140:int and x_142:int=x_142:int and x_144:int=x_144:int and x_18056:int=x_18056:int and x_18062:array(int,int)=x_18062:array(int,int)and(x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_134>=1 and x_130=0 and x_172=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_18056=x_18056 and x_18062=x_18062 and x_18062=store(x_136,x_130,x_132)and x_134-x_130>=1 and x_18118=1 and x_18056=1+x_130
 Mi trovo in questa head
-new1(_1286,_132,_134,_1292,_138,_140,_142,_144)
+new1(_1446,_132,_134,_1452,_138,_140,_142,_144)
 ✅ Inserita in rewrite: _130:int
 ✅ Inserita in rewrite: _132:int
 ✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _136:array(int,int)
 ✅ Inserita in rewrite: _138:int
 ✅ Inserita in rewrite: _140:int
 ✅ Inserita in rewrite: _142:int
 ✅ Inserita in rewrite: _144:int
-✅ Inserita in rewrite: _1286:int
-✅ Inserita in rewrite: _9746:int
+✅ Inserita in rewrite: _1446:int
+✅ Inserita in rewrite: _1452:array(int,int)
+✅ Inserita in rewrite: _13786:int
+✅ Inserita in rewrite: _13792:array(int,int)
 Entrato in constr c
 
 % Freeing old z3.pl handle
 % Making new z3.pl handle
 % Made new z3.pl handle
 Stampa prima di inviare
-x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_138:int=x_138:int and x_140:int=x_140:int and x_142:int=x_142:int and x_144:int=x_144:int and x_1286:int=x_1286:int and x_9746:int=x_9746:int and ((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_134>=1 and x_130=0 and x_172=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_1292=store(x_136,x_130,x_132)and x_134-x_130>=1 and x_1348=1 and x_1286=1+x_130)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_9746=x_9746 and x_9752=store(x_1292,x_1286,x_132)and x_134-x_1286>=1 and x_9808=1 and x_9746=1+x_1286
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:array(int,int)=x_136:array(int,int)and x_138:int=x_138:int and x_140:int=x_140:int and x_142:int=x_142:int and x_144:int=x_144:int and x_1446:int=x_1446:int and x_1452:array(int,int)=x_1452:array(int,int)and x_13786:int=x_13786:int and x_13792:array(int,int)=x_13792:array(int,int)and((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_134>=1 and x_130=0 and x_172=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_1452=store(x_136,x_130,x_132)and x_134-x_130>=1 and x_1508=1 and x_1446=1+x_130)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_13786=x_13786 and x_13792=x_13792 and x_13792=store(x_1452,x_1446,x_132)and x_134-x_1446>=1 and x_13848=1 and x_13786=1+x_1446
 Mi trovo in questa head
-new1(_9746,_132,_134,_9752,_138,_140,_142,_144)
+new1(_3276,_132,_134,_3282,_138,_140,_142,_144)
 ✅ Inserita in rewrite: _130:int
 ✅ Inserita in rewrite: _132:int
 ✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _136:array(int,int)
 ✅ Inserita in rewrite: _138:int
 ✅ Inserita in rewrite: _140:int
 ✅ Inserita in rewrite: _142:int
 ✅ Inserita in rewrite: _144:int
-✅ Inserita in rewrite: _1286:int
-✅ Inserita in rewrite: _9746:int
-✅ Inserita in rewrite: _39192:int
+✅ Inserita in rewrite: _1446:int
+✅ Inserita in rewrite: _1452:array(int,int)
+✅ Inserita in rewrite: _3276:int
+✅ Inserita in rewrite: _3282:array(int,int)
+✅ Inserita in rewrite: _22318:int
+✅ Inserita in rewrite: _22324:array(int,int)
 Entrato in constr c
 
 % Freeing old z3.pl handle
 % Making new z3.pl handle
 % Made new z3.pl handle
 Stampa prima di inviare
-x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_138:int=x_138:int and x_140:int=x_140:int and x_142:int=x_142:int and x_144:int=x_144:int and x_1286:int=x_1286:int and x_9746:int=x_9746:int and x_39192:int=x_39192:int and (((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_134>=1 and x_130=0 and x_172=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_1292=store(x_136,x_130,x_132)and x_134-x_130>=1 and x_1348=1 and x_1286=1+x_130)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_9746=x_9746 and x_9752=store(x_1292,x_1286,x_132)and x_134-x_1286>=1 and x_9808=1 and x_9746=1+x_1286)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_9746=x_9746 and x_39192=x_39192 and x_39198=store(x_9752,x_9746,x_132)and x_134-x_9746>=1 and x_39254=1 and x_39192=1+x_9746
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:array(int,int)=x_136:array(int,int)and x_138:int=x_138:int and x_140:int=x_140:int and x_142:int=x_142:int and x_144:int=x_144:int and x_1446:int=x_1446:int and x_1452:array(int,int)=x_1452:array(int,int)and x_3276:int=x_3276:int and x_3282:array(int,int)=x_3282:array(int,int)and x_22318:int=x_22318:int and x_22324:array(int,int)=x_22324:array(int,int)and(((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_134>=1 and x_130=0 and x_172=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_1452=store(x_136,x_130,x_132)and x_134-x_130>=1 and x_1508=1 and x_1446=1+x_130)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3276=x_3276 and x_3282=x_3282 and x_3282=store(x_1452,x_1446,x_132)and x_134-x_1446>=1 and x_3338=1 and x_3276=1+x_1446)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3276=x_3276 and x_3282=x_3282 and x_22318=x_22318 and x_22324=x_22324 and x_22324=store(x_3282,x_3276,x_132)and x_134-x_3276>=1 and x_22380=1 and x_22318=1+x_3276
 Mi trovo in questa head
-new1(_4550,_132,_134,_4556,_138,_140,_142,_144)
+new1(_5388,_132,_134,_5394,_138,_140,_142,_144)
 ✅ Inserita in rewrite: _130:int
 ✅ Inserita in rewrite: _132:int
 ✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _136:array(int,int)
 ✅ Inserita in rewrite: _138:int
 ✅ Inserita in rewrite: _140:int
 ✅ Inserita in rewrite: _142:int
 ✅ Inserita in rewrite: _144:int
-✅ Inserita in rewrite: _1286:int
-✅ Inserita in rewrite: _2836:int
-✅ Inserita in rewrite: _4550:int
-✅ Inserita in rewrite: _19794:int
+✅ Inserita in rewrite: _1446:int
+✅ Inserita in rewrite: _1452:array(int,int)
+✅ Inserita in rewrite: _3274:int
+✅ Inserita in rewrite: _3280:array(int,int)
+✅ Inserita in rewrite: _5388:int
+✅ Inserita in rewrite: _5394:array(int,int)
+✅ Inserita in rewrite: _10808:int
+✅ Inserita in rewrite: _10814:array(int,int)
 Entrato in constr c
 
 % Freeing old z3.pl handle
 % Making new z3.pl handle
 % Made new z3.pl handle
 Stampa prima di inviare
-x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_138:int=x_138:int and x_140:int=x_140:int and x_142:int=x_142:int and x_144:int=x_144:int and x_1286:int=x_1286:int and x_2836:int=x_2836:int and x_4550:int=x_4550:int and x_19794:int=x_19794:int and ((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_134>=1 and x_130=0 and x_172=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_1292=store(x_136,x_130,x_132)and x_134-x_130>=1 and x_1348=1 and x_1286=1+x_130)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2836=x_2836 and x_2842=store(x_1292,x_1286,x_132)and x_134-x_1286>=1 and x_2898=1 and x_2836=1+x_1286)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2836=x_2836 and x_4550=x_4550 and x_4556=store(x_2842,x_2836,x_132)and x_134-x_2836>=1 and x_4612=1 and x_4550=1+x_2836)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2836=x_2836 and x_4550=x_4550 and x_19794=x_19794 and x_19800=store(x_4556,x_4550,x_132)and x_134-x_4550>=1 and x_19856=1 and x_19794=1+x_4550
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:array(int,int)=x_136:array(int,int)and x_138:int=x_138:int and x_140:int=x_140:int and x_142:int=x_142:int and x_144:int=x_144:int and x_1446:int=x_1446:int and x_1452:array(int,int)=x_1452:array(int,int)and x_3274:int=x_3274:int and x_3280:array(int,int)=x_3280:array(int,int)and x_5388:int=x_5388:int and x_5394:array(int,int)=x_5394:array(int,int)and x_10808:int=x_10808:int and x_10814:array(int,int)=x_10814:array(int,int)and((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_134>=1 and x_130=0 and x_172=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_1452=store(x_136,x_130,x_132)and x_134-x_130>=1 and x_1508=1 and x_1446=1+x_130)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_3280=store(x_1452,x_1446,x_132)and x_134-x_1446>=1 and x_3336=1 and x_3274=1+x_1446)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5388=x_5388 and x_5394=x_5394 and x_5394=store(x_3280,x_3274,x_132)and x_134-x_3274>=1 and x_5450=1 and x_5388=1+x_3274)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5388=x_5388 and x_5394=x_5394 and x_10808=x_10808 and x_10814=x_10814 and x_10814=store(x_5394,x_5388,x_132)and x_134-x_5388>=1 and x_10870=1 and x_10808=1+x_5388
 Mi trovo in questa head
-new1(_6424,_132,_134,_6430,_138,_140,_142,_144)
+new1(_7784,_132,_134,_7790,_138,_140,_142,_144)
 ✅ Inserita in rewrite: _130:int
 ✅ Inserita in rewrite: _132:int
 ✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _136:array(int,int)
 ✅ Inserita in rewrite: _138:int
 ✅ Inserita in rewrite: _140:int
 ✅ Inserita in rewrite: _142:int
 ✅ Inserita in rewrite: _144:int
-✅ Inserita in rewrite: _1286:int
-✅ Inserita in rewrite: _2834:int
-✅ Inserita in rewrite: _4546:int
-✅ Inserita in rewrite: _6424:int
-✅ Inserita in rewrite: _11010:int
+✅ Inserita in rewrite: _1446:int
+✅ Inserita in rewrite: _1452:array(int,int)
+✅ Inserita in rewrite: _3274:int
+✅ Inserita in rewrite: _3280:array(int,int)
+✅ Inserita in rewrite: _5386:int
+✅ Inserita in rewrite: _5392:array(int,int)
+✅ Inserita in rewrite: _7784:int
+✅ Inserita in rewrite: _7790:array(int,int)
+✅ Inserita in rewrite: _14374:int
+✅ Inserita in rewrite: _14380:array(int,int)
 Entrato in constr c
 
 % Freeing old z3.pl handle
 % Making new z3.pl handle
 % Made new z3.pl handle
 Stampa prima di inviare
-x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_138:int=x_138:int and x_140:int=x_140:int and x_142:int=x_142:int and x_144:int=x_144:int and x_1286:int=x_1286:int and x_2834:int=x_2834:int and x_4546:int=x_4546:int and x_6424:int=x_6424:int and x_11010:int=x_11010:int and (((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_134>=1 and x_130=0 and x_172=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_1292=store(x_136,x_130,x_132)and x_134-x_130>=1 and x_1348=1 and x_1286=1+x_130)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_2840=store(x_1292,x_1286,x_132)and x_134-x_1286>=1 and x_2896=1 and x_2834=1+x_1286)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_4552=store(x_2840,x_2834,x_132)and x_134-x_2834>=1 and x_4608=1 and x_4546=1+x_2834)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_6424=x_6424 and x_6430=store(x_4552,x_4546,x_132)and x_134-x_4546>=1 and x_6486=1 and x_6424=1+x_4546)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_6424=x_6424 and x_11010=x_11010 and x_11016=store(x_6430,x_6424,x_132)and x_134-x_6424>=1 and x_11072=1 and x_11010=1+x_6424
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:array(int,int)=x_136:array(int,int)and x_138:int=x_138:int and x_140:int=x_140:int and x_142:int=x_142:int and x_144:int=x_144:int and x_1446:int=x_1446:int and x_1452:array(int,int)=x_1452:array(int,int)and x_3274:int=x_3274:int and x_3280:array(int,int)=x_3280:array(int,int)and x_5386:int=x_5386:int and x_5392:array(int,int)=x_5392:array(int,int)and x_7784:int=x_7784:int and x_7790:array(int,int)=x_7790:array(int,int)and x_14374:int=x_14374:int and x_14380:array(int,int)=x_14380:array(int,int)and(((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_134>=1 and x_130=0 and x_172=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_1452=store(x_136,x_130,x_132)and x_134-x_130>=1 and x_1508=1 and x_1446=1+x_130)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_3280=store(x_1452,x_1446,x_132)and x_134-x_1446>=1 and x_3336=1 and x_3274=1+x_1446)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_5392=store(x_3280,x_3274,x_132)and x_134-x_3274>=1 and x_5448=1 and x_5386=1+x_3274)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_7784=x_7784 and x_7790=x_7790 and x_7790=store(x_5392,x_5386,x_132)and x_134-x_5386>=1 and x_7846=1 and x_7784=1+x_5386)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_7784=x_7784 and x_7790=x_7790 and x_14374=x_14374 and x_14380=x_14380 and x_14380=store(x_7790,x_7784,x_132)and x_134-x_7784>=1 and x_14436=1 and x_14374=1+x_7784
 Mi trovo in questa head
-new1(_8458,_132,_134,_8464,_138,_140,_142,_144)
+new1(_14374,_132,_134,_14380,_138,_140,_142,_144)
 ✅ Inserita in rewrite: _130:int
 ✅ Inserita in rewrite: _132:int
 ✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _136:array(int,int)
 ✅ Inserita in rewrite: _138:int
 ✅ Inserita in rewrite: _140:int
 ✅ Inserita in rewrite: _142:int
 ✅ Inserita in rewrite: _144:int
-✅ Inserita in rewrite: _1286:int
-✅ Inserita in rewrite: _2834:int
-✅ Inserita in rewrite: _4546:int
-✅ Inserita in rewrite: _6422:int
-✅ Inserita in rewrite: _8458:int
-✅ Inserita in rewrite: _14002:int
+✅ Inserita in rewrite: _1446:int
+✅ Inserita in rewrite: _1452:array(int,int)
+✅ Inserita in rewrite: _3274:int
+✅ Inserita in rewrite: _3280:array(int,int)
+✅ Inserita in rewrite: _5386:int
+✅ Inserita in rewrite: _5392:array(int,int)
+✅ Inserita in rewrite: _7784:int
+✅ Inserita in rewrite: _7790:array(int,int)
+✅ Inserita in rewrite: _14374:int
+✅ Inserita in rewrite: _14380:array(int,int)
+✅ Inserita in rewrite: _82614:int
+✅ Inserita in rewrite: _82620:array(int,int)
 Entrato in constr c
 
 % Freeing old z3.pl handle
 % Making new z3.pl handle
 % Made new z3.pl handle
 Stampa prima di inviare
-x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_138:int=x_138:int and x_140:int=x_140:int and x_142:int=x_142:int and x_144:int=x_144:int and x_1286:int=x_1286:int and x_2834:int=x_2834:int and x_4546:int=x_4546:int and x_6422:int=x_6422:int and x_8458:int=x_8458:int and x_14002:int=x_14002:int and ((((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_134>=1 and x_130=0 and x_172=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_1292=store(x_136,x_130,x_132)and x_134-x_130>=1 and x_1348=1 and x_1286=1+x_130)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_2840=store(x_1292,x_1286,x_132)and x_134-x_1286>=1 and x_2896=1 and x_2834=1+x_1286)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_4552=store(x_2840,x_2834,x_132)and x_134-x_2834>=1 and x_4608=1 and x_4546=1+x_2834)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_6422=x_6422 and x_6428=store(x_4552,x_4546,x_132)and x_134-x_4546>=1 and x_6484=1 and x_6422=1+x_4546)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_6422=x_6422 and x_8458=x_8458 and x_8464=store(x_6428,x_6422,x_132)and x_134-x_6422>=1 and x_8520=1 and x_8458=1+x_6422)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_6422=x_6422 and x_8458=x_8458 and x_14002=x_14002 and x_14008=store(x_8464,x_8458,x_132)and x_134-x_8458>=1 and x_14064=1 and x_14002=1+x_8458
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:array(int,int)=x_136:array(int,int)and x_138:int=x_138:int and x_140:int=x_140:int and x_142:int=x_142:int and x_144:int=x_144:int and x_1446:int=x_1446:int and x_1452:array(int,int)=x_1452:array(int,int)and x_3274:int=x_3274:int and x_3280:array(int,int)=x_3280:array(int,int)and x_5386:int=x_5386:int and x_5392:array(int,int)=x_5392:array(int,int)and x_7784:int=x_7784:int and x_7790:array(int,int)=x_7790:array(int,int)and x_14374:int=x_14374:int and x_14380:array(int,int)=x_14380:array(int,int)and x_82614:int=x_82614:int and x_82620:array(int,int)=x_82620:array(int,int)and((((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_134>=1 and x_130=0 and x_172=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_1452=store(x_136,x_130,x_132)and x_134-x_130>=1 and x_1508=1 and x_1446=1+x_130)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_3280=store(x_1452,x_1446,x_132)and x_134-x_1446>=1 and x_3336=1 and x_3274=1+x_1446)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_5392=store(x_3280,x_3274,x_132)and x_134-x_3274>=1 and x_5448=1 and x_5386=1+x_3274)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_7784=x_7784 and x_7790=x_7790 and x_7790=store(x_5392,x_5386,x_132)and x_134-x_5386>=1 and x_7846=1 and x_7784=1+x_5386)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_7784=x_7784 and x_7790=x_7790 and x_14374=x_14374 and x_14380=x_14380 and x_14380=store(x_7790,x_7784,x_132)and x_134-x_7784>=1 and x_14436=1 and x_14374=1+x_7784)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_7784=x_7784 and x_7790=x_7790 and x_14374=x_14374 and x_14380=x_14380 and x_82614=x_82614 and x_82620=x_82620 and x_82620=store(x_14380,x_14374,x_132)and x_134-x_14374>=1 and x_82676=1 and x_82614=1+x_14374
 Mi trovo in questa head
-new1(_14002,_132,_134,_14008,_138,_140,_142,_144)
+new1(_13440,_132,_134,_13446,_138,_140,_142,_144)
 ✅ Inserita in rewrite: _130:int
 ✅ Inserita in rewrite: _132:int
 ✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _136:array(int,int)
 ✅ Inserita in rewrite: _138:int
 ✅ Inserita in rewrite: _140:int
 ✅ Inserita in rewrite: _142:int
 ✅ Inserita in rewrite: _144:int
-✅ Inserita in rewrite: _1286:int
-✅ Inserita in rewrite: _2834:int
-✅ Inserita in rewrite: _4546:int
-✅ Inserita in rewrite: _6422:int
-✅ Inserita in rewrite: _8458:int
-✅ Inserita in rewrite: _14002:int
-✅ Inserita in rewrite: _78870:int
+✅ Inserita in rewrite: _1446:int
+✅ Inserita in rewrite: _1452:array(int,int)
+✅ Inserita in rewrite: _3274:int
+✅ Inserita in rewrite: _3280:array(int,int)
+✅ Inserita in rewrite: _5386:int
+✅ Inserita in rewrite: _5392:array(int,int)
+✅ Inserita in rewrite: _7784:int
+✅ Inserita in rewrite: _7790:array(int,int)
+✅ Inserita in rewrite: _10468:int
+✅ Inserita in rewrite: _10474:array(int,int)
+✅ Inserita in rewrite: _13440:int
+✅ Inserita in rewrite: _13446:array(int,int)
+✅ Inserita in rewrite: _52156:int
+✅ Inserita in rewrite: _52162:array(int,int)
 Entrato in constr c
 
 % Freeing old z3.pl handle
 % Making new z3.pl handle
 % Made new z3.pl handle
 Stampa prima di inviare
-x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_138:int=x_138:int and x_140:int=x_140:int and x_142:int=x_142:int and x_144:int=x_144:int and x_1286:int=x_1286:int and x_2834:int=x_2834:int and x_4546:int=x_4546:int and x_6422:int=x_6422:int and x_8458:int=x_8458:int and x_14002:int=x_14002:int and x_78870:int=x_78870:int and (((((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_134>=1 and x_130=0 and x_172=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_1292=store(x_136,x_130,x_132)and x_134-x_130>=1 and x_1348=1 and x_1286=1+x_130)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_2840=store(x_1292,x_1286,x_132)and x_134-x_1286>=1 and x_2896=1 and x_2834=1+x_1286)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_4552=store(x_2840,x_2834,x_132)and x_134-x_2834>=1 and x_4608=1 and x_4546=1+x_2834)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_6422=x_6422 and x_6428=store(x_4552,x_4546,x_132)and x_134-x_4546>=1 and x_6484=1 and x_6422=1+x_4546)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_6422=x_6422 and x_8458=x_8458 and x_8464=store(x_6428,x_6422,x_132)and x_134-x_6422>=1 and x_8520=1 and x_8458=1+x_6422)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_6422=x_6422 and x_8458=x_8458 and x_14002=x_14002 and x_14008=store(x_8464,x_8458,x_132)and x_134-x_8458>=1 and x_14064=1 and x_14002=1+x_8458)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_6422=x_6422 and x_8458=x_8458 and x_14002=x_14002 and x_78870=x_78870 and x_78876=store(x_14008,x_14002,x_132)and x_134-x_14002>=1 and x_78932=1 and x_78870=1+x_14002
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:array(int,int)=x_136:array(int,int)and x_138:int=x_138:int and x_140:int=x_140:int and x_142:int=x_142:int and x_144:int=x_144:int and x_1446:int=x_1446:int and x_1452:array(int,int)=x_1452:array(int,int)and x_3274:int=x_3274:int and x_3280:array(int,int)=x_3280:array(int,int)and x_5386:int=x_5386:int and x_5392:array(int,int)=x_5392:array(int,int)and x_7784:int=x_7784:int and x_7790:array(int,int)=x_7790:array(int,int)and x_10468:int=x_10468:int and x_10474:array(int,int)=x_10474:array(int,int)and x_13440:int=x_13440:int and x_13446:array(int,int)=x_13446:array(int,int)and x_52156:int=x_52156:int and x_52162:array(int,int)=x_52162:array(int,int)and(((((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_134>=1 and x_130=0 and x_172=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_1452=store(x_136,x_130,x_132)and x_134-x_130>=1 and x_1508=1 and x_1446=1+x_130)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_3280=store(x_1452,x_1446,x_132)and x_134-x_1446>=1 and x_3336=1 and x_3274=1+x_1446)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_5392=store(x_3280,x_3274,x_132)and x_134-x_3274>=1 and x_5448=1 and x_5386=1+x_3274)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_7784=x_7784 and x_7790=x_7790 and x_7790=store(x_5392,x_5386,x_132)and x_134-x_5386>=1 and x_7846=1 and x_7784=1+x_5386)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_7784=x_7784 and x_7790=x_7790 and x_10468=x_10468 and x_10474=x_10474 and x_10474=store(x_7790,x_7784,x_132)and x_134-x_7784>=1 and x_10530=1 and x_10468=1+x_7784)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_7784=x_7784 and x_7790=x_7790 and x_10468=x_10468 and x_10474=x_10474 and x_13440=x_13440 and x_13446=x_13446 and x_13446=store(x_10474,x_10468,x_132)and x_134-x_10468>=1 and x_13502=1 and x_13440=1+x_10468)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_7784=x_7784 and x_7790=x_7790 and x_10468=x_10468 and x_10474=x_10474 and x_13440=x_13440 and x_13446=x_13446 and x_52156=x_52156 and x_52162=x_52162 and x_52162=store(x_13446,x_13440,x_132)and x_134-x_13440>=1 and x_52218=1 and x_52156=1+x_13440
 Mi trovo in questa head
-new1(_13016,_132,_134,_13022,_138,_140,_142,_144)
+new1(_16696,_132,_134,_16702,_138,_140,_142,_144)
 ✅ Inserita in rewrite: _130:int
 ✅ Inserita in rewrite: _132:int
 ✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _136:array(int,int)
 ✅ Inserita in rewrite: _138:int
 ✅ Inserita in rewrite: _140:int
 ✅ Inserita in rewrite: _142:int
 ✅ Inserita in rewrite: _144:int
-✅ Inserita in rewrite: _1286:int
-✅ Inserita in rewrite: _2834:int
-✅ Inserita in rewrite: _4546:int
-✅ Inserita in rewrite: _6422:int
-✅ Inserita in rewrite: _8458:int
-✅ Inserita in rewrite: _10656:int
-✅ Inserita in rewrite: _13016:int
-✅ Inserita in rewrite: _42238:int
+✅ Inserita in rewrite: _1446:int
+✅ Inserita in rewrite: _1452:array(int,int)
+✅ Inserita in rewrite: _3274:int
+✅ Inserita in rewrite: _3280:array(int,int)
+✅ Inserita in rewrite: _5386:int
+✅ Inserita in rewrite: _5392:array(int,int)
+✅ Inserita in rewrite: _7784:int
+✅ Inserita in rewrite: _7790:array(int,int)
+✅ Inserita in rewrite: _10468:int
+✅ Inserita in rewrite: _10474:array(int,int)
+✅ Inserita in rewrite: _13438:int
+✅ Inserita in rewrite: _13444:array(int,int)
+✅ Inserita in rewrite: _16696:int
+✅ Inserita in rewrite: _16702:array(int,int)
+✅ Inserita in rewrite: _46472:int
+✅ Inserita in rewrite: _46478:array(int,int)
 Entrato in constr c
 
 % Freeing old z3.pl handle
 % Making new z3.pl handle
 % Made new z3.pl handle
 Stampa prima di inviare
-x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_138:int=x_138:int and x_140:int=x_140:int and x_142:int=x_142:int and x_144:int=x_144:int and x_1286:int=x_1286:int and x_2834:int=x_2834:int and x_4546:int=x_4546:int and x_6422:int=x_6422:int and x_8458:int=x_8458:int and x_10656:int=x_10656:int and x_13016:int=x_13016:int and x_42238:int=x_42238:int and ((((((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_134>=1 and x_130=0 and x_172=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_1292=store(x_136,x_130,x_132)and x_134-x_130>=1 and x_1348=1 and x_1286=1+x_130)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_2840=store(x_1292,x_1286,x_132)and x_134-x_1286>=1 and x_2896=1 and x_2834=1+x_1286)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_4552=store(x_2840,x_2834,x_132)and x_134-x_2834>=1 and x_4608=1 and x_4546=1+x_2834)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_6422=x_6422 and x_6428=store(x_4552,x_4546,x_132)and x_134-x_4546>=1 and x_6484=1 and x_6422=1+x_4546)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_6422=x_6422 and x_8458=x_8458 and x_8464=store(x_6428,x_6422,x_132)and x_134-x_6422>=1 and x_8520=1 and x_8458=1+x_6422)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_6422=x_6422 and x_8458=x_8458 and x_10656=x_10656 and x_10662=store(x_8464,x_8458,x_132)and x_134-x_8458>=1 and x_10718=1 and x_10656=1+x_8458)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_6422=x_6422 and x_8458=x_8458 and x_10656=x_10656 and x_13016=x_13016 and x_13022=store(x_10662,x_10656,x_132)and x_134-x_10656>=1 and x_13078=1 and x_13016=1+x_10656)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_6422=x_6422 and x_8458=x_8458 and x_10656=x_10656 and x_13016=x_13016 and x_42238=x_42238 and x_42244=store(x_13022,x_13016,x_132)and x_134-x_13016>=1 and x_42300=1 and x_42238=1+x_13016
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:array(int,int)=x_136:array(int,int)and x_138:int=x_138:int and x_140:int=x_140:int and x_142:int=x_142:int and x_144:int=x_144:int and x_1446:int=x_1446:int and x_1452:array(int,int)=x_1452:array(int,int)and x_3274:int=x_3274:int and x_3280:array(int,int)=x_3280:array(int,int)and x_5386:int=x_5386:int and x_5392:array(int,int)=x_5392:array(int,int)and x_7784:int=x_7784:int and x_7790:array(int,int)=x_7790:array(int,int)and x_10468:int=x_10468:int and x_10474:array(int,int)=x_10474:array(int,int)and x_13438:int=x_13438:int and x_13444:array(int,int)=x_13444:array(int,int)and x_16696:int=x_16696:int and x_16702:array(int,int)=x_16702:array(int,int)and x_46472:int=x_46472:int and x_46478:array(int,int)=x_46478:array(int,int)and((((((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_134>=1 and x_130=0 and x_172=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_1452=store(x_136,x_130,x_132)and x_134-x_130>=1 and x_1508=1 and x_1446=1+x_130)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_3280=store(x_1452,x_1446,x_132)and x_134-x_1446>=1 and x_3336=1 and x_3274=1+x_1446)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_5392=store(x_3280,x_3274,x_132)and x_134-x_3274>=1 and x_5448=1 and x_5386=1+x_3274)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_7784=x_7784 and x_7790=x_7790 and x_7790=store(x_5392,x_5386,x_132)and x_134-x_5386>=1 and x_7846=1 and x_7784=1+x_5386)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_7784=x_7784 and x_7790=x_7790 and x_10468=x_10468 and x_10474=x_10474 and x_10474=store(x_7790,x_7784,x_132)and x_134-x_7784>=1 and x_10530=1 and x_10468=1+x_7784)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_7784=x_7784 and x_7790=x_7790 and x_10468=x_10468 and x_10474=x_10474 and x_13438=x_13438 and x_13444=x_13444 and x_13444=store(x_10474,x_10468,x_132)and x_134-x_10468>=1 and x_13500=1 and x_13438=1+x_10468)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_7784=x_7784 and x_7790=x_7790 and x_10468=x_10468 and x_10474=x_10474 and x_13438=x_13438 and x_13444=x_13444 and x_16696=x_16696 and x_16702=x_16702 and x_16702=store(x_13444,x_13438,x_132)and x_134-x_13438>=1 and x_16758=1 and x_16696=1+x_13438)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_7784=x_7784 and x_7790=x_7790 and x_10468=x_10468 and x_10474=x_10474 and x_13438=x_13438 and x_13444=x_13444 and x_16696=x_16696 and x_16702=x_16702 and x_46472=x_46472 and x_46478=x_46478 and x_46478=store(x_16702,x_16696,x_132)and x_134-x_16696>=1 and x_46534=1 and x_46472=1+x_16696
 Mi trovo in questa head
-new1(_42238,_132,_134,_42244,_138,_140,_142,_144)
+new1(_46472,_132,_134,_46478,_138,_140,_142,_144)
 ✅ Inserita in rewrite: _130:int
 ✅ Inserita in rewrite: _132:int
 ✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _136:array(int,int)
 ✅ Inserita in rewrite: _138:int
 ✅ Inserita in rewrite: _140:int
 ✅ Inserita in rewrite: _142:int
 ✅ Inserita in rewrite: _144:int
-✅ Inserita in rewrite: _1286:int
-✅ Inserita in rewrite: _2834:int
-✅ Inserita in rewrite: _4546:int
-✅ Inserita in rewrite: _6422:int
-✅ Inserita in rewrite: _8458:int
-✅ Inserita in rewrite: _10656:int
-✅ Inserita in rewrite: _13016:int
-✅ Inserita in rewrite: _42238:int
-✅ Inserita in rewrite: _128432:int
+✅ Inserita in rewrite: _1446:int
+✅ Inserita in rewrite: _1452:array(int,int)
+✅ Inserita in rewrite: _3274:int
+✅ Inserita in rewrite: _3280:array(int,int)
+✅ Inserita in rewrite: _5386:int
+✅ Inserita in rewrite: _5392:array(int,int)
+✅ Inserita in rewrite: _7784:int
+✅ Inserita in rewrite: _7790:array(int,int)
+✅ Inserita in rewrite: _10468:int
+✅ Inserita in rewrite: _10474:array(int,int)
+✅ Inserita in rewrite: _13438:int
+✅ Inserita in rewrite: _13444:array(int,int)
+✅ Inserita in rewrite: _16696:int
+✅ Inserita in rewrite: _16702:array(int,int)
+✅ Inserita in rewrite: _46472:int
+✅ Inserita in rewrite: _46478:array(int,int)
+✅ Inserita in rewrite: _158634:int
+✅ Inserita in rewrite: _158640:array(int,int)
 Limite MaxDepth raggiunto
 Limite MaxDepth raggiunto
 Entrato in constr c
@@ -230,46 +285,32 @@ Entrato in constr c
 % Making new z3.pl handle
 % Made new z3.pl handle
 Stampa prima di inviare
-x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_138:int=x_138:int and x_140:int=x_140:int and x_142:int=x_142:int and x_144:int=x_144:int and x_1286:int=x_1286:int and x_2834:int=x_2834:int and x_4546:int=x_4546:int and x_6422:int=x_6422:int and x_8458:int=x_8458:int and x_10656:int=x_10656:int and x_13014:int=x_13014:int and x_15538:int=x_15538:int and x_18232:int=x_18232:int and (((((((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_134>=1 and x_130=0 and x_172=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_1292=store(x_136,x_130,x_132)and x_134-x_130>=1 and x_1348=1 and x_1286=1+x_130)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_2840=store(x_1292,x_1286,x_132)and x_134-x_1286>=1 and x_2896=1 and x_2834=1+x_1286)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_4552=store(x_2840,x_2834,x_132)and x_134-x_2834>=1 and x_4608=1 and x_4546=1+x_2834)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_6422=x_6422 and x_6428=store(x_4552,x_4546,x_132)and x_134-x_4546>=1 and x_6484=1 and x_6422=1+x_4546)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_6422=x_6422 and x_8458=x_8458 and x_8464=store(x_6428,x_6422,x_132)and x_134-x_6422>=1 and x_8520=1 and x_8458=1+x_6422)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_6422=x_6422 and x_8458=x_8458 and x_10656=x_10656 and x_10662=store(x_8464,x_8458,x_132)and x_134-x_8458>=1 and x_10718=1 and x_10656=1+x_8458)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_6422=x_6422 and x_8458=x_8458 and x_10656=x_10656 and x_13014=x_13014 and x_13020=store(x_10662,x_10656,x_132)and x_134-x_10656>=1 and x_13076=1 and x_13014=1+x_10656)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_6422=x_6422 and x_8458=x_8458 and x_10656=x_10656 and x_13014=x_13014 and x_15538=x_15538 and x_15544=store(x_13020,x_13014,x_132)and x_134-x_13014>=1 and x_15600=1 and x_15538=1+x_13014)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_6422=x_6422 and x_8458=x_8458 and x_10656=x_10656 and x_13014=x_13014 and x_15538=x_15538 and x_18232=x_18232 and x_18238=store(x_15544,x_15538,x_132)and x_134-x_15538>=1 and x_18294=1 and x_18232=1+x_15538
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:array(int,int)=x_136:array(int,int)and x_138:int=x_138:int and x_140:int=x_140:int and x_142:int=x_142:int and x_144:int=x_144:int and x_1446:int=x_1446:int and x_1452:array(int,int)=x_1452:array(int,int)and x_3274:int=x_3274:int and x_3280:array(int,int)=x_3280:array(int,int)and x_5386:int=x_5386:int and x_5392:array(int,int)=x_5392:array(int,int)and x_7784:int=x_7784:int and x_7790:array(int,int)=x_7790:array(int,int)and x_10468:int=x_10468:int and x_10474:array(int,int)=x_10474:array(int,int)and x_13438:int=x_13438:int and x_13444:array(int,int)=x_13444:array(int,int)and x_16696:int=x_16696:int and x_16702:array(int,int)=x_16702:array(int,int)and x_46472:int=x_46472:int and x_46478:array(int,int)=x_46478:array(int,int)and x_158634:int=x_158634:int and x_158640:array(int,int)=x_158640:array(int,int)and(((((((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_134>=1 and x_130=0 and x_172=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_1452=store(x_136,x_130,x_132)and x_134-x_130>=1 and x_1508=1 and x_1446=1+x_130)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_3280=store(x_1452,x_1446,x_132)and x_134-x_1446>=1 and x_3336=1 and x_3274=1+x_1446)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_5392=store(x_3280,x_3274,x_132)and x_134-x_3274>=1 and x_5448=1 and x_5386=1+x_3274)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_7784=x_7784 and x_7790=x_7790 and x_7790=store(x_5392,x_5386,x_132)and x_134-x_5386>=1 and x_7846=1 and x_7784=1+x_5386)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_7784=x_7784 and x_7790=x_7790 and x_10468=x_10468 and x_10474=x_10474 and x_10474=store(x_7790,x_7784,x_132)and x_134-x_7784>=1 and x_10530=1 and x_10468=1+x_7784)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_7784=x_7784 and x_7790=x_7790 and x_10468=x_10468 and x_10474=x_10474 and x_13438=x_13438 and x_13444=x_13444 and x_13444=store(x_10474,x_10468,x_132)and x_134-x_10468>=1 and x_13500=1 and x_13438=1+x_10468)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_7784=x_7784 and x_7790=x_7790 and x_10468=x_10468 and x_10474=x_10474 and x_13438=x_13438 and x_13444=x_13444 and x_16696=x_16696 and x_16702=x_16702 and x_16702=store(x_13444,x_13438,x_132)and x_134-x_13438>=1 and x_16758=1 and x_16696=1+x_13438)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_7784=x_7784 and x_7790=x_7790 and x_10468=x_10468 and x_10474=x_10474 and x_13438=x_13438 and x_13444=x_13444 and x_16696=x_16696 and x_16702=x_16702 and x_46472=x_46472 and x_46478=x_46478 and x_46478=store(x_16702,x_16696,x_132)and x_134-x_16696>=1 and x_46534=1 and x_46472=1+x_16696)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_7784=x_7784 and x_7790=x_7790 and x_10468=x_10468 and x_10474=x_10474 and x_13438=x_13438 and x_13444=x_13444 and x_16696=x_16696 and x_16702=x_16702 and x_46472=x_46472 and x_46478=x_46478 and x_158634=x_158634 and x_158640=x_158640 and x_158640=store(x_46478,x_46472,x_132)and x_134-x_46472>=1 and x_158696=1 and x_158634=1+x_46472
 Limite MaxDepth raggiunto
 ✅ Inserita in rewrite: _130:int
 ✅ Inserita in rewrite: _132:int
 ✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _136:array(int,int)
 ✅ Inserita in rewrite: _138:int
 ✅ Inserita in rewrite: _140:int
 ✅ Inserita in rewrite: _142:int
 ✅ Inserita in rewrite: _144:int
-✅ Inserita in rewrite: _1286:int
-✅ Inserita in rewrite: _2834:int
-✅ Inserita in rewrite: _4546:int
-✅ Inserita in rewrite: _6422:int
-✅ Inserita in rewrite: _8458:int
-✅ Inserita in rewrite: _10656:int
-✅ Inserita in rewrite: _13014:int
-✅ Inserita in rewrite: _15538:int
-Limite MaxDepth raggiunto
-Entrato in constr c
-
-% Freeing old z3.pl handle
-% Making new z3.pl handle
-% Made new z3.pl handle
-Stampa prima di inviare
-x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_138:int=x_138:int and x_140:int=x_140:int and x_142:int=x_142:int and x_144:int=x_144:int and x_1286:int=x_1286:int and x_2834:int=x_2834:int and x_4546:int=x_4546:int and x_6422:int=x_6422:int and x_8458:int=x_8458:int and x_10656:int=x_10656:int and x_13014:int=x_13014:int and x_15538:int=x_15538:int and (((((((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_134>=1 and x_130=0 and x_172=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_1292=store(x_136,x_130,x_132)and x_134-x_130>=1 and x_1348=1 and x_1286=1+x_130)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_2840=store(x_1292,x_1286,x_132)and x_134-x_1286>=1 and x_2896=1 and x_2834=1+x_1286)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_4552=store(x_2840,x_2834,x_132)and x_134-x_2834>=1 and x_4608=1 and x_4546=1+x_2834)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_6422=x_6422 and x_6428=store(x_4552,x_4546,x_132)and x_134-x_4546>=1 and x_6484=1 and x_6422=1+x_4546)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_6422=x_6422 and x_8458=x_8458 and x_8464=store(x_6428,x_6422,x_132)and x_134-x_6422>=1 and x_8520=1 and x_8458=1+x_6422)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_6422=x_6422 and x_8458=x_8458 and x_10656=x_10656 and x_10662=store(x_8464,x_8458,x_132)and x_134-x_8458>=1 and x_10718=1 and x_10656=1+x_8458)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_6422=x_6422 and x_8458=x_8458 and x_10656=x_10656 and x_13014=x_13014 and x_13020=store(x_10662,x_10656,x_132)and x_134-x_10656>=1 and x_13076=1 and x_13014=1+x_10656)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_6422=x_6422 and x_8458=x_8458 and x_10656=x_10656 and x_13014=x_13014 and x_15538=x_15538 and x_15544=store(x_13020,x_13014,x_132)and x_134-x_13014>=1 and x_15600=1 and x_15538=1+x_13014)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_6422=x_6422 and x_8458=x_8458 and x_10656=x_10656 and x_13014=x_13014 and x_15538=x_15538 and x_142=select(x_15544,x_144)and x_132-x_142>=1 and x_134-x_144>=1 and x_15538-x_134>=0 and x_144>=0 and x_106826=0
-✅ Inserita in rewrite: _130:int
-✅ Inserita in rewrite: _132:int
-✅ Inserita in rewrite: _134:int
-✅ Inserita in rewrite: _138:int
-✅ Inserita in rewrite: _140:int
-✅ Inserita in rewrite: _142:int
-✅ Inserita in rewrite: _144:int
-✅ Inserita in rewrite: _1286:int
-✅ Inserita in rewrite: _2834:int
-✅ Inserita in rewrite: _4546:int
-✅ Inserita in rewrite: _6422:int
-✅ Inserita in rewrite: _8458:int
-✅ Inserita in rewrite: _10656:int
-✅ Inserita in rewrite: _13014:int
-✅ Inserita in rewrite: _15536:int
+✅ Inserita in rewrite: _1446:int
+✅ Inserita in rewrite: _1452:array(int,int)
+✅ Inserita in rewrite: _3274:int
+✅ Inserita in rewrite: _3280:array(int,int)
+✅ Inserita in rewrite: _5386:int
+✅ Inserita in rewrite: _5392:array(int,int)
+✅ Inserita in rewrite: _7784:int
+✅ Inserita in rewrite: _7790:array(int,int)
+✅ Inserita in rewrite: _10468:int
+✅ Inserita in rewrite: _10474:array(int,int)
+✅ Inserita in rewrite: _13438:int
+✅ Inserita in rewrite: _13444:array(int,int)
+✅ Inserita in rewrite: _16694:int
+✅ Inserita in rewrite: _16700:array(int,int)
+✅ Inserita in rewrite: _20238:int
+✅ Inserita in rewrite: _20244:array(int,int)
 Limite MaxDepth raggiunto
 Entrato in constr c
 
@@ -277,262 +318,365 @@ Entrato in constr c
 % Making new z3.pl handle
 % Made new z3.pl handle
 Stampa prima di inviare
-x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_138:int=x_138:int and x_140:int=x_140:int and x_142:int=x_142:int and x_144:int=x_144:int and x_1286:int=x_1286:int and x_2834:int=x_2834:int and x_4546:int=x_4546:int and x_6422:int=x_6422:int and x_8458:int=x_8458:int and x_10656:int=x_10656:int and x_13014:int=x_13014:int and x_15536:int=x_15536:int and (((((((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_134>=1 and x_130=0 and x_172=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_1292=store(x_136,x_130,x_132)and x_134-x_130>=1 and x_1348=1 and x_1286=1+x_130)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_2840=store(x_1292,x_1286,x_132)and x_134-x_1286>=1 and x_2896=1 and x_2834=1+x_1286)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_4552=store(x_2840,x_2834,x_132)and x_134-x_2834>=1 and x_4608=1 and x_4546=1+x_2834)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_6422=x_6422 and x_6428=store(x_4552,x_4546,x_132)and x_134-x_4546>=1 and x_6484=1 and x_6422=1+x_4546)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_6422=x_6422 and x_8458=x_8458 and x_8464=store(x_6428,x_6422,x_132)and x_134-x_6422>=1 and x_8520=1 and x_8458=1+x_6422)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_6422=x_6422 and x_8458=x_8458 and x_10656=x_10656 and x_10662=store(x_8464,x_8458,x_132)and x_134-x_8458>=1 and x_10718=1 and x_10656=1+x_8458)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_6422=x_6422 and x_8458=x_8458 and x_10656=x_10656 and x_13014=x_13014 and x_13020=store(x_10662,x_10656,x_132)and x_134-x_10656>=1 and x_13076=1 and x_13014=1+x_10656)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_6422=x_6422 and x_8458=x_8458 and x_10656=x_10656 and x_13014=x_13014 and x_15536=x_15536 and x_15542=store(x_13020,x_13014,x_132)and x_134-x_13014>=1 and x_15598=1 and x_15536=1+x_13014)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_6422=x_6422 and x_8458=x_8458 and x_10656=x_10656 and x_13014=x_13014 and x_15536=x_15536 and x_142=select(x_15542,x_144)and x_134-x_144>=1 and x_15536-x_134>=0 and x_144>=0 and x_132-x_142=< - 1 and x_88812=0
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:array(int,int)=x_136:array(int,int)and x_138:int=x_138:int and x_140:int=x_140:int and x_142:int=x_142:int and x_144:int=x_144:int and x_1446:int=x_1446:int and x_1452:array(int,int)=x_1452:array(int,int)and x_3274:int=x_3274:int and x_3280:array(int,int)=x_3280:array(int,int)and x_5386:int=x_5386:int and x_5392:array(int,int)=x_5392:array(int,int)and x_7784:int=x_7784:int and x_7790:array(int,int)=x_7790:array(int,int)and x_10468:int=x_10468:int and x_10474:array(int,int)=x_10474:array(int,int)and x_13438:int=x_13438:int and x_13444:array(int,int)=x_13444:array(int,int)and x_16694:int=x_16694:int and x_16700:array(int,int)=x_16700:array(int,int)and x_20238:int=x_20238:int and x_20244:array(int,int)=x_20244:array(int,int)and(((((((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_134>=1 and x_130=0 and x_172=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_1452=store(x_136,x_130,x_132)and x_134-x_130>=1 and x_1508=1 and x_1446=1+x_130)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_3280=store(x_1452,x_1446,x_132)and x_134-x_1446>=1 and x_3336=1 and x_3274=1+x_1446)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_5392=store(x_3280,x_3274,x_132)and x_134-x_3274>=1 and x_5448=1 and x_5386=1+x_3274)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_7784=x_7784 and x_7790=x_7790 and x_7790=store(x_5392,x_5386,x_132)and x_134-x_5386>=1 and x_7846=1 and x_7784=1+x_5386)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_7784=x_7784 and x_7790=x_7790 and x_10468=x_10468 and x_10474=x_10474 and x_10474=store(x_7790,x_7784,x_132)and x_134-x_7784>=1 and x_10530=1 and x_10468=1+x_7784)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_7784=x_7784 and x_7790=x_7790 and x_10468=x_10468 and x_10474=x_10474 and x_13438=x_13438 and x_13444=x_13444 and x_13444=store(x_10474,x_10468,x_132)and x_134-x_10468>=1 and x_13500=1 and x_13438=1+x_10468)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_7784=x_7784 and x_7790=x_7790 and x_10468=x_10468 and x_10474=x_10474 and x_13438=x_13438 and x_13444=x_13444 and x_16694=x_16694 and x_16700=x_16700 and x_16700=store(x_13444,x_13438,x_132)and x_134-x_13438>=1 and x_16756=1 and x_16694=1+x_13438)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_7784=x_7784 and x_7790=x_7790 and x_10468=x_10468 and x_10474=x_10474 and x_13438=x_13438 and x_13444=x_13444 and x_16694=x_16694 and x_16700=x_16700 and x_20238=x_20238 and x_20244=x_20244 and x_20244=store(x_16700,x_16694,x_132)and x_134-x_16694>=1 and x_20300=1 and x_20238=1+x_16694)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_7784=x_7784 and x_7790=x_7790 and x_10468=x_10468 and x_10474=x_10474 and x_13438=x_13438 and x_13444=x_13444 and x_16694=x_16694 and x_16700=x_16700 and x_20238=x_20238 and x_20244=x_20244 and x_142=select(x_20244,x_144)and x_132-x_142>=1 and x_134-x_144>=1 and x_20238-x_134>=0 and x_144>=0 and x_54428=0
 ✅ Inserita in rewrite: _130:int
 ✅ Inserita in rewrite: _132:int
 ✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _136:array(int,int)
 ✅ Inserita in rewrite: _138:int
 ✅ Inserita in rewrite: _140:int
 ✅ Inserita in rewrite: _142:int
 ✅ Inserita in rewrite: _144:int
-✅ Inserita in rewrite: _1286:int
-✅ Inserita in rewrite: _2834:int
-✅ Inserita in rewrite: _4546:int
-✅ Inserita in rewrite: _6422:int
-✅ Inserita in rewrite: _8458:int
-✅ Inserita in rewrite: _10656:int
-✅ Inserita in rewrite: _13014:int
+✅ Inserita in rewrite: _1446:int
+✅ Inserita in rewrite: _1452:array(int,int)
+✅ Inserita in rewrite: _3274:int
+✅ Inserita in rewrite: _3280:array(int,int)
+✅ Inserita in rewrite: _5386:int
+✅ Inserita in rewrite: _5392:array(int,int)
+✅ Inserita in rewrite: _7784:int
+✅ Inserita in rewrite: _7790:array(int,int)
+✅ Inserita in rewrite: _10468:int
+✅ Inserita in rewrite: _10474:array(int,int)
+✅ Inserita in rewrite: _13438:int
+✅ Inserita in rewrite: _13444:array(int,int)
+✅ Inserita in rewrite: _16694:int
+✅ Inserita in rewrite: _16700:array(int,int)
+✅ Inserita in rewrite: _20238:int
+✅ Inserita in rewrite: _20244:array(int,int)
+Limite MaxDepth raggiunto
 Entrato in constr c
 
 % Freeing old z3.pl handle
 % Making new z3.pl handle
 % Made new z3.pl handle
 Stampa prima di inviare
-x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_138:int=x_138:int and x_140:int=x_140:int and x_142:int=x_142:int and x_144:int=x_144:int and x_1286:int=x_1286:int and x_2834:int=x_2834:int and x_4546:int=x_4546:int and x_6422:int=x_6422:int and x_8458:int=x_8458:int and x_10656:int=x_10656:int and x_13014:int=x_13014:int and ((((((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_134>=1 and x_130=0 and x_172=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_1292=store(x_136,x_130,x_132)and x_134-x_130>=1 and x_1348=1 and x_1286=1+x_130)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_2840=store(x_1292,x_1286,x_132)and x_134-x_1286>=1 and x_2896=1 and x_2834=1+x_1286)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_4552=store(x_2840,x_2834,x_132)and x_134-x_2834>=1 and x_4608=1 and x_4546=1+x_2834)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_6422=x_6422 and x_6428=store(x_4552,x_4546,x_132)and x_134-x_4546>=1 and x_6484=1 and x_6422=1+x_4546)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_6422=x_6422 and x_8458=x_8458 and x_8464=store(x_6428,x_6422,x_132)and x_134-x_6422>=1 and x_8520=1 and x_8458=1+x_6422)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_6422=x_6422 and x_8458=x_8458 and x_10656=x_10656 and x_10662=store(x_8464,x_8458,x_132)and x_134-x_8458>=1 and x_10718=1 and x_10656=1+x_8458)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_6422=x_6422 and x_8458=x_8458 and x_10656=x_10656 and x_13014=x_13014 and x_13020=store(x_10662,x_10656,x_132)and x_134-x_10656>=1 and x_13076=1 and x_13014=1+x_10656)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_6422=x_6422 and x_8458=x_8458 and x_10656=x_10656 and x_13014=x_13014 and x_142=select(x_13020,x_144)and x_132-x_142>=1 and x_134-x_144>=1 and x_13014-x_134>=0 and x_144>=0 and x_70596=0
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:array(int,int)=x_136:array(int,int)and x_138:int=x_138:int and x_140:int=x_140:int and x_142:int=x_142:int and x_144:int=x_144:int and x_1446:int=x_1446:int and x_1452:array(int,int)=x_1452:array(int,int)and x_3274:int=x_3274:int and x_3280:array(int,int)=x_3280:array(int,int)and x_5386:int=x_5386:int and x_5392:array(int,int)=x_5392:array(int,int)and x_7784:int=x_7784:int and x_7790:array(int,int)=x_7790:array(int,int)and x_10468:int=x_10468:int and x_10474:array(int,int)=x_10474:array(int,int)and x_13438:int=x_13438:int and x_13444:array(int,int)=x_13444:array(int,int)and x_16694:int=x_16694:int and x_16700:array(int,int)=x_16700:array(int,int)and x_20238:int=x_20238:int and x_20244:array(int,int)=x_20244:array(int,int)and(((((((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_134>=1 and x_130=0 and x_172=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_1452=store(x_136,x_130,x_132)and x_134-x_130>=1 and x_1508=1 and x_1446=1+x_130)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_3280=store(x_1452,x_1446,x_132)and x_134-x_1446>=1 and x_3336=1 and x_3274=1+x_1446)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_5392=store(x_3280,x_3274,x_132)and x_134-x_3274>=1 and x_5448=1 and x_5386=1+x_3274)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_7784=x_7784 and x_7790=x_7790 and x_7790=store(x_5392,x_5386,x_132)and x_134-x_5386>=1 and x_7846=1 and x_7784=1+x_5386)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_7784=x_7784 and x_7790=x_7790 and x_10468=x_10468 and x_10474=x_10474 and x_10474=store(x_7790,x_7784,x_132)and x_134-x_7784>=1 and x_10530=1 and x_10468=1+x_7784)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_7784=x_7784 and x_7790=x_7790 and x_10468=x_10468 and x_10474=x_10474 and x_13438=x_13438 and x_13444=x_13444 and x_13444=store(x_10474,x_10468,x_132)and x_134-x_10468>=1 and x_13500=1 and x_13438=1+x_10468)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_7784=x_7784 and x_7790=x_7790 and x_10468=x_10468 and x_10474=x_10474 and x_13438=x_13438 and x_13444=x_13444 and x_16694=x_16694 and x_16700=x_16700 and x_16700=store(x_13444,x_13438,x_132)and x_134-x_13438>=1 and x_16756=1 and x_16694=1+x_13438)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_7784=x_7784 and x_7790=x_7790 and x_10468=x_10468 and x_10474=x_10474 and x_13438=x_13438 and x_13444=x_13444 and x_16694=x_16694 and x_16700=x_16700 and x_20238=x_20238 and x_20244=x_20244 and x_20244=store(x_16700,x_16694,x_132)and x_134-x_16694>=1 and x_20300=1 and x_20238=1+x_16694)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_7784=x_7784 and x_7790=x_7790 and x_10468=x_10468 and x_10474=x_10474 and x_13438=x_13438 and x_13444=x_13444 and x_16694=x_16694 and x_16700=x_16700 and x_20238=x_20238 and x_20244=x_20244 and x_142=select(x_20244,x_144)and x_134-x_144>=1 and x_20238-x_134>=0 and x_144>=0 and x_132-x_142=< - 1 and x_171200=0
 ✅ Inserita in rewrite: _130:int
 ✅ Inserita in rewrite: _132:int
 ✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _136:array(int,int)
 ✅ Inserita in rewrite: _138:int
 ✅ Inserita in rewrite: _140:int
 ✅ Inserita in rewrite: _142:int
 ✅ Inserita in rewrite: _144:int
-✅ Inserita in rewrite: _1286:int
-✅ Inserita in rewrite: _2834:int
-✅ Inserita in rewrite: _4546:int
-✅ Inserita in rewrite: _6422:int
-✅ Inserita in rewrite: _8458:int
-✅ Inserita in rewrite: _10656:int
-✅ Inserita in rewrite: _13014:int
+✅ Inserita in rewrite: _1446:int
+✅ Inserita in rewrite: _1452:array(int,int)
+✅ Inserita in rewrite: _3274:int
+✅ Inserita in rewrite: _3280:array(int,int)
+✅ Inserita in rewrite: _5386:int
+✅ Inserita in rewrite: _5392:array(int,int)
+✅ Inserita in rewrite: _7784:int
+✅ Inserita in rewrite: _7790:array(int,int)
+✅ Inserita in rewrite: _10468:int
+✅ Inserita in rewrite: _10474:array(int,int)
+✅ Inserita in rewrite: _13438:int
+✅ Inserita in rewrite: _13444:array(int,int)
+✅ Inserita in rewrite: _16694:int
+✅ Inserita in rewrite: _16700:array(int,int)
 Entrato in constr c
 
 % Freeing old z3.pl handle
 % Making new z3.pl handle
 % Made new z3.pl handle
 Stampa prima di inviare
-x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_138:int=x_138:int and x_140:int=x_140:int and x_142:int=x_142:int and x_144:int=x_144:int and x_1286:int=x_1286:int and x_2834:int=x_2834:int and x_4546:int=x_4546:int and x_6422:int=x_6422:int and x_8458:int=x_8458:int and x_10656:int=x_10656:int and x_13014:int=x_13014:int and ((((((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_134>=1 and x_130=0 and x_172=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_1292=store(x_136,x_130,x_132)and x_134-x_130>=1 and x_1348=1 and x_1286=1+x_130)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_2840=store(x_1292,x_1286,x_132)and x_134-x_1286>=1 and x_2896=1 and x_2834=1+x_1286)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_4552=store(x_2840,x_2834,x_132)and x_134-x_2834>=1 and x_4608=1 and x_4546=1+x_2834)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_6422=x_6422 and x_6428=store(x_4552,x_4546,x_132)and x_134-x_4546>=1 and x_6484=1 and x_6422=1+x_4546)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_6422=x_6422 and x_8458=x_8458 and x_8464=store(x_6428,x_6422,x_132)and x_134-x_6422>=1 and x_8520=1 and x_8458=1+x_6422)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_6422=x_6422 and x_8458=x_8458 and x_10656=x_10656 and x_10662=store(x_8464,x_8458,x_132)and x_134-x_8458>=1 and x_10718=1 and x_10656=1+x_8458)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_6422=x_6422 and x_8458=x_8458 and x_10656=x_10656 and x_13014=x_13014 and x_13020=store(x_10662,x_10656,x_132)and x_134-x_10656>=1 and x_13076=1 and x_13014=1+x_10656)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_6422=x_6422 and x_8458=x_8458 and x_10656=x_10656 and x_13014=x_13014 and x_142=select(x_13020,x_144)and x_134-x_144>=1 and x_13014-x_134>=0 and x_144>=0 and x_132-x_142=< - 1 and x_41498=0
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:array(int,int)=x_136:array(int,int)and x_138:int=x_138:int and x_140:int=x_140:int and x_142:int=x_142:int and x_144:int=x_144:int and x_1446:int=x_1446:int and x_1452:array(int,int)=x_1452:array(int,int)and x_3274:int=x_3274:int and x_3280:array(int,int)=x_3280:array(int,int)and x_5386:int=x_5386:int and x_5392:array(int,int)=x_5392:array(int,int)and x_7784:int=x_7784:int and x_7790:array(int,int)=x_7790:array(int,int)and x_10468:int=x_10468:int and x_10474:array(int,int)=x_10474:array(int,int)and x_13438:int=x_13438:int and x_13444:array(int,int)=x_13444:array(int,int)and x_16694:int=x_16694:int and x_16700:array(int,int)=x_16700:array(int,int)and((((((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_134>=1 and x_130=0 and x_172=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_1452=store(x_136,x_130,x_132)and x_134-x_130>=1 and x_1508=1 and x_1446=1+x_130)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_3280=store(x_1452,x_1446,x_132)and x_134-x_1446>=1 and x_3336=1 and x_3274=1+x_1446)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_5392=store(x_3280,x_3274,x_132)and x_134-x_3274>=1 and x_5448=1 and x_5386=1+x_3274)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_7784=x_7784 and x_7790=x_7790 and x_7790=store(x_5392,x_5386,x_132)and x_134-x_5386>=1 and x_7846=1 and x_7784=1+x_5386)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_7784=x_7784 and x_7790=x_7790 and x_10468=x_10468 and x_10474=x_10474 and x_10474=store(x_7790,x_7784,x_132)and x_134-x_7784>=1 and x_10530=1 and x_10468=1+x_7784)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_7784=x_7784 and x_7790=x_7790 and x_10468=x_10468 and x_10474=x_10474 and x_13438=x_13438 and x_13444=x_13444 and x_13444=store(x_10474,x_10468,x_132)and x_134-x_10468>=1 and x_13500=1 and x_13438=1+x_10468)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_7784=x_7784 and x_7790=x_7790 and x_10468=x_10468 and x_10474=x_10474 and x_13438=x_13438 and x_13444=x_13444 and x_16694=x_16694 and x_16700=x_16700 and x_16700=store(x_13444,x_13438,x_132)and x_134-x_13438>=1 and x_16756=1 and x_16694=1+x_13438)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_7784=x_7784 and x_7790=x_7790 and x_10468=x_10468 and x_10474=x_10474 and x_13438=x_13438 and x_13444=x_13444 and x_16694=x_16694 and x_16700=x_16700 and x_142=select(x_16700,x_144)and x_132-x_142>=1 and x_134-x_144>=1 and x_16694-x_134>=0 and x_144>=0 and x_60916=0
 ✅ Inserita in rewrite: _130:int
 ✅ Inserita in rewrite: _132:int
 ✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _136:array(int,int)
 ✅ Inserita in rewrite: _138:int
 ✅ Inserita in rewrite: _140:int
 ✅ Inserita in rewrite: _142:int
 ✅ Inserita in rewrite: _144:int
-✅ Inserita in rewrite: _1286:int
-✅ Inserita in rewrite: _2834:int
-✅ Inserita in rewrite: _4546:int
-✅ Inserita in rewrite: _6422:int
-✅ Inserita in rewrite: _8458:int
-✅ Inserita in rewrite: _10656:int
+✅ Inserita in rewrite: _1446:int
+✅ Inserita in rewrite: _1452:array(int,int)
+✅ Inserita in rewrite: _3274:int
+✅ Inserita in rewrite: _3280:array(int,int)
+✅ Inserita in rewrite: _5386:int
+✅ Inserita in rewrite: _5392:array(int,int)
+✅ Inserita in rewrite: _7784:int
+✅ Inserita in rewrite: _7790:array(int,int)
+✅ Inserita in rewrite: _10468:int
+✅ Inserita in rewrite: _10474:array(int,int)
+✅ Inserita in rewrite: _13438:int
+✅ Inserita in rewrite: _13444:array(int,int)
+✅ Inserita in rewrite: _16694:int
+✅ Inserita in rewrite: _16700:array(int,int)
 Entrato in constr c
 
 % Freeing old z3.pl handle
 % Making new z3.pl handle
 % Made new z3.pl handle
 Stampa prima di inviare
-x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_138:int=x_138:int and x_140:int=x_140:int and x_142:int=x_142:int and x_144:int=x_144:int and x_1286:int=x_1286:int and x_2834:int=x_2834:int and x_4546:int=x_4546:int and x_6422:int=x_6422:int and x_8458:int=x_8458:int and x_10656:int=x_10656:int and (((((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_134>=1 and x_130=0 and x_172=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_1292=store(x_136,x_130,x_132)and x_134-x_130>=1 and x_1348=1 and x_1286=1+x_130)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_2840=store(x_1292,x_1286,x_132)and x_134-x_1286>=1 and x_2896=1 and x_2834=1+x_1286)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_4552=store(x_2840,x_2834,x_132)and x_134-x_2834>=1 and x_4608=1 and x_4546=1+x_2834)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_6422=x_6422 and x_6428=store(x_4552,x_4546,x_132)and x_134-x_4546>=1 and x_6484=1 and x_6422=1+x_4546)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_6422=x_6422 and x_8458=x_8458 and x_8464=store(x_6428,x_6422,x_132)and x_134-x_6422>=1 and x_8520=1 and x_8458=1+x_6422)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_6422=x_6422 and x_8458=x_8458 and x_10656=x_10656 and x_10662=store(x_8464,x_8458,x_132)and x_134-x_8458>=1 and x_10718=1 and x_10656=1+x_8458)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_6422=x_6422 and x_8458=x_8458 and x_10656=x_10656 and x_142=select(x_10662,x_144)and x_132-x_142>=1 and x_134-x_144>=1 and x_10656-x_134>=0 and x_144>=0 and x_120608=0
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:array(int,int)=x_136:array(int,int)and x_138:int=x_138:int and x_140:int=x_140:int and x_142:int=x_142:int and x_144:int=x_144:int and x_1446:int=x_1446:int and x_1452:array(int,int)=x_1452:array(int,int)and x_3274:int=x_3274:int and x_3280:array(int,int)=x_3280:array(int,int)and x_5386:int=x_5386:int and x_5392:array(int,int)=x_5392:array(int,int)and x_7784:int=x_7784:int and x_7790:array(int,int)=x_7790:array(int,int)and x_10468:int=x_10468:int and x_10474:array(int,int)=x_10474:array(int,int)and x_13438:int=x_13438:int and x_13444:array(int,int)=x_13444:array(int,int)and x_16694:int=x_16694:int and x_16700:array(int,int)=x_16700:array(int,int)and((((((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_134>=1 and x_130=0 and x_172=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_1452=store(x_136,x_130,x_132)and x_134-x_130>=1 and x_1508=1 and x_1446=1+x_130)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_3280=store(x_1452,x_1446,x_132)and x_134-x_1446>=1 and x_3336=1 and x_3274=1+x_1446)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_5392=store(x_3280,x_3274,x_132)and x_134-x_3274>=1 and x_5448=1 and x_5386=1+x_3274)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_7784=x_7784 and x_7790=x_7790 and x_7790=store(x_5392,x_5386,x_132)and x_134-x_5386>=1 and x_7846=1 and x_7784=1+x_5386)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_7784=x_7784 and x_7790=x_7790 and x_10468=x_10468 and x_10474=x_10474 and x_10474=store(x_7790,x_7784,x_132)and x_134-x_7784>=1 and x_10530=1 and x_10468=1+x_7784)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_7784=x_7784 and x_7790=x_7790 and x_10468=x_10468 and x_10474=x_10474 and x_13438=x_13438 and x_13444=x_13444 and x_13444=store(x_10474,x_10468,x_132)and x_134-x_10468>=1 and x_13500=1 and x_13438=1+x_10468)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_7784=x_7784 and x_7790=x_7790 and x_10468=x_10468 and x_10474=x_10474 and x_13438=x_13438 and x_13444=x_13444 and x_16694=x_16694 and x_16700=x_16700 and x_16700=store(x_13444,x_13438,x_132)and x_134-x_13438>=1 and x_16756=1 and x_16694=1+x_13438)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_7784=x_7784 and x_7790=x_7790 and x_10468=x_10468 and x_10474=x_10474 and x_13438=x_13438 and x_13444=x_13444 and x_16694=x_16694 and x_16700=x_16700 and x_142=select(x_16700,x_144)and x_134-x_144>=1 and x_16694-x_134>=0 and x_144>=0 and x_132-x_142=< - 1 and x_162562=0
 ✅ Inserita in rewrite: _130:int
 ✅ Inserita in rewrite: _132:int
 ✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _136:array(int,int)
 ✅ Inserita in rewrite: _138:int
 ✅ Inserita in rewrite: _140:int
 ✅ Inserita in rewrite: _142:int
 ✅ Inserita in rewrite: _144:int
-✅ Inserita in rewrite: _1286:int
-✅ Inserita in rewrite: _2834:int
-✅ Inserita in rewrite: _4546:int
-✅ Inserita in rewrite: _6422:int
-✅ Inserita in rewrite: _8458:int
-✅ Inserita in rewrite: _10656:int
+✅ Inserita in rewrite: _1446:int
+✅ Inserita in rewrite: _1452:array(int,int)
+✅ Inserita in rewrite: _3274:int
+✅ Inserita in rewrite: _3280:array(int,int)
+✅ Inserita in rewrite: _5386:int
+✅ Inserita in rewrite: _5392:array(int,int)
+✅ Inserita in rewrite: _7784:int
+✅ Inserita in rewrite: _7790:array(int,int)
+✅ Inserita in rewrite: _10468:int
+✅ Inserita in rewrite: _10474:array(int,int)
+✅ Inserita in rewrite: _13438:int
+✅ Inserita in rewrite: _13444:array(int,int)
 Entrato in constr c
 
 % Freeing old z3.pl handle
 % Making new z3.pl handle
 % Made new z3.pl handle
 Stampa prima di inviare
-x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_138:int=x_138:int and x_140:int=x_140:int and x_142:int=x_142:int and x_144:int=x_144:int and x_1286:int=x_1286:int and x_2834:int=x_2834:int and x_4546:int=x_4546:int and x_6422:int=x_6422:int and x_8458:int=x_8458:int and x_10656:int=x_10656:int and (((((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_134>=1 and x_130=0 and x_172=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_1292=store(x_136,x_130,x_132)and x_134-x_130>=1 and x_1348=1 and x_1286=1+x_130)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_2840=store(x_1292,x_1286,x_132)and x_134-x_1286>=1 and x_2896=1 and x_2834=1+x_1286)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_4552=store(x_2840,x_2834,x_132)and x_134-x_2834>=1 and x_4608=1 and x_4546=1+x_2834)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_6422=x_6422 and x_6428=store(x_4552,x_4546,x_132)and x_134-x_4546>=1 and x_6484=1 and x_6422=1+x_4546)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_6422=x_6422 and x_8458=x_8458 and x_8464=store(x_6428,x_6422,x_132)and x_134-x_6422>=1 and x_8520=1 and x_8458=1+x_6422)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_6422=x_6422 and x_8458=x_8458 and x_10656=x_10656 and x_10662=store(x_8464,x_8458,x_132)and x_134-x_8458>=1 and x_10718=1 and x_10656=1+x_8458)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_6422=x_6422 and x_8458=x_8458 and x_10656=x_10656 and x_142=select(x_10662,x_144)and x_134-x_144>=1 and x_10656-x_134>=0 and x_144>=0 and x_132-x_142=< - 1 and x_75494=0
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:array(int,int)=x_136:array(int,int)and x_138:int=x_138:int and x_140:int=x_140:int and x_142:int=x_142:int and x_144:int=x_144:int and x_1446:int=x_1446:int and x_1452:array(int,int)=x_1452:array(int,int)and x_3274:int=x_3274:int and x_3280:array(int,int)=x_3280:array(int,int)and x_5386:int=x_5386:int and x_5392:array(int,int)=x_5392:array(int,int)and x_7784:int=x_7784:int and x_7790:array(int,int)=x_7790:array(int,int)and x_10468:int=x_10468:int and x_10474:array(int,int)=x_10474:array(int,int)and x_13438:int=x_13438:int and x_13444:array(int,int)=x_13444:array(int,int)and(((((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_134>=1 and x_130=0 and x_172=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_1452=store(x_136,x_130,x_132)and x_134-x_130>=1 and x_1508=1 and x_1446=1+x_130)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_3280=store(x_1452,x_1446,x_132)and x_134-x_1446>=1 and x_3336=1 and x_3274=1+x_1446)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_5392=store(x_3280,x_3274,x_132)and x_134-x_3274>=1 and x_5448=1 and x_5386=1+x_3274)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_7784=x_7784 and x_7790=x_7790 and x_7790=store(x_5392,x_5386,x_132)and x_134-x_5386>=1 and x_7846=1 and x_7784=1+x_5386)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_7784=x_7784 and x_7790=x_7790 and x_10468=x_10468 and x_10474=x_10474 and x_10474=store(x_7790,x_7784,x_132)and x_134-x_7784>=1 and x_10530=1 and x_10468=1+x_7784)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_7784=x_7784 and x_7790=x_7790 and x_10468=x_10468 and x_10474=x_10474 and x_13438=x_13438 and x_13444=x_13444 and x_13444=store(x_10474,x_10468,x_132)and x_134-x_10468>=1 and x_13500=1 and x_13438=1+x_10468)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_7784=x_7784 and x_7790=x_7790 and x_10468=x_10468 and x_10474=x_10474 and x_13438=x_13438 and x_13444=x_13444 and x_142=select(x_13444,x_144)and x_132-x_142>=1 and x_134-x_144>=1 and x_13438-x_134>=0 and x_144>=0 and x_29138=0
 ✅ Inserita in rewrite: _130:int
 ✅ Inserita in rewrite: _132:int
 ✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _136:array(int,int)
 ✅ Inserita in rewrite: _138:int
 ✅ Inserita in rewrite: _140:int
 ✅ Inserita in rewrite: _142:int
 ✅ Inserita in rewrite: _144:int
-✅ Inserita in rewrite: _1286:int
-✅ Inserita in rewrite: _2834:int
-✅ Inserita in rewrite: _4546:int
-✅ Inserita in rewrite: _6422:int
-✅ Inserita in rewrite: _8458:int
+✅ Inserita in rewrite: _1446:int
+✅ Inserita in rewrite: _1452:array(int,int)
+✅ Inserita in rewrite: _3274:int
+✅ Inserita in rewrite: _3280:array(int,int)
+✅ Inserita in rewrite: _5386:int
+✅ Inserita in rewrite: _5392:array(int,int)
+✅ Inserita in rewrite: _7784:int
+✅ Inserita in rewrite: _7790:array(int,int)
+✅ Inserita in rewrite: _10468:int
+✅ Inserita in rewrite: _10474:array(int,int)
+✅ Inserita in rewrite: _13438:int
+✅ Inserita in rewrite: _13444:array(int,int)
 Entrato in constr c
 
 % Freeing old z3.pl handle
 % Making new z3.pl handle
 % Made new z3.pl handle
 Stampa prima di inviare
-x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_138:int=x_138:int and x_140:int=x_140:int and x_142:int=x_142:int and x_144:int=x_144:int and x_1286:int=x_1286:int and x_2834:int=x_2834:int and x_4546:int=x_4546:int and x_6422:int=x_6422:int and x_8458:int=x_8458:int and ((((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_134>=1 and x_130=0 and x_172=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_1292=store(x_136,x_130,x_132)and x_134-x_130>=1 and x_1348=1 and x_1286=1+x_130)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_2840=store(x_1292,x_1286,x_132)and x_134-x_1286>=1 and x_2896=1 and x_2834=1+x_1286)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_4552=store(x_2840,x_2834,x_132)and x_134-x_2834>=1 and x_4608=1 and x_4546=1+x_2834)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_6422=x_6422 and x_6428=store(x_4552,x_4546,x_132)and x_134-x_4546>=1 and x_6484=1 and x_6422=1+x_4546)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_6422=x_6422 and x_8458=x_8458 and x_8464=store(x_6428,x_6422,x_132)and x_134-x_6422>=1 and x_8520=1 and x_8458=1+x_6422)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_6422=x_6422 and x_8458=x_8458 and x_142=select(x_8464,x_144)and x_132-x_142>=1 and x_134-x_144>=1 and x_8458-x_134>=0 and x_144>=0 and x_34202=0
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:array(int,int)=x_136:array(int,int)and x_138:int=x_138:int and x_140:int=x_140:int and x_142:int=x_142:int and x_144:int=x_144:int and x_1446:int=x_1446:int and x_1452:array(int,int)=x_1452:array(int,int)and x_3274:int=x_3274:int and x_3280:array(int,int)=x_3280:array(int,int)and x_5386:int=x_5386:int and x_5392:array(int,int)=x_5392:array(int,int)and x_7784:int=x_7784:int and x_7790:array(int,int)=x_7790:array(int,int)and x_10468:int=x_10468:int and x_10474:array(int,int)=x_10474:array(int,int)and x_13438:int=x_13438:int and x_13444:array(int,int)=x_13444:array(int,int)and(((((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_134>=1 and x_130=0 and x_172=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_1452=store(x_136,x_130,x_132)and x_134-x_130>=1 and x_1508=1 and x_1446=1+x_130)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_3280=store(x_1452,x_1446,x_132)and x_134-x_1446>=1 and x_3336=1 and x_3274=1+x_1446)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_5392=store(x_3280,x_3274,x_132)and x_134-x_3274>=1 and x_5448=1 and x_5386=1+x_3274)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_7784=x_7784 and x_7790=x_7790 and x_7790=store(x_5392,x_5386,x_132)and x_134-x_5386>=1 and x_7846=1 and x_7784=1+x_5386)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_7784=x_7784 and x_7790=x_7790 and x_10468=x_10468 and x_10474=x_10474 and x_10474=store(x_7790,x_7784,x_132)and x_134-x_7784>=1 and x_10530=1 and x_10468=1+x_7784)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_7784=x_7784 and x_7790=x_7790 and x_10468=x_10468 and x_10474=x_10474 and x_13438=x_13438 and x_13444=x_13444 and x_13444=store(x_10474,x_10468,x_132)and x_134-x_10468>=1 and x_13500=1 and x_13438=1+x_10468)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_7784=x_7784 and x_7790=x_7790 and x_10468=x_10468 and x_10474=x_10474 and x_13438=x_13438 and x_13444=x_13444 and x_142=select(x_13444,x_144)and x_134-x_144>=1 and x_13438-x_134>=0 and x_144>=0 and x_132-x_142=< - 1 and x_116618=0
 ✅ Inserita in rewrite: _130:int
 ✅ Inserita in rewrite: _132:int
 ✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _136:array(int,int)
 ✅ Inserita in rewrite: _138:int
 ✅ Inserita in rewrite: _140:int
 ✅ Inserita in rewrite: _142:int
 ✅ Inserita in rewrite: _144:int
-✅ Inserita in rewrite: _1286:int
-✅ Inserita in rewrite: _2834:int
-✅ Inserita in rewrite: _4546:int
-✅ Inserita in rewrite: _6422:int
-✅ Inserita in rewrite: _8458:int
+✅ Inserita in rewrite: _1446:int
+✅ Inserita in rewrite: _1452:array(int,int)
+✅ Inserita in rewrite: _3274:int
+✅ Inserita in rewrite: _3280:array(int,int)
+✅ Inserita in rewrite: _5386:int
+✅ Inserita in rewrite: _5392:array(int,int)
+✅ Inserita in rewrite: _7784:int
+✅ Inserita in rewrite: _7790:array(int,int)
+✅ Inserita in rewrite: _10468:int
+✅ Inserita in rewrite: _10474:array(int,int)
 Entrato in constr c
 
 % Freeing old z3.pl handle
 % Making new z3.pl handle
 % Made new z3.pl handle
 Stampa prima di inviare
-x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_138:int=x_138:int and x_140:int=x_140:int and x_142:int=x_142:int and x_144:int=x_144:int and x_1286:int=x_1286:int and x_2834:int=x_2834:int and x_4546:int=x_4546:int and x_6422:int=x_6422:int and x_8458:int=x_8458:int and ((((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_134>=1 and x_130=0 and x_172=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_1292=store(x_136,x_130,x_132)and x_134-x_130>=1 and x_1348=1 and x_1286=1+x_130)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_2840=store(x_1292,x_1286,x_132)and x_134-x_1286>=1 and x_2896=1 and x_2834=1+x_1286)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_4552=store(x_2840,x_2834,x_132)and x_134-x_2834>=1 and x_4608=1 and x_4546=1+x_2834)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_6422=x_6422 and x_6428=store(x_4552,x_4546,x_132)and x_134-x_4546>=1 and x_6484=1 and x_6422=1+x_4546)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_6422=x_6422 and x_8458=x_8458 and x_8464=store(x_6428,x_6422,x_132)and x_134-x_6422>=1 and x_8520=1 and x_8458=1+x_6422)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_6422=x_6422 and x_8458=x_8458 and x_142=select(x_8464,x_144)and x_134-x_144>=1 and x_8458-x_134>=0 and x_144>=0 and x_132-x_142=< - 1 and x_93514=0
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:array(int,int)=x_136:array(int,int)and x_138:int=x_138:int and x_140:int=x_140:int and x_142:int=x_142:int and x_144:int=x_144:int and x_1446:int=x_1446:int and x_1452:array(int,int)=x_1452:array(int,int)and x_3274:int=x_3274:int and x_3280:array(int,int)=x_3280:array(int,int)and x_5386:int=x_5386:int and x_5392:array(int,int)=x_5392:array(int,int)and x_7784:int=x_7784:int and x_7790:array(int,int)=x_7790:array(int,int)and x_10468:int=x_10468:int and x_10474:array(int,int)=x_10474:array(int,int)and((((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_134>=1 and x_130=0 and x_172=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_1452=store(x_136,x_130,x_132)and x_134-x_130>=1 and x_1508=1 and x_1446=1+x_130)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_3280=store(x_1452,x_1446,x_132)and x_134-x_1446>=1 and x_3336=1 and x_3274=1+x_1446)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_5392=store(x_3280,x_3274,x_132)and x_134-x_3274>=1 and x_5448=1 and x_5386=1+x_3274)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_7784=x_7784 and x_7790=x_7790 and x_7790=store(x_5392,x_5386,x_132)and x_134-x_5386>=1 and x_7846=1 and x_7784=1+x_5386)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_7784=x_7784 and x_7790=x_7790 and x_10468=x_10468 and x_10474=x_10474 and x_10474=store(x_7790,x_7784,x_132)and x_134-x_7784>=1 and x_10530=1 and x_10468=1+x_7784)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_7784=x_7784 and x_7790=x_7790 and x_10468=x_10468 and x_10474=x_10474 and x_142=select(x_10474,x_144)and x_132-x_142>=1 and x_134-x_144>=1 and x_10468-x_134>=0 and x_144>=0 and x_204408=0
 ✅ Inserita in rewrite: _130:int
 ✅ Inserita in rewrite: _132:int
 ✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _136:array(int,int)
 ✅ Inserita in rewrite: _138:int
 ✅ Inserita in rewrite: _140:int
 ✅ Inserita in rewrite: _142:int
 ✅ Inserita in rewrite: _144:int
-✅ Inserita in rewrite: _1286:int
-✅ Inserita in rewrite: _2834:int
-✅ Inserita in rewrite: _4546:int
-✅ Inserita in rewrite: _6422:int
+✅ Inserita in rewrite: _1446:int
+✅ Inserita in rewrite: _1452:array(int,int)
+✅ Inserita in rewrite: _3274:int
+✅ Inserita in rewrite: _3280:array(int,int)
+✅ Inserita in rewrite: _5386:int
+✅ Inserita in rewrite: _5392:array(int,int)
+✅ Inserita in rewrite: _7784:int
+✅ Inserita in rewrite: _7790:array(int,int)
+✅ Inserita in rewrite: _10468:int
+✅ Inserita in rewrite: _10474:array(int,int)
 Entrato in constr c
 
 % Freeing old z3.pl handle
 % Making new z3.pl handle
 % Made new z3.pl handle
 Stampa prima di inviare
-x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_138:int=x_138:int and x_140:int=x_140:int and x_142:int=x_142:int and x_144:int=x_144:int and x_1286:int=x_1286:int and x_2834:int=x_2834:int and x_4546:int=x_4546:int and x_6422:int=x_6422:int and (((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_134>=1 and x_130=0 and x_172=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_1292=store(x_136,x_130,x_132)and x_134-x_130>=1 and x_1348=1 and x_1286=1+x_130)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_2840=store(x_1292,x_1286,x_132)and x_134-x_1286>=1 and x_2896=1 and x_2834=1+x_1286)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_4552=store(x_2840,x_2834,x_132)and x_134-x_2834>=1 and x_4608=1 and x_4546=1+x_2834)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_6422=x_6422 and x_6428=store(x_4552,x_4546,x_132)and x_134-x_4546>=1 and x_6484=1 and x_6422=1+x_4546)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_6422=x_6422 and x_142=select(x_6428,x_144)and x_132-x_142>=1 and x_134-x_144>=1 and x_6422-x_134>=0 and x_144>=0 and x_36286=0
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:array(int,int)=x_136:array(int,int)and x_138:int=x_138:int and x_140:int=x_140:int and x_142:int=x_142:int and x_144:int=x_144:int and x_1446:int=x_1446:int and x_1452:array(int,int)=x_1452:array(int,int)and x_3274:int=x_3274:int and x_3280:array(int,int)=x_3280:array(int,int)and x_5386:int=x_5386:int and x_5392:array(int,int)=x_5392:array(int,int)and x_7784:int=x_7784:int and x_7790:array(int,int)=x_7790:array(int,int)and x_10468:int=x_10468:int and x_10474:array(int,int)=x_10474:array(int,int)and((((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_134>=1 and x_130=0 and x_172=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_1452=store(x_136,x_130,x_132)and x_134-x_130>=1 and x_1508=1 and x_1446=1+x_130)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_3280=store(x_1452,x_1446,x_132)and x_134-x_1446>=1 and x_3336=1 and x_3274=1+x_1446)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_5392=store(x_3280,x_3274,x_132)and x_134-x_3274>=1 and x_5448=1 and x_5386=1+x_3274)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_7784=x_7784 and x_7790=x_7790 and x_7790=store(x_5392,x_5386,x_132)and x_134-x_5386>=1 and x_7846=1 and x_7784=1+x_5386)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_7784=x_7784 and x_7790=x_7790 and x_10468=x_10468 and x_10474=x_10474 and x_10474=store(x_7790,x_7784,x_132)and x_134-x_7784>=1 and x_10530=1 and x_10468=1+x_7784)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_7784=x_7784 and x_7790=x_7790 and x_10468=x_10468 and x_10474=x_10474 and x_142=select(x_10474,x_144)and x_134-x_144>=1 and x_10468-x_134>=0 and x_144>=0 and x_132-x_142=< - 1 and x_37152=0
 ✅ Inserita in rewrite: _130:int
 ✅ Inserita in rewrite: _132:int
 ✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _136:array(int,int)
 ✅ Inserita in rewrite: _138:int
 ✅ Inserita in rewrite: _140:int
 ✅ Inserita in rewrite: _142:int
 ✅ Inserita in rewrite: _144:int
-✅ Inserita in rewrite: _1286:int
-✅ Inserita in rewrite: _2834:int
-✅ Inserita in rewrite: _4546:int
-✅ Inserita in rewrite: _6422:int
+✅ Inserita in rewrite: _1446:int
+✅ Inserita in rewrite: _1452:array(int,int)
+✅ Inserita in rewrite: _3274:int
+✅ Inserita in rewrite: _3280:array(int,int)
+✅ Inserita in rewrite: _5386:int
+✅ Inserita in rewrite: _5392:array(int,int)
+✅ Inserita in rewrite: _7784:int
+✅ Inserita in rewrite: _7790:array(int,int)
 Entrato in constr c
 
 % Freeing old z3.pl handle
 % Making new z3.pl handle
 % Made new z3.pl handle
 Stampa prima di inviare
-x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_138:int=x_138:int and x_140:int=x_140:int and x_142:int=x_142:int and x_144:int=x_144:int and x_1286:int=x_1286:int and x_2834:int=x_2834:int and x_4546:int=x_4546:int and x_6422:int=x_6422:int and (((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_134>=1 and x_130=0 and x_172=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_1292=store(x_136,x_130,x_132)and x_134-x_130>=1 and x_1348=1 and x_1286=1+x_130)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_2840=store(x_1292,x_1286,x_132)and x_134-x_1286>=1 and x_2896=1 and x_2834=1+x_1286)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_4552=store(x_2840,x_2834,x_132)and x_134-x_2834>=1 and x_4608=1 and x_4546=1+x_2834)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_6422=x_6422 and x_6428=store(x_4552,x_4546,x_132)and x_134-x_4546>=1 and x_6484=1 and x_6422=1+x_4546)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_6422=x_6422 and x_142=select(x_6428,x_144)and x_134-x_144>=1 and x_6422-x_134>=0 and x_144>=0 and x_132-x_142=< - 1 and x_86768=0
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:array(int,int)=x_136:array(int,int)and x_138:int=x_138:int and x_140:int=x_140:int and x_142:int=x_142:int and x_144:int=x_144:int and x_1446:int=x_1446:int and x_1452:array(int,int)=x_1452:array(int,int)and x_3274:int=x_3274:int and x_3280:array(int,int)=x_3280:array(int,int)and x_5386:int=x_5386:int and x_5392:array(int,int)=x_5392:array(int,int)and x_7784:int=x_7784:int and x_7790:array(int,int)=x_7790:array(int,int)and(((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_134>=1 and x_130=0 and x_172=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_1452=store(x_136,x_130,x_132)and x_134-x_130>=1 and x_1508=1 and x_1446=1+x_130)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_3280=store(x_1452,x_1446,x_132)and x_134-x_1446>=1 and x_3336=1 and x_3274=1+x_1446)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_5392=store(x_3280,x_3274,x_132)and x_134-x_3274>=1 and x_5448=1 and x_5386=1+x_3274)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_7784=x_7784 and x_7790=x_7790 and x_7790=store(x_5392,x_5386,x_132)and x_134-x_5386>=1 and x_7846=1 and x_7784=1+x_5386)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_7784=x_7784 and x_7790=x_7790 and x_142=select(x_7790,x_144)and x_132-x_142>=1 and x_134-x_144>=1 and x_7784-x_134>=0 and x_144>=0 and x_111156=0
 ✅ Inserita in rewrite: _130:int
 ✅ Inserita in rewrite: _132:int
 ✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _136:array(int,int)
 ✅ Inserita in rewrite: _138:int
 ✅ Inserita in rewrite: _140:int
 ✅ Inserita in rewrite: _142:int
 ✅ Inserita in rewrite: _144:int
-✅ Inserita in rewrite: _1286:int
-✅ Inserita in rewrite: _2834:int
-✅ Inserita in rewrite: _4546:int
+✅ Inserita in rewrite: _1446:int
+✅ Inserita in rewrite: _1452:array(int,int)
+✅ Inserita in rewrite: _3274:int
+✅ Inserita in rewrite: _3280:array(int,int)
+✅ Inserita in rewrite: _5386:int
+✅ Inserita in rewrite: _5392:array(int,int)
+✅ Inserita in rewrite: _7784:int
+✅ Inserita in rewrite: _7790:array(int,int)
 Entrato in constr c
 
 % Freeing old z3.pl handle
 % Making new z3.pl handle
 % Made new z3.pl handle
 Stampa prima di inviare
-x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_138:int=x_138:int and x_140:int=x_140:int and x_142:int=x_142:int and x_144:int=x_144:int and x_1286:int=x_1286:int and x_2834:int=x_2834:int and x_4546:int=x_4546:int and ((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_134>=1 and x_130=0 and x_172=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_1292=store(x_136,x_130,x_132)and x_134-x_130>=1 and x_1348=1 and x_1286=1+x_130)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_2840=store(x_1292,x_1286,x_132)and x_134-x_1286>=1 and x_2896=1 and x_2834=1+x_1286)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_4552=store(x_2840,x_2834,x_132)and x_134-x_2834>=1 and x_4608=1 and x_4546=1+x_2834)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_142=select(x_4552,x_144)and x_132-x_142>=1 and x_134-x_144>=1 and x_4546-x_134>=0 and x_144>=0 and x_21698=0
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:array(int,int)=x_136:array(int,int)and x_138:int=x_138:int and x_140:int=x_140:int and x_142:int=x_142:int and x_144:int=x_144:int and x_1446:int=x_1446:int and x_1452:array(int,int)=x_1452:array(int,int)and x_3274:int=x_3274:int and x_3280:array(int,int)=x_3280:array(int,int)and x_5386:int=x_5386:int and x_5392:array(int,int)=x_5392:array(int,int)and x_7784:int=x_7784:int and x_7790:array(int,int)=x_7790:array(int,int)and(((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_134>=1 and x_130=0 and x_172=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_1452=store(x_136,x_130,x_132)and x_134-x_130>=1 and x_1508=1 and x_1446=1+x_130)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_3280=store(x_1452,x_1446,x_132)and x_134-x_1446>=1 and x_3336=1 and x_3274=1+x_1446)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_5392=store(x_3280,x_3274,x_132)and x_134-x_3274>=1 and x_5448=1 and x_5386=1+x_3274)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_7784=x_7784 and x_7790=x_7790 and x_7790=store(x_5392,x_5386,x_132)and x_134-x_5386>=1 and x_7846=1 and x_7784=1+x_5386)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_7784=x_7784 and x_7790=x_7790 and x_142=select(x_7790,x_144)and x_134-x_144>=1 and x_7784-x_134>=0 and x_144>=0 and x_132-x_142=< - 1 and x_172710=0
 ✅ Inserita in rewrite: _130:int
 ✅ Inserita in rewrite: _132:int
 ✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _136:array(int,int)
 ✅ Inserita in rewrite: _138:int
 ✅ Inserita in rewrite: _140:int
 ✅ Inserita in rewrite: _142:int
 ✅ Inserita in rewrite: _144:int
-✅ Inserita in rewrite: _1286:int
-✅ Inserita in rewrite: _2834:int
-✅ Inserita in rewrite: _4546:int
+✅ Inserita in rewrite: _1446:int
+✅ Inserita in rewrite: _1452:array(int,int)
+✅ Inserita in rewrite: _3274:int
+✅ Inserita in rewrite: _3280:array(int,int)
+✅ Inserita in rewrite: _5386:int
+✅ Inserita in rewrite: _5392:array(int,int)
 Entrato in constr c
 
 % Freeing old z3.pl handle
 % Making new z3.pl handle
 % Made new z3.pl handle
 Stampa prima di inviare
-x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_138:int=x_138:int and x_140:int=x_140:int and x_142:int=x_142:int and x_144:int=x_144:int and x_1286:int=x_1286:int and x_2834:int=x_2834:int and x_4546:int=x_4546:int and ((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_134>=1 and x_130=0 and x_172=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_1292=store(x_136,x_130,x_132)and x_134-x_130>=1 and x_1348=1 and x_1286=1+x_130)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_2840=store(x_1292,x_1286,x_132)and x_134-x_1286>=1 and x_2896=1 and x_2834=1+x_1286)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_4552=store(x_2840,x_2834,x_132)and x_134-x_2834>=1 and x_4608=1 and x_4546=1+x_2834)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_4546=x_4546 and x_142=select(x_4552,x_144)and x_134-x_144>=1 and x_4546-x_134>=0 and x_144>=0 and x_132-x_142=< - 1 and x_64116=0
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:array(int,int)=x_136:array(int,int)and x_138:int=x_138:int and x_140:int=x_140:int and x_142:int=x_142:int and x_144:int=x_144:int and x_1446:int=x_1446:int and x_1452:array(int,int)=x_1452:array(int,int)and x_3274:int=x_3274:int and x_3280:array(int,int)=x_3280:array(int,int)and x_5386:int=x_5386:int and x_5392:array(int,int)=x_5392:array(int,int)and((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_134>=1 and x_130=0 and x_172=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_1452=store(x_136,x_130,x_132)and x_134-x_130>=1 and x_1508=1 and x_1446=1+x_130)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_3280=store(x_1452,x_1446,x_132)and x_134-x_1446>=1 and x_3336=1 and x_3274=1+x_1446)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_5392=store(x_3280,x_3274,x_132)and x_134-x_3274>=1 and x_5448=1 and x_5386=1+x_3274)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_142=select(x_5392,x_144)and x_132-x_142>=1 and x_134-x_144>=1 and x_5386-x_134>=0 and x_144>=0 and x_234180=0
 ✅ Inserita in rewrite: _130:int
 ✅ Inserita in rewrite: _132:int
 ✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _136:array(int,int)
 ✅ Inserita in rewrite: _138:int
 ✅ Inserita in rewrite: _140:int
 ✅ Inserita in rewrite: _142:int
 ✅ Inserita in rewrite: _144:int
-✅ Inserita in rewrite: _1286:int
-✅ Inserita in rewrite: _2834:int
+✅ Inserita in rewrite: _1446:int
+✅ Inserita in rewrite: _1452:array(int,int)
+✅ Inserita in rewrite: _3274:int
+✅ Inserita in rewrite: _3280:array(int,int)
+✅ Inserita in rewrite: _5386:int
+✅ Inserita in rewrite: _5392:array(int,int)
 Entrato in constr c
 
 % Freeing old z3.pl handle
 % Making new z3.pl handle
 % Made new z3.pl handle
 Stampa prima di inviare
-x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_138:int=x_138:int and x_140:int=x_140:int and x_142:int=x_142:int and x_144:int=x_144:int and x_1286:int=x_1286:int and x_2834:int=x_2834:int and (((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_134>=1 and x_130=0 and x_172=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_1292=store(x_136,x_130,x_132)and x_134-x_130>=1 and x_1348=1 and x_1286=1+x_130)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_2840=store(x_1292,x_1286,x_132)and x_134-x_1286>=1 and x_2896=1 and x_2834=1+x_1286)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_142=select(x_2840,x_144)and x_132-x_142>=1 and x_134-x_144>=1 and x_2834-x_134>=0 and x_144>=0 and x_106638=0
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:array(int,int)=x_136:array(int,int)and x_138:int=x_138:int and x_140:int=x_140:int and x_142:int=x_142:int and x_144:int=x_144:int and x_1446:int=x_1446:int and x_1452:array(int,int)=x_1452:array(int,int)and x_3274:int=x_3274:int and x_3280:array(int,int)=x_3280:array(int,int)and x_5386:int=x_5386:int and x_5392:array(int,int)=x_5392:array(int,int)and((((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_134>=1 and x_130=0 and x_172=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_1452=store(x_136,x_130,x_132)and x_134-x_130>=1 and x_1508=1 and x_1446=1+x_130)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_3280=store(x_1452,x_1446,x_132)and x_134-x_1446>=1 and x_3336=1 and x_3274=1+x_1446)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_5392=store(x_3280,x_3274,x_132)and x_134-x_3274>=1 and x_5448=1 and x_5386=1+x_3274)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_5386=x_5386 and x_5392=x_5392 and x_142=select(x_5392,x_144)and x_134-x_144>=1 and x_5386-x_134>=0 and x_144>=0 and x_132-x_142=< - 1 and x_33998=0
 ✅ Inserita in rewrite: _130:int
 ✅ Inserita in rewrite: _132:int
 ✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _136:array(int,int)
 ✅ Inserita in rewrite: _138:int
 ✅ Inserita in rewrite: _140:int
 ✅ Inserita in rewrite: _142:int
 ✅ Inserita in rewrite: _144:int
-✅ Inserita in rewrite: _1286:int
-✅ Inserita in rewrite: _2834:int
+✅ Inserita in rewrite: _1446:int
+✅ Inserita in rewrite: _1452:array(int,int)
+✅ Inserita in rewrite: _3274:int
+✅ Inserita in rewrite: _3280:array(int,int)
 Entrato in constr c
 
 % Freeing old z3.pl handle
 % Making new z3.pl handle
 % Made new z3.pl handle
 Stampa prima di inviare
-x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_138:int=x_138:int and x_140:int=x_140:int and x_142:int=x_142:int and x_144:int=x_144:int and x_1286:int=x_1286:int and x_2834:int=x_2834:int and (((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_134>=1 and x_130=0 and x_172=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_1292=store(x_136,x_130,x_132)and x_134-x_130>=1 and x_1348=1 and x_1286=1+x_130)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_2840=store(x_1292,x_1286,x_132)and x_134-x_1286>=1 and x_2896=1 and x_2834=1+x_1286)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_2834=x_2834 and x_142=select(x_2840,x_144)and x_134-x_144>=1 and x_2834-x_134>=0 and x_144>=0 and x_132-x_142=< - 1 and x_17666=0
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:array(int,int)=x_136:array(int,int)and x_138:int=x_138:int and x_140:int=x_140:int and x_142:int=x_142:int and x_144:int=x_144:int and x_1446:int=x_1446:int and x_1452:array(int,int)=x_1452:array(int,int)and x_3274:int=x_3274:int and x_3280:array(int,int)=x_3280:array(int,int)and(((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_134>=1 and x_130=0 and x_172=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_1452=store(x_136,x_130,x_132)and x_134-x_130>=1 and x_1508=1 and x_1446=1+x_130)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_3280=store(x_1452,x_1446,x_132)and x_134-x_1446>=1 and x_3336=1 and x_3274=1+x_1446)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_142=select(x_3280,x_144)and x_132-x_142>=1 and x_134-x_144>=1 and x_3274-x_134>=0 and x_144>=0 and x_84100=0
 ✅ Inserita in rewrite: _130:int
 ✅ Inserita in rewrite: _132:int
 ✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _136:array(int,int)
 ✅ Inserita in rewrite: _138:int
 ✅ Inserita in rewrite: _140:int
 ✅ Inserita in rewrite: _142:int
 ✅ Inserita in rewrite: _144:int
-✅ Inserita in rewrite: _1286:int
+✅ Inserita in rewrite: _1446:int
+✅ Inserita in rewrite: _1452:array(int,int)
+✅ Inserita in rewrite: _3274:int
+✅ Inserita in rewrite: _3280:array(int,int)
 Entrato in constr c
 
 % Freeing old z3.pl handle
 % Making new z3.pl handle
 % Made new z3.pl handle
 Stampa prima di inviare
-x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_138:int=x_138:int and x_140:int=x_140:int and x_142:int=x_142:int and x_144:int=x_144:int and x_1286:int=x_1286:int and ((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_134>=1 and x_130=0 and x_172=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_1292=store(x_136,x_130,x_132)and x_134-x_130>=1 and x_1348=1 and x_1286=1+x_130)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_142=select(x_1292,x_144)and x_132-x_142>=1 and x_134-x_144>=1 and x_1286-x_134>=0 and x_144>=0 and x_52206=0
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:array(int,int)=x_136:array(int,int)and x_138:int=x_138:int and x_140:int=x_140:int and x_142:int=x_142:int and x_144:int=x_144:int and x_1446:int=x_1446:int and x_1452:array(int,int)=x_1452:array(int,int)and x_3274:int=x_3274:int and x_3280:array(int,int)=x_3280:array(int,int)and(((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_134>=1 and x_130=0 and x_172=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_1452=store(x_136,x_130,x_132)and x_134-x_130>=1 and x_1508=1 and x_1446=1+x_130)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_3280=store(x_1452,x_1446,x_132)and x_134-x_1446>=1 and x_3336=1 and x_3274=1+x_1446)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_3274=x_3274 and x_3280=x_3280 and x_142=select(x_3280,x_144)and x_134-x_144>=1 and x_3274-x_134>=0 and x_144>=0 and x_132-x_142=< - 1 and x_123680=0
 ✅ Inserita in rewrite: _130:int
 ✅ Inserita in rewrite: _132:int
 ✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _136:array(int,int)
 ✅ Inserita in rewrite: _138:int
 ✅ Inserita in rewrite: _140:int
 ✅ Inserita in rewrite: _142:int
 ✅ Inserita in rewrite: _144:int
-✅ Inserita in rewrite: _1286:int
+✅ Inserita in rewrite: _1446:int
+✅ Inserita in rewrite: _1452:array(int,int)
 Entrato in constr c
 
 % Freeing old z3.pl handle
 % Making new z3.pl handle
 % Made new z3.pl handle
 Stampa prima di inviare
-x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_138:int=x_138:int and x_140:int=x_140:int and x_142:int=x_142:int and x_144:int=x_144:int and x_1286:int=x_1286:int and ((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_134>=1 and x_130=0 and x_172=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_1292=store(x_136,x_130,x_132)and x_134-x_130>=1 and x_1348=1 and x_1286=1+x_130)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1286=x_1286 and x_142=select(x_1292,x_144)and x_134-x_144>=1 and x_1286-x_134>=0 and x_144>=0 and x_132-x_142=< - 1 and x_79132=0
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:array(int,int)=x_136:array(int,int)and x_138:int=x_138:int and x_140:int=x_140:int and x_142:int=x_142:int and x_144:int=x_144:int and x_1446:int=x_1446:int and x_1452:array(int,int)=x_1452:array(int,int)and((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_134>=1 and x_130=0 and x_172=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_1452=store(x_136,x_130,x_132)and x_134-x_130>=1 and x_1508=1 and x_1446=1+x_130)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_142=select(x_1452,x_144)and x_132-x_142>=1 and x_134-x_144>=1 and x_1446-x_134>=0 and x_144>=0 and x_163588=0
 ✅ Inserita in rewrite: _130:int
 ✅ Inserita in rewrite: _132:int
 ✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _136:array(int,int)
+✅ Inserita in rewrite: _138:int
+✅ Inserita in rewrite: _140:int
+✅ Inserita in rewrite: _142:int
+✅ Inserita in rewrite: _144:int
+✅ Inserita in rewrite: _1446:int
+✅ Inserita in rewrite: _1452:array(int,int)
+Entrato in constr c
+
+% Freeing old z3.pl handle
+% Making new z3.pl handle
+% Made new z3.pl handle
+Stampa prima di inviare
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:array(int,int)=x_136:array(int,int)and x_138:int=x_138:int and x_140:int=x_140:int and x_142:int=x_142:int and x_144:int=x_144:int and x_1446:int=x_1446:int and x_1452:array(int,int)=x_1452:array(int,int)and((x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_134>=1 and x_130=0 and x_172=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_1452=store(x_136,x_130,x_132)and x_134-x_130>=1 and x_1508=1 and x_1446=1+x_130)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_1446=x_1446 and x_1452=x_1452 and x_142=select(x_1452,x_144)and x_134-x_144>=1 and x_1446-x_134>=0 and x_144>=0 and x_132-x_142=< - 1 and x_193618=0
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _136:array(int,int)
 ✅ Inserita in rewrite: _138:int
 ✅ Inserita in rewrite: _140:int
 ✅ Inserita in rewrite: _142:int
@@ -543,10 +687,11 @@ Entrato in constr c
 % Making new z3.pl handle
 % Made new z3.pl handle
 Stampa prima di inviare
-x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_138:int=x_138:int and x_140:int=x_140:int and x_142:int=x_142:int and x_144:int=x_144:int and (x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_134>=1 and x_130=0 and x_172=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_142=select(x_136,x_144)and x_132-x_142>=1 and x_134-x_144>=1 and x_130-x_134>=0 and x_144>=0 and x_106184=0
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:array(int,int)=x_136:array(int,int)and x_138:int=x_138:int and x_140:int=x_140:int and x_142:int=x_142:int and x_144:int=x_144:int and (x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_134>=1 and x_130=0 and x_172=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_142=select(x_136,x_144)and x_132-x_142>=1 and x_134-x_144>=1 and x_130-x_134>=0 and x_144>=0 and x_223708=0
 ✅ Inserita in rewrite: _130:int
 ✅ Inserita in rewrite: _132:int
 ✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _136:array(int,int)
 ✅ Inserita in rewrite: _138:int
 ✅ Inserita in rewrite: _140:int
 ✅ Inserita in rewrite: _142:int
@@ -557,6 +702,6 @@ Entrato in constr c
 % Making new z3.pl handle
 % Made new z3.pl handle
 Stampa prima di inviare
-x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_138:int=x_138:int and x_140:int=x_140:int and x_142:int=x_142:int and x_144:int=x_144:int and (x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_134>=1 and x_130=0 and x_172=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_142=select(x_136,x_144)and x_134-x_144>=1 and x_130-x_134>=0 and x_144>=0 and x_132-x_142=< - 1 and x_126034=0
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:array(int,int)=x_136:array(int,int)and x_138:int=x_138:int and x_140:int=x_140:int and x_142:int=x_142:int and x_144:int=x_144:int and (x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_134>=1 and x_130=0 and x_172=1)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_140=x_140 and x_142=x_142 and x_144=x_144 and x_142=select(x_136,x_144)and x_134-x_144>=1 and x_130-x_134>=0 and x_144>=0 and x_132-x_142=< - 1 and x_244922=0
 No SAT branches found in MaxDepths = 10.
 ERROR: -g load_clean('/home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/test/separato4/vmap3_ago8/array_lug_small_ago/solo_prolog_da_analizzare/verimap-init_VeriMAP_true.c.transform.smt.smt2.pl'),set_solver(turibe),zmi(incorrect),halt.: false

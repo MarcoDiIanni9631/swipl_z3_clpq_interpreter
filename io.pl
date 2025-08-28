@@ -88,8 +88,9 @@ extract_pred_type(Line) :-
     phrase(pred_decl(Name/Arity, Types), Codes),
     Arity > 0,
     forall(nth1(Pos, Types, T), (
-        ( T = array(Inner) ->
-              assertz(arg_type(Name/Arity, Pos, array(Inner, Inner)))
+        ( T = array(ElemType) ->
+              % Indice sempre int, valore quello letto (ElemType)
+              assertz(arg_type(Name/Arity, Pos, array(int, ElemType)))
         ;     assertz(arg_type(Name/Arity, Pos, T))
         )
     )).
