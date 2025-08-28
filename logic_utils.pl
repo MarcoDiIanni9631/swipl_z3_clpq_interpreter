@@ -28,6 +28,11 @@ build_conjunct([C|Rest], (C, R)) :- build_conjunct(Rest, R).
 normalize_bool_expr(Expr, Expr) :-
     var(Expr), !.
 
+% Caso base: atomo (costante simbolica)
+normalize_bool_expr(Expr, Expr) :-
+    atom(Expr), !.
+
+
 %Posso aggiungere qui se c'è una costante ((true,false,integer)
 % Normalizza select(Array, Index) come termine generico
 normalize_bool_expr(select(A, I), select(NA, NI)) :-
@@ -61,7 +66,7 @@ normalize_bool_expr(ite(Cond, Then, Else), ite(NCond, NThen, NElse)) :-
     normalize_bool_expr(Else, NElse).
 
 % Caso speciale: variabile tipizzata dentro mod → stacca il tipo
-normalize_bool_expr((V:T) mod B, mod(V, NB)) :-
+normalize_bool_expr((V:T) mod B, mod(V:T, NB)) :-
     var(V), atom(T), !,
     normalize_bool_expr(B, NB).
 
@@ -74,6 +79,42 @@ normalize_bool_expr(A mod B, mod(NA, NB)) :-
 % % Normalizza quando il tipo finisce "incollato" con mod
 % normalize_bool_expr(V:(T mod N), mod(V:T, N)) :-
 %     var(V), atom(T), number(N), !.
+
+
+% Gestione store e select (a sinistra)
+normalize_bool_expr((A = B), Norm) :-
+    compound(A), functor(A, store, _), !,
+    normalize_bool_expr((B = A), Norm).
+
+normalize_bool_expr((A = B), Norm) :-
+    compound(A), functor(A, select, _), !,
+    normalize_bool_expr((B = A), Norm).
+
+
+% % Conversioni logiche true/false
+% normalize_bool_expr((A = true), NA) :-
+%     \+ A == true, \+ A == false, !,
+%     normalize_bool_expr(A, NA).
+
+% normalize_bool_expr((A = false), not(NA)) :-
+%     \+ A == true, \+ A == false, !,
+%     normalize_bool_expr(A, NA).
+
+% (A = true)  -->  A   (senza legare la RHS)
+normalize_bool_expr(Expr, NA) :-
+    nonvar(Expr),
+    Expr =.. [=, A, RHS],
+    RHS == true,                        
+    \+ A == true, \+ A == false, !,
+    normalize_bool_expr(A, NA).
+
+% (A = false) -->  not(A)   (senza legare la RHS)
+normalize_bool_expr(Expr, not(NA)) :-
+    nonvar(Expr),
+    Expr =.. [=, A, RHS],
+    RHS == false,                       
+    \+ A == true, \+ A == false, !,
+    normalize_bool_expr(A, NA).
 
 %To test.
 % Caso base: uguaglianze/relazioni aritmetiche
@@ -99,25 +140,16 @@ normalize_bool_expr(Expr, NExpr) :-
 %     Norm =.. [mod, NA, NB].
 
 
-% Gestione store e select (a sinistra)
-normalize_bool_expr((A = B), Norm) :-
-    compound(A), functor(A, store, _), !,
-    normalize_bool_expr((B = A), Norm).
-
-normalize_bool_expr((A = B), Norm) :-
-    compound(A), functor(A, select, _), !,
-    normalize_bool_expr((B = A), Norm).
-
 % Operatore "or" infisso
 normalize_bool_expr(A v B, or(NA, NB)) :-
     !, normalize_bool_expr(A, NA),
        normalize_bool_expr(B, NB).
 
-% Operatore "or" funzionale
-normalize_bool_expr(or(A, B), or(NA, NB)) :-
-  %  nonvar(A), nonvar(B), !,
-    normalize_bool_expr(A, NA),
-    normalize_bool_expr(B, NB).
+% % Operatore "or" funzionale
+% normalize_bool_expr(or(A, B), or(NA, NB)) :-
+%   %  nonvar(A), nonvar(B), !,
+%     normalize_bool_expr(A, NA),
+%     normalize_bool_expr(B, NB).
 
 % Conjunction con virgola
 normalize_bool_expr((A , B), Norm) :-
@@ -125,13 +157,7 @@ normalize_bool_expr((A , B), Norm) :-
        normalize_bool_expr(B, NB),
        build_conjunct([NA, NB], Norm).
 
-% Operatore "and" funzionale
-normalize_bool_expr(and(A, B), Norm) :-
-   % nonvar(A), nonvar(B), 
-   !,
-    normalize_bool_expr(A, NA),
-    normalize_bool_expr(B, NB),
-    build_conjunct([NA, NB], Norm).
+%integrare questo e testare (l'and e or possono avere piu argomenti!).
 
 % Operatore "&" infisso
 normalize_bool_expr(A & B, and(NA, NB)) :-
@@ -139,6 +165,44 @@ normalize_bool_expr(A & B, and(NA, NB)) :-
    !,
     normalize_bool_expr(A, NA),
     normalize_bool_expr(B, NB).
+
+
+normalize_bool_expr(Expr, NExpr) :-
+    nonvar(Expr),
+    Expr =.. [F | Args],
+    memberchk(F,[and,or]),
+    !,
+    maplist(normalize_bool_expr, Args, NArgs),
+    NExpr =.. [F | NArgs].
+
+
+% --- XOR n-ario (trasforma in catena binaria) ---
+normalize_bool_expr(Expr, NExpr) :-
+    nonvar(Expr),
+    Expr =.. [xor | Args],
+    Args \= [], !,
+    maplist(normalize_bool_expr, Args, NArgs),
+    build_xor_chain(NArgs, NExpr).
+
+
+% --- Helper per XOR n-ario -> catena di xor/2 ---
+build_xor_chain([X], X) :- !.
+build_xor_chain([X,Y|Rest], Expr) :-
+    Tmp = xor(X, Y),
+    build_xor_chain([Tmp|Rest], Expr).
+
+
+
+
+% % Operatore "and" funzionale
+% normalize_bool_expr(and(A, B), Norm) :-
+%    % nonvar(A), nonvar(B), 
+%    !,
+%     normalize_bool_expr(A, NA),
+%     normalize_bool_expr(B, NB),
+%     build_conjunct([NA, NB], Norm).
+
+
 
 % Operatore "~" (not infisso)
 normalize_bool_expr(~A, not(NA)) :-
@@ -152,14 +216,7 @@ normalize_bool_expr(not(A), not(NA)) :-
     !,
     normalize_bool_expr(A, NA).
 
-% Conversioni logiche true/false
-normalize_bool_expr((A = true), NA) :-
-    \+ A == true, \+ A == false, !,
-    normalize_bool_expr(A, NA).
 
-normalize_bool_expr((A = false), not(NA)) :-
-    \+ A == true, \+ A == false, !,
-    normalize_bool_expr(A, NA).
 
 
 %queste due non vannno bene. es. se false =true da true...sbagliato.
@@ -249,14 +306,53 @@ normalize_bool_expr(Expr, NExpr) :-
 normalize_bool_expr(Expr, NExpr) :-
     nonvar(Expr),
     Expr =.. [Op, X, Y],
-    member(Op, [+, -, *, div, mod]),
+    member(Op, [+, -, *, div]),
     !,
     normalize_bool_expr(X, NX),
     normalize_bool_expr(Y, NY),
     NExpr =.. [Op, NX, NY].
+
+
+normalize_bool_expr(abs(X), abs(NX)) :-
+    !, normalize_bool_expr(X, NX).
+
+% "-" n-ario (>=2): fold sinistro
+normalize_bool_expr(Expr, NExpr) :-
+    nonvar(Expr),
+    Expr =.. ['-' | Args],
+    length(Args, N), N >= 2, !,
+    maplist(normalize_bool_expr, Args, NArgs),
+    build_minus_chain(NArgs, NExpr).
+
+% helper per catena di "-"
+build_minus_chain([X], X) :- !.
+build_minus_chain([X,Y|Rest], Expr) :-
+    Tmp =.. ['-', X, Y],
+    build_minus_chain([Tmp|Rest], Expr).
+
+normalize_bool_expr(Expr, NExpr) :-
+    nonvar(Expr),
+    Expr =.. [distinct | Args],
+    Args \= [], !,
+    maplist(normalize_bool_expr, Args, NArgs),
+    NExpr =.. [distinct | NArgs].
 
 % Fallback finale
 % ----------------------------
 normalize_bool_expr(A, A) :- 
     format('⚠️ Formula non normalizzata: ~w~n', [A]).
 
+
+
+
+%LISTA DA GESTIRE
+%XOR
+%div
+%abs
+%- con n numeri
+%AND/OR CON PIU ARGOMENTI
+%https://smt-lib.org/theories-Core.shtml
+%https://smt-lib.org/theories-Ints.shtml
+%disinct
+%implicazione
+%V:T deve

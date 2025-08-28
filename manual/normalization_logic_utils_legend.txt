@@ -1,0 +1,87 @@
+?- normalize_bool_expr(and(a,b,c), N).
+N = and(a, b, c).
+
+?- normalize_bool_expr(or(a,b,c), N).
+N = or(a, b, c).
+
+?- normalize_bool_expr(a & (b & c), N).
+N = (a and b and c).
+
+?- normalize_bool_expr(a v (b v c), N).
+N = (a or b or c).
+
+?- normalize_bool_expr((p , q), N).
+N = (p, q) .
+
+?- normalize_bool_expr((p , q & r), N).
+N = ((p, q)and r) .
+
+?- normalize_bool_expr(xor(a,b,c), N).
+N = a xor b xor c.
+
+?- normalize_bool_expr(xor(a,b,c,d), N).
+N = a xor b xor c xor d.
+
+?- normalize_bool_expr(abs(1+X), N).
+N = abs(1+X).
+
+?- normalize_bool_expr(-(10, 3, 2), N).
+N = 10-3-2.
+
+?- normalize_bool_expr(distinct(a,b,c), N).
+N = distinct(a, b, c).
+
+?- normalize_bool_expr(store(A,I,V) = B, N).
+N = (B=store(A, I, V)).
+
+?- normalize_bool_expr(select(D,P) = R, N).
+N = (R=select(D, P)).
+
+?- normalize_bool_expr(X = true, N).
+X = N.
+
+?- normalize_bool_expr(X = false, N).
+N = not(X).
+
+?- normalize_bool_expr((X:int) mod (Y+1), N).
+N = X:int mod (Y+1).
+
+?- normalize_bool_expr(ite(P, a & b, or(c, xor(d,e))), N).
+N = ite(P, a and b, c or d xor e).
+
+?- normalize_bool_expr(smt_plus(1, X, 3, Y+2), N).
+N = 1+X+3+(Y+2).
+
+?- normalize_bool_expr(smt_plus(a, smt_plus(b, c), 0), N).
+N = a+(b+c)+0.
+
+?- normalize_bool_expr(smt_plus(Z), N).
+Z = N.
+
+?- normalize_bool_expr(1 + (2 + X), N)
+|    .
+N = 1+(2+X).
+
+?- normalize_bool_expr((2 * (X + 1)) * 3, N).
+N = 2*(X+1)*3.
+
+?- normalize_bool_expr(div(X+1, 2*Y), N).
+N = (X+1)div(2*Y).
+
+?- normalize_bool_expr((X div Y) = 3, N).
+N = (X div Y=3).
+
+?- normalize_bool_expr(smt_plus(1, X) = 3, N).
+N = (1+X=3).
+
+?- normalize_bool_expr((A + B) = C, N).
+N = (A+B=C).
+
+?- normalize_bool_expr(A * B = C, N).
+N = (A*B=C).
+
+?- normalize_bool_expr(X = true, N).
+X = N.
+
+?- normalize_bool_expr(X = false, N).
+N = not(X).

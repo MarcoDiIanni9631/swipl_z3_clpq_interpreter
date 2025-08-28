@@ -126,19 +126,48 @@ sostituisci_costanti_(Assoc, Arg, Arg1) :-
 
 
 z3_sat_check(Formula, Result) :-
-    % Preprocessing formula
     term_variables(Formula, _Vars),
     z3constr2lower(Formula, _Pairs, RawGround),
     normalize_z3_formula(RawGround, Z3Ground),
 
-    % Reset Z3 and show what will be pushed
     z3_reset,
     writeln('Stampa prima di inviare'),
-    writeq(Z3Ground),
+    writeq(Z3Ground), nl,
 
+ %   safe_z3_push(Z3Ground),  
     z3_push(Z3Ground),
     z3_check(Sat),
     result_from_sat(Sat, Result).
+
+
+
+% % --- push sicuro: blocca se trova smt_plus o &
+% safe_z3_push(Formula) :-
+%     ( forbidden_in(Formula, Found) ->
+%         throw(error(z3_forbidden_construct(Found),
+%                    context(safe_z3_push/1,
+%                            'Formula contains unsupported operator')))
+%     ; catch(
+%         z3_push(Formula),
+%         Error,
+%         ( writeln('Stampo errore'),
+%           throw(error(z3_push_failed(Formula), Error))
+%         )
+%       )
+%     ).
+
+
+% % --- helper: rileva costrutti vietati nella formula
+% forbidden_in(Term, Name) :-
+%     sub_term(Sub, Term),
+%     nonvar(Sub),
+%     functor(Sub, FName, _Arity),
+%     memberchk(FName, ['smt_plus', '&']),
+%     Name = FName, !.
+
+%% Se z3_push non va a buon fine, errore segnalato da turibe. (Interrompe anche? non so)
+%% Se z3_sat ritorna 
+
 
 % ----------------------------
 % Mapping Sat results to output
@@ -146,7 +175,6 @@ z3_sat_check(Formula, Result) :-
 result_from_sat(l_true,  sat).
 result_from_sat(l_false, unsat).
 result_from_sat(_,       unknown).
-
 
 % ----------------------------
 % STAMPA MODELLO COMPLETO FINALE
