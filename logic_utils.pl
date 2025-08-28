@@ -54,9 +54,16 @@ normalize_bool_expr(store(A, I, V), store(NA, NI, NV)) :-
 %     Expr =.. [Op, _, _],
 %     member(Op, [=, <, >, =<, >=, \=, =:=, =\=]), !.
 
+% Variabile tipizzata: rimuovi l'annotazione
 normalize_bool_expr(Var:Type, Var) :-
     var(Var),
-    atom(Type), !.
+    (   atom(Type)                                      % es. int, bool
+    ;   Type = array(Index, Elem),
+        ground(Index), ground(Elem)                     % es. array(int,int), array(int,bool)
+    ),
+    !.
+
+
 
 % Gestione ite(Cond, Then, Else)
 normalize_bool_expr(ite(Cond, Then, Else), ite(NCond, NThen, NElse)) :-
@@ -337,10 +344,14 @@ normalize_bool_expr(Expr, NExpr) :-
     maplist(normalize_bool_expr, Args, NArgs),
     NExpr =.. [distinct | NArgs].
 
-% Fallback finale
-% ----------------------------
-normalize_bool_expr(A, A) :- 
-    format('⚠️ Formula non normalizzata: ~w~n', [A]).
+% % Fallback finale
+% % ----------------------------
+% normalize_bool_expr(A, A) :- 
+%     format('⚠️ Formula non normalizzata: ~w~n', [A]).
+
+% Fallback finale: se arriva qui, formula non riconosciuta → ERRORE
+normalize_bool_expr(A, _) :- 
+    throw(error(normalization_failed(A), normalize_bool_expr/2)).
 
 
 

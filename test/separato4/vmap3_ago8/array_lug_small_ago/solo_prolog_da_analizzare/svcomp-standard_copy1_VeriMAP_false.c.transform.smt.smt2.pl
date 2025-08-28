@@ -12,10 +12,10 @@
 :- mode constr(in).
 :- ignore constr/1.
 
-% new1(A,B,C,D,E,F,G) :- new1(A,H,C,D,E,F,I), 
-%           constr((store(B,G,J)=H&(select(B,G)=J&(A-G>=1&(K=1&I=1+G))))).
-% new1(A,B,C,D,E,F,G) :- 
-%           constr((select(C,F)=D&(select(B,F)=E&(A-F>=1&(G-A>=0&(F>=0&(E-D=< - 1&H=0))))))).
+new1(A,B,C,D,E,F,G) :- new1(A,H,C,D,E,F,I), 
+          constr((store(B,G,J)=H&(select(B,G)=J&(A-G>=1&(K=1&I=1+G))))).
+new1(A,B,C,D,E,F,G) :- 
+          constr((select(C,F)=D&(select(B,F)=E&(A-F>=1&(G-A>=0&(F>=0&(E-D=< - 1&H=0))))))).
 new1(A,B,C,D,E,F,G) :- 
           constr((select(C,F)=D)).
 incorrect :- new1(A,B,C,D,E,F,G), constr((A>=1&(G=0&H=1))).

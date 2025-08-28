@@ -178,15 +178,27 @@ extend_type_table(Head, Old, New) :-
 % Costruzione coppie Var-Type
 % ----------------------------
 
+% ----------------------------
+% Costruzione coppie Var-Type (supporta anche array/2)
+% ----------------------------
 build_type_pairs(_, _, [], Acc, Acc).
 build_type_pairs(PredArity, Pos, [Var | Rest], AccIn, AccOut) :-
-    ( var(Var),                       % ✅ SOLO variabili pure
-      arg_type(PredArity, Pos, Type), % il tipo deve esistere
-      atom(Type)                      % deve essere un atomo (int, bool, ecc.)
+    ( var(Var),
+      arg_type(PredArity, Pos, Type)
     ->
-        Pair = Var-Type,
-        AccNext = [Pair | AccIn]
-    ;   AccNext = AccIn               % altrimenti non aggiungere nulla
+        ( % tipi atomici (int, bool, …)
+          atom(Type)
+        -> AccNext = [Var-Type | AccIn]
+
+        % array(Index, Elem) con entrambi ground (es. array(int,int), array(int,bool))
+        ; Type = array(Index, Elem),
+          ground(Index), ground(Elem)
+        -> AccNext = [Var-array(Index, Elem) | AccIn]
+
+        % qualsiasi altro caso: non aggiungere nulla
+        ;  AccNext = AccIn
+        )
+    ;   AccNext = AccIn
     ),
     Pos1 is Pos + 1,
     build_type_pairs(PredArity, Pos1, Rest, AccNext, AccOut).
@@ -195,11 +207,17 @@ build_type_pairs(PredArity, Pos, [Var | Rest], AccIn, AccOut) :-
 % Costruzione vincoli di uguaglianza tipizzata
 % ----------------------------
 
+% Caso 1: variabile con tipo atomico (int, bool, ecc.)
 build_type_equality(Var-Type, (Var:Type = Var:Type)) :-
-    var(Var),       % ✅ solo variabile "pura"
-    atom(Type), !.  % ✅ e tipo atomico noto
+    var(Var),
+    atom(Type), !.
 
-% fallback → non inserire vincoli spuri
+% Caso 2: variabile con tipo array(Index, Elem), entrambi ground
+build_type_equality(Var-array(Index, Elem), (Var:array(Index, Elem) = Var:array(Index, Elem))) :-
+    var(Var),
+    ground(Index), ground(Elem), !.
+
+% Tutti gli altri casi → non aggiungere nulla (true)
 build_type_equality(_, true).
 
 
