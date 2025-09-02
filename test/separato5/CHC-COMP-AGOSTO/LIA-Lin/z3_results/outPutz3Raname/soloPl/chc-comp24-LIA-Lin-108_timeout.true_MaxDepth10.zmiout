@@ -1,0 +1,72 @@
+Warning: /home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/logic_utils.pl:208:
+Warning:    Clauses of logic_utils:normalize_bool_expr/2 are not together in the source-file
+Warning:    Earlier definition at /home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/logic_utils.pl:28
+Warning:    Current predicate: logic_utils:build_xor_chain/2
+Warning:    Use :- discontiguous logic_utils:normalize_bool_expr/2. to suppress this message
+Warning: /home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/logic_utils.pl:296:
+Warning:    Clauses of logic_utils:normalize_bool_expr/2 are not together in the source-file
+Warning:    Earlier definition at /home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/logic_utils.pl:28
+Warning:    Current predicate: logic_utils:build_plus_chain/2
+Warning:    Use :- discontiguous logic_utils:normalize_bool_expr/2. to suppress this message
+Warning: /home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/logic_utils.pl:333:
+Warning:    Clauses of logic_utils:normalize_bool_expr/2 are not together in the source-file
+Warning:    Earlier definition at /home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/logic_utils.pl:28
+Warning:    Current predicate: logic_utils:build_minus_chain/2
+Warning:    Use :- discontiguous logic_utils:normalize_bool_expr/2. to suppress this message
+skipping(:- mode inv(in,in,in,in,in).)
+skipping(:- mode inv1(in,in).)
+skipped parse: ":- pred ff."
+skipping(:- query ff/0.)
+skipping(:- mode constr(in).)
+skipping(:- ignore constr/1.)
+Installing Z3 package
+Using Z3 version Z3 4.15.3.0
+% Making new z3.pl handle
+% Made new z3.pl handle
+ℹ️ MaxDepth impostato a: 10
+Mi trovo in questa head
+ff
+✅ Inserita in rewrite: _22134:int
+✅ Inserita in rewrite: _22136:int
+✅ Inserita in rewrite: _22138:int
+✅ Inserita in rewrite: _22140:int
+✅ Inserita in rewrite: _22142:int
+Entrato in constr c
+
+% Freeing old z3.pl handle
+% Making new z3.pl handle
+% Made new z3.pl handle
+Stampa prima di inviare
+x_22134:int=x_22134:int and x_22136:int=x_22136:int and x_22138:int=x_22138:int and x_22140:int=x_22140:int and x_22142:int=x_22142:int and x_22134=x_22134 and x_22136=x_22136 and x_22138=x_22138 and x_22140=x_22140 and x_22142=x_22142 and x_22140>=x_22142 and x_22138=<x_22142
+Mi trovo in questa head
+inv(_130,_132,_134,_136,_138)
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _136:int
+✅ Inserita in rewrite: _138:int
+Entrato in constr c
+
+% Freeing old z3.pl handle
+% Making new z3.pl handle
+% Made new z3.pl handle
+Stampa prima di inviare
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:int=x_136:int and x_138:int=x_138:int and (x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_136>=x_138 and x_134=<x_138)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_136=0 and not(x_138=<0)and not(10=<x_138)and x_134=0
+✅ Inserita in rewrite: _130:int
+✅ Inserita in rewrite: _132:int
+✅ Inserita in rewrite: _134:int
+✅ Inserita in rewrite: _136:int
+✅ Inserita in rewrite: _138:int
+✅ Inserita in rewrite: _26056:int
+✅ Inserita in rewrite: _26058:int
+Entrato in constr c
+
+% Freeing old z3.pl handle
+% Making new z3.pl handle
+% Made new z3.pl handle
+Stampa prima di inviare
+x_130:int=x_130:int and x_132:int=x_132:int and x_134:int=x_134:int and x_136:int=x_136:int and x_138:int=x_138:int and x_26056:int=x_26056:int and x_26058:int=x_26058:int and (x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_136>=x_138 and x_134=<x_138)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_26056=x_26056 and x_26058=x_26058 and x_26070=ite(x_26084=0,0,1)and not(x_138=<x_26058)and x_134=ite(x_26070=0,x_26056+x_130,x_26056+x_132)and x_136=1+x_26058 and x_26084=x_26168 mod 2
+Z3 ERROR: code 12l Sort mismatch at argument #1 for function (declare-fun mod (Int Int) Int) supplied sort is uninterpreted
+ERROR: z3_assert/2: could not make Z3 formula x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_26056=x_26056 and x_26058=x_26058 and (x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_136>=x_138 and x_134=<x_138)and x_130=x_130 and x_132=x_132 and x_134=x_134 and x_136=x_136 and x_138=x_138 and x_26056=x_26056 and x_26058=x_26058 and x_26070=ite(x_26084=0,0,1)and not(x_138=<x_26058)and x_134=ite(x_26070=0,x_26056+x_130,x_26056+x_132)and x_136=1+x_26058 and x_26084=x_26168 mod 2
+No SAT branches found in MaxDepths = 10.
+ERROR: -g load_clean('/home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/test/separato4/CHC-COMP-AGOSTO/LIA-Lin/z3_results/outPutz3Raname/soloPl/chc-comp24-LIA-Lin-108_timeout.smt2.pl'),set_solver(turibe),zmi(ff),halt.: false

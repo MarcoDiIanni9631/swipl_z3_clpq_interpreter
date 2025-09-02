@@ -1,0 +1,13 @@
+and(a,b,c) e a & (b & c)  dovrebbero produrre lo stesso risultato 
+stessa cosa per l'or PROVATO MA NON RIUSCITO
+(p , q) a cosa serve ? secondo me non serve oppure deve rimanere inalterato.... le coppie ci possono essere solo se ci sono i tipi user-defined che per il momento non gestiamo ancora P,Q ERA DA INTENDERE SOLAMENTE LA PROVA DI UNA VIRGOLA
+
+in ogni caso (p , q & r)  è tradotto male DA RIVEDERE L'AND NON RIUSCITO
+
+non sono sicuro se si può usare il - con più di due argomenti, da controllare con  un file smtlib e Z3
+distinct può avere più di due argomenti ?   da controllare con  un file smtlib e Z3 NON HO TROVATO UN FILE CHE HA IL - DA FAR VALUTARE A Z3 
+X = true non può diventare X=N      N è libera!  questa cosa era già emersa in una call di inizio agosto con EMANUELE DE ANGELIS   deve rimanere tale e quale, anche X=false deve rimanere tale RISOLTO
+
+quando ci sono or / xor / and combinati bisogna fare attenzione alle parentesi ed alle priorità 
+sei sicuro che or(c, xor(d,e)))  si possa tradurre con c or d xor e  ? DA RIVEDERE.
+
