@@ -166,6 +166,15 @@ normalize_bool_expr((A , B), Norm) :-
 
 %integrare questo e testare (l'and e or possono avere piu argomenti!).
 
+normalize_bool_expr(A -> B, implies(NA, NB)) :- !,
+    normalize_bool_expr(A, NA),
+    normalize_bool_expr(B, NB).
+
+normalize_bool_expr(implies(A, B), implies(NA, NB)) :- !,
+    normalize_bool_expr(A, NA),
+    normalize_bool_expr(B, NB).
+
+
 % Operatore "&" infisso
 normalize_bool_expr(A & B, and(NA, NB)) :-
    % nonvar(A), nonvar(B), 
@@ -183,22 +192,36 @@ normalize_bool_expr(Expr, NExpr) :-
     NExpr =.. [F | NArgs].
 
 
-% --- XOR n-ario (trasforma in catena binaria) ---
-normalize_bool_expr(Expr, NExpr) :-
+
+%% VERSIONE CON XOR N-ARIO!
+
+% % --- XOR n-ario (trasforma in catena binaria) ---
+% normalize_bool_expr(Expr, NExpr) :-
+%     nonvar(Expr),
+%     Expr =.. [xor | Args],
+%     Args \= [], !,
+%     maplist(normalize_bool_expr, Args, NArgs),
+%     build_xor_chain(NArgs, NExpr).
+
+
+% % --- Helper per XOR n-ario -> catena di xor/2 ---
+% build_xor_chain([X], X) :- !.
+% build_xor_chain([X,Y|Rest], Expr) :-
+%     Tmp = xor(X, Y),
+%     build_xor_chain([Tmp|Rest], Expr).
+
+% --- XOR binario soltanto ---
+normalize_bool_expr(xor(A, B), xor(NA, NB)) :- !,
+    normalize_bool_expr(A, NA),
+    normalize_bool_expr(B, NB).
+
+% (opzionale) se capita xor con arità diversa da 2 -> errore esplicito
+normalize_bool_expr(Expr, _) :-
     nonvar(Expr),
     Expr =.. [xor | Args],
-    Args \= [], !,
-    maplist(normalize_bool_expr, Args, NArgs),
-    build_xor_chain(NArgs, NExpr).
-
-
-% --- Helper per XOR n-ario -> catena di xor/2 ---
-build_xor_chain([X], X) :- !.
-build_xor_chain([X,Y|Rest], Expr) :-
-    Tmp = xor(X, Y),
-    build_xor_chain([Tmp|Rest], Expr).
-
-
+    length(Args, N),
+    N =\= 2, !,
+    throw(error(normalization_failed(xor_arity(N)), normalize_bool_expr/2)).
 
 
 % % Operatore "and" funzionale
@@ -357,13 +380,13 @@ normalize_bool_expr(A, _) :-
 
 
 %LISTA DA GESTIRE
-%XOR
-%div
-%abs
-%- con n numeri
-%AND/OR CON PIU ARGOMENTI
+%XOR fatto  
+%div fatto
+%abs fatto
+%- con n numeri fatto
+%AND/OR CON PIU ARGOMENTI fatto
 %https://smt-lib.org/theories-Core.shtml
 %https://smt-lib.org/theories-Ints.shtml
-%disinct
-%implicazione
-%V:T deve
+%disinct  fatto
+%implicazione fatto
+%V:T deve fatto
