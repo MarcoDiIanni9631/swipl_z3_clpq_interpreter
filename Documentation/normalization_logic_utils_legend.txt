@@ -5,16 +5,16 @@ N = and(a, b, c).
 N = or(a, b, c).
 
 ?- normalize_bool_expr(a & (b & c), N).
-N = (a and b and c).
+N = and(a, and(b, c)).
 
 ?- normalize_bool_expr(a v (b v c), N).
-N = (a or b or c).
+N = (a or (b or c)).
 
 ?- normalize_bool_expr((p , q), N).
 N = (p, q) .
 
 ?- normalize_bool_expr((p , q & r), N).
-N = ((p, q)and r) .
+N = and((p, q), r) .
 
 ?- normalize_bool_expr(xor(a,b,c), N).
 N = a xor b xor c.
@@ -38,16 +38,16 @@ N = (B=store(A, I, V)).
 N = (R=select(D, P)).
 
 ?- normalize_bool_expr(X = true, N).
-X = N.
+N = (X=true).
 
 ?- normalize_bool_expr(X = false, N).
-N = not(X).
+N = (X=false).
 
 ?- normalize_bool_expr((X:int) mod (Y+1), N).
-N = X:int mod (Y+1).
+N = (X:int)mod(Y+1).
 
 ?- normalize_bool_expr(ite(P, a & b, or(c, xor(d,e))), N).
-N = ite(P, a and b, c or d xor e).
+N = ite(P, and(a, b), (c or d xor e)).
 
 ?- normalize_bool_expr(smt_plus(1, X, 3, Y+2), N).
 N = 1+X+3+(Y+2).
@@ -81,7 +81,8 @@ N = (A+B=C).
 N = (A*B=C).
 
 ?- normalize_bool_expr(X = true, N).
-X = N.
+N = (X=true).
 
 ?- normalize_bool_expr(X = false, N).
-N = not(X).
+N = (X=false).
+
