@@ -296,10 +296,6 @@ normalize_bool_expr(Expr, NExpr) :-
     maplist(normalize_bool_expr, Args, NArgs),
     build_plus_chain(NArgs, NExpr).
 
-build_plus_chain([X], X) :- !.
-build_plus_chain([X,Y|Rest], Expr) :-
-    Tmp =.. [+, X, Y],
-    build_plus_chain([Tmp|Rest], Expr).
 
 
 
@@ -354,11 +350,7 @@ normalize_bool_expr(Expr, NExpr) :-
     maplist(normalize_bool_expr, Args, NArgs),
     build_minus_chain(NArgs, NExpr).
 
-% helper per catena di "-"
-build_minus_chain([X], X) :- !.
-build_minus_chain([X,Y|Rest], Expr) :-
-    Tmp =.. ['-', X, Y],
-    build_minus_chain([Tmp|Rest], Expr).
+
 
 normalize_bool_expr(Expr, NExpr) :-
     nonvar(Expr),
@@ -376,6 +368,19 @@ normalize_bool_expr(Expr, NExpr) :-
 normalize_bool_expr(A, _) :- 
     throw(error(normalization_failed(A), normalize_bool_expr/2)).
 
+
+
+% helper per catena di "-"
+build_minus_chain([X], X) :- !.
+build_minus_chain([X,Y|Rest], Expr) :-
+    Tmp =.. ['-', X, Y],
+    build_minus_chain([Tmp|Rest], Expr).
+
+
+build_plus_chain([X], X) :- !.
+build_plus_chain([X,Y|Rest], Expr) :-
+    Tmp =.. [+, X, Y],
+    build_plus_chain([Tmp|Rest], Expr).
 
 
 
