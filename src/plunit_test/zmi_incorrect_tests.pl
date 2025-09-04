@@ -458,5 +458,13 @@ test(smt_plus_eq_zero_sat) :-
 :- end_tests(smt_plus_eq_zero_sat).
 
 
+:- begin_tests(safe_z3_push_syntax).
+
+% Test: formula scritta male -> deve dare errore di sintassi
+test(bad_syntax, [error(syntax_error(_))]) :-
+    solver_turibe:safe_z3_push(weird_operator(abc,123)). %qeusto viene accettato, però difficile creare test che fallisce perche prolog blocca prima.
+
+:- end_tests(safe_z3_push_syntax).
+
 
 

@@ -1,0 +1,47 @@
+skipping(:- mode inv(in,in).)
+skipped parse: ":- pred ff."
+skipping(:- query ff/0.)
+skipping(:- mode constr(in).)
+skipping(:- ignore constr/1.)
+Installing Z3 package
+Using Z3 version Z3 4.15.3.0
+% Making new z3.pl handle
+% Made new z3.pl handle
+ℹ️ MaxDepth impostato a: 10
+Mi trovo in questa head
+ff
+✅ Inserita in rewrite: _5534:int
+✅ Inserita in rewrite: _5536:int
+Entrato in constr c
+
+% Freeing old z3.pl handle
+% Making new z3.pl handle
+% Made new z3.pl handle
+Stampa prima di inviare
+x_5534:int=x_5534:int and x_5536:int=x_5536:int and x_5534=x_5534 and x_5536=x_5536 and not(x_5536=100)and x_5534=100
+Mi trovo in questa head
+inv(_5534,_5536)
+✅ Inserita in rewrite: _5534:int
+✅ Inserita in rewrite: _5536:int
+Entrato in constr c
+
+% Freeing old z3.pl handle
+% Making new z3.pl handle
+% Made new z3.pl handle
+Stampa prima di inviare
+x_5534:int=x_5534:int and x_5536:int=x_5536:int and (x_5534=x_5534 and x_5536=x_5536 and not(x_5536=100)and x_5534=100)and x_5534=x_5534 and x_5536=x_5536 and x_5536=50 and x_5534=0
+✅ Inserita in rewrite: _5534:int
+✅ Inserita in rewrite: _5536:int
+✅ Inserita in rewrite: _25454:int
+✅ Inserita in rewrite: _25478:int
+Entrato in constr c
+
+% Freeing old z3.pl handle
+% Making new z3.pl handle
+% Made new z3.pl handle
+Stampa prima di inviare
+x_5534:int=x_5534:int and x_5536:int=x_5536:int and x_25454:int=x_25454:int and x_25478:int=x_25478:int and (x_5534=x_5534 and x_5536=x_5536 and not(x_5536=100)and x_5534=100)and x_5534=x_5534 and x_5536=x_5536 and x_25454=x_25454 and x_25478=x_25478 and not(100=<x_25478)and x_5534=1+x_25478
+Mi trovo in questa head
+ite(_130=<50,_132=_604,_132=1+_604)
+No SAT branches found in MaxDepths = 10.
+ERROR: -g load_clean('/home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/test/separato7/CHC-COMP-AGOSTO/LIA-Lin/z3_results/outPutz3Raname/soloPl/chc-comp24-LIA-Lin-094_true.smt2.pl'),set_solver(turibe),zmi(ff),halt.: false

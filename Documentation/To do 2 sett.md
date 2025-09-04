@@ -1,4 +1,4 @@
-# To do – 4 agosto (ancora da fare)
+# To do – 2 Settembre 
 
 - [ ] **Gestire analisi dei contratti** solidity. *(Iniziato)*
 - [ ] **Verificare `findall`** nella funzione `print_all_models` per assicurarsi che mostri tutti i modelli trovati senza effetti collaterali.
@@ -11,7 +11,7 @@
 - [ ] CHCComp analysis 137 non è chiaro perche da sat (forse non capisce che I è un bool).
 - [ ] z3_push lanciare una eccezione se non riesco a fare z3_push
 - [ ] Se z3_push fallisce inserisco colonna in modo tale che capisco non è un risultato valido.
-- [ ] 137 `_288&(_264=_268&_362=_364))` lascio le & quando pusho.
+- [x] 137 `_288&(_264=_268&_362=_364))` lascio le & quando pusho.
 - [x] Nonvar non è soluzione al loop in logic_utils normalize FATTO (rimosso in call con prof ed emanuele).
 - [ ] normalize bool expr considera solo caso A op B, ma potrebbero esserci piu
 - [x] Ripulire il github da file vecchi/inutili FATTO

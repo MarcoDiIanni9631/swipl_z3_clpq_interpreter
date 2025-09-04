@@ -133,12 +133,17 @@ z3_sat_check(Formula, Result) :-
     z3_reset,
     writeln('Stampa prima di inviare'),
     writeq(Z3Ground), nl,
-
- %   safe_z3_push(Z3Ground),  
-    z3_push(Z3Ground),
+    safe_z3_push(Z3Ground),
     z3_check(Sat),
     result_from_sat(Sat, Result).
 
+% --- push sicuro: se fallisce -> eccezione
+safe_z3_push(Formula) :-
+    catch(
+        z3_push(Formula),
+        Error,
+        throw(error(z3_push_failed(Formula), Error))
+    ).
 
 
 % % --- push sicuro: blocca se trova smt_plus o &
