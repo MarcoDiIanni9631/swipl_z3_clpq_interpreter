@@ -33,6 +33,7 @@ normalize_bool_expr(Expr, Expr) :-
     atom(Expr), !.
 
 
+
 %Posso aggiungere qui se c'è una costante ((true,false,integer)
 % Normalizza select(Array, Index) come termine generico
 normalize_bool_expr(select(A, I), select(NA, NI)) :-
@@ -54,14 +55,14 @@ normalize_bool_expr(store(A, I, V), store(NA, NI, NV)) :-
 %     Expr =.. [Op, _, _],
 %     member(Op, [=, <, >, =<, >=, \=, =:=, =\=]), !.
 
-% Variabile tipizzata: rimuovi l'annotazione
-normalize_bool_expr(Var:Type, Var) :-
-    var(Var),
-    (   atom(Type)                                      % es. int, bool
-    ;   Type = array(Index, Elem),
-        ground(Index), ground(Elem)                     % es. array(int,int), array(int,bool)
-    ),
-    !.
+% % Variabile tipizzata: rimuovi l'annotazione
+% normalize_bool_expr(Var:Type, Var) :-
+%     var(Var),
+%     (   atom(Type)                                      % es. int, bool
+%     ;   Type = array(Index, Elem),
+%         ground(Index), ground(Elem)                     % es. array(int,int), array(int,bool)
+%     ),
+%     !.
 
 
 
@@ -363,6 +364,66 @@ normalize_bool_expr(Expr, NExpr) :-
 % % ----------------------------
 % normalize_bool_expr(A, A) :- 
 %     format('⚠️ Formula non normalizzata: ~w~n', [A]).
+
+
+% % --- 1) Functor con punto: rinomina "a.b(...)" -> "a__b(...)" e normalizza gli argomenti
+% normalize_bool_expr(Expr, Norm) :-
+%     nonvar(Expr),
+%     Expr =.. [F | Args],
+%     atom(F),
+%     sub_atom(F, _, _, _, '.'),
+%     atomic_list_concat(Parts, '.', F),
+%     atomic_list_concat(Parts, '__', NewF),
+%     maplist(normalize_bool_expr, Args, NArgs),
+%     Norm =.. [NewF | NArgs], !.
+
+
+% % --- 2) Annotazioni di tipo generiche: rimuovi ":Type" anche se A non è variabile
+% normalize_bool_expr(A:Type, NA) :-
+%     nonvar(A),
+%     ( atom(Type)
+%     ; Type = array(_, _)
+%     ),
+%     normalize_bool_expr(A, NA), !.
+
+
+
+% % --- 3) Pass-through generico: lascia invariato il functor sconosciuto, normalizza solo gli argomenti
+% normalize_bool_expr(Expr, Norm) :-
+%     nonvar(Expr),
+%     Expr =.. [F | Args],
+%     % evita i costrutti già gestiti sopra
+%     \+ member(F, [and, or, xor, not, implies, select, store,
+%                   (=), (<), (>), (=<), (>=), (\=), (=:=), (=\=),
+%                   (+), (-), (*), div, mod, abs, v, '&']),
+%     maplist(normalize_bool_expr, Args, NArgs),
+%     Norm =.. [F | NArgs], !.
+
+
+
+normalize_bool_expr(Expr0, ExprN) :-
+    nonvar(Expr0),
+    Expr0 =.. [F | Args],
+    atom(F),
+    sub_atom(F, _, _, _, '.'),                      % intercetta 'msg.value', 'tx.gasprice', ...
+    !,
+    atomic_list_concat(Parts, '.', F),
+    atomic_list_concat(Parts, '_', F1),             % msg.value -> msg_value
+    maplist(normalize_bool_expr, Args, NArgs),      % normalizza ricorsivamente gli argomenti
+    ExprN =.. [F1 | NArgs].
+
+
+
+normalize_bool_expr(Expr, Norm) :-
+    nonvar(Expr),
+    Expr =.. [Fun | Args],
+    \+ member(Fun, [and, or, xor, not, implies,
+                    select, store, abs, mod, v, '&',
+                    (=),(<),(>),(=<),(>=),(\=),(=:=),(=\=),
+                    (+),(-),(*),div, '=>', '->']),
+    !,
+    maplist(normalize_bool_expr, Args, NArgs),
+    Norm =.. [Fun | NArgs].
 
 % Fallback finale: se arriva qui, formula non riconosciuta → ERRORE
 normalize_bool_expr(A, _) :- 

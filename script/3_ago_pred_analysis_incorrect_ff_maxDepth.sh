@@ -42,7 +42,7 @@ for file in "$DIR"/*.smt2.pl; do
   # 2) passiamo il file CHC come assoluto
   (
     cd "$MAIN_DIR" || exit 1
-    timeout 10s swipl -l main.pl \
+    timeout 100s swipl -l main.pl \
       -g "load_clean('$FILE_ABS'),set_solver(turibe),zmi(${TARGET}),halt." \
       > "$tmpout" 2>&1
   )
