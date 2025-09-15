@@ -4,7 +4,7 @@ import os
 import sys
 import subprocess
 
-# === CONFIG ===
+# === CONFIG fissi ===
 VERIMAP_DIR = "/home/marco/Downloads/VeriMAP-linux_x86_64"
 VERIMAP_PATH = os.path.join(VERIMAP_DIR, "VeriMAP")
 SMT2MAP_SCRIPT_DIR = "/home/marco/Desktop/VMAP_10_FEB/verimap"
@@ -66,8 +66,8 @@ def process_file(c_file):
     log("✔ Completato con successo.")
 
 def main():
-    if len(sys.argv) < 2:
-        print("Uso: python3 verimap_pipeline_final.py <file.c | directory>")
+    if len(sys.argv) != 2:
+        print("Uso: python3 verimap_c_pipeline.py <file.c | directory>")
         sys.exit(1)
 
     input_path = sys.argv[1]
