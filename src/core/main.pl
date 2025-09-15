@@ -313,3 +313,26 @@ print_tree(Other, Indent) :- tab(Indent), writeln(Other).
 %     flatten_list(T, TFlat),
 %     append(HFlat, TFlat, Flat).
 % flatten_list(X, [X]).
+
+
+% ----------------------------
+% Wrapper: carica file e lancia zmi/1
+% ----------------------------
+
+run_analysis(File, Target) :-
+    format("📂 Analisi del file: ~w con target: ~w~n", [File, Target]),
+    load_clean(File),
+    zmi(Target).
+    %format("📌 Analisi terminata.~n", []).
+
+
+:- initialization(main, main).
+
+main :-
+    current_prolog_flag(argv, Argv),
+    ( Argv = [File, Target] ->(
+        run_analysis(File, Target),
+        halt(0))
+    ; (format("Uso: swipl -s main.pl -- <file.smt2.pl> <ff|incorrect>~n", []),
+      halt(1))
+    ).
