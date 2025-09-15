@@ -29,7 +29,7 @@ load_clean_lines(Stream) :-
         try_parse_pred_line(FullTermString),
         load_clean_lines(Stream)
     ; should_skip_line(FullTermString) ->
-        writeln(skipping(FullTermString)),
+     %   writeln(skipping(FullTermString)),
         load_clean_lines(Stream)
     ; open_string(FullTermString, LineStream),
       catch(
@@ -85,7 +85,8 @@ try_parse_pred_line(Line) :-
     ( catch(extract_pred_type(S), Err,
             (print_message(error, Err), fail)) ->
         true
-    ; format("skipped parse: ~q~n", [S])
+    ; 
+        format(" ")
     ).
 
 extract_pred_type(Line) :-

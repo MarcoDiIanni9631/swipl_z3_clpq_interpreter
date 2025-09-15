@@ -131,8 +131,8 @@ z3_sat_check(Formula, Result) :-
     normalize_z3_formula(RawGround, Z3Ground),
 
     z3_reset,
-    writeln('Stampa prima di inviare'),
-    writeq(Z3Ground), nl,
+  %  writeln('Stampa prima di inviare'),
+  % writeq(Z3Ground), nl,
     safe_z3_push(Z3Ground),
     z3_check(Sat),
     result_from_sat(Sat, Result).

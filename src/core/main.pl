@@ -89,7 +89,7 @@ zmi_aux((A, B), Z3In, CLPQIn,SymTab, Steps, Z3Out, CLPQOut, (TreeA, TreeB)) :-
     zmi_aux(B, TempZ3, TempCLPQ,SymTab, Steps, Z3Out, CLPQOut, TreeB).
 
 zmi_aux(constr(C), Z3In, CLPQIn, SymTab, _, Z3Out, CLPQOut, constr(Normalized)) :-
-    writeln('Entrato in constr c'),
+  %  writeln('Entrato in constr c'),
     normalize_bool_expr(C, Normalized),
     build_conjunct([CLPQIn, Normalized], CLPQOut),
     build_conjunct([Z3In, Normalized], Z3Out),
@@ -100,7 +100,7 @@ zmi_aux(constr(C), Z3In, CLPQIn, SymTab, _, Z3Out, CLPQOut, constr(Normalized)) 
     append(TypeAnnots, Z3List, FlatList),
     % writeln('Stampo flatList'), writeln(FlatList),
     build_conjunct(FlatList, Z3Final),
-    nl,
+   % nl,
     z3_sat_check(Z3Final, sat).
 
 %prima era cosi:
@@ -119,8 +119,8 @@ zmi_aux(Head, Z3In, CLPQIn,SymTabIn, Steps, Z3Out, CLPQOut, SubTree => Head) :-
     Head \= true,
     Head \= (_, _),
     Head \= constr(_),
-    writeln('Mi trovo in questa head'),
-    writeln(Head),
+   % writeln('Mi trovo in questa head'),
+   % writeln(Head),
     clause(Head, RawBody),
 
     % writeln('Stampo Rawbody'),
@@ -232,7 +232,7 @@ rewrite_constr(_, SymTab, constr(C0), constr(CFinal)) :-
     append(TypeAnnots, CList, FullList),
 forall(
     member((Var:Type = Var:Type), TypeAnnots),
-    format('✅ Inserita in rewrite: ~w:~w~n', [Var, Type])
+    format('')
 ),
     build_conjunct(FullList, CFinal),   
     !.
