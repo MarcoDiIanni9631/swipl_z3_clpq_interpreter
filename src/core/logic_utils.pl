@@ -34,7 +34,6 @@ normalize_bool_expr(Expr, Expr) :-
 
 
 
-%Posso aggiungere qui se c'è una costante ((true,false,integer)
 % Normalizza select(Array, Index) come termine generico
 normalize_bool_expr(select(A, I), select(NA, NI)) :-
     !,
@@ -47,22 +46,6 @@ normalize_bool_expr(store(A, I, V), store(NA, NI, NV)) :-
     normalize_bool_expr(A, NA),
     normalize_bool_expr(I, NI),
     normalize_bool_expr(V, NV).
-
-
-% % Caso base: uguaglianze/relazioni aritmetiche (STOP ricorsione)
-% normalize_bool_expr(Expr, Expr) :-
-%     nonvar(Expr),
-%     Expr =.. [Op, _, _],
-%     member(Op, [=, <, >, =<, >=, \=, =:=, =\=]), !.
-
-% % Variabile tipizzata: rimuovi l'annotazione
-% normalize_bool_expr(Var:Type, Var) :-
-%     var(Var),
-%     (   atom(Type)                                      % es. int, bool
-%     ;   Type = array(Index, Elem),
-%         ground(Index), ground(Elem)                     % es. array(int,int), array(int,bool)
-%     ),
-%     !.
 
 
 
@@ -84,9 +67,6 @@ normalize_bool_expr(A mod B, mod(NA, NB)) :-
     normalize_bool_expr(A, NA),
     normalize_bool_expr(B, NB).
 
-% % Normalizza quando il tipo finisce "incollato" con mod
-% normalize_bool_expr(V:(T mod N), mod(V:T, N)) :-
-%     var(V), atom(T), number(N), !.
 
 
 % Gestione store e select (a sinistra)
@@ -99,30 +79,7 @@ normalize_bool_expr((A = B), Norm) :-
     normalize_bool_expr((B = A), Norm).
 
 
-% % Conversioni logiche true/false
-% normalize_bool_expr((A = true), NA) :-
-%     \+ A == true, \+ A == false, !,
-%     normalize_bool_expr(A, NA).
 
-% normalize_bool_expr((A = false), not(NA)) :-
-%     \+ A == true, \+ A == false, !,
-%     normalize_bool_expr(A, NA).
-
-% (A = true)  -->  A   (senza legare la RHS)
-% normalize_bool_expr(Expr, NA) :-
-%     nonvar(Expr),
-%     Expr =.. [=, A, RHS],
-%     RHS == true,                        
-%     \+ A == true, \+ A == false, !,
-%     normalize_bool_expr(A, NA).
-
-% % (A = false) -->  not(A)   (senza legare la RHS)
-% normalize_bool_expr(Expr, not(NA)) :-
-%     nonvar(Expr),
-%     Expr =.. [=, A, RHS],
-%     RHS == false,                       
-%     \+ A == true, \+ A == false, !,
-%     normalize_bool_expr(A, NA).
 
 %To test.
 % Caso base: uguaglianze/relazioni aritmetiche
@@ -136,28 +93,14 @@ normalize_bool_expr(Expr, NExpr) :-
     NExpr =.. [Op, NA, NB].
 
 
-%array(bool),store(x,i,A&B) Anche qui dovrebbe andare il convertitore e convertire & in and...
-
-% % Gestione mod infisso → prefisso
-% normalize_bool_expr(Expr, Norm) :-
-%     nonvar(Expr),
-%     Expr =.. [mod, A, B], !,
-%     writeln('Ho trovato un mod e quindi ora gestisco anche le sottoOperazioni'),
-%     normalize_bool_expr(A, NA),
-%     normalize_bool_expr(B, NB),
-%     Norm =.. [mod, NA, NB].
-
-
 % Operatore "or" infisso
 normalize_bool_expr(A v B, or(NA, NB)) :-
     !, normalize_bool_expr(A, NA),
        normalize_bool_expr(B, NB).
 
-% % Operatore "or" funzionale
-% normalize_bool_expr(or(A, B), or(NA, NB)) :-
-%   %  nonvar(A), nonvar(B), !,
-%     normalize_bool_expr(A, NA),
-%     normalize_bool_expr(B, NB).
+normalize_bool_expr(A or B, or(NA, NB)) :- !,
+    normalize_bool_expr(A, NA),
+    normalize_bool_expr(B, NB).
 
 % Conjunction con virgola
 normalize_bool_expr((A , B), Norm) :-
@@ -193,45 +136,18 @@ normalize_bool_expr(Expr, NExpr) :-
     NExpr =.. [F | NArgs].
 
 
-
-%% VERSIONE CON XOR N-ARIO!
-
-% % --- XOR n-ario (trasforma in catena binaria) ---
-% normalize_bool_expr(Expr, NExpr) :-
-%     nonvar(Expr),
-%     Expr =.. [xor | Args],
-%     Args \= [], !,
-%     maplist(normalize_bool_expr, Args, NArgs),
-%     build_xor_chain(NArgs, NExpr).
-
-
-% % --- Helper per XOR n-ario -> catena di xor/2 ---
-% build_xor_chain([X], X) :- !.
-% build_xor_chain([X,Y|Rest], Expr) :-
-%     Tmp = xor(X, Y),
-%     build_xor_chain([Tmp|Rest], Expr).
-
 % --- XOR binario soltanto ---
 normalize_bool_expr(xor(A, B), xor(NA, NB)) :- !,
     normalize_bool_expr(A, NA),
     normalize_bool_expr(B, NB).
 
-% (opzionale) se capita xor con arità diversa da 2 -> errore esplicito
+% se capita xor con arità diversa da 2 -> errore esplicito
 normalize_bool_expr(Expr, _) :-
     nonvar(Expr),
     Expr =.. [xor | Args],
     length(Args, N),
     N =\= 2, !,
     throw(error(normalization_failed(xor_arity(N)), normalize_bool_expr/2)).
-
-
-% % Operatore "and" funzionale
-% normalize_bool_expr(and(A, B), Norm) :-
-%    % nonvar(A), nonvar(B), 
-%    !,
-%     normalize_bool_expr(A, NA),
-%     normalize_bool_expr(B, NB),
-%     build_conjunct([NA, NB], Norm).
 
 
 
@@ -247,27 +163,9 @@ normalize_bool_expr(not(A), not(NA)) :-
     !,
     normalize_bool_expr(A, NA).
 
-
-
-
-%queste due non vannno bene. es. se false =true da true...sbagliato.
-
-% normalize_bool_expr((_ = true), true) :- !.
-% normalize_bool_expr((_ = false), false) :- !.
-
-% ----------------------------
-% Gestione numeri e variabili tipizzate
-% ----------------------------
-
 % Numeri
 normalize_bool_expr(N, N) :-
     number(N), !.
-
-% % Variabili con tipo: lasciarle intatte
-% normalize_bool_expr(V:T, V:T) :-
-%     var(V), atom(T), !.
-
-
 
 % ----------------------------
 % Conversioni logiche true/false
@@ -277,56 +175,32 @@ normalize_bool_expr(true, true) :- !.
 normalize_bool_expr(false, false) :- !.
 
 
-% Lascia invariata una somma costante+variabile
-normalize_bool_expr(Expr, Expr) :-
+% meno unario
+normalize_bool_expr(Expr, -NArg) :-
     nonvar(Expr),
-    Expr =.. [+, A, B],
-    number(A), var(B), !.
-
-
-normalize_bool_expr(Expr, Expr) :-
-    nonvar(Expr),
-    Expr =.. [Op, N],
-    Op == (-), number(N), !.
+    Expr =.. [(-), Arg],
+    !,
+    normalize_bool_expr(Arg, NArg).
 
 % ---------- smt_plus: somma n-aria -> catena di + ----------
 normalize_bool_expr(Expr, NExpr) :-
     nonvar(Expr),
-    Expr =.. [smt_plus | Args],
-    !,
+    Expr =.. [smt_plus | Args], !,
     maplist(normalize_bool_expr, Args, NArgs),
-    build_plus_chain(NArgs, NExpr).
+    build_op_chain(+, NArgs, NExpr).
 
-
-
-
-% % Normalizza select(Array, Index) come termine generico
-% normalize_bool_expr(select(A, I), select(NA, NI)) :-
-%     !,
-%     normalize_bool_expr(A, NA),
-%     normalize_bool_expr(I, NI).
-
-% % Normalizza store(Array, Index, Value) come termine generico
-% normalize_bool_expr(store(A, I, V), store(NA, NI, NV)) :-
-%     !,
-%     normalize_bool_expr(A, NA),
-%     normalize_bool_expr(I, NI),
-%     normalize_bool_expr(V, NV).
-
-% % Variabile con tipo come termine intero
-% normalize_bool_expr(Var:Type, Var:Type) :-
-%     var(Var), atom(Type), !.
-% ----------------------------
-
-
-% Normalizza prodotto N*X
 normalize_bool_expr(Expr, NExpr) :-
     nonvar(Expr),
-    Expr =.. [*, A, B],
-    !,
-    normalize_bool_expr(A, NA),
-    normalize_bool_expr(B, NB),
-    NExpr = NA*NB.
+    Expr =.. [smt_minus | Args], !,
+    maplist(normalize_bool_expr, Args, NArgs),
+    build_op_chain(-, NArgs, NExpr).
+
+
+normalize_bool_expr(Expr, NExpr) :-
+    nonvar(Expr),
+    Expr =.. [smt_star | Args], !,
+    maplist(normalize_bool_expr, Args, NArgs),
+    build_op_chain(*, NArgs, NExpr).
 
 
 % --- Ricorsione sugli operatori aritmetici binari ---
@@ -343,15 +217,6 @@ normalize_bool_expr(Expr, NExpr) :-
 normalize_bool_expr(abs(X), abs(NX)) :-
     !, normalize_bool_expr(X, NX).
 
-% "-" n-ario (>=2): fold sinistro
-normalize_bool_expr(Expr, NExpr) :-
-    nonvar(Expr),
-    Expr =.. ['-' | Args],
-    length(Args, N), N >= 2, !,
-    maplist(normalize_bool_expr, Args, NArgs),
-    build_minus_chain(NArgs, NExpr).
-
-
 
 normalize_bool_expr(Expr, NExpr) :-
     nonvar(Expr),
@@ -359,46 +224,6 @@ normalize_bool_expr(Expr, NExpr) :-
     Args \= [], !,
     maplist(normalize_bool_expr, Args, NArgs),
     NExpr =.. [distinct | NArgs].
-
-% % Fallback finale
-% % ----------------------------
-% normalize_bool_expr(A, A) :- 
-%     format('⚠️ Formula non normalizzata: ~w~n', [A]).
-
-
-% % --- 1) Functor con punto: rinomina "a.b(...)" -> "a__b(...)" e normalizza gli argomenti
-% normalize_bool_expr(Expr, Norm) :-
-%     nonvar(Expr),
-%     Expr =.. [F | Args],
-%     atom(F),
-%     sub_atom(F, _, _, _, '.'),
-%     atomic_list_concat(Parts, '.', F),
-%     atomic_list_concat(Parts, '__', NewF),
-%     maplist(normalize_bool_expr, Args, NArgs),
-%     Norm =.. [NewF | NArgs], !.
-
-
-% % --- 2) Annotazioni di tipo generiche: rimuovi ":Type" anche se A non è variabile
-% normalize_bool_expr(A:Type, NA) :-
-%     nonvar(A),
-%     ( atom(Type)
-%     ; Type = array(_, _)
-%     ),
-%     normalize_bool_expr(A, NA), !.
-
-
-
-% % --- 3) Pass-through generico: lascia invariato il functor sconosciuto, normalizza solo gli argomenti
-% normalize_bool_expr(Expr, Norm) :-
-%     nonvar(Expr),
-%     Expr =.. [F | Args],
-%     % evita i costrutti già gestiti sopra
-%     \+ member(F, [and, or, xor, not, implies, select, store,
-%                   (=), (<), (>), (=<), (>=), (\=), (=:=), (=\=),
-%                   (+), (-), (*), div, mod, abs, v, '&']),
-%     maplist(normalize_bool_expr, Args, NArgs),
-%     Norm =.. [F | NArgs], !.
-
 
 
 normalize_bool_expr(Expr0, ExprN) :-
@@ -431,28 +256,10 @@ normalize_bool_expr(A, _) :-
 
 
 
-% helper per catena di "-"
-build_minus_chain([X], X) :- !.
-build_minus_chain([X,Y|Rest], Expr) :-
-    Tmp =.. ['-', X, Y],
-    build_minus_chain([Tmp|Rest], Expr).
+% Helper generico per costruire una catena n-aria di operatori
+build_op_chain(_, [X], X) :- !.
+build_op_chain(Op, [X,Y|Rest], Expr) :-
+    Tmp =.. [Op, X, Y],
+    build_op_chain(Op, [Tmp|Rest], Expr).
 
 
-build_plus_chain([X], X) :- !.
-build_plus_chain([X,Y|Rest], Expr) :-
-    Tmp =.. [+, X, Y],
-    build_plus_chain([Tmp|Rest], Expr).
-
-
-
-%LISTA DA GESTIRE
-%XOR fatto  
-%div fatto
-%abs fatto
-%- con n numeri fatto
-%AND/OR CON PIU ARGOMENTI fatto
-%https://smt-lib.org/theories-Core.shtml
-%https://smt-lib.org/theories-Ints.shtml
-%disinct  fatto
-%implicazione fatto
-%V:T deve fatto

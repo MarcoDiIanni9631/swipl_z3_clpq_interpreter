@@ -45,17 +45,17 @@ z3constr2lower(C, P, C1) :-
 % Normalizzazione formula per Z3
 % ----------------------------
 
-normalize_z3_formula((true, Rest), Norm) :- !, normalize_z3_formula(Rest, Norm).
-normalize_z3_formula((Rest, true), Norm) :- !, normalize_z3_formula(Rest, Norm).
-normalize_z3_formula((A, B), Norm) :-
-    !, normalize_z3_formula(and(A, B), Norm).
-normalize_z3_formula(and(true, A), Norm) :- !, normalize_z3_formula(A, Norm).
-normalize_z3_formula(and(A, true), Norm) :- !, normalize_z3_formula(A, Norm).
-normalize_z3_formula(and(A, B), and(NA, NB)) :-
-    !, normalize_z3_formula(A, NA),
-    normalize_z3_formula(B, NB).
-normalize_z3_formula(true, true) :- !.
-normalize_z3_formula(F, F).
+% normalize_z3_formula((true, Rest), Norm) :- !, normalize_z3_formula(Rest, Norm).
+% normalize_z3_formula((Rest, true), Norm) :- !, normalize_z3_formula(Rest, Norm).
+% normalize_z3_formula((A, B), Norm) :-
+%     !, normalize_z3_formula(and(A, B), Norm).
+% normalize_z3_formula(and(true, A), Norm) :- !, normalize_z3_formula(A, Norm).
+% normalize_z3_formula(and(A, true), Norm) :- !, normalize_z3_formula(A, Norm).
+% normalize_z3_formula(and(A, B), and(NA, NB)) :-
+%     !, normalize_z3_formula(A, NA),
+%     normalize_z3_formula(B, NB).
+% normalize_z3_formula(true, true) :- !.
+% normalize_z3_formula(F, F).
 
 % ----------------------------
 % Sostituzione delle costanti nel modello
@@ -128,12 +128,14 @@ sostituisci_costanti_(Assoc, Arg, Arg1) :-
 z3_sat_check(Formula, Result) :-
     term_variables(Formula, _Vars),
     z3constr2lower(Formula, _Pairs, RawGround),
-    normalize_z3_formula(RawGround, Z3Ground),
+    % normalize_z3_formula(RawGround, Z3Ground),
 
     z3_reset,
   %  writeln('Stampa prima di inviare'),
   % writeq(Z3Ground), nl,
-    safe_z3_push(Z3Ground),
+    % safe_z3_push(Z3Ground),
+    safe_z3_push(RawGround),
+
     z3_check(Sat),
     result_from_sat(Sat, Result).
 
@@ -188,9 +190,9 @@ result_from_sat(_,       unknown).
 z3_print_model_final(Formula) :-
     debug_print('✅ z3_sat_check attivato!'),
     z3constr2lower(Formula, _Pairs, RawGround),
-    normalize_z3_formula(RawGround, Z3Ground),
-    debug_print('--- Formula da pushare su Z3 ---'), debug_print(Z3Ground),
-    ( z3_push(Z3Ground) ->
+   % normalize_z3_formula(RawGround, Z3Ground),
+    debug_print('--- Formula da pushare su Z3 ---'), debug_print(RawGround),
+    ( z3_push(RawGround) ->
         z3_check(Sat),
         ( Sat == l_true ->
             z3_model(Model),
@@ -200,5 +202,5 @@ z3_print_model_final(Formula) :-
         ; Sat == l_undef ->
             writeln('Z3 says: UNKNOWN or ERROR (l_undef)')
         )
-    ; debug_print('Z3 push failed. Cannot analyze constraints.'), debug_print(Z3Ground)
+    ; debug_print('Z3 push failed. Cannot analyze constraints.'), debug_print(RawGround)
     ).

@@ -90,7 +90,13 @@ zmi_aux((A, B), Z3In, CLPQIn,SymTab, Steps, Z3Out, CLPQOut, (TreeA, TreeB)) :-
 
 zmi_aux(constr(C), Z3In, CLPQIn, SymTab, _, Z3Out, CLPQOut, constr(Normalized)) :-
   %  writeln('Entrato in constr c'),
+%   writeln('Stampo prima della normalizzazione'),
+%   writeln(C),
     normalize_bool_expr(C, Normalized),
+%   writeln('Stampo dopo normalizzazione'),
+%   writeln(Normalized),
+    
+
     build_conjunct([CLPQIn, Normalized], CLPQOut),
     build_conjunct([Z3In, Normalized], Z3Out),
     maplist(build_type_equality, SymTab, TypeAnnots),
@@ -226,9 +232,16 @@ build_type_equality(_, true).
 rewrite_constr(_, _, constr(true), constr(true)) :- !.
 rewrite_constr(_, _, true, true) :- !.
 rewrite_constr(_, SymTab, constr(C0), constr(CFinal)) :-
-    normalize_bool_expr(C0, Normalized0),
+    % writeln('Before normalize rewrite_constr'),
+    % writeln(C0),
+
+    % normalize_bool_expr(C0, Normalized0),
+    %     writeln('After normalize rewrite_constr'),
+
+    % writeln(Normalized0),
+    
     maplist(build_type_equality, SymTab, TypeAnnots),
-    conj_to_list(Normalized0, CList),
+    conj_to_list(C0, CList),
     append(TypeAnnots, CList, FullList),
 forall(
     member((Var:Type = Var:Type), TypeAnnots),
