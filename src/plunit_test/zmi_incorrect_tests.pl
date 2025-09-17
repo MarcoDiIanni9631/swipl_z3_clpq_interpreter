@@ -1,0 +1,470 @@
+:- op(1000, yfx, &).
+:- op(900, fy, ~).
+%:- style_check(-singleton).
+% % Cleanup comune per i test
+% cleanup_all :-
+%     user:retractall((incorrect :- _)),
+%     user:retractall((p(_) :- _)),
+%     user:retractall((q(_) :- _)),
+%     user:retractall((case1 :- _)),
+%     user:retractall((new1 :- _)),
+%     user:retractall((new2(_,_,_) :- _)),
+%     user:retractall((new3(_,_,_) :- _)),
+%     user:retractall((new4(_,_,_) :- _)),
+%     user:retractall((new5(_,_,_,_) :- _)),
+%     (   current_predicate(z3_reset/0) -> z3_reset ; true).
+
+% ------------------------------------------------------------------
+% TEST 1
+% ------------------------------------------------------------------
+:- begin_tests(level1_constr_true_sat, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
+
+test(level1_constr_true_sat) :-
+    user:assertz((incorrect :- constr(true))),
+    zmi(incorrect).
+
+:- end_tests(level1_constr_true_sat).
+
+% ------------------------------------------------------------------
+% TEST 2
+% ------------------------------------------------------------------
+:- begin_tests(level2_basic_constraints_sat, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
+
+test(level2_basic_constraints_sat) :-
+    user:assertz((incorrect :- constr((_A = 0 & _B = 5 & _A < _B)))),
+    zmi(incorrect).
+
+:- end_tests(level2_basic_constraints_sat).
+
+% ------------------------------------------------------------------
+% TEST 2.5 IT HAS TO FAIL
+% ------------------------------------------------------------------
+:- begin_tests(level2_basic_constraints_sat2, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
+
+test(level2_basic_constraints_sat2) :-
+    user:assertz((incorrect :- constr((_A = 0 & _B = 5 & _A > _B)))),
+    zmi(incorrect).
+
+:- end_tests(level2_basic_constraints_sat2).
+
+
+% ------------------------------------------------------------------
+% TEST 3
+% ------------------------------------------------------------------
+:- begin_tests(level3_predicate_and_constraint_sat, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
+
+test(level3_predicate_and_constraint_sat) :-
+    user:assertz((p(X) :- constr(X = 3))),
+    user:assertz((incorrect :- p(_A), constr(_A > 0))),
+    zmi(incorrect).
+
+:- end_tests(level3_predicate_and_constraint_sat).
+
+% ------------------------------------------------------------------
+% TEST 4
+% ------------------------------------------------------------------
+:- begin_tests(level4_calling_chain_sat, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
+
+test(level4_calling_chain_sat) :-
+    user:assertz((p(X) :- constr(X = 3))),
+    user:assertz((q(X) :- p(X), constr(X < 10))),
+    user:assertz((incorrect :- q(_A), constr(_A >= 0))),
+    zmi(incorrect).
+
+:- end_tests(level4_calling_chain_sat).
+
+% ------------------------------------------------------------------
+% TEST 5
+% ------------------------------------------------------------------
+:- begin_tests(level5_multiple_clauses_sat, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
+
+test(level5_multiple_clauses_sat) :-
+    user:assertz((case1(_A,_B) :- constr((_A = 1 & _B = 4)))),
+    user:assertz((case1(_A,_B) :- constr((_A = 3 & _B = 4)))),
+    user:assertz((incorrect :- case1(_A,_B), constr(_B > _A))),
+    zmi(incorrect).
+
+:- end_tests(level5_multiple_clauses_sat).
+
+% ------------------------------------------------------------------
+% TEST 6 SUCCESS
+% ------------------------------------------------------------------
+:- begin_tests(level6_array_select_store_sat, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
+
+test(level6_array_select_store_sat) :-
+    user:assertz((incorrect :- constr((Y = 88 & (Y = select(store(_A, 5, 88), 5)))))),
+    zmi(incorrect).
+
+:- end_tests(level6_array_select_store_sat).
+
+
+% ------------------------------------------------------------------
+% TEST 6.5 SUCCESS TO-DO, STACK LIMIT NOW
+% ------------------------------------------------------------------
+:- begin_tests(level6_array_select_store_sat_freeZ, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
+
+test(level6_array_select_store_sat_freeZ) :-
+    user:assertz((incorrect :- constr((Y = Z & (Y = select(store(_A, 5, Z), 5)))))),
+    zmi(incorrect).
+
+:- end_tests(level6_array_select_store_sat_freeZ).
+
+% ------------------------------------------------------------------
+% TEST 6.5 SUCCESS TO-DO, STACK LIMIT NOW tutto tipato
+% ------------------------------------------------------------------
+:- begin_tests(level6_array_select_store_sat_freeZ3, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
+
+test(level6_array_select_store_sat_freeZ3) :-
+    user:assertz((incorrect :- constr((Y:int = Z:int & (Y = select(store(_A, 5, Z:int), 5)))))),
+    zmi(incorrect).
+
+:- end_tests(level6_array_select_store_sat_freeZ3).
+
+
+% ------------------------------------------------------------------
+% TEST 6.6 SUCCESS TO-DO, STACK LIMIT NOW -V2 Z:int work
+% ------------------------------------------------------------------
+:- begin_tests(level6_array_select_store_sat_freeZ2, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
+
+test(level6_array_select_store_sat_freeZ2) :-
+    user:assertz((
+        incorrect :-
+            constr((Y = select(store(default_array, 5, Z:int), 5)))
+    )),
+    zmi(incorrect).
+
+:- end_tests(level6_array_select_store_sat_freeZ2).
+
+
+
+
+
+
+% ------------------------------------------------------------------
+% TEST 6.5 SUCCESS AXIOM
+% ------------------------------------------------------------------
+:- begin_tests(level6_array_select_store_sat_ax, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
+
+test(level6_array_select_store_sat_ax) :-
+    user:assertz((incorrect :- constr(((Z = select(store(_A, 5, Z), 5)))))),
+    zmi(incorrect).
+
+:- end_tests(level6_array_select_store_sat_ax).
+
+% ------------------------------------------------------------------
+% TEST 6.5 SUCCESS AXIOM
+% ------------------------------------------------------------------
+:- begin_tests(level6_array_select_store_sat_minor, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
+
+test(level6_array_select_store_sat_minor) :-
+    user:assertz((incorrect :- constr(((Z < select(store(_A, 5, Z), 5)))))),
+    zmi(incorrect).
+
+:- end_tests(level6_array_select_store_sat_minor).
+
+
+
+% ------------------------------------------------------------------
+% TEST 6 F FAIL
+% ------------------------------------------------------------------
+:- begin_tests(level6_array_select_store_sat_fail, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
+
+test(level6_array_select_store_sat_fail) :-
+    user:assertz((incorrect :- constr((Y = 87 & (Y = select(store(_A, 5, 88), 5)))))),
+    zmi(incorrect).
+
+:- end_tests(level6_array_select_store_sat_fail).
+
+
+% ------------------------------------------------------------------
+% TEST 7
+% ------------------------------------------------------------------
+:- begin_tests(level7_realistic_nested_predicates_sat, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
+
+test(level7_realistic_nested_predicates_sat) :-
+    user:assertz((new5(_A,_B,C,D) :- constr((E=0 & F=0 & _A=0)))),
+    user:assertz((new4(_A,_B,C) :- new5(D,_A,_B,C), constr((_A+_B>=1 & E=0 & F=_A+_B & D=1)))),
+    user:assertz((new4(_A,_B,C) :- new5(D,_A,_B,C), constr((_A+_B=<0 & E=0 & F=_A+_B & D=0)))),
+    user:assertz((new3(_A,_B,C) :- new4(_A,_B,D), constr((_B>=1 & D=3 & E=0)))),
+    user:assertz((new3(_A,_B,C) :- new4(_A,D,C), constr((_B=<0 & D=1 & E=0)))),
+    user:assertz((new2(_A,_B,C) :- new3(_A,_B,D), constr((_A>=1 & D=2 & E=0)))),
+    user:assertz((new2(_A,_B,C) :- new3(D,_B,C), constr((_A=<0 & D= -1 & E=0)))),
+    user:assertz((new1 :- new2(_A,_B,C), constr(true))),
+    user:assertz((incorrect :- new1, constr(true))),
+    zmi(incorrect).
+
+:- end_tests(level7_realistic_nested_predicates_sat).
+
+% ------------------------------------------------------------------
+% TEST 8 (UNSAT)
+% ------------------------------------------------------------------
+:- begin_tests(level8_unsat_basic_conflict, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
+
+test(level8_unsat_basic_conflict, [fail]) :-
+    user:assertz((incorrect :- constr((_A = 1 & _A = 2)))),
+    zmi(incorrect).
+
+
+
+
+:- end_tests(level8_unsat_basic_conflict).
+
+
+
+% ------------------------------------------------------------------
+% TEST 9 (store only)
+% ------------------------------------------------------------------
+:- begin_tests(level9_store_only_sat, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
+
+test(level9_store_only_sat) :-
+    user:assertz((new1(_A,_B,C,D,E,F,G) :- constr((I = store(J,_B,C))))),
+    user:assertz((incorrect :- new1(_A,_A,_A,_A,_A,_A,_A), constr((_A >= 1 & G = 1)))),
+    zmi(incorrect).
+
+:- end_tests(level9_store_only_sat).
+
+
+:- begin_tests(min1_basic_nested, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
+
+test(min1_basic_nested) :-
+    user:assertz((incorrect :- constr((_A = 10 & (_B = 5 & (_A > _B & (C = (_A+_B) & (C < 20)))))))),
+    zmi(incorrect).
+
+:- end_tests(min1_basic_nested).
+
+
+:- begin_tests(min3_ite_branch, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
+
+test(min3_ite_branch) :-
+    user:assertz((incorrect :- constr((Cond = (_B = 97) & (X = ite(Cond, 1, 0)))))),
+    zmi(incorrect).
+
+:- end_tests(min3_ite_branch).
+
+:- begin_tests(min_assign_bool, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
+
+test(assign_bool) :-
+    user:assertz((incorrect :- constr((G = (_B = 65))))),
+    zmi(incorrect).
+
+:- end_tests(min_assign_bool).
+
+:- begin_tests(min_assign_bool2, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
+
+test(assign_bool2) :-
+    user:assertz((incorrect :- constr((_B = 65)))),
+    zmi(incorrect).
+
+:- end_tests(min_assign_bool2).
+
+
+% Z3 ERROR: code 3l invalid argument
+
+:- begin_tests(min_assign_var_eq, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
+
+test(assign_var_eq) :-
+    user:assertz((incorrect :- constr((N = (O = _A))))),
+    zmi(incorrect).
+
+:- end_tests(min_assign_var_eq).
+
+
+:- begin_tests(min_assign_var_eq33, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
+
+test(assign_var_eq33) :-
+    user:assertz((incorrect :- constr((O=1 &(_A=1&(N:bool = (O:int = _A:int))))))),
+    zmi(incorrect).
+
+:- end_tests(min_assign_var_eq33).
+
+
+
+:- begin_tests(min_assign_var_eq2, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
+
+
+%Caso risolto in logic utils prima clausola
+test(assign_var_eq2) :-
+    user:assertz((incorrect :- constr((O=1 & (_A=1 &(C=O)))))),  
+    zmi(incorrect).
+
+:- end_tests(min_assign_var_eq2).
+
+
+
+%result ite: model{constants:[x_6644=0,x_6658=uninterpreted!val!0,x_6660=uninterpreted!val!1],functions:[]}
+
+:- begin_tests(min_assign_var_eq13, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
+
+test(assign_var_eq13) :-
+    user:assertz((incorrect :- constr(N = ite(O = _A, 1, 0)))),
+    zmi(incorrect).
+
+:- end_tests(min_assign_var_eq13).
+
+
+%result ite: model{constants:[x_6644=0,x_6658=uninterpreted!val!0,x_6660=uninterpreted!val!1],functions:[]}
+
+
+%Ite gestito bene se valorizzato
+%model{constants:[x_12734=1,x_12746=1,x_12752=1],functions:[]}
+
+:- begin_tests(min_assign_var_eq14, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
+
+test(assign_var_eq14) :-
+    user:assertz((incorrect :- constr(O=1 &(_A=1 &(N = ite(O = _A, 1, 0)))))),
+    zmi(incorrect).
+
+:- end_tests(min_assign_var_eq14).
+
+
+
+
+% funziona se assegno :array(int,int) _A select(_A:array(int,int)
+
+
+:- begin_tests(select, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
+
+test(assign_var_eq14) :-
+    user:assertz((incorrect :- constr(( select(_A:array(int,int),_B) = Y)))),
+    zmi(incorrect).
+
+:- end_tests(select).
+
+
+
+% ------------------------------------------------------------------
+% TEST Logic Modulo
+% ------------------------------------------------------------------
+:- begin_tests(level4_inv_ff, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
+
+test(level4_inv_ff) :-
+    user:assertz((inv(A,B) :- constr((B=0 & A=0)))),
+    user:assertz((inv(A,B) :- inv(C,D), constr((B=ite(D=0,1,0) & A=1+C)))),
+    user:assertz((ff :- constr((~ite(B=1, A mod 2=1, A mod 2=0))))),
+    zmi(ff).
+
+:- end_tests(level4_inv_ff).
+
+
+
+% ------------------------------------------------------------------
+% TEST Logic Modulo con tipi espliciti
+% ------------------------------------------------------------------
+:- begin_tests(level4_inv_ff2, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
+
+test(level4_inv_ff2) :-
+    user:assertz((inv(A:int,B:int) :- constr((B=0 & A=0)))),
+    user:assertz((inv(A:int,B:int) :- inv(C:int,D:int), constr((B=ite(D=0,1,0) & A=1+C)))),
+    user:assertz((ff :- constr((~ite(B=1, A:int mod 2=1, A:int mod 2=0))))),
+    zmi(ff).
+
+:- end_tests(level4_inv_ff2).
+
+
+
+
+% ------------------------------------------------------------------
+% TEST Logic Modulo riscritto senza mod
+% ------------------------------------------------------------------
+:- begin_tests(level4_inv_ff_no_mod, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
+
+test(level4_inv_ff_no_mod) :-
+    user:assertz((inv(A,B) :- constr((B=0 & A=0)))),
+    user:assertz((inv(A,B) :- inv(C,D), constr((B=ite(D=0,1,0) & A=1+C)))),
+    % Sostituito A mod 2 con due casi equivalenti (pari/dispari)
+    user:assertz((
+        ff :- constr(( ~ite(B=1, A = 2*K+1, A = 2*K) ))
+    )),
+    zmi(ff).
+
+:- end_tests(level4_inv_ff_no_mod).
+
+
+
+% ------------------------------------------------------------------
+% TEST Logic Modulo con mod(A,2)
+% ------------------------------------------------------------------
+:- begin_tests(level4_inv_ff_mod, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
+
+test(level4_inv_ff_mod) :-
+    user:assertz((inv(A,B) :- constr((B=0 & A=0)))),
+    user:assertz((inv(A,B) :- inv(C,D), constr((B=ite(D=0,1,0) & A=1+C)))),
+    % Uso mod(A,2) invece di A mod 2
+    user:assertz((
+        ff :- constr(( ~ite(B=1, mod(A,2)=1, mod(A,2)=0) ))
+    )),
+    zmi(ff).
+
+:- end_tests(level4_inv_ff_mod).
+
+
+
+% ------------------------------------------------------------------
+% TEST Logic Modulo con mod(A,2) e tipizzazione Int
+% ------------------------------------------------------------------
+:- begin_tests(level4_inv_ff_mod_int, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
+
+test(level4_inv_ff_mod_int) :-
+    user:assertz((inv(A:int,B:int) :- constr((B=0 & A=0)))),
+    user:assertz((inv(A:int,B:int) :- inv(C:int,D:int), constr((B=ite(D=0,1,0) & A=1+C)))),
+    % Uso mod(A,2) con A dichiarato int
+    user:assertz((
+        ff :- constr(( ~ite(B:int=1, mod(A:int,2)=1, mod(A:int,2)=0) ))
+    )),
+    zmi(ff).
+
+:- end_tests(level4_inv_ff_mod_int).
+
+
+:- begin_tests(smt_plus_nary_sat, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
+
+test(smt_plus_nary_sat) :-
+    % x = 1+2+3+8+12  ==> x = 26
+    user:assertz((incorrect :- constr((X:int = smt_plus(1,2,3,8,12))))),
+    zmi(incorrect).
+
+:- end_tests(smt_plus_nary_sat).
+
+
+:- begin_tests(smt_plus_vars_sat, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
+
+test(smt_plus_vars_sat) :-
+    % a=2, b=5, c = a+b+3  ==> c=10
+    user:assertz((facts :- constr((A:int = 2 & B:int = 5)))),
+    user:assertz((incorrect :- facts, constr((C:int = smt_plus(A,B,3))))),
+    zmi(incorrect).
+
+:- end_tests(smt_plus_vars_sat).
+
+
+:- begin_tests(smt_plus_nested_sat, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
+
+test(smt_plus_nested_sat) :-
+    % x = (1+2) + (3+4)  ==> x = 10
+    user:assertz((incorrect :- constr((X:int = smt_plus(smt_plus(1,2), smt_plus(3,4)))))),
+    zmi(incorrect).
+
+:- end_tests(smt_plus_nested_sat).
+
+
+
+:- begin_tests(smt_plus_eq_zero_sat, [setup(z3:reset_globals), cleanup(z3:free_globals)]).
+
+test(smt_plus_eq_zero_sat) :-
+    % C + E - H = 0  ==> modello consistente
+    user:assertz((incorrect :- constr((smt_plus(C:int, E:int, -1*H:int) = 0)))),
+    zmi(incorrect).
+
+:- end_tests(smt_plus_eq_zero_sat).
+
+
+:- begin_tests(safe_z3_push_syntax).
+
+% Test: formula scritta male -> deve dare errore di sintassi
+test(bad_syntax, [error(syntax_error(_))]) :-
+    solver_turibe:safe_z3_push(weird_operator(abc,123)). %qeusto viene accettato, però difficile creare test che fallisce perche prolog blocca prima.
+
+:- end_tests(safe_z3_push_syntax).
+
+
+

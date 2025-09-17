@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><title>Report: output_ite</title>
+<style>
+  table {border-collapse: collapse;}
+  th, td {border: 1px solid black; padding: 5px;}
+  .ok {background: #9f9;}         /* verde */
+  .warn {background: #ff9;}       /* giallo */
+  .err {background: #f66;}        /* rosso */
+  .orange {background: #fc6;}     /* arancione */
+  .missing {background: #ddd;}    /* grigio */
+</style>
+</head><body>
+<h2>Verifica Corrispondenza Risultati - output_ite</h2>
+<table>
+<tr><th>File</th><th>SMT Out</th><th>ZMI Result</th><th>Timeout</th><th>MaxDepth</th><th>MaxDepthReached</th><th>Z3 Push</th><th>Match</th></tr>
+<tr class="ok"><td>chc-comp24-LIA-Lin-008_false.smt2.pl</td><td>false</td><td>derivable</td><td>✘</td><td>10</td><td>✘</td><td>✔</td><td>✔</td></tr>
+<tr class="ok"><td>chc-comp24-LIA-Lin-016_false.smt2.pl</td><td>false</td><td>derivable</td><td>✘</td><td>10 (MaxDepthReached)</td><td>✔</td><td>✔</td><td>✔</td></tr>
+<tr class="missing"><td>chc-comp24-LIA-Lin-018_timeout.smt2.pl</td><td>unknown</td><td>non derivable</td><td>✔</td><td>10 (MaxDepthReached)</td><td>✔</td><td>✔</td><td>✘</td></tr>
+<tr class="ok"><td>chc-comp24-LIA-Lin-021_true.smt2.pl</td><td>true</td><td>non derivable</td><td>✘</td><td>10</td><td>✘</td><td>✔</td><td>✔</td></tr>
+<tr class="ok"><td>chc-comp24-LIA-Lin-022_false.smt2.pl</td><td>false</td><td>derivable</td><td>✘</td><td>10 (MaxDepthReached)</td><td>✔</td><td>✔</td><td>✔</td></tr>
+<tr class="missing"><td>chc-comp24-LIA-Lin-067_timeout.smt2.pl</td><td>unknown</td><td>non derivable</td><td>✔</td><td>10 (MaxDepthReached)</td><td>✔</td><td>✔</td><td>✘</td></tr>
+<tr class="missing"><td>chc-comp24-LIA-Lin-068_timeout.smt2.pl</td><td>unknown</td><td>non derivable</td><td>✔</td><td>10 (MaxDepthReached)</td><td>✔</td><td>✔</td><td>✘</td></tr>
+<tr class="missing"><td>chc-comp24-LIA-Lin-069_timeout.smt2.pl</td><td>unknown</td><td>non derivable</td><td>✔</td><td>10 (MaxDepthReached)</td><td>✔</td><td>✔</td><td>✘</td></tr>
+<tr class="missing"><td>chc-comp24-LIA-Lin-070_timeout.smt2.pl</td><td>unknown</td><td>non derivable</td><td>✔</td><td>10 (MaxDepthReached)</td><td>✔</td><td>✔</td><td>✘</td></tr>
+<tr class="missing"><td>chc-comp24-LIA-Lin-071_timeout.smt2.pl</td><td>unknown</td><td>non derivable</td><td>✔</td><td>10 (MaxDepthReached)</td><td>✔</td><td>✔</td><td>✘</td></tr>
+<tr class="missing"><td>chc-comp24-LIA-Lin-072_timeout.smt2.pl</td><td>unknown</td><td>non derivable</td><td>✔</td><td>10 (MaxDepthReached)</td><td>✔</td><td>✔</td><td>✘</td></tr>
+<tr class="missing"><td>chc-comp24-LIA-Lin-073_timeout.smt2.pl</td><td>unknown</td><td>non derivable</td><td>✔</td><td>10 (MaxDepthReached)</td><td>✔</td><td>✔</td><td>✘</td></tr>
+<tr class="missing"><td>chc-comp24-LIA-Lin-074_timeout.smt2.pl</td><td>unknown</td><td>non derivable</td><td>✔</td><td>10 (MaxDepthReached)</td><td>✔</td><td>✔</td><td>✘</td></tr>
+<tr class="orange"><td>chc-comp24-LIA-Lin-075_false.smt2.pl</td><td>false</td><td>non derivable</td><td>✘</td><td>10 (MaxDepthReached)</td><td>✔</td><td>✔</td><td>✘</td></tr>
+<tr class="missing"><td>chc-comp24-LIA-Lin-076_timeout.smt2.pl</td><td>unknown</td><td>non derivable</td><td>✔</td><td>10 (MaxDepthReached)</td><td>✔</td><td>✔</td><td>✘</td></tr>
+<tr class="missing"><td>chc-comp24-LIA-Lin-077_timeout.smt2.pl</td><td>unknown</td><td>non derivable</td><td>✔</td><td>10 (MaxDepthReached)</td><td>✔</td><td>✔</td><td>✘</td></tr>
+<tr class="orange"><td>chc-comp24-LIA-Lin-078_false.smt2.pl</td><td>false</td><td>non derivable</td><td>✘</td><td>10 (MaxDepthReached)</td><td>✔</td><td>✔</td><td>✘</td></tr>
+<tr class="missing"><td>chc-comp24-LIA-Lin-079_timeout.smt2.pl</td><td>unknown</td><td>non derivable</td><td>✔</td><td>10 (MaxDepthReached)</td><td>✔</td><td>✔</td><td>✘</td></tr>
+<tr class="missing"><td>chc-comp24-LIA-Lin-080_timeout.smt2.pl</td><td>unknown</td><td>non derivable</td><td>✔</td><td>10 (MaxDepthReached)</td><td>✔</td><td>✔</td><td>✘</td></tr>
+<tr class="orange"><td>chc-comp24-LIA-Lin-081_false.smt2.pl</td><td>false</td><td>non derivable</td><td>✘</td><td>10 (MaxDepthReached)</td><td>✔</td><td>✔</td><td>✘</td></tr>
+<tr class="ok"><td>chc-comp24-LIA-Lin-082_false.smt2.pl</td><td>false</td><td>derivable</td><td>✘</td><td>10 (MaxDepthReached)</td><td>✔</td><td>✔</td><td>✔</td></tr>
+<tr class="orange"><td>chc-comp24-LIA-Lin-083_false.smt2.pl</td><td>false</td><td>non derivable</td><td>✘</td><td>10 (MaxDepthReached)</td><td>✔</td><td>✔</td><td>✘</td></tr>
+<tr class="missing"><td>chc-comp24-LIA-Lin-084_timeout.smt2.pl</td><td>unknown</td><td>non derivable</td><td>✔</td><td>10 (MaxDepthReached)</td><td>✔</td><td>✔</td><td>✘</td></tr>
+<tr class="missing"><td>chc-comp24-LIA-Lin-085_timeout.smt2.pl</td><td>unknown</td><td>non derivable</td><td>✔</td><td>10 (MaxDepthReached)</td><td>✔</td><td>✔</td><td>✘</td></tr>
+<tr class="missing"><td>chc-comp24-LIA-Lin-086_timeout.smt2.pl</td><td>unknown</td><td>non derivable</td><td>✔</td><td>10 (MaxDepthReached)</td><td>✔</td><td>✔</td><td>✘</td></tr>
+<tr class="missing"><td>chc-comp24-LIA-Lin-087_timeout.smt2.pl</td><td>unknown</td><td>non derivable</td><td>✔</td><td>10 (MaxDepthReached)</td><td>✔</td><td>✔</td><td>✘</td></tr>
+<tr class="missing"><td>chc-comp24-LIA-Lin-088_timeout.smt2.pl</td><td>unknown</td><td>non derivable</td><td>✔</td><td>10 (MaxDepthReached)</td><td>✔</td><td>✔</td><td>✘</td></tr>
+<tr class="missing"><td>chc-comp24-LIA-Lin-089_timeout.smt2.pl</td><td>unknown</td><td>non derivable</td><td>✔</td><td>10 (MaxDepthReached)</td><td>✔</td><td>✔</td><td>✘</td></tr>
+<tr class="orange"><td>chc-comp24-LIA-Lin-090_false.smt2.pl</td><td>false</td><td>non derivable</td><td>✘</td><td>10 (MaxDepthReached)</td><td>✔</td><td>✔</td><td>✘</td></tr>
+<tr class="missing"><td>chc-comp24-LIA-Lin-091_timeout.smt2.pl</td><td>unknown</td><td>non derivable</td><td>✔</td><td>10 (MaxDepthReached)</td><td>✔</td><td>✔</td><td>✘</td></tr>
+<tr class="missing"><td>chc-comp24-LIA-Lin-092_timeout.smt2.pl</td><td>unknown</td><td>non derivable</td><td>✔</td><td>10 (MaxDepthReached)</td><td>✔</td><td>✔</td><td>✘</td></tr>
+<tr class="ok"><td>chc-comp24-LIA-Lin-094_true.smt2.pl</td><td>true</td><td>non derivable</td><td>✘</td><td>10 (MaxDepthReached)</td><td>✔</td><td>✔</td><td>✔</td></tr>
+<tr class="missing"><td>chc-comp24-LIA-Lin-095_timeout.smt2.pl</td><td>unknown</td><td>non derivable</td><td>✔</td><td>10 (MaxDepthReached)</td><td>✔</td><td>✔</td><td>✘</td></tr>
+<tr class="ok"><td>chc-comp24-LIA-Lin-103_true.smt2.pl</td><td>true</td><td>non derivable</td><td>✘</td><td>10 (MaxDepthReached)</td><td>✔</td><td>✔</td><td>✔</td></tr>
+<tr class="ok"><td>chc-comp24-LIA-Lin-105_true.smt2.pl</td><td>true</td><td>non derivable</td><td>✘</td><td>10 (MaxDepthReached)</td><td>✔</td><td>✔</td><td>✔</td></tr>
+<tr class="missing"><td>chc-comp24-LIA-Lin-106_timeout.smt2.pl</td><td>unknown</td><td>non derivable</td><td>✔</td><td>10 (MaxDepthReached)</td><td>✔</td><td>✔</td><td>✘</td></tr>
+<tr class="ok"><td>chc-comp24-LIA-Lin-107_true.smt2.pl</td><td>true</td><td>non derivable</td><td>✘</td><td>10 (MaxDepthReached)</td><td>✔</td><td>✔</td><td>✔</td></tr>
+<tr class="missing"><td>chc-comp24-LIA-Lin-108_timeout.smt2.pl</td><td>unknown</td><td>non derivable</td><td>✔</td><td>10</td><td>✘</td><td>✔</td><td>✘</td></tr>
+<tr class="missing"><td>chc-comp24-LIA-Lin-109_timeout.smt2.pl</td><td>unknown</td><td>non derivable</td><td>✔</td><td>10 (MaxDepthReached)</td><td>✔</td><td>✔</td><td>✘</td></tr>
+<tr class="missing"><td>chc-comp24-LIA-Lin-110_timeout.smt2.pl</td><td>unknown</td><td>non derivable</td><td>✔</td><td>10 (MaxDepthReached)</td><td>✔</td><td>✔</td><td>✘</td></tr>
+<tr class="orange"><td>chc-comp24-LIA-Lin-157_false.smt2.pl</td><td>false</td><td>non derivable</td><td>✘</td><td>10 (MaxDepthReached)</td><td>✔</td><td>✔</td><td>✘</td></tr>
+<tr class="ok"><td>chc-comp24-LIA-Lin-169_true.smt2.pl</td><td>true</td><td>non derivable</td><td>✘</td><td>10 (MaxDepthReached)</td><td>✔</td><td>✔</td><td>✔</td></tr>
+<tr class="missing"><td>chc-comp24-LIA-Lin-263_timeout.smt2.pl</td><td>unknown</td><td>non derivable</td><td>✔</td><td>10 (MaxDepthReached)</td><td>✔</td><td>✔</td><td>✘</td></tr>
+<tr class="missing"><td>chc-comp24-LIA-Lin-264_timeout.smt2.pl</td><td>unknown</td><td>non derivable</td><td>✔</td><td>10 (MaxDepthReached)</td><td>✔</td><td>✔</td><td>✘</td></tr>
+<tr class="missing"><td>chc-comp24-LIA-Lin-265_timeout.smt2.pl</td><td>unknown</td><td>non derivable</td><td>✔</td><td>10 (MaxDepthReached)</td><td>✔</td><td>✔</td><td>✘</td></tr>
+<tr class="missing"><td>chc-comp24-LIA-Lin-266_timeout.smt2.pl</td><td>unknown</td><td>non derivable</td><td>✔</td><td>10 (MaxDepthReached)</td><td>✔</td><td>✔</td><td>✘</td></tr>
+<tr class="missing"><td>chc-comp24-LIA-Lin-267_timeout.smt2.pl</td><td>unknown</td><td>non derivable</td><td>✔</td><td>10 (MaxDepthReached)</td><td>✔</td><td>✔</td><td>✘</td></tr>
+<tr class="missing"><td>chc-comp24-LIA-Lin-268_timeout.smt2.pl</td><td>unknown</td><td>non derivable</td><td>✔</td><td>10 (MaxDepthReached)</td><td>✔</td><td>✔</td><td>✘</td></tr>
+<tr class="missing"><td>chc-comp24-LIA-Lin-269_timeout.smt2.pl</td><td>unknown</td><td>non derivable</td><td>✔</td><td>10 (MaxDepthReached)</td><td>✔</td><td>✔</td><td>✘</td></tr>
+<tr class="missing"><td>chc-comp24-LIA-Lin-270_timeout.smt2.pl</td><td>unknown</td><td>non derivable</td><td>✔</td><td>10 (MaxDepthReached)</td><td>✔</td><td>✔</td><td>✘</td></tr>
+<tr class="missing"><td>chc-comp24-LIA-Lin-271_timeout.smt2.pl</td><td>unknown</td><td>non derivable</td><td>✔</td><td>10 (MaxDepthReached)</td><td>✔</td><td>✔</td><td>✘</td></tr>
+<tr class="missing"><td>chc-comp24-LIA-Lin-272_timeout.smt2.pl</td><td>unknown</td><td>non derivable</td><td>✔</td><td>10 (MaxDepthReached)</td><td>✔</td><td>✔</td><td>✘</td></tr>
+<tr class="missing"><td>chc-comp24-LIA-Lin-273_timeout.smt2.pl</td><td>unknown</td><td>non derivable</td><td>✔</td><td>10 (MaxDepthReached)</td><td>✔</td><td>✔</td><td>✘</td></tr>
+<tr class="missing"><td>chc-comp24-LIA-Lin-274_timeout.smt2.pl</td><td>unknown</td><td>non derivable</td><td>✔</td><td>10</td><td>✘</td><td>✔</td><td>✘</td></tr>
+<tr class="missing"><td>chc-comp24-LIA-Lin-275_timeout.smt2.pl</td><td>unknown</td><td>non derivable</td><td>✔</td><td>10 (MaxDepthReached)</td><td>✔</td><td>✔</td><td>✘</td></tr>
+<tr class="missing"><td>chc-comp24-LIA-Lin-276_timeout.smt2.pl</td><td>unknown</td><td>non derivable</td><td>✔</td><td>10 (MaxDepthReached)</td><td>✔</td><td>✔</td><td>✘</td></tr>
+<tr class="ok"><td>chc-comp24-LIA-Lin-277_true.smt2.pl</td><td>true</td><td>non derivable</td><td>✘</td><td>10 (MaxDepthReached)</td><td>✔</td><td>✔</td><td>✔</td></tr>
+<tr class="missing"><td>chc-comp24-LIA-Lin-278_timeout.smt2.pl</td><td>unknown</td><td>non derivable</td><td>✔</td><td>10 (MaxDepthReached)</td><td>✔</td><td>✔</td><td>✘</td></tr>
+<tr class="missing"><td>chc-comp24-LIA-Lin-279_timeout.smt2.pl</td><td>unknown</td><td>non derivable</td><td>✔</td><td>10 (MaxDepthReached)</td><td>✔</td><td>✔</td><td>✘</td></tr>
+<tr class="missing"><td>chc-comp24-LIA-Lin-280_timeout.smt2.pl</td><td>unknown</td><td>non derivable</td><td>✔</td><td>10 (MaxDepthReached)</td><td>✔</td><td>✔</td><td>✘</td></tr>
+<tr class="missing"><td>chc-comp24-LIA-Lin-281_timeout.smt2.pl</td><td>unknown</td><td>non derivable</td><td>✔</td><td>10 (MaxDepthReached)</td><td>✔</td><td>✔</td><td>✘</td></tr>
+<tr class="missing"><td>chc-comp24-LIA-Lin-282_timeout.smt2.pl</td><td>unknown</td><td>non derivable</td><td>✔</td><td>10 (MaxDepthReached)</td><td>✔</td><td>✔</td><td>✘</td></tr>
+<tr class="missing"><td>chc-comp24-LIA-Lin-283_timeout.smt2.pl</td><td>unknown</td><td>non derivable</td><td>✔</td><td>10 (MaxDepthReached)</td><td>✔</td><td>✔</td><td>✘</td></tr>
+<tr class="missing"><td>chc-comp24-LIA-Lin-284_timeout.smt2.pl</td><td>unknown</td><td>non derivable</td><td>✔</td><td>10 (MaxDepthReached)</td><td>✔</td><td>✔</td><td>✘</td></tr>
+<tr class="ok"><td>chc-comp24-LIA-Lin-285_true.smt2.pl</td><td>true</td><td>non derivable</td><td>✘</td><td>10 (MaxDepthReached)</td><td>✔</td><td>✔</td><td>✔</td></tr>
+<tr class="missing"><td>chc-comp24-LIA-Lin-286_timeout.smt2.pl</td><td>unknown</td><td>non derivable</td><td>✔</td><td>10 (MaxDepthReached)</td><td>✔</td><td>✔</td><td>✘</td></tr>
+<tr class="ok"><td>chc-comp24-LIA-Lin-Arrays-001_true.smt2.pl</td><td>true</td><td>non derivable</td><td>✘</td><td>10</td><td>✘</td><td>?</td><td>✔</td></tr>
+<tr class="ok"><td>chc-comp24-LIA-Lin-Arrays-003_false.smt2.pl</td><td>false</td><td>derivable</td><td>✘</td><td>10 (MaxDepthReached)</td><td>✔</td><td>?</td><td>✔</td></tr>
+<tr class="ok"><td>chc-comp24-LIA-Lin-Arrays-005_false.smt2.pl</td><td>false</td><td>derivable</td><td>✔</td><td>10 (MaxDepthReached)</td><td>✔</td><td>?</td><td>✔</td></tr>
+<tr class="warn"><td>chc-comp24-LIA-Lin-Arrays-007_false.smt2.pl</td><td>false</td><td>timeout</td><td>✔</td><td>10 (MaxDepthReached)</td><td>✔</td><td>?</td><td>✘</td></tr>
+<tr class="ok"><td>chc-comp24-LIA-Lin-Arrays-008_true.smt2.pl</td><td>true</td><td>non derivable</td><td>✘</td><td>10</td><td>✘</td><td>?</td><td>✔</td></tr>
+<tr class="ok"><td>chc-comp24-LIA-Lin-Arrays-010_false.smt2.pl</td><td>false</td><td>derivable</td><td>✘</td><td>10 (MaxDepthReached)</td><td>✔</td><td>?</td><td>✔</td></tr>
+<tr class="ok"><td>chc-comp24-LIA-Lin-Arrays-011_false.smt2.pl</td><td>false</td><td>derivable</td><td>✘</td><td>10 (MaxDepthReached)</td><td>✔</td><td>?</td><td>✔</td></tr>
+<tr class="ok"><td>chc-comp24-LIA-Lin-Arrays-012_false.smt2.pl</td><td>false</td><td>derivable</td><td>✘</td><td>10 (MaxDepthReached)</td><td>✔</td><td>?</td><td>✔</td></tr>
+<tr class="ok"><td>chc-comp24-LIA-Lin-Arrays-016_false.smt2.pl</td><td>false</td><td>derivable</td><td>✘</td><td>10 (MaxDepthReached)</td><td>✔</td><td>?</td><td>✔</td></tr>
+<tr class="ok"><td>chc-comp24-LIA-Lin-Arrays-018_false.smt2.pl</td><td>false</td><td>derivable</td><td>✘</td><td>10 (MaxDepthReached)</td><td>✔</td><td>?</td><td>✔</td></tr>
+<tr class="ok"><td>chc-comp24-LIA-Lin-Arrays-020_false.smt2.pl</td><td>false</td><td>derivable</td><td>✘</td><td>10 (MaxDepthReached)</td><td>✔</td><td>?</td><td>✔</td></tr>
+<tr class="ok"><td>chc-comp24-LIA-Lin-Arrays-023_false.smt2.pl</td><td>false</td><td>derivable</td><td>✘</td><td>10 (MaxDepthReached)</td><td>✔</td><td>?</td><td>✔</td></tr>
+<tr class="ok"><td>chc-comp24-LIA-Lin-Arrays-026_true.smt2.pl</td><td>true</td><td>non derivable</td><td>✘</td><td>10 (MaxDepthReached)</td><td>✔</td><td>?</td><td>✔</td></tr>
+<tr class="ok"><td>chc-comp24-LIA-Lin-Arrays-027_false.smt2.pl</td><td>false</td><td>derivable</td><td>✘</td><td>10 (MaxDepthReached)</td><td>✔</td><td>?</td><td>✔</td></tr>
+<tr class="ok"><td>chc-comp24-LIA-Lin-Arrays-030_true.smt2.pl</td><td>true</td><td>non derivable</td><td>✘</td><td>10</td><td>✘</td><td>?</td><td>✔</td></tr>
+<tr class="ok"><td>chc-comp24-LIA-Lin-Arrays-034_false.smt2.pl</td><td>false</td><td>derivable</td><td>✘</td><td>10</td><td>✘</td><td>?</td><td>✔</td></tr>
+<tr class="ok"><td>chc-comp24-LIA-Lin-Arrays-035_true.smt2.pl</td><td>true</td><td>non derivable</td><td>✘</td><td>10</td><td>✘</td><td>?</td><td>✔</td></tr>
+<tr class="ok"><td>chc-comp24-LIA-Lin-Arrays-037_true.smt2.pl</td><td>true</td><td>non derivable</td><td>✘</td><td>10</td><td>✘</td><td>?</td><td>✔</td></tr>
+<tr class="orange"><td>chc-comp24-LIA-Lin-Arrays-038_false.smt2.pl</td><td>false</td><td>non derivable</td><td>✘</td><td>10 (MaxDepthReached)</td><td>✔</td><td>?</td><td>✘</td></tr>
+<tr class="warn"><td>chc-comp24-LIA-Lin-Arrays-109_true.smt2.pl</td><td>true</td><td>timeout</td><td>✔</td><td>10</td><td>✘</td><td>?</td><td>✘</td></tr>
+<tr class="ok"><td>chc-comp24-LIA-Lin-Arrays-119_true.smt2.pl</td><td>true</td><td>non derivable</td><td>✘</td><td>10 (MaxDepthReached)</td><td>✔</td><td>?</td><td>✔</td></tr>
+<tr class="warn"><td>chc-comp24-LIA-Lin-Arrays-123_false.smt2.pl</td><td>false</td><td>timeout</td><td>✔</td><td>10</td><td>✘</td><td>?</td><td>✘</td></tr>
+<tr class="ok"><td>chc-comp24-LIA-Lin-Arrays-140_false.smt2.pl</td><td>false</td><td>derivable</td><td>✔</td><td>10</td><td>✘</td><td>?</td><td>✔</td></tr>
+<tr class="ok"><td>chc-comp24-LIA-Lin-Arrays-141_false.smt2.pl</td><td>false</td><td>derivable</td><td>✔</td><td>10</td><td>✘</td><td>?</td><td>✔</td></tr>
+<tr class="warn"><td>chc-comp24-LIA-Lin-Arrays-142_true.smt2.pl</td><td>true</td><td>timeout</td><td>✔</td><td>10</td><td>✘</td><td>?</td><td>✘</td></tr>
+<tr class="warn"><td>chc-comp24-LIA-Lin-Arrays-143_true.smt2.pl</td><td>true</td><td>timeout</td><td>✔</td><td>10</td><td>✘</td><td>?</td><td>✘</td></tr>
+<tr class="warn"><td>chc-comp24-LIA-Lin-Arrays-144_true.smt2.pl</td><td>true</td><td>timeout</td><td>✔</td><td>10</td><td>✘</td><td>?</td><td>✘</td></tr>
+<tr class="warn"><td>chc-comp24-LIA-Lin-Arrays-148_true.smt2.pl</td><td>true</td><td>timeout</td><td>✔</td><td>10</td><td>✘</td><td>?</td><td>✘</td></tr>
+<tr class="ok"><td>chc-comp24-LIA-Lin-Arrays-149_false.smt2.pl</td><td>false</td><td>derivable</td><td>✔</td><td>10</td><td>✘</td><td>?</td><td>✔</td></tr>
+</table></body></html>
