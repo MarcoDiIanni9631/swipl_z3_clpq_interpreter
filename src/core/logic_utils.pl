@@ -202,6 +202,12 @@ normalize_bool_expr(Expr, NExpr) :-
     maplist(normalize_bool_expr, Args, NArgs),
     build_op_chain(*, NArgs, NExpr).
 
+normalize_bool_expr(Expr, NExpr) :-
+    nonvar(Expr),
+    Expr =.. [smt_div | Args], !,
+    maplist(normalize_bool_expr, Args, NArgs),
+    build_op_chain(div, NArgs, NExpr).
+
 
 % --- Ricorsione sugli operatori aritmetici binari ---
 normalize_bool_expr(Expr, NExpr) :-
