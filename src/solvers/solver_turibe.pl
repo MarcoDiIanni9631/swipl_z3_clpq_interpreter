@@ -1,20 +1,30 @@
 :- module(solver_turibe, [
     z3_sat_check/2,
-    z3_print_model_final/1
+    z3_print_model_final/1,
+    enable_debug/0,
+    disable_debug/0
 ]).
 
-:- use_module(z3lib(z3)).
-%:- initialization(assert(debug_mode)).
+%:- use_module(z3lib(z3)).
+
 % ----------------------------
 % Modalità Debug
 % ----------------------------
-
 :- dynamic debug_mode/0.
 
-% Stampa solo se debug_mode attivo
-debug_print(Msg) :- debug_mode, !, writeln(Msg).
+enable_debug :-
+    ( debug_mode -> true ; assertz(debug_mode)).
+
+disable_debug :-
+    retractall(debug_mode).
+
+% Stampa condizionale
+debug_print(Msg) :-
+    debug_mode, !, writeln(Msg).
 debug_print(_).
-debug_print(Msg, Arg) :- debug_mode, !, format(Msg, [Arg]).
+
+debug_print(Msg, Arg) :-
+    debug_mode, !, format(Msg, [Arg]).
 debug_print(_, _).
 
 % ----------------------------
@@ -134,8 +144,10 @@ z3_sat_check(Formula, Result) :-
   %  writeln('Stampa prima di inviare'),
   % writeq(Z3Ground), nl,
     % safe_z3_push(Z3Ground),
+    debug_print('--- Formula da pushare su Z3 ---'), debug_print(RawGround),
+   
     safe_z3_push(RawGround),
-
+    debug_print('--- La formula non ha generato errore ---'), debug_print(RawGround),
     z3_check(Sat),
     result_from_sat(Sat, Result).
 
@@ -143,7 +155,7 @@ z3_sat_check(Formula, Result) :-
 safe_z3_push(Formula) :-
     catch(
         z3_push(Formula),
-        Error,
+        Error,   
         throw(error(z3_push_failed(Formula), Error))
     ).
 
@@ -204,3 +216,7 @@ z3_print_model_final(Formula) :-
         )
     ; debug_print('Z3 push failed. Cannot analyze constraints.'), debug_print(RawGround)
     ).
+
+
+test_debug :-
+    debug_print('🔔 Sono in modalità debug!').

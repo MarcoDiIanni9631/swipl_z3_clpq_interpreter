@@ -24,6 +24,10 @@ set_solver(vidal) :-
     use_module(z3lib(swiplz3)),
     use_module('../solvers/solver_vidal').
 
+
+:- use_module('../solvers/solver_turibe', 
+              [enable_debug/0, disable_debug/0, debug_print/1, debug_print/2]).
+
 % ----------------------------
 % Custom logical operators
 % ----------------------------
@@ -39,7 +43,7 @@ set_solver(vidal) :-
 
 zmi(Head) :-
     set_solver(turibe),
-    MaxDepths = 15, % <-- qui il default passi
+    MaxDepths = 500, % <-- qui il default passi
     format('ℹ️ MaxDepth impostato a: ~w\n', [MaxDepths]),
     findall(Model, zmi_branch_sat(Head, MaxDepths, Model), Models),
     ( Models == [] ->
@@ -89,22 +93,22 @@ zmi_aux((A, B), Z3In, CLPQIn,SymTab, Steps, Z3Out, CLPQOut, (TreeA, TreeB)) :-
     zmi_aux(B, TempZ3, TempCLPQ,SymTab, Steps, Z3Out, CLPQOut, TreeB).
 
 zmi_aux(constr(C), Z3In, CLPQIn, SymTab, _, Z3Out, CLPQOut, constr(Normalized)) :-
-  %  writeln('Entrato in constr c'),
-%   writeln('Stampo prima della normalizzazione'),
-%   writeln(C),
+    debug_print('Entrato in constr c'),
+%    debug_print('Stampo prima della normalizzazione'),
+%    debug_print(C),
     normalize_bool_expr(C, Normalized),
-%   writeln('Stampo dopo normalizzazione'),
-%   writeln(Normalized),
+%   debug_print('Stampo dopo normalizzazione'),
+%    debug_print(Normalized),
     
 
     build_conjunct([CLPQIn, Normalized], CLPQOut),
     build_conjunct([Z3In, Normalized], Z3Out),
     maplist(build_type_equality, SymTab, TypeAnnots),
-  %  writeln('Stampo Type annot'), writeln(TypeAnnots),
+    % debug_print('Stampo Type annot'), debug_print(TypeAnnots),
     conj_to_list(Z3Out, Z3List),
-  %  writeln('Stampo Z3List'), writeln(Z3List),
+    % debug_print('Stampo Z3List'), debug_print(Z3List),
     append(TypeAnnots, Z3List, FlatList),
-    % writeln('Stampo flatList'), writeln(FlatList),
+    %  debug_print('Stampo flatList'), debug_print(FlatList),
     build_conjunct(FlatList, Z3Final),
    % nl,
     z3_sat_check(Z3Final, sat).
@@ -125,14 +129,14 @@ zmi_aux(Head, Z3In, CLPQIn,SymTabIn, Steps, Z3Out, CLPQOut, SubTree => Head) :-
     Head \= true,
     Head \= (_, _),
     Head \= constr(_),
-   % writeln('Mi trovo in questa head'),
-   % writeln(Head),
+    debug_print('Mi trovo in questa head'),
+    debug_print(Head),
     clause(Head, RawBody),
 
-    % writeln('Stampo Rawbody'),
+     debug_print('Stampo Rawbody'),
 
 
-    % writeln(RawBody),
+     debug_print(RawBody),
     reorder_body(RawBody, TempBody),
 
     conj_to_list(TempBody, BodyList),
@@ -149,10 +153,10 @@ zmi_aux(Head, Z3In, CLPQIn,SymTabIn, Steps, Z3Out, CLPQOut, SubTree => Head) :-
     %maplist(rewrite_constr(Head), BodyList, RewrittenList),
     build_conjunct(RewrittenList, Body),
     NewSteps is Steps - 1,
-    %     writeln('Stampo Body prima di zmi'),
+         debug_print('Stampo Body prima di zmi'),
 
 
-    % writeln(Body),
+     debug_print(Body),
     zmi_aux(Body, Z3In, CLPQIn,SymTabFinal, NewSteps, Z3Out, CLPQOut, SubTree).
 
 
@@ -232,13 +236,13 @@ build_type_equality(_, true).
 rewrite_constr(_, _, constr(true), constr(true)) :- !.
 rewrite_constr(_, _, true, true) :- !.
 rewrite_constr(_, SymTab, constr(C0), constr(CFinal)) :-
-    % writeln('Before normalize rewrite_constr'),
-    % writeln(C0),
+    % debug_print('Before normalize rewrite_constr'),
+    % debug_print(C0),
 
     % normalize_bool_expr(C0, Normalized0),
-    %     writeln('After normalize rewrite_constr'),
+         debug_print('After normalize rewrite_constr'),
 
-    % writeln(Normalized0),
+     debug_print(Normalized0),
     
     maplist(build_type_equality, SymTab, TypeAnnots),
     conj_to_list(C0, CList),

@@ -32,7 +32,19 @@ normalize_bool_expr(Expr, Expr) :-
 normalize_bool_expr(Expr, Expr) :-
     atom(Expr), !.
 
+%ANCHE SE VIENE DATA LA ESPRESSIONE : TIPO DEVE FUNZIONARE LO STESSO (NON SOLO )
 
+% % Normalizza const_array(Type, Value)
+% normalize_bool_expr(const_array(T, V), const_array(NT, NV)) :-
+%     !,
+%     normalize_bool_expr(T, NT),
+%     normalize_bool_expr(V, NV).
+
+normalize_bool_expr(const_array(TIdx, TVal, V),
+                    const_array(NIdx, NVal, NV)) :- !,
+    normalize_bool_expr(TIdx, NIdx),
+    normalize_bool_expr(TVal, NVal),
+    normalize_bool_expr(V,    NV).
 
 % Normalizza select(Array, Index) come termine generico
 normalize_bool_expr(select(A, I), select(NA, NI)) :-
