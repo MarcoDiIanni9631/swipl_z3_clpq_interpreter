@@ -14,13 +14,19 @@
 % Solver Selection (Turibe or Vidal)
 % ----------------------------
 
+% ----------------------------
+% Solver Selection (Turibe or Vidal)
+% ----------------------------
+
 set_solver(turibe) :-
-    assert(file_search_path(z3lib, '/home/marco/Desktop/27-ago/secondVer/swi-prolog-z3')),
+    getenv('SWIZ3_TURIBE_PATH', Z3Path),
+    assertz(file_search_path(z3lib, Z3Path)),
     use_module('../solvers/solver_turibe'),
     use_module(z3lib(z3)).
 
 set_solver(vidal) :-
-    assert(file_search_path(z3lib, '/home/marco/Desktop/SWIPrologZ3')),
+    getenv('SWIZ3_VIDAL_PATH', Z3Path),
+    assertz(file_search_path(z3lib, Z3Path)),
     use_module(z3lib(swiplz3)),
     use_module('../solvers/solver_vidal').
 
@@ -240,9 +246,9 @@ rewrite_constr(_, SymTab, constr(C0), constr(CFinal)) :-
     % debug_print(C0),
 
     % normalize_bool_expr(C0, Normalized0),
-         debug_print('After normalize rewrite_constr'),
+    %    debug_print('After normalize rewrite_constr'),
 
-     debug_print(Normalized0),
+    % debug_print(Normalized0),
     
     maplist(build_type_equality, SymTab, TypeAnnots),
     conj_to_list(C0, CList),

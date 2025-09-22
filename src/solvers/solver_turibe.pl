@@ -2,7 +2,9 @@
     z3_sat_check/2,
     z3_print_model_final/1,
     enable_debug/0,
-    disable_debug/0
+    disable_debug/0,
+    debug_print/1,      
+    debug_print/2       
 ]).
 
 %:- use_module(z3lib(z3)).
