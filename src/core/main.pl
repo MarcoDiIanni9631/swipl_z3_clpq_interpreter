@@ -30,6 +30,7 @@ set_solver(vidal) :-
     use_module(z3lib(swiplz3)),
     use_module('../solvers/solver_vidal').
 
+:- initialization(set_solver(turibe), now).
 
 :- use_module('../solvers/solver_turibe', 
               [enable_debug/0, disable_debug/0, debug_print/1, debug_print/2]).
