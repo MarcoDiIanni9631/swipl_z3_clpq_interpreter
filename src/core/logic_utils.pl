@@ -31,12 +31,24 @@ build_conjunct([C|Rest], (C, R)) :- build_conjunct(Rest, R).
 % Caso base: variabile libera, lasciamo stare
 normalize_bool_expr(Expr, Expr) :-
     var(Expr),
-     !.
+    !.
 
 % Caso base: atomo (costante simbolica)
 normalize_bool_expr(Expr, Expr) :-
     atom(Expr),
-     !.
+    !.
+
+% Numeri
+normalize_bool_expr(N, N) :-
+    number(N),
+    !.
+
+% Conversioni logiche true/false
+normalize_bool_expr(true, true) :- !.
+normalize_bool_expr(false, false) :- !.
+
+
+
 
 %ANCHE SE VIENE DATA LA ESPRESSIONE : TIPO DEVE FUNZIONARE LO STESSO (NON SOLO )
 
@@ -192,17 +204,7 @@ normalize_bool_expr(not(A), not(NA)) :-
     !,
     normalize_bool_expr(A, NA).
 
-% Numeri
-normalize_bool_expr(N, N) :-
-    number(N),
-     !.
 
-% ----------------------------
-% Conversioni logiche true/false
-% ----------------------------
-
-normalize_bool_expr(true, true) :- !.
-normalize_bool_expr(false, false) :- !.
 
 
 % meno unario
