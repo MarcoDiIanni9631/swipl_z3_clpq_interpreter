@@ -4,9 +4,13 @@
 
 :- dynamic debug_mode/0.
 
-debug_print(Msg) :- debug_mode, !, writeln(Msg).
+debug_print(Msg) :- debug_mode, 
+!,
+ writeln(Msg).
 debug_print(_).
-debug_print(Msg, Arg) :- debug_mode, !, format(Msg, [Arg]).
+debug_print(Msg, Arg) :- debug_mode, 
+!,
+ format(Msg, [Arg]).
 debug_print(_, _).
 
 clpq_sat_from_formula(Formula) :-

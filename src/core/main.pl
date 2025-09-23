@@ -229,19 +229,23 @@ build_type_pairs(PredArity, Pos, [Var | Rest], AccIn, AccOut) :-
 % Caso 1: variabile con tipo atomico (int, bool, ecc.)
 build_type_equality(Var-Type, (Var:Type = Var:Type)) :-
     var(Var),
-    atom(Type), !.
+    atom(Type),
+     !.
 
 % Caso 2: variabile con tipo array(Index, Elem), entrambi ground
 build_type_equality(Var-array(Index, Elem), (Var:array(Index, Elem) = Var:array(Index, Elem))) :-
     var(Var),
-    ground(Index), ground(Elem), !.
+    ground(Index), ground(Elem),
+     !.
 
 % Tutti gli altri casi → non aggiungere nulla (true)
 build_type_equality(_, true).
 
 
-rewrite_constr(_, _, constr(true), constr(true)) :- !.
-rewrite_constr(_, _, true, true) :- !.
+rewrite_constr(_, _, constr(true), constr(true)) :-
+     !.
+rewrite_constr(_, _, true, true) :-
+     !.
 rewrite_constr(_, SymTab, constr(C0), constr(CFinal)) :-
     % debug_print('Before normalize rewrite_constr'),
     % debug_print(C0),
@@ -288,7 +292,8 @@ infer_annotations(Pred, Args, Annotations) :-
 
 make_annotation(Pred, Args, Pos, Var:Type=Var:Type) :-
     nth1(Pos, Args, Var),
-    arg_type(Pred, Pos, Type), !.
+    arg_type(Pred, Pos, Type), 
+    !.
 make_annotation(_, _, _, none).
 
 % ----------------------------
@@ -301,7 +306,8 @@ move_constr(Lista, Risultato) :-
 
 split_constr([], [], []).
 split_constr([H|T], [H|Ts], Altri) :-
-    H =.. [constr, _], !,
+    H =.. [constr, _],
+     !,
     split_constr(T, Ts, Altri).
 split_constr([H|T], Ts, [H|Altri]) :-
     split_constr(T, Ts, Altri).

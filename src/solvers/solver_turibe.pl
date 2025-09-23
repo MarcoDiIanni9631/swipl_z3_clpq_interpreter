@@ -22,11 +22,15 @@ disable_debug :-
 
 % Stampa condizionale
 debug_print(Msg) :-
-    debug_mode, !, writeln(Msg).
+    debug_mode,
+     !,
+      writeln(Msg).
 debug_print(_).
 
 debug_print(Msg, Arg) :-
-    debug_mode, !, format(Msg, [Arg]).
+    debug_mode,
+     !,
+      format(Msg, [Arg]).
 debug_print(_, _).
 
 % ----------------------------

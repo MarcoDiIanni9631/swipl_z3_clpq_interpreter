@@ -102,7 +102,8 @@ extract_pred_type(Line) :-
     )).
 
 pred_decl(Name/Arity, Types) -->
-    ":- pred ", whites, pred_head(Name, Types), whites, ".", !,
+    ":- pred ", whites, pred_head(Name, Types), whites, ".",
+     !,
     { length(Types, Arity) }.
 
 pred_head(Name, Types) -->
@@ -133,7 +134,8 @@ type_list([T|Ts]) -->
 type_list([]) --> [].
 
 type_term(array(Inner)) -->
-    "array(", type_term(Inner), ")", !.
+    "array(", type_term(Inner), ")",
+     !.
 type_term(T) -->
     string_without(",)", Cs),
     {
@@ -172,22 +174,27 @@ strip_autogen(Line, Line).
 % ----------------------------
 
 replace_fail_with_goal(Term, NewTerm) :-
-    Term == fail, !,
+    Term == fail,
+     !,
     NewTerm = fail_goal.
 
-replace_fail_with_goal((Head :- Body), (NewHead :- NewBody)) :- !,
+replace_fail_with_goal((Head :- Body), (NewHead :- NewBody)) :-
+     !,
     replace_fail_with_goal(Head, NewHead),
     replace_fail_with_goal(Body, NewBody).
 
-replace_fail_with_goal((A, B), (NA, NB)) :- !,
+replace_fail_with_goal((A, B), (NA, NB)) :-
+     !,
     replace_fail_with_goal(A, NA),
     replace_fail_with_goal(B, NB).
 
-replace_fail_with_goal((A;B), (NA;NB)) :- !,
+replace_fail_with_goal((A;B), (NA;NB)) :-
+     !,
     replace_fail_with_goal(A, NA),
     replace_fail_with_goal(B, NB).
 
-replace_fail_with_goal((\+ A), (\+ NA)) :- !,
+replace_fail_with_goal((\+ A), (\+ NA)) :-
+     !,
     replace_fail_with_goal(A, NA).
 
 replace_fail_with_goal(Term, Term).
