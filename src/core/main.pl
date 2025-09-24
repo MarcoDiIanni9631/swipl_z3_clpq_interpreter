@@ -50,7 +50,7 @@ set_solver(vidal) :-
 
 zmi(Head) :-
     set_solver(turibe),
-    MaxDepths = 500, % <-- qui il default passi
+    MaxDepths = 20, % <-- qui il default passi
     format('ℹ️ MaxDepth impostato a: ~w\n', [MaxDepths]),
     findall(Model, zmi_branch_sat(Head, MaxDepths, Model), Models),
     ( Models == [] ->
