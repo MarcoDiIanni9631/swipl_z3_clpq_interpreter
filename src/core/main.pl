@@ -1,4 +1,4 @@
-% zmi_debug_version.pl
+% main.pl
 
 :- use_module(library(dcg/basics)).
 :- use_module(library(clpq)).
