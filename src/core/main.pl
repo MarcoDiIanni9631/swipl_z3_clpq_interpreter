@@ -65,13 +65,11 @@ zmi(Head) :-
     format('ℹ️ MaxDepth impostato a: ~w\n', [MaxDepths]),
     findall(Model, zmi_branch_sat(Head, MaxDepths, Model), Models),
     ( Models == [] ->
-        (format('No SAT branches found in MaxDepths = ~w.\n', [MaxDepths]),
-        % FORZO il ramo finale di terminazione
-        zmi_branch_sat(trueVerimap, MaxDepths, _),
-            fail)       
+        format('No SAT branches found in MaxDepths = ~w.\n', [MaxDepths])
     ; (format('--- ALL SAT BRANCHES FOUND (MaxDepths = ~w) ---~n', [MaxDepths]),
       print_all_models(Models))
-    ).
+    ),
+    zmi_branch_sat(trueVerimap, MaxDepths, _).
 
 print_all_models([]).
 print_all_models([M|Rest]) :-
