@@ -46,17 +46,31 @@ set_solver(vidal) :-
 
 % ----------------------------
 % Entry point for collecting ALL SAT branches
-% ----------------------------
+% --------------------------
+
+:- dynamic branches_explored/1.
+branches_explored(0).
+
+reset_branch_counter :- retractall(branches_explored(_)), assertz(branches_explored(0)).
+inc_branch_counter :- 
+    retract(branches_explored(N)),
+    N1 is N + 1,
+    assertz(branches_explored(N1)).
+
+
 
 zmi(Head) :-
     set_solver(turibe),
-    MaxDepths = 20, % <-- qui il default passi
+    MaxDepths = 20,
     format('ℹ️ MaxDepth impostato a: ~w\n', [MaxDepths]),
     findall(Model, zmi_branch_sat(Head, MaxDepths, Model), Models),
     ( Models == [] ->
-        format('No SAT branches found in MaxDepths = ~w.\n', [MaxDepths]), fail
-    ; format('--- ALL SAT BRANCHES FOUND (MaxDepths = ~w) ---~n', [MaxDepths]),
-      print_all_models(Models)
+        (format('No SAT branches found in MaxDepths = ~w.\n', [MaxDepths]),
+        % FORZO il ramo finale di terminazione
+        zmi_branch_sat(trueVerimap, MaxDepths, _),
+            fail)       
+    ; (format('--- ALL SAT BRANCHES FOUND (MaxDepths = ~w) ---~n', [MaxDepths]),
+      print_all_models(Models))
     ).
 
 print_all_models([]).
@@ -79,19 +93,33 @@ zmi_branch_sat(Head, MaxDepths, model(FinalZ3, FinalCLPQ, Tree)) :-
     InitialZ3 = true,
     InitialCLPQ = true,
     zmi_aux(Head, InitialZ3, InitialCLPQ, [], MaxDepths, FinalZ3, FinalCLPQ, Tree),
-    % writeln('Sto per fare di nuovo un check occhio'),
-    % writeln(FinalZ3),
-    z3_sat_check(FinalZ3, sat),      
-    format('✅ INCORRECT/FF FOUND: ~w\n', [FinalZ3]).
-
+  
+    ( (Head == trueVerimap)  ->
+        !    
+    ;   (z3_sat_check(FinalZ3, sat),
+        format('✅ INCORRECT/FF FOUND: ~w\n', [FinalZ3]))
+    ).
 
 % ----------------------------
 % Interpreter rules 
 % ----------------------------
 
+
+
 zmi_aux(_, _, _, _,0, _, _, _) :- 
     writeln('Limite MaxDepth raggiunto'),
     fail.
+
+zmi_aux(trueVerimap, Z3, CLPQ, _, _, Z3, CLPQ, true) :-
+    writeln('Ho raggiunto la terminazione dell\'albero'),
+    !.  
+% ----------------------------
+% Costruzione coppie Var-Type
+% ----------------------------
+zmi_aux((A ; B), Z3In, CLPQIn, SymTab, Steps, Z3Out, CLPQOut, (TreeA, TreeB)) :-
+    zmi_aux(A, Z3In, CLPQIn, SymTab, Steps, TempZ3, TempCLPQ, TreeA),
+    zmi_aux(B, Z3In, CLPQIn, SymTab, Steps, TempZ3, TempCLPQ, TreeB).
+
 
 zmi_aux(true, Z3, CLPQ,_, _, Z3, CLPQ, true).
 
@@ -101,23 +129,20 @@ zmi_aux((A, B), Z3In, CLPQIn,SymTab, Steps, Z3Out, CLPQOut, (TreeA, TreeB)) :-
 
 zmi_aux(constr(C), Z3In, CLPQIn, SymTab, _, Z3Out, CLPQOut, constr(Normalized)) :-
     debug_print('Entrato in constr c'),
-%    debug_print('Stampo prima della normalizzazione'),
-%    debug_print(C),
     normalize_bool_expr(C, Normalized),
-%   debug_print('Stampo dopo normalizzazione'),
-%    debug_print(Normalized),
-    
 
-    build_conjunct([CLPQIn, Normalized], CLPQOut),
-    build_conjunct([Z3In, Normalized], Z3Out),
+    build_conjunct([CLPQIn, Normalized], CLPQTmp),
+
+    build_conjunct([Z3In, Normalized], Z3Tmp),
+
     maplist(build_type_equality, SymTab, TypeAnnots),
-    % debug_print('Stampo Type annot'), debug_print(TypeAnnots),
-    conj_to_list(Z3Out, Z3List),
-    % debug_print('Stampo Z3List'), debug_print(Z3List),
+    conj_to_list(Z3Tmp, Z3List),
     append(TypeAnnots, Z3List, FlatList),
-    %  debug_print('Stampo flatList'), debug_print(FlatList),
     build_conjunct(FlatList, Z3Final),
-   % nl,
+
+    Z3Out  = Z3Final,
+    CLPQOut = CLPQTmp,
+
     z3_sat_check(Z3Final, sat).
 
 %prima era cosi:
@@ -140,10 +165,10 @@ zmi_aux(Head, Z3In, CLPQIn,SymTabIn, Steps, Z3Out, CLPQOut, SubTree => Head) :-
     debug_print(Head),
     clause(Head, RawBody),
 
-     debug_print('Stampo Rawbody'),
+    %  debug_print('Stampo Rawbody'),
 
 
-     debug_print(RawBody),
+    %  debug_print(RawBody),
     reorder_body(RawBody, TempBody),
 
     conj_to_list(TempBody, BodyList),
@@ -193,9 +218,10 @@ extend_type_table(Head, Old, New) :-
 % ----------------------------
 % Costruzione coppie Var-Type
 % ----------------------------
-% ----------------------------
-% Costruzione coppie Var-Type
-% ----------------------------
+
+
+
+zmi_aux(true, Z3, CLPQ,_, _, Z3, CLPQ, true).
 
 % ----------------------------
 % Costruzione coppie Var-Type (supporta anche array/2)
