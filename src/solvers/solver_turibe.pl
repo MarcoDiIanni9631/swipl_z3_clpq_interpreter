@@ -77,22 +77,52 @@ sostituisci_costanti_(Assoc, Arg, Arg1) :-
 
 
 
+%versione funzionante:
+
+
+% z3_sat_check(Formula, Result) :-
+%     term_variables(Formula, _Vars),
+%     z3constr2lower(Formula, _Pairs, RawGround),
+%     % normalize_z3_formula(RawGround, Z3Ground),
+
+%     z3_reset,
+%   %  writeln('Stampa prima di inviare'),
+%   % writeq(Z3Ground), nl,
+%     % safe_z3_push(Z3Ground),
+%     debug_print('--- Formula da pushare su Z3 ---'), debug_print(RawGround),
+   
+%     safe_z3_push(RawGround),
+%     debug_print('--- La formula non ha generato errore ---'), debug_print(RawGround),
+%     z3_check(Sat),
+%     result_from_sat(Sat, Result).
 
 z3_sat_check(Formula, Result) :-
+    % 1) normalizza/grounda per Z3
     term_variables(Formula, _Vars),
     z3constr2lower(Formula, _Pairs, RawGround),
-    % normalize_z3_formula(RawGround, Z3Ground),
 
+    % 2) reset e push
     z3_reset,
-  %  writeln('Stampa prima di inviare'),
-  % writeq(Z3Ground), nl,
-    % safe_z3_push(Z3Ground),
     debug_print('--- Formula da pushare su Z3 ---'), debug_print(RawGround),
-   
     safe_z3_push(RawGround),
     debug_print('--- La formula non ha generato errore ---'), debug_print(RawGround),
+
+    % 3) check + mapping
     z3_check(Sat),
-    result_from_sat(Sat, Result).
+    result_from_sat(Sat, Result),
+
+    % 4) LOG SPECIFICO: se è unknown, stampa QUI la formula che l’ha causato
+    ( Result == unknown -> (
+        % usa write_term/2 per una stampa robusta
+        write('⚠️  Z3 ha restituito UNKNOWN per: '),
+        write_term(RawGround, [quoted(true), numbervars(true), max_depth(1000)]),
+        nl
+     ) ; true
+    ).
+
+
+
+
 
 % --- push sicuro: se fallisce -> eccezione
 safe_z3_push(Formula) :-
