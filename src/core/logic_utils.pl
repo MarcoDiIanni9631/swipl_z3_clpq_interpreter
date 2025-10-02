@@ -45,6 +45,22 @@ normalize_bool_expr(true, true) :-
 normalize_bool_expr(false, false) :-
     !.
 
+
+% Caso 1: Var è una variabile, Type è un atomo (int, bool, array(int,int) già ground ecc.)
+normalize_bool_expr(V:T, V:T) :-
+    var(V),
+    atom(T),
+    !.
+
+% Caso 2: Var è nonvar (es. -X, select(A,I), smt_plus(...)), Type è un atomo
+normalize_bool_expr(V:T, NV:T) :-
+    nonvar(V),
+    atom(T),
+    !,
+    normalize_bool_expr(V, NV).
+
+
+
 % Arithmetic: unary minus, smt_* operators, binary arithmetic, mod, abs
 % normalize_bool_expr(Expr, -NArg) :-
 %     nonvar(Expr), Expr =.. [(-), Arg],
