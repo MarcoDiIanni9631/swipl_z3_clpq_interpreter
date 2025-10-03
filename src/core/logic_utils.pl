@@ -221,15 +221,15 @@ normalize_bool_expr(store(A, I, V), store(NA, NI, NV)) :-
     normalize_bool_expr(I, NI),
     normalize_bool_expr(V, NV).
 
-normalize_bool_expr((A = B), Norm) :-
-    compound(A), functor(A, store, _),
-    !,
-    normalize_bool_expr((B = A), Norm).
+% normalize_bool_expr((A = B), Norm) :-
+%     compound(A), functor(A, store, _),
+%     !,
+%     normalize_bool_expr((B = A), Norm).
 
-normalize_bool_expr((A = B), Norm) :-
-    compound(A), functor(A, select, _),
-    !,
-    normalize_bool_expr((B = A), Norm).
+% normalize_bool_expr((A = B), Norm) :-
+%     compound(A), functor(A, select, _),
+%     !,
+%     normalize_bool_expr((B = A), Norm).
 
 % % Dot functor: msg.value → msg_value
 % normalize_bool_expr(Expr0, ExprN) :-

@@ -221,6 +221,15 @@ extend_type_table(Head, Old, New) :-
 
 zmi_aux(true, Z3, CLPQ,_, _, Z3, CLPQ, true).
 
+
+
+zmi_constr_push(Formula):-
+    enable_debug,
+    writeln(Formula),
+    z3_sat_check(Formula, Result),
+    writeln(Result).
+
+
 % ----------------------------
 % Costruzione coppie Var-Type (supporta anche array/2)
 % ----------------------------

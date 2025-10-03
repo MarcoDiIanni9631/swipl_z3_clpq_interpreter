@@ -57,7 +57,7 @@ for file in "$DIR"/*.smt2.pl; do
   # Run SWI-Prolog with timeout
   (
     cd "$MAIN_DIR" || exit 1
-    timeout 30s "$SWIPL_BIN" -s "$MAIN_ABS" \
+    timeout 5s "$SWIPL_BIN" -s "$MAIN_ABS" \
       -g "load_clean('$FILE_ABS'),set_solver(turibe),zmi(${TARGET}),halt." \
       > "$tmpout" 2>&1
   )
