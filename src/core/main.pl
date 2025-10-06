@@ -55,7 +55,7 @@ zmi(Head) :-
 
     format('ℹ️ MaxDepth impostato a: ~w\n', [MaxDepths]),
 
-    findall(Model, zmi_branch_sat( (Head; trueVerimap) , MaxDepths, Model), Models),
+    findall(Model, zmi_branch_sat( (Head; falseVerimap) , MaxDepths, Model), Models),
 
     ( Models == [] ->
 
@@ -109,7 +109,7 @@ zmi_aux((_ ; G), Z3In, CLPQIn, SymTab, Steps, Z3Out, CLPQOut, Tree) :-
     zmi_aux(G, Z3In, CLPQIn, SymTab, Steps, Z3Out, CLPQOut, Tree).  
 
 
-zmi_aux(trueVerimap, Z3, CLPQ, _, _, Z3, CLPQ, true) :-
+zmi_aux(falseVerimap, Z3, CLPQ, _, _, Z3, CLPQ, false) :-
     nl, nl,
     writeln('Ho raggiunto la terminazione dell\'albero'),
     nl, nl,
@@ -203,6 +203,7 @@ extend_type_table(Head, Old, New) :-
 % Costruzione coppie Var-Type
 % ----------------------------
 
+%constrFormula ->rawGround invece formato uribe chiamarlo (distinguere la trasforamzione in rawground, eventualmnete poi aggiungere un preedicato che chiama questo, poi chiama anche z3_satcheck ma di rawGround, non di formula)
 % zmi_constr_push(+Formula, -RawGround)
 zmi_constr_push(Formula, RawGround) :-
     enable_debug,

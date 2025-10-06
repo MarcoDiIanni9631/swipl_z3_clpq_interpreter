@@ -130,6 +130,9 @@ sostituisci_costanti_(Assoc, Arg, Arg1) :-
 %     debug_print('z3_sat_check short-circuit su true'),
 %     !.
 
+
+%quando fallisce significa che solo sat avrà successo, z3_push fallisce 
+
 z3_sat_check(Formula, Result, RawGround) :-
     term_variables(Formula, _Vars),
     z3constr2lower(Formula, _Pairs, RawGround),
@@ -156,7 +159,7 @@ z3_sat_check(Formula, Result, RawGround) :-
         ; true )
     ;   Result = error_push_failed  
     ).
-
+ 
 
 
 
