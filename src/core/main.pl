@@ -48,34 +48,62 @@ set_solver(vidal) :-
 % Entry point for collecting ALL SAT branches
 % --------------------------
 
-:- dynamic branches_explored/1.
-branches_explored(0).
+% :- dynamic branches_explored/1.
+% branches_explored(0).
 
-reset_branch_counter :- retractall(branches_explored(_)), assertz(branches_explored(0)).
-inc_branch_counter :- 
-    retract(branches_explored(N)),
-    N1 is N + 1,
-    assertz(branches_explored(N1)).
-
-
+% reset_branch_counter :- retractall(branches_explored(_)), assertz(branches_explored(0)).
+% inc_branch_counter :- 
+%     retract(branches_explored(N)),
+%     N1 is N + 1,
+%     assertz(branches_explored(N1)).
 
 zmi(Head) :-
+
     set_solver(turibe),
-    MaxDepths = 20,
+
+    MaxDepths = 15, % <-- qui il default passi
+
     format('ℹ️ MaxDepth impostato a: ~w\n', [MaxDepths]),
-    findall(Model, zmi_branch_sat(Head, MaxDepths, Model), Models),
+
+    findall(Model, zmi_branch_sat( (Head; trueVerimap) , MaxDepths, Model), Models),
+
     ( Models == [] ->
-        format('No SAT branches found in MaxDepths = ~w.\n', [MaxDepths])
-    ; (format('--- ALL SAT BRANCHES FOUND (MaxDepths = ~w) ---~n', [MaxDepths]),
-      print_all_models(Models))
-    ),
-    zmi_branch_sat(trueVerimap, MaxDepths, _).
+
+        format('No SAT branches found in MaxDepths = ~w.\n', [MaxDepths]), fail
+
+    ; format('--- ALL SAT BRANCHES FOUND (MaxDepths = ~w) ---~n', [MaxDepths]),
+
+      print_all_models(Models)
+
+    ).
+
+% zmi(Head) :-
+%     set_solver(turibe),
+%     MaxDepths = 20,
+%     format('ℹ️ MaxDepth impostato a: ~w\n', [MaxDepths]),
+%     findall(Model, zmi_branch_sat(Head, MaxDepths, Model), Models),
+%     ( Models == [] ->
+%         format('No SAT branches found in MaxDepths = ~w.\n', [MaxDepths])
+%     ; (format('--- ALL SAT BRANCHES FOUND (MaxDepths = ~w) ---~n', [MaxDepths]),
+%       print_all_models(Models))
+%     ),
+%     zmi_branch_sat(trueVerimap, MaxDepths, _).
+
+% % Un modello è "non banale" se la parte Z3 non è true
+% nontrivial_model(model(FinalZ3, _CLPQ, _Tree)) :-
+%     FinalZ3 \== true.
 
 print_all_models([]).
 print_all_models([M|Rest]) :-
     writeln('--- SAT MODEL ---'),
     print_single_model(M), nl,
     print_all_models(Rest).
+
+% print_models_numbered([], _).
+% print_models_numbered([M|Rest], I) :-
+%     print_single_model(I, M),
+%     I1 is I + 1,
+%     print_models_numbered(Rest, I1).
 
 print_single_model(model(FinalZ3, FinalCLPQ, _)) :-
     nl, writeln('--- CLPQ Constraints ---'),
@@ -86,17 +114,19 @@ print_single_model(model(FinalZ3, FinalCLPQ, _)) :-
 % ----------------------------
 % Wrapper per raccogliere solo i SAT
 % ----------------------------
+% considera "true" anche congiunzioni che riducono a solo true
+% is_trueish(true).
+% is_trueish(F) :-
+%     conj_to_list(F, L),
+%     exclude(==(true), L, NonTriv),
+%     NonTriv == [].
 
 zmi_branch_sat(Head, MaxDepths, model(FinalZ3, FinalCLPQ, Tree)) :-
-    InitialZ3 = true,
+    InitialZ3  = true,
     InitialCLPQ = true,
     zmi_aux(Head, InitialZ3, InitialCLPQ, [], MaxDepths, FinalZ3, FinalCLPQ, Tree),
-  
-    ( (Head == trueVerimap)  ->
-        !    
-    ;   (z3_sat_check(FinalZ3, sat),
-        format('✅ INCORRECT/FF FOUND: ~w\n', [FinalZ3]))
-    ).
+    z3_sat_check(FinalZ3, sat, _),
+    format('✅ INCORRECT/FF FOUND: ~w~n', [FinalZ3]).
 
 % ----------------------------
 % Interpreter rules 
@@ -104,26 +134,35 @@ zmi_branch_sat(Head, MaxDepths, model(FinalZ3, FinalCLPQ, Tree)) :-
 
 
 
+zmi_aux(true, Z3, CLPQ,_, _, Z3, CLPQ, true).
+
+
+
+zmi_aux((G ; _), Z3In, CLPQIn, SymTab, Steps, Z3Out, CLPQOut, Tree) :-
+    zmi_aux(G, Z3In, CLPQIn, SymTab, Steps, Z3Out, CLPQOut, Tree).
+ 
+zmi_aux((_ ; G), Z3In, CLPQIn, SymTab, Steps, Z3Out, CLPQOut, Tree) :-
+    zmi_aux(G, Z3In, CLPQIn, SymTab, Steps, Z3Out, CLPQOut, Tree).  
+
+
+zmi_aux(trueVerimap, Z3, CLPQ, _, _, Z3, CLPQ, true) :-
+    nl, nl,
+    writeln('Ho raggiunto la terminazione dell\'albero'),
+    nl, nl,
+    fail.
+
+
+
+
 zmi_aux(_, _, _, _,0, _, _, _) :- 
     writeln('Limite MaxDepth raggiunto'),
     fail.
 
-zmi_aux(trueVerimap, Z3, CLPQ, _, _, Z3, CLPQ, true) :-
-    writeln('Ho raggiunto la terminazione dell\'albero'),
-    !.  
-% ----------------------------
-% Costruzione coppie Var-Type
-% ----------------------------
-zmi_aux((A ; B), Z3In, CLPQIn, SymTab, Steps, Z3Out, CLPQOut, (TreeA, TreeB)) :-
-    zmi_aux(A, Z3In, CLPQIn, SymTab, Steps, TempZ3, TempCLPQ, TreeA),
-    zmi_aux(B, Z3In, CLPQIn, SymTab, Steps, TempZ3, TempCLPQ, TreeB).
-
-
-zmi_aux(true, Z3, CLPQ,_, _, Z3, CLPQ, true).
 
 zmi_aux((A, B), Z3In, CLPQIn,SymTab, Steps, Z3Out, CLPQOut, (TreeA, TreeB)) :-
     zmi_aux(A, Z3In, CLPQIn,SymTab, Steps, TempZ3, TempCLPQ, TreeA),
     zmi_aux(B, TempZ3, TempCLPQ,SymTab, Steps, Z3Out, CLPQOut, TreeB).
+
 
 zmi_aux(constr(C), Z3In, CLPQIn, SymTab, _, Z3Out, CLPQOut, constr(Normalized)) :-
     debug_print('Entrato in constr c'),
@@ -140,8 +179,7 @@ zmi_aux(constr(C), Z3In, CLPQIn, SymTab, _, Z3Out, CLPQOut, constr(Normalized)) 
 
     Z3Out  = Z3Final,
     CLPQOut = CLPQTmp,
-
-    z3_sat_check(Z3Final, sat).
+    z3_sat_check(Z3Final, sat, _).
 
 %prima era cosi:
 
@@ -191,6 +229,19 @@ zmi_aux(Head, Z3In, CLPQIn,SymTabIn, Steps, Z3Out, CLPQOut, SubTree => Head) :-
 
 
 
+
+
+% % Foglia: formula già vera -> chiudi ramo
+% zmi_aux(true, Z3, CLPQ, _, _, Z3, CLPQ, true) :-  !.
+
+% % Foglia: constr(true) -> chiudi senza altri push
+% zmi_aux(constr(true), Z3, CLPQ, _, _, Z3, CLPQ, constr(true)) :-
+%     debug_print('Leaf constr(true): stop'),
+%     !.
+
+
+
+
 extend_type_tableBody([], SymTab, SymTab).
 
 extend_type_tableBody([Goal | Rest], SymTabIn, SymTabOut) :-
@@ -218,15 +269,18 @@ extend_type_table(Head, Old, New) :-
 % ----------------------------
 
 
+%deve avere due argomenti : primo input, il secondo è quello che poi passerei a z3. Non deve essere una cosa a parte.
 
-zmi_aux(true, Z3, CLPQ,_, _, Z3, CLPQ, true).
-
-
-
-zmi_constr_push(Formula):-
+% zmi_constr_push(+Formula, -RawGround)
+zmi_constr_push(Formula, RawGround) :-
     enable_debug,
-    writeln(Formula),
-    z3_sat_check(Formula, Result),
+    normalize_bool_expr(Formula, Normalized),
+    z3_sat_check(Normalized, Result, RawGround),
+    % writeln('Formula normalizzata:'),
+    % writeln(Normalized),
+    writeln('RawGround (per Z3):'),
+    writeln(RawGround),
+    writeln('Risultato:'),
     writeln(Result).
 
 
