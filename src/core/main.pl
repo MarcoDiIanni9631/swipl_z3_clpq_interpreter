@@ -3,9 +3,6 @@
 :- use_module(library(dcg/basics)).
 :- use_module(library(clpq)).
 
-% :- use_module('../solvers/solver_clpq').
-% :- use_module('../solvers/solver_turibe').
-% :- use_module('../solvers/solver_vidal').
 :- use_module(logic_utils).
 :- use_module(io).
 %:- include('zmi_incorrect_tests.pl').
@@ -48,14 +45,7 @@ set_solver(vidal) :-
 % Entry point for collecting ALL SAT branches
 % --------------------------
 
-% :- dynamic branches_explored/1.
-% branches_explored(0).
 
-% reset_branch_counter :- retractall(branches_explored(_)), assertz(branches_explored(0)).
-% inc_branch_counter :- 
-%     retract(branches_explored(N)),
-%     N1 is N + 1,
-%     assertz(branches_explored(N1)).
 
 zmi(Head) :-
 
@@ -77,21 +67,7 @@ zmi(Head) :-
 
     ).
 
-% zmi(Head) :-
-%     set_solver(turibe),
-%     MaxDepths = 20,
-%     format('ℹ️ MaxDepth impostato a: ~w\n', [MaxDepths]),
-%     findall(Model, zmi_branch_sat(Head, MaxDepths, Model), Models),
-%     ( Models == [] ->
-%         format('No SAT branches found in MaxDepths = ~w.\n', [MaxDepths])
-%     ; (format('--- ALL SAT BRANCHES FOUND (MaxDepths = ~w) ---~n', [MaxDepths]),
-%       print_all_models(Models))
-%     ),
-%     zmi_branch_sat(trueVerimap, MaxDepths, _).
 
-% % Un modello è "non banale" se la parte Z3 non è true
-% nontrivial_model(model(FinalZ3, _CLPQ, _Tree)) :-
-%     FinalZ3 \== true.
 
 print_all_models([]).
 print_all_models([M|Rest]) :-
@@ -99,11 +75,7 @@ print_all_models([M|Rest]) :-
     print_single_model(M), nl,
     print_all_models(Rest).
 
-% print_models_numbered([], _).
-% print_models_numbered([M|Rest], I) :-
-%     print_single_model(I, M),
-%     I1 is I + 1,
-%     print_models_numbered(Rest, I1).
+
 
 print_single_model(model(FinalZ3, FinalCLPQ, _)) :-
     nl, writeln('--- CLPQ Constraints ---'),
@@ -111,15 +83,7 @@ print_single_model(model(FinalZ3, FinalCLPQ, _)) :-
     nl, writeln('--- FINAL MODEL (Z3) ---'),
     z3_print_model_final(FinalZ3).
 
-% ----------------------------
-% Wrapper per raccogliere solo i SAT
-% ----------------------------
-% considera "true" anche congiunzioni che riducono a solo true
-% is_trueish(true).
-% is_trueish(F) :-
-%     conj_to_list(F, L),
-%     exclude(==(true), L, NonTriv),
-%     NonTriv == [].
+
 
 zmi_branch_sat(Head, MaxDepths, model(FinalZ3, FinalCLPQ, Tree)) :-
     InitialZ3  = true,
@@ -181,15 +145,6 @@ zmi_aux(constr(C), Z3In, CLPQIn, SymTab, _, Z3Out, CLPQOut, constr(Normalized)) 
     CLPQOut = CLPQTmp,
     z3_sat_check(Z3Final, sat, _).
 
-%prima era cosi:
-
-% zmi_aux(constr(C), Z3In, CLPQIn, _, Z3Out, CLPQOut, constr(Normalized)) :-
-%     normalize_bool_expr(C, Normalized),
-%     build_conjunct([CLPQIn, Normalized], CLPQOut),
-%     clpq_sat_from_formula(CLPQOut),
-%     build_conjunct([Z3In, Normalized], Z3Out),
-%     z3_sat_check(Z3Out, sat).
-
 
 zmi_aux(Head, Z3In, CLPQIn,SymTabIn, Steps, Z3Out, CLPQOut, SubTree => Head) :-
 
@@ -211,14 +166,8 @@ zmi_aux(Head, Z3In, CLPQIn,SymTabIn, Steps, Z3Out, CLPQOut, SubTree => Head) :-
     extend_type_table(Head, SymTabIn, SymTabMid),
     extend_type_tableBody(BodyList, SymTabMid, SymTabFinal),
 
-    %format('📌 SymTab dopo extend: ~w~n', [SymTabMid]),
-    %Head =.. [_|Args],
-    %format('📌 Variabili in Head: ~w~n', [Args]),
     maplist(rewrite_constr(Head, SymTabFinal), BodyList, RewrittenList),
 
-   % writeln('📌 BodyList riscritta:'),
-   % maplist(writeln, RewrittenList),
-    %maplist(rewrite_constr(Head), BodyList, RewrittenList),
     build_conjunct(RewrittenList, Body),
     NewSteps is Steps - 1,
          debug_print('Stampo Body prima di zmi'),
@@ -226,20 +175,6 @@ zmi_aux(Head, Z3In, CLPQIn,SymTabIn, Steps, Z3Out, CLPQOut, SubTree => Head) :-
 
      debug_print(Body),
     zmi_aux(Body, Z3In, CLPQIn,SymTabFinal, NewSteps, Z3Out, CLPQOut, SubTree).
-
-
-
-
-
-% % Foglia: formula già vera -> chiudi ramo
-% zmi_aux(true, Z3, CLPQ, _, _, Z3, CLPQ, true) :-  !.
-
-% % Foglia: constr(true) -> chiudi senza altri push
-% zmi_aux(constr(true), Z3, CLPQ, _, _, Z3, CLPQ, constr(true)) :-
-%     debug_print('Leaf constr(true): stop'),
-%     !.
-
-
 
 
 extend_type_tableBody([], SymTab, SymTab).
@@ -267,9 +202,6 @@ extend_type_table(Head, Old, New) :-
 % ----------------------------
 % Costruzione coppie Var-Type
 % ----------------------------
-
-
-%deve avere due argomenti : primo input, il secondo è quello che poi passerei a z3. Non deve essere una cosa a parte.
 
 % zmi_constr_push(+Formula, -RawGround)
 zmi_constr_push(Formula, RawGround) :-
@@ -420,17 +352,6 @@ print_tree(SubTree => Head, Indent) :-
 print_tree('Step limit reached', Indent) :-
     tab(Indent), writeln('[... Step limit reached ...]').
 print_tree(Other, Indent) :- tab(Indent), writeln(Other).
-
-
-% flatten_list([], []).
-% flatten_list([[]|T], Flat) :-        
-%     flatten_list(T, Flat).
-% flatten_list([H|T], Flat) :-
-%     !, flatten_list(H, HFlat),
-%     flatten_list(T, TFlat),
-%     append(HFlat, TFlat, Flat).
-% flatten_list(X, [X]).
-
 
 % ----------------------------
 % Wrapper: carica file e lancia zmi/1

@@ -1,10 +1,10 @@
 :- module(solver_turibe, [
-    z3_sat_check/2,
+    z3_sat_check/3,           % NEW: formula → result → rawground
     z3_print_model_final/1,
     enable_debug/0,
     disable_debug/0,
-    debug_print/1,      
-    debug_print/2       
+    debug_print/1,
+    debug_print/2
 ]).
 
 %:- use_module(z3lib(z3)).
@@ -96,32 +96,75 @@ sostituisci_costanti_(Assoc, Arg, Arg1) :-
 %     z3_check(Sat),
 %     result_from_sat(Sat, Result).
 
-z3_sat_check(Formula, Result) :-
-    % 1) normalizza/grounda per Z3
+% z3_sat_check(true, true, true) :- 
+%     debug_print('z3_sat_check short-circuit su true'),
+%     !.
+
+% z3_sat_check(Formula, Result) :-
+%     % 1) normalizza/grounda per Z3
+%     term_variables(Formula, _Vars),
+%     z3constr2lower(Formula, _Pairs, RawGround),
+
+%     % 2) reset e push
+%     z3_reset,
+%     debug_print('--- Formula da pushare su Z3 ---'), debug_print(RawGround),
+%     safe_z3_push(RawGround),
+%     debug_print('--- La formula non ha generato errore ---'), debug_print(RawGround),
+
+%     % 3) check + mapping
+%     z3_check(Sat),
+%     result_from_sat(Sat, Result),
+
+%     % 4) LOG SPECIFICO: se è unknown, stampa QUI la formula che l’ha causato
+%     ( Result == unknown -> (
+%         % usa write_term/2 per una stampa robusta
+%         write('⚠️  Z3 ha restituito UNKNOWN per: '),
+%         write_term(RawGround, [quoted(true), numbervars(true), max_depth(1000)]),
+%         nl
+%      ) ; true
+%     ).
+
+
+% % --- Short-circuit: niente reset/push per 'true'
+% z3_sat_check(true, true, true) :-
+%     debug_print('z3_sat_check short-circuit su true'),
+%     !.
+
+z3_sat_check(Formula, Result, RawGround) :-
     term_variables(Formula, _Vars),
     z3constr2lower(Formula, _Pairs, RawGround),
-
-    % 2) reset e push
     z3_reset,
-    debug_print('--- Formula da pushare su Z3 ---'), debug_print(RawGround),
-    safe_z3_push(RawGround),
-    debug_print('--- La formula non ha generato errore ---'), debug_print(RawGround),
-
-    % 3) check + mapping
-    z3_check(Sat),
-    result_from_sat(Sat, Result),
-
-    % 4) LOG SPECIFICO: se è unknown, stampa QUI la formula che l’ha causato
-    ( Result == unknown -> (
-        % usa write_term/2 per una stampa robusta
-        write('⚠️  Z3 ha restituito UNKNOWN per: '),
-        write_term(RawGround, [quoted(true), numbervars(true), max_depth(1000)]),
-        nl
-     ) ; true
+    debug_print('--- Formula da pushare su Z3 ---'),
+    debug_print(RawGround),
+    
+    (   catch(safe_z3_push(RawGround),
+              error(z3_push_failed(F), _),
+              ( debug_print('❌ Push fallito, salto il check'),
+                debug_print('RawGround (per Z3):'), debug_print(F),
+                Result = error_push_failed,  
+                fail  
+              )
+          )
+    ->  debug_print('--- La formula non ha generato errore ---'),
+        debug_print(RawGround),
+        z3_check(Sat),
+        result_from_sat(Sat, Result),
+        ( Result == unknown ->
+            ( write('⚠️  Z3 ha restituito UNKNOWN per: '),
+              write_term(RawGround, [quoted(true), numbervars(true), max_depth(1000)]),
+              nl )
+        ; true )
+    ;   Result = error_push_failed  
     ).
 
 
 
+
+% % z3_sat_check(+Formula, -Result)
+% z3_sat_check(Formula, Result) :-
+%     z3_sat_check(Formula, Result, _).
+
+        
 
 
 % --- push sicuro: se fallisce -> eccezione
@@ -172,12 +215,16 @@ result_from_sat(_,       unknown).
 % STAMPA MODELLO COMPLETO FINALE
 % ----------------------------
 
+z3_print_model_final(true) :-
+    debug_print('✅ z3_print_model_final: short-circuit su true'),
+    !.
+
 z3_print_model_final(Formula) :-
     debug_print('✅ z3_sat_check attivato!'),
-    z3constr2lower(Formula, _Pairs, RawGround),
+   % z3constr2lower(Formula, _Pairs, RawGround),
    % normalize_z3_formula(RawGround, Z3Ground),
-    debug_print('--- Formula da pushare su Z3 ---'), debug_print(RawGround),
-    ( z3_push(RawGround) ->
+    debug_print('--- Formula da pushare su Z3 ---'), debug_print(Formula),
+    ( z3_push(Formula) ->
         z3_check(Sat),
         ( Sat == l_true ->
             z3_model(Model),
@@ -187,8 +234,10 @@ z3_print_model_final(Formula) :-
         ; Sat == l_undef ->
             writeln('Z3 says: UNKNOWN or ERROR (l_undef)')
         )
-    ; debug_print('Z3 push failed. Cannot analyze constraints.'), debug_print(RawGround)
+    ; debug_print('Z3 push failed. Cannot analyze constraints.'), debug_print(Formula)
     ).
+
+
 
 
 test_debug :-
