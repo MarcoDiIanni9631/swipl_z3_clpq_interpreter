@@ -131,7 +131,8 @@ sostituisci_costanti_(Assoc, Arg, Arg1) :-
 %     !.
 
 
-%quando fallisce significa che solo sat avrà successo, z3_push fallisce 
+%Se la formula contiene vincoli che combinati insieme sono insoddisfacibili, triggererà l'errore
+%Result = error_push_failed,  che farà anche fallire il predicato e quindi il branch analizzato.
 
 z3_sat_check(Formula, Result, RawGround) :-
     term_variables(Formula, _Vars),
