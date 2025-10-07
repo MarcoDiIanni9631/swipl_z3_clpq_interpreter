@@ -5,6 +5,12 @@
 
 :- use_module(logic_utils).
 :- use_module(io).
+
+
+
+
+
+
 %:- include('zmi_incorrect_tests.pl').
 
 % ----------------------------
@@ -29,9 +35,11 @@ set_solver(vidal) :-
 
 :- initialization(set_solver(turibe), now).
 
-:- use_module('../solvers/solver_turibe', 
-              [enable_debug/0, disable_debug/0, debug_print/1, debug_print/2]).
-
+:- use_module('../solvers/solver_turibe',
+              [ z3_sat_check/3,
+                z3constr2lower/3,      
+                enable_debug/0, disable_debug/0, debug_print/1, debug_print/2
+              ]).
 % ----------------------------
 % Custom logical operators
 % ----------------------------
@@ -205,16 +213,16 @@ extend_type_table(Head, Old, New) :-
 
 %constrFormula ->rawGround invece formato uribe chiamarlo (distinguere la trasforamzione in rawground, eventualmnete poi aggiungere un preedicato che chiama questo, poi chiama anche z3_satcheck ma di rawGround, non di formula)
 % zmi_constr_push(+Formula, -RawGround)
-zmi_constr_push(Formula, RawGround) :-
-    enable_debug,
-    normalize_bool_expr(Formula, Normalized),
-    z3_sat_check(Normalized, Result, RawGround),
-    % writeln('Formula normalizzata:'),
-    % writeln(Normalized),
-    writeln('RawGround (per Z3):'),
-    writeln(RawGround),
-    writeln('Risultato:'),
-    writeln(Result).
+% zmi_constr_push(Formula, RawGround) :-
+%     enable_debug,
+%     normalize_bool_expr(Formula, Normalized),
+%     z3_sat_check(Normalized, Result, RawGround),
+%     % writeln('Formula normalizzata:'),
+%     % writeln(Normalized),
+%     writeln('RawGround (per Z3):'),
+%     writeln(RawGround),
+%     writeln('Risultato:'),
+%     writeln(Result).
 
 
 % ----------------------------
@@ -287,6 +295,22 @@ forall(
 rewrite_constr(_, _, Other, Other).
 
 % build_type_equality(Var-Type, (Var:Type = Var:Type)).
+
+
+%% constr_to_rawground(+Constr, -RawGround)
+%  1) Normalizza il vincolo (usa logic_utils:normalize_bool_expr/2)
+%  2) Rinomina le variabili per Z3 (usa z3constr2lower/3)
+constr_to_rawground(Constr, RawGround) :-
+    normalize_bool_expr(Constr, Norm),
+    z3constr2lower(Norm, _Pairs, RawGround).
+
+
+%% constr_push_check(+Constr, -Result, -RawGround)
+%  1) Converte il vincolo in RawGround tramite constr_to_rawground/2
+%  2) Esegue il push+check su Z3 tramite z3_sat_check/3
+constr_push_check(Constr, Result, RawGround) :-
+    constr_to_rawground(Constr, RawGround),
+    z3_sat_check(RawGround, Result, _).
 
 
 % ----------------------------
