@@ -1,46 +1,85 @@
-# Interpreter Prolog + Z3 + CLPQ
+# SWI-Prolog Z3 CLPQ Interpreter
 
-## Istruzioni per l'esecuzione
+Questo repository fornisce un interprete Prolog per trasformazioni di file **SMT-LIB in Prolog** e la loro analisi tramite **SWI-Prolog** e **Z3**.
 
-1. **Scaricare il repository**
+## Requisiti
 
-   Clonare il repository o scaricare il contenuto del progetto.
+* **SWI-Prolog** (testato con versione **9.3.31**)
+* **Z3** (testato con versione **4.15.3**)
 
-2. **Posizionarsi nella cartella del progetto**
+## Installazione
 
-   Assicurarsi di trovarsi nella directory che contiene il file `main.pl`.
+### SWI-Prolog
 
-3. **Avviare SWI-Prolog e caricare il file principale**
+Segui la guida ufficiale: [SWI-Prolog Installation Guide](https://www.swi-prolog.org/Download.html).
 
-   Aprire il terminale e digitare:
+#### Alternativa (se l’installazione classica non funziona)
 
-   ```bash
-   swipl -l main.pl
+Puoi compilare SWI-Prolog dai sorgenti:
 
-3. **Impostare il solver da utilizzare**
+```bash
+git clone https://github.com/SWI-Prolog/swipl-devel.git
+cd swipl-devel
+git submodule update --init
+mkdir build && cd build
+cmake ..
+make -j4
+make install
+```
 
-    All’interno dell’ambiente SWI-Prolog, scegliere quale solver caricare digitando uno dei seguenti comandi:
-   ```bash
-    set_solver(turibe).
+### Z3
 
-    oppure
+Z3 è una dipendenza necessaria.
+Puoi installarlo seguendo le istruzioni ufficiali: [Z3 GitHub](https://github.com/Z3Prover/z3).
 
-    set_solver(vidal).
+Dopo l’installazione, assicurati che la libreria sia disponibile nelle variabili d’ambiente:
 
-Si consiglia momentaneamente l'utilizzo del solver turibe.
+```bash
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/path/to/z3/lib
+```
 
-Caricare il file generato da VeriMAP
+### Modulo SWI-Prolog-Z3
 
-Utilizzare il predicato load_clean/1 specificando il percorso completo o relativo del file .pl che si desidera interpretare. Ad esempio:
+Per collegare Prolog a Z3 è necessario anche il progetto di interfaccia:
 
-   ```bash
-    load_clean('test/VerimapFile/TRACER-testabs9_VeriMAP_true.c.transform.smt.smt2.pl').
+```bash
+git clone https://github.com/MarcoDiIanni9631/swi-prolog-z3
+```
 
-Sostituire il percorso con quello corretto relativo al file da interpretare.
+Puoi testare che il modulo sia correttamente installato avviando Prolog e digitando:
 
-Una volta caricato il file, è possibile lanciare la query da interpretare. Ad esempio:
-   ```bash
-zmi(incorrect).
+```prolog
+?- use_module(z3lib(z3)).
+true.
+```
 
-La cartella test in questo repository contiene una sottocartella VerimapFile che a sua volta contiene due esempi per fare test.
+## Utilizzo
 
+Per lanciare l’interprete:
+
+```bash
+~/swipl/usr/local/bin/swipl -s main.pl -- <file.smt2.pl> <ff|incorrect>
+```
+
+Dove `<file.smt2.pl>` è un file Prolog ottenuto dalla trasformazione di un SMT-LIB e `<ff|incorrect>` è il target di analisi.
+
+Esempio:
+
+```bash
+~/swipl/usr/local/bin/swipl -s main.pl -- test/testSmt2Map/chc-comp24-LIA-Lin-008.smt2.pl ff
+```
+
+## Branch principali
+
+* **main** → branch stabile.
+* **explicit\_inference** → branch di sviluppo, dove vengono applicate le modifiche e gli esperimenti.
+
+## Struttura del progetto
+
+* `src/core` → contiene il cuore dell’interprete.
+* `src/solvers` → integrazione con Z3 (Turibe e Vidal).
+* `test` → file di test SMT tradotti in Prolog.
+
+---
+
+Questo repository integra la logica di Prolog con i vincoli SMT tramite Z3, permettendo analisi simboliche e sperimentazioni con diverse strategie di inferenza.
