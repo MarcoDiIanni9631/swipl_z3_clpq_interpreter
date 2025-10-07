@@ -1,5 +1,6 @@
 :- module(solver_turibe, [
-    z3_sat_check/3,           % NEW: formula → result → rawground
+    z3_sat_check/3,
+    z3constr2lower/3,      % <-- aggiungi questo
     z3_print_model_final/1,
     enable_debug/0,
     disable_debug/0,
@@ -76,66 +77,11 @@ sostituisci_costanti_(Assoc, Arg, Arg1) :-
     sostituisci_costanti(Arg, Assoc, Arg1).
 
 
-
-%versione funzionante:
-
-
-% z3_sat_check(Formula, Result) :-
-%     term_variables(Formula, _Vars),
-%     z3constr2lower(Formula, _Pairs, RawGround),
-%     % normalize_z3_formula(RawGround, Z3Ground),
-
-%     z3_reset,
-%   %  writeln('Stampa prima di inviare'),
-%   % writeq(Z3Ground), nl,
-%     % safe_z3_push(Z3Ground),
-%     debug_print('--- Formula da pushare su Z3 ---'), debug_print(RawGround),
-   
-%     safe_z3_push(RawGround),
-%     debug_print('--- La formula non ha generato errore ---'), debug_print(RawGround),
-%     z3_check(Sat),
-%     result_from_sat(Sat, Result).
-
-% z3_sat_check(true, true, true) :- 
-%     debug_print('z3_sat_check short-circuit su true'),
-%     !.
-
-% z3_sat_check(Formula, Result) :-
-%     % 1) normalizza/grounda per Z3
-%     term_variables(Formula, _Vars),
-%     z3constr2lower(Formula, _Pairs, RawGround),
-
-%     % 2) reset e push
-%     z3_reset,
-%     debug_print('--- Formula da pushare su Z3 ---'), debug_print(RawGround),
-%     safe_z3_push(RawGround),
-%     debug_print('--- La formula non ha generato errore ---'), debug_print(RawGround),
-
-%     % 3) check + mapping
-%     z3_check(Sat),
-%     result_from_sat(Sat, Result),
-
-%     % 4) LOG SPECIFICO: se è unknown, stampa QUI la formula che l’ha causato
-%     ( Result == unknown -> (
-%         % usa write_term/2 per una stampa robusta
-%         write('⚠️  Z3 ha restituito UNKNOWN per: '),
-%         write_term(RawGround, [quoted(true), numbervars(true), max_depth(1000)]),
-%         nl
-%      ) ; true
-%     ).
-
-
-% % --- Short-circuit: niente reset/push per 'true'
-% z3_sat_check(true, true, true) :-
-%     debug_print('z3_sat_check short-circuit su true'),
-%     !.
-
-
 %Se la formula contiene vincoli che combinati insieme sono insoddisfacibili, triggererà l'errore
 %Result = error_push_failed,  che farà anche fallire il predicato e quindi il branch analizzato.
 
 z3_sat_check(Formula, Result, RawGround) :-
-    term_variables(Formula, _Vars),
+  %  term_variables(Formula, _Vars),
     z3constr2lower(Formula, _Pairs, RawGround),
     z3_reset,
     debug_print('--- Formula da pushare su Z3 ---'),
@@ -163,11 +109,6 @@ z3_sat_check(Formula, Result, RawGround) :-
  
 
 
-
-% % z3_sat_check(+Formula, -Result)
-% z3_sat_check(Formula, Result) :-
-%     z3_sat_check(Formula, Result, _).
-
         
 
 
@@ -180,32 +121,6 @@ safe_z3_push(Formula) :-
     ).
 
 
-% % --- push sicuro: blocca se trova smt_plus o &
-% safe_z3_push(Formula) :-
-%     ( forbidden_in(Formula, Found) ->
-%         throw(error(z3_forbidden_construct(Found),
-%                    context(safe_z3_push/1,
-%                            'Formula contains unsupported operator')))
-%     ; catch(
-%         z3_push(Formula),
-%         Error,
-%         ( writeln('Stampo errore'),
-%           throw(error(z3_push_failed(Formula), Error))
-%         )
-%       )
-%     ).
-
-
-% % --- helper: rileva costrutti vietati nella formula
-% forbidden_in(Term, Name) :-
-%     sub_term(Sub, Term),
-%     nonvar(Sub),
-%     functor(Sub, FName, _Arity),
-%     memberchk(FName, ['smt_plus', '&']),
-%     Name = FName, !.
-
-%% Se z3_push non va a buon fine, errore segnalato da turibe. (Interrompe anche? non so)
-%% Se z3_sat ritorna 
 
 
 % ----------------------------
