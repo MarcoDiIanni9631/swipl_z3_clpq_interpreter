@@ -178,10 +178,10 @@ zmi_aux(Head, Z3In, CLPQIn,SymTabIn, Steps, Z3Out, CLPQOut, SubTree => Head) :-
 
     build_conjunct(RewrittenList, Body),
     NewSteps is Steps - 1,
-         debug_print('Stampo Body prima di zmi'),
+    %      debug_print('Stampo Body prima di zmi'),
 
 
-     debug_print(Body),
+    %  debug_print(Body),
     zmi_aux(Body, Z3In, CLPQIn,SymTabFinal, NewSteps, Z3Out, CLPQOut, SubTree).
 
 

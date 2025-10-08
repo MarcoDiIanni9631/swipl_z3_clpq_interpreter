@@ -96,7 +96,7 @@ z3_sat_check(Formula, Result, RawGround) :-
               )
           )
     ->  debug_print('--- La formula non ha generato errore ---'),
-        debug_print(RawGround),
+     %   debug_print(RawGround),
         z3_check(Sat),
         result_from_sat(Sat, Result),
         ( Result == unknown ->

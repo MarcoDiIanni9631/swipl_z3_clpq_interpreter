@@ -4,18 +4,21 @@
     read_full_term/2,
     read_full_term/3,
     should_skip_line/1,
-    arg_type/3
+    pred_arg/3,
+    type_arg/3
 ]).
 
 :- use_module(library(readutil)).
-:- dynamic arg_type/3.
+:- dynamic pred_arg/3.
+:- dynamic type_arg/3.
 
 % ----------------------------
 % Caricamento e parsing file
 % ----------------------------
 
 load_clean(File) :-
-    retractall(arg_type(_,_,_)),
+    retractall(pred_arg(_,_,_)),
+    retractall(type_arg(_,_,_)),
     open(File, read, Stream),
     load_clean_lines(Stream),
     close(Stream).
@@ -25,31 +28,23 @@ load_clean_lines(Stream) :-
     ( FullTermString == end_of_file ->
         true
     ; string_lower(FullTermString, Lower),
-      sub_string(Lower, _, _, _, ":- pred") ->
-        try_parse_pred_line(FullTermString),
-        load_clean_lines(Stream)
-    ; should_skip_line(FullTermString) ->
-     %   writeln(skipping(FullTermString)),
-        load_clean_lines(Stream)
-    ; open_string(FullTermString, LineStream),
-      catch(
-          read_term(LineStream, Term, [syntax_errors(dec10)]),
-          _Err,
-          Term = fail
+      ( sub_string(Lower, _, _, _, ":- pred") ->
+            try_parse_pred_line(FullTermString)
+      ; sub_string(Lower, _, _, _, ":- type") ->
+            try_parse_type_line(FullTermString)
+      ; should_skip_line(FullTermString) ->
+            true
+      ; open_string(FullTermString, LineStream),
+        catch(read_term(LineStream, Term, [syntax_errors(dec10)]), _, Term = fail),
+        close(LineStream),
+        ( Term == fail ->
+              writeln('Errore di parsing!')
+        ; replace_fail_with_goal(Term, Term1),
+          user:assertz(Term1)
+        )
       ),
-      close(LineStream),
-      (
-          Term == fail ->(
-              writeln('Errore di parsing!'),
-              load_clean_lines(Stream))
-      ;
-      (
-          replace_fail_with_goal(Term, Term1),
-          user:assertz(Term1),
-          load_clean_lines(Stream))
-      )
+      load_clean_lines(Stream)
     ).
-
 
 % ----------------------------
 % Parsing riga multipla
@@ -77,7 +72,7 @@ read_full_term(Stream, Acc, Full) :-
     ).
 
 % ----------------------------
-% Parsing dichiarazioni pred
+% Parsing dichiarazioni :- pred
 % ----------------------------
 
 try_parse_pred_line(Line) :-
@@ -85,26 +80,23 @@ try_parse_pred_line(Line) :-
     ( catch(extract_pred_type(S), Err,
             (print_message(error, Err), fail)) ->
         true
-    ; 
-        format(" ")
+    ; true
     ).
 
 extract_pred_type(Line) :-
     string_codes(Line, Codes),
     phrase(pred_decl(Name/Arity, Types), Codes),
     Arity > 0,
-    forall(nth1(Pos, Types, T), (
-        ( T = array(ElemType) ->
-              % Indice sempre int, valore quello letto (ElemType)
-              assertz(arg_type(Name/Arity, Pos, array(int, ElemType)))
-        ;     assertz(arg_type(Name/Arity, Pos, T))
+    forall(nth1(Pos, Types, T),
+        ( T = array(ElemType)
+        -> assertz(pred_arg(Name/Arity, Pos, array(int, ElemType)))
+        ;  assertz(pred_arg(Name/Arity, Pos, T))
         )
-    )).
+    ).
 
 pred_decl(Name/Arity, Types) -->
     ":- pred ", whites, pred_head(Name, Types), whites, ".",
-     !,
-    { length(Types, Arity) }.
+     !, { length(Types, Arity) }.
 
 pred_head(Name, Types) -->
     atom_string(Name), "(", type_list(Types), ")".
@@ -145,6 +137,59 @@ type_term(T) -->
     }.
 
 % ----------------------------
+% Parsing dichiarazioni :- type
+% ----------------------------
+
+try_parse_type_line(Line) :-
+    normalize_space(string(S), Line),
+    ( catch(extract_type_decl(S), _, fail) -> true ; true ).
+
+extract_type_decl(Line) :-
+    % Esempio: :- type tx_type ---> tx_type('block.basefee'(int),'msg.value'(int)).
+    ( sub_string(Line, _, _, _, "--->") ->
+        sub_string(Line, Before, _, After, "--->"),
+        sub_string(Line, 0, Before, _, Prefix),
+        normalize_space(string(NameStr), Prefix),
+        strip_prefix(":- type", NameStr, NameAtom),
+        atom_string(TypeName, NameAtom),
+        % ora prendiamo la parte a destra del ---> fino al punto finale
+        sub_string(Line, _, After, 0, RightSide),
+        ( sub_string(RightSide, _, _, _, "(") ->
+            % estrai argomenti fra parentesi
+            sub_atom(RightSide, _, _, 1, InsideParen),
+            sub_atom(InsideParen, 1, _, 2, FieldsRaw),
+            split_string(FieldsRaw, ",", " ()", Fields),
+            include(\=([]), Fields, CleanFields),
+            length(CleanFields, Arity),
+            forall(nth1(Pos, CleanFields, F0),
+                ( normalize_space(string(F), F0),
+                  extract_field_type(F, T),
+                  assertz(type_arg(TypeName/Arity, Pos, T))
+                ))
+        ; assertz(type_arg(TypeName/0, 0, none))
+        )
+    ; true ).
+
+extract_field_type(Field, T) :-
+    ( sub_string(Field, _, _, _, "array(") ->
+        sub_atom(Field, 6, _, 1, Inner),
+        extract_field_type(Inner, InnerT),
+        T = array(InnerT)
+    ; sub_string(Field, _, _, _, "(") ->
+        sub_atom(Field, _, _, 1, Inner),
+        sub_atom(Inner, 0, _, 1, Clean),
+        extract_field_type(Clean, T)
+    ; atom_string(T, Field)
+    ).
+
+strip_prefix(Prefix, String, Result) :-
+    ( sub_string(String, 0, _, _, Prefix) ->
+        sub_atom(String, _, _, 0, Rest),
+        normalize_space(string(Result), Rest)
+    ; Result = String
+    ).
+
+% ----------------------------
 % Linee da ignorare
 % ----------------------------
 
@@ -167,34 +212,21 @@ strip_autogen(Line, "") :-
     !.
 strip_autogen(Line, Line).
 
-
-
 % ----------------------------
-% Sostituzione fail -> fail_goal ovunque
+% Sostituzione fail -> fail_goal
 % ----------------------------
 
 replace_fail_with_goal(Term, NewTerm) :-
-    Term == fail,
-     !,
-    NewTerm = fail_goal.
-
+    Term == fail, !, NewTerm = fail_goal.
 replace_fail_with_goal((Head :- Body), (NewHead :- NewBody)) :-
-     !,
-    replace_fail_with_goal(Head, NewHead),
-    replace_fail_with_goal(Body, NewBody).
-
+     !, replace_fail_with_goal(Head, NewHead),
+        replace_fail_with_goal(Body, NewBody).
 replace_fail_with_goal((A, B), (NA, NB)) :-
-     !,
-    replace_fail_with_goal(A, NA),
-    replace_fail_with_goal(B, NB).
-
+     !, replace_fail_with_goal(A, NA),
+        replace_fail_with_goal(B, NB).
 replace_fail_with_goal((A;B), (NA;NB)) :-
-     !,
-    replace_fail_with_goal(A, NA),
-    replace_fail_with_goal(B, NB).
-
+     !, replace_fail_with_goal(A, NA),
+        replace_fail_with_goal(B, NB).
 replace_fail_with_goal((\+ A), (\+ NA)) :-
-     !,
-    replace_fail_with_goal(A, NA).
-
+     !, replace_fail_with_goal(A, NA).
 replace_fail_with_goal(Term, Term).
