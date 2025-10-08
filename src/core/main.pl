@@ -231,7 +231,7 @@ extend_type_table(Head, Old, New) :-
 build_type_pairs(_, _, [], Acc, Acc).
 build_type_pairs(PredArity, Pos, [Var | Rest], AccIn, AccOut) :-
     ( var(Var),
-      arg_type(PredArity, Pos, Type)
+      pred_arg(PredArity, Pos, Type)
     ->
         ( % tipi atomici (int, bool, …)
           atom(Type)
@@ -336,7 +336,7 @@ infer_annotations(Pred, Args, Annotations) :-
 
 make_annotation(Pred, Args, Pos, Var:Type=Var:Type) :-
     nth1(Pos, Args, Var),
-    arg_type(Pred, Pos, Type), 
+    pred_arg(Pred, Pos, Type), 
     !.
 make_annotation(_, _, _, none).
 
