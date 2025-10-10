@@ -2,49 +2,65 @@
 :- use_module(library(clpq)).
 :- use_module(logic_utils, [conj_to_list/2, build_conjunct/2]).
 
-:- dynamic debug_mode/0.
-
-debug_print(Msg) :- debug_mode, 
-!,
- writeln(Msg).
-debug_print(_).
-debug_print(Msg, Arg) :- debug_mode, 
-!,
- format(Msg, [Arg]).
-debug_print(_, _).
-
+% ----------------------------
+% Entry point principale
+% ----------------------------
 clpq_sat_from_formula(Formula) :-
     copy_term(Formula, FormulaCopy),
-    conj_to_list(FormulaCopy, FlatList),
-    debug_print('--- Formula Originale ---'), debug_print(Formula),
-    debug_print('--- Lista piatta di vincoli ---'), debug_print(FlatList),
 
-    include(is_clpq_constraint2, FlatList, CLPQConstraints),
-    exclude(==(true), CLPQConstraints, Cleaned),
+    % Espande in lista piatta (gestisce anche and(A,B))
+    conj_to_list(FormulaCopy, Flat0),
+    maplist(flatten_and, Flat0, NestedLists),
+    append(NestedLists, FlatList),
 
-    ( Cleaned == [] ->
-        debug_print('CLPQ result: only true')
-    ; build_conjunct(Cleaned, Conj),
-      ( catch({Conj}, _, false) ->
-            debug_print('CLPQ result: SAT')
-        ;   debug_print('CLPQ result: UNSAT')
+    % Filtra solo vincoli compatibili con CLPQ
+    include(is_clpq_constraint, FlatList, CLPQConstraints),
+
+    writeln('--- CLPQ Constraints ---'),
+    ( CLPQConstraints == [] ->
+        writeln('Nessun vincolo aritmetico rilevato.'),
+        writeln('CLPQ result: only true')
+    ;
+        maplist(writeln, CLPQConstraints),
+        build_conjunct(CLPQConstraints, Conj),
+        ( catch({Conj}, _, false) ->
+            writeln('CLPQ result: SAT')
+        ;   writeln('CLPQ result: UNSAT')
         )
+    ),
+    writeln('--- END CLPQ CHECK ---').
+
+% ----------------------------
+% Espansione ricorsiva di and(A,B)
+% ----------------------------
+flatten_and(Term, List) :-
+    (   Term = and(A,B)
+    ->  flatten_and(A, LA),
+        flatten_and(B, LB),
+        append(LA, LB, List)
+    ;   Term = (A,B)
+    ->  flatten_and(A, LA),
+        flatten_and(B, LB),
+        append(LA, LB, List)
+    ;   Term == true
+    ->  List = []
+    ;   List = [Term]
     ).
 
-% % Espande tutto in una lista piatta eliminando and/2 e ,/2
-% formula_to_list((A,B), List) :- !,
-%     formula_to_list(A, LA),
-%     formula_to_list(B, LB),
-%     append(LA, LB, List).
-% formula_to_list(and(A,B), List) :- !,
-%     formula_to_list(A, LA),
-%     formula_to_list(B, LB),
-%     append(LA, LB, List).
-% formula_to_list(true, []) :- !.
-% formula_to_list(X, [X]).
-
-% Riconosce solo vincoli aritmetici gestibili da CLPQ
-is_clpq_constraint2(Term) :-
+% ----------------------------
+% Vincoli accettabili per CLPQ
+% ----------------------------
+is_clpq_constraint(Term) :-
     compound(Term),
-    Term =.. [Op, _, _],
-    memberchk(Op, ['=', '=:=', '=<', '<', '>=', '>']).
+    Term =.. [Op, _L, _R],
+    memberchk(Op, ['=', '=:=', '=<', '<', '>=', '>']),
+    \+ contains_forbidden_functor(Term).
+
+% ----------------------------
+% Rileva costrutti da escludere
+% ----------------------------
+contains_forbidden_functor(Term) :-
+    sub_term(Sub, Term),
+    compound(Sub),
+    functor(Sub, F, _),
+    memberchk(F, [store, array, and, or, not]).

@@ -39,6 +39,7 @@ set_solver(vidal) :-
                 z3constr2lower/3,      
                 enable_debug/0, disable_debug/0, debug_print/1, debug_print/2
               ]).
+:- use_module('../solvers/solver_clpq', [clpq_sat_from_formula/1]).
 % ----------------------------
 % Custom logical operators
 % ----------------------------
@@ -86,7 +87,7 @@ print_all_models([M|Rest]) :-
 
 print_single_model(model(FinalZ3, FinalCLPQ, _)) :-
     nl, writeln('--- CLPQ Constraints ---'),
-    writeln(FinalCLPQ),
+    clpq_sat_from_formula(FinalCLPQ),
     nl, writeln('--- FINAL MODEL (Z3) ---'),
     z3_print_model_final(FinalZ3).
 
