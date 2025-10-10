@@ -2,7 +2,6 @@
 
 :- use_module(library(dcg/basics)).
 :- use_module(library(clpq)).
-
 :- use_module(logic_utils).
 :- use_module(io).
 
@@ -300,16 +299,20 @@ rewrite_constr(_, _, Other, Other).
 %% constr_to_rawground(+Constr, -RawGround)
 %  1) Normalizza il vincolo (usa logic_utils:normalize_bool_expr/2)
 %  2) Rinomina le variabili per Z3 (usa z3constr2lower/3)
-constr_to_rawground(Constr, RawGround) :-
+
+
+%aggiungere in mezzo pay Check 
+
+constr_to_rawground(Constr,Pairs, RawGround) :-
     normalize_bool_expr(Constr, Norm),
-    z3constr2lower(Norm, _Pairs, RawGround).
+    z3constr2lower(Norm, Pairs, RawGround).
 
 
 %% constr_push_check(+Constr, -Result, -RawGround)
 %  1) Converte il vincolo in RawGround tramite constr_to_rawground/2
 %  2) Esegue il push+check su Z3 tramite z3_sat_check/3
 constr_push_check(Constr, Result, RawGround) :-
-    constr_to_rawground(Constr, RawGround),
+    constr_to_rawground(Constr,_Pairs, RawGround),
     z3_sat_check(RawGround, Result, _).
 
 

@@ -37,13 +37,13 @@ constr((and(G=0,and('msg.value'(H)=0,
 -->
 constr((and(G=0,and( HMV=0,  
 
-    
+
 
 
 
 rappresentazione che a noi servirebbe:
 
-tx_type(H, 'block.basefee'(HF),...., 'msg.value'(HMV), ...  )
+tx_type(H, 'block.basefee'(HF),...., 'msg.value'(HMV), ...  ) 
 
 H = tx_type('block.basefee'(HF),...., 'msg.value'(HMV), ...  )
 
@@ -62,6 +62,20 @@ P2 = persona(nome('Mario'),eta(40))
 constr((and(G=0,and('msg.value'(H)=0,  
 -->
 constr((and(G=0,and( HMV=0,  
+
+
+
+type_access(Typename, Tuple, Value)
+
+type_access(
+ 
+tx_type,         
+ 
+tx_type('block.basefee'(HF),...., 'msg.value'(HMV), ...  ),    
+
+HMV
+ 
+).
 
 
 
