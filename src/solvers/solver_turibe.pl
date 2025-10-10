@@ -80,40 +80,44 @@ sostituisci_costanti_(Assoc, Arg, Arg1) :-
 %Result = error_push_failed,  che farà anche fallire il predicato e quindi il branch analizzato.
 
 z3_sat_check(Formula, Result, PrettyModel) :-
-    % >>> Teniamo Pairs e RawGround <<<
     z3constr2lower(Formula, Pairs, RawGround),
     z3_reset,
     debug_print('--- Formula da pushare su Z3 ---'),
     debug_print(RawGround),
     debug_print('--- Pairs (PrologVar -> z3var) ---'),
     debug_print(Pairs),
+
+    debug_print('[1] Inizio fase di push...'),
     (   catch(safe_z3_push(RawGround),
               error(z3_push_failed(F), _),
-              ( debug_print('❌ Push fallito, salto il check'),
-                debug_print('RawGround (per Z3):'), debug_print(F),
-                Result = error_push_failed,  
+              ( debug_print('💥 [ERRORE] durante z3_push'),
+                debug_print('RawGround fallito:'), debug_print(F),
+                Result = error_push_failed,
                 fail))
-    ->  debug_print('--- La formula non ha generato errore ---'),
-        z3_check(Sat),
+    ->  debug_print('[2] Push completato con successo.'),
+        debug_print('[3] Avvio fase di check...'),
+        catch(z3_check(Sat),
+              ErrorCheck,
+              ( debug_print('💥 [ERRORE] durante z3_check'),
+                debug_print(ErrorCheck),
+                Result = error_check_failed,
+                fail)),
+        debug_print('[4] Fase di check completata.'),
         result_from_sat(Sat, Result),
         ( Result == unknown ->
             ( write('⚠️  Z3 ha restituito UNKNOWN per: '),
               write_term(RawGround, [quoted(true), numbervars(true), max_depth(1000)]), nl )
         ; true ),
-        % >>> Se sat, prendi il modello e sostituisci con i nomi originali usando Pairs <<<
         ( Result == sat ->
             (z3_model(Model0),
-            debug_print('--- FINAL MODEL (Z3 grezzo) ---'),
-            debug_print(Model0),
-            % Pairs è nella forma VarProlog - Xz3  ==> perfetto per sostituisci_costanti/3
-            sostituisci_costanti(Model0, Pairs, ModelPretty),
-            debug_print('--- FINAL MODEL (Z3 pretty con nomi Prolog) ---'),
-            debug_print(ModelPretty),
-            PrettyModel = ModelPretty )
-        ;   PrettyModel = none )
+             debug_print('[5] Fase di model: successo.'),
+             sostituisci_costanti(Model0, Pairs, ModelPretty),
+             PrettyModel = ModelPretty)
+        ;   PrettyModel = none)
     ;   Result = error_push_failed,
-        PrettyModel = error_push_failed
+        PrettyModel = error_push_failed2
     ).
+
 
  
 
@@ -123,11 +127,16 @@ z3_sat_check(Formula, Result, PrettyModel) :-
 
 % --- push sicuro: se fallisce -> eccezione
 safe_z3_push(Formula) :-
+    debug_print('➡️ Tentativo di push su Z3:'), debug_print(Formula),
     catch(
         z3_push(Formula),
-        Error,   
-        throw(error(z3_push_failed(Formula), Error))
+        Error,
+        ( debug_print('💥 Errore catturato in z3_push/1:'), 
+          print_message(error, Error),
+          throw(error(z3_push_failed(Formula), Error))
+        )
     ).
+
 
 
 
