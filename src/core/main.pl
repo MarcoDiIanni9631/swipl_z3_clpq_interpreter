@@ -2,7 +2,6 @@
 
 :- use_module(library(dcg/basics)).
 :- use_module(library(clpq)).
-
 :- use_module(logic_utils).
 :- use_module(io).
 
@@ -178,10 +177,10 @@ zmi_aux(Head, Z3In, CLPQIn,SymTabIn, Steps, Z3Out, CLPQOut, SubTree => Head) :-
 
     build_conjunct(RewrittenList, Body),
     NewSteps is Steps - 1,
-         debug_print('Stampo Body prima di zmi'),
+    %      debug_print('Stampo Body prima di zmi'),
 
 
-     debug_print(Body),
+    %  debug_print(Body),
     zmi_aux(Body, Z3In, CLPQIn,SymTabFinal, NewSteps, Z3Out, CLPQOut, SubTree).
 
 
@@ -231,7 +230,7 @@ extend_type_table(Head, Old, New) :-
 build_type_pairs(_, _, [], Acc, Acc).
 build_type_pairs(PredArity, Pos, [Var | Rest], AccIn, AccOut) :-
     ( var(Var),
-      arg_type(PredArity, Pos, Type)
+      pred_arg(PredArity, Pos, Type)
     ->
         ( % tipi atomici (int, bool, …)
           atom(Type)
@@ -300,16 +299,20 @@ rewrite_constr(_, _, Other, Other).
 %% constr_to_rawground(+Constr, -RawGround)
 %  1) Normalizza il vincolo (usa logic_utils:normalize_bool_expr/2)
 %  2) Rinomina le variabili per Z3 (usa z3constr2lower/3)
-constr_to_rawground(Constr, RawGround) :-
+
+
+%aggiungere in mezzo pay Check 
+
+constr_to_rawground(Constr,Pairs, RawGround) :-
     normalize_bool_expr(Constr, Norm),
-    z3constr2lower(Norm, _Pairs, RawGround).
+    z3constr2lower(Norm, Pairs, RawGround).
 
 
 %% constr_push_check(+Constr, -Result, -RawGround)
 %  1) Converte il vincolo in RawGround tramite constr_to_rawground/2
 %  2) Esegue il push+check su Z3 tramite z3_sat_check/3
 constr_push_check(Constr, Result, RawGround) :-
-    constr_to_rawground(Constr, RawGround),
+    constr_to_rawground(Constr,_Pairs, RawGround),
     z3_sat_check(RawGround, Result, _).
 
 
@@ -336,7 +339,7 @@ infer_annotations(Pred, Args, Annotations) :-
 
 make_annotation(Pred, Args, Pos, Var:Type=Var:Type) :-
     nth1(Pos, Args, Var),
-    arg_type(Pred, Pos, Type), 
+    pred_arg(Pred, Pos, Type), 
     !.
 make_annotation(_, _, _, none).
 

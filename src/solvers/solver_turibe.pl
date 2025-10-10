@@ -51,12 +51,11 @@ unifypairs([]).
 unifypairs([X-Y|Ys]) :- X=Y, unifypairs(Ys).
 
 z3constr2lower(C, P, C1) :-
-    %writeln('Stampo C'),
-    %writeln(C),
     term_variables(C, L),
     var2z3pairs(L, P),
-    copy_term((C,P), (C1,P1)), 
-    unifypairs(P1).
+    copy_term(C, Ccopy),
+    C1 = Ccopy,
+    unifypairs(P).
 
 
 
@@ -80,32 +79,42 @@ sostituisci_costanti_(Assoc, Arg, Arg1) :-
 %Se la formula contiene vincoli che combinati insieme sono insoddisfacibili, triggererà l'errore
 %Result = error_push_failed,  che farà anche fallire il predicato e quindi il branch analizzato.
 
-z3_sat_check(Formula, Result, RawGround) :-
-  %  term_variables(Formula, _Vars),
-    z3constr2lower(Formula, _Pairs, RawGround),
+z3_sat_check(Formula, Result, PrettyModel) :-
+    % >>> Teniamo Pairs e RawGround <<<
+    z3constr2lower(Formula, Pairs, RawGround),
     z3_reset,
     debug_print('--- Formula da pushare su Z3 ---'),
     debug_print(RawGround),
-    
+    debug_print('--- Pairs (PrologVar -> z3var) ---'),
+    debug_print(Pairs),
     (   catch(safe_z3_push(RawGround),
               error(z3_push_failed(F), _),
               ( debug_print('❌ Push fallito, salto il check'),
                 debug_print('RawGround (per Z3):'), debug_print(F),
                 Result = error_push_failed,  
-                fail  
-              )
-          )
+                fail))
     ->  debug_print('--- La formula non ha generato errore ---'),
-        debug_print(RawGround),
         z3_check(Sat),
         result_from_sat(Sat, Result),
         ( Result == unknown ->
             ( write('⚠️  Z3 ha restituito UNKNOWN per: '),
-              write_term(RawGround, [quoted(true), numbervars(true), max_depth(1000)]),
-              nl )
-        ; true )
-    ;   Result = error_push_failed  
+              write_term(RawGround, [quoted(true), numbervars(true), max_depth(1000)]), nl )
+        ; true ),
+        % >>> Se sat, prendi il modello e sostituisci con i nomi originali usando Pairs <<<
+        ( Result == sat ->
+            (z3_model(Model0),
+            debug_print('--- FINAL MODEL (Z3 grezzo) ---'),
+            debug_print(Model0),
+            % Pairs è nella forma VarProlog - Xz3  ==> perfetto per sostituisci_costanti/3
+            sostituisci_costanti(Model0, Pairs, ModelPretty),
+            debug_print('--- FINAL MODEL (Z3 pretty con nomi Prolog) ---'),
+            debug_print(ModelPretty),
+            PrettyModel = ModelPretty )
+        ;   PrettyModel = none )
+    ;   Result = error_push_failed,
+        PrettyModel = error_push_failed
     ).
+
  
 
 
@@ -140,14 +149,16 @@ z3_print_model_final(true) :-
 
 z3_print_model_final(Formula) :-
     debug_print('✅ z3_sat_check attivato!'),
-   % z3constr2lower(Formula, _Pairs, RawGround),
-   % normalize_z3_formula(RawGround, Z3Ground),
-    debug_print('--- Formula da pushare su Z3 ---'), debug_print(Formula),
-    ( z3_push(Formula) ->
+    z3constr2lower(Formula, Pairs, RawGround),
+    debug_print('--- Formula da pushare su Z3 ---'), debug_print(RawGround),
+    debug_print('--- Pairs (PrologVar -> z3var) ---'), debug_print(Pairs),
+    ( z3_push(RawGround) ->
         z3_check(Sat),
-        ( Sat == l_true ->
-            z3_model(Model),
-            writeln('Z3 Model:'), writeln(Model)
+        ( Sat == l_true ->(
+            z3_model(Model0),
+            debug_print('--- FINAL MODEL (Z3 grezzo) ---'), debug_print(Model0),
+            sostituisci_costanti(Model0, Pairs, ModelPretty),
+            writeln('Z3 Model (pretty):'), writeln(ModelPretty))
         ; Sat == l_false ->
             writeln('Z3 says: UNSAT (l_false)')
         ; Sat == l_undef ->
@@ -155,6 +166,7 @@ z3_print_model_final(Formula) :-
         )
     ; debug_print('Z3 push failed. Cannot analyze constraints.'), debug_print(Formula)
     ).
+
 
 
 
