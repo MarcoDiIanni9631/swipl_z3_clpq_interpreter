@@ -54,48 +54,72 @@
 
 nondet_interface_1_simpletransfer_39_0(A,B,C,D,E,F,G,E,F,G) :- constr((A=0)).
 nondet_interface_1_simpletransfer_39_0(A,B,C,D,E,F,G,H,I,J) :- 
-          constr((and(and(K=0,summary_5_function_deposit__38_39_0(A,B,C,D,L,M,N,O,H,I,J)),and(nondet_interface_1_simpletransfer_39_0(K,B,C,D,E,F,G,M,N,O),true)))).
+          nondet_interface_1_simpletransfer_39_0(K,B,C,D,E,F,G,L,M,N), 
+          summary_5_function_deposit__38_39_0(A,B,C,D,O,L,M,N,H,I,J), 
+          constr((K=0)).
 block_6_function_deposit__38_39_0(A,B,C,D,E,F,G,H,I,J,K) :- constr((true)).
 block_7_deposit_37_39_0(A,B,C,D,E,F,G,H,I,J,K) :- 
-          constr((and(block_6_function_deposit__38_39_0(A,B,C,D,E,F,G,H,I,J,K),and(and(and(and(I=F,A=0),and(and(true,J=G),K=H)),true),true)))).
+          block_6_function_deposit__38_39_0(A,B,C,D,E,F,G,H,I,J,K), 
+          constr((and(K=H,and(J=G,and(A=0,I=F))))).
 block_9_function_deposit__38_39_0(A,B,C,D,E,F,G,H,I,J,K) :- 
-          constr((and(and(and(true,not(L)),A=1),and(block_7_deposit_37_39_0(M,B,C,D,E,F,G,H,I,J,K),and(L=(N=O),and(implies(true,true),and(O=1,and(implies(true,true),and(N=1,and(implies(true,P),and(bytes_tuple_accessor_array(Q)=store(store(store(store(store(store(store(store(store(store(store(store(store(store(store(store(store(store(store(store(store(store(store(store(store(store(const_array(int,int,0),0,111),1,110),2,108),3,121),4,32),5,116),6,104),7,101),8,32),9,111),10,119),11,110),12,101),13,114),14,32),15,99),16,97),17,110),18,32),19,100),20,101),21,112),22,111),23,115),24,105),25,116),and(bytes_tuple_accessor_length(Q)=26,and(P=(R=S),and(implies(true,and(S>=0,S=<1461501637330902918203684832716283019655932542975)),and(S=K,and(implies(true,and(R>=0,R=<1461501637330902918203684832716283019655932542975)),and(R='msg.sender'(E),true))))))))))))))))).
+          block_7_deposit_37_39_0(L,B,C,D,E,F,G,H,I,J,K), 
+          constr((and(M=implies(true,true),and(N=implies(true,true),and(O=implies(true,P),and(Q=implies(true,and(R>=0,R=<1461501637330902918203684832716283019655932542975)),and(S=implies(true,and(T>=0,T=<1461501637330902918203684832716283019655932542975)),and(S,and(Q,and(O,and(N,and(M,and(A=1,and(~U,and(T='msg.sender'(E),and(R=K,and(P=(T=R),and(bytes_tuple_accessor_length(V)=26,and(bytes_tuple_accessor_array(V)=store(store(store(store(store(store(store(store(store(store(store(store(store(store(store(store(store(store(store(store(store(store(store(store(store(store(const_array(int,int,0),0,111),1,110),2,108),3,121),4,32),5,116),6,104),7,101),8,32),9,111),10,119),11,110),12,101),13,114),14,32),15,99),16,97),17,110),18,32),19,100),20,101),21,112),22,111),23,115),24,105),25,116),and(W=1,and(X=1,U=(W=X)))))))))))))))))))))).
 summary_4_function_deposit__38_39_0(A,B,C,D,E,F,G,H,I,J,K) :- 
           block_9_function_deposit__38_39_0(A,B,C,D,E,F,G,H,I,J,K), 
           constr((true)).
 block_8_return_function_deposit__38_39_0(A,B,C,D,E,F,G,H,I,J,K) :- 
-          constr((and(block_7_deposit_37_39_0(L,B,C,D,E,F,G,H,I,J,K),and(A=L,and(M=(N=O),and(implies(true,true),and(O=1,and(implies(true,true),and(N=1,and(implies(true,P),and(bytes_tuple_accessor_array(Q)=store(store(store(store(store(store(store(store(store(store(store(store(store(store(store(store(store(store(store(store(store(store(store(store(store(store(const_array(int,int,0),0,111),1,110),2,108),3,121),4,32),5,116),6,104),7,101),8,32),9,111),10,119),11,110),12,101),13,114),14,32),15,99),16,97),17,110),18,32),19,100),20,101),21,112),22,111),23,115),24,105),25,116),and(bytes_tuple_accessor_length(Q)=26,and(P=(R=S),and(implies(true,and(S>=0,S=<1461501637330902918203684832716283019655932542975)),and(S=K,and(implies(true,and(R>=0,R=<1461501637330902918203684832716283019655932542975)),and(R='msg.sender'(E),true))))))))))))))))).
+          block_7_deposit_37_39_0(L,B,C,D,E,F,G,H,I,J,K), 
+          constr((and(M=implies(true,true),and(N=implies(true,true),and(O=implies(true,P),and(Q=implies(true,and(R>=0,R=<1461501637330902918203684832716283019655932542975)),and(S=implies(true,and(T>=0,T=<1461501637330902918203684832716283019655932542975)),and(S,and(Q,and(O,and(N,and(M,and(T='msg.sender'(E),and(R=K,and(P=(T=R),and(bytes_tuple_accessor_length(U)=26,and(bytes_tuple_accessor_array(U)=store(store(store(store(store(store(store(store(store(store(store(store(store(store(store(store(store(store(store(store(store(store(store(store(store(store(const_array(int,int,0),0,111),1,110),2,108),3,121),4,32),5,116),6,104),7,101),8,32),9,111),10,119),11,110),12,101),13,114),14,32),15,99),16,97),17,110),18,32),19,100),20,101),21,112),22,111),23,115),24,105),25,116),and(V=1,and(W=1,and(X=(V=W),A=L)))))))))))))))))))).
 summary_4_function_deposit__38_39_0(A,B,C,D,E,F,G,H,I,J,K) :- 
-          constr((and(block_8_return_function_deposit__38_39_0(A,B,C,D,E,F,G,H,I,J,K),true))).
+          block_8_return_function_deposit__38_39_0(A,B,C,D,E,F,G,H,I,J,K), 
+          constr((true)).
 block_10_function_deposit__38_39_0(A,B,C,D,E,F,G,H,I,J,K) :- constr((true)).
 summary_5_function_deposit__38_39_0(A,B,C,D,E,F,G,H,I,J,K) :- 
-          constr((and(block_10_function_deposit__38_39_0(L,B,C,D,E,F,G,H,M,N,O),and(summary_4_function_deposit__38_39_0(A,B,C,D,E,P,N,O,I,J,K),and(P=state_type(store(balances(M),B,select(balances(M),B)+Q)),and(and(select(balances(M),B)+Q>=0,select(balances(M),B)+Q=<115792089237316195423570985008687907853269984665640564039457584007913129639935),and(Q>='msg.value'(E),and(and(and(and(and(and(and(and(and(and(and(and(and('block.prevrandao'(E)>18446744073709551616,and('block.basefee'(E)>=0,'block.basefee'(E)=<115792089237316195423570985008687907853269984665640564039457584007913129639935)),and('block.chainid'(E)>=0,'block.chainid'(E)=<115792089237316195423570985008687907853269984665640564039457584007913129639935)),and('block.coinbase'(E)>=0,'block.coinbase'(E)=<1461501637330902918203684832716283019655932542975)),and('block.prevrandao'(E)>=0,'block.prevrandao'(E)=<115792089237316195423570985008687907853269984665640564039457584007913129639935)),and('block.gaslimit'(E)>=0,'block.gaslimit'(E)=<115792089237316195423570985008687907853269984665640564039457584007913129639935)),and('block.number'(E)>=0,'block.number'(E)=<115792089237316195423570985008687907853269984665640564039457584007913129639935)),and('block.timestamp'(E)>=0,'block.timestamp'(E)=<115792089237316195423570985008687907853269984665640564039457584007913129639935)),and('msg.sender'(E)>=0,'msg.sender'(E)=<1461501637330902918203684832716283019655932542975)),and('msg.value'(E)>=0,'msg.value'(E)=<115792089237316195423570985008687907853269984665640564039457584007913129639935)),and('tx.origin'(E)>=0,'tx.origin'(E)=<1461501637330902918203684832716283019655932542975)),and('tx.gasprice'(E)>=0,'tx.gasprice'(E)=<115792089237316195423570985008687907853269984665640564039457584007913129639935)),and(and(and(and(and(and(true,'msg.sig'(E)=3504541104),select(bytes_tuple_accessor_array('msg.data'(E)),0)=208),select(bytes_tuple_accessor_array('msg.data'(E)),1)=227),select(bytes_tuple_accessor_array('msg.data'(E)),2)=13),select(bytes_tuple_accessor_array('msg.data'(E)),3)=176),bytes_tuple_accessor_length('msg.data'(E))>=4)),and(and(and(and(M=F,L=0),and(and(true,N=G),O=H)),true),true))))))))).
+          block_10_function_deposit__38_39_0(L,B,C,D,E,F,G,H,M,N,O), 
+          summary_4_function_deposit__38_39_0(A,B,C,D,E,P,N,O,I,J,K), 
+          constr((and(O=H,and(N=G,and(L=0,and(M=F,and(bytes_tuple_accessor_length('msg.data'(E))>=4,and(select(bytes_tuple_accessor_array('msg.data'(E)),3)=176,and(select(bytes_tuple_accessor_array('msg.data'(E)),2)=13,and(select(bytes_tuple_accessor_array('msg.data'(E)),1)=227,and(select(bytes_tuple_accessor_array('msg.data'(E)),0)=208,and('msg.sig'(E)=3504541104,and('tx.gasprice'(E)=<115792089237316195423570985008687907853269984665640564039457584007913129639935,and('tx.gasprice'(E)>=0,and('tx.origin'(E)=<1461501637330902918203684832716283019655932542975,and('tx.origin'(E)>=0,and('msg.value'(E)=<115792089237316195423570985008687907853269984665640564039457584007913129639935,and('msg.value'(E)>=0,and('msg.sender'(E)=<1461501637330902918203684832716283019655932542975,and('msg.sender'(E)>=0,and('block.timestamp'(E)=<115792089237316195423570985008687907853269984665640564039457584007913129639935,and('block.timestamp'(E)>=0,and('block.number'(E)=<115792089237316195423570985008687907853269984665640564039457584007913129639935,and('block.number'(E)>=0,and('block.gaslimit'(E)=<115792089237316195423570985008687907853269984665640564039457584007913129639935,and('block.gaslimit'(E)>=0,and('block.prevrandao'(E)=<115792089237316195423570985008687907853269984665640564039457584007913129639935,and('block.prevrandao'(E)>=0,and('block.coinbase'(E)=<1461501637330902918203684832716283019655932542975,and('block.coinbase'(E)>=0,and('block.chainid'(E)=<115792089237316195423570985008687907853269984665640564039457584007913129639935,and('block.chainid'(E)>=0,and('block.basefee'(E)=<115792089237316195423570985008687907853269984665640564039457584007913129639935,and('block.basefee'(E)>=0,and('block.prevrandao'(E)>18446744073709551616,and(Q>='msg.value'(E),and(select(balances(M),B)+Q=<115792089237316195423570985008687907853269984665640564039457584007913129639935,and(select(balances(M),B)+Q>=0,P=state_type(store(balances(M),B,select(balances(M),B)+Q)))))))))))))))))))))))))))))))))))))))).
 interface_0_simpletransfer_39_0(A,B,C,D,E,F) :- 
-          constr((and(and(summary_5_function_deposit__38_39_0(G,A,B,C,H,I,J,K,D,E,F),G=0),and(interface_0_simpletransfer_39_0(A,B,C,I,J,K),true)))).
+          interface_0_simpletransfer_39_0(A,B,C,G,H,I), 
+          summary_5_function_deposit__38_39_0(J,A,B,C,K,G,H,I,D,E,F), 
+          constr((J=0)).
 block_11_constructor_20_39_0(A,B,C,D,E,F,G,H,I,J,K,L,M) :- constr((true)).
 block_12__19_39_0(A,B,C,D,E,F,G,H,I,J,K,L,M) :- 
-          constr((and(block_11_constructor_20_39_0(A,B,C,D,E,F,G,H,I,J,K,L,M),and(and(and(and(J=F,A=0),and(and(true,K=G),L=H)),and(true,M=I)),true)))).
+          block_11_constructor_20_39_0(A,B,C,D,E,F,G,H,I,J,K,L,M), 
+          constr((and(M=I,and(L=H,and(K=G,and(A=0,J=F)))))).
 block_13_return_constructor_20_39_0(A,B,C,D,E,F,G,H,I,J,K,L,M) :- 
-          constr((and(block_12__19_39_0(A,B,C,D,E,F,G,H,I,J,N,O,M),and(L=P,and(implies(true,and(P>=0,P=<1461501637330902918203684832716283019655932542975)),and(P=Q,and(implies(true,and(R>=0,R=<1461501637330902918203684832716283019655932542975)),and(R=O,and(implies(true,and(Q>=0,Q=<1461501637330902918203684832716283019655932542975)),and(Q='msg.sender'(E),and(K=S,and(implies(true,and(S>=0,S=<1461501637330902918203684832716283019655932542975)),and(S=T,and(implies(true,and(U>=0,U=<1461501637330902918203684832716283019655932542975)),and(U=N,and(implies(true,and(T>=0,T=<1461501637330902918203684832716283019655932542975)),and(T=M,and(and(M>=0,M=<1461501637330902918203684832716283019655932542975),true)))))))))))))))))).
+          block_12__19_39_0(A,B,C,D,E,F,G,H,I,J,N,O,M), 
+          constr((and(P=implies(true,and(Q>=0,Q=<1461501637330902918203684832716283019655932542975)),and(R=implies(true,and(S>=0,S=<1461501637330902918203684832716283019655932542975)),and(T=implies(true,and(U>=0,U=<1461501637330902918203684832716283019655932542975)),and(V=implies(true,and(W>=0,W=<1461501637330902918203684832716283019655932542975)),and(X=implies(true,and(Y>=0,Y=<1461501637330902918203684832716283019655932542975)),and(Z=implies(true,and(A1>=0,A1=<1461501637330902918203684832716283019655932542975)),and(Z,and(X,and(V,and(T,and(R,and(P,and(M=<1461501637330902918203684832716283019655932542975,and(M>=0,and(A1=M,and(Y=N,and(W=A1,and(K=W,and(U='msg.sender'(E),and(S=O,and(Q=U,L=Q))))))))))))))))))))))).
 summary_3_constructor_20_39_0(A,B,C,D,E,F,G,H,I,J,K,L,M) :- 
-          constr((and(block_13_return_constructor_20_39_0(A,B,C,D,E,F,G,H,I,J,K,L,M),true))).
+          block_13_return_constructor_20_39_0(A,B,C,D,E,F,G,H,I,J,K,L,M), 
+          constr((true)).
 contract_initializer_entry_15_simpletransfer_39_0(A,B,C,D,E,F,G,H,I,J,K,L,M) :- 
-          constr((and(and(true,M=I),and(and(J=F,A=0),and(and(true,K=G),L=H))))).
+          constr((and(M=I,and(L=H,and(K=G,and(A=0,J=F)))))).
 contract_initializer_after_init_16_simpletransfer_39_0(A,B,C,D,E,F,G,H,I,J,K,L,M) :- 
-          constr((and(contract_initializer_entry_15_simpletransfer_39_0(A,B,C,D,E,F,G,H,I,J,K,L,M),true))).
+          contract_initializer_entry_15_simpletransfer_39_0(A,B,C,D,E,F,G,H,I,J,K,L,M), 
+          constr((true)).
 contract_initializer_14_simpletransfer_39_0(A,B,C,D,E,F,G,H,I,J,K,L,M) :- 
-          constr((and(A>0,and(contract_initializer_after_init_16_simpletransfer_39_0(N,B,C,D,E,F,G,H,I,O,P,Q,R),and(summary_3_constructor_20_39_0(A,B,C,D,E,O,P,Q,R,J,K,L,M),true))))).
+          contract_initializer_after_init_16_simpletransfer_39_0(N,B,C,D,E,F,G,H,I,O,P,Q,R), 
+          summary_3_constructor_20_39_0(A,B,C,D,E,O,P,Q,R,J,K,L,M), 
+          constr((A>0)).
 contract_initializer_14_simpletransfer_39_0(A,B,C,D,E,F,G,H,I,J,K,L,M) :- 
-          constr((and(contract_initializer_after_init_16_simpletransfer_39_0(N,B,C,D,E,F,G,H,I,O,P,Q,R),and(A=0,and(summary_3_constructor_20_39_0(A,B,C,D,E,O,P,Q,R,J,K,L,M),true))))).
+          contract_initializer_after_init_16_simpletransfer_39_0(N,B,C,D,E,F,G,H,I,O,P,Q,R), 
+          summary_3_constructor_20_39_0(A,B,C,D,E,O,P,Q,R,J,K,L,M), 
+          constr((A=0)).
 implicit_constructor_entry_17_simpletransfer_39_0(A,B,C,D,E,F,G,H,I,J,K,L,M) :- 
-          constr((and(select(balances(J),B)>='msg.value'(E),and(and(and(and(and(J=F,A=0),and(and(true,K=G),L=H)),and(true,M=I)),and(and(true,K=0),L=0)),true)))).
+          constr((and(select(balances(J),B)>='msg.value'(E),and(L=0,and(K=0,and(M=I,and(L=H,and(K=G,and(A=0,J=F))))))))).
 summary_constructor_2_simpletransfer_39_0(A,B,C,D,E,F,G,H,I,J,K,L,M) :- 
-          constr((and(A>0,and(implicit_constructor_entry_17_simpletransfer_39_0(N,B,C,D,E,F,G,H,I,O,P,Q,R),and(contract_initializer_14_simpletransfer_39_0(A,B,C,D,E,O,P,Q,R,J,K,L,M),true))))).
+          implicit_constructor_entry_17_simpletransfer_39_0(N,B,C,D,E,F,G,H,I,O,P,Q,R), 
+          contract_initializer_14_simpletransfer_39_0(A,B,C,D,E,O,P,Q,R,J,K,L,M), 
+          constr((A>0)).
 summary_constructor_2_simpletransfer_39_0(A,B,C,D,E,F,G,H,I,J,K,L,M) :- 
-          constr((and(implicit_constructor_entry_17_simpletransfer_39_0(N,B,C,D,E,F,G,H,I,O,P,Q,R),and(A=0,and(contract_initializer_14_simpletransfer_39_0(A,B,C,D,E,O,P,Q,R,J,K,L,M),true))))).
+          implicit_constructor_entry_17_simpletransfer_39_0(N,B,C,D,E,F,G,H,I,O,P,Q,R), 
+          contract_initializer_14_simpletransfer_39_0(A,B,C,D,E,O,P,Q,R,J,K,L,M), 
+          constr((A=0)).
 interface_0_simpletransfer_39_0(A,B,C,D,E,F) :- 
-          constr((and(and(and(and(and(and(and(and(and(and(and(and(and(and('block.prevrandao'(G)>18446744073709551616,and('block.basefee'(G)>=0,'block.basefee'(G)=<115792089237316195423570985008687907853269984665640564039457584007913129639935)),and('block.chainid'(G)>=0,'block.chainid'(G)=<115792089237316195423570985008687907853269984665640564039457584007913129639935)),and('block.coinbase'(G)>=0,'block.coinbase'(G)=<1461501637330902918203684832716283019655932542975)),and('block.prevrandao'(G)>=0,'block.prevrandao'(G)=<115792089237316195423570985008687907853269984665640564039457584007913129639935)),and('block.gaslimit'(G)>=0,'block.gaslimit'(G)=<115792089237316195423570985008687907853269984665640564039457584007913129639935)),and('block.number'(G)>=0,'block.number'(G)=<115792089237316195423570985008687907853269984665640564039457584007913129639935)),and('block.timestamp'(G)>=0,'block.timestamp'(G)=<115792089237316195423570985008687907853269984665640564039457584007913129639935)),and('msg.sender'(G)>=0,'msg.sender'(G)=<1461501637330902918203684832716283019655932542975)),and('msg.value'(G)>=0,'msg.value'(G)=<115792089237316195423570985008687907853269984665640564039457584007913129639935)),and('tx.origin'(G)>=0,'tx.origin'(G)=<1461501637330902918203684832716283019655932542975)),and('tx.gasprice'(G)>=0,'tx.gasprice'(G)=<115792089237316195423570985008687907853269984665640564039457584007913129639935)),'msg.value'(G)=0),H=0),and(summary_constructor_2_simpletransfer_39_0(H,A,B,C,G,I,J,K,L,D,E,F,M),true)))).
-error_target_3_0 :- 
-          constr((and(and(summary_5_function_deposit__38_39_0(A,B,C,D,E,F,G,H,I,J,K),A=1),and(interface_0_simpletransfer_39_0(B,C,D,F,G,H),true)))).
+          summary_constructor_2_simpletransfer_39_0(G,A,B,C,H,I,J,K,L,D,E,F,M), 
+          constr((and(G=0,and('msg.value'(H)=0,and('tx.gasprice'(H)=<115792089237316195423570985008687907853269984665640564039457584007913129639935,and('tx.gasprice'(H)>=0,and('tx.origin'(H)=<1461501637330902918203684832716283019655932542975,and('tx.origin'(H)>=0,and('msg.value'(H)=<115792089237316195423570985008687907853269984665640564039457584007913129639935,and('msg.value'(H)>=0,and('msg.sender'(H)=<1461501637330902918203684832716283019655932542975,and('msg.sender'(H)>=0,and('block.timestamp'(H)=<115792089237316195423570985008687907853269984665640564039457584007913129639935,and('block.timestamp'(H)>=0,and('block.number'(H)=<115792089237316195423570985008687907853269984665640564039457584007913129639935,and('block.number'(H)>=0,and('block.gaslimit'(H)=<115792089237316195423570985008687907853269984665640564039457584007913129639935,and('block.gaslimit'(H)>=0,and('block.prevrandao'(H)=<115792089237316195423570985008687907853269984665640564039457584007913129639935,and('block.prevrandao'(H)>=0,and('block.coinbase'(H)=<1461501637330902918203684832716283019655932542975,and('block.coinbase'(H)>=0,and('block.chainid'(H)=<115792089237316195423570985008687907853269984665640564039457584007913129639935,and('block.chainid'(H)>=0,and('block.basefee'(H)=<115792089237316195423570985008687907853269984665640564039457584007913129639935,and('block.basefee'(H)>=0,'block.prevrandao'(H)>18446744073709551616)))))))))))))))))))))))))).
+error_target_3_0 :- interface_0_simpletransfer_39_0(A,B,C,D,E,F), 
+          summary_5_function_deposit__38_39_0(G,A,B,C,H,D,E,F,I,J,K), 
+          constr((G=1)).
 ff :- error_target_3_0, constr((true)).
 

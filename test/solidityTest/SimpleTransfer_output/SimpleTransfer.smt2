@@ -1,4 +1,5 @@
-
+Info: CHC: Requested query:
+(set-option :timeout 1000)
 (set-logic HORN)
 (declare-datatypes ((|bytes_tuple| 0)) (((|bytes_tuple| (|bytes_tuple_accessor_array| (Array Int Int)) (|bytes_tuple_accessor_length| Int)))))
 (declare-datatypes ((|tx_type| 0)) (((|tx_type| (|block.basefee| Int) (|block.chainid| Int) (|block.coinbase| Int) (|block.gaslimit| Int) (|block.number| Int) (|block.prevrandao| Int) (|block.timestamp| Int) (|blockhash| (Array Int Int)) (|msg.data| |bytes_tuple|) (|msg.sender| Int) (|msg.sig| Int) (|msg.value| Int) (|tx.gasprice| Int) (|tx.origin| Int)))))
@@ -150,4 +151,13 @@
 (forall ( (_recipient_7_0 Int) (_recipient_7_1 Int) (_recipient_7_2 Int) (_recipient_7_3 Int) (_recipient_7_4 Int) (abi_0 |abi_type|) (crypto_0 |crypto_type|) (error_0 Int) (error_1 Int) (expr_10_0 Int) (expr_11_0 Int) (expr_12_1 Int) (expr_14_0 Int) (expr_16_1 Int) (expr_17_1 Int) (expr_25_1 Int) (expr_26_0 Int) (expr_27_1 Bool) (expr_28_length_pair_0 |bytes_tuple|) (expr_32_0 Int) (expr_33_0 Int) (expr_34_1 Bool) (funds_2_0 Int) (owner_5_0 Int) (owner_5_1 Int) (owner_5_2 Int) (recipient_3_0 Int) (recipient_3_1 Int) (recipient_3_2 Int) (state_0 |state_type|) (state_1 |state_type|) (state_2 |state_type|) (state_3 |state_type|) (this_0 Int) (tx_0 |tx_type|))
 (=> error_target_3_0 false)))
 (check-sat)
+
+
+Warning: CHC: Assertion violation might happen here.
+  --> /home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/test/solidityTest/SimpleTransfer.sol:16:9:
+   |
+16 |         assert (1==1);
+   |         ^^^^^^^^^^^^^
+
+Warning: CHC analysis was not possible. No Horn solver was available. None of the installed solvers was enabled.
 
