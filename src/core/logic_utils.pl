@@ -67,10 +67,12 @@ normalize_bool_expr(V:T, NV:T) :-
 %     !,
 %     normalize_bool_expr(Arg, NArg).
 
-normalize_bool_expr(implies(A, B), implies(NA, NB)) :-
+% Trasforma (implies A B) in (A -> B), per coerenza con type_inference Turibe
+normalize_bool_expr(implies(A, B), (NA -> NB)) :-
     !,
     normalize_bool_expr(A, NA),
     normalize_bool_expr(B, NB).
+
 
 % Arithmetic: unary minus (compound form and compact form)
 normalize_bool_expr(Expr, -NArg) :-
