@@ -1,18 +1,23 @@
 #!/bin/bash
 
 # ==========================================================
-# Script: check_result_06_oct.sh
+# Script: HtmlReportInterpreter.sh
 # Autore: Marco Di Ianni
 # Descrizione:
 #   Genera un report HTML confrontando i risultati ZMI con
-#   il verdict atteso dai file SMT. Il verdetto SMT viene
-#   estratto dalla parte finale del nome file prima di .smt2.pl
+#   il verdict atteso dai file SMT.
+#   Mostra timeout e maxdepth nelle intestazioni, segnala
+#   timeout senza maxdepth e indica la directory di origine.
 # ==========================================================
 
-# Usage: ./check_result_06_oct.sh <cartella>
-# Esempio: ./check_result_06_oct.sh /path/to/folder
+# Uso:
+#   ./HtmlReportInterpreter.sh <cartella>
+# Esempio:
+#   ./HtmlReportInterpreter.sh ./test/CHCCOMP25/LIA-Lin-Arrays_smt/soloPlarray14_ott
 
 DIR="$1"
+DEFAULT_TIME_LIMIT=5      # default timeout in secondi
+DEFAULT_MAXDEPTH=15       # default maxdepth
 
 if [ ! -d "$DIR" ]; then
   echo "❌ Cartella non trovata: $DIR"
@@ -23,11 +28,22 @@ BASENAME=$(basename "$DIR")
 PARENT_DIR=$(dirname "$DIR")
 HTML_OUT="$DIR/${BASENAME}_report.html"
 
+# ---- Ricava valori dinamici se presenti ----
+TIME_LIMIT="${DEFAULT_TIME_LIMIT}s"
+MAXDEPTH_FOUND=""
+
+first_zmiout=$(ls "$DIR"/*.zmiout 2>/dev/null | head -n1)
+if [ -n "$first_zmiout" ]; then
+  extracted_md=$(basename "$first_zmiout" | grep -oP "MaxDepth\K[0-9]+")
+  [ -n "$extracted_md" ] && MAXDEPTH_FOUND="$extracted_md"
+fi
+[ -z "$MAXDEPTH_FOUND" ] && MAXDEPTH_FOUND="$DEFAULT_MAXDEPTH"
+
 # ---- HTML HEAD + STILI ----
 {
-  echo "<!DOCTYPE html>"
-  echo "<html><head><meta charset=\"UTF-8\"><title>Report: $BASENAME</title>"
-  echo "<style>
+  echo '<!DOCTYPE html>'
+  echo "<html><head><meta charset='UTF-8'><title>Report: $BASENAME</title>"
+  echo '<style>
     body {font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;}
     table {border-collapse: collapse; font-size: 14px;}
     th, td {border: 1px solid #333; padding: 6px 8px;}
@@ -44,23 +60,35 @@ HTML_OUT="$DIR/${BASENAME}_report.html"
     .missing-link {color: #c00; border-bottom: 1px dashed #c00;}
     .legend {margin: 10px 0 18px; font-size: 13px; color: #444;}
     .legend span {display:inline-block; margin-right:14px;}
-  </style>"
+  </style>'
   echo "</head><body>"
   echo "<h2>Verifica Corrispondenza Risultati - $BASENAME</h2>"
-  echo "<div class=\"legend\">
+  echo "<div class='legend'>
+          <p><strong>Directory di origine:</strong> $DIR</p>
           <span><strong>SMT</strong> = link al file SMT presente</span>
           <span><strong>SMT!</strong> = link previsto ma file non trovato (può dare 404)</span>
         </div>"
   echo "<table>"
-  echo "<tr><th>File</th><th>SMT Out</th><th>ZMI Result</th><th>Timeout</th><th>MaxDepth</th><th>MaxDepthReached</th><th>ExploredTree</th><th>Z3 Push</th><th>Match</th></tr>"
+  echo "<tr>
+          <th>File</th>
+          <th>SMT Out</th>
+          <th>ZMI Result</th>
+          <th>Timeout (${TIME_LIMIT})</th>
+          <th>MaxDepth (${MAXDEPTH_FOUND})</th>
+          <th>MaxDepthReached</th>
+          <th>ExploredTree</th>
+          <th>Z3 Push</th>
+          <th>Match</th>
+        </tr>"
 } > "$HTML_OUT"
 
+# ---- LOOP FILES ----
 shopt -s nullglob
 
 for smtfile in "$DIR"/*.smt2.pl; do
   base=$(basename "$smtfile")
 
-  # ✅ Etichetta SMT: estrai "true" o "false" dall'ultima parte del nome prima di .smt2.pl
+  # Etichetta SMT
   verdict_part=$(basename "$base" .smt2.pl | rev | cut -d'_' -f1 | rev)
   if [[ "$verdict_part" == "true" ]]; then
     label_smt="true"
@@ -70,22 +98,22 @@ for smtfile in "$DIR"/*.smt2.pl; do
     label_smt="unknown"
   fi
 
-  # Cerca file .zmiout associato
   prefix="${smtfile%.smt2.pl}"
   zmiout_file=""
   label_zmi=""
-  timeout_flag="✘"
+  timeout_flag="no"
   maxdepth="?"
   maxdepth_disp="?"
-  maxdepth_reached_flag="✘"
+  maxdepth_reached_flag="no"
   explored_flag="?"
   push_flag="?"
 
+  # Cerca zmiout corrispondente
   for candidate in "$prefix".*.zmiout; do
     [ -f "$candidate" ] || continue
     filename=$(basename "$candidate")
 
-    [[ "$filename" == *timeout* ]] && timeout_flag="✔"
+    [[ "$filename" == *timeout* ]] && timeout_flag="yes"
 
     if [[ "$filename" =~ MaxDepth([0-9]+) ]]; then
       maxdepth="${BASH_REMATCH[1]}"
@@ -93,7 +121,7 @@ for smtfile in "$DIR"/*.smt2.pl; do
     fi
 
     if [[ "$filename" == *MaxDepthReached* ]]; then
-      maxdepth_reached_flag="✔"
+      maxdepth_reached_flag="yes"
       if [[ "$maxdepth" != "?" ]]; then
         maxdepth_disp="$maxdepth (MaxDepthReached)"
       else
@@ -102,12 +130,11 @@ for smtfile in "$DIR"/*.smt2.pl; do
     fi
 
     if [[ "$filename" == *Z3PushFailed* ]]; then
-      push_flag="✘"
+      push_flag="no"
     elif [[ "$filename" == *Z3PushOK* ]]; then
-      push_flag="✔"
+      push_flag="yes"
     fi
 
-    # Selezione + mappatura SOLO a true/false
     if   [[ "$filename" == *".false"* || "$filename" == *"timeout_false"* ]]; then
       zmiout_file="$candidate"; label_zmi="false"; break
     elif [[ "$filename" == *".true"*  || "$filename" == *"timeout_true"*  ]]; then
@@ -117,19 +144,23 @@ for smtfile in "$DIR"/*.smt2.pl; do
     fi
   done
 
-  # Calcolo explored_flag
+  # Timeout senza maxdepth
+  warn_timeout_no_depth=""
+  if [[ "$timeout_flag" == "yes" && "$maxdepth" == "?" ]]; then
+    warn_timeout_no_depth="warn"
+  fi
+
+  # Stato esplorazione
   if [ -n "$zmiout_file" ]; then
     chosen_name=$(basename "$zmiout_file")
     if [[ "$chosen_name" == *"_totalExplored"* ]]; then
-      explored_flag="✔"
+      explored_flag="yes"
     elif [[ "$chosen_name" == *"_notFullyExplored"* ]]; then
-      explored_flag="✘"
-    else
-      explored_flag="?"
+      explored_flag="no"
     fi
   fi
 
-  # Traduzione per visualizzazione
+  # Traduzione
   if   [[ "$label_zmi" == "true" ]]; then
     label_zmi_disp="non derivable"
   elif [[ "$label_zmi" == "false" ]]; then
@@ -138,55 +169,57 @@ for smtfile in "$DIR"/*.smt2.pl; do
     label_zmi_disp=""
   fi
 
-  # Colore e match
+  # Colori e match
   if [[ "$label_smt" == "unknown" ]]; then
-    rowclass="missing"; match="✘"
+    rowclass="missing"; match="no"
   elif [[ -z "$label_zmi" ]]; then
-    rowclass="missing"; match="✘"
+    rowclass="missing"; match="no"
   elif [[ "$label_smt" == "true" && "$label_zmi" == "true" ]]; then
-    if [[ "$maxdepth_reached_flag" == "✔" ]]; then
-      rowclass="partial"; match="✔"
-    else
-      rowclass="ok"; match="✔"
-    fi
+    [[ "$maxdepth_reached_flag" == "yes" ]] && rowclass="partial" || rowclass="ok"
+    match="yes"
   elif [[ "$label_smt" == "false" && "$label_zmi" == "false" ]]; then
-    rowclass="ok"; match="✔"
+    rowclass="ok"; match="yes"
   elif [[ "$label_smt" == "true" && "$label_zmi" == "false" ]]; then
-    rowclass="err"; match="✘"
+    rowclass="err"; match="no"
   elif [[ "$label_smt" == "false" && "$label_zmi" == "true" ]]; then
-    rowclass="orange"; match="✘"
+    rowclass="orange"; match="no"
   else
-    rowclass="err"; match="✘"
+    rowclass="err"; match="no"
   fi
 
-  # --- LINKS ---
+  # Link ai file
   smt_prefix=$(basename "${smtfile%.smt2.pl}")
   smt_rel="../$smt_prefix.smt2"
   smt_orig="$PARENT_DIR/$smt_prefix.smt2"
 
   if [ -f "$smt_orig" ]; then
-    link_smt="(<a class=\"smt-link\" href=\"$smt_rel\" title=\"SMT presente\">SMT</a>)"
+    link_smt="(<a class='smt-link' href='$smt_rel'>SMT</a>)"
   else
-    link_smt="(<a class=\"smt-link missing-link\" href=\"$smt_rel\" title=\"File SMT non trovato\">SMT!</a>)"
+    link_smt="(<a class='smt-link missing-link' href='$smt_rel'>SMT!</a>)"
   fi
 
-  link_pl="<a href=\"$(basename "$smtfile")\">$base</a>"
-
+  link_pl="<a href='$(basename "$smtfile")'>$base</a>"
   if [ -n "$zmiout_file" ]; then
-    link_zmi="(<a href=\"$(basename "$zmiout_file")\" title=\"Output ZMI\">ZMI</a>)"
+    link_zmi="(<a href='$(basename "$zmiout_file")'>ZMI</a>)"
   else
     link_zmi="(ZMI missing)"
   fi
 
-  file_cell="$link_pl $link_smt $link_zmi"
-
-  echo "<tr class=\"$rowclass\"><td>$file_cell</td><td>$label_smt</td><td>$label_zmi_disp</td><td>$timeout_flag</td><td>$maxdepth_disp</td><td>$maxdepth_reached_flag</td><td>$explored_flag</td><td>$push_flag</td><td>$match</td></tr>" >> "$HTML_OUT"
+  # Riga HTML
+  echo "<tr class='$rowclass'>
+          <td>$link_pl $link_smt $link_zmi</td>
+          <td>$label_smt</td>
+          <td>$label_zmi_disp</td>
+          <td>$timeout_flag $warn_timeout_no_depth</td>
+          <td>$maxdepth_disp</td>
+          <td>$maxdepth_reached_flag</td>
+          <td>$explored_flag</td>
+          <td>$push_flag</td>
+          <td>$match</td>
+        </tr>" >> "$HTML_OUT"
 done
 
 shopt -u nullglob
 
-{
-  echo "</table></body></html>"
-} >> "$HTML_OUT"
-
+echo "</table></body></html>" >> "$HTML_OUT"
 echo "✅ Report generato: $HTML_OUT"
