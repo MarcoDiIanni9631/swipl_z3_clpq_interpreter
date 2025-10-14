@@ -1,12 +1,21 @@
 #!/bin/bash
 
+# ==========================================================
+# Script: check_result_06_oct.sh
+# Autore: Marco Di Ianni
+# Descrizione:
+#   Genera un report HTML confrontando i risultati ZMI con
+#   il verdict atteso dai file SMT. Il verdetto SMT viene
+#   estratto dalla parte finale del nome file prima di .smt2.pl
+# ==========================================================
+
 # Usage: ./check_result_06_oct.sh <cartella>
-# Esempio: ./check_result_06_oct.sh /percorso/cartella_test
+# Esempio: ./check_result_06_oct.sh /path/to/folder
 
 DIR="$1"
 
 if [ ! -d "$DIR" ]; then
-  echo "Cartella non trovata: $DIR"
+  echo "❌ Cartella non trovata: $DIR"
   exit 1
 fi
 
@@ -23,12 +32,12 @@ HTML_OUT="$DIR/${BASENAME}_report.html"
     table {border-collapse: collapse; font-size: 14px;}
     th, td {border: 1px solid #333; padding: 6px 8px;}
     th {background: #eee;}
-    .ok {background: #9f9;}         /* verde */
-    .warn {background: #ff9;}       /* giallo */
-    .err {background: #f66;}        /* rosso */
-    .orange {background: #fc6;}     /* arancione */
-    .missing {background: #ddd;}    /* grigio */
-    .partial {background: #9cf;}    /* blu chiaro */
+    .ok {background: #9f9;}
+    .warn {background: #ff9;}
+    .err {background: #f66;}
+    .orange {background: #fc6;}
+    .missing {background: #ddd;}
+    .partial {background: #9cf;}
     a {text-decoration: none;}
     a:hover {text-decoration: underline;}
     .smt-link {font-weight: 600;}
@@ -51,10 +60,11 @@ shopt -s nullglob
 for smtfile in "$DIR"/*.smt2.pl; do
   base=$(basename "$smtfile")
 
-  # Etichetta SMT (dal nome file)
-  if [[ "$base" == *true* ]]; then
+  # ✅ Etichetta SMT: estrai "true" o "false" dall'ultima parte del nome prima di .smt2.pl
+  verdict_part=$(basename "$base" .smt2.pl | rev | cut -d'_' -f1 | rev)
+  if [[ "$verdict_part" == "true" ]]; then
     label_smt="true"
-  elif [[ "$base" == *false* ]]; then
+  elif [[ "$verdict_part" == "false" ]]; then
     label_smt="false"
   else
     label_smt="unknown"
@@ -63,7 +73,7 @@ for smtfile in "$DIR"/*.smt2.pl; do
   # Cerca file .zmiout associato
   prefix="${smtfile%.smt2.pl}"
   zmiout_file=""
-  label_zmi=""                    # <- solo 'true' o 'false' (niente timeout/unknown)
+  label_zmi=""
   timeout_flag="✘"
   maxdepth="?"
   maxdepth_disp="?"
@@ -103,13 +113,11 @@ for smtfile in "$DIR"/*.smt2.pl; do
     elif [[ "$filename" == *".true"*  || "$filename" == *"timeout_true"*  ]]; then
       zmiout_file="$candidate"; label_zmi="true"; break
     elif [[ "$filename" == *"unknown"* ]]; then
-      # se proprio abbiamo un 'unknown', forziamo a 'true' (= non derivable) per avere solo due etichette
       zmiout_file="$candidate"; label_zmi="true"
-      # NOTA: non facciamo 'break' per dare priorità ad eventuali file più informativi trovati dopo
     fi
   done
 
-  # Calcolo explored_flag dal file scelto (se presente)
+  # Calcolo explored_flag
   if [ -n "$zmiout_file" ]; then
     chosen_name=$(basename "$zmiout_file")
     if [[ "$chosen_name" == *"_totalExplored"* ]]; then
@@ -121,17 +129,16 @@ for smtfile in "$DIR"/*.smt2.pl; do
     fi
   fi
 
-  # Etichetta personalizzata ZMI (solo due valori)
+  # Traduzione per visualizzazione
   if   [[ "$label_zmi" == "true" ]]; then
     label_zmi_disp="non derivable"
   elif [[ "$label_zmi" == "false" ]]; then
     label_zmi_disp="derivable"
   else
-    # Se non trovato nessun .zmiout, lascio cella vuota ma la riga segnala 'missing'
     label_zmi_disp=""
   fi
 
-  # Colore riga + match (niente casi 'timeout' in ZMI Result)
+  # Colore e match
   if [[ "$label_smt" == "unknown" ]]; then
     rowclass="missing"; match="✘"
   elif [[ -z "$label_zmi" ]]; then
@@ -157,11 +164,10 @@ for smtfile in "$DIR"/*.smt2.pl; do
   smt_rel="../$smt_prefix.smt2"
   smt_orig="$PARENT_DIR/$smt_prefix.smt2"
 
-  # Link SMT (sempre visibile)
   if [ -f "$smt_orig" ]; then
     link_smt="(<a class=\"smt-link\" href=\"$smt_rel\" title=\"SMT presente\">SMT</a>)"
   else
-    link_smt="(<a class=\"smt-link missing-link\" href=\"$smt_rel\" title=\"File SMT non trovato: il link può dare 404\">SMT!</a>)"
+    link_smt="(<a class=\"smt-link missing-link\" href=\"$smt_rel\" title=\"File SMT non trovato\">SMT!</a>)"
   fi
 
   link_pl="<a href=\"$(basename "$smtfile")\">$base</a>"
