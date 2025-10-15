@@ -7,17 +7,13 @@
 #   Genera un report HTML confrontando i risultati ZMI con
 #   il verdict atteso dai file SMT.
 #   Mostra timeout e maxdepth nelle intestazioni, segnala
-#   timeout senza maxdepth e indica la directory di origine.
+#   i casi in cui c'è timeout ma MaxDepth non è stato raggiunto
+#   (Timeout&NoMaxDepth), colorando la riga di giallo.
 # ==========================================================
 
-# Uso:
-#   ./HtmlReportInterpreter.sh <cartella>
-# Esempio:
-#   ./HtmlReportInterpreter.sh ./test/CHCCOMP25/LIA-Lin-Arrays_smt/soloPlarray14_ott
-
 DIR="$1"
-DEFAULT_TIME_LIMIT=5      # default timeout in secondi
-DEFAULT_MAXDEPTH=15       # default maxdepth
+DEFAULT_TIME_LIMIT=5
+DEFAULT_MAXDEPTH=15
 
 if [ ! -d "$DIR" ]; then
   echo "❌ Cartella non trovata: $DIR"
@@ -45,11 +41,11 @@ fi
   echo "<html><head><meta charset='UTF-8'><title>Report: $BASENAME</title>"
   echo '<style>
     body {font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;}
-    table {border-collapse: collapse; font-size: 14px;}
-    th, td {border: 1px solid #333; padding: 6px 8px;}
+    table {border-collapse: collapse; font-size: 14px; min-width: 95%;}
+    th, td {border: 1px solid #333; padding: 6px 8px; text-align: center;}
     th {background: #eee;}
     .ok {background: #9f9;}
-    .warn {background: #ff9;}
+    .warn {background: #ffeb99;}  /* Riga gialla per Timeout&NoMaxDepth */
     .err {background: #f66;}
     .orange {background: #fc6;}
     .missing {background: #ddd;}
@@ -67,6 +63,7 @@ fi
           <p><strong>Directory di origine:</strong> $DIR</p>
           <span><strong>SMT</strong> = link al file SMT presente</span>
           <span><strong>SMT!</strong> = link previsto ma file non trovato (può dare 404)</span>
+          <span><strong>🟡 Riga gialla</strong> = Timeout ma MaxDepth non raggiunto</span>
         </div>"
   echo "<table>"
   echo "<tr>
@@ -77,7 +74,7 @@ fi
           <th>MaxDepth (${MAXDEPTH_FOUND})</th>
           <th>MaxDepthReached</th>
           <th>ExploredTree</th>
-          <th>Z3 Push</th>
+          <th>Timeout&NoMaxDepth</th>
           <th>Match</th>
         </tr>"
 } > "$HTML_OUT"
@@ -88,7 +85,6 @@ shopt -s nullglob
 for smtfile in "$DIR"/*.smt2.pl; do
   base=$(basename "$smtfile")
 
-  # Etichetta SMT
   verdict_part=$(basename "$base" .smt2.pl | rev | cut -d'_' -f1 | rev)
   if [[ "$verdict_part" == "true" ]]; then
     label_smt="true"
@@ -106,9 +102,8 @@ for smtfile in "$DIR"/*.smt2.pl; do
   maxdepth_disp="?"
   maxdepth_reached_flag="no"
   explored_flag="?"
-  push_flag="?"
+  timeout_nomaxdepth_flag="no"  # ⚠️ nuova colonna
 
-  # Cerca zmiout corrispondente
   for candidate in "$prefix".*.zmiout; do
     [ -f "$candidate" ] || continue
     filename=$(basename "$candidate")
@@ -129,12 +124,6 @@ for smtfile in "$DIR"/*.smt2.pl; do
       fi
     fi
 
-    if [[ "$filename" == *Z3PushFailed* ]]; then
-      push_flag="no"
-    elif [[ "$filename" == *Z3PushOK* ]]; then
-      push_flag="yes"
-    fi
-
     if   [[ "$filename" == *".false"* || "$filename" == *"timeout_false"* ]]; then
       zmiout_file="$candidate"; label_zmi="false"; break
     elif [[ "$filename" == *".true"*  || "$filename" == *"timeout_true"*  ]]; then
@@ -144,10 +133,13 @@ for smtfile in "$DIR"/*.smt2.pl; do
     fi
   done
 
-  # Timeout senza maxdepth
-  warn_timeout_no_depth=""
-  if [[ "$timeout_flag" == "yes" && "$maxdepth" == "?" ]]; then
-    warn_timeout_no_depth="warn"
+  # ⚠️ Timeout ma MaxDepth non raggiunto → Timeout&NoMaxDepth
+  if [[ "$timeout_flag" == "yes" && "$maxdepth_reached_flag" == "no" ]]; then
+    timeout_nomaxdepth_flag="yes"
+    rowclass="warn"
+  else
+    timeout_nomaxdepth_flag="no"
+    rowclass=""
   fi
 
   # Stato esplorazione
@@ -160,7 +152,6 @@ for smtfile in "$DIR"/*.smt2.pl; do
     fi
   fi
 
-  # Traduzione
   if   [[ "$label_zmi" == "true" ]]; then
     label_zmi_disp="non derivable"
   elif [[ "$label_zmi" == "false" ]]; then
@@ -169,25 +160,30 @@ for smtfile in "$DIR"/*.smt2.pl; do
     label_zmi_disp=""
   fi
 
-  # Colori e match
+  # Colori logici base (match)
   if [[ "$label_smt" == "unknown" ]]; then
-    rowclass="missing"; match="no"
+    [[ -z "$rowclass" ]] && rowclass="missing"
+    match="no"
   elif [[ -z "$label_zmi" ]]; then
-    rowclass="missing"; match="no"
+    [[ -z "$rowclass" ]] && rowclass="missing"
+    match="no"
   elif [[ "$label_smt" == "true" && "$label_zmi" == "true" ]]; then
-    [[ "$maxdepth_reached_flag" == "yes" ]] && rowclass="partial" || rowclass="ok"
+    [[ "$maxdepth_reached_flag" == "yes" && -z "$rowclass" ]] && rowclass="partial" || rowclass="${rowclass:-ok}"
     match="yes"
   elif [[ "$label_smt" == "false" && "$label_zmi" == "false" ]]; then
-    rowclass="ok"; match="yes"
+    [[ -z "$rowclass" ]] && rowclass="ok"
+    match="yes"
   elif [[ "$label_smt" == "true" && "$label_zmi" == "false" ]]; then
-    rowclass="err"; match="no"
+    [[ -z "$rowclass" ]] && rowclass="err"
+    match="no"
   elif [[ "$label_smt" == "false" && "$label_zmi" == "true" ]]; then
-    rowclass="orange"; match="no"
+    [[ -z "$rowclass" ]] && rowclass="orange"
+    match="no"
   else
-    rowclass="err"; match="no"
+    [[ -z "$rowclass" ]] && rowclass="err"
+    match="no"
   fi
 
-  # Link ai file
   smt_prefix=$(basename "${smtfile%.smt2.pl}")
   smt_rel="../$smt_prefix.smt2"
   smt_orig="$PARENT_DIR/$smt_prefix.smt2"
@@ -205,18 +201,18 @@ for smtfile in "$DIR"/*.smt2.pl; do
     link_zmi="(ZMI missing)"
   fi
 
-  # Riga HTML
   echo "<tr class='$rowclass'>
           <td>$link_pl $link_smt $link_zmi</td>
           <td>$label_smt</td>
           <td>$label_zmi_disp</td>
-          <td>$timeout_flag $warn_timeout_no_depth</td>
+          <td>$timeout_flag</td>
           <td>$maxdepth_disp</td>
           <td>$maxdepth_reached_flag</td>
           <td>$explored_flag</td>
-          <td>$push_flag</td>
+          <td>$timeout_nomaxdepth_flag</td>
           <td>$match</td>
         </tr>" >> "$HTML_OUT"
+
 done
 
 shopt -u nullglob
