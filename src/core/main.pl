@@ -67,11 +67,11 @@ zmi(Head) :-
 
     ( Models == [] ->
 
-        format('No SAT branches found in MaxDepths = ~w.\n', [MaxDepths]), fail
+        (format('No SAT branches found in MaxDepths = ~w.\n', [MaxDepths]))
 
-    ; format('--- ALL SAT BRANCHES FOUND (MaxDepths = ~w) ---~n', [MaxDepths]),
+    ; (format('--- ALL SAT BRANCHES FOUND (MaxDepths = ~w) ---~n', [MaxDepths]),
 
-      print_all_models(Models)
+      print_all_models(Models))
 
     ).
 
