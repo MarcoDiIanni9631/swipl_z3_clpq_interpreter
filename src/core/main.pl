@@ -59,7 +59,7 @@ zmi(Head) :-
 
     set_solver(turibe),
 
-    MaxDepths = 15, % <-- qui il default passi
+    MaxDepths = 50, % <-- qui il default passi
 
     format('ℹ️ MaxDepth impostato a: ~w\n', [MaxDepths]),
 

@@ -1,15 +1,14 @@
 #!/bin/bash
-#
+
 # ==========================================================
 # Script: HtmlReportInterpreter.sh
 # Autore: Marco Di Ianni
 # Descrizione:
 #   Genera un report HTML confrontando i risultati ZMI con
 #   il verdict atteso dai file SMT.
-#   Mostra timeout, maxdepth e segnala i casi di errore.
-#   Evidenzia:
-#     🟡 Timeout ma MaxDepth non raggiunto
-#     🔴 ErrorDetected = sì
+#   Mostra timeout e maxdepth nelle intestazioni, segnala
+#   i casi in cui c'è timeout ma MaxDepth non è stato raggiunto
+#   (Timeout&NoMaxDepth), colorando la riga di giallo.
 # ==========================================================
 
 DIR="$1"
@@ -47,7 +46,7 @@ fi
     th {background: #eee;}
     .ok {background: #9f9;}
     .warn {background: #ffeb99;}  /* Riga gialla per Timeout&NoMaxDepth */
-    .err {background: #f66;}      /* Riga rossa per errori */
+    .err {background: #f66;}
     .orange {background: #fc6;}
     .missing {background: #ddd;}
     .partial {background: #9cf;}
@@ -65,7 +64,6 @@ fi
           <span><strong>SMT</strong> = link al file SMT presente</span>
           <span><strong>SMT!</strong> = link previsto ma file non trovato (può dare 404)</span>
           <span><strong>🟡 Riga gialla</strong> = Timeout ma MaxDepth non raggiunto</span>
-          <span><strong>🔴 Riga rossa</strong> = ErrorDetected nel log (.zmiout)</span>
         </div>"
   echo "<table>"
   echo "<tr>
@@ -76,7 +74,6 @@ fi
           <th>MaxDepth (${MAXDEPTH_FOUND})</th>
           <th>MaxDepthReached</th>
           <th>ExploredTree</th>
-          <th>ErrorDetected</th>
           <th>Timeout&NoMaxDepth</th>
           <th>Match</th>
         </tr>"
@@ -105,16 +102,13 @@ for smtfile in "$DIR"/*.smt2.pl; do
   maxdepth_disp="?"
   maxdepth_reached_flag="no"
   explored_flag="?"
-  error_flag="no"
-  timeout_nomaxdepth_flag="no"
-  rowclass=""
+  timeout_nomaxdepth_flag="no"  # ⚠️ nuova colonna
 
   for candidate in "$prefix".*.zmiout; do
     [ -f "$candidate" ] || continue
     filename=$(basename "$candidate")
 
     [[ "$filename" == *timeout* ]] && timeout_flag="yes"
-    [[ "$filename" == *Error* ]] && error_flag="yes"  # ✅ nuovo check per errori
 
     if [[ "$filename" =~ MaxDepth([0-9]+) ]]; then
       maxdepth="${BASH_REMATCH[1]}"
@@ -143,11 +137,9 @@ for smtfile in "$DIR"/*.smt2.pl; do
   if [[ "$timeout_flag" == "yes" && "$maxdepth_reached_flag" == "no" ]]; then
     timeout_nomaxdepth_flag="yes"
     rowclass="warn"
-  fi
-
-  # ⚠️ Error detected → evidenziato in rosso
-  if [[ "$error_flag" == "yes" ]]; then
-    rowclass="err"
+  else
+    timeout_nomaxdepth_flag="no"
+    rowclass=""
   fi
 
   # Stato esplorazione
@@ -217,7 +209,6 @@ for smtfile in "$DIR"/*.smt2.pl; do
           <td>$maxdepth_disp</td>
           <td>$maxdepth_reached_flag</td>
           <td>$explored_flag</td>
-          <td>$error_flag</td>
           <td>$timeout_nomaxdepth_flag</td>
           <td>$match</td>
         </tr>" >> "$HTML_OUT"

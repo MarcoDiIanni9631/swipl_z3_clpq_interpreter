@@ -99,8 +99,10 @@ for file in "$DIR"/*.smt2.pl; do
   if [ $EXIT_CODE -eq 124 ]; then
     echo "Timeout per il file: $file"
     if [ "$FOUND_INCORRECT" = "yes" ]; then
+      # Modello trovato → false
       finalout="${base}.timeout_false_MaxDepth${MaxDepth}${LIMIT_TAG}${PUSH_TAG}${TERM_TAG}.zmiout"
     else
+      # Nessun modello trovato → true (richiesta)
       finalout="${base}.timeout_true_MaxDepth${MaxDepth}${LIMIT_TAG}${PUSH_TAG}${TERM_TAG}.zmiout"
     fi
     mv "$tmpout" "$finalout"
@@ -108,22 +110,13 @@ for file in "$DIR"/*.smt2.pl; do
     continue
   fi
 
-  # --- Check for generic errors (Z3, Prolog, normalization, etc.) ---
-  # Se il file contiene parole chiave come "error", "failed" o "segmentation fault",
-  # aggiungiamo un tag _Error al nome finale per facilitarne il filtraggio.
-  if grep -Eqi "error|failed|segmentation fault" "$tmpout"; then
-    ERROR_TAG="_Error"
-  else
-    ERROR_TAG=""
-  fi
-
   # --- Normal classification ---
   if grep -q "No SAT" "$tmpout"; then
-    finalout="${base}.true_MaxDepth${MaxDepth}${LIMIT_TAG}${PUSH_TAG}${TERM_TAG}${ERROR_TAG}.zmiout"
+    finalout="${base}.true_MaxDepth${MaxDepth}${LIMIT_TAG}${PUSH_TAG}${TERM_TAG}.zmiout"
   elif grep -q "Z3 Model" "$tmpout" || grep -q "SAT MODEL" "$tmpout" || [ "$FOUND_INCORRECT" = "yes" ]; then
-    finalout="${base}.false_MaxDepth${MaxDepth}${LIMIT_TAG}${PUSH_TAG}${TERM_TAG}${ERROR_TAG}.zmiout"
+    finalout="${base}.false_MaxDepth${MaxDepth}${LIMIT_TAG}${PUSH_TAG}${TERM_TAG}.zmiout"
   else
-    finalout="${base}.unknown_MaxDepth${MaxDepth}${LIMIT_TAG}${PUSH_TAG}${TERM_TAG}${ERROR_TAG}.zmiout"
+    finalout="${base}.unknown_MaxDepth${MaxDepth}${LIMIT_TAG}${PUSH_TAG}${TERM_TAG}.zmiout"
   fi
 
   mv "$tmpout" "$finalout"
