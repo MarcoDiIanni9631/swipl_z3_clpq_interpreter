@@ -1,9 +1,31 @@
 #!/bin/bash
 #
-# Usage: ./02_oct_pred_analysis_incorrect_ff_maxDepth_pushFailed_exploredTree.sh <cartella> <nome_predicato>
-# Example: ./02_oct_pred_analysis_incorrect_ff_maxDepth_pushFailed_exploredTree.sh ../test/temp/tempSingleTest incorrect
+# Usage:
+#   ./InterpreterAnalysis.sh [-s] <cartella> <nome_predicato>
+#
+# Esempi:
+#   ./InterpreterAnalysis.sh ../test/temp incorrect
+#   ./InterpreterAnalysis.sh -s ../test/temp ff
+#
+# Descrizione:
+#   Analizza i file .smt2.pl in una cartella e genera output .zmiout.
+#   Se viene passato -s, attiva la modalità server (timeout più alto e path forzato di SWI-Prolog).
 
 set -u
+
+# --- Controllo argomenti ---
+if [ "$#" -lt 2 ]; then
+  echo "Uso: $0 [-s] <cartella> <nome_predicato>"
+  echo "Esempio: $0 -s ../test/temp incorrect"
+  exit 1
+fi
+
+# --- Modalità server ---
+SERVER_MODE="off"
+if [ "$1" == "-s" ]; then
+  SERVER_MODE="on"
+  shift
+fi
 
 DIR="$1"
 TARGET="$2"
@@ -12,34 +34,39 @@ MAIN="../src/core/main.pl"
 
 # --- Check input ---
 if [ ! -d "$DIR" ]; then
-  echo "Cartella non trovata: $DIR"
+  echo "❌ Cartella non trovata: $DIR"
   exit 1
 fi
 
 if [ -z "${TARGET:-}" ]; then
-  echo "Errore: specifica il predicato target (es. incorrect o ff)"
+  echo "❌ Errore: specifica il predicato target (es. incorrect o ff)"
   exit 1
 fi
 
-# --- Check SWI-Prolog binary (auto-detect if missing) ---
-if [ -z "${SWIPL_BIN:-}" ]; then
+# --- Impostazione SWI-Prolog ---
+if [ "$SERVER_MODE" == "on" ]; then
+  echo "🖥️ Modalità server attiva"
+  SWIPL_BIN="/home/labeconomia/mdiianni/swipl/usr/local/lib/swipl/bin/x86_64-linux/swipl"
+  TIMEOUT_SEC=300
+else
   SWIPL_BIN="$(which swipl 2>/dev/null || true)"
+  TIMEOUT_SEC=5
 fi
 
 if [ -z "$SWIPL_BIN" ]; then
-  echo "Errore: non trovo 'swipl' nel PATH. Installa SWI-Prolog o imposta SWIPL_BIN."
+  echo "❌ Errore: 'swipl' non trovato. Installa SWI-Prolog o imposta SWIPL_BIN."
   exit 1
 fi
 
 if [ ! -x "$SWIPL_BIN" ]; then
-  echo "Errore: SWIPL_BIN non punta a un eseguibile valido: $SWIPL_BIN"
+  echo "❌ Errore: SWIPL_BIN non punta a un eseguibile valido: $SWIPL_BIN"
   exit 1
 fi
 
 # --- Resolve absolute paths ---
 MAIN_ABS="$(readlink -f "$MAIN")"
 if [ ! -f "$MAIN_ABS" ]; then
-  echo "File main.pl non trovato: $MAIN_ABS"
+  echo "❌ File main.pl non trovato: $MAIN_ABS"
   exit 1
 fi
 MAIN_DIR="$(dirname "$MAIN_ABS")"
@@ -54,10 +81,12 @@ for file in "$DIR"/*.smt2.pl; do
   tmpout="${base}.tmpout"
   finalout=""
 
+  echo "▶️ Elaborazione file: $(basename "$file") (timeout ${TIMEOUT_SEC}s)"
+
   # Run SWI-Prolog with timeout
   (
     cd "$MAIN_DIR" || exit 1
-    timeout 5s "$SWIPL_BIN" -s "$MAIN_ABS" \
+    timeout ${TIMEOUT_SEC}s "$SWIPL_BIN" -s "$MAIN_ABS" \
       -g "load_clean('$FILE_ABS'),set_solver(turibe),zmi(${TARGET}),halt." \
       > "$tmpout" 2>&1
   )
@@ -97,7 +126,7 @@ for file in "$DIR"/*.smt2.pl; do
 
   # --- Handle timeout (EXIT 124) ---
   if [ $EXIT_CODE -eq 124 ]; then
-    echo "Timeout per il file: $file"
+    echo "⏱️ Timeout per il file: $file"
     if [ "$FOUND_INCORRECT" = "yes" ]; then
       finalout="${base}.timeout_false_MaxDepth${MaxDepth}${LIMIT_TAG}${PUSH_TAG}${TERM_TAG}.zmiout"
     else
@@ -108,9 +137,7 @@ for file in "$DIR"/*.smt2.pl; do
     continue
   fi
 
-  # --- Check for generic errors (Z3, Prolog, normalization, etc.) ---
-  # Se il file contiene parole chiave come "error", "failed" o "segmentation fault",
-  # aggiungiamo un tag _Error al nome finale per facilitarne il filtraggio.
+  # --- Check for generic errors ---
   if grep -Eqi "error|failed|segmentation fault" "$tmpout"; then
     ERROR_TAG="_Error"
   else
@@ -127,7 +154,7 @@ for file in "$DIR"/*.smt2.pl; do
   fi
 
   mv "$tmpout" "$finalout"
-  echo "Elaborato: $file --> $finalout"
+  echo "✅ Elaborato: $file --> $finalout"
 done
 
 shopt -u nullglob
