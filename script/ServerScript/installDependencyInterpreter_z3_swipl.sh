@@ -59,7 +59,7 @@ export SWIPL_HOME=$BASE_DIR/swipl-${SWIPL_VERSION}
 export Z3_HOME=$BASE_DIR/z3-${Z3_VERSION}
 export PATH=$SWIPL_HOME/bin:$Z3_HOME/bin:$PATH
 export LD_LIBRARY_PATH=$Z3_HOME/lib:$LD_LIBRARY_PATH
-
+export SWIZ3_TURIBE_PATH="/home/labeconomia/mdiianni2/verimap_projects/swi-prolog-z3"
 # === 6. Clonazione repository ===
 echo "=== [6/8] Clonazione repository ==="
 cd "$PROJECTS_DIR"
