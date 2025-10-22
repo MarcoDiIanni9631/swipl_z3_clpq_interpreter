@@ -10,7 +10,6 @@
 # Descrizione:
 #   Analizza i file .smt2.pl in una cartella e genera output .zmiout.
 #   Se viene passato -s, attiva la modalità server (timeout più alto e path forzato di SWI-Prolog).
-#   Da questa versione, i file vengono elaborati in parallelo (8 processi simultanei).
 
 set -u
 
@@ -72,10 +71,10 @@ if [ ! -f "$MAIN_ABS" ]; then
 fi
 MAIN_DIR="$(dirname "$MAIN_ABS")"
 
-# --- Funzione per elaborare un singolo file ---
-process_file() {
-  file="$1"
-  [ -e "$file" ] || return
+shopt -s nullglob
+
+for file in "$DIR"/*.smt2.pl; do
+  [ -e "$file" ] || continue
 
   FILE_ABS="$(readlink -f "$file")"
   base="${file%.smt2.pl}"
@@ -84,6 +83,7 @@ process_file() {
 
   echo "▶️ Elaborazione file: $(basename "$file") (timeout ${TIMEOUT_SEC}s)"
 
+  # Run SWI-Prolog with timeout
   (
     cd "$MAIN_DIR" || exit 1
     timeout ${TIMEOUT_SEC}s "$SWIPL_BIN" -s "$MAIN_ABS" \
@@ -92,33 +92,39 @@ process_file() {
   )
   EXIT_CODE=$?
 
+  # Extract MaxDepth
   MaxDepth="$(grep -oP "MaxDepth impostato a: \K[0-9]+" "$tmpout" 2>/dev/null || true)"
   [ -z "$MaxDepth" ] && MaxDepth="unknown"
 
+  # Check if MaxDepth reached
   if grep -q "Limite MaxDepth raggiunto" "$tmpout"; then
     LIMIT_TAG="_MaxDepthReached"
   else
     LIMIT_TAG=""
   fi
 
+  # Check if Z3 push failed
   if grep -q "z3_push_failed" "$tmpout"; then
     PUSH_TAG="_Z3PushFailed"
   else
     PUSH_TAG="_Z3PushOK"
   fi
 
+  # Check if termination of tree reached (for file name tag)
   if grep -q "Ho raggiunto la terminazione dell'albero" "$tmpout"; then
     TERM_TAG="_totalExplored"
   else
     TERM_TAG="_notFullyExplored"
   fi
 
+  # Check if incorrect/ff found
   if grep -q "✅ INCORRECT/FF FOUND" "$tmpout"; then
     FOUND_INCORRECT="yes"
   else
     FOUND_INCORRECT="no"
   fi
 
+  # --- Handle timeout (EXIT 124) ---
   if [ $EXIT_CODE -eq 124 ]; then
     echo "⏱️ Timeout per il file: $file"
     if [ "$FOUND_INCORRECT" = "yes" ]; then
@@ -128,15 +134,17 @@ process_file() {
     fi
     mv "$tmpout" "$finalout"
     echo "Elaborato (timeout): $file --> $finalout"
-    return
+    continue
   fi
 
+  # --- Check for generic errors ---
   if grep -Eqi "error|failed|segmentation fault" "$tmpout"; then
     ERROR_TAG="_Error"
   else
     ERROR_TAG=""
   fi
 
+  # --- Normal classification ---
   if grep -q "No SAT" "$tmpout"; then
     finalout="${base}.true_MaxDepth${MaxDepth}${LIMIT_TAG}${PUSH_TAG}${TERM_TAG}${ERROR_TAG}.zmiout"
   elif grep -q "Z3 Model" "$tmpout" || grep -q "SAT MODEL" "$tmpout" || [ "$FOUND_INCORRECT" = "yes" ]; then
@@ -147,15 +155,6 @@ process_file() {
 
   mv "$tmpout" "$finalout"
   echo "✅ Elaborato: $file --> $finalout"
-}
+done
 
-export -f process_file
-export MAIN_ABS MAIN_DIR SWIPL_BIN TIMEOUT_SEC TARGET
-
-# --- Esecuzione parallela ---
-echo "⚙️ Avvio elaborazione parallela su $DIR ..."
-find "$DIR" -type f -name "*.smt2.pl" | parallel -j 8 process_file {}
-
-echo "==========================================="
-echo "✅ Tutti i file elaborati in parallelo!"
-echo "==========================================="
+shopt -u nullglob
