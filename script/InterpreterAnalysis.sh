@@ -14,6 +14,7 @@
 
 set -u
 
+export LD_LIBRARY_PATH=/home/labeconomia/mdiianni/.conda/envs/verimap/lib:/home/labeconomia/mdiianni/verimap_projects/swi-prolog-z3:/home/labeconomia/mdiianni/verimap_projects/swi-prolog-z3/z3/build:$LD_LIBRARY_PATH
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/labeconomia/mdiianni/verimap_projects/swi-prolog-z3:/home/labeconomia/mdiianni/verimap_projects/swi-prolog-z3/z3/build
 # Aggiunge il path della libreria Z3 per SWI-Prolog
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/labeconomia/mdiianni/verimap_projects/swi-prolog-z3
