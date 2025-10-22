@@ -14,6 +14,9 @@
 
 set -u
 
+# Aggiunge il path della libreria Z3 per SWI-Prolog
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/labeconomia/mdiianni/verimap_projects/swi-prolog-z3
+
 # --- Controllo argomenti ---
 if [ "$#" -lt 2 ]; then
   echo "Uso: $0 [-s] <cartella> <nome_predicato>"
