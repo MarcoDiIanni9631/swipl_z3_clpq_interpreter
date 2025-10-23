@@ -23,7 +23,7 @@ REPO_SWIPROLOG_Z3="git@github.com:MarcoDiIanni9631/swi-prolog-z3.git"
 # === 0. Installare conda ===
 # conda create $CONDAENV -y
 # conda activate verimap
-
+# conda install libarchive 
 
 # === 1. Creazione cartelle ===
 echo "=== [1/8] Creazione directory locali ==="
