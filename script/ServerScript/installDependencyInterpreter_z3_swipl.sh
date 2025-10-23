@@ -19,6 +19,12 @@ REPO_INTERPRETER="git@github.com:MarcoDiIanni9631/swipl_z3_clpq_interpreter.git"
 REPO_VERIMAP="git@github.com:chc-lab/verimap.git"
 REPO_SWIPROLOG_Z3="git@github.com:MarcoDiIanni9631/swi-prolog-z3.git"
 
+
+# === 0. Installare conda ===
+# conda create $CONDAENV -y
+# conda activate verimap
+
+
 # === 1. Creazione cartelle ===
 echo "=== [1/8] Creazione directory locali ==="
 mkdir -p "$SRC_DIR" "$PROJECTS_DIR"
