@@ -55,11 +55,24 @@ make install
 
 # === 5. Variabili ambiente TEMPORANEE (valide solo per questa sessione) ===
 echo "=== [5/8] Impostazione temporanea variabili ambiente ==="
+
+#per analisi manuali fare questi comandi:
+
+# export Z3_HOME=/home/labeconomia/mdiianni2/local/z3-4.15.3
+# export LD_LIBRARY_PATH=$Z3_HOME/lib:$LD_LIBRARY_PATH
+# export PATH=$Z3_HOME/bin:$PATH
+# export SWIPL_HOME=/home/labeconomia/mdiianni2/local/swipl-9.3.31
+# export PATH=$SWIPL_HOME/bin:$PATH
+
 export SWIPL_HOME=$BASE_DIR/swipl-${SWIPL_VERSION}
 export Z3_HOME=$BASE_DIR/z3-${Z3_VERSION}
 export PATH=$SWIPL_HOME/bin:$Z3_HOME/bin:$PATH
 export LD_LIBRARY_PATH=$Z3_HOME/lib:$LD_LIBRARY_PATH
 export SWIZ3_TURIBE_PATH="/home/labeconomia/mdiianni2/verimap_projects/swi-prolog-z3"
+
+
+
+
 # === 6. Clonazione repository ===
 echo "=== [6/8] Clonazione repository ==="
 cd "$PROJECTS_DIR"
