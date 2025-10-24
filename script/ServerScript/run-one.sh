@@ -9,10 +9,10 @@
 #   3. Analisi con l'interprete
 #   4. Generazione del report HTML
 # ========================================
-
-BASE_DIR="/home/labeconomia/mdiianni/verimap_projects/chc-comp25-benchmarks"
-SCRIPT_DIR="/home/labeconomia/mdiianni/verimap_projects/swipl_z3_clpq_interpreter/script"
-VERIMAP_DIR="/home/labeconomia/mdiianni/verimap_projects/verimap"
+set -x
+BASE_DIR="/home/labeconomia/mdiianni2/verimap_projects/chc-comp25-benchmarks"
+SCRIPT_DIR="/home/labeconomia/mdiianni2/verimap_projects/swipl_z3_clpq_interpreter/script"
+VERIMAP_DIR="/home/labeconomia/mdiianni2/verimap_projects/verimap"
 
 SET_FILE="$1"
 SET_PATH="$BASE_DIR/$SET_FILE"
@@ -34,7 +34,7 @@ LOG_FILE="$BASE_DIR/${SET_NAME}_pipeline.log"
 
   # --- 3️⃣ Analisi simbolica ---
   echo "👉 Step 3: Analisi simbolica..."
-  bash -c "cd $SCRIPT_DIR && ./InterpreterAnalysis.sh $SMT_DIR ff"
+  bash -c "cd $SCRIPT_DIR && ./InterpreterAnalysisMdiianni2.sh -s $SMT_DIR ff"
 
   # --- 4️⃣ Generazione report ---
   echo "👉 Step 4: Generazione report..."

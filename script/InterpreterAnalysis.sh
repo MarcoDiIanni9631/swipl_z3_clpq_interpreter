@@ -85,6 +85,7 @@ process_file() {
   FILE_ABS="$(readlink -f "$file")"
   base="${file%.smt2.pl}"
   tmpout="${base}.tmpout"
+  mkdir -p "$(dirname "$tmpout")"
   finalout=""
 
   echo "▶️ Elaborazione file: $(basename "$file") (timeout ${TIMEOUT_SEC}s)"
