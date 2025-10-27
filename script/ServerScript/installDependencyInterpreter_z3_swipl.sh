@@ -18,12 +18,12 @@ PROJECTS_DIR="$HOME/verimap_projects"
 REPO_INTERPRETER="git@github.com:MarcoDiIanni9631/swipl_z3_clpq_interpreter.git"
 REPO_VERIMAP="git@github.com:chc-lab/verimap.git"
 REPO_SWIPROLOG_Z3="git@github.com:MarcoDiIanni9631/swi-prolog-z3.git"
+CONDAENV="zmi"
 
 
 # === 0. Installare conda ===
-# conda create $CONDAENV -y
-# conda activate verimap
-# conda install libarchive 
+conda create $CONDAENV -y
+conda activate $CONDAENV
 
 # === 1. Creazione cartelle ===
 echo "=== [1/8] Creazione directory locali ==="
@@ -31,7 +31,7 @@ mkdir -p "$SRC_DIR" "$PROJECTS_DIR"
 
 # === 2. Installazione tool di compilazione ===
 echo "=== [2/8] Installazione dipendenze di build (Conda) ==="
-conda install -c conda-forge make cmake gcc gxx git wget -y
+conda install -c conda-forge make cmake gcc gxx git wget libarchive -y
 
 # === 3. Installazione SWI-Prolog ===
 echo "=== [3/8] Installazione SWI-Prolog $SWIPL_VERSION ==="
@@ -86,19 +86,24 @@ cd "$PROJECTS_DIR"
 if [ ! -d "swipl_z3_clpq_interpreter" ]; then
   git clone "$REPO_INTERPRETER"
 else
-  (cd swipl_z3_clpq_interpreter && git pull)
+  (cd swipl_z3_clpq_interpreter && git pull && cd ..)
 fi
 
+#usare PAT 
+#PAT="github_pat_quellocheeee"
+#REPO_VERIMAP="https://oauth2:$PAT@github.com/chc-lab/verimap.git" 
+#
+#
 if [ ! -d "verimap" ]; then
   git clone "$REPO_VERIMAP"
 else
-  (cd verimap && git pull)
+  (cd verimap && git pull && cd ..)
 fi
 
 if [ ! -d "swi-prolog-z3" ]; then
   git clone "$REPO_SWIPROLOG_Z3"
 else
-  (cd swi-prolog-z3 && git pull)
+  (cd swi-prolog-z3 && git pull && cd ..)
 fi
 
 # === 7. Compilazione libreria Turibe (swi-prolog-z3) ===

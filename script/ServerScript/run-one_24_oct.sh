@@ -11,11 +11,11 @@
 # ========================================
 
 # Rileva automaticamente l'utente corrente (es. mdiianni o mdiianni2)
-USER_HOME="/home/labeconomia/$USER"
-
-BASE_DIR="$USER_HOME/verimap_projects/chc-comp25-benchmarks"
-SCRIPT_DIR="$USER_HOME/verimap_projects/swipl_z3_clpq_interpreter/script"
-VERIMAP_DIR="$USER_HOME/verimap_projects/verimap"
+# USER_HOME="/home/labeconomia/$USER"
+# export SWIZ3_TURIBE_PATH="/home/labeconomia/mdiianni2/verimap_projects/swi-prolog-z3"
+# BASE_DIR="$USER_HOME/verimap_projects/chc-comp25-benchmarks"
+# SCRIPT_DIR="$USER_HOME/verimap_projects/swipl_z3_clpq_interpreter/script"
+# VERIMAP_DIR="$USER_HOME/verimap_projects/verimap"
 
 SET_FILE="$1"
 SET_PATH="$BASE_DIR/$SET_FILE"
@@ -46,3 +46,24 @@ LOG_FILE="$BASE_DIR/${SET_NAME}_pipeline.log"
   echo "✅ Completato: $SET_FILE"
   echo "-------------------------------------------"
 } &> "$LOG_FILE"
+
+
+
+#export utente:
+
+# # 1️⃣ Percorso utente base
+# export USER_HOME="/home/labeconomia/$USER"
+
+# # 2️⃣ Percorsi dei progetti
+# export SWIZ3_TURIBE_PATH="$USER_HOME/verimap_projects/swi-prolog-z3"
+# export BASE_DIR="$USER_HOME/verimap_projects/chc-comp25-benchmarks"
+# export SCRIPT_DIR="$USER_HOME/verimap_projects/swipl_z3_clpq_interpreter/script"
+# export VERIMAP_DIR="$USER_HOME/verimap_projects/verimap"
+
+# # 3️⃣ SWI-Prolog e Z3
+# export SWIPL_HOME="$USER_HOME/local/swipl-9.3.31"
+# export Z3_HOME="$USER_HOME/local/z3-4.15.3"
+# export PATH="$SWIPL_HOME/bin:$Z3_HOME/bin:$PATH"
+
+# # 4️⃣ Librerie condivise (Z3 + modulo Prolog-Z3)
+# export LD_LIBRARY_PATH="$Z3_HOME/lib:$LD_LIBRARY_PATH:$SWIZ3_TURIBE_PATH:$SWIZ3_TURIBE_PATH/z3/build"
