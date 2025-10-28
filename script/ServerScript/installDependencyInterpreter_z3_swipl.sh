@@ -15,10 +15,10 @@ Z3_VERSION="4.15.3"
 PROJECTS_DIR="$HOME/verimap_projects"
 
 
-# === Repository ===
-REPO_INTERPRETER="git@github.com:MarcoDiIanni9631/swipl_z3_clpq_interpreter.git"
+# # === Repository ===
+# REPO_INTERPRETER="git@github.com:MarcoDiIanni9631/swipl_z3_clpq_interpreter.git"
 
-
+REPO_INTERPRETER="https://github.com/MarcoDiIanni9631/swipl_z3_clpq_interpreter.git"
 
 # REPO_SWIPROLOG_Z3="https://github.com/MarcoDiIanni9631/swi-prolog-z3.git"
  
