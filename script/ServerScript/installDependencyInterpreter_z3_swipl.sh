@@ -14,24 +14,24 @@ SWIPL_VERSION="9.3.31"
 Z3_VERSION="4.15.3"
 PROJECTS_DIR="$HOME/verimap_projects"
 
+export SWIPL_HOME=$BASE_DIR/swipl-${SWIPL_VERSION}
+export Z3_HOME=$BASE_DIR/z3-${Z3_VERSION}
+export PATH=$SWIPL_HOME/bin:$Z3_HOME/bin:$PATH
+export LD_LIBRARY_PATH=$Z3_HOME/lib:$LD_LIBRARY_PATH
+export SWIZ3_TURIBE_PATH="${PROJECTS_DIR}/swi-prolog-z3"
+
+
 
 # # === Repository ===
-# REPO_INTERPRETER="git@github.com:MarcoDiIanni9631/swipl_z3_clpq_interpreter.git"
-
 REPO_INTERPRETER="https://github.com/MarcoDiIanni9631/swipl_z3_clpq_interpreter.git"
-
-# REPO_SWIPROLOG_Z3="https://github.com/MarcoDiIanni9631/swi-prolog-z3.git"
  
-# REPO_VERIMAP="https://github.com/chc-lab/verimap.git"
- 
-
 # guida per installare pat github
 # https://stackoverflow.com/questions/2505096/clone-a-private-repository-github
 # https://github.com/settings/personal-access-tokens/new
-
 # modificare questa veriabile pat per permettere il clone 
 PAT="github_pat_xyz"
 REPO_VERIMAP="https://oauth2:$PAT@github.com/chc-lab/verimap.git"
+
 REPO_SWIPROLOG_Z3="https://github.com/MarcoDiIanni9631/swi-prolog-z3.git"
 CONDAENV="zmi"
 
@@ -88,13 +88,6 @@ echo "=== [5/8] Impostazione temporanea variabili ambiente ==="
 # export PATH=$Z3_HOME/bin:$PATH
 # export SWIPL_HOME=/home/labeconomia/mdiianni2/local/swipl-9.3.31
 # export PATH=$SWIPL_HOME/bin:$PATH
-
-export SWIPL_HOME=$BASE_DIR/swipl-${SWIPL_VERSION}
-export Z3_HOME=$BASE_DIR/z3-${Z3_VERSION}
-export PATH=$SWIPL_HOME/bin:$Z3_HOME/bin:$PATH
-export LD_LIBRARY_PATH=$Z3_HOME/lib:$LD_LIBRARY_PATH
-export SWIZ3_TURIBE_PATH="/home/labeconomia/mdiianni2/verimap_projects/swi-prolog-z3"
-
 
 
 
