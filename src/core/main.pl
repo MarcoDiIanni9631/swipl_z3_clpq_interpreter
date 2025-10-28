@@ -208,23 +208,51 @@ zmi_aux((A, B), Z3In, CLPQIn,SymTab, Steps, Z3Out, CLPQOut, (TreeA, TreeB)) :-
 % in Z3 tramite z3_sat_check/3.
 % -------------------------------------------------------------
 
+
+    %old constr c
+% zmi_aux(constr(C), Z3In, CLPQIn, SymTab, _, Z3Out, CLPQOut, constr(Normalized)) :-
+%     debug_print('Entrato in constr c'),
+%     normalize_bool_expr(C, Normalized),
+%     writeln('stampo c'),writeln(C),
+%     build_conjunct([CLPQIn, Normalized], CLPQTmp),
+
+%     build_conjunct([Z3In, Normalized], Z3Tmp),
+
+%     maplist(build_type_equality, SymTab, TypeAnnots),
+
+%         writeln('Stampo Normalized'),writeln(Normalized),
+
+%         writeln('Stampo Z3Tmp'),writeln(Z3List),
+
+%     conj_to_list(Z3Tmp, Z3List),
+
+%     writeln('Stampo Z3List'),writeln(Z3List),
+%     append(TypeAnnots, Z3List, FlatList),
+%    % writeln('Stampo prima di build '), writeln(FlatList),
+%     build_conjunct(FlatList, Z3Final),
+%  %   writeln('stampo Z3Final'),writeln(Z3Final),
+
+%     Z3Out  = Z3Final,
+%     CLPQOut = CLPQTmp,
+%     z3_sat_check(Z3Final, sat, _).
+
 zmi_aux(constr(C), Z3In, CLPQIn, SymTab, _, Z3Out, CLPQOut, constr(Normalized)) :-
     debug_print('Entrato in constr c'),
     normalize_bool_expr(C, Normalized),
-    writeln('stampo c'),writeln(C),
+    % writeln('stampo c'),writeln(C),
     build_conjunct([CLPQIn, Normalized], CLPQTmp),
 
     build_conjunct([Z3In, Normalized], Z3Tmp),
 
-    maplist(build_type_equality, SymTab, TypeAnnots),
+    build_type_equality_list(SymTab, TypeAnnots),
+       
+    % writeln('Stampo Normalized'),writeln(Normalized),
 
-        writeln('Stampo Normalized'),writeln(Normalized),
-
-        writeln('Stampo Z3Tmp'),writeln(Z3List),
+    %     writeln('Stampo Z3Tmp'),writeln(Z3List),
 
     conj_to_list(Z3Tmp, Z3List),
 
-    writeln('Stampo Z3List'),writeln(Z3List),
+    % writeln('Stampo Z3List'),writeln(Z3List),
     append(TypeAnnots, Z3List, FlatList),
    % writeln('Stampo prima di build '), writeln(FlatList),
     build_conjunct(FlatList, Z3Final),
@@ -233,6 +261,7 @@ zmi_aux(constr(C), Z3In, CLPQIn, SymTab, _, Z3Out, CLPQOut, constr(Normalized)) 
     Z3Out  = Z3Final,
     CLPQOut = CLPQTmp,
     z3_sat_check(Z3Final, sat, _).
+
 
 % -------------------------------------------------------------
 % zmi_aux(Head, Z3In, CLPQIn,SymTabIn, Steps, Z3Out, CLPQOut, SubTree => Head) :-
@@ -420,6 +449,14 @@ reorder_body(BodyIn, BodyOut) :-
     move_constr(FlatList, ReorderedList),
     build_conjunct(ReorderedList, BodyOut).
 
+
+
+build_type_equality_list(SymTab, TypeAnnots) :- 
+  ( bagof(Y, (member(X,SymTab), build_type_equality(X,Y)), TypeAnnots) 
+      -> true
+    ; 
+      TypeAnnots=[]
+  ).
 
 
 % reorder_body(BodyIn, BodyOut) :-
