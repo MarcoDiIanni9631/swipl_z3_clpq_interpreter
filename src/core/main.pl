@@ -376,6 +376,14 @@ build_type_equality(Var-array(Index, Elem), (Var:array(Index, Elem) = Var:array(
 build_type_equality(_, true).
 
 
+%evita l'aggiunta dei true a inizio clausola da mandare a z3
+build_type_equality_list(SymTab, TypeAnnots) :- 
+  ( bagof(Y, (member(X,SymTab), build_type_equality(X,Y)), TypeAnnots) 
+      -> true
+    ; 
+      TypeAnnots=[]
+  ).
+
 % rewrite_constr(_, _, constr(true), constr(true)) :-
 %      !.
 % rewrite_constr(_, _, true, true) :-
@@ -451,12 +459,7 @@ reorder_body(BodyIn, BodyOut) :-
 
 
 
-build_type_equality_list(SymTab, TypeAnnots) :- 
-  ( bagof(Y, (member(X,SymTab), build_type_equality(X,Y)), TypeAnnots) 
-      -> true
-    ; 
-      TypeAnnots=[]
-  ).
+
 
 
 % reorder_body(BodyIn, BodyOut) :-
