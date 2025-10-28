@@ -172,7 +172,7 @@ zmi_aux((_ ; G), Z3In, CLPQIn, SymTab, Steps, Z3Out, CLPQOut, Tree) :-
 % -------------------------------------------------------------
 zmi_aux(falseVerimap, Z3, CLPQ, _, _, Z3, CLPQ, false) :-
     nl, nl,
-    writeln('Ho raggiunto la terminazione dell\'albero'),
+    writeln('Ho raggiunto la terminazione dell\'albero'), %va cambiato, per ora lasciato cosi per conformità con altri script
     nl, nl,
     fail.
 
