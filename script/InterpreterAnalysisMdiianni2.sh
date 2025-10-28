@@ -53,7 +53,6 @@ base="${FILE%.smt2.pl}"
 tmpout="${base}.tmpout"
 
 (
-  cd "$MAIN_DIR" || exit 1
   timeout ${TIMEOUT_SEC}s "$SWIPL_BIN" -s "$MAIN_ABS" \
     -g "load_clean('$FILE_ABS'),set_solver(turibe),zmi(${TARGET}),halt." \
     > "$tmpout" 2>&1
