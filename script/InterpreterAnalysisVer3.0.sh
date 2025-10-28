@@ -1,26 +1,26 @@
 #!/bin/bash
 #
 # ==========================================================
-# Script: InterpreterAnalysis.sh
+# Script: InterpreterAnalysis.sh (v3.1)
 # Autore: Marco Di Ianni
 # Descrizione:
 #   Analizza uno o più file .smt2.pl in una cartella o un singolo file.
-#   Compatibile con qualunque installazione (locale o server).
+#   Totalmente portabile: nessun percorso fisso, ricerca automatica di main.pl.
 # ==========================================================
 
 set -u
 
 # === CONFIGURAZIONE DINAMICA ===
 
-# Se PROJECTS_DIR non è già definita, impostala automaticamente
+# Se PROJECTS_DIR o BASE_DIR non sono definite, imposta valori predefiniti
 : "${PROJECTS_DIR:=$HOME/verimap_projects}"
 : "${BASE_DIR:=$HOME/local}"
 
-# Imposta SWI-Prolog e Z3 (con fallback, se non definiti)
+# SWI-Prolog e Z3 con fallback automatico
 : "${SWIPL_HOME:=$BASE_DIR/swipl-9.3.31}"
 : "${Z3_HOME:=$BASE_DIR/z3-4.15.3}"
 
-# Percorsi locali dinamici
+# Percorsi dinamici
 SWIPL_LOCAL="$SWIPL_HOME/bin/swipl"
 Z3_PATH="${PROJECTS_DIR}/swi-prolog-z3"
 Z3_BUILD_PATH="$Z3_PATH/z3/build"
@@ -56,7 +56,7 @@ if [ -z "${TARGET:-}" ]; then
   exit 1
 fi
 
-# === Rilevamento automatico SWI-Prolog ===
+# === RILEVAMENTO AUTOMATICO DI SWI-PROLOG ===
 if [ "$SERVER_MODE" == "on" ]; then
   echo "🖥️ Modalità server attiva"
   SWIPL_BIN="$SWIPL_LOCAL"
@@ -72,18 +72,22 @@ if [ -z "$SWIPL_BIN" ]; then
   exit 1
 fi
 
-# === RICERCA AUTOMATICA DEL FILE main.pl ===
+# === RICERCA AUTOMATICA DI main.pl ===
 echo "🔍 Ricerca di main.pl nel progetto..."
 
-# Directory dove si trova lo script
+# Directory in cui si trova lo script
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-# Cerca main.pl fino a 5 livelli di profondità dal punto in cui si trova lo script
+# Prova a cercare in vari livelli sopra e sotto la directory corrente
 MAIN_PATH="$(find "$SCRIPT_DIR" -maxdepth 5 -type f -name "main.pl" | head -n 1)"
-
-# Se non trovato, prova anche fino a 10 livelli
 if [ -z "$MAIN_PATH" ]; then
-  MAIN_PATH="$(find "$SCRIPT_DIR" -maxdepth 10 -type f -name "main.pl" | head -n 1)"
+  MAIN_PATH="$(find "$SCRIPT_DIR"/.. -maxdepth 6 -type f -name "main.pl" | head -n 1)"
+fi
+if [ -z "$MAIN_PATH" ]; then
+  MAIN_PATH="$(find "$SCRIPT_DIR"/../.. -maxdepth 7 -type f -name "main.pl" | head -n 1)"
+fi
+if [ -z "$MAIN_PATH" ]; then
+  MAIN_PATH="$(find "$SCRIPT_DIR"/../../.. -maxdepth 8 -type f -name "main.pl" | head -n 1)"
 fi
 
 if [ -z "$MAIN_PATH" ]; then
