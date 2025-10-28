@@ -14,12 +14,31 @@ SWIPL_VERSION="9.3.31"
 Z3_VERSION="4.15.3"
 PROJECTS_DIR="$HOME/verimap_projects"
 
+
 # === Repository ===
 REPO_INTERPRETER="git@github.com:MarcoDiIanni9631/swipl_z3_clpq_interpreter.git"
-REPO_VERIMAP="git@github.com:chc-lab/verimap.git"
-REPO_SWIPROLOG_Z3="git@github.com:MarcoDiIanni9631/swi-prolog-z3.git"
+
+
+
+# REPO_SWIPROLOG_Z3="https://github.com/MarcoDiIanni9631/swi-prolog-z3.git"
+ 
+# REPO_VERIMAP="https://github.com/chc-lab/verimap.git"
+ 
+
+# guida per installare pat github
+# https://stackoverflow.com/questions/2505096/clone-a-private-repository-github
+# https://github.com/settings/personal-access-tokens/new
+
+# modificare questa veriabile pat per permettere il clone 
+PAT="github_pat_xyz"
+REPO_VERIMAP="https://oauth2:$PAT@github.com/chc-lab/verimap.git"
+REPO_SWIPROLOG_Z3="https://github.com/MarcoDiIanni9631/swi-prolog-z3.git"
 CONDAENV="zmi"
 
+
+
+# PAT="github_pat_quellocheeee"
+# REPO_VERIMAP="https://oauth2:$PAT@github.com/chc-lab/verimap.git"
 
 # === 0. Installare conda ===
 conda create $CONDAENV -y
