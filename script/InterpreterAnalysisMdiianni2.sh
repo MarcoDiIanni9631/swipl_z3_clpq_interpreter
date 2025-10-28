@@ -1,22 +1,19 @@
 #!/bin/bash
 #
 # ==========================================================
-# Script: InterpreterAnalysis.sh
+# Script: InterpreterAnalysisMdiianni2.sh
 # Autore: Marco Di Ianni
 # Descrizione:
-#   Analizza i file .smt2.pl in una cartella e genera output .zmiout.
+#   Analizza uno o più file .smt2.pl in una cartella o un singolo file.
 #   Se viene passato -s, attiva la modalità server (timeout più alto).
-#   Esegue in parallelo su 8 processi simultanei.
+#   Esegue in parallelo su 8 processi simultanei (solo per cartelle).
 # ==========================================================
 
 set -u
 
 # === CONFIGURAZIONE DINAMICA ===
 
-# Individua automaticamente la cartella utente (es. mdiianni o mdiianni2)
 USER_HOME="/home/labeconomia/$USER"
-
-# Percorsi base comuni
 SWIPL_LOCAL="$USER_HOME/local/swipl-9.3.31/bin/swipl"
 Z3_PATH="$USER_HOME/verimap_projects/swi-prolog-z3"
 Z3_BUILD_PATH="$Z3_PATH/z3/build"
@@ -26,7 +23,7 @@ export LD_LIBRARY_PATH="$Z3_PATH:$Z3_BUILD_PATH:$LD_LIBRARY_PATH"
 
 # === CONTROLLO ARGOMENTI ===
 if [ "$#" -lt 2 ]; then
-  echo "Uso: $0 [-s] <cartella> <nome_predicato>"
+  echo "Uso: $0 [-s] <cartella_o_file> <nome_predicato>"
   echo "Esempio: $0 -s ../test/temp incorrect"
   exit 1
 fi
@@ -38,12 +35,12 @@ if [ "$1" == "-s" ]; then
   shift
 fi
 
-DIR="$1"
+INPUT_PATH="$1"
 TARGET="$2"
 MAIN="../src/core/main.pl"
 
-if [ ! -d "$DIR" ]; then
-  echo "❌ Cartella non trovata: $DIR"
+if [ ! -e "$INPUT_PATH" ]; then
+  echo "❌ File o cartella non trovati: $INPUT_PATH"
   exit 1
 fi
 
@@ -111,7 +108,6 @@ process_file() {
   grep -q "✅ INCORRECT/FF FOUND" "$TMP_ABS" && FOUND_INCORRECT="yes"
   grep -Eqi "error|failed|segmentation fault" "$TMP_ABS" && ERROR_TAG="_Error"
 
-  # Gestione timeout
   if [ $EXIT_CODE -eq 124 ]; then
     echo "⏱️ Timeout: $(basename "$file")"
     if [ "$FOUND_INCORRECT" = "yes" ]; then
@@ -124,7 +120,6 @@ process_file() {
     return
   fi
 
-  # Risultato finale
   if grep -q "No SAT" "$TMP_ABS"; then
     finalout="${base}.true_MaxDepth${MaxDepth}${LIMIT_TAG}${PUSH_TAG}${TERM_TAG}${ERROR_TAG}.zmiout"
   elif grep -q "Z3 Model" "$TMP_ABS" || grep -q "SAT MODEL" "$TMP_ABS" || [ "$FOUND_INCORRECT" = "yes" ]; then
@@ -140,10 +135,15 @@ process_file() {
 export -f process_file
 export MAIN_ABS MAIN_DIR SWIPL_BIN TIMEOUT_SEC TARGET
 
-# === Esecuzione parallela ===
-echo "⚙️ Avvio elaborazione parallela su $DIR ..."
-find "$DIR" -type f -name "*.smt2.pl" | parallel -j 8 process_file {}
+# === Esecuzione ===
+if [ -d "$INPUT_PATH" ]; then
+  echo "⚙️ Avvio elaborazione parallela su directory: $INPUT_PATH ..."
+  find "$INPUT_PATH" -type f -name "*.smt2.pl" | parallel -j 8 process_file {}
+else
+  echo "⚙️ Avvio elaborazione singolo file: $INPUT_PATH ..."
+  process_file "$INPUT_PATH"
+fi
 
 echo "==========================================="
-echo "✅ Tutti i file elaborati in parallelo!"
+echo "✅ Analisi completata!"
 echo "==========================================="
