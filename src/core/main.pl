@@ -372,8 +372,6 @@ build_type_equality(Var-array(Index, Elem), (Var:array(Index, Elem) = Var:array(
     ground(Index), ground(Elem),
      !.
 
-% Tutti gli altri casi → non aggiungere nulla (true)
-build_type_equality(_, true).
 
 
 %evita l'aggiunta dei true a inizio clausola da mandare a z3
