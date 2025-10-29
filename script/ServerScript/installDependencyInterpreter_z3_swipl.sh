@@ -50,7 +50,7 @@ mkdir -p "$SRC_DIR" "$PROJECTS_DIR"
 
 # === 2. Installazione tool di compilazione ===
 echo "=== [2/8] Installazione dipendenze di build (Conda) ==="
-conda install -c conda-forge make cmake gcc gxx git wget libarchive -y
+conda install -c conda-forge make cmake cxx-compiler git wget libarchive -y
 
 # === 3. Installazione SWI-Prolog ===
 echo "=== [3/8] Installazione SWI-Prolog $SWIPL_VERSION ==="
