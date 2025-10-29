@@ -41,7 +41,7 @@ CONDAENV="zmi"
 # REPO_VERIMAP="https://oauth2:$PAT@github.com/chc-lab/verimap.git"
 
 # === 0. Installare conda ===
-conda create $CONDAENV -y
+conda create -n $CONDAENV -y
 conda activate $CONDAENV
 
 # === 1. Creazione cartelle ===
