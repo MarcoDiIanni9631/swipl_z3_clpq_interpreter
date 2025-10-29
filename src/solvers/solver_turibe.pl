@@ -116,13 +116,7 @@ z3_sat_check(Formula, Result, PrettyModel) :-
         ;   PrettyModel = none)
     ;   Result = error_push_failed,
         PrettyModel = error_push_failed2
-    ).
-
-
- 
-
-
-        
+    ).  
 
 
 % --- push sicuro: se fallisce -> eccezione

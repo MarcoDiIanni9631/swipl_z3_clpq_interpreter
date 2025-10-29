@@ -290,8 +290,11 @@ zmi_aux(Head, Z3In, CLPQIn,SymTabIn, Steps, Z3Out, CLPQOut, SubTree => Head) :-
     reorder_body(RawBody, TempBody), %metto prima il constr, magari ci sono condizioni dello stesso ramo che mi impediscono di andare in loop 
 
     conj_to_list(TempBody, BodyList),
-    extend_type_table_head(Head, SymTabIn, SymTabMid), % SymTab = [A-int, B-array(int, int), C-int, D-int, E-int] .
-    extend_type_table_body(BodyList, SymTabMid, SymTabFinal), % se nel body esiste una chiamata ad altro predicato, nella symTab aggiunge anche le nuove lettere con i tipi presi dal pred es .  SymTab = [A-int, B-array(int, int), C-int, D-int, E-int, F-int(aggiunto questo)] .
+    % extend_type_table_head(Head, SymTabIn, SymTabMid), % SymTab = [A-int, B-array(int, int), C-int, D-int, E-int] .
+    % extend_type_table_body(BodyList, SymTabMid, SymTabFinal), % se nel body esiste una chiamata ad altro predicato, nella symTab aggiunge anche le nuove lettere con i tipi presi dal pred es .  SymTab = [A-int, B-array(int, int), C-int, D-int, E-int, F-int(aggiunto questo)] .
+
+
+    extend_type_table_list([Head | BodyList], SymTabIn, SymTabFinal),
 
   %  maplist(rewrite_constr(Head, SymTabFinal), BodyList, RewrittenList),
 
@@ -306,19 +309,36 @@ zmi_aux(Head, Z3In, CLPQIn,SymTabIn, Steps, Z3Out, CLPQOut, SubTree => Head) :-
 
 
 
-extend_type_table_head(Head, Old, New) :-
-    Head =.. [Pred | Args],
-    length(Args, Arity),
-    PredArity = Pred/Arity,
-    build_type_pairs(PredArity, 1, Args, [], Pairs),
-    append(Old, Pairs, Combined),
-    sort(Combined, New).
+% extend_type_table_head(Head, Old, New) :-
+%     Head =.. [Pred | Args],
+%     length(Args, Arity),
+%     PredArity = Pred/Arity,
+%     build_type_pairs(PredArity, 1, Args, [], Pairs),
+%     append(Old, Pairs, Combined),
+%     sort(Combined, New).
 
-extend_type_table_body([], SymTab, SymTab).
+% extend_type_table_body([], SymTab, SymTab).
 
-extend_type_table_body([Goal | Rest], SymTabIn, SymTabOut) :-
+% extend_type_table_body([Goal | Rest], SymTabIn, SymTabOut) :-
+%     ( Goal = constr(_) ; Goal == true ) ->
+%         extend_type_table_body(Rest, SymTabIn, SymTabOut)
+%     ;
+%        ( Goal =.. [Pred | Args],
+%         length(Args, Arity),
+%         PredArity = Pred/Arity,
+%         build_type_pairs(PredArity, 1, Args, [], Pairs),
+%         append(SymTabIn, Pairs, Combined),
+%         sort(Combined, SymTabNext),
+%         extend_type_table_body(Rest, SymTabNext, SymTabOut)).
+
+
+
+
+extend_type_table_list([], SymTab, SymTab).
+
+extend_type_table_list([Goal | Rest], SymTabIn, SymTabOut) :-
     ( Goal = constr(_) ; Goal == true ) ->
-        extend_type_table_body(Rest, SymTabIn, SymTabOut)
+        extend_type_table_list(Rest, SymTabIn, SymTabOut)
     ;
        ( Goal =.. [Pred | Args],
         length(Args, Arity),
@@ -326,8 +346,7 @@ extend_type_table_body([Goal | Rest], SymTabIn, SymTabOut) :-
         build_type_pairs(PredArity, 1, Args, [], Pairs),
         append(SymTabIn, Pairs, Combined),
         sort(Combined, SymTabNext),
-        extend_type_table_body(Rest, SymTabNext, SymTabOut)).
-
+        extend_type_table_list(Rest, SymTabNext, SymTabOut)).
 
 
 
@@ -335,23 +354,34 @@ extend_type_table_body([Goal | Rest], SymTabIn, SymTabOut) :-
 % Costruzione coppie Var-Type (supporta anche array/2)
 % ----------------------------
 build_type_pairs(_, _, [], Acc, Acc).
-build_type_pairs(PredArity, Pos, [Var | Rest], AccIn, AccOut) :-
-    ( var(Var),
-      pred_arg(PredArity, Pos, Type)
+build_type_pairs(PredArity, Pos, [Var | Rest], AccIn, AccOut) :- 
+    
+    %Asserito in db pred_arg('main@bb22.i'/5, 1, int).
+    %PredArity = 'main@bb22.i'/5
+    %Pos posizione corrente dell'argomento (1,2,3...)
+    %[Var | Rest] lista degli argomenti del predicato (es. [A, B, C, D])
+    %AccIn Coppie trovate finora - [B-bool, A-int]
+    %AccOut valorizzato alla fine con AccIn quando è lista vuota
+    
+  (  ( var(Var), %es A
+      pred_arg(PredArity, Pos, Type) )% pred_arg('main@bb22.i'/5, 1, int)
     ->
-        ( % tipi atomici (int, bool, …)
-          atom(Type)
-        -> AccNext = [Var-Type | AccIn]
-
-        % array(Index, Elem) con entrambi ground (es. array(int,int), array(int,bool))
-        ; Type = array(Index, Elem),
-          ground(Index), ground(Elem)
-        -> AccNext = [Var-array(Index, Elem) | AccIn]
+       
+       ( ( atom(Type)) % tipi atomici (int, bool, …)
+        -> (AccNext = [Var-Type | AccIn])
+        ; 
+        
+       (( Type = array(Index, Elem),  % array(Index, Elem) con entrambi ground (es. array(int,int), array(int,bool))
+        ground(Index), ground(Elem)
+        )
+        -> (AccNext = [Var-array(Index, Elem) | AccIn])
 
         % qualsiasi altro caso: non aggiungere nulla
-        ;  AccNext = AccIn
+        ;  (AccNext = AccIn
         )
-    ;   AccNext = AccIn
+    )
+)
+    ;   (AccNext = AccIn )
     ),
     Pos1 is Pos + 1,
     build_type_pairs(PredArity, Pos1, Rest, AccNext, AccOut).

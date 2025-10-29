@@ -16,7 +16,6 @@ set -u
 : "${PROJECTS_DIR:=$HOME/verimap_projects}"
 : "${BASE_DIR:=$HOME/local}"
 
-# SWI-Prolog e Z3 con fallback automatico
 : "${SWIPL_HOME:=$BASE_DIR/swipl-9.3.31}"
 : "${Z3_HOME:=$BASE_DIR/z3-4.15.3}"
 
