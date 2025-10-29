@@ -350,42 +350,112 @@ extend_type_table_list([Goal | Rest], SymTabIn, SymTabOut) :-
 
 
 
-% ----------------------------
-% Costruzione coppie Var-Type (supporta anche array/2)
-% ----------------------------
-build_type_pairs(_, _, [], Acc, Acc).
-build_type_pairs(PredArity, Pos, [Var | Rest], AccIn, AccOut) :- 
+% % ----------------------------
+% % Costruzione coppie Var-Type (supporta anche array/2)
+% % ----------------------------
+% build_type_pairs(_, _, [], Acc, Acc).
+% build_type_pairs(PredArity, Pos, [Var | Rest], AccIn, AccOut) :- 
     
-    %Asserito in db pred_arg('main@bb22.i'/5, 1, int).
-    %PredArity = 'main@bb22.i'/5
-    %Pos posizione corrente dell'argomento (1,2,3...)
-    %[Var | Rest] lista degli argomenti del predicato (es. [A, B, C, D])
-    %AccIn Coppie trovate finora - [B-bool, A-int]
-    %AccOut valorizzato alla fine con AccIn quando è lista vuota
+%     %Asserito in db pred_arg('main@bb22.i'/5, 1, int).
+%     %PredArity = 'main@bb22.i'/5
+%     %Pos posizione corrente dell'argomento (1,2,3...)
+%     %[Var | Rest] lista degli argomenti del predicato (es. [A, B, C, D])
+%     %AccIn Coppie trovate finora - [B-bool, A-int]
+%     %AccOut valorizzato alla fine con AccIn quando è lista vuota
     
-  (  ( var(Var), %es A
-      pred_arg(PredArity, Pos, Type) )% pred_arg('main@bb22.i'/5, 1, int)
-    ->
+%   (  ( var(Var), %es A
+%       pred_arg(PredArity, Pos, Type) )% pred_arg('main@bb22.i'/5, 1, int)
+%     ->
        
-       ( ( atom(Type)) % tipi atomici (int, bool, …)
-        -> (AccNext = [Var-Type | AccIn])
-        ; 
+%        ( ( atom(Type)) % tipi atomici (int, bool, …)
+%         -> (AccNext = [Var-Type | AccIn])
+%         ; 
         
-       (( Type = array(Index, Elem),  % array(Index, Elem) con entrambi ground (es. array(int,int), array(int,bool))
-        ground(Index), ground(Elem)
-        )
-        -> (AccNext = [Var-array(Index, Elem) | AccIn])
+%        (( Type = array(Index, Elem),  % array(Index, Elem) con entrambi ground (es. array(int,int), array(int,bool))
+%         ground(Index), ground(Elem)
+%         )
+%         -> (AccNext = [Var-array(Index, Elem) | AccIn])
 
-        % qualsiasi altro caso: non aggiungere nulla
-        ;  (AccNext = AccIn
-        )
-    )
-)
-    ;   (AccNext = AccIn )
-    ),
+%         % qualsiasi altro caso: non aggiungere nulla
+%         ;  (AccNext = AccIn
+%         )
+%     )
+% )
+%     ;   (AccNext = AccIn )
+%     ),
+%     Pos1 is Pos + 1,
+%     build_type_pairs(PredArity, Pos1, Rest, AccNext, AccOut).
+
+
+
+
+
+% % Caso base: lista vuota → restituisci accumulator finale
+% build_type_pairs(_, _, [], Acc, Acc).
+
+
+% %     %Asserito in db pred_arg('main@bb22.i'/5, 1, int).
+% %     %PredArity = 'main@bb22.i'/5
+% %     %Pos posizione corrente dell'argomento (1,2,3...)
+% %     %[Var | Rest] lista degli argomenti del predicato (es. [A, B, C, D])
+% %     %AccIn Coppie trovate finora - [B-bool, A-int]
+% %     %AccOut valorizzato alla fine con AccIn quando è lista vuota
+
+
+%Versione Prof.
+% build_type_pairs(_, _, [], Acc, Acc).
+ 
+% build_type_pairs(PredArity, Pos, [Var | Rest], AccIn, AccOut) :-
+%     var(Var), %es A
+%     pred_arg(PredArity, Pos, Type),
+%     atom(Type), % tipi atomici (int, bool, …)
+%     !,
+%     AccNext = [Var-Type | AccIn],
+%     Pos1 is Pos + 1,
+%     build_type_pairs(PredArity, Pos1, Rest, AccNext, AccOut).
+ 
+% build_type_pairs(PredArity, Pos, [Var | Rest], AccIn, AccOut) :-
+%     var(Var), %es A
+%     pred_arg(PredArity, Pos, Type),
+%     Type = array(Index, Elem), % array(Index, Elem) con entrambi ground (es. array(int,int), array(int,bool))
+%     ground(Index),
+%     ground(Elem),
+%     !,
+%     AccNext = [Var-array(Index, Elem) | AccIn],
+%     Pos1 is Pos + 1,
+%     build_type_pairs(PredArity, Pos1, Rest, AccNext, AccOut).
+ 
+% build_type_pairs(PredArity, Pos, [_Var | Rest], AccIn, AccOut) :-
+%     AccNext = AccIn,
+%     Pos1 is Pos + 1,
+%     build_type_pairs(PredArity, Pos1, Rest, AccNext, AccOut).
+
+build_type_pairs(_, _, [], Acc, Acc).
+ 
+build_type_pairs(PredArity, Pos, [Var | Rest], AccIn, AccOut) :-
+    var(Var), %es A
+    pred_arg(PredArity, Pos, Type),
+    atom(Type), % tipi atomici (int, bool, …)
+    !,
+    AccNext = [Var-Type | AccIn],
     Pos1 is Pos + 1,
     build_type_pairs(PredArity, Pos1, Rest, AccNext, AccOut).
-
+ 
+build_type_pairs(PredArity, Pos, [Var | Rest], AccIn, AccOut) :-
+    var(Var), %es A
+    pred_arg(PredArity, Pos, Type),
+    Type = array(Index, Elem), % array(Index, Elem) con entrambi ground (es. array(int,int), array(int,bool))
+    ground(Index),
+    ground(Elem),
+    !,
+    AccNext = [Var-array(Index, Elem) | AccIn],
+    Pos1 is Pos + 1,
+    build_type_pairs(PredArity, Pos1, Rest, AccNext, AccOut).
+ 
+build_type_pairs(PredArity, Pos, [_Var | Rest], AccIn, AccOut) :-
+    AccNext = AccIn,
+    Pos1 is Pos + 1,
+    build_type_pairs(PredArity, Pos1, Rest, AccNext, AccOut).
 % ----------------------------
 % Costruzione vincoli di uguaglianza tipizzata
 % ----------------------------
