@@ -40,12 +40,13 @@ if [ "$MODE" == "-s" ]; then
   export SWIZ3_TURIBE_PATH="$HOME/verimap_projects/swi-prolog-z3"
   export LD_LIBRARY_PATH="$HOME/verimap_projects/swi-prolog-z3:$HOME/verimap_projects/swi-prolog-z3/z3/build:${LD_LIBRARY_PATH:-}"
   TIMEOUT_SEC=300
+
 elif [ "$MODE" == "-l" ]; then
   echo "💻 Modalità LOCALE attiva"
   SWIPL_BIN="$(command -v swipl || true)"
-  export SWIZ3_TURIBE_PATH="$HOME/verimap_projects/swi-prolog-z3"
-  export LD_LIBRARY_PATH="$HOME/verimap_projects/swi-prolog-z3:$HOME/verimap_projects/swi-prolog-z3/z3/build:${LD_LIBRARY_PATH:-}"
+  # ⚠️ nessun export di Z3 o LD_LIBRARY_PATH locale — come nel tuo script funzionante
   TIMEOUT_SEC=300
+
 else
   echo "❌ Modalità non riconosciuta. Usa -l (locale) o -s (server)."
   exit 1
