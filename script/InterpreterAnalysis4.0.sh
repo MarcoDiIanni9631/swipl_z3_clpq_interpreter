@@ -4,17 +4,16 @@
 # Script: InterpreterAnalysis4.0.sh
 # Autore: Marco Di Ianni
 # Descrizione:
-#   Analizza un file .smt2.pl sia in modalità locale (-l) che server (-s)
-#   mantenendo compatibilità con l’ambiente funzionante locale.
+#   Analizza un singolo file .smt2.pl con l’interprete Prolog.
+#   Usa l’opzione -l per esecuzione locale o -s per il server.
 # ==========================================================
 
 set -u
 
-# --- Uso ---
+# --- CONTROLLO ARGOMENTI ---
 if [ "$#" -lt 3 ]; then
-  echo "Uso: $0 <-l|-s> <file> <nome_predicato>"
+  echo "Uso: $0 [-l | -s] <file> <nome_predicato>"
   echo "Esempio: $0 -l ../test/few_calls.sol.smt2.pl ff"
-  echo "         $0 -s ../test/few_calls.sol.smt2.pl ff"
   exit 1
 fi
 
@@ -23,39 +22,50 @@ FILE="$2"
 TARGET="$3"
 MAIN="../src/core/main.pl"
 
-# --- Controlli preliminari ---
+# --- CONTROLLO FILE ---
 if [ ! -f "$FILE" ]; then
   echo "❌ File non trovato: $FILE"
   exit 1
 fi
+
 if [ ! -f "$MAIN" ]; then
   echo "❌ main.pl non trovato: $MAIN"
   exit 1
 fi
 
-# --- Imposta ambiente a seconda della modalità ---
-if [ "$MODE" = "-s" ]; then
+# --- CONFIGURAZIONE IN BASE ALLA MODALITÀ ---
+if [ "$MODE" == "-s" ]; then
   echo "🖥️ Modalità SERVER attiva"
-  USER_HOME="/home/labeconomia/$USER"
-  export LD_LIBRARY_PATH="$USER_HOME/verimap_projects/swi-prolog-z3:$USER_HOME/verimap_projects/swi-prolog-z3/z3/build:${LD_LIBRARY_PATH:-}"
-  SWIPL_BIN="$USER_HOME/local/swipl-9.3.31/bin/swipl"
-else
+  SWIPL_BIN="$HOME/local/swipl-9.3.31/bin/swipl"
+  export SWIZ3_TURIBE_PATH="$HOME/verimap_projects/swi-prolog-z3"
+  export LD_LIBRARY_PATH="$HOME/verimap_projects/swi-prolog-z3:$HOME/verimap_projects/swi-prolog-z3/z3/build:${LD_LIBRARY_PATH:-}"
+  TIMEOUT_SEC=300
+elif [ "$MODE" == "-l" ]; then
   echo "💻 Modalità LOCALE attiva"
   SWIPL_BIN="$(command -v swipl || true)"
-  [ -z "$SWIPL_BIN" ] && { echo "❌ SWI-Prolog non trovato"; exit 1; }
+  export SWIZ3_TURIBE_PATH="$HOME/verimap_projects/swi-prolog-z3"
+  export LD_LIBRARY_PATH="$HOME/verimap_projects/swi-prolog-z3:$HOME/verimap_projects/swi-prolog-z3/z3/build:${LD_LIBRARY_PATH:-}"
+  TIMEOUT_SEC=300
+else
+  echo "❌ Modalità non riconosciuta. Usa -l (locale) o -s (server)."
+  exit 1
 fi
 
-TIMEOUT_SEC=300
+# --- VERIFICA SWI-PROLOG ---
+if [ -z "$SWIPL_BIN" ] || [ ! -x "$SWIPL_BIN" ]; then
+  echo "❌ Errore: SWI-Prolog non trovato o non eseguibile."
+  exit 1
+fi
 
-# --- Percorsi assoluti ---
+# --- PERCORSI ASSOLUTI ---
 FILE_ABS="$(readlink -f "$FILE")"
 MAIN_ABS="$(readlink -f "$MAIN")"
 MAIN_DIR="$(dirname "$MAIN_ABS")"
 
-# --- Esecuzione ---
+# --- ESECUZIONE DEL FILE ---
 echo "▶️ Elaborazione file: $(basename "$FILE") (timeout ${TIMEOUT_SEC}s)"
 base="${FILE%.smt2.pl}"
-tmpout="${base}.tmpout"
+tmpout="$(dirname "$FILE_ABS")/$(basename "${base}.tmpout")"
 
 (
   cd "$MAIN_DIR" || exit 1
@@ -65,7 +75,7 @@ tmpout="${base}.tmpout"
 )
 EXIT_CODE=$?
 
-# --- Analisi del risultato ---
+# --- ANALISI RISULTATO ---
 MaxDepth="$(grep -oP "MaxDepth impostato a: \K[0-9]+" "$tmpout" 2>/dev/null || true)"
 [ -z "$MaxDepth" ] && MaxDepth="unknown"
 
@@ -80,12 +90,15 @@ else
   FOUND_INCORRECT="no"
 fi
 
+# --- TIMEOUT ---
 if [ $EXIT_CODE -eq 124 ]; then
+  echo "⏱️ Timeout per il file: $FILE"
   STATUS="timeout"
 else
   STATUS="done"
 fi
 
+# --- VERDETTO ---
 if grep -q "No SAT" "$tmpout"; then
   verdict="true"
 elif grep -q "Z3 Model" "$tmpout" || grep -q "SAT MODEL" "$tmpout" || [ "$FOUND_INCORRECT" = "yes" ]; then
@@ -94,7 +107,8 @@ else
   verdict="unknown"
 fi
 
+# --- RINOMINA FINALE ---
 finalout="${base}.${STATUS}_${verdict}_MaxDepth${MaxDepth}${LIMIT_TAG}${PUSH_TAG}${TERM_TAG}${ERROR_TAG}.zmiout"
-mv "$tmpout" "$finalout"
+mv "$tmpout" "$finalout" 2>/dev/null || true
 
 echo "✅ File elaborato --> $finalout"
