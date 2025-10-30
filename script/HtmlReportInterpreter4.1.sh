@@ -59,6 +59,45 @@ fi
     .legend {margin: 10px 0 18px; font-size: 13px; color: #444;}
     .legend span {display:inline-block; margin-right:14px;}
     .timestamp {font-size: 13px; color: #666; margin-bottom: 10px;}
+
+   .filter-group {
+      position: relative;
+      display: inline-block;
+      margin-right: 20px;
+    }
+
+    .filter-button {
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      background-color: white;
+      border: 1px solid #ccc;
+      padding: 10px;
+      z-index: 1000;
+      max-height: 200px;
+      overflow-y: auto;
+      box-shadow: 0px 2px 5px rgba(0,0,0,0.3);
+    }
+
+    .filter-group.open .dropdown {
+      display: block;
+    }
+
+    .dropdown label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    #resetBtn {
+      margin-top: 10px;
+      padding: 6px 12px;
+    }
+
+    
   </style>'
   echo "</head><body>"
   echo "<h2>Verifica Corrispondenza Risultati - $BASENAME</h2>"
@@ -70,8 +109,11 @@ fi
           <span><strong>🟡 Riga gialla</strong> = Timeout ma MaxDepth non raggiunto</span>
           <span><strong>🔴 Riga rossa</strong> = ErrorDetected nel log (.zmiout)</span>
         </div>"
-  echo "<table>"
-  echo "<tr>
+  echo '<h3>Filtra per:</h3>
+        <div id="filters"></div>
+        <button id="resetBtn">Reset Filtri</button>'
+  echo "<table id='reportTable'>"
+  echo "<thead> <tr>
           <th>File</th>
           <th>SMT Out</th>
           <th>ZMI Result</th>
@@ -82,7 +124,7 @@ fi
           <th>ErrorDetected</th>
           <th>Timeout&NoMaxDepth</th>
           <th>Match</th>
-        </tr>"
+        </tr>  </thead> <tbody>"
 } > "$HTML_OUT"
 
 # ---- LOOP FILES ----
@@ -228,5 +270,5 @@ done
 
 shopt -u nullglob
 
-echo "</table></body></html>" >> "$HTML_OUT"
+echo "</tbody></table></body></html>" >> "$HTML_OUT"
 echo "✅ Report generato: $HTML_OUT"
