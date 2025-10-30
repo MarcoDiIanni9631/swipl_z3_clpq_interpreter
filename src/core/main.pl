@@ -402,34 +402,6 @@ extend_type_table_list([Goal | Rest], SymTabIn, SymTabOut) :-
 % %     %AccOut valorizzato alla fine con AccIn quando è lista vuota
 
 
-%Versione Prof.
-% build_type_pairs(_, _, [], Acc, Acc).
- 
-% build_type_pairs(PredArity, Pos, [Var | Rest], AccIn, AccOut) :-
-%     var(Var), %es A
-%     pred_arg(PredArity, Pos, Type),
-%     atom(Type), % tipi atomici (int, bool, …)
-%     !,
-%     AccNext = [Var-Type | AccIn],
-%     Pos1 is Pos + 1,
-%     build_type_pairs(PredArity, Pos1, Rest, AccNext, AccOut).
- 
-% build_type_pairs(PredArity, Pos, [Var | Rest], AccIn, AccOut) :-
-%     var(Var), %es A
-%     pred_arg(PredArity, Pos, Type),
-%     Type = array(Index, Elem), % array(Index, Elem) con entrambi ground (es. array(int,int), array(int,bool))
-%     ground(Index),
-%     ground(Elem),
-%     !,
-%     AccNext = [Var-array(Index, Elem) | AccIn],
-%     Pos1 is Pos + 1,
-%     build_type_pairs(PredArity, Pos1, Rest, AccNext, AccOut).
- 
-% build_type_pairs(PredArity, Pos, [_Var | Rest], AccIn, AccOut) :-
-%     AccNext = AccIn,
-%     Pos1 is Pos + 1,
-%     build_type_pairs(PredArity, Pos1, Rest, AccNext, AccOut).
-
 build_type_pairs(_, _, [], Acc, Acc).
  
 build_type_pairs(PredArity, Pos, [Var | Rest], AccIn, AccOut) :-
@@ -456,6 +428,8 @@ build_type_pairs(PredArity, Pos, [_Var | Rest], AccIn, AccOut) :-
     AccNext = AccIn,
     Pos1 is Pos + 1,
     build_type_pairs(PredArity, Pos1, Rest, AccNext, AccOut).
+
+
 % ----------------------------
 % Costruzione vincoli di uguaglianza tipizzata
 % ----------------------------
