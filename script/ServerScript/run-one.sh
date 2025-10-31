@@ -14,6 +14,13 @@ BASE_DIR="/home/labeconomia/mdiianni2/verimap_projects/chc-comp25-benchmarks"
 SCRIPT_DIR="/home/labeconomia/mdiianni2/verimap_projects/swipl_z3_clpq_interpreter/script"
 VERIMAP_DIR="/home/labeconomia/mdiianni2/verimap_projects/verimap"
 
+
+export SWIPL_HOME=$HOME/local/swipl-9.3.31
+export Z3_HOME=$HOME/local/z3-4.15.3
+export PATH=$SWIPL_HOME/bin:$Z3_HOME/bin:$PATH
+export LD_LIBRARY_PATH=$Z3_HOME/lib:$LD_LIBRARY_PATH
+export SWIZ3_TURIBE_PATH="$HOME/verimap_projects/swi-prolog-z3"
+
 SET_FILE="$1"
 SET_PATH="$BASE_DIR/$SET_FILE"
 SET_NAME=$(basename "$SET_FILE" .set)
