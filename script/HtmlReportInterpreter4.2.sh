@@ -12,7 +12,7 @@
 # ==========================================================
 
 DIR="$1"
-DEFAULT_TIME_LIMIT=5
+DEFAULT_TIME_LIMIT=300
 DEFAULT_MAXDEPTH=15
 
 if [ ! -d "$DIR" ]; then

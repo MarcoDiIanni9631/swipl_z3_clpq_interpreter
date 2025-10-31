@@ -72,7 +72,7 @@ process_file() {
 
   (
     cd "$MAIN_DIR" || exit 1
-    timeout ${TIMEOUT_SEC}s "$SWIPL_BIN" -s "$MAIN_ABS" \
+    timeout ${TIMEOUT_SEC}s "$SWIPL_BIN" --stack-limit=4GB -s "$MAIN_ABS" \
       -g "load_clean('$FILE_ABS'),set_solver(turibe),zmi(${TARGET}),halt." \
       > "$tmpout" 2>&1
   )
@@ -118,7 +118,7 @@ export MAIN SWIPL_BIN TIMEOUT_SEC TARGET
 if [ -d "$INPUT_PATH" ]; then
   if [ "$MODE" == "-s" ]; then
     echo "⚙️ Avvio elaborazione parallela su directory: $INPUT_PATH ..."
-    find "$INPUT_PATH" -type f -name "*.pl" | parallel -j 8 process_file {}
+    find "$INPUT_PATH" -type f -name "*.pl" | parallel -j 16 process_file {}
   else
     echo "⚙️ Avvio elaborazione sequenziale su directory: $INPUT_PATH ..."
     find "$INPUT_PATH" -type f -name "*.pl" | while read -r file; do
