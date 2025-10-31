@@ -1,0 +1,350 @@
+(set-logic HORN)
+
+
+(declare-fun |__VERIFIER_assert@_ret| ( Int ) Bool)
+(declare-fun |main@_bb7| ( Int Int (Array Int Int) Int Int Int Int ) Bool)
+(declare-fun |main@verifier.error.split| ( ) Bool)
+(declare-fun |main@entry| ( Int Int ) Bool)
+(declare-fun |main@_bb| ( Int Int Int Int (Array Int Int) Int Int ) Bool)
+(declare-fun |__VERIFIER_assert@_call| ( Int ) Bool)
+(declare-fun |main@_bb1| ( Int (Array Int Int) Int Int Int Int Int Int ) Bool)
+(declare-fun |main@_bb6| ( Int Int (Array Int Int) Int Int Int ) Bool)
+(declare-fun |__VERIFIER_assert| ( Bool Bool Bool Int ) Bool)
+
+(assert
+  (forall ( (A Int) (v_1 Bool) (v_2 Bool) (v_3 Bool) ) 
+    (=>
+      (and
+        (and true (= v_1 true) (= v_2 true) (= v_3 true))
+      )
+      (__VERIFIER_assert v_1 v_2 v_3 A)
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (v_1 Bool) (v_2 Bool) (v_3 Bool) ) 
+    (=>
+      (and
+        (and true (= v_1 false) (= v_2 true) (= v_3 true))
+      )
+      (__VERIFIER_assert v_1 v_2 v_3 A)
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (v_1 Bool) (v_2 Bool) (v_3 Bool) ) 
+    (=>
+      (and
+        (and true (= v_1 false) (= v_2 false) (= v_3 false))
+      )
+      (__VERIFIER_assert v_1 v_2 v_3 A)
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (v_1 Bool) (v_2 Bool) (v_3 Bool) ) 
+    (=>
+      (and
+        (__VERIFIER_assert@_ret A)
+        (and (= v_1 true) (= v_2 false) (= v_3 false))
+      )
+      (__VERIFIER_assert v_1 v_2 v_3 A)
+    )
+  )
+)
+(assert
+  (forall ( (A Int) ) 
+    (=>
+      (and
+        true
+      )
+      (__VERIFIER_assert@_call A)
+    )
+  )
+)
+(assert
+  (forall ( (A Bool) (B Bool) (C Bool) (D Int) ) 
+    (=>
+      (and
+        (__VERIFIER_assert@_call D)
+        (and (or (not C) (and C B)) (not A) (= C true) (= A (= D 0)))
+      )
+      (__VERIFIER_assert@_ret D)
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (B Int) ) 
+    (=>
+      (and
+        true
+      )
+      (main@entry A B)
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (B Int) (C Int) (D Int) (E (Array Int Int)) (F Int) (G (Array Int Int)) (H Int) (I Bool) (J Bool) (K Int) (L Int) (M Int) (N Int) (O Int) (P (Array Int Int)) (Q Int) (R Int) ) 
+    (=>
+      (and
+        (main@entry M C)
+        (and (= B C)
+     (= D M)
+     (not (<= L 0))
+     (or (not J) (not I) (= G E))
+     (or (not J) (not I) (= P G))
+     (or (not J) (not I) (= H 0))
+     (or (not J) (not I) (= K F))
+     (or (not J) (not I) (= N H))
+     (or (not J) (not I) (= Q K))
+     (or (not I) (and J I))
+     (= I true)
+     (= A C))
+      )
+      (main@_bb L M N O P Q R)
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (B Bool) (C Bool) (D Int) (E (Array Int Int)) (F Int) (G Int) (H (Array Int Int)) (I Int) (J Bool) (K Bool) (L Int) (M Int) (N Int) (O Int) (P Int) (Q (Array Int Int)) (R Int) (S Int) ) 
+    (=>
+      (and
+        (main@_bb1 A E G M N D P S)
+        (let ((a!1 (ite (>= A 0)
+                (or (not (<= P A)) (not (>= P 0)))
+                (and (not (<= P A)) (not (<= 0 P))))))
+  (and (or (not K) (not C) (not B))
+       (or (not K) (not J) (= H E))
+       (or (not K) (not J) (= Q H))
+       (or (not K) (not J) (= I F))
+       (or (not K) (not J) (= L G))
+       (or (not K) (not J) (= O I))
+       (or (not K) (not J) (= R L))
+       (or (not J) (and K J))
+       (or (not K) (= F (+ 1 D)))
+       (or (not K) (and K B))
+       (= J true)
+       (= C a!1)))
+      )
+      (main@_bb M N O P Q R S)
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (B Int) (C Bool) (D Bool) (E Bool) (F Int) (G Int) (H Int) (I (Array Int Int)) (J Int) (K Int) (L Int) ) 
+    (=>
+      (and
+        (main@_bb G A B H I J L)
+        (let ((a!1 (ite (>= B 0)
+                (or (not (<= L B)) (not (>= L 0)))
+                (and (not (<= L B)) (not (<= 0 L))))))
+  (and (or (not D) (= F 0) (not E))
+       (or (not D) (= K F) (not E))
+       (or (not D) (not C) (not E))
+       (or (not D) (and D E))
+       (= D true)
+       (= C a!1)))
+      )
+      (main@_bb6 G H I J K L)
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (B Bool) (C Bool) (D Int) (E Int) (F Bool) (G Bool) (H Int) (I Int) (J Int) (K (Array Int Int)) (L Int) (M Int) (N Int) ) 
+    (=>
+      (and
+        (main@_bb7 I J K L A D N)
+        (let ((a!1 (ite (>= A 0)
+                (or (not (<= J A)) (not (>= J 0)))
+                (and (not (<= J A)) (not (<= 0 J))))))
+  (and (or (not G) (not C) (not B))
+       (or (not F) (= H E) (not G))
+       (or (not F) (= M H) (not G))
+       (or (not G) (= E (+ 1 D)))
+       (or (not G) (and G B))
+       (or (not F) (and F G))
+       (= F true)
+       (= C a!1)))
+      )
+      (main@_bb6 I J K L M N)
+    )
+  )
+)
+(assert
+  (forall ( (A Bool) (B (Array Int Int)) (C Int) (D (Array Int Int)) (E Int) (F Bool) (G Bool) (H Int) (I Int) (J (Array Int Int)) (K Int) (L Int) (M Int) (N Int) (O Int) (P Int) ) 
+    (=>
+      (and
+        (main@_bb L M N O B C P)
+        (let ((a!1 (ite (>= N 0)
+                (or (not (<= P N)) (not (>= P 0)))
+                (and (not (<= P N)) (not (<= 0 P))))))
+  (and (or (not G) (not F) (= D B))
+       (or (not G) (not F) (= J D))
+       (or (not G) (not F) (= H C))
+       (or (not G) (not F) (= E 0))
+       (or (not G) (not F) (= I E))
+       (or (not G) (not F) (= K H))
+       (or (not G) (not F) A)
+       (or (not F) (and G F))
+       (= F true)
+       (= A a!1)))
+      )
+      (main@_bb1 I J K L M N O P)
+    )
+  )
+)
+(assert
+  (forall ( (A Bool) (B Bool) (C Int) (D Int) (E (Array Int Int)) (F Int) (G Int) (H Int) (I Int) (J Int) (K Int) (L Int) (M Int) (N Int) (O Bool) (P Int) (Q Bool) (R Int) (S Bool) (T Bool) (U Int) (V Int) (W (Array Int Int)) (X Int) (Y Int) (Z (Array Int Int)) (A1 Int) (B1 Bool) (C1 Bool) (D1 Int) (E1 Int) (F1 (Array Int Int)) (G1 Int) (H1 Int) (I1 Int) (J1 Int) (K1 Int) (L1 Int) ) 
+    (=>
+      (and
+        (main@_bb1 V E P H1 I1 J1 K1 L1)
+        (let ((a!1 (or (not S) (not (= (<= K P) O))))
+      (a!2 (or (not S) (= F (+ H1 (* 4 L)))))
+      (a!3 (or (not S) (= J (+ H1 (* 4 I)))))
+      (a!4 (or (not Q) (= M (+ H1 (* 4 L)))))
+      (a!5 (ite (>= V 0)
+                (or (not (<= K1 V)) (not (>= K1 0)))
+                (and (not (<= K1 V)) (not (<= 0 K1))))))
+  (and (or (<= H1 0) (not S) (not (<= F 0)))
+       (or (<= H1 0) (not S) (not (<= J 0)))
+       (or B (not S) (not A))
+       (or (not T) (not S) (= Y U))
+       (or (not T) (not S) (= U P))
+       (or (not T) (not S) (not O))
+       (or (not Q) (not (<= M 0)) (<= H1 0))
+       (or (not Q) O (not S))
+       (or (not C1) (and C1 Q) (and T S))
+       (or (not C1) (not Q) (= R N))
+       (or (not C1) (not Q) (= Y R))
+       (or (not C1) (not B1) (= Z W))
+       (or (not C1) (not B1) (= F1 Z))
+       (or (not C1) (not B1) (= D1 Y))
+       (or (not C1) (not B1) (= A1 X))
+       (or (not C1) (not B1) (= E1 A1))
+       (or (not C1) (not B1) (= G1 D1))
+       (or (not S) (= W (store E F G)))
+       a!1
+       (or (not S) (= C I1))
+       a!2
+       (or (not S) (= I (+ H V)))
+       a!3
+       (or (not S) (= K (select W J)))
+       (or (not S) (= L (+ D V)))
+       (or (not S) (not (<= H1 0)))
+       (or (not S) (and S A))
+       (or (not T) S)
+       a!4
+       (or (not Q) (= N (select W M)))
+       (or (not Q) (not (<= H1 0)))
+       (or (not Q) (and Q S))
+       (or (not B1) (and C1 B1))
+       (or (not C1) (= X (+ 1 V)))
+       (= B1 true)
+       (= B a!5)))
+      )
+      (main@_bb1 E1 F1 G1 H1 I1 J1 K1 L1)
+    )
+  )
+)
+(assert
+  (forall ( (A Bool) (B Bool) (C Bool) (D Int) (E Int) (F Int) (G (Array Int Int)) (H Int) (I Int) (J Int) (K Int) ) 
+    (=>
+      (and
+        (main@_bb6 E F G H J K)
+        (let ((a!1 (ite (>= J 0)
+                (or (not (<= K J)) (not (>= K 0)))
+                (and (not (<= K J)) (not (<= 0 K))))))
+  (and (or (not C) (not B) (= D 0))
+       (or (not C) (not B) (= I D))
+       (or (not B) (and C B))
+       (= A true)
+       (= B true)
+       (= A a!1)))
+      )
+      (main@_bb7 E F G H I J K)
+    )
+  )
+)
+(assert
+  (forall ( (A Bool) (B Bool) (C Int) (D Int) (E Int) (F Int) (G Bool) (H Bool) (I Bool) (J Int) (K Int) (L Int) (M Bool) (N Bool) (O Int) (P Int) (Q Int) (R (Array Int Int)) (S Int) (T Int) (U Int) (V Int) (v_22 Bool) (v_23 Bool) ) 
+    (=>
+      (and
+        (main@_bb7 P Q R S K U V)
+        (__VERIFIER_assert N v_22 v_23 J)
+        (let ((a!1 (or (not H) (not (= (<= S F) G))))
+      (a!2 (or (not H) (= E (+ P (* 4 D)))))
+      (a!3 (ite (>= K 0)
+                (or (not (<= Q K)) (not (>= Q 0)))
+                (and (not (<= Q K)) (not (<= 0 Q))))))
+  (and (= v_22 false)
+       (= v_23 false)
+       (or (<= P 0) (not H) (not (<= E 0)))
+       (or B (not A) (not H))
+       (or (not N) I (not H))
+       (or (not N) (not M) (= O L))
+       (or (not N) (not M) (= T O))
+       a!1
+       (or (not H) (= D (+ C K)))
+       a!2
+       (or (not H) (= F (select R E)))
+       (or (not H) (= J (ite G 1 0)))
+       (or (not H) (not (<= P 0)))
+       (or (not H) (and H A))
+       (or (not M) (and N M))
+       (or (not N) (= L (+ 1 K)))
+       (or (not N) (and N H))
+       (= M true)
+       (= B a!3)))
+      )
+      (main@_bb7 P Q R S T U V)
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (B Int) (C Int) (D Bool) (E Bool) (F Int) (G Int) (H Int) (I Int) (J (Array Int Int)) (K Int) (L Int) (M Int) (N Bool) (O Bool) (P Bool) (Q Bool) (R Int) (S Bool) (T Bool) (U Bool) (V Bool) (W Bool) ) 
+    (=>
+      (and
+        (main@_bb7 I C J M G A B)
+        (let ((a!1 (or (not O) (not (= (<= M L) N))))
+      (a!2 (or (not O) (= K (+ I (* 4 H)))))
+      (a!3 (ite (>= G 0)
+                (or (not (<= C G)) (not (>= C 0)))
+                (and (not (<= C G)) (not (<= 0 C))))))
+  (and (or (not O) (not (<= K 0)) (<= I 0))
+       (or (not O) E (not D))
+       (or (not O) (not P) (not Q))
+       (or (not Q) (and O Q))
+       (or (not W) (and V W))
+       a!1
+       (or (not O) (= L (select J K)))
+       (or (not O) (= H (+ F G)))
+       a!2
+       (or (not O) (= R (ite N 1 0)))
+       (or (not O) (not (<= I 0)))
+       (or (not O) (and O D))
+       (or (not T) (= S (= R 0)))
+       (or (not T) (and T Q))
+       (or (not T) S)
+       (or (not U) (and U T))
+       (or (not V) (and V U))
+       (= W true)
+       (= E a!3)))
+      )
+      main@verifier.error.split
+    )
+  )
+)
+(assert
+  (forall ( (CHC_COMP_UNUSED Bool) ) 
+    (=>
+      (and
+        main@verifier.error.split
+        true
+      )
+      false
+    )
+  )
+)
+
+(check-sat)
+(exit)

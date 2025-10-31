@@ -1,0 +1,210 @@
+(set-logic HORN)
+
+
+(declare-fun |state| ( Bool Bool Bool Bool (_ BitVec 32) (_ BitVec 32) (_ BitVec 32) (_ BitVec 32) (_ BitVec 32) (_ BitVec 32) (_ BitVec 32) (_ BitVec 32) ) Bool)
+
+(assert
+  (forall ( (A Bool) (B Bool) (C (_ BitVec 32)) (D (_ BitVec 32)) (E (_ BitVec 32)) (F (_ BitVec 32)) (G (_ BitVec 32)) (H (_ BitVec 32)) (I (_ BitVec 32)) (J (_ BitVec 32)) (K Bool) (L Bool) ) 
+    (=>
+      (and
+        (and (not B) (not L) (not K) (not A))
+      )
+      (state B A L K F G H J C E D I)
+    )
+  )
+)
+(assert
+  (forall ( (A Bool) (B Bool) (C Bool) (D Bool) (E Bool) (F Bool) (G (_ BitVec 32)) (H (_ BitVec 32)) (I (_ BitVec 32)) (J (_ BitVec 32)) (K (_ BitVec 32)) (L (_ BitVec 32)) (M (_ BitVec 32)) (N (_ BitVec 32)) (O (_ BitVec 32)) (P (_ BitVec 32)) (Q (_ BitVec 32)) (R (_ BitVec 32)) (S (_ BitVec 32)) (T (_ BitVec 32)) (U (_ BitVec 32)) (V (_ BitVec 32)) (W (_ BitVec 32)) (X (_ BitVec 32)) (Y Bool) (Z Bool) ) 
+    (=>
+      (and
+        (state B A Z Y N P R V G K I S)
+        (or (and (not A)
+         (not B)
+         (not F)
+         (not E)
+         (not D)
+         C
+         (not Y)
+         (not Z)
+         (= T W)
+         (= L #x00000000)
+         (= N M)
+         (= J #x00000000)
+         (= P O)
+         (= H X)
+         (= R Q)
+         (= V U))
+    (and (not A)
+         B
+         (not F)
+         (not E)
+         D
+         (not C)
+         (not Y)
+         (not Z)
+         (= T S)
+         (= M #x00000000)
+         (= L K)
+         (= J I)
+         (= P O)
+         (= H G)
+         (= R Q)
+         (= V U)
+         (bvsle G K))
+    (and (not A)
+         B
+         (not F)
+         (not E)
+         (not D)
+         C
+         (not Y)
+         (not Z)
+         (= T S)
+         (= L (bvadd #x00000001 K))
+         (= N M)
+         (= J (bvadd #x00000001 I))
+         (= P O)
+         (= H G)
+         (= R Q)
+         (= V U)
+         (not (bvsle G K)))
+    (and A
+         (not B)
+         (not F)
+         (not E)
+         D
+         C
+         (not Y)
+         (not Z)
+         (= U #x00000000)
+         (= T S)
+         (= L K)
+         (= N M)
+         (= J I)
+         (= P O)
+         (= H G)
+         (= R Q)
+         (bvsle S N))
+    (and A
+         (not B)
+         (not F)
+         (not E)
+         D
+         (not C)
+         (not Y)
+         (not Z)
+         (= T S)
+         (= M (bvadd #x00000001 N))
+         (= L K)
+         (= J (bvadd #x00000001 I))
+         (= P O)
+         (= H G)
+         (= R Q)
+         (= V U)
+         (not (bvsle S N)))
+    (and A
+         B
+         (not F)
+         E
+         (not D)
+         (not C)
+         (not Y)
+         (not Z)
+         (= T S)
+         (= O #x00000000)
+         (= L K)
+         (= N M)
+         (= J I)
+         (= H G)
+         (= R Q)
+         (= V U)
+         (bvsle S V))
+    (and A
+         B
+         (not F)
+         (not E)
+         D
+         C
+         (not Y)
+         (not Z)
+         (= U (bvadd #x00000001 V))
+         (= T S)
+         (= L K)
+         (= N M)
+         (= J (bvadd #xffffffff I))
+         (= P O)
+         (= H G)
+         (= R Q)
+         (not (bvsle S V)))
+    (and (not A)
+         (not B)
+         (not F)
+         E
+         D
+         (not C)
+         (not Y)
+         Z
+         (= T S)
+         (= L K)
+         (= N M)
+         (= J I)
+         (= P O)
+         (= H G)
+         (= R Q)
+         (= V U)
+         (not (bvsle G P))
+         (bvsle I #x00000000))
+    (and (not A)
+         (not B)
+         (not F)
+         E
+         (not D)
+         (not C)
+         (not Y)
+         Z
+         (= T S)
+         (= O (bvadd #x00000001 P))
+         (= L K)
+         (= N M)
+         (= J (bvadd #xffffffff I))
+         (= H G)
+         (= R Q)
+         (= V U)
+         (not (bvsle G P))
+         (not (bvsle I #x00000000)))
+    (and A
+         (not B)
+         (not F)
+         E
+         D
+         C
+         (not Y)
+         Z
+         (= T S)
+         (= L K)
+         (= N M)
+         (= J I)
+         (= P O)
+         (= H G)
+         (= R Q)
+         (= V U))
+    (and A B (not F) E D C (not Y) Z))
+      )
+      (state C D E F M O Q U H L J T)
+    )
+  )
+)
+(assert
+  (forall ( (A Bool) (B Bool) (C (_ BitVec 32)) (D (_ BitVec 32)) (E (_ BitVec 32)) (F (_ BitVec 32)) (G (_ BitVec 32)) (H (_ BitVec 32)) (I (_ BitVec 32)) (J (_ BitVec 32)) (K Bool) (L Bool) ) 
+    (=>
+      (and
+        (state B A L K F G H J C E D I)
+        (and (= B true) (= L true) (not K) (= A true))
+      )
+      false
+    )
+  )
+)
+
+(check-sat)
+(exit)

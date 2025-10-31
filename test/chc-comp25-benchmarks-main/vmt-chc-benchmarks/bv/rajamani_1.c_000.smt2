@@ -1,0 +1,123 @@
+(set-logic HORN)
+
+
+(declare-fun |state| ( Bool Bool Bool (_ BitVec 32) (_ BitVec 32) (_ BitVec 32) (_ BitVec 32) (_ BitVec 32) ) Bool)
+
+(assert
+  (forall ( (A (_ BitVec 32)) (B (_ BitVec 32)) (C (_ BitVec 32)) (D (_ BitVec 32)) (E (_ BitVec 32)) (F Bool) (G Bool) (H Bool) ) 
+    (=>
+      (and
+        (and (not G) (not F) (not H))
+      )
+      (state H G F B C E A D)
+    )
+  )
+)
+(assert
+  (forall ( (A Bool) (B Bool) (C Bool) (D (_ BitVec 32)) (E (_ BitVec 32)) (F (_ BitVec 32)) (G (_ BitVec 32)) (H (_ BitVec 32)) (I (_ BitVec 32)) (J (_ BitVec 32)) (K (_ BitVec 32)) (L (_ BitVec 32)) (M (_ BitVec 32)) (N (_ BitVec 32)) (O (_ BitVec 32)) (P (_ BitVec 32)) (Q (_ BitVec 32)) (R Bool) (S Bool) (T Bool) ) 
+    (=>
+      (and
+        (state T S R G H L D J)
+        (let ((a!1 (not (bvsle (bvadd #x00000001 (bvmul #x0000000a J)) L)))
+      (a!2 (and (= P #x00000000)
+                (= O #x00000000)
+                (not (= N #x00000000))
+                (= M L)
+                (bvsle (bvadd #x00000001 (bvmul #x0000000a J)) L)
+                (not (bvsle (bvmul #x00000064 H) D))))
+      (a!3 (and (= P #x00000000)
+                (= O #x00000000)
+                (not (= N #x00000000))
+                (= M (bvmul #xffffffff L))
+                (bvsle (bvadd #x00000001 (bvmul #x0000000a J)) L)
+                (bvsle (bvmul #x00000064 H) D))))
+(let ((a!4 (or (and (= P #x00000000)
+                    (= O #x00000000)
+                    (not (= N #x00000000))
+                    (= M L)
+                    a!1)
+               a!2
+               a!3)))
+(let ((a!5 (or (and a!4 (= I H))
+               (and (not (= O #x00000000))
+                    (not (= N #x00000000))
+                    (= M (bvadd #x00000064 L))
+                    (= I (bvadd #x00000001 H)))
+               (and (not (= P #x00000000))
+                    (= O #x00000000)
+                    (not (= N #x00000000))
+                    (= M L)
+                    (= I H)
+                    (not (bvsle #x00000004 H)))
+               (and (not (= P #x00000000))
+                    (= O #x00000000)
+                    (not (= N #x00000000))
+                    (= M (bvadd #x00000001 L))
+                    (= I (bvadd #x00000001 H))
+                    (bvsle #x00000004 H)))))
+  (or (and (not C)
+           (not B)
+           A
+           (not R)
+           (not S)
+           (not T)
+           (= M #x00000000)
+           (= G F)
+           (= K #x00000000)
+           (= I #x00000000)
+           (= E #x00000000))
+      (and (not C)
+           B
+           (not A)
+           (not R)
+           (not S)
+           T
+           (= Q #x00000000)
+           (= M L)
+           (= G F)
+           (= K J)
+           (= I H)
+           (= E D)
+           (bvsle #x00000004 H)
+           (not (bvsle #x00000003 L)))
+      (and (not C)
+           (not B)
+           A
+           (not R)
+           (not S)
+           T
+           a!5
+           (= G F)
+           (= K (bvadd #x00000001 J))
+           (= E (bvadd #x0000000a D)))
+      (and C
+           (not B)
+           (not A)
+           (not R)
+           S
+           (not T)
+           (= M L)
+           (= G F)
+           (= K J)
+           (= I H)
+           (= E D))
+      (and C (not B) (not A) R (not S) (not T))))))
+      )
+      (state A B C F I M E K)
+    )
+  )
+)
+(assert
+  (forall ( (A (_ BitVec 32)) (B (_ BitVec 32)) (C (_ BitVec 32)) (D (_ BitVec 32)) (E (_ BitVec 32)) (F Bool) (G Bool) (H Bool) ) 
+    (=>
+      (and
+        (state H G F B C E A D)
+        (and (not G) (= F true) (not H))
+      )
+      false
+    )
+  )
+)
+
+(check-sat)
+(exit)

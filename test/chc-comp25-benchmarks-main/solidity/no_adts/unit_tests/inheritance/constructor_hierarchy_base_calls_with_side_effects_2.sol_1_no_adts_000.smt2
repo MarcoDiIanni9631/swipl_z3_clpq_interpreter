@@ -1,0 +1,4332 @@
+(set-logic HORN)
+
+
+(declare-fun |block_81_return_constructor_53_89_0| ( Int Int (Array Int (Array Int (Array Int (Array Int Int)))) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) Int Int Int Int Int Int Int (Array Int Int) (Array Int Int) Int Int Int Int Int Int (Array Int Int) Int Int Int (Array Int Int) Int Int Int ) Bool)
+(declare-fun |block_65__87_89_0| ( Int Int (Array Int (Array Int (Array Int (Array Int Int)))) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) Int Int Int Int Int Int Int (Array Int Int) (Array Int Int) Int Int Int Int Int Int (Array Int Int) Int Int (Array Int Int) Int Int ) Bool)
+(declare-fun |contract_initializer_after_init_72_C_89_0| ( Int Int (Array Int (Array Int (Array Int (Array Int Int)))) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) Int Int Int Int Int Int Int (Array Int Int) (Array Int Int) Int Int Int Int Int Int (Array Int Int) Int Int (Array Int Int) Int Int ) Bool)
+(declare-fun |contract_initializer_entry_89_A_13_0| ( Int Int (Array Int (Array Int (Array Int (Array Int Int)))) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) Int Int Int Int Int Int Int (Array Int Int) (Array Int Int) Int Int Int Int Int Int (Array Int Int) Int Int (Array Int Int) Int Int ) Bool)
+(declare-fun |block_66_return_constructor_88_89_0| ( Int Int (Array Int (Array Int (Array Int (Array Int Int)))) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) Int Int Int Int Int Int Int (Array Int Int) (Array Int Int) Int Int Int Int Int Int (Array Int Int) Int Int (Array Int Int) Int Int ) Bool)
+(declare-fun |summary_constructor_17_C_89_0| ( Int Int (Array Int (Array Int (Array Int (Array Int Int)))) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) Int Int Int Int Int Int Int (Array Int Int) (Array Int Int) Int Int Int Int Int Int (Array Int Int) Int Int (Array Int Int) Int Int ) Bool)
+(declare-fun |summary_93_function_f__38_89_0| ( Int Int (Array Int (Array Int (Array Int (Array Int Int)))) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) Int Int Int Int Int Int Int (Array Int Int) (Array Int Int) Int Int Int Int Int Int (Array Int Int) Int Int (Array Int Int) Int Int Int ) Bool)
+(declare-fun |block_85_constructor_12_89_0| ( Int Int (Array Int (Array Int (Array Int (Array Int Int)))) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) Int Int Int Int Int Int Int (Array Int Int) (Array Int Int) Int Int Int Int Int Int (Array Int Int) Int Int Int (Array Int Int) Int Int Int ) Bool)
+(declare-fun |error_target_6_0| ( ) Bool)
+(declare-fun |summary_92_function_f__38_89_0| ( Int Int (Array Int (Array Int (Array Int (Array Int Int)))) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) Int Int Int Int Int Int Int (Array Int Int) (Array Int Int) Int Int Int Int Int Int (Array Int Int) Int Int (Array Int Int) Int Int Int ) Bool)
+(declare-fun |contract_initializer_82_Z_54_0| ( Int Int (Array Int (Array Int (Array Int (Array Int Int)))) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) Int Int Int Int Int Int Int (Array Int Int) (Array Int Int) Int Int Int Int Int Int (Array Int Int) Int Int Int (Array Int Int) Int Int Int ) Bool)
+(declare-fun |block_68_constructor_88_89_0| ( Int Int (Array Int (Array Int (Array Int (Array Int Int)))) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) Int Int Int Int Int Int Int (Array Int Int) (Array Int Int) Int Int Int Int Int Int (Array Int Int) Int Int (Array Int Int) Int Int ) Bool)
+(declare-fun |summary_18_constructor_12_89_0| ( Int Int (Array Int (Array Int (Array Int (Array Int Int)))) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) Int Int Int Int Int Int Int (Array Int Int) (Array Int Int) Int Int Int Int Int Int (Array Int Int) Int Int Int (Array Int Int) Int Int Int ) Bool)
+(declare-fun |block_79_constructor_53_89_0| ( Int Int (Array Int (Array Int (Array Int (Array Int Int)))) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) Int Int Int Int Int Int Int (Array Int Int) (Array Int Int) Int Int Int Int Int Int (Array Int Int) Int Int Int (Array Int Int) Int Int Int ) Bool)
+(declare-fun |block_80__52_89_0| ( Int Int (Array Int (Array Int (Array Int (Array Int Int)))) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) Int Int Int Int Int Int Int (Array Int Int) (Array Int Int) Int Int Int Int Int Int (Array Int Int) Int Int Int (Array Int Int) Int Int Int ) Bool)
+(declare-fun |summary_19_constructor_24_89_0| ( Int Int (Array Int (Array Int (Array Int (Array Int Int)))) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) Int Int Int Int Int Int Int (Array Int Int) (Array Int Int) Int Int Int Int Int Int (Array Int Int) Int Int Int (Array Int Int) Int Int Int ) Bool)
+(declare-fun |implicit_constructor_entry_91_C_89_0| ( Int Int (Array Int (Array Int (Array Int (Array Int Int)))) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) Int Int Int Int Int Int Int (Array Int Int) (Array Int Int) Int Int Int Int Int Int (Array Int Int) Int Int (Array Int Int) Int Int ) Bool)
+(declare-fun |contract_initializer_88_A_13_0| ( Int Int (Array Int (Array Int (Array Int (Array Int Int)))) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) Int Int Int Int Int Int Int (Array Int Int) (Array Int Int) Int Int Int Int Int Int (Array Int Int) Int Int (Array Int Int) Int Int ) Bool)
+(declare-fun |block_64_constructor_88_89_0| ( Int Int (Array Int (Array Int (Array Int (Array Int Int)))) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) Int Int Int Int Int Int Int (Array Int Int) (Array Int Int) Int Int Int Int Int Int (Array Int Int) Int Int (Array Int Int) Int Int ) Bool)
+(declare-fun |summary_22_constructor_88_89_0| ( Int Int (Array Int (Array Int (Array Int (Array Int Int)))) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) Int Int Int Int Int Int Int (Array Int Int) (Array Int Int) Int Int Int Int Int Int (Array Int Int) Int Int (Array Int Int) Int Int ) Bool)
+(declare-fun |contract_initializer_after_init_84_Z_54_0| ( Int Int (Array Int (Array Int (Array Int (Array Int Int)))) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) Int Int Int Int Int Int Int (Array Int Int) (Array Int Int) Int Int Int Int Int Int (Array Int Int) Int Int Int (Array Int Int) Int Int Int ) Bool)
+(declare-fun |block_69_constructor_88_89_0| ( Int Int (Array Int (Array Int (Array Int (Array Int Int)))) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) Int Int Int Int Int Int Int (Array Int Int) (Array Int Int) Int Int Int Int Int Int (Array Int Int) Int Int (Array Int Int) Int Int ) Bool)
+(declare-fun |block_60_function_f__38_89_0| ( Int Int (Array Int (Array Int (Array Int (Array Int Int)))) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) Int Int Int Int Int Int Int (Array Int Int) (Array Int Int) Int Int Int Int Int Int (Array Int Int) Int Int (Array Int Int) Int Int Int ) Bool)
+(declare-fun |block_87_return_constructor_12_89_0| ( Int Int (Array Int (Array Int (Array Int (Array Int Int)))) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) Int Int Int Int Int Int Int (Array Int Int) (Array Int Int) Int Int Int Int Int Int (Array Int Int) Int Int Int (Array Int Int) Int Int Int ) Bool)
+(declare-fun |block_74__23_89_0| ( Int Int (Array Int (Array Int (Array Int (Array Int Int)))) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) Int Int Int Int Int Int Int (Array Int Int) (Array Int Int) Int Int Int Int Int Int (Array Int Int) Int Int Int (Array Int Int) Int Int Int ) Bool)
+(declare-fun |contract_initializer_after_init_90_A_13_0| ( Int Int (Array Int (Array Int (Array Int (Array Int Int)))) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) Int Int Int Int Int Int Int (Array Int Int) (Array Int Int) Int Int Int Int Int Int (Array Int Int) Int Int (Array Int Int) Int Int ) Bool)
+(declare-fun |summary_20_function_f__38_89_0| ( Int Int (Array Int (Array Int (Array Int (Array Int Int)))) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) Int Int Int Int Int Int Int (Array Int Int) (Array Int Int) Int Int Int Int Int Int (Array Int Int) Int Int (Array Int Int) Int Int Int ) Bool)
+(declare-fun |contract_initializer_70_C_89_0| ( Int Int (Array Int (Array Int (Array Int (Array Int Int)))) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) Int Int Int Int Int Int Int (Array Int Int) (Array Int Int) Int Int Int Int Int Int (Array Int Int) Int Int (Array Int Int) Int Int ) Bool)
+(declare-fun |block_67_constructor_88_89_0| ( Int Int (Array Int (Array Int (Array Int (Array Int Int)))) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) Int Int Int Int Int Int Int (Array Int Int) (Array Int Int) Int Int Int Int Int Int (Array Int Int) Int Int (Array Int Int) Int Int ) Bool)
+(declare-fun |block_75_return_constructor_24_89_0| ( Int Int (Array Int (Array Int (Array Int (Array Int Int)))) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) Int Int Int Int Int Int Int (Array Int Int) (Array Int Int) Int Int Int Int Int Int (Array Int Int) Int Int Int (Array Int Int) Int Int Int ) Bool)
+(declare-fun |contract_initializer_76_B_39_0| ( Int Int (Array Int (Array Int (Array Int (Array Int Int)))) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) Int Int Int Int Int Int Int (Array Int Int) (Array Int Int) Int Int Int Int Int Int (Array Int Int) Int Int (Array Int Int) Int Int ) Bool)
+(declare-fun |block_61_f_37_89_0| ( Int Int (Array Int (Array Int (Array Int (Array Int Int)))) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) Int Int Int Int Int Int Int (Array Int Int) (Array Int Int) Int Int Int Int Int Int (Array Int Int) Int Int (Array Int Int) Int Int Int ) Bool)
+(declare-fun |block_62_return_function_f__38_89_0| ( Int Int (Array Int (Array Int (Array Int (Array Int Int)))) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) Int Int Int Int Int Int Int (Array Int Int) (Array Int Int) Int Int Int Int Int Int (Array Int Int) Int Int (Array Int Int) Int Int Int ) Bool)
+(declare-fun |block_86__11_89_0| ( Int Int (Array Int (Array Int (Array Int (Array Int Int)))) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) Int Int Int Int Int Int Int (Array Int Int) (Array Int Int) Int Int Int Int Int Int (Array Int Int) Int Int Int (Array Int Int) Int Int Int ) Bool)
+(declare-fun |contract_initializer_after_init_78_B_39_0| ( Int Int (Array Int (Array Int (Array Int (Array Int Int)))) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) Int Int Int Int Int Int Int (Array Int Int) (Array Int Int) Int Int Int Int Int Int (Array Int Int) Int Int (Array Int Int) Int Int ) Bool)
+(declare-fun |contract_initializer_entry_77_B_39_0| ( Int Int (Array Int (Array Int (Array Int (Array Int Int)))) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) Int Int Int Int Int Int Int (Array Int Int) (Array Int Int) Int Int Int Int Int Int (Array Int Int) Int Int (Array Int Int) Int Int ) Bool)
+(declare-fun |contract_initializer_entry_71_C_89_0| ( Int Int (Array Int (Array Int (Array Int (Array Int Int)))) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) Int Int Int Int Int Int Int (Array Int Int) (Array Int Int) Int Int Int Int Int Int (Array Int Int) Int Int (Array Int Int) Int Int ) Bool)
+(declare-fun |block_73_constructor_24_89_0| ( Int Int (Array Int (Array Int (Array Int (Array Int Int)))) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) Int Int Int Int Int Int Int (Array Int Int) (Array Int Int) Int Int Int Int Int Int (Array Int Int) Int Int Int (Array Int Int) Int Int Int ) Bool)
+(declare-fun |summary_21_constructor_53_89_0| ( Int Int (Array Int (Array Int (Array Int (Array Int Int)))) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) Int Int Int Int Int Int Int (Array Int Int) (Array Int Int) Int Int Int Int Int Int (Array Int Int) Int Int Int (Array Int Int) Int Int Int ) Bool)
+(declare-fun |contract_initializer_entry_83_Z_54_0| ( Int Int (Array Int (Array Int (Array Int (Array Int Int)))) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) (Array (Array Int Int) (Array Int Int)) Int Int Int Int Int Int Int (Array Int Int) (Array Int Int) Int Int Int Int Int Int (Array Int Int) Int Int Int (Array Int Int) Int Int Int ) Bool)
+
+(assert
+  (forall ( (A Int) (B (Array Int (Array Int (Array Int (Array Int Int))))) (C (Array (Array Int Int) (Array Int Int))) (D (Array (Array Int Int) (Array Int Int))) (E (Array (Array Int Int) (Array Int Int))) (F Int) (G Int) (H Int) (I (Array Int Int)) (J (Array Int Int)) (K Int) (L Int) (M Int) (N Int) (O Int) (P Int) (Q Int) (R Int) (S (Array Int Int)) (T (Array Int Int)) (U Int) (V Int) (W Int) (X Int) (Y Int) (Z Int) (A1 Int) (B1 Int) ) 
+    (=>
+      (and
+        true
+      )
+      (block_60_function_f__38_89_0
+  F
+  K
+  B
+  C
+  D
+  E
+  L
+  M
+  N
+  O
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  Z
+  I
+  G
+  A1
+  J
+  H
+  B1
+  A)
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (B (Array Int (Array Int (Array Int (Array Int Int))))) (C (Array (Array Int Int) (Array Int Int))) (D (Array (Array Int Int) (Array Int Int))) (E (Array (Array Int Int) (Array Int Int))) (F Int) (G Int) (H Int) (I (Array Int Int)) (J (Array Int Int)) (K Int) (L Int) (M Int) (N Int) (O Int) (P Int) (Q Int) (R Int) (S (Array Int Int)) (T (Array Int Int)) (U Int) (V Int) (W Int) (X Int) (Y Int) (Z Int) (A1 Int) (B1 Int) ) 
+    (=>
+      (and
+        (block_60_function_f__38_89_0
+  F
+  K
+  B
+  C
+  D
+  E
+  L
+  M
+  N
+  O
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  Z
+  I
+  G
+  A1
+  J
+  H
+  B1
+  A)
+        (and (= H G) (= F 0) (= B1 A1) (= J I))
+      )
+      (block_61_f_37_89_0 F K B C D E L M N O P Q R S T U V W X Y Z I G A1 J H B1 A)
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (B Int) (C (Array Int (Array Int (Array Int (Array Int Int))))) (D (Array (Array Int Int) (Array Int Int))) (E (Array (Array Int Int) (Array Int Int))) (F (Array (Array Int Int) (Array Int Int))) (G Int) (H Int) (I Int) (J Int) (K Int) (L Int) (M Int) (N Int) (O Int) (P (Array Int Int)) (Q (Array Int Int)) (R Int) (S Int) (T Int) (U Int) (V Int) (W Int) (X Int) (Y Int) (Z (Array Int Int)) (A1 (Array Int Int)) (B1 Int) (C1 Int) (D1 Int) (E1 Int) (F1 Int) (G1 Int) (H1 Int) (I1 Int) (J1 Int) ) 
+    (=>
+      (and
+        (block_61_f_37_89_0
+  G
+  R
+  C
+  D
+  E
+  F
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  Z
+  A1
+  B1
+  C1
+  D1
+  E1
+  F1
+  G1
+  P
+  N
+  H1
+  Q
+  O
+  I1
+  A)
+        (and (= A 0)
+     (= L K)
+     (= K (+ I J))
+     (= J 1)
+     (= I I1)
+     (= J1 L)
+     (= M J1)
+     (= B M)
+     (>= H 0)
+     (>= L 0)
+     (>= K 0)
+     (>= I 0)
+     (>= M 0)
+     (<= H
+         115792089237316195423570985008687907853269984665640564039457584007913129639935)
+     (<= L
+         115792089237316195423570985008687907853269984665640564039457584007913129639935)
+     (<= K
+         115792089237316195423570985008687907853269984665640564039457584007913129639935)
+     (<= I
+         115792089237316195423570985008687907853269984665640564039457584007913129639935)
+     (<= M
+         115792089237316195423570985008687907853269984665640564039457584007913129639935)
+     (= H I1))
+      )
+      (block_62_return_function_f__38_89_0
+  G
+  R
+  C
+  D
+  E
+  F
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  Z
+  A1
+  B1
+  C1
+  D1
+  E1
+  F1
+  G1
+  P
+  N
+  H1
+  Q
+  O
+  J1
+  B)
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (B (Array Int (Array Int (Array Int (Array Int Int))))) (C (Array (Array Int Int) (Array Int Int))) (D (Array (Array Int Int) (Array Int Int))) (E (Array (Array Int Int) (Array Int Int))) (F Int) (G Int) (H Int) (I (Array Int Int)) (J (Array Int Int)) (K Int) (L Int) (M Int) (N Int) (O Int) (P Int) (Q Int) (R Int) (S (Array Int Int)) (T (Array Int Int)) (U Int) (V Int) (W Int) (X Int) (Y Int) (Z Int) (A1 Int) (B1 Int) ) 
+    (=>
+      (and
+        (block_62_return_function_f__38_89_0
+  F
+  K
+  B
+  C
+  D
+  E
+  L
+  M
+  N
+  O
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  Z
+  I
+  G
+  A1
+  J
+  H
+  B1
+  A)
+        true
+      )
+      (summary_20_function_f__38_89_0
+  F
+  K
+  B
+  C
+  D
+  E
+  L
+  M
+  N
+  O
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  Z
+  I
+  G
+  A1
+  J
+  H
+  B1
+  A)
+    )
+  )
+)
+(assert
+  (forall ( (A (Array Int (Array Int (Array Int (Array Int Int))))) (B (Array (Array Int Int) (Array Int Int))) (C (Array (Array Int Int) (Array Int Int))) (D (Array (Array Int Int) (Array Int Int))) (E Int) (F Int) (G Int) (H (Array Int Int)) (I (Array Int Int)) (J Int) (K Int) (L Int) (M Int) (N Int) (O Int) (P Int) (Q Int) (R (Array Int Int)) (S (Array Int Int)) (T Int) (U Int) (V Int) (W Int) (X Int) (Y Int) (Z Int) (A1 Int) ) 
+    (=>
+      (and
+        true
+      )
+      (block_64_constructor_88_89_0
+  E
+  J
+  A
+  B
+  C
+  D
+  K
+  L
+  M
+  N
+  O
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  H
+  F
+  Z
+  I
+  G
+  A1)
+    )
+  )
+)
+(assert
+  (forall ( (A (Array Int (Array Int (Array Int (Array Int Int))))) (B (Array (Array Int Int) (Array Int Int))) (C (Array (Array Int Int) (Array Int Int))) (D (Array (Array Int Int) (Array Int Int))) (E Int) (F Int) (G Int) (H (Array Int Int)) (I (Array Int Int)) (J Int) (K Int) (L Int) (M Int) (N Int) (O Int) (P Int) (Q Int) (R (Array Int Int)) (S (Array Int Int)) (T Int) (U Int) (V Int) (W Int) (X Int) (Y Int) (Z Int) (A1 Int) ) 
+    (=>
+      (and
+        (block_64_constructor_88_89_0
+  E
+  J
+  A
+  B
+  C
+  D
+  K
+  L
+  M
+  N
+  O
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  H
+  F
+  Z
+  I
+  G
+  A1)
+        (and (= G F) (= E 0) (= A1 Z) (= I H))
+      )
+      (block_65__87_89_0 E J A B C D K L M N O P Q R S T U V W X Y H F Z I G A1)
+    )
+  )
+)
+(assert
+  (forall ( (A (Array Int (Array Int (Array Int (Array Int Int))))) (B (Array (Array Int Int) (Array Int Int))) (C (Array (Array Int Int) (Array Int Int))) (D (Array (Array Int Int) (Array Int Int))) (E Int) (F Int) (G Int) (H Int) (I Bool) (J Int) (K Int) (L (Array Int Int)) (M (Array Int Int)) (N Int) (O Int) (P Int) (Q Int) (R Int) (S Int) (T Int) (U Int) (V (Array Int Int)) (W (Array Int Int)) (X Int) (Y Int) (Z Int) (A1 Int) (B1 Int) (C1 Int) (D1 Int) (E1 Int) ) 
+    (=>
+      (and
+        (block_65__87_89_0 E N A B C D O P Q R S T U V W X Y Z A1 B1 C1 L J D1 M K E1)
+        (and (= G E1)
+     (= F 1)
+     (= H 1)
+     (>= G 0)
+     (<= G
+         115792089237316195423570985008687907853269984665640564039457584007913129639935)
+     (not I)
+     (= I (= G H)))
+      )
+      (block_67_constructor_88_89_0
+  F
+  N
+  A
+  B
+  C
+  D
+  O
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  Z
+  A1
+  B1
+  C1
+  L
+  J
+  D1
+  M
+  K
+  E1)
+    )
+  )
+)
+(assert
+  (forall ( (A (Array Int (Array Int (Array Int (Array Int Int))))) (B (Array (Array Int Int) (Array Int Int))) (C (Array (Array Int Int) (Array Int Int))) (D (Array (Array Int Int) (Array Int Int))) (E Int) (F Int) (G Int) (H (Array Int Int)) (I (Array Int Int)) (J Int) (K Int) (L Int) (M Int) (N Int) (O Int) (P Int) (Q Int) (R (Array Int Int)) (S (Array Int Int)) (T Int) (U Int) (V Int) (W Int) (X Int) (Y Int) (Z Int) (A1 Int) ) 
+    (=>
+      (and
+        (block_67_constructor_88_89_0
+  E
+  J
+  A
+  B
+  C
+  D
+  K
+  L
+  M
+  N
+  O
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  H
+  F
+  Z
+  I
+  G
+  A1)
+        true
+      )
+      (summary_22_constructor_88_89_0
+  E
+  J
+  A
+  B
+  C
+  D
+  K
+  L
+  M
+  N
+  O
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  H
+  F
+  Z
+  I
+  G
+  A1)
+    )
+  )
+)
+(assert
+  (forall ( (A (Array Int (Array Int (Array Int (Array Int Int))))) (B (Array (Array Int Int) (Array Int Int))) (C (Array (Array Int Int) (Array Int Int))) (D (Array (Array Int Int) (Array Int Int))) (E Int) (F Int) (G Int) (H (Array Int Int)) (I (Array Int Int)) (J Int) (K Int) (L Int) (M Int) (N Int) (O Int) (P Int) (Q Int) (R (Array Int Int)) (S (Array Int Int)) (T Int) (U Int) (V Int) (W Int) (X Int) (Y Int) (Z Int) (A1 Int) ) 
+    (=>
+      (and
+        (block_68_constructor_88_89_0
+  E
+  J
+  A
+  B
+  C
+  D
+  K
+  L
+  M
+  N
+  O
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  H
+  F
+  Z
+  I
+  G
+  A1)
+        true
+      )
+      (summary_22_constructor_88_89_0
+  E
+  J
+  A
+  B
+  C
+  D
+  K
+  L
+  M
+  N
+  O
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  H
+  F
+  Z
+  I
+  G
+  A1)
+    )
+  )
+)
+(assert
+  (forall ( (A (Array Int (Array Int (Array Int (Array Int Int))))) (B (Array (Array Int Int) (Array Int Int))) (C (Array (Array Int Int) (Array Int Int))) (D (Array (Array Int Int) (Array Int Int))) (E Int) (F Int) (G Int) (H (Array Int Int)) (I (Array Int Int)) (J Int) (K Int) (L Int) (M Int) (N Int) (O Int) (P Int) (Q Int) (R (Array Int Int)) (S (Array Int Int)) (T Int) (U Int) (V Int) (W Int) (X Int) (Y Int) (Z Int) (A1 Int) ) 
+    (=>
+      (and
+        (block_69_constructor_88_89_0
+  E
+  J
+  A
+  B
+  C
+  D
+  K
+  L
+  M
+  N
+  O
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  H
+  F
+  Z
+  I
+  G
+  A1)
+        true
+      )
+      (summary_22_constructor_88_89_0
+  E
+  J
+  A
+  B
+  C
+  D
+  K
+  L
+  M
+  N
+  O
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  H
+  F
+  Z
+  I
+  G
+  A1)
+    )
+  )
+)
+(assert
+  (forall ( (A (Array Int (Array Int (Array Int (Array Int Int))))) (B (Array (Array Int Int) (Array Int Int))) (C (Array (Array Int Int) (Array Int Int))) (D (Array (Array Int Int) (Array Int Int))) (E Int) (F Int) (G Int) (H (Array Int Int)) (I (Array Int Int)) (J Int) (K Int) (L Int) (M Int) (N Int) (O Int) (P Int) (Q Int) (R (Array Int Int)) (S (Array Int Int)) (T Int) (U Int) (V Int) (W Int) (X Int) (Y Int) (Z Int) (A1 Int) ) 
+    (=>
+      (and
+        (block_66_return_constructor_88_89_0
+  E
+  J
+  A
+  B
+  C
+  D
+  K
+  L
+  M
+  N
+  O
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  H
+  F
+  Z
+  I
+  G
+  A1)
+        true
+      )
+      (summary_22_constructor_88_89_0
+  E
+  J
+  A
+  B
+  C
+  D
+  K
+  L
+  M
+  N
+  O
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  H
+  F
+  Z
+  I
+  G
+  A1)
+    )
+  )
+)
+(assert
+  (forall ( (A (Array Int (Array Int (Array Int (Array Int Int))))) (B (Array (Array Int Int) (Array Int Int))) (C (Array (Array Int Int) (Array Int Int))) (D (Array (Array Int Int) (Array Int Int))) (E Int) (F Int) (G Int) (H Int) (I Int) (J Bool) (K Int) (L Int) (M Bool) (N Int) (O Int) (P (Array Int Int)) (Q (Array Int Int)) (R Int) (S Int) (T Int) (U Int) (V Int) (W Int) (X Int) (Y Int) (Z (Array Int Int)) (A1 (Array Int Int)) (B1 Int) (C1 Int) (D1 Int) (E1 Int) (F1 Int) (G1 Int) (H1 Int) (I1 Int) ) 
+    (=>
+      (and
+        (block_65__87_89_0
+  E
+  R
+  A
+  B
+  C
+  D
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  Z
+  A1
+  B1
+  C1
+  D1
+  E1
+  F1
+  G1
+  P
+  N
+  H1
+  Q
+  O
+  I1)
+        (and (= M (= K L))
+     (= G 2)
+     (= K O)
+     (= I 1)
+     (= H I1)
+     (= L 2)
+     (= F E)
+     (>= K 0)
+     (>= H 0)
+     (<= K
+         115792089237316195423570985008687907853269984665640564039457584007913129639935)
+     (<= H
+         115792089237316195423570985008687907853269984665640564039457584007913129639935)
+     (not M)
+     (= J (= H I)))
+      )
+      (block_68_constructor_88_89_0
+  G
+  R
+  A
+  B
+  C
+  D
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  Z
+  A1
+  B1
+  C1
+  D1
+  E1
+  F1
+  G1
+  P
+  N
+  H1
+  Q
+  O
+  I1)
+    )
+  )
+)
+(assert
+  (forall ( (A (Array Int (Array Int (Array Int (Array Int Int))))) (B (Array (Array Int Int) (Array Int Int))) (C (Array (Array Int Int) (Array Int Int))) (D (Array (Array Int Int) (Array Int Int))) (E Int) (F Int) (G Int) (H Int) (I Int) (J Int) (K Bool) (L Int) (M Int) (N Bool) (O Int) (P Int) (Q Bool) (R Int) (S Int) (T (Array Int Int)) (U (Array Int Int)) (V Int) (W Int) (X Int) (Y Int) (Z Int) (A1 Int) (B1 Int) (C1 Int) (D1 (Array Int Int)) (E1 (Array Int Int)) (F1 Int) (G1 Int) (H1 Int) (I1 Int) (J1 Int) (K1 Int) (L1 Int) (M1 Int) ) 
+    (=>
+      (and
+        (block_65__87_89_0
+  E
+  V
+  A
+  B
+  C
+  D
+  W
+  X
+  Y
+  Z
+  A1
+  B1
+  C1
+  D1
+  E1
+  F1
+  G1
+  H1
+  I1
+  J1
+  K1
+  T
+  R
+  L1
+  U
+  S
+  M1)
+        (and (= N (= L M))
+     (= Q (= O P))
+     (= G F)
+     (= O M1)
+     (= M 2)
+     (= L S)
+     (= F E)
+     (= P S)
+     (= J 1)
+     (= I M1)
+     (= H 3)
+     (>= O 0)
+     (>= L 0)
+     (>= P 0)
+     (>= I 0)
+     (<= O
+         115792089237316195423570985008687907853269984665640564039457584007913129639935)
+     (<= L
+         115792089237316195423570985008687907853269984665640564039457584007913129639935)
+     (<= P
+         115792089237316195423570985008687907853269984665640564039457584007913129639935)
+     (<= I
+         115792089237316195423570985008687907853269984665640564039457584007913129639935)
+     (not Q)
+     (= K (= I J)))
+      )
+      (block_69_constructor_88_89_0
+  H
+  V
+  A
+  B
+  C
+  D
+  W
+  X
+  Y
+  Z
+  A1
+  B1
+  C1
+  D1
+  E1
+  F1
+  G1
+  H1
+  I1
+  J1
+  K1
+  T
+  R
+  L1
+  U
+  S
+  M1)
+    )
+  )
+)
+(assert
+  (forall ( (A (Array Int (Array Int (Array Int (Array Int Int))))) (B (Array (Array Int Int) (Array Int Int))) (C (Array (Array Int Int) (Array Int Int))) (D (Array (Array Int Int) (Array Int Int))) (E Int) (F Int) (G Int) (H Int) (I Int) (J Int) (K Bool) (L Int) (M Int) (N Bool) (O Int) (P Int) (Q Bool) (R Int) (S Int) (T (Array Int Int)) (U (Array Int Int)) (V Int) (W Int) (X Int) (Y Int) (Z Int) (A1 Int) (B1 Int) (C1 Int) (D1 (Array Int Int)) (E1 (Array Int Int)) (F1 Int) (G1 Int) (H1 Int) (I1 Int) (J1 Int) (K1 Int) (L1 Int) (M1 Int) ) 
+    (=>
+      (and
+        (block_65__87_89_0
+  E
+  V
+  A
+  B
+  C
+  D
+  W
+  X
+  Y
+  Z
+  A1
+  B1
+  C1
+  D1
+  E1
+  F1
+  G1
+  H1
+  I1
+  J1
+  K1
+  T
+  R
+  L1
+  U
+  S
+  M1)
+        (and (= N (= L M))
+     (= Q (= O P))
+     (= G F)
+     (= O M1)
+     (= M 2)
+     (= L S)
+     (= F E)
+     (= P S)
+     (= J 1)
+     (= I M1)
+     (= H G)
+     (>= O 0)
+     (>= L 0)
+     (>= P 0)
+     (>= I 0)
+     (<= O
+         115792089237316195423570985008687907853269984665640564039457584007913129639935)
+     (<= L
+         115792089237316195423570985008687907853269984665640564039457584007913129639935)
+     (<= P
+         115792089237316195423570985008687907853269984665640564039457584007913129639935)
+     (<= I
+         115792089237316195423570985008687907853269984665640564039457584007913129639935)
+     (= K (= I J)))
+      )
+      (block_66_return_constructor_88_89_0
+  H
+  V
+  A
+  B
+  C
+  D
+  W
+  X
+  Y
+  Z
+  A1
+  B1
+  C1
+  D1
+  E1
+  F1
+  G1
+  H1
+  I1
+  J1
+  K1
+  T
+  R
+  L1
+  U
+  S
+  M1)
+    )
+  )
+)
+(assert
+  (forall ( (A (Array Int (Array Int (Array Int (Array Int Int))))) (B (Array (Array Int Int) (Array Int Int))) (C (Array (Array Int Int) (Array Int Int))) (D (Array (Array Int Int) (Array Int Int))) (E Int) (F Int) (G Int) (H (Array Int Int)) (I (Array Int Int)) (J Int) (K Int) (L Int) (M Int) (N Int) (O Int) (P Int) (Q Int) (R (Array Int Int)) (S (Array Int Int)) (T Int) (U Int) (V Int) (W Int) (X Int) (Y Int) (Z Int) (A1 Int) ) 
+    (=>
+      (and
+        (and (= G F) (= E 0) (= A1 Z) (= I H))
+      )
+      (contract_initializer_entry_71_C_89_0
+  E
+  J
+  A
+  B
+  C
+  D
+  K
+  L
+  M
+  N
+  O
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  H
+  F
+  Z
+  I
+  G
+  A1)
+    )
+  )
+)
+(assert
+  (forall ( (A (Array Int (Array Int (Array Int (Array Int Int))))) (B (Array (Array Int Int) (Array Int Int))) (C (Array (Array Int Int) (Array Int Int))) (D (Array (Array Int Int) (Array Int Int))) (E Int) (F Int) (G Int) (H (Array Int Int)) (I (Array Int Int)) (J Int) (K Int) (L Int) (M Int) (N Int) (O Int) (P Int) (Q Int) (R (Array Int Int)) (S (Array Int Int)) (T Int) (U Int) (V Int) (W Int) (X Int) (Y Int) (Z Int) (A1 Int) ) 
+    (=>
+      (and
+        (contract_initializer_entry_71_C_89_0
+  E
+  J
+  A
+  B
+  C
+  D
+  K
+  L
+  M
+  N
+  O
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  H
+  F
+  Z
+  I
+  G
+  A1)
+        true
+      )
+      (contract_initializer_after_init_72_C_89_0
+  E
+  J
+  A
+  B
+  C
+  D
+  K
+  L
+  M
+  N
+  O
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  H
+  F
+  Z
+  I
+  G
+  A1)
+    )
+  )
+)
+(assert
+  (forall ( (A (Array Int (Array Int (Array Int (Array Int Int))))) (B (Array (Array Int Int) (Array Int Int))) (C (Array (Array Int Int) (Array Int Int))) (D (Array (Array Int Int) (Array Int Int))) (E Int) (F Int) (G Int) (H Int) (I Int) (J (Array Int Int)) (K (Array Int Int)) (L (Array Int Int)) (M Int) (N Int) (O Int) (P Int) (Q Int) (R Int) (S Int) (T Int) (U (Array Int Int)) (V (Array Int Int)) (W Int) (X Int) (Y Int) (Z Int) (A1 Int) (B1 Int) (C1 Int) (D1 Int) (E1 Int) ) 
+    (=>
+      (and
+        (contract_initializer_after_init_72_C_89_0
+  E
+  M
+  A
+  B
+  C
+  D
+  N
+  O
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  Z
+  A1
+  B1
+  J
+  G
+  C1
+  K
+  H
+  D1)
+        (summary_22_constructor_88_89_0
+  F
+  M
+  A
+  B
+  C
+  D
+  N
+  O
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  Z
+  A1
+  B1
+  K
+  H
+  D1
+  L
+  I
+  E1)
+        (not (<= F 0))
+      )
+      (contract_initializer_70_C_89_0
+  F
+  M
+  A
+  B
+  C
+  D
+  N
+  O
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  Z
+  A1
+  B1
+  J
+  G
+  C1
+  L
+  I
+  E1)
+    )
+  )
+)
+(assert
+  (forall ( (A (Array Int (Array Int (Array Int (Array Int Int))))) (B (Array (Array Int Int) (Array Int Int))) (C (Array (Array Int Int) (Array Int Int))) (D (Array (Array Int Int) (Array Int Int))) (E Int) (F Int) (G Int) (H Int) (I Int) (J (Array Int Int)) (K (Array Int Int)) (L (Array Int Int)) (M Int) (N Int) (O Int) (P Int) (Q Int) (R Int) (S Int) (T Int) (U (Array Int Int)) (V (Array Int Int)) (W Int) (X Int) (Y Int) (Z Int) (A1 Int) (B1 Int) (C1 Int) (D1 Int) (E1 Int) ) 
+    (=>
+      (and
+        (summary_22_constructor_88_89_0
+  F
+  M
+  A
+  B
+  C
+  D
+  N
+  O
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  Z
+  A1
+  B1
+  K
+  H
+  D1
+  L
+  I
+  E1)
+        (contract_initializer_after_init_72_C_89_0
+  E
+  M
+  A
+  B
+  C
+  D
+  N
+  O
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  Z
+  A1
+  B1
+  J
+  G
+  C1
+  K
+  H
+  D1)
+        (= F 0)
+      )
+      (contract_initializer_70_C_89_0
+  F
+  M
+  A
+  B
+  C
+  D
+  N
+  O
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  Z
+  A1
+  B1
+  J
+  G
+  C1
+  L
+  I
+  E1)
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (B Int) (C (Array Int (Array Int (Array Int (Array Int Int))))) (D (Array (Array Int Int) (Array Int Int))) (E (Array (Array Int Int) (Array Int Int))) (F (Array (Array Int Int) (Array Int Int))) (G Int) (H Int) (I Int) (J (Array Int Int)) (K (Array Int Int)) (L Int) (M Int) (N Int) (O Int) (P Int) (Q Int) (R Int) (S Int) (T (Array Int Int)) (U (Array Int Int)) (V Int) (W Int) (X Int) (Y Int) (Z Int) (A1 Int) (B1 Int) (C1 Int) ) 
+    (=>
+      (and
+        true
+      )
+      (block_73_constructor_24_89_0
+  G
+  L
+  C
+  D
+  E
+  F
+  M
+  N
+  O
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  Z
+  A1
+  J
+  H
+  B1
+  A
+  K
+  I
+  C1
+  B)
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (B Int) (C (Array Int (Array Int (Array Int (Array Int Int))))) (D (Array (Array Int Int) (Array Int Int))) (E (Array (Array Int Int) (Array Int Int))) (F (Array (Array Int Int) (Array Int Int))) (G Int) (H Int) (I Int) (J (Array Int Int)) (K (Array Int Int)) (L Int) (M Int) (N Int) (O Int) (P Int) (Q Int) (R Int) (S Int) (T (Array Int Int)) (U (Array Int Int)) (V Int) (W Int) (X Int) (Y Int) (Z Int) (A1 Int) (B1 Int) (C1 Int) ) 
+    (=>
+      (and
+        (block_73_constructor_24_89_0
+  G
+  L
+  C
+  D
+  E
+  F
+  M
+  N
+  O
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  Z
+  A1
+  J
+  H
+  B1
+  A
+  K
+  I
+  C1
+  B)
+        (and (= I H) (= G 0) (= B A) (= C1 B1) (= K J))
+      )
+      (block_74__23_89_0 G L C D E F M N O P Q R S T U V W X Y Z A1 J H B1 A K I C1 B)
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (B Int) (C (Array Int (Array Int (Array Int (Array Int Int))))) (D (Array (Array Int Int) (Array Int Int))) (E (Array (Array Int Int) (Array Int Int))) (F (Array (Array Int Int) (Array Int Int))) (G Int) (H Int) (I Int) (J (Array Int Int)) (K (Array Int Int)) (L Int) (M Int) (N Int) (O Int) (P Int) (Q Int) (R Int) (S Int) (T (Array Int Int)) (U (Array Int Int)) (V Int) (W Int) (X Int) (Y Int) (Z Int) (A1 Int) (B1 Int) (C1 Int) ) 
+    (=>
+      (and
+        (block_74__23_89_0 G L C D E F M N O P Q R S T U V W X Y Z A1 J H B1 A K I C1 B)
+        (and (<= B
+         115792089237316195423570985008687907853269984665640564039457584007913129639935)
+     (>= B 0))
+      )
+      (block_75_return_constructor_24_89_0
+  G
+  L
+  C
+  D
+  E
+  F
+  M
+  N
+  O
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  Z
+  A1
+  J
+  H
+  B1
+  A
+  K
+  I
+  C1
+  B)
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (B Int) (C (Array Int (Array Int (Array Int (Array Int Int))))) (D (Array (Array Int Int) (Array Int Int))) (E (Array (Array Int Int) (Array Int Int))) (F (Array (Array Int Int) (Array Int Int))) (G Int) (H Int) (I Int) (J (Array Int Int)) (K (Array Int Int)) (L Int) (M Int) (N Int) (O Int) (P Int) (Q Int) (R Int) (S Int) (T (Array Int Int)) (U (Array Int Int)) (V Int) (W Int) (X Int) (Y Int) (Z Int) (A1 Int) (B1 Int) (C1 Int) ) 
+    (=>
+      (and
+        (block_75_return_constructor_24_89_0
+  G
+  L
+  C
+  D
+  E
+  F
+  M
+  N
+  O
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  Z
+  A1
+  J
+  H
+  B1
+  A
+  K
+  I
+  C1
+  B)
+        true
+      )
+      (summary_19_constructor_24_89_0
+  G
+  L
+  C
+  D
+  E
+  F
+  M
+  N
+  O
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  Z
+  A1
+  J
+  H
+  B1
+  A
+  K
+  I
+  C1
+  B)
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (B Int) (C (Array Int (Array Int (Array Int (Array Int Int))))) (D (Array (Array Int Int) (Array Int Int))) (E (Array (Array Int Int) (Array Int Int))) (F (Array (Array Int Int) (Array Int Int))) (G Int) (H (Array Int Int)) (I (Array Int Int)) (J Int) (K Int) (L Int) (M Int) (N Int) (O Int) (P Int) (Q Int) (R (Array Int Int)) (S (Array Int Int)) (T Int) (U Int) (V Int) (W Int) (X Int) (Y Int) (Z Int) (A1 Int) ) 
+    (=>
+      (and
+        (and (= G 0) (= B A) (= A1 Z) (= I H))
+      )
+      (contract_initializer_entry_77_B_39_0
+  G
+  J
+  C
+  D
+  E
+  F
+  K
+  L
+  M
+  N
+  O
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  H
+  Z
+  A
+  I
+  A1
+  B)
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (B Int) (C (Array Int (Array Int (Array Int (Array Int Int))))) (D (Array (Array Int Int) (Array Int Int))) (E (Array (Array Int Int) (Array Int Int))) (F (Array (Array Int Int) (Array Int Int))) (G Int) (H (Array Int Int)) (I (Array Int Int)) (J Int) (K Int) (L Int) (M Int) (N Int) (O Int) (P Int) (Q Int) (R (Array Int Int)) (S (Array Int Int)) (T Int) (U Int) (V Int) (W Int) (X Int) (Y Int) (Z Int) (A1 Int) ) 
+    (=>
+      (and
+        (contract_initializer_entry_77_B_39_0
+  G
+  J
+  C
+  D
+  E
+  F
+  K
+  L
+  M
+  N
+  O
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  H
+  Z
+  A
+  I
+  A1
+  B)
+        true
+      )
+      (contract_initializer_after_init_78_B_39_0
+  G
+  J
+  C
+  D
+  E
+  F
+  K
+  L
+  M
+  N
+  O
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  H
+  Z
+  A
+  I
+  A1
+  B)
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (B Int) (C Int) (D (Array Int (Array Int (Array Int (Array Int Int))))) (E (Array (Array Int Int) (Array Int Int))) (F (Array (Array Int Int) (Array Int Int))) (G (Array (Array Int Int) (Array Int Int))) (H Int) (I Int) (J Int) (K Int) (L (Array Int Int)) (M (Array Int Int)) (N (Array Int Int)) (O Int) (P Int) (Q Int) (R Int) (S Int) (T Int) (U Int) (V Int) (W (Array Int Int)) (X (Array Int Int)) (Y Int) (Z Int) (A1 Int) (B1 Int) (C1 Int) (D1 Int) (E1 Int) (F1 Int) (G1 Int) ) 
+    (=>
+      (and
+        (contract_initializer_after_init_78_B_39_0
+  H
+  O
+  D
+  E
+  F
+  G
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  Z
+  A1
+  B1
+  C1
+  D1
+  L
+  E1
+  A
+  M
+  F1
+  B)
+        (summary_19_constructor_24_89_0
+  I
+  O
+  D
+  E
+  F
+  G
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  Z
+  A1
+  B1
+  C1
+  D1
+  M
+  J
+  F1
+  B
+  N
+  K
+  G1
+  C)
+        (not (<= I 0))
+      )
+      (contract_initializer_76_B_39_0
+  I
+  O
+  D
+  E
+  F
+  G
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  Z
+  A1
+  B1
+  C1
+  D1
+  L
+  E1
+  A
+  N
+  G1
+  C)
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (B Int) (C Int) (D (Array Int (Array Int (Array Int (Array Int Int))))) (E (Array (Array Int Int) (Array Int Int))) (F (Array (Array Int Int) (Array Int Int))) (G (Array (Array Int Int) (Array Int Int))) (H Int) (I Int) (J Int) (K Int) (L (Array Int Int)) (M (Array Int Int)) (N (Array Int Int)) (O Int) (P Int) (Q Int) (R Int) (S Int) (T Int) (U Int) (V Int) (W (Array Int Int)) (X (Array Int Int)) (Y Int) (Z Int) (A1 Int) (B1 Int) (C1 Int) (D1 Int) (E1 Int) (F1 Int) (G1 Int) ) 
+    (=>
+      (and
+        (summary_19_constructor_24_89_0
+  I
+  O
+  D
+  E
+  F
+  G
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  Z
+  A1
+  B1
+  C1
+  D1
+  M
+  J
+  F1
+  B
+  N
+  K
+  G1
+  C)
+        (contract_initializer_after_init_78_B_39_0
+  H
+  O
+  D
+  E
+  F
+  G
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  Z
+  A1
+  B1
+  C1
+  D1
+  L
+  E1
+  A
+  M
+  F1
+  B)
+        (= I 0)
+      )
+      (contract_initializer_76_B_39_0
+  I
+  O
+  D
+  E
+  F
+  G
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  Z
+  A1
+  B1
+  C1
+  D1
+  L
+  E1
+  A
+  N
+  G1
+  C)
+    )
+  )
+)
+(assert
+  (forall ( (A (Array Int (Array Int (Array Int (Array Int Int))))) (B (Array (Array Int Int) (Array Int Int))) (C (Array (Array Int Int) (Array Int Int))) (D (Array (Array Int Int) (Array Int Int))) (E Int) (F Int) (G Int) (H (Array Int Int)) (I (Array Int Int)) (J Int) (K Int) (L Int) (M Int) (N Int) (O Int) (P Int) (Q Int) (R (Array Int Int)) (S (Array Int Int)) (T Int) (U Int) (V Int) (W Int) (X Int) (Y Int) (Z Int) (A1 Int) (B1 Int) (C1 Int) ) 
+    (=>
+      (and
+        true
+      )
+      (block_79_constructor_53_89_0
+  E
+  J
+  A
+  B
+  C
+  D
+  K
+  L
+  M
+  N
+  O
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  H
+  F
+  Z
+  B1
+  I
+  G
+  A1
+  C1)
+    )
+  )
+)
+(assert
+  (forall ( (A (Array Int (Array Int (Array Int (Array Int Int))))) (B (Array (Array Int Int) (Array Int Int))) (C (Array (Array Int Int) (Array Int Int))) (D (Array (Array Int Int) (Array Int Int))) (E Int) (F Int) (G Int) (H (Array Int Int)) (I (Array Int Int)) (J Int) (K Int) (L Int) (M Int) (N Int) (O Int) (P Int) (Q Int) (R (Array Int Int)) (S (Array Int Int)) (T Int) (U Int) (V Int) (W Int) (X Int) (Y Int) (Z Int) (A1 Int) (B1 Int) (C1 Int) ) 
+    (=>
+      (and
+        (block_79_constructor_53_89_0
+  E
+  J
+  A
+  B
+  C
+  D
+  K
+  L
+  M
+  N
+  O
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  H
+  F
+  Z
+  B1
+  I
+  G
+  A1
+  C1)
+        (and (= G F) (= E 0) (= A1 Z) (= C1 B1) (= I H))
+      )
+      (block_80__52_89_0 E J A B C D K L M N O P Q R S T U V W X Y H F Z B1 I G A1 C1)
+    )
+  )
+)
+(assert
+  (forall ( (A (Array Int (Array Int (Array Int (Array Int Int))))) (B (Array (Array Int Int) (Array Int Int))) (C (Array (Array Int Int) (Array Int Int))) (D (Array (Array Int Int) (Array Int Int))) (E Int) (F Int) (G Int) (H Int) (I Int) (J Int) (K Int) (L (Array Int Int)) (M (Array Int Int)) (N Int) (O Int) (P Int) (Q Int) (R Int) (S Int) (T Int) (U Int) (V (Array Int Int)) (W (Array Int Int)) (X Int) (Y Int) (Z Int) (A1 Int) (B1 Int) (C1 Int) (D1 Int) (E1 Int) (F1 Int) (G1 Int) ) 
+    (=>
+      (and
+        (block_80__52_89_0
+  E
+  N
+  A
+  B
+  C
+  D
+  O
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  Z
+  A1
+  B1
+  C1
+  L
+  I
+  D1
+  F1
+  M
+  J
+  E1
+  G1)
+        (and (= H G)
+     (= G G1)
+     (= F J)
+     (>= H 0)
+     (>= G 0)
+     (>= F 0)
+     (>= G1 0)
+     (<= H
+         115792089237316195423570985008687907853269984665640564039457584007913129639935)
+     (<= G
+         115792089237316195423570985008687907853269984665640564039457584007913129639935)
+     (<= F
+         115792089237316195423570985008687907853269984665640564039457584007913129639935)
+     (<= G1
+         115792089237316195423570985008687907853269984665640564039457584007913129639935)
+     (= K H))
+      )
+      (block_81_return_constructor_53_89_0
+  E
+  N
+  A
+  B
+  C
+  D
+  O
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  Z
+  A1
+  B1
+  C1
+  L
+  I
+  D1
+  F1
+  M
+  K
+  E1
+  G1)
+    )
+  )
+)
+(assert
+  (forall ( (A (Array Int (Array Int (Array Int (Array Int Int))))) (B (Array (Array Int Int) (Array Int Int))) (C (Array (Array Int Int) (Array Int Int))) (D (Array (Array Int Int) (Array Int Int))) (E Int) (F Int) (G Int) (H (Array Int Int)) (I (Array Int Int)) (J Int) (K Int) (L Int) (M Int) (N Int) (O Int) (P Int) (Q Int) (R (Array Int Int)) (S (Array Int Int)) (T Int) (U Int) (V Int) (W Int) (X Int) (Y Int) (Z Int) (A1 Int) (B1 Int) (C1 Int) ) 
+    (=>
+      (and
+        (block_81_return_constructor_53_89_0
+  E
+  J
+  A
+  B
+  C
+  D
+  K
+  L
+  M
+  N
+  O
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  H
+  F
+  Z
+  B1
+  I
+  G
+  A1
+  C1)
+        true
+      )
+      (summary_21_constructor_53_89_0
+  E
+  J
+  A
+  B
+  C
+  D
+  K
+  L
+  M
+  N
+  O
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  H
+  F
+  Z
+  B1
+  I
+  G
+  A1
+  C1)
+    )
+  )
+)
+(assert
+  (forall ( (A (Array Int (Array Int (Array Int (Array Int Int))))) (B (Array (Array Int Int) (Array Int Int))) (C (Array (Array Int Int) (Array Int Int))) (D (Array (Array Int Int) (Array Int Int))) (E Int) (F Int) (G Int) (H (Array Int Int)) (I (Array Int Int)) (J Int) (K Int) (L Int) (M Int) (N Int) (O Int) (P Int) (Q Int) (R (Array Int Int)) (S (Array Int Int)) (T Int) (U Int) (V Int) (W Int) (X Int) (Y Int) (Z Int) (A1 Int) (B1 Int) (C1 Int) ) 
+    (=>
+      (and
+        (and (= G F) (= E 0) (= A1 Z) (= C1 B1) (= I H))
+      )
+      (contract_initializer_entry_83_Z_54_0
+  E
+  J
+  A
+  B
+  C
+  D
+  K
+  L
+  M
+  N
+  O
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  H
+  F
+  Z
+  B1
+  I
+  G
+  A1
+  C1)
+    )
+  )
+)
+(assert
+  (forall ( (A (Array Int (Array Int (Array Int (Array Int Int))))) (B (Array (Array Int Int) (Array Int Int))) (C (Array (Array Int Int) (Array Int Int))) (D (Array (Array Int Int) (Array Int Int))) (E Int) (F Int) (G Int) (H (Array Int Int)) (I (Array Int Int)) (J Int) (K Int) (L Int) (M Int) (N Int) (O Int) (P Int) (Q Int) (R (Array Int Int)) (S (Array Int Int)) (T Int) (U Int) (V Int) (W Int) (X Int) (Y Int) (Z Int) (A1 Int) (B1 Int) (C1 Int) ) 
+    (=>
+      (and
+        (contract_initializer_entry_83_Z_54_0
+  E
+  J
+  A
+  B
+  C
+  D
+  K
+  L
+  M
+  N
+  O
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  H
+  F
+  Z
+  B1
+  I
+  G
+  A1
+  C1)
+        true
+      )
+      (contract_initializer_after_init_84_Z_54_0
+  E
+  J
+  A
+  B
+  C
+  D
+  K
+  L
+  M
+  N
+  O
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  H
+  F
+  Z
+  B1
+  I
+  G
+  A1
+  C1)
+    )
+  )
+)
+(assert
+  (forall ( (A (Array Int (Array Int (Array Int (Array Int Int))))) (B (Array (Array Int Int) (Array Int Int))) (C (Array (Array Int Int) (Array Int Int))) (D (Array (Array Int Int) (Array Int Int))) (E Int) (F Int) (G Int) (H Int) (I Int) (J (Array Int Int)) (K (Array Int Int)) (L (Array Int Int)) (M Int) (N Int) (O Int) (P Int) (Q Int) (R Int) (S Int) (T Int) (U (Array Int Int)) (V (Array Int Int)) (W Int) (X Int) (Y Int) (Z Int) (A1 Int) (B1 Int) (C1 Int) (D1 Int) (E1 Int) (F1 Int) (G1 Int) (H1 Int) ) 
+    (=>
+      (and
+        (contract_initializer_after_init_84_Z_54_0
+  E
+  M
+  A
+  B
+  C
+  D
+  N
+  O
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  Z
+  A1
+  B1
+  J
+  G
+  C1
+  F1
+  K
+  H
+  D1
+  G1)
+        (summary_21_constructor_53_89_0
+  F
+  M
+  A
+  B
+  C
+  D
+  N
+  O
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  Z
+  A1
+  B1
+  K
+  H
+  D1
+  G1
+  L
+  I
+  E1
+  H1)
+        (not (<= F 0))
+      )
+      (contract_initializer_82_Z_54_0
+  F
+  M
+  A
+  B
+  C
+  D
+  N
+  O
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  Z
+  A1
+  B1
+  J
+  G
+  C1
+  F1
+  L
+  I
+  E1
+  H1)
+    )
+  )
+)
+(assert
+  (forall ( (A (Array Int (Array Int (Array Int (Array Int Int))))) (B (Array (Array Int Int) (Array Int Int))) (C (Array (Array Int Int) (Array Int Int))) (D (Array (Array Int Int) (Array Int Int))) (E Int) (F Int) (G Int) (H Int) (I Int) (J (Array Int Int)) (K (Array Int Int)) (L (Array Int Int)) (M Int) (N Int) (O Int) (P Int) (Q Int) (R Int) (S Int) (T Int) (U (Array Int Int)) (V (Array Int Int)) (W Int) (X Int) (Y Int) (Z Int) (A1 Int) (B1 Int) (C1 Int) (D1 Int) (E1 Int) (F1 Int) (G1 Int) (H1 Int) ) 
+    (=>
+      (and
+        (summary_21_constructor_53_89_0
+  F
+  M
+  A
+  B
+  C
+  D
+  N
+  O
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  Z
+  A1
+  B1
+  K
+  H
+  D1
+  G1
+  L
+  I
+  E1
+  H1)
+        (contract_initializer_after_init_84_Z_54_0
+  E
+  M
+  A
+  B
+  C
+  D
+  N
+  O
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  Z
+  A1
+  B1
+  J
+  G
+  C1
+  F1
+  K
+  H
+  D1
+  G1)
+        (= F 0)
+      )
+      (contract_initializer_82_Z_54_0
+  F
+  M
+  A
+  B
+  C
+  D
+  N
+  O
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  Z
+  A1
+  B1
+  J
+  G
+  C1
+  F1
+  L
+  I
+  E1
+  H1)
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (B Int) (C (Array Int (Array Int (Array Int (Array Int Int))))) (D (Array (Array Int Int) (Array Int Int))) (E (Array (Array Int Int) (Array Int Int))) (F (Array (Array Int Int) (Array Int Int))) (G Int) (H Int) (I Int) (J (Array Int Int)) (K (Array Int Int)) (L Int) (M Int) (N Int) (O Int) (P Int) (Q Int) (R Int) (S Int) (T (Array Int Int)) (U (Array Int Int)) (V Int) (W Int) (X Int) (Y Int) (Z Int) (A1 Int) (B1 Int) (C1 Int) ) 
+    (=>
+      (and
+        true
+      )
+      (block_85_constructor_12_89_0
+  G
+  L
+  C
+  D
+  E
+  F
+  M
+  N
+  O
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  Z
+  A1
+  J
+  H
+  B1
+  A
+  K
+  I
+  C1
+  B)
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (B Int) (C (Array Int (Array Int (Array Int (Array Int Int))))) (D (Array (Array Int Int) (Array Int Int))) (E (Array (Array Int Int) (Array Int Int))) (F (Array (Array Int Int) (Array Int Int))) (G Int) (H Int) (I Int) (J (Array Int Int)) (K (Array Int Int)) (L Int) (M Int) (N Int) (O Int) (P Int) (Q Int) (R Int) (S Int) (T (Array Int Int)) (U (Array Int Int)) (V Int) (W Int) (X Int) (Y Int) (Z Int) (A1 Int) (B1 Int) (C1 Int) ) 
+    (=>
+      (and
+        (block_85_constructor_12_89_0
+  G
+  L
+  C
+  D
+  E
+  F
+  M
+  N
+  O
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  Z
+  A1
+  J
+  H
+  B1
+  A
+  K
+  I
+  C1
+  B)
+        (and (= I H) (= G 0) (= B A) (= C1 B1) (= K J))
+      )
+      (block_86__11_89_0 G L C D E F M N O P Q R S T U V W X Y Z A1 J H B1 A K I C1 B)
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (B Int) (C (Array Int (Array Int (Array Int (Array Int Int))))) (D (Array (Array Int Int) (Array Int Int))) (E (Array (Array Int Int) (Array Int Int))) (F (Array (Array Int Int) (Array Int Int))) (G Int) (H Int) (I Int) (J Int) (K Int) (L Int) (M (Array Int Int)) (N (Array Int Int)) (O Int) (P Int) (Q Int) (R Int) (S Int) (T Int) (U Int) (V Int) (W (Array Int Int)) (X (Array Int Int)) (Y Int) (Z Int) (A1 Int) (B1 Int) (C1 Int) (D1 Int) (E1 Int) (F1 Int) (G1 Int) ) 
+    (=>
+      (and
+        (block_86__11_89_0
+  G
+  O
+  C
+  D
+  E
+  F
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  Z
+  A1
+  B1
+  C1
+  D1
+  M
+  K
+  E1
+  A
+  N
+  L
+  F1
+  B)
+        (and (= H F1)
+     (= G1 J)
+     (= J I)
+     (>= I 0)
+     (>= H 0)
+     (>= J 0)
+     (>= B 0)
+     (<= I
+         115792089237316195423570985008687907853269984665640564039457584007913129639935)
+     (<= H
+         115792089237316195423570985008687907853269984665640564039457584007913129639935)
+     (<= J
+         115792089237316195423570985008687907853269984665640564039457584007913129639935)
+     (<= B
+         115792089237316195423570985008687907853269984665640564039457584007913129639935)
+     (= I B))
+      )
+      (block_87_return_constructor_12_89_0
+  G
+  O
+  C
+  D
+  E
+  F
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  Z
+  A1
+  B1
+  C1
+  D1
+  M
+  K
+  E1
+  A
+  N
+  L
+  G1
+  B)
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (B Int) (C (Array Int (Array Int (Array Int (Array Int Int))))) (D (Array (Array Int Int) (Array Int Int))) (E (Array (Array Int Int) (Array Int Int))) (F (Array (Array Int Int) (Array Int Int))) (G Int) (H Int) (I Int) (J (Array Int Int)) (K (Array Int Int)) (L Int) (M Int) (N Int) (O Int) (P Int) (Q Int) (R Int) (S Int) (T (Array Int Int)) (U (Array Int Int)) (V Int) (W Int) (X Int) (Y Int) (Z Int) (A1 Int) (B1 Int) (C1 Int) ) 
+    (=>
+      (and
+        (block_87_return_constructor_12_89_0
+  G
+  L
+  C
+  D
+  E
+  F
+  M
+  N
+  O
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  Z
+  A1
+  J
+  H
+  B1
+  A
+  K
+  I
+  C1
+  B)
+        true
+      )
+      (summary_18_constructor_12_89_0
+  G
+  L
+  C
+  D
+  E
+  F
+  M
+  N
+  O
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  Z
+  A1
+  J
+  H
+  B1
+  A
+  K
+  I
+  C1
+  B)
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (B Int) (C (Array Int (Array Int (Array Int (Array Int Int))))) (D (Array (Array Int Int) (Array Int Int))) (E (Array (Array Int Int) (Array Int Int))) (F (Array (Array Int Int) (Array Int Int))) (G Int) (H (Array Int Int)) (I (Array Int Int)) (J Int) (K Int) (L Int) (M Int) (N Int) (O Int) (P Int) (Q Int) (R (Array Int Int)) (S (Array Int Int)) (T Int) (U Int) (V Int) (W Int) (X Int) (Y Int) (Z Int) (A1 Int) ) 
+    (=>
+      (and
+        (and (= G 0) (= B A) (= A1 Z) (= I H))
+      )
+      (contract_initializer_entry_89_A_13_0
+  G
+  J
+  C
+  D
+  E
+  F
+  K
+  L
+  M
+  N
+  O
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  H
+  Z
+  A
+  I
+  A1
+  B)
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (B Int) (C (Array Int (Array Int (Array Int (Array Int Int))))) (D (Array (Array Int Int) (Array Int Int))) (E (Array (Array Int Int) (Array Int Int))) (F (Array (Array Int Int) (Array Int Int))) (G Int) (H (Array Int Int)) (I (Array Int Int)) (J Int) (K Int) (L Int) (M Int) (N Int) (O Int) (P Int) (Q Int) (R (Array Int Int)) (S (Array Int Int)) (T Int) (U Int) (V Int) (W Int) (X Int) (Y Int) (Z Int) (A1 Int) ) 
+    (=>
+      (and
+        (contract_initializer_entry_89_A_13_0
+  G
+  J
+  C
+  D
+  E
+  F
+  K
+  L
+  M
+  N
+  O
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  H
+  Z
+  A
+  I
+  A1
+  B)
+        true
+      )
+      (contract_initializer_after_init_90_A_13_0
+  G
+  J
+  C
+  D
+  E
+  F
+  K
+  L
+  M
+  N
+  O
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  H
+  Z
+  A
+  I
+  A1
+  B)
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (B Int) (C Int) (D (Array Int (Array Int (Array Int (Array Int Int))))) (E (Array (Array Int Int) (Array Int Int))) (F (Array (Array Int Int) (Array Int Int))) (G (Array (Array Int Int) (Array Int Int))) (H Int) (I Int) (J Int) (K Int) (L (Array Int Int)) (M (Array Int Int)) (N (Array Int Int)) (O Int) (P Int) (Q Int) (R Int) (S Int) (T Int) (U Int) (V Int) (W (Array Int Int)) (X (Array Int Int)) (Y Int) (Z Int) (A1 Int) (B1 Int) (C1 Int) (D1 Int) (E1 Int) (F1 Int) (G1 Int) ) 
+    (=>
+      (and
+        (contract_initializer_after_init_90_A_13_0
+  H
+  O
+  D
+  E
+  F
+  G
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  Z
+  A1
+  B1
+  C1
+  D1
+  L
+  E1
+  A
+  M
+  F1
+  B)
+        (summary_18_constructor_12_89_0
+  I
+  O
+  D
+  E
+  F
+  G
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  Z
+  A1
+  B1
+  C1
+  D1
+  M
+  J
+  F1
+  B
+  N
+  K
+  G1
+  C)
+        (not (<= I 0))
+      )
+      (contract_initializer_88_A_13_0
+  I
+  O
+  D
+  E
+  F
+  G
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  Z
+  A1
+  B1
+  C1
+  D1
+  L
+  E1
+  A
+  N
+  G1
+  C)
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (B Int) (C Int) (D (Array Int (Array Int (Array Int (Array Int Int))))) (E (Array (Array Int Int) (Array Int Int))) (F (Array (Array Int Int) (Array Int Int))) (G (Array (Array Int Int) (Array Int Int))) (H Int) (I Int) (J Int) (K Int) (L (Array Int Int)) (M (Array Int Int)) (N (Array Int Int)) (O Int) (P Int) (Q Int) (R Int) (S Int) (T Int) (U Int) (V Int) (W (Array Int Int)) (X (Array Int Int)) (Y Int) (Z Int) (A1 Int) (B1 Int) (C1 Int) (D1 Int) (E1 Int) (F1 Int) (G1 Int) ) 
+    (=>
+      (and
+        (summary_18_constructor_12_89_0
+  I
+  O
+  D
+  E
+  F
+  G
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  Z
+  A1
+  B1
+  C1
+  D1
+  M
+  J
+  F1
+  B
+  N
+  K
+  G1
+  C)
+        (contract_initializer_after_init_90_A_13_0
+  H
+  O
+  D
+  E
+  F
+  G
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  Z
+  A1
+  B1
+  C1
+  D1
+  L
+  E1
+  A
+  M
+  F1
+  B)
+        (= I 0)
+      )
+      (contract_initializer_88_A_13_0
+  I
+  O
+  D
+  E
+  F
+  G
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  Z
+  A1
+  B1
+  C1
+  D1
+  L
+  E1
+  A
+  N
+  G1
+  C)
+    )
+  )
+)
+(assert
+  (forall ( (A (Array Int (Array Int (Array Int (Array Int Int))))) (B (Array (Array Int Int) (Array Int Int))) (C (Array (Array Int Int) (Array Int Int))) (D (Array (Array Int Int) (Array Int Int))) (E Int) (F Int) (G Int) (H (Array Int Int)) (I (Array Int Int)) (J Int) (K Int) (L Int) (M Int) (N Int) (O Int) (P Int) (Q Int) (R (Array Int Int)) (S (Array Int Int)) (T Int) (U Int) (V Int) (W Int) (X Int) (Y Int) (Z Int) (A1 Int) ) 
+    (=>
+      (and
+        (and (= G 0) (= G F) (= E 0) (= A1 0) (= A1 Z) (>= (select I J) W) (= I H))
+      )
+      (implicit_constructor_entry_91_C_89_0
+  E
+  J
+  A
+  B
+  C
+  D
+  K
+  L
+  M
+  N
+  O
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  H
+  F
+  Z
+  I
+  G
+  A1)
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (B (Array Int (Array Int (Array Int (Array Int Int))))) (C (Array (Array Int Int) (Array Int Int))) (D (Array (Array Int Int) (Array Int Int))) (E (Array (Array Int Int) (Array Int Int))) (F Int) (G Int) (H Int) (I (Array Int Int)) (J (Array Int Int)) (K Int) (L Int) (M Int) (N Int) (O Int) (P Int) (Q Int) (R Int) (S (Array Int Int)) (T (Array Int Int)) (U Int) (V Int) (W Int) (X Int) (Y Int) (Z Int) (A1 Int) (B1 Int) ) 
+    (=>
+      (and
+        (summary_20_function_f__38_89_0
+  F
+  K
+  B
+  C
+  D
+  E
+  L
+  M
+  N
+  O
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  Z
+  I
+  G
+  A1
+  J
+  H
+  B1
+  A)
+        true
+      )
+      (summary_92_function_f__38_89_0
+  F
+  K
+  B
+  C
+  D
+  E
+  L
+  M
+  N
+  O
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  Z
+  I
+  G
+  A1
+  J
+  H
+  B1
+  A)
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (B (Array Int (Array Int (Array Int (Array Int Int))))) (C (Array (Array Int Int) (Array Int Int))) (D (Array (Array Int Int) (Array Int Int))) (E (Array (Array Int Int) (Array Int Int))) (F Int) (G Int) (H Int) (I Int) (J Int) (K (Array Int Int)) (L (Array Int Int)) (M (Array Int Int)) (N Int) (O Int) (P Int) (Q Int) (R Int) (S Int) (T Int) (U Int) (V (Array Int Int)) (W (Array Int Int)) (X Int) (Y Int) (Z Int) (A1 Int) (B1 Int) (C1 Int) (D1 Int) (E1 Int) (F1 Int) ) 
+    (=>
+      (and
+        (implicit_constructor_entry_91_C_89_0
+  F
+  N
+  B
+  C
+  D
+  E
+  O
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  Z
+  A1
+  B1
+  C1
+  K
+  H
+  D1
+  L
+  I
+  E1)
+        (summary_92_function_f__38_89_0
+  G
+  N
+  B
+  C
+  D
+  E
+  O
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  Z
+  A1
+  B1
+  C1
+  L
+  I
+  E1
+  M
+  J
+  F1
+  A)
+        (not (<= G 0))
+      )
+      (summary_constructor_17_C_89_0
+  G
+  N
+  B
+  C
+  D
+  E
+  O
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  Z
+  A1
+  B1
+  C1
+  K
+  H
+  D1
+  M
+  J
+  F1)
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (B Int) (C Int) (D (Array Int (Array Int (Array Int (Array Int Int))))) (E (Array (Array Int Int) (Array Int Int))) (F (Array (Array Int Int) (Array Int Int))) (G (Array (Array Int Int) (Array Int Int))) (H Int) (I Int) (J Int) (K Int) (L Int) (M Int) (N Int) (O Int) (P (Array Int Int)) (Q (Array Int Int)) (R (Array Int Int)) (S (Array Int Int)) (T Int) (U Int) (V Int) (W Int) (X Int) (Y Int) (Z Int) (A1 Int) (B1 (Array Int Int)) (C1 (Array Int Int)) (D1 Int) (E1 Int) (F1 Int) (G1 Int) (H1 Int) (I1 Int) (J1 Int) (K1 Int) (L1 Int) (M1 Int) ) 
+    (=>
+      (and
+        (summary_92_function_f__38_89_0
+  I
+  T
+  D
+  E
+  F
+  G
+  U
+  V
+  W
+  X
+  Y
+  Z
+  A1
+  B1
+  C1
+  D1
+  E1
+  F1
+  G1
+  H1
+  I1
+  Q
+  M
+  K1
+  R
+  N
+  L1
+  A)
+        (implicit_constructor_entry_91_C_89_0
+  H
+  T
+  D
+  E
+  F
+  G
+  U
+  V
+  W
+  X
+  Y
+  Z
+  A1
+  B1
+  C1
+  D1
+  E1
+  F1
+  G1
+  H1
+  I1
+  P
+  L
+  J1
+  Q
+  M
+  K1)
+        (summary_93_function_f__38_89_0
+  J
+  T
+  D
+  E
+  F
+  G
+  U
+  V
+  W
+  X
+  Y
+  Z
+  A1
+  B1
+  C1
+  D1
+  E1
+  F1
+  G1
+  H1
+  I1
+  R
+  N
+  L1
+  S
+  O
+  M1
+  B)
+        (and (= C K)
+     (= I 0)
+     (>= K 0)
+     (<= K
+         115792089237316195423570985008687907853269984665640564039457584007913129639935)
+     (not (<= J 0))
+     (= K A))
+      )
+      (summary_constructor_17_C_89_0
+  J
+  T
+  D
+  E
+  F
+  G
+  U
+  V
+  W
+  X
+  Y
+  Z
+  A1
+  B1
+  C1
+  D1
+  E1
+  F1
+  G1
+  H1
+  I1
+  P
+  L
+  J1
+  S
+  O
+  M1)
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (B Int) (C Int) (D Int) (E Int) (F (Array Int (Array Int (Array Int (Array Int Int))))) (G (Array (Array Int Int) (Array Int Int))) (H (Array (Array Int Int) (Array Int Int))) (I (Array (Array Int Int) (Array Int Int))) (J Int) (K Int) (L Int) (M Int) (N Int) (O Int) (P Int) (Q Int) (R Int) (S Int) (T Int) (U (Array Int Int)) (V (Array Int Int)) (W (Array Int Int)) (X (Array Int Int)) (Y (Array Int Int)) (Z Int) (A1 Int) (B1 Int) (C1 Int) (D1 Int) (E1 Int) (F1 Int) (G1 Int) (H1 (Array Int Int)) (I1 (Array Int Int)) (J1 Int) (K1 Int) (L1 Int) (M1 Int) (N1 Int) (O1 Int) (P1 Int) (Q1 Int) (R1 Int) (S1 Int) (T1 Int) (U1 Int) ) 
+    (=>
+      (and
+        (summary_92_function_f__38_89_0
+  K
+  Z
+  F
+  G
+  H
+  I
+  A1
+  B1
+  C1
+  D1
+  E1
+  F1
+  G1
+  H1
+  I1
+  J1
+  K1
+  L1
+  M1
+  N1
+  O1
+  V
+  R
+  Q1
+  W
+  S
+  R1
+  A)
+        (implicit_constructor_entry_91_C_89_0
+  J
+  Z
+  F
+  G
+  H
+  I
+  A1
+  B1
+  C1
+  D1
+  E1
+  F1
+  G1
+  H1
+  I1
+  J1
+  K1
+  L1
+  M1
+  N1
+  O1
+  U
+  Q
+  P1
+  V
+  R
+  Q1)
+        (contract_initializer_88_A_13_0
+  M
+  Z
+  F
+  G
+  H
+  I
+  A1
+  B1
+  C1
+  D1
+  E1
+  F1
+  G1
+  H1
+  I1
+  J1
+  K1
+  L1
+  M1
+  N1
+  O1
+  X
+  S1
+  C
+  Y
+  T1
+  D)
+        (summary_93_function_f__38_89_0
+  L
+  Z
+  F
+  G
+  H
+  I
+  A1
+  B1
+  C1
+  D1
+  E1
+  F1
+  G1
+  H1
+  I1
+  J1
+  K1
+  L1
+  M1
+  N1
+  O1
+  W
+  S
+  R1
+  X
+  T
+  S1
+  B)
+        (and (= E O)
+     (= O A)
+     (= L 0)
+     (= K 0)
+     (= U1 P)
+     (= N E)
+     (= P B)
+     (>= O 0)
+     (>= N 0)
+     (>= P 0)
+     (<= O
+         115792089237316195423570985008687907853269984665640564039457584007913129639935)
+     (<= N
+         115792089237316195423570985008687907853269984665640564039457584007913129639935)
+     (not (<= M 0))
+     (<= P
+         115792089237316195423570985008687907853269984665640564039457584007913129639935)
+     (= C N))
+      )
+      (summary_constructor_17_C_89_0
+  M
+  Z
+  F
+  G
+  H
+  I
+  A1
+  B1
+  C1
+  D1
+  E1
+  F1
+  G1
+  H1
+  I1
+  J1
+  K1
+  L1
+  M1
+  N1
+  O1
+  U
+  Q
+  P1
+  Y
+  T
+  T1)
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (B Int) (C Int) (D Int) (E Int) (F (Array Int (Array Int (Array Int (Array Int Int))))) (G (Array (Array Int Int) (Array Int Int))) (H (Array (Array Int Int) (Array Int Int))) (I (Array (Array Int Int) (Array Int Int))) (J Int) (K Int) (L Int) (M Int) (N Int) (O Int) (P Int) (Q Int) (R Int) (S Int) (T Int) (U Int) (V Int) (W (Array Int Int)) (X (Array Int Int)) (Y (Array Int Int)) (Z (Array Int Int)) (A1 (Array Int Int)) (B1 (Array Int Int)) (C1 Int) (D1 Int) (E1 Int) (F1 Int) (G1 Int) (H1 Int) (I1 Int) (J1 Int) (K1 (Array Int Int)) (L1 (Array Int Int)) (M1 Int) (N1 Int) (O1 Int) (P1 Int) (Q1 Int) (R1 Int) (S1 Int) (T1 Int) (U1 Int) (V1 Int) (W1 Int) (X1 Int) (Y1 Int) (Z1 Int) ) 
+    (=>
+      (and
+        (summary_92_function_f__38_89_0
+  K
+  C1
+  F
+  G
+  H
+  I
+  D1
+  E1
+  F1
+  G1
+  H1
+  I1
+  J1
+  K1
+  L1
+  M1
+  N1
+  O1
+  P1
+  Q1
+  R1
+  X
+  S
+  T1
+  Y
+  T
+  U1
+  A)
+        (implicit_constructor_entry_91_C_89_0
+  J
+  C1
+  F
+  G
+  H
+  I
+  D1
+  E1
+  F1
+  G1
+  H1
+  I1
+  J1
+  K1
+  L1
+  M1
+  N1
+  O1
+  P1
+  Q1
+  R1
+  W
+  R
+  S1
+  X
+  S
+  T1)
+        (contract_initializer_82_Z_54_0
+  N
+  C1
+  F
+  G
+  H
+  I
+  D1
+  E1
+  F1
+  G1
+  H1
+  I1
+  J1
+  K1
+  L1
+  M1
+  N1
+  O1
+  P1
+  Q1
+  R1
+  A1
+  U
+  W1
+  Y1
+  B1
+  V
+  X1
+  Z1)
+        (contract_initializer_88_A_13_0
+  M
+  C1
+  F
+  G
+  H
+  I
+  D1
+  E1
+  F1
+  G1
+  H1
+  I1
+  J1
+  K1
+  L1
+  M1
+  N1
+  O1
+  P1
+  Q1
+  R1
+  Z
+  V1
+  C
+  A1
+  W1
+  D)
+        (summary_93_function_f__38_89_0
+  L
+  C1
+  F
+  G
+  H
+  I
+  D1
+  E1
+  F1
+  G1
+  H1
+  I1
+  J1
+  K1
+  L1
+  M1
+  N1
+  O1
+  P1
+  Q1
+  R1
+  Y
+  T
+  U1
+  Z
+  U
+  V1
+  B)
+        (and (= C O)
+     (= L 0)
+     (= E P)
+     (= M 0)
+     (= Q B)
+     (= P A)
+     (= Y1 Q)
+     (= O E)
+     (>= Q 0)
+     (>= P 0)
+     (>= O 0)
+     (not (<= N 0))
+     (<= Q
+         115792089237316195423570985008687907853269984665640564039457584007913129639935)
+     (<= P
+         115792089237316195423570985008687907853269984665640564039457584007913129639935)
+     (<= O
+         115792089237316195423570985008687907853269984665640564039457584007913129639935)
+     (= K 0))
+      )
+      (summary_constructor_17_C_89_0
+  N
+  C1
+  F
+  G
+  H
+  I
+  D1
+  E1
+  F1
+  G1
+  H1
+  I1
+  J1
+  K1
+  L1
+  M1
+  N1
+  O1
+  P1
+  Q1
+  R1
+  W
+  R
+  S1
+  B1
+  V
+  X1)
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (B Int) (C Int) (D Int) (E Int) (F Int) (G (Array Int (Array Int (Array Int (Array Int Int))))) (H (Array (Array Int Int) (Array Int Int))) (I (Array (Array Int Int) (Array Int Int))) (J (Array (Array Int Int) (Array Int Int))) (K Int) (L Int) (M Int) (N Int) (O Int) (P Int) (Q Int) (R Int) (S Int) (T Int) (U Int) (V Int) (W Int) (X Int) (Y (Array Int Int)) (Z (Array Int Int)) (A1 (Array Int Int)) (B1 (Array Int Int)) (C1 (Array Int Int)) (D1 (Array Int Int)) (E1 (Array Int Int)) (F1 Int) (G1 Int) (H1 Int) (I1 Int) (J1 Int) (K1 Int) (L1 Int) (M1 Int) (N1 (Array Int Int)) (O1 (Array Int Int)) (P1 Int) (Q1 Int) (R1 Int) (S1 Int) (T1 Int) (U1 Int) (V1 Int) (W1 Int) (X1 Int) (Y1 Int) (Z1 Int) (A2 Int) (B2 Int) (C2 Int) (D2 Int) ) 
+    (=>
+      (and
+        (summary_92_function_f__38_89_0
+  L
+  F1
+  G
+  H
+  I
+  J
+  G1
+  H1
+  I1
+  J1
+  K1
+  L1
+  M1
+  N1
+  O1
+  P1
+  Q1
+  R1
+  S1
+  T1
+  U1
+  Z
+  U
+  W1
+  A1
+  V
+  X1
+  A)
+        (implicit_constructor_entry_91_C_89_0
+  K
+  F1
+  G
+  H
+  I
+  J
+  G1
+  H1
+  I1
+  J1
+  K1
+  L1
+  M1
+  N1
+  O1
+  P1
+  Q1
+  R1
+  S1
+  T1
+  U1
+  Y
+  T
+  V1
+  Z
+  U
+  W1)
+        (contract_initializer_76_B_39_0
+  P
+  F1
+  G
+  H
+  I
+  J
+  G1
+  H1
+  I1
+  J1
+  K1
+  L1
+  M1
+  N1
+  O1
+  P1
+  Q1
+  R1
+  S1
+  T1
+  U1
+  D1
+  A2
+  E
+  E1
+  B2
+  F)
+        (contract_initializer_82_Z_54_0
+  O
+  F1
+  G
+  H
+  I
+  J
+  G1
+  H1
+  I1
+  J1
+  K1
+  L1
+  M1
+  N1
+  O1
+  P1
+  Q1
+  R1
+  S1
+  T1
+  U1
+  C1
+  W
+  Z1
+  C2
+  D1
+  X
+  A2
+  D2)
+        (contract_initializer_88_A_13_0
+  N
+  F1
+  G
+  H
+  I
+  J
+  G1
+  H1
+  I1
+  J1
+  K1
+  L1
+  M1
+  N1
+  O1
+  P1
+  Q1
+  R1
+  S1
+  T1
+  U1
+  B1
+  Y1
+  C
+  C1
+  Z1
+  D)
+        (summary_93_function_f__38_89_0
+  M
+  F1
+  G
+  H
+  I
+  J
+  G1
+  H1
+  I1
+  J1
+  K1
+  L1
+  M1
+  N1
+  O1
+  P1
+  Q1
+  R1
+  S1
+  T1
+  U1
+  A1
+  V
+  X1
+  B1
+  W
+  Y1
+  B)
+        (and (= N 0)
+     (= M 0)
+     (= E R)
+     (= O 0)
+     (= C Q)
+     (= Q E)
+     (= R A)
+     (= C2 S)
+     (= S B)
+     (>= Q 0)
+     (>= R 0)
+     (>= S 0)
+     (not (<= P 0))
+     (<= Q
+         115792089237316195423570985008687907853269984665640564039457584007913129639935)
+     (<= R
+         115792089237316195423570985008687907853269984665640564039457584007913129639935)
+     (<= S
+         115792089237316195423570985008687907853269984665640564039457584007913129639935)
+     (= L 0))
+      )
+      (summary_constructor_17_C_89_0
+  P
+  F1
+  G
+  H
+  I
+  J
+  G1
+  H1
+  I1
+  J1
+  K1
+  L1
+  M1
+  N1
+  O1
+  P1
+  Q1
+  R1
+  S1
+  T1
+  U1
+  Y
+  T
+  V1
+  E1
+  X
+  B2)
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (B Int) (C Int) (D Int) (E Int) (F Int) (G (Array Int (Array Int (Array Int (Array Int Int))))) (H (Array (Array Int Int) (Array Int Int))) (I (Array (Array Int Int) (Array Int Int))) (J (Array (Array Int Int) (Array Int Int))) (K Int) (L Int) (M Int) (N Int) (O Int) (P Int) (Q Int) (R Int) (S Int) (T Int) (U Int) (V Int) (W Int) (X Int) (Y Int) (Z Int) (A1 (Array Int Int)) (B1 (Array Int Int)) (C1 (Array Int Int)) (D1 (Array Int Int)) (E1 (Array Int Int)) (F1 (Array Int Int)) (G1 (Array Int Int)) (H1 (Array Int Int)) (I1 Int) (J1 Int) (K1 Int) (L1 Int) (M1 Int) (N1 Int) (O1 Int) (P1 Int) (Q1 (Array Int Int)) (R1 (Array Int Int)) (S1 Int) (T1 Int) (U1 Int) (V1 Int) (W1 Int) (X1 Int) (Y1 Int) (Z1 Int) (A2 Int) (B2 Int) (C2 Int) (D2 Int) (E2 Int) (F2 Int) (G2 Int) (H2 Int) ) 
+    (=>
+      (and
+        (summary_92_function_f__38_89_0
+  L
+  I1
+  G
+  H
+  I
+  J
+  J1
+  K1
+  L1
+  M1
+  N1
+  O1
+  P1
+  Q1
+  R1
+  S1
+  T1
+  U1
+  V1
+  W1
+  X1
+  B1
+  V
+  Z1
+  C1
+  W
+  A2
+  A)
+        (implicit_constructor_entry_91_C_89_0
+  K
+  I1
+  G
+  H
+  I
+  J
+  J1
+  K1
+  L1
+  M1
+  N1
+  O1
+  P1
+  Q1
+  R1
+  S1
+  T1
+  U1
+  V1
+  W1
+  X1
+  A1
+  U
+  Y1
+  B1
+  V
+  Z1)
+        (contract_initializer_70_C_89_0
+  Q
+  I1
+  G
+  H
+  I
+  J
+  J1
+  K1
+  L1
+  M1
+  N1
+  O1
+  P1
+  Q1
+  R1
+  S1
+  T1
+  U1
+  V1
+  W1
+  X1
+  G1
+  Y
+  E2
+  H1
+  Z
+  F2)
+        (contract_initializer_76_B_39_0
+  P
+  I1
+  G
+  H
+  I
+  J
+  J1
+  K1
+  L1
+  M1
+  N1
+  O1
+  P1
+  Q1
+  R1
+  S1
+  T1
+  U1
+  V1
+  W1
+  X1
+  F1
+  D2
+  E
+  G1
+  E2
+  F)
+        (contract_initializer_82_Z_54_0
+  O
+  I1
+  G
+  H
+  I
+  J
+  J1
+  K1
+  L1
+  M1
+  N1
+  O1
+  P1
+  Q1
+  R1
+  S1
+  T1
+  U1
+  V1
+  W1
+  X1
+  E1
+  X
+  C2
+  G2
+  F1
+  Y
+  D2
+  H2)
+        (contract_initializer_88_A_13_0
+  N
+  I1
+  G
+  H
+  I
+  J
+  J1
+  K1
+  L1
+  M1
+  N1
+  O1
+  P1
+  Q1
+  R1
+  S1
+  T1
+  U1
+  V1
+  W1
+  X1
+  D1
+  B2
+  C
+  E1
+  C2
+  D)
+        (summary_93_function_f__38_89_0
+  M
+  I1
+  G
+  H
+  I
+  J
+  J1
+  K1
+  L1
+  M1
+  N1
+  O1
+  P1
+  Q1
+  R1
+  S1
+  T1
+  U1
+  V1
+  W1
+  X1
+  C1
+  W
+  A2
+  D1
+  X
+  B2
+  B)
+        (and (= P 0)
+     (= O 0)
+     (= R E)
+     (= S A)
+     (= T B)
+     (= L 0)
+     (= M 0)
+     (= N 0)
+     (= E S)
+     (= G2 T)
+     (>= R 0)
+     (>= S 0)
+     (>= T 0)
+     (<= R
+         115792089237316195423570985008687907853269984665640564039457584007913129639935)
+     (not (<= Q 0))
+     (<= S
+         115792089237316195423570985008687907853269984665640564039457584007913129639935)
+     (<= T
+         115792089237316195423570985008687907853269984665640564039457584007913129639935)
+     (= C R))
+      )
+      (summary_constructor_17_C_89_0
+  Q
+  I1
+  G
+  H
+  I
+  J
+  J1
+  K1
+  L1
+  M1
+  N1
+  O1
+  P1
+  Q1
+  R1
+  S1
+  T1
+  U1
+  V1
+  W1
+  X1
+  A1
+  U
+  Y1
+  H1
+  Z
+  F2)
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (B Int) (C Int) (D Int) (E Int) (F Int) (G (Array Int (Array Int (Array Int (Array Int Int))))) (H (Array (Array Int Int) (Array Int Int))) (I (Array (Array Int Int) (Array Int Int))) (J (Array (Array Int Int) (Array Int Int))) (K Int) (L Int) (M Int) (N Int) (O Int) (P Int) (Q Int) (R Int) (S Int) (T Int) (U Int) (V Int) (W Int) (X Int) (Y Int) (Z Int) (A1 (Array Int Int)) (B1 (Array Int Int)) (C1 (Array Int Int)) (D1 (Array Int Int)) (E1 (Array Int Int)) (F1 (Array Int Int)) (G1 (Array Int Int)) (H1 (Array Int Int)) (I1 Int) (J1 Int) (K1 Int) (L1 Int) (M1 Int) (N1 Int) (O1 Int) (P1 Int) (Q1 (Array Int Int)) (R1 (Array Int Int)) (S1 Int) (T1 Int) (U1 Int) (V1 Int) (W1 Int) (X1 Int) (Y1 Int) (Z1 Int) (A2 Int) (B2 Int) (C2 Int) (D2 Int) (E2 Int) (F2 Int) (G2 Int) (H2 Int) ) 
+    (=>
+      (and
+        (summary_92_function_f__38_89_0
+  L
+  I1
+  G
+  H
+  I
+  J
+  J1
+  K1
+  L1
+  M1
+  N1
+  O1
+  P1
+  Q1
+  R1
+  S1
+  T1
+  U1
+  V1
+  W1
+  X1
+  B1
+  V
+  Z1
+  C1
+  W
+  A2
+  A)
+        (implicit_constructor_entry_91_C_89_0
+  K
+  I1
+  G
+  H
+  I
+  J
+  J1
+  K1
+  L1
+  M1
+  N1
+  O1
+  P1
+  Q1
+  R1
+  S1
+  T1
+  U1
+  V1
+  W1
+  X1
+  A1
+  U
+  Y1
+  B1
+  V
+  Z1)
+        (contract_initializer_70_C_89_0
+  Q
+  I1
+  G
+  H
+  I
+  J
+  J1
+  K1
+  L1
+  M1
+  N1
+  O1
+  P1
+  Q1
+  R1
+  S1
+  T1
+  U1
+  V1
+  W1
+  X1
+  G1
+  Y
+  E2
+  H1
+  Z
+  F2)
+        (contract_initializer_76_B_39_0
+  P
+  I1
+  G
+  H
+  I
+  J
+  J1
+  K1
+  L1
+  M1
+  N1
+  O1
+  P1
+  Q1
+  R1
+  S1
+  T1
+  U1
+  V1
+  W1
+  X1
+  F1
+  D2
+  E
+  G1
+  E2
+  F)
+        (contract_initializer_82_Z_54_0
+  O
+  I1
+  G
+  H
+  I
+  J
+  J1
+  K1
+  L1
+  M1
+  N1
+  O1
+  P1
+  Q1
+  R1
+  S1
+  T1
+  U1
+  V1
+  W1
+  X1
+  E1
+  X
+  C2
+  G2
+  F1
+  Y
+  D2
+  H2)
+        (contract_initializer_88_A_13_0
+  N
+  I1
+  G
+  H
+  I
+  J
+  J1
+  K1
+  L1
+  M1
+  N1
+  O1
+  P1
+  Q1
+  R1
+  S1
+  T1
+  U1
+  V1
+  W1
+  X1
+  D1
+  B2
+  C
+  E1
+  C2
+  D)
+        (summary_93_function_f__38_89_0
+  M
+  I1
+  G
+  H
+  I
+  J
+  J1
+  K1
+  L1
+  M1
+  N1
+  O1
+  P1
+  Q1
+  R1
+  S1
+  T1
+  U1
+  V1
+  W1
+  X1
+  C1
+  W
+  A2
+  D1
+  X
+  B2
+  B)
+        (and (= P 0)
+     (= O 0)
+     (= R E)
+     (= Q 0)
+     (= S A)
+     (= T B)
+     (= L 0)
+     (= M 0)
+     (= N 0)
+     (= E S)
+     (= G2 T)
+     (>= R 0)
+     (>= S 0)
+     (>= T 0)
+     (<= R
+         115792089237316195423570985008687907853269984665640564039457584007913129639935)
+     (<= S
+         115792089237316195423570985008687907853269984665640564039457584007913129639935)
+     (<= T
+         115792089237316195423570985008687907853269984665640564039457584007913129639935)
+     (= C R))
+      )
+      (summary_constructor_17_C_89_0
+  Q
+  I1
+  G
+  H
+  I
+  J
+  J1
+  K1
+  L1
+  M1
+  N1
+  O1
+  P1
+  Q1
+  R1
+  S1
+  T1
+  U1
+  V1
+  W1
+  X1
+  A1
+  U
+  Y1
+  H1
+  Z
+  F2)
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (B (Array Int (Array Int (Array Int (Array Int Int))))) (C (Array (Array Int Int) (Array Int Int))) (D (Array (Array Int Int) (Array Int Int))) (E (Array (Array Int Int) (Array Int Int))) (F Int) (G Int) (H Int) (I (Array Int Int)) (J (Array Int Int)) (K Int) (L Int) (M Int) (N Int) (O Int) (P Int) (Q Int) (R Int) (S (Array Int Int)) (T (Array Int Int)) (U Int) (V Int) (W Int) (X Int) (Y Int) (Z Int) (A1 Int) (B1 Int) ) 
+    (=>
+      (and
+        (summary_20_function_f__38_89_0
+  F
+  K
+  B
+  C
+  D
+  E
+  L
+  M
+  N
+  O
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  Z
+  I
+  G
+  A1
+  J
+  H
+  B1
+  A)
+        true
+      )
+      (summary_93_function_f__38_89_0
+  F
+  K
+  B
+  C
+  D
+  E
+  L
+  M
+  N
+  O
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  Z
+  I
+  G
+  A1
+  J
+  H
+  B1
+  A)
+    )
+  )
+)
+(assert
+  (forall ( (A (Array Int (Array Int (Array Int (Array Int Int))))) (B (Array (Array Int Int) (Array Int Int))) (C (Array (Array Int Int) (Array Int Int))) (D (Array (Array Int Int) (Array Int Int))) (E Int) (F Int) (G Int) (H (Array Int Int)) (I (Array Int Int)) (J Int) (K Int) (L Int) (M Int) (N Int) (O Int) (P Int) (Q Int) (R (Array Int Int)) (S (Array Int Int)) (T Int) (U Int) (V Int) (W Int) (X Int) (Y Int) (Z Int) (A1 Int) ) 
+    (=>
+      (and
+        (summary_constructor_17_C_89_0
+  E
+  J
+  A
+  B
+  C
+  D
+  K
+  L
+  M
+  N
+  O
+  P
+  Q
+  R
+  S
+  T
+  U
+  V
+  W
+  X
+  Y
+  H
+  F
+  Z
+  I
+  G
+  A1)
+        (and (= W 0)
+     (>= Q 0)
+     (>= Y 0)
+     (>= X 0)
+     (>= W 0)
+     (>= U 0)
+     (>= P 0)
+     (>= O 0)
+     (>= N 0)
+     (>= M 0)
+     (>= L 0)
+     (>= K 0)
+     (<= Q
+         115792089237316195423570985008687907853269984665640564039457584007913129639935)
+     (<= Y 1461501637330902918203684832716283019655932542975)
+     (<= X
+         115792089237316195423570985008687907853269984665640564039457584007913129639935)
+     (<= W
+         115792089237316195423570985008687907853269984665640564039457584007913129639935)
+     (<= U 1461501637330902918203684832716283019655932542975)
+     (<= P
+         115792089237316195423570985008687907853269984665640564039457584007913129639935)
+     (<= O
+         115792089237316195423570985008687907853269984665640564039457584007913129639935)
+     (<= N
+         115792089237316195423570985008687907853269984665640564039457584007913129639935)
+     (<= M 1461501637330902918203684832716283019655932542975)
+     (<= L
+         115792089237316195423570985008687907853269984665640564039457584007913129639935)
+     (<= K
+         115792089237316195423570985008687907853269984665640564039457584007913129639935)
+     (= E 3))
+      )
+      error_target_6_0
+    )
+  )
+)
+(assert
+  (forall ( (CHC_COMP_UNUSED Bool) ) 
+    (=>
+      (and
+        error_target_6_0
+        true
+      )
+      false
+    )
+  )
+)
+
+(check-sat)
+(exit)
