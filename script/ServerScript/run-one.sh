@@ -38,7 +38,7 @@ LOG_FILE="$BASE_DIR/${SET_NAME}_pipeline.log"
 
   # --- 4️⃣ Generazione report ---
   echo "👉 Step 4: Generazione report..."
-  bash -c "cd $SCRIPT_DIR && ./InterpreterAnalysis4.2 $SMT_DIR"
+  bash -c "cd $SCRIPT_DIR && ./HtmlReportInterpreter4.2.sh $SMT_DIR"
 
   echo "✅ Completato: $SET_FILE"
   echo "-------------------------------------------"
