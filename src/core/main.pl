@@ -401,6 +401,7 @@ extend_type_table_list([Goal | Rest], SymTabIn, SymTabOut) :-
 % %     %AccIn Coppie trovate finora - [B-bool, A-int]
 % %     %AccOut valorizzato alla fine con AccIn quando è lista vuota
 
+% ex versione funzioannte ma che da type error ogni tanto
 
 build_type_pairs(_, _, [], Acc, Acc).
  
@@ -428,6 +429,48 @@ build_type_pairs(PredArity, Pos, [_Var | Rest], AccIn, AccOut) :-
     AccNext = AccIn,
     Pos1 is Pos + 1,
     build_type_pairs(PredArity, Pos1, Rest, AccNext, AccOut).
+
+
+
+
+% %     %Asserito in db pred_arg('main@bb22.i'/5, 1, int).
+% %     %PredArity = 'main@bb22.i'/5
+% %     %Pos posizione corrente dell'argomento (1,2,3...)
+% %     %[Var | Rest] lista degli argomenti del predicato (es. [A, B, C, D])
+% %     %AccIn Coppie trovate finora - [B-bool, A-int]
+% %     %AccOut valorizzato alla fine con AccIn quando è lista vuota
+
+
+% % ================================================================
+% %  Costruzione coppie Var-Type (solo per array)
+% % ================================================================
+
+% build_type_pairs(_, _, [], Acc, Acc).
+
+% build_type_pairs(PredArity, Pos, [Var | Rest], AccIn, AccOut) :-
+%     var(Var),
+%     pred_arg(PredArity, Pos, Type),
+%     Type = array(Index, Elem),
+%     ground(Index),
+%     ground(Elem),
+%     !,
+%     AccNext = [Var-array(Index, Elem) | AccIn],
+%     Pos1 is Pos + 1,
+%     build_type_pairs(PredArity, Pos1, Rest, AccNext, AccOut).
+
+% build_type_pairs(PredArity, Pos, [_Var | Rest], AccIn, AccOut) :-
+%     % ignora tutti i tipi non array
+%     Pos1 is Pos + 1,
+%     build_type_pairs(PredArity, Pos1, Rest, AccIn, AccOut).
+
+
+
+
+
+
+
+
+
 
 
 % ----------------------------
