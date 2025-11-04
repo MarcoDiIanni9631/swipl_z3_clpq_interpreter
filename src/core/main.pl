@@ -401,7 +401,7 @@ extend_type_table_list([Goal | Rest], SymTabIn, SymTabOut) :-
 % %     %AccIn Coppie trovate finora - [B-bool, A-int]
 % %     %AccOut valorizzato alla fine con AccIn quando è lista vuota
 
-% ex versione funzioannte ma che da type error ogni tanto
+ex versione funzioannte ma che da type error ogni tanto
 
 build_type_pairs(_, _, [], Acc, Acc).
  
@@ -469,6 +469,84 @@ build_type_pairs(PredArity, Pos, [_Var | Rest], AccIn, AccOut) :-
 
 
 
+% % ================================================================
+% %  Modalità di inferenza tipi
+% %  full = tutti i tipi
+% %  arrays_only = solo array
+% % ================================================================
+
+% :- dynamic type_inference_mode/1.
+% % Default: analizza tutti i tipi
+% type_inference_mode(full).
+
+% % Stampare quale modalità è attiva
+% show_type_inference_mode :-
+%     type_inference_mode(Mode),
+%     format('[INFO] Type inference mode: ~w~n', [Mode]).
+
+% % Dispatcher principale
+% build_type_pairs(PredArity, Pos, Vars, AccIn, AccOut) :-
+%     type_inference_mode(arrays_only),
+%     !,
+%     build_type_pairs_arrays_only(PredArity, Pos, Vars, AccIn, AccOut).
+
+% build_type_pairs(PredArity, Pos, Vars, AccIn, AccOut) :-
+%     type_inference_mode(full),
+%     !,
+%     build_type_pairs_full(PredArity, Pos, Vars, AccIn, AccOut).
+
+% % ================================================================
+% %  Versione arrays_only
+% % ================================================================
+
+% build_type_pairs_arrays_only(_, _, [], Acc, Acc).
+
+% build_type_pairs_arrays_only(PredArity, Pos, [Var | Rest], AccIn, AccOut) :-
+%     var(Var),
+%     pred_arg(PredArity, Pos, Type),
+%     Type = array(Index, Elem),
+%     ground(Index),
+%     ground(Elem),
+%     !,
+%     AccNext = [Var-array(Index, Elem) | AccIn],
+%     Pos1 is Pos + 1,
+%     build_type_pairs_arrays_only(PredArity, Pos1, Rest, AccNext, AccOut).
+
+% build_type_pairs_arrays_only(PredArity, Pos, [_Var | Rest], AccIn, AccOut) :-
+%     AccNext = AccIn,
+%     Pos1 is Pos + 1,
+%     build_type_pairs_arrays_only(PredArity, Pos1, Rest, AccNext, AccOut).
+
+% % ================================================================
+% %  Versione full
+% % ================================================================
+
+% build_type_pairs_full(_, _, [], Acc, Acc).
+
+% build_type_pairs_full(PredArity, Pos, [Var | Rest], AccIn, AccOut) :-
+%     var(Var),
+%     pred_arg(PredArity, Pos, Type),
+%     atom(Type),
+%     !,
+%     AccNext = [Var-Type | AccIn],
+%     Pos1 is Pos + 1,
+%     build_type_pairs_full(PredArity, Pos1, Rest, AccNext, AccOut).
+
+% build_type_pairs_full(PredArity, Pos, [Var | Rest], AccIn, AccOut) :-
+%     var(Var),
+%     pred_arg(PredArity, Pos, Type),
+%     Type = array(Index, Elem),
+%     ground(Index),
+%     ground(Elem),
+%     !,
+%     AccNext = [Var-array(Index, Elem) | AccIn],
+%     Pos1 is Pos + 1,
+%     build_type_pairs_full(PredArity, Pos1, Rest, AccNext, AccOut).
+
+% build_type_pairs_full(PredArity, Pos, [_Var | Rest], AccIn, AccOut) :-
+%     AccNext = AccIn,
+%     Pos1 is Pos + 1,
+%     build_type_pairs_full(PredArity, Pos1, Rest, AccNext, AccOut).
 
 
 
