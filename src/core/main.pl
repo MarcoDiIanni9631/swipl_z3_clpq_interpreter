@@ -401,7 +401,7 @@ extend_type_table_list([Goal | Rest], SymTabIn, SymTabOut) :-
 % %     %AccIn Coppie trovate finora - [B-bool, A-int]
 % %     %AccOut valorizzato alla fine con AccIn quando è lista vuota
 
-ex versione funzioannte ma che da type error ogni tanto
+% ex versione funzioannte ma che da type error ogni tanto
 
 build_type_pairs(_, _, [], Acc, Acc).
  
