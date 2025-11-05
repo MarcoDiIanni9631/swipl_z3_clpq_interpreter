@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html><head><meta charset='UTF-8'><title>Report: testAgainWithType</title>
+<style>
+    body {font-family: system-ui, Segoe UI, Roboto, Arial, sans-serif;}
+    table {border-collapse: collapse; font-size: 14px; min-width: 95%;}
+    th, td {border: 1px solid #333; padding: 6px 8px; text-align: center;}
+    th {background: #eee;}
+    .ok {background: #9f9;}
+    .warn {background: #ffeb99;}
+    .err {background: #f66;}
+    .orange {background: #fc6;}
+    .missing {background: #ddd;}
+    .partial {background: #9cf;}
+    .asterisk {font-weight: bold; color: #d2691e;}
+    a {text-decoration: none;}
+    a:hover {text-decoration: underline;}
+    .smt-link {font-weight: 600;}
+    .missing-link {color: #c00; border-bottom: 1px dashed #c00;}
+    .legend {margin: 10px 0 18px; font-size: 13px; color: #444;}
+    .legend span {display:inline-block; margin-right:14px;}
+    .timestamp {font-size: 13px; color: #666; margin-bottom: 10px;}
+  </style>
+</head><body>
+<h2>Verifica Corrispondenza Risultati - testAgainWithType</h2>
+<div class='timestamp'>🕓 Report generato il: <strong>2025-11-04 15:29:14</strong></div>
+<div class='legend'>
+          <p><strong>Directory di origine:</strong> /home/marco/Desktop/Actual_state/Apr_16_2025/Interpreter/Turibe_CLPQ/test/chc-comp25-benchmarks-main/LIA-Lin_smtTESTNOTYPE/TypeError_Files/testAgainWithType</p>
+          <span><strong>🟡</strong> = Timeout ma MaxDepth non raggiunto</span>
+          <span><strong>🔴</strong> = ErrorDetected nel log</span>
+          <span><strong>*</strong> = Non derivabile senza 'No SAT branches found'</span>
+        </div>
+<table>
+<tr>
+          <th>File</th>
+          <th>SMT Out</th>
+          <th>ZMI Result</th>
+          <th>Timeout (300s)</th>
+          <th>MaxDepth (50)</th>
+          <th>MaxDepthReached</th>
+          <th>ExploredTree</th>
+          <th>ErrorDetected</th>
+          <th>ErrorType</th>
+          <th>Timeout&NoMaxDepth</th>
+          <th>Match</th>
+        </tr>
+<tr class='ok'>
+          <td><a href='apache-escape-absolute.c_000_true.smt2.pl'>apache-escape-absolute.c_000_true.smt2.pl</a> (<a class='smt-link' href='../apache-escape-absolute.c_000_true.smt2'>SMT</a>) (<a href='apache-escape-absolute.c_000_true.smt2.done_true_MaxDepth50_MaxDepthReached_Z3PushOK_totalExplored.zmiout'>ZMI</a>)</td>
+          <td>true</td>
+          <td>non derivabile</td>
+          <td>no</td>
+          <td>50 (MaxDepthReached)</td>
+          <td>yes</td>
+          <td>yes</td>
+          <td>no</td>
+          <td>-</td>
+          <td>no</td>
+          <td>yes</td>
+        </tr>
+<tr class='warn'>
+          <td><a href='car_4_e3_57_e7_350_000_false.smt2.pl'>car_4_e3_57_e7_350_000_false.smt2.pl</a> (<a class='smt-link' href='../car_4_e3_57_e7_350_000_false.smt2'>SMT</a>) (<a href='car_4_e3_57_e7_350_000_false.smt2.timeout_false_MaxDepth50_Z3PushOK_notFullyExplored.zmiout'>ZMI</a>)</td>
+          <td>false</td>
+          <td>derivable</td>
+          <td>yes</td>
+          <td>50</td>
+          <td>no</td>
+          <td>no</td>
+          <td>no</td>
+          <td>-</td>
+          <td>yes</td>
+          <td>yes</td>
+        </tr>
+<tr class='err'>
+          <td><a href='durationThm_1_e1_197_000_false.smt2.pl'>durationThm_1_e1_197_000_false.smt2.pl</a> (<a class='smt-link' href='../durationThm_1_e1_197_000_false.smt2'>SMT</a>) (<a href='durationThm_1_e1_197_000_false.smt2.done_false_MaxDepth50_MaxDepthReached_Z3PushOK_totalExplored_Error.zmiout'>ZMI</a>)</td>
+          <td>false</td>
+          <td>derivable</td>
+          <td>no</td>
+          <td>50 (MaxDepthReached)</td>
+          <td>yes</td>
+          <td>yes</td>
+          <td>yes</td>
+          <td>Type error (model)</td>
+          <td>no</td>
+          <td>yes</td>
+        </tr>
+<tr class='warn'>
+          <td><a href='durationThm_1_e1_197_e7_289_000_false.smt2.pl'>durationThm_1_e1_197_e7_289_000_false.smt2.pl</a> (<a class='smt-link' href='../durationThm_1_e1_197_e7_289_000_false.smt2'>SMT</a>) (<a href='durationThm_1_e1_197_e7_289_000_false.smt2.timeout_false_MaxDepth50_Z3PushOK_notFullyExplored.zmiout'>ZMI</a>)</td>
+          <td>false</td>
+          <td>derivable</td>
+          <td>yes</td>
+          <td>50</td>
+          <td>no</td>
+          <td>no</td>
+          <td>no</td>
+          <td>-</td>
+          <td>yes</td>
+          <td>yes</td>
+        </tr>
+<tr class='err'>
+          <td><a href='durationThm_1_e7_217_e7_31_000_false.smt2.pl'>durationThm_1_e7_217_e7_31_000_false.smt2.pl</a> (<a class='smt-link' href='../durationThm_1_e7_217_e7_31_000_false.smt2'>SMT</a>) (<a href='durationThm_1_e7_217_e7_31_000_false.smt2.done_false_MaxDepth50_MaxDepthReached_Z3PushOK_totalExplored_Error.zmiout'>ZMI</a>)</td>
+          <td>false</td>
+          <td>derivable</td>
+          <td>no</td>
+          <td>50 (MaxDepthReached)</td>
+          <td>yes</td>
+          <td>yes</td>
+          <td>yes</td>
+          <td>Type error (model)</td>
+          <td>no</td>
+          <td>yes</td>
+        </tr>
+<tr class='err'>
+          <td><a href='MESI_3_e2_819_e2_562_000_false.smt2.pl'>MESI_3_e2_819_e2_562_000_false.smt2.pl</a> (<a class='smt-link' href='../MESI_3_e2_819_e2_562_000_false.smt2'>SMT</a>) (<a href='MESI_3_e2_819_e2_562_000_false.smt2.timeout_false_MaxDepth50_MaxDepthReached_Z3PushOK_totalExplored_Error.zmiout'>ZMI</a>)</td>
+          <td>false</td>
+          <td>derivable</td>
+          <td>yes</td>
+          <td>50 (MaxDepthReached)</td>
+          <td>yes</td>
+          <td>yes</td>
+          <td>yes</td>
+          <td>Type error (model)</td>
+          <td>no</td>
+          <td>yes</td>
+        </tr>
+<tr class='err'>
+          <td><a href='MESI_3_e2_819_e5_2554_000_false.smt2.pl'>MESI_3_e2_819_e5_2554_000_false.smt2.pl</a> (<a class='smt-link' href='../MESI_3_e2_819_e5_2554_000_false.smt2'>SMT</a>) (<a href='MESI_3_e2_819_e5_2554_000_false.smt2.done_false_MaxDepth50_MaxDepthReached_Z3PushOK_totalExplored_Error.zmiout'>ZMI</a>)</td>
+          <td>false</td>
+          <td>derivable</td>
+          <td>no</td>
+          <td>50 (MaxDepthReached)</td>
+          <td>yes</td>
+          <td>yes</td>
+          <td>yes</td>
+          <td>Type error (model)</td>
+          <td>no</td>
+          <td>yes</td>
+        </tr>
+<tr class='err'>
+          <td><a href='MESI_i1_000_false.smt2.pl'>MESI_i1_000_false.smt2.pl</a> (<a class='smt-link' href='../MESI_i1_000_false.smt2'>SMT</a>) (<a href='MESI_i1_000_false.smt2.done_false_MaxDepth50_MaxDepthReached_Z3PushOK_totalExplored_Error.zmiout'>ZMI</a>)</td>
+          <td>false</td>
+          <td>derivable</td>
+          <td>no</td>
+          <td>50 (MaxDepthReached)</td>
+          <td>yes</td>
+          <td>yes</td>
+          <td>yes</td>
+          <td>Type error (model)</td>
+          <td>no</td>
+          <td>yes</td>
+        </tr>
+<tr class='err'>
+          <td><a href='MESI_i1_e2_1758_e8_12_000_false.smt2.pl'>MESI_i1_e2_1758_e8_12_000_false.smt2.pl</a> (<a class='smt-link' href='../MESI_i1_e2_1758_e8_12_000_false.smt2'>SMT</a>) (<a href='MESI_i1_e2_1758_e8_12_000_false.smt2.done_false_MaxDepth50_MaxDepthReached_Z3PushOK_totalExplored_Error.zmiout'>ZMI</a>)</td>
+          <td>false</td>
+          <td>derivable</td>
+          <td>no</td>
+          <td>50 (MaxDepthReached)</td>
+          <td>yes</td>
+          <td>yes</td>
+          <td>yes</td>
+          <td>Type error (model)</td>
+          <td>no</td>
+          <td>yes</td>
+        </tr>
+<tr class='err'>
+          <td><a href='MESI_i1_e2_2656_000_false.smt2.pl'>MESI_i1_e2_2656_000_false.smt2.pl</a> (<a class='smt-link' href='../MESI_i1_e2_2656_000_false.smt2'>SMT</a>) (<a href='MESI_i1_e2_2656_000_false.smt2.done_false_MaxDepth50_MaxDepthReached_Z3PushOK_totalExplored_Error.zmiout'>ZMI</a>)</td>
+          <td>false</td>
+          <td>derivable</td>
+          <td>no</td>
+          <td>50 (MaxDepthReached)</td>
+          <td>yes</td>
+          <td>yes</td>
+          <td>yes</td>
+          <td>Type error (model)</td>
+          <td>no</td>
+          <td>yes</td>
+        </tr>
+<tr class='err'>
+          <td><a href='MESI_i1_e3_188_000_false.smt2.pl'>MESI_i1_e3_188_000_false.smt2.pl</a> (<a class='smt-link' href='../MESI_i1_e3_188_000_false.smt2'>SMT</a>) (<a href='MESI_i1_e3_188_000_false.smt2.done_false_MaxDepth50_MaxDepthReached_Z3PushOK_totalExplored_Error.zmiout'>ZMI</a>)</td>
+          <td>false</td>
+          <td>derivable</td>
+          <td>no</td>
+          <td>50 (MaxDepthReached)</td>
+          <td>yes</td>
+          <td>yes</td>
+          <td>yes</td>
+          <td>Type error (model)</td>
+          <td>no</td>
+          <td>yes</td>
+        </tr>
+<tr class='err'>
+          <td><a href='MESI_i1_e3_2145_e1_2667_000_false.smt2.pl'>MESI_i1_e3_2145_e1_2667_000_false.smt2.pl</a> (<a class='smt-link' href='../MESI_i1_e3_2145_e1_2667_000_false.smt2'>SMT</a>) (<a href='MESI_i1_e3_2145_e1_2667_000_false.smt2.done_false_MaxDepth50_MaxDepthReached_Z3PushOK_totalExplored_Error.zmiout'>ZMI</a>)</td>
+          <td>false</td>
+          <td>derivable</td>
+          <td>no</td>
+          <td>50 (MaxDepthReached)</td>
+          <td>yes</td>
+          <td>yes</td>
+          <td>yes</td>
+          <td>Type error (model)</td>
+          <td>no</td>
+          <td>yes</td>
+        </tr>
+<tr class='err'>
+          <td><a href='MESI_i1_e3_2145_e3_977_000_false.smt2.pl'>MESI_i1_e3_2145_e3_977_000_false.smt2.pl</a> (<a class='smt-link' href='../MESI_i1_e3_2145_e3_977_000_false.smt2'>SMT</a>) (<a href='MESI_i1_e3_2145_e3_977_000_false.smt2.done_false_MaxDepth50_MaxDepthReached_Z3PushOK_totalExplored_Error.zmiout'>ZMI</a>)</td>
+          <td>false</td>
+          <td>derivable</td>
+          <td>no</td>
+          <td>50 (MaxDepthReached)</td>
+          <td>yes</td>
+          <td>yes</td>
+          <td>yes</td>
+          <td>Type error (model)</td>
+          <td>no</td>
+          <td>yes</td>
+        </tr>
+<tr class='err'>
+          <td><a href='MESI_i1_e3_2145_e4_1717_000_false.smt2.pl'>MESI_i1_e3_2145_e4_1717_000_false.smt2.pl</a> (<a class='smt-link' href='../MESI_i1_e3_2145_e4_1717_000_false.smt2'>SMT</a>) (<a href='MESI_i1_e3_2145_e4_1717_000_false.smt2.done_false_MaxDepth50_MaxDepthReached_Z3PushOK_totalExplored_Error.zmiout'>ZMI</a>)</td>
+          <td>false</td>
+          <td>derivable</td>
+          <td>no</td>
+          <td>50 (MaxDepthReached)</td>
+          <td>yes</td>
+          <td>yes</td>
+          <td>yes</td>
+          <td>Type error (model)</td>
+          <td>no</td>
+          <td>yes</td>
+        </tr>
+<tr class='err'>
+          <td><a href='MESI_i1_e3_2145_e6_500_000_false.smt2.pl'>MESI_i1_e3_2145_e6_500_000_false.smt2.pl</a> (<a class='smt-link' href='../MESI_i1_e3_2145_e6_500_000_false.smt2'>SMT</a>) (<a href='MESI_i1_e3_2145_e6_500_000_false.smt2.done_false_MaxDepth50_MaxDepthReached_Z3PushOK_totalExplored_Error.zmiout'>ZMI</a>)</td>
+          <td>false</td>
+          <td>derivable</td>
+          <td>no</td>
+          <td>50 (MaxDepthReached)</td>
+          <td>yes</td>
+          <td>yes</td>
+          <td>yes</td>
+          <td>Type error (model)</td>
+          <td>no</td>
+          <td>yes</td>
+        </tr>
+<tr class='err'>
+          <td><a href='MESI_i1_e3_2145_e7_1847_000_false.smt2.pl'>MESI_i1_e3_2145_e7_1847_000_false.smt2.pl</a> (<a class='smt-link' href='../MESI_i1_e3_2145_e7_1847_000_false.smt2'>SMT</a>) (<a href='MESI_i1_e3_2145_e7_1847_000_false.smt2.done_false_MaxDepth50_MaxDepthReached_Z3PushOK_totalExplored_Error.zmiout'>ZMI</a>)</td>
+          <td>false</td>
+          <td>derivable</td>
+          <td>no</td>
+          <td>50 (MaxDepthReached)</td>
+          <td>yes</td>
+          <td>yes</td>
+          <td>yes</td>
+          <td>Type error (model)</td>
+          <td>no</td>
+          <td>yes</td>
+        </tr>
+<tr class='err'>
+          <td><a href='MESI_i1_e3_2145_e8_2325_000_false.smt2.pl'>MESI_i1_e3_2145_e8_2325_000_false.smt2.pl</a> (<a class='smt-link' href='../MESI_i1_e3_2145_e8_2325_000_false.smt2'>SMT</a>) (<a href='MESI_i1_e3_2145_e8_2325_000_false.smt2.done_false_MaxDepth50_MaxDepthReached_Z3PushOK_totalExplored_Error.zmiout'>ZMI</a>)</td>
+          <td>false</td>
+          <td>derivable</td>
+          <td>no</td>
+          <td>50 (MaxDepthReached)</td>
+          <td>yes</td>
+          <td>yes</td>
+          <td>yes</td>
+          <td>Type error (model)</td>
+          <td>no</td>
+          <td>yes</td>
+        </tr>
+</table></body></html>
