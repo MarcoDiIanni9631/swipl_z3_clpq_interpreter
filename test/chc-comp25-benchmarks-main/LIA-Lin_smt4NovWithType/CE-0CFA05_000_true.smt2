@@ -1,0 +1,81 @@
+(set-logic HORN)
+
+
+(declare-fun |f_1034$unknown:37| ( Int Int Int Int Int Int Int Int Int Int Int Int Int Int Int Int Int Int Int Int Int Int Int ) Bool)
+(declare-fun |fail$unknown:75| ( Int ) Bool)
+
+(assert
+  (forall ( (A Int) (B Int) (C Int) (D Int) (E Int) (F Int) (G Int) (H Int) (I Int) (J Int) (K Int) (L Int) (M Int) (N Int) (O Int) (P Int) (Q Int) (R Int) (S Int) (T Int) (U Int) (V Int) (W Int) (X Int) ) 
+    (=>
+      (and
+        (|f_1034$unknown:37| W V U T S R Q P O N M L K J I H G F E D C B A)
+        (and (= X 1) (not (= 0 S)))
+      )
+      (|fail$unknown:75| X)
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (B Int) (C Int) (D Int) (E Int) (F Int) (G Int) (H Int) (I Int) (J Int) (K Int) (L Int) (M Int) (N Int) (O Int) (P Int) (Q Int) (R Int) (S Int) (T Int) (U Int) (V Int) (W Int) (X Int) (Y Int) (Z Int) (A1 Int) (B1 Int) (C1 Int) (D1 Int) (E1 Int) (F1 Int) (G1 Int) (H1 Int) (I1 Int) (J1 Int) (K1 Int) (L1 Int) (M1 Int) (N1 Int) (O1 Int) ) 
+    (=>
+      (and
+        (and (= G 0)
+     (= F 0)
+     (= E 0)
+     (= D 0)
+     (= C 0)
+     (= B 0)
+     (= A 0)
+     (= K1 0)
+     (= J1 0)
+     (= I1 0)
+     (= H1 0)
+     (= G1 1)
+     (= F1 0)
+     (= E1 0)
+     (= D1 0)
+     (= C1 0)
+     (= B1 0)
+     (= A1 0)
+     (= Z 0)
+     (= Y 0)
+     (= X 0)
+     (= W 0)
+     (= V 0)
+     (= U 0)
+     (= T 0)
+     (= S 0)
+     (= R 0)
+     (= Q 0)
+     (= P 0)
+     (= O 0)
+     (= N 0)
+     (= M 0)
+     (= L 0)
+     (= K 0)
+     (= J 0)
+     (= I 0)
+     (= O1 0)
+     (= N1 0)
+     (= M1 0)
+     (= L1 0)
+     (= H 0))
+      )
+      (|f_1034$unknown:37| G1 F1 E1 D1 C1 B1 A1 Z Y A X W V U T S R Q B P O N M)
+    )
+  )
+)
+(assert
+  (forall ( (A Int) ) 
+    (=>
+      (and
+        (|fail$unknown:75| A)
+        true
+      )
+      false
+    )
+  )
+)
+
+(check-sat)
+(exit)
