@@ -41,7 +41,7 @@ LOG_FILE="$BASE_DIR/${SET_NAME}_pipeline.log"
 
   # --- 3️⃣ Analisi simbolica ---
   echo "👉 Step 3: Analisi simbolica..."
-  bash -c "cd $SCRIPT_DIR && ./InterpreterAnalysis4.1.sh -s $SMT_DIR ff"
+  bash -c "cd $SCRIPT_DIR && ./InterpreterAnalysis4.4.sh -s $SMT_DIR ff"
 
   # --- 4️⃣ Generazione report ---
   echo "👉 Step 4: Generazione report..."

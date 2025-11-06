@@ -1,7 +1,6 @@
 :- module(solver_clpq, [clpq_sat_from_formula/1]).
 :- use_module(library(clpq)).
-:- use_module(logic_utils, [conj_to_list/2, build_conjunct/2]).
-
+:- use_module('../core/logic_utils', [conj_to_list/2, build_conjunct/2]).
 % ----------------------------
 % Entry point principale
 % ----------------------------
