@@ -1,12 +1,11 @@
 #!/bin/bash
 #
 # ==========================================================
-# Script: InterpreterAnalysis4.5.sh
+# Script: InterpreterAnalysis4.6.sh
 # Autore: Marco Di Ianni
 # Descrizione:
-#   Unisce i vantaggi di 4.2 e 4.4:
-#   ✅ Z3 sempre visibile
-#   ✅ Nessun warning su logic_utils
+#   Corregge definitivamente i path di caricamento dei moduli
+#   (logic_utils, solver_turibe, ecc.) mantenendo Z3 visibile.
 # ==========================================================
 
 set -u
@@ -51,7 +50,7 @@ if [ -z "$SWIPL_BIN" ] || [ ! -x "$SWIPL_BIN" ]; then
   exit 1
 fi
 
-# --- ELABORAZIONE FILE ---
+# --- FUNZIONE DI ELABORAZIONE ---
 process_file() {
   file="$1"
   [ -f "$file" ] || return
@@ -59,20 +58,23 @@ process_file() {
   FILE_ABS="$(readlink -f "$file")"
   base="${file%.pl}"
   MAIN_ABS="$(readlink -f "$MAIN")"
-  MAIN_DIR="$(dirname "$MAIN_ABS")"
+  ROOT_DIR="$(dirname "$(dirname "$MAIN_ABS")")"
+  CORE_DIR="$ROOT_DIR/core"
+  SOLVERS_DIR="$ROOT_DIR/solvers"
   tmpout="$(dirname "$FILE_ABS")/$(basename "${base}.tmpout")"
 
   echo "▶️ Elaborazione file: $(basename "$file")"
-  echo "   Using core dir: $MAIN_DIR"
+  echo "   Core dir:     $CORE_DIR"
+  echo "   Solvers dir:  $SOLVERS_DIR"
 
   timeout ${TIMEOUT_SEC}s "$SWIPL_BIN" --stack-limit=4GB \
     -s "$MAIN_ABS" \
-    -g "asserta(file_search_path(core,'$MAIN_DIR')), load_clean('$FILE_ABS'), set_solver(turibe), zmi(${TARGET}), halt." \
+    -g "asserta(file_search_path(core,'$CORE_DIR')), asserta(file_search_path(solvers,'$SOLVERS_DIR')), load_clean('$FILE_ABS'), set_solver(turibe), zmi(${TARGET}), halt." \
     > "$tmpout" 2>&1
 
   EXIT_CODE=$?
 
-  MaxDepth="$(grep -oP "MaxDepth impostato a: \K[0-9]+" "$tmpout" 2>/dev/null || true)"
+  MaxDepth="$(grep -oP 'MaxDepth impostato a: \K[0-9]+' "$tmpout" 2>/dev/null || true)"
   [ -z "$MaxDepth" ] && MaxDepth="unknown"
   LIMIT_TAG=$(grep -q "Limite MaxDepth raggiunto" "$tmpout" && echo "_MaxDepthReached" || echo "")
   PUSH_TAG=$(grep -q "z3_push_failed" "$tmpout" && echo "_Z3PushFailed" || echo "_Z3PushOK")
