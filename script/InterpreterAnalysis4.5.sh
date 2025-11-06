@@ -1,12 +1,10 @@
 #!/bin/bash
 #
 # ==========================================================
-# Script: InterpreterAnalysis4.7.sh
+# Script: InterpreterAnalysis4.5.sh
 # Autore: Marco Di Ianni
 # Descrizione:
-#   Analizza uno o più file .pl con l’interprete Prolog.
-#   Corregge i path relativi per permettere il caricamento
-#   corretto di logic_utils.pl e solver_turibe.pl.
+#   Versione stabile: fix path Z3 e logic_utils su server.
 # ==========================================================
 
 set -u
@@ -28,62 +26,64 @@ if [ ! -e "$INPUT_PATH" ]; then
   echo "❌ File o cartella non trovati: $INPUT_PATH"
   exit 1
 fi
-
 if [ ! -f "$MAIN" ]; then
   echo "❌ main.pl non trovato: $MAIN"
   exit 1
 fi
 
-# --- CONFIGURAZIONE IN BASE ALLA MODALITÀ ---
+# --- CONFIGURAZIONE ---
 if [ "$MODE" == "-s" ]; then
   echo "🖥️ Modalità SERVER attiva"
   SWIPL_BIN="$HOME/local/swipl-9.3.31/bin/swipl"
   export SWIZ3_TURIBE_PATH="$HOME/verimap_projects/swi-prolog-z3"
-  export LD_LIBRARY_PATH="$HOME/verimap_projects/swi-prolog-z3:$HOME/verimap_projects/swi-prolog-z3/z3/build:${LD_LIBRARY_PATH:-}"
+  export Z3_HOME="$HOME/local/z3-4.15.3"
+  export LD_LIBRARY_PATH="$Z3_HOME/lib:$SWIZ3_TURIBE_PATH:$SWIZ3_TURIBE_PATH/z3/build:${LD_LIBRARY_PATH:-}"
   TIMEOUT_SEC=300
-elif [ "$MODE" == "-l" ]; then
+else
   echo "💻 Modalità LOCALE attiva"
   SWIPL_BIN="$(command -v swipl || true)"
   TIMEOUT_SEC=300
-else
-  echo "❌ Modalità non riconosciuta. Usa -l (locale) o -s (server)."
-  exit 1
 fi
 
-# --- VERIFICA SWI-PROLOG ---
+# --- VERIFICA ---
 if [ -z "$SWIPL_BIN" ] || [ ! -x "$SWIPL_BIN" ]; then
   echo "❌ Errore: SWI-Prolog non trovato o non eseguibile."
   exit 1
 fi
 
-# --- FUNZIONE DI ELABORAZIONE ---
+# --- FUNZIONE ---
 process_file() {
   file="$1"
   [ -f "$file" ] || return
-
   FILE_ABS="$(readlink -f "$file")"
   base="${file%.pl}"
   MAIN_ABS="$(readlink -f "$MAIN")"
   CORE_DIR="$(dirname "$MAIN_ABS")"
-  SOLVERS_DIR="$(readlink -f "$CORE_DIR/../solvers")"
+  SOLVERS_DIR="$(dirname "$CORE_DIR")/solvers"
   tmpout="$(dirname "$FILE_ABS")/$(basename "${base}.tmpout")"
 
-  echo "▶️ Elaborazione file: $(basename "$file") (timeout ${TIMEOUT_SEC}s)"
-  echo "📂 Working dir di esecuzione: $CORE_DIR"
+  echo "▶️ File: $(basename "$file")"
+  echo "📂 Dir core: $CORE_DIR"
+  echo "⚙️ Solver dir: $SOLVERS_DIR"
 
   (
+    export LD_LIBRARY_PATH="$LD_LIBRARY_PATH"
+    export SWIZ3_TURIBE_PATH="$SWIZ3_TURIBE_PATH"
+
     cd "$CORE_DIR" || exit 1
     timeout ${TIMEOUT_SEC}s "$SWIPL_BIN" --stack-limit=4GB \
       -s "$MAIN_ABS" \
-      -g "asserta(file_search_path(library,'$CORE_DIR')), \
-          asserta(file_search_path(library,'$SOLVERS_DIR')), \
-          load_clean('$FILE_ABS'), set_solver(turibe), zmi(${TARGET}), halt." \
+      -g "asserta(file_search_path(core,'$CORE_DIR')), \
+          asserta(file_search_path(solvers,'$SOLVERS_DIR')), \
+          asserta(file_search_path(library,'$CORE_DIR')), \
+          load_clean('$FILE_ABS'), \
+          set_solver(turibe), \
+          zmi(${TARGET}), halt." \
       > "$tmpout" 2>&1
   )
 
   EXIT_CODE=$?
-
-  MaxDepth="$(grep -oP "MaxDepth impostato a: \K[0-9]+" "$tmpout" 2>/dev/null || true)"
+  MaxDepth="$(grep -oP 'MaxDepth impostato a: \K[0-9]+' "$tmpout" 2>/dev/null || true)"
   [ -z "$MaxDepth" ] && MaxDepth="unknown"
 
   LIMIT_TAG=$(grep -q "Limite MaxDepth raggiunto" "$tmpout" && echo "_MaxDepthReached" || echo "")
@@ -91,21 +91,11 @@ process_file() {
   TERM_TAG=$(grep -q "Ho raggiunto la terminazione dell'albero" "$tmpout" && echo "_totalExplored" || echo "_notFullyExplored")
   ERROR_TAG=$(grep -Eqi "error|failed|segmentation fault" "$tmpout" && echo "_Error" || echo "")
 
-  if grep -q "✅ INCORRECT/FF FOUND" "$tmpout"; then
-    FOUND_INCORRECT="yes"
-  else
-    FOUND_INCORRECT="no"
-  fi
-
-  if [ $EXIT_CODE -eq 124 ]; then
-    STATUS="timeout"
-  else
-    STATUS="done"
-  fi
+  [ $EXIT_CODE -eq 124 ] && STATUS="timeout" || STATUS="done"
 
   if grep -q "No SAT" "$tmpout"; then
     verdict="true"
-  elif grep -q "Z3 Model" "$tmpout" || grep -q "SAT MODEL" "$tmpout" || [ "$FOUND_INCORRECT" = "yes" ]; then
+  elif grep -q "Z3 Model" "$tmpout" || grep -q "SAT MODEL" "$tmpout"; then
     verdict="false"
   else
     verdict="unknown"
@@ -113,23 +103,16 @@ process_file() {
 
   finalout="${base}.${STATUS}_${verdict}_MaxDepth${MaxDepth}${LIMIT_TAG}${PUSH_TAG}${TERM_TAG}${ERROR_TAG}.zmiout"
   mv "$tmpout" "$finalout" 2>/dev/null || true
-  echo "✅ File elaborato --> $finalout"
+  echo "✅ Fatto: $finalout"
 }
 
 export -f process_file
-export MAIN SWIPL_BIN TIMEOUT_SEC TARGET
+export MAIN SWIPL_BIN TIMEOUT_SEC TARGET LD_LIBRARY_PATH SWIZ3_TURIBE_PATH
 
 # --- ESECUZIONE ---
 if [ -d "$INPUT_PATH" ]; then
-  if [ "$MODE" == "-s" ]; then
-    echo "⚙️ Avvio elaborazione parallela su directory: $INPUT_PATH ..."
-    find "$INPUT_PATH" -type f -name "*.pl" | parallel -j 16 process_file {}
-  else
-    echo "⚙️ Avvio elaborazione sequenziale su directory: $INPUT_PATH ..."
-    find "$INPUT_PATH" -type f -name "*.pl" | while read -r file; do
-      process_file "$file"
-    done
-  fi
+  echo "⚙️ Elaborazione su directory: $INPUT_PATH ..."
+  find "$INPUT_PATH" -type f -name "*.pl" | parallel -j 16 process_file {}
 else
   process_file "$INPUT_PATH"
 fi
