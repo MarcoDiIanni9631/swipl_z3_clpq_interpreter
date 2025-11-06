@@ -1,17 +1,20 @@
 #!/bin/bash
 #
 # ==========================================================
-# Script: InterpreterAnalysis4.6.sh
+# Script: InterpreterAnalysis4.7.sh
 # Autore: Marco Di Ianni
 # Descrizione:
-#   Corregge definitivamente i path di caricamento dei moduli
-#   (logic_utils, solver_turibe, ecc.) mantenendo Z3 visibile.
+#   Analizza uno o più file .pl con l’interprete Prolog.
+#   Corregge i path relativi per permettere il caricamento
+#   corretto di logic_utils.pl e solver_turibe.pl.
 # ==========================================================
 
 set -u
 
+# --- CONTROLLO ARGOMENTI ---
 if [ "$#" -lt 3 ]; then
   echo "Uso: $0 [-l | -s] <file_o_cartella> <nome_predicato>"
+  echo "Esempio: $0 -l ../test/few_calls.sol.smt2.pl ff"
   exit 1
 fi
 
@@ -20,21 +23,23 @@ INPUT_PATH="$2"
 TARGET="$3"
 MAIN="../src/core/main.pl"
 
+# --- CONTROLLO FILE ---
 if [ ! -e "$INPUT_PATH" ]; then
   echo "❌ File o cartella non trovati: $INPUT_PATH"
   exit 1
 fi
+
 if [ ! -f "$MAIN" ]; then
   echo "❌ main.pl non trovato: $MAIN"
   exit 1
 fi
 
-# --- CONFIGURAZIONE AMBIENTE ---
+# --- CONFIGURAZIONE IN BASE ALLA MODALITÀ ---
 if [ "$MODE" == "-s" ]; then
   echo "🖥️ Modalità SERVER attiva"
   SWIPL_BIN="$HOME/local/swipl-9.3.31/bin/swipl"
   export SWIZ3_TURIBE_PATH="$HOME/verimap_projects/swi-prolog-z3"
-  export LD_LIBRARY_PATH="$HOME/local/z3-4.15.3/lib:$HOME/verimap_projects/swi-prolog-z3:$HOME/verimap_projects/swi-prolog-z3/z3/build:${LD_LIBRARY_PATH:-}"
+  export LD_LIBRARY_PATH="$HOME/verimap_projects/swi-prolog-z3:$HOME/verimap_projects/swi-prolog-z3/z3/build:${LD_LIBRARY_PATH:-}"
   TIMEOUT_SEC=300
 elif [ "$MODE" == "-l" ]; then
   echo "💻 Modalità LOCALE attiva"
@@ -45,8 +50,9 @@ else
   exit 1
 fi
 
+# --- VERIFICA SWI-PROLOG ---
 if [ -z "$SWIPL_BIN" ] || [ ! -x "$SWIPL_BIN" ]; then
-  echo "❌ SWI-Prolog non trovato."
+  echo "❌ Errore: SWI-Prolog non trovato o non eseguibile."
   exit 1
 fi
 
@@ -58,31 +64,44 @@ process_file() {
   FILE_ABS="$(readlink -f "$file")"
   base="${file%.pl}"
   MAIN_ABS="$(readlink -f "$MAIN")"
-  ROOT_DIR="$(dirname "$(dirname "$MAIN_ABS")")"
-  CORE_DIR="$ROOT_DIR/core"
-  SOLVERS_DIR="$ROOT_DIR/solvers"
+  CORE_DIR="$(dirname "$MAIN_ABS")"
+  SOLVERS_DIR="$(readlink -f "$CORE_DIR/../solvers")"
   tmpout="$(dirname "$FILE_ABS")/$(basename "${base}.tmpout")"
 
-  echo "▶️ Elaborazione file: $(basename "$file")"
-  echo "   Core dir:     $CORE_DIR"
-  echo "   Solvers dir:  $SOLVERS_DIR"
+  echo "▶️ Elaborazione file: $(basename "$file") (timeout ${TIMEOUT_SEC}s)"
+  echo "📂 Working dir di esecuzione: $CORE_DIR"
 
-  timeout ${TIMEOUT_SEC}s "$SWIPL_BIN" --stack-limit=4GB \
-    -s "$MAIN_ABS" \
-    -g "asserta(file_search_path(core,'$CORE_DIR')), asserta(file_search_path(solvers,'$SOLVERS_DIR')), load_clean('$FILE_ABS'), set_solver(turibe), zmi(${TARGET}), halt." \
-    > "$tmpout" 2>&1
+  (
+    cd "$CORE_DIR" || exit 1
+    timeout ${TIMEOUT_SEC}s "$SWIPL_BIN" --stack-limit=4GB \
+      -s "$MAIN_ABS" \
+      -g "asserta(file_search_path(library,'$CORE_DIR')), \
+          asserta(file_search_path(library,'$SOLVERS_DIR')), \
+          load_clean('$FILE_ABS'), set_solver(turibe), zmi(${TARGET}), halt." \
+      > "$tmpout" 2>&1
+  )
 
   EXIT_CODE=$?
 
-  MaxDepth="$(grep -oP 'MaxDepth impostato a: \K[0-9]+' "$tmpout" 2>/dev/null || true)"
+  MaxDepth="$(grep -oP "MaxDepth impostato a: \K[0-9]+" "$tmpout" 2>/dev/null || true)"
   [ -z "$MaxDepth" ] && MaxDepth="unknown"
+
   LIMIT_TAG=$(grep -q "Limite MaxDepth raggiunto" "$tmpout" && echo "_MaxDepthReached" || echo "")
   PUSH_TAG=$(grep -q "z3_push_failed" "$tmpout" && echo "_Z3PushFailed" || echo "_Z3PushOK")
   TERM_TAG=$(grep -q "Ho raggiunto la terminazione dell'albero" "$tmpout" && echo "_totalExplored" || echo "_notFullyExplored")
   ERROR_TAG=$(grep -Eqi "error|failed|segmentation fault" "$tmpout" && echo "_Error" || echo "")
 
-  if grep -q "✅ INCORRECT/FF FOUND" "$tmpout"; then FOUND_INCORRECT="yes"; else FOUND_INCORRECT="no"; fi
-  [ $EXIT_CODE -eq 124 ] && STATUS="timeout" || STATUS="done"
+  if grep -q "✅ INCORRECT/FF FOUND" "$tmpout"; then
+    FOUND_INCORRECT="yes"
+  else
+    FOUND_INCORRECT="no"
+  fi
+
+  if [ $EXIT_CODE -eq 124 ]; then
+    STATUS="timeout"
+  else
+    STATUS="done"
+  fi
 
   if grep -q "No SAT" "$tmpout"; then
     verdict="true"
@@ -102,8 +121,15 @@ export MAIN SWIPL_BIN TIMEOUT_SEC TARGET
 
 # --- ESECUZIONE ---
 if [ -d "$INPUT_PATH" ]; then
-  echo "⚙️ Analisi multipla su directory: $INPUT_PATH"
-  find "$INPUT_PATH" -type f -name "*.pl" | parallel -j 16 process_file {}
+  if [ "$MODE" == "-s" ]; then
+    echo "⚙️ Avvio elaborazione parallela su directory: $INPUT_PATH ..."
+    find "$INPUT_PATH" -type f -name "*.pl" | parallel -j 16 process_file {}
+  else
+    echo "⚙️ Avvio elaborazione sequenziale su directory: $INPUT_PATH ..."
+    find "$INPUT_PATH" -type f -name "*.pl" | while read -r file; do
+      process_file "$file"
+    done
+  fi
 else
   process_file "$INPUT_PATH"
 fi
