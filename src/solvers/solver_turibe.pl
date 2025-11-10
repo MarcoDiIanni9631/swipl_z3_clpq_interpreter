@@ -152,7 +152,7 @@ z3_print_model_final(true) :-
 
 z3_print_model_final(Formula) :-
     debug_print('✅ z3_print_model_final attivato!'),
-   % z3_reset,
+    z3_reset,
     z3constr2lower(Formula, Pairs, RawGround),
     debug_print('--- Formula da pushare su Z3 ---'), debug_print(RawGround),
     debug_print('--- Pairs (PrologVar -> z3var) ---'), debug_print(Pairs),
