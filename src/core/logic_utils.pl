@@ -1,14 +1,10 @@
+
 :- module(logic_utils, [
     conj_to_list/2,
     build_conjunct/2,
     normalize_bool_expr/2
 ]).
-
-:- op(1000, yfx, &).   % and
-:- op(1000, yfx, v).    % or (VeriMAP-style)
-:- op(1000, yfx, or).   % or alternative
 :- op(900,  fy, ~).    % not
-
 % ----------------------------
 % Utility predicates
 % ----------------------------
@@ -45,7 +41,6 @@ normalize_bool_expr(true, true) :-
 normalize_bool_expr(false, false) :-
     !.
 
-
 % Caso 1: Var è una variabile, Type è un atomo (int, bool, array(int,int) già ground ecc.)
 normalize_bool_expr(V:T, V:T) :-
     var(V),
@@ -59,33 +54,15 @@ normalize_bool_expr(V:T, NV:T) :-
     !,
     normalize_bool_expr(V, NV).
 
-
-
 % Arithmetic: unary minus, smt_* operators, binary arithmetic, mod, abs
-% normalize_bool_expr(Expr, -NArg) :-
-%     nonvar(Expr), Expr =.. [(-), Arg],
-%     !,
-%     normalize_bool_expr(Arg, NArg).
-
-% Trasforma (implies A B) in (A -> B), per coerenza con type_inference Turibe
-normalize_bool_expr(implies(A, B), (NA -> NB)) :-
-    !,
-    normalize_bool_expr(A, NA),
-    normalize_bool_expr(B, NB).
-
-
-% Arithmetic: unary minus (compound form and compact form)
 normalize_bool_expr(Expr, -NArg) :-
-    nonvar(Expr),
-    Expr =.. [(-), Arg],
+    nonvar(Expr), Expr =.. [(-), Arg],
     !,
     normalize_bool_expr(Arg, NArg).
 
 normalize_bool_expr(-Arg, -NArg) :-
     !,
     normalize_bool_expr(Arg, NArg).
-
-
 
 normalize_bool_expr(Expr, NExpr) :-
     nonvar(Expr), Expr =.. [smt_plus | Args],
@@ -159,33 +136,52 @@ normalize_bool_expr(not(A), not(NA)) :-
     !,
     normalize_bool_expr(A, NA).
 
-normalize_bool_expr(A & B, and(NA, NB)) :-
-    !,
-    normalize_bool_expr(A, NA),
-    normalize_bool_expr(B, NB).
-
-normalize_bool_expr((A , B), Norm) :-
-    !,
-    normalize_bool_expr(A, NA),
-    normalize_bool_expr(B, NB),
-    build_conjunct([NA, NB], Norm).
+% % A & B  → and(A,B)
+% normalize_bool_expr('&'(A,B), and(NA,NB)) :-
+%     !,
+%     normalize_bool_expr(A, NA),
+%     normalize_bool_expr(B, NB).
 
 normalize_bool_expr(Expr, NExpr) :-
-    nonvar(Expr), Expr =.. [F | Args],
-    memberchk(F, [and, or]),
+    nonvar(Expr),
+    Expr =.. ['&' | Args],
+    length(Args, N), N >= 2,
     !,
     maplist(normalize_bool_expr, Args, NArgs),
-    NExpr =.. [F | NArgs].
+    build_op_chain(and, NArgs, NExpr).
 
-normalize_bool_expr(A v B, or(NA, NB)) :-
+normalize_bool_expr(Expr, NExpr) :-
+    nonvar(Expr),
+    Expr =.. [or | Args],
+    length(Args, N), N >= 2,
+    !,
+    maplist(normalize_bool_expr, Args, NArgs),
+    build_op_chain(or, NArgs, NExpr).
+
+% A , B  → and(A,B)
+normalize_bool_expr((A , B), and(NA,NB)) :-
     !,
     normalize_bool_expr(A, NA),
     normalize_bool_expr(B, NB).
 
-normalize_bool_expr(A or B, or(NA, NB)) :-
+% normalize_bool_expr(Expr, NExpr) :-
+%     nonvar(Expr), Expr =.. [F | Args],
+%     memberchk(F, [and, or]),
+%     !,
+%     maplist(normalize_bool_expr, Args, NArgs),
+%     NExpr =.. [F | NArgs].
+
+% A v B  → or(A,B)
+normalize_bool_expr(v(A,B), or(NA,NB)) :-
     !,
     normalize_bool_expr(A, NA),
     normalize_bool_expr(B, NB).
+
+% % A or B → or(A,B)
+% normalize_bool_expr(or(A,B), or(NA,NB)) :-
+%     !,
+%     normalize_bool_expr(A, NA),
+%     normalize_bool_expr(B, NB).
 
 normalize_bool_expr(xor(A, B), xor(NA, NB)) :-
     !,
@@ -222,26 +218,6 @@ normalize_bool_expr(store(A, I, V), store(NA, NI, NV)) :-
     normalize_bool_expr(A, NA),
     normalize_bool_expr(I, NI),
     normalize_bool_expr(V, NV).
-
-% normalize_bool_expr((A = B), Norm) :-
-%     compound(A), functor(A, store, _),
-%     !,
-%     normalize_bool_expr((B = A), Norm).
-
-% normalize_bool_expr((A = B), Norm) :-
-%     compound(A), functor(A, select, _),
-%     !,
-%     normalize_bool_expr((B = A), Norm).
-
-% % Dot functor: msg.value → msg_value
-% normalize_bool_expr(Expr0, ExprN) :-
-%     nonvar(Expr0), Expr0 =.. [F | Args],
-%     atom(F), sub_atom(F, _, _, _, '.'),
-%     !,
-%     atomic_list_concat(Parts, '.', F),
-%     atomic_list_concat(Parts, '_', F1),
-%     maplist(normalize_bool_expr, Args, NArgs),
-%     ExprN =.. [F1 | NArgs].
 
 % Generic recursion
 normalize_bool_expr(Expr, Norm) :-

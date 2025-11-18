@@ -50,16 +50,45 @@ set_solver(vidal) :-
 :- use_module('../solvers/solver_clpq', [clpq_sat_from_formula/1]).
 
 
-% ----------------------------
-% Custom logical operators
-% ----------------------------
+% % ----------------------------
+% % Custom logical operators
+% % ----------------------------
 
-:- op(1000, yfx, &).   % and
-:- op(1000, yfx, v).   % or
-:- op(1000, yfx, or).  % alternative or
-:- op(900,  fy, ~).    % not
+% :- op(1000, yfx, &).   % and
+% :- op(1000, yfx, v).   % or
+% :- op(1000, yfx, or).  % alternative or
+% :- op(900,  fy, ~).    % not
 
+% --- Disable all logical infix operators globally ---
+:- op(0, xfx, or).
+:- op(0, yfx, or).
+:- op(0, xfy, or).
+:- op(0, fy, or).
+:- op(0, fx, or).
+:- op(0, xf, or).
 
+:- op(0, xfx, and).
+:- op(0, yfx, and).
+:- op(0, xfy, and).
+:- op(0, fy, and).
+:- op(0, fx, and).
+:- op(0, xf, and).
+
+:- op(0, xfx, &).
+:- op(0, yfx, &).
+:- op(0, xfy, &).
+:- op(0, fy, &).
+:- op(0, fx, &).
+:- op(0, xf, &).
+
+:- op(0, xfx, v).
+:- op(0, yfx, v).
+:- op(0, xfy, v).
+:- op(0, fy, v).
+:- op(0, fx, v).
+:- op(0, xf, v).
+
+:- op(900, fy, ~).
 
 % ----------------------------
 % Entry point for collecting ALL SAT branches
@@ -295,8 +324,12 @@ zmi_aux(Head, Z3In, CLPQIn,SymTabIn, Steps, Z3Out, CLPQOut, SubTree => Head) :-
 
 
     extend_type_table_list([Head | BodyList], SymTabIn, SymTabFinal),
+<<<<<<< HEAD
     % writeln('Ecco la type table'),
     % writeln(SymTabFinal),
+=======
+    
+>>>>>>> d2ed8276 (Aggiornamento modulo logic utils perr rendere prefisso and e or)
   %  maplist(rewrite_constr(Head, SymTabFinal), BodyList, RewrittenList),
 
     build_conjunct(BodyList, Body),
