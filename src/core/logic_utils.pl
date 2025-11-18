@@ -149,15 +149,7 @@ normalize_bool_expr(Expr, NExpr) :-
     !,
     maplist(normalize_bool_expr, Args, NArgs),
     build_op_chain(and, NArgs, NExpr).
-    
-% Supporta and(A,B), and(A,B,C), ...
-normalize_bool_expr(Expr, NExpr) :-
-    nonvar(Expr),
-    Expr =.. [and | Args],
-    length(Args, N), N >= 2,
-    !,
-    maplist(normalize_bool_expr, Args, NArgs),
-    build_op_chain(and, NArgs, NExpr).
+
 
 normalize_bool_expr(Expr, NExpr) :-
     nonvar(Expr),
