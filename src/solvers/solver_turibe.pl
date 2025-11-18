@@ -50,12 +50,11 @@ var2z3(X, X1) :-
 unifypairs([]).
 unifypairs([X-Y|Ys]) :- X=Y, unifypairs(Ys).
 
-z3constr2lower(C, P, C1) :-
-    term_variables(C, L),
-    var2z3pairs(L, P),
+z3constr2lower(C, Pairs, C1) :-
+    term_variables(C, Vars),
+    build_z3_pairs(Vars, Pairs),
     copy_term(C, Ccopy),
-    C1 = Ccopy,
-    unifypairs(P).
+    apply_pairs(Pairs, Ccopy, C1).
 
 
 
@@ -172,7 +171,26 @@ z3_print_model_final(Formula) :-
     ).
 
 
+% Costruisce coppie Var -> x_numero input: [A, B] output [A-xA, B-xB]
+build_z3_pairs([], []).
+build_z3_pairs([V|Vs], [V-Xname|Rest]) :-
+    term_to_atom(V, A),
+    atomic_concat(x, A, Xname),
+    build_z3_pairs(Vs, Rest).
 
+% Applica la sostituzione sintattica al termine
+apply_pairs(Pairs, TermIn, TermOut) :-
+    foldl(apply_one, Pairs, TermIn, TermOut).
+
+apply_one(Var-Xname, TermIn, TermOut) :-
+    (   TermIn == Var ->
+        (TermOut = Xname)
+    ;   compound(TermIn) ->
+        (TermIn =.. [F|Args],
+        maplist(apply_one(Var-Xname), Args, Args1),
+        TermOut =.. [F|Args1])
+    ;   TermOut = TermIn
+    ).
 
 
 test_debug :-

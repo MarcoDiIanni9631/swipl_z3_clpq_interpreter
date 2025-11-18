@@ -295,7 +295,8 @@ zmi_aux(Head, Z3In, CLPQIn,SymTabIn, Steps, Z3Out, CLPQOut, SubTree => Head) :-
 
 
     extend_type_table_list([Head | BodyList], SymTabIn, SymTabFinal),
-
+    % writeln('Ecco la type table'),
+    % writeln(SymTabFinal),
   %  maplist(rewrite_constr(Head, SymTabFinal), BodyList, RewrittenList),
 
     build_conjunct(BodyList, Body),
@@ -336,7 +337,30 @@ zmi_aux(Head, Z3In, CLPQIn,SymTabIn, Steps, Z3Out, CLPQOut, SubTree => Head) :-
 
 extend_type_table_list([], SymTab, SymTab).
 
+%versione con ottimizzazione
+
+% extend_type_table_list([Goal | Rest], SymTabIn, SymTabOut) :-
+%     ( Goal = constr(_) ; Goal == true ) ->
+%         extend_type_table_list(Rest, SymTabIn, SymTabOut)
+%     ;
+%        ( Goal =.. [Pred | Args],
+%         length(Args, Arity),
+%         PredArity = Pred/Arity,
+%         build_type_pairs(PredArity, 1, Args, [], Pairs),
+%         writeln('Stampo Goal'),
+%         writeln(Goal),
+%         writeln('Stampo Tipo arita e coppia'),
+%         writeln(PredArity-Pairs),  
+%         append(SymTabIn, Pairs, Combined),
+%         sort(Combined, SymTabNext),
+%         extend_type_table_list(Rest, SymTabNext, SymTabOut)).
+
+
+%versione senza ottimiazziozneo
+
 extend_type_table_list([Goal | Rest], SymTabIn, SymTabOut) :-
+
+        % writeln('Sono entrato in extend_type_table_list'),
     ( Goal = constr(_) ; Goal == true ) ->
         extend_type_table_list(Rest, SymTabIn, SymTabOut)
     ;
@@ -344,12 +368,14 @@ extend_type_table_list([Goal | Rest], SymTabIn, SymTabOut) :-
         length(Args, Arity),
         PredArity = Pred/Arity,
         build_type_pairs(PredArity, 1, Args, [], Pairs),
-        writeln('Stampo Tipo arita e coppia'),
-        writeln(PredArity-Pairs),  
+        % writeln('Stampo Goal'),
+        % writeln(Goal),
+        % writeln('Stampo Tipo arita e coppia'),
+        % writeln(PredArity-Pairs),
         append(SymTabIn, Pairs, Combined),
         sort(Combined, SymTabNext),
-        extend_type_table_list(Rest, SymTabNext, SymTabOut)).
-
+        extend_type_table_list(Rest, SymTabNext, SymTabOut)
+       ).
 
 
 % % ----------------------------
