@@ -1,0 +1,283 @@
+(set-logic HORN)
+
+
+(declare-fun |ERR| ( ) Bool)
+(declare-fun |PRODUCER_CONSUMMER_reset| ( Int Int Int Int Int Bool Int Int Int Int Int Bool ) Bool)
+(declare-fun |PRODUCER_CONSUMMER_step| ( Bool Bool Bool Int Int Int Int Int Int Int Int Int Int Int Bool Int Int Int Int Int Bool ) Bool)
+(declare-fun |INIT_STATE| ( ) Bool)
+(declare-fun |top_reset| ( Int Bool Bool Int Int Int Int Int Bool Int Bool Bool Bool Int Bool Bool Int Int Int Int Int Bool Int Bool Bool Bool ) Bool)
+(declare-fun |Sofar_step| ( Bool Bool Bool Bool Bool Bool ) Bool)
+(declare-fun |excludes3_fun| ( Bool Bool Bool Bool ) Bool)
+(declare-fun |top_step| ( Bool Bool Bool Int Bool Int Bool Bool Int Int Int Int Int Bool Int Bool Bool Bool Int Bool Bool Int Int Int Int Int Bool Int Bool Bool Bool ) Bool)
+(declare-fun |First_step| ( Int Int Int Bool Int Bool ) Bool)
+(declare-fun |MAIN| ( Int Bool Bool Int Int Int Int Int Bool Int Bool Bool Bool Bool ) Bool)
+(declare-fun |Sofar_reset| ( Bool Bool Bool Bool ) Bool)
+(declare-fun |First_reset| ( Int Bool Int Bool ) Bool)
+
+(assert
+  (forall ( (A Int) (B Bool) (C Int) (D Bool) ) 
+    (=>
+      (and
+        (and (= D true) (= C A))
+      )
+      (First_reset A B C D)
+    )
+  )
+)
+(assert
+  (forall ( (A Bool) (B Bool) (C Int) (D Int) (E Int) (F Bool) (G Int) (H Bool) ) 
+    (=>
+      (and
+        (and (= B A) (= G D) (or (not B) (= D C)) (or (= D E) B) (not H) (= A F))
+      )
+      (First_step C D E F G H)
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (B Int) (C Int) (D Int) (E Int) (F Bool) (G Int) (H Int) (I Int) (J Int) (K Int) (L Bool) ) 
+    (=>
+      (and
+        (and (= G A) (= H B) (= I C) (= K E) (= L true) (= J D))
+      )
+      (PRODUCER_CONSUMMER_reset A B C D E F G H I J K L)
+    )
+  )
+)
+(assert
+  (forall ( (A Bool) (B Bool) (C Bool) (D Bool) (E Bool) (F Bool) (G Bool) (H Bool) (I Int) (J Int) (K Int) (L Int) (M Int) (N Int) (O Int) (P Int) (Q Int) (R Int) (S Int) (T Bool) (U Int) (V Int) (W Int) (X Int) (Y Int) (Z Bool) ) 
+    (=>
+      (and
+        (let ((a!1 (or (not D) (and (= K (+ 1 R)) (= J (+ (- 1) S)))))
+      (a!3 (and (or (= K R) C) (or (not C) (= K (+ (- 1) R)))))
+      (a!4 (and (or (= K R) B) (or (not B) (= K (+ (- 1) R)))))
+      (a!7 (and (or B (= M P)) (or (not B) (= M (+ 1 P)))))
+      (a!9 (and (or C (= N O)) (or (not C) (= N (+ 1 O))))))
+(let ((a!2 (and (or (and (= K R) (= J S)) D) a!1))
+      (a!5 (or (and (or a!3 G) (or (not G) a!4) (= J S)) F))
+      (a!8 (or (and (or (not G) a!7) (or G (= M P))) E))
+      (a!10 (or (and (or (not H) a!9) (or H (= N O))) E)))
+(let ((a!6 (or (and (or (not F) a!2) a!5 (= L Q)) E)))
+  (and (= B (>= R 1))
+       (= C (>= R 1))
+       (= D (>= S 1))
+       (= E A)
+       (= X K)
+       (= U N)
+       (= V M)
+       (= W L)
+       (= Y J)
+       (or (not E) (= M 0))
+       (or (not E) (= N 0))
+       (or (not E) (and (= L I) (= K 0) (= J L)))
+       a!6
+       a!8
+       a!10
+       (not Z)
+       (= A T)))))
+      )
+      (PRODUCER_CONSUMMER_step F G H I J K L M N O P Q R S T U V W X Y Z)
+    )
+  )
+)
+(assert
+  (forall ( (A Bool) (B Bool) (C Bool) (D Bool) ) 
+    (=>
+      (and
+        (and (= D true) (= C A))
+      )
+      (Sofar_reset A B C D)
+    )
+  )
+)
+(assert
+  (forall ( (A Bool) (B Bool) (C Bool) (D Bool) (E Bool) (F Bool) (G Bool) (H Bool) ) 
+    (=>
+      (and
+        (and (= A F)
+     (= B A)
+     (or B (= D (and E C)))
+     (or (not B) (= D C))
+     (not H)
+     (= G D))
+      )
+      (Sofar_step C D E F G H)
+    )
+  )
+)
+(assert
+  (forall ( (A Bool) (B Bool) (C Bool) (D Bool) ) 
+    (=>
+      (and
+        (not (= (or (and B C) (and C A) (and B A)) D))
+      )
+      (excludes3_fun A B C D)
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (B Bool) (C Bool) (D Int) (E Int) (F Int) (G Int) (H Int) (I Bool) (J Int) (K Bool) (L Bool) (M Bool) (N Int) (O Bool) (P Bool) (Q Int) (R Int) (S Int) (T Int) (U Int) (V Bool) (W Int) (X Bool) (Y Bool) (Z Bool) ) 
+    (=>
+      (and
+        (Sofar_reset L M Y Z)
+        (First_reset J K W X)
+        (PRODUCER_CONSUMMER_reset D E F G H I Q R S T U V)
+        (and (= N A) (= P true) (= O B))
+      )
+      (top_reset A B C D E F G H I J K L M N O P Q R S T U V W X Y Z)
+    )
+  )
+)
+(assert
+  (forall ( (A Bool) (B Bool) (C Bool) (D Int) (E Bool) (F Int) (G Int) (H Int) (I Int) (J Int) (K Int) (L Int) (M Int) (N Int) (O Bool) (P Bool) (Q Bool) (R Int) (S Bool) (T Int) (U Bool) (V Bool) (W Bool) (X Bool) (Y Bool) (Z Int) (A1 Bool) (B1 Int) (C1 Bool) (D1 Bool) (E1 Int) (F1 Int) (G1 Int) (H1 Int) (I1 Int) (J1 Bool) (K1 Int) (L1 Bool) (M1 Bool) (N1 Bool) (O1 Int) (P1 Bool) (Q1 Bool) (R1 Int) (S1 Int) (T1 Int) (U1 Int) (V1 Int) (W1 Bool) (X1 Int) (Y1 Bool) (Z1 Bool) (A2 Bool) ) 
+    (=>
+      (and
+        (excludes3_fun W X Y A)
+        (Sofar_step A S B C Z1 A2)
+        (First_step Z T D E X1 Y1)
+        (PRODUCER_CONSUMMER_step W X Y Z F G H R I J K L M N O R1 S1 T1 U1 V1 W1)
+        (let ((a!1 (= V (or (not C1) (not X) (= R (+ 1 B1)))))
+      (a!2 (or (not Q) (and V (not (= W U))))))
+  (and (= C N1)
+       (= E L1)
+       (= O J1)
+       (= P D1)
+       (= Q P)
+       (= A1 (or V (<= T 0) (not U) (not S)))
+       (= P1 W)
+       (= D K1)
+       (= J E1)
+       (= K F1)
+       (= L G1)
+       (= M H1)
+       (= N I1)
+       (= O1 R)
+       (or Q (and U a!1))
+       a!2
+       (not Q1)
+       (= B M1)))
+      )
+      (top_step W
+          X
+          Y
+          Z
+          A1
+          B1
+          C1
+          D1
+          E1
+          F1
+          G1
+          H1
+          I1
+          J1
+          K1
+          L1
+          M1
+          N1
+          O1
+          P1
+          Q1
+          R1
+          S1
+          T1
+          U1
+          V1
+          W1
+          X1
+          Y1
+          Z1
+          A2)
+    )
+  )
+)
+(assert
+  (forall ( (CHC_COMP_UNUSED Bool) ) 
+    (=>
+      (and
+        true
+      )
+      INIT_STATE
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (B Bool) (C Bool) (D Int) (E Int) (F Int) (G Int) (H Int) (I Bool) (J Int) (K Bool) (L Bool) (M Bool) (N Bool) (O Bool) (P Bool) (Q Int) (R Int) (S Bool) (T Bool) (U Int) (V Int) (W Int) (X Int) (Y Int) (Z Bool) (A1 Int) (B1 Bool) (C1 Bool) (D1 Bool) (E1 Int) (F1 Bool) (G1 Bool) (H1 Int) (I1 Int) (J1 Int) (K1 Int) (L1 Int) (M1 Bool) (N1 Int) (O1 Bool) (P1 Bool) (Q1 Bool) (R1 Bool) ) 
+    (=>
+      (and
+        (top_step N
+          O
+          P
+          Q
+          R1
+          R
+          S
+          T
+          U
+          V
+          W
+          X
+          Y
+          Z
+          A1
+          B1
+          C1
+          D1
+          E1
+          F1
+          G1
+          H1
+          I1
+          J1
+          K1
+          L1
+          M1
+          N1
+          O1
+          P1
+          Q1)
+        INIT_STATE
+        (top_reset A B C D E F G H I J K L M R S T U V W X Y Z A1 B1 C1 D1)
+        true
+      )
+      (MAIN E1 F1 G1 H1 I1 J1 K1 L1 M1 N1 O1 P1 Q1 R1)
+    )
+  )
+)
+(assert
+  (forall ( (A Bool) (B Bool) (C Bool) (D Bool) (E Int) (F Int) (G Bool) (H Bool) (I Int) (J Int) (K Int) (L Int) (M Int) (N Bool) (O Int) (P Bool) (Q Bool) (R Bool) (S Int) (T Bool) (U Bool) (V Int) (W Int) (X Int) (Y Int) (Z Int) (A1 Bool) (B1 Int) (C1 Bool) (D1 Bool) (E1 Bool) (F1 Bool) ) 
+    (=>
+      (and
+        (top_step B C D E F1 F G H I J K L M N O P Q R S T U V W X Y Z A1 B1 C1 D1 E1)
+        (MAIN F G H I J K L M N O P Q R A)
+        true
+      )
+      (MAIN S T U V W X Y Z A1 B1 C1 D1 E1 F1)
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (B Bool) (C Bool) (D Int) (E Int) (F Int) (G Int) (H Int) (I Bool) (J Int) (K Bool) (L Bool) (M Bool) (N Bool) ) 
+    (=>
+      (and
+        (MAIN A B C D E F G H I J K L M N)
+        (not N)
+      )
+      ERR
+    )
+  )
+)
+(assert
+  (forall ( (CHC_COMP_UNUSED Bool) ) 
+    (=>
+      (and
+        ERR
+        true
+      )
+      false
+    )
+  )
+)
+
+(check-sat)
+(exit)

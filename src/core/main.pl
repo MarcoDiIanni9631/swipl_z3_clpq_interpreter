@@ -34,11 +34,11 @@ set_solver(turibe) :-
     use_module('../solvers/solver_turibe'),
     use_module(z3lib(z3)).
 
-set_solver(vidal) :-
-    getenv('SWIZ3_VIDAL_PATH', Z3Path),
-    assertz(file_search_path(z3lib, Z3Path)),
-    use_module(z3lib(swiplz3)),
-    use_module('../solvers/solver_vidal').
+% set_solver(vidal) :-
+%     getenv('SWIZ3_VIDAL_PATH', Z3Path),
+%     assertz(file_search_path(z3lib, Z3Path)),
+%     use_module(z3lib(swiplz3)),
+%     use_module('../solvers/solver_vidal').
 
 :- initialization(set_solver(turibe), now).
 

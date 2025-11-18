@@ -1,6 +1,6 @@
 :- module(solver_turibe, [
     z3_sat_check/3,
-    z3constr2lower/3,      % <-- aggiungi questo
+    z3constr2lower/3,      
     z3_print_model_final/1,
     enable_debug/0,
     disable_debug/0,
