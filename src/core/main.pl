@@ -324,12 +324,7 @@ zmi_aux(Head, Z3In, CLPQIn,SymTabIn, Steps, Z3Out, CLPQOut, SubTree => Head) :-
 
 
     extend_type_table_list([Head | BodyList], SymTabIn, SymTabFinal),
-<<<<<<< HEAD
-    % writeln('Ecco la type table'),
-    % writeln(SymTabFinal),
-=======
-    
->>>>>>> d2ed8276 (Aggiornamento modulo logic utils perr rendere prefisso and e or)
+
   %  maplist(rewrite_constr(Head, SymTabFinal), BodyList, RewrittenList),
 
     build_conjunct(BodyList, Body),
