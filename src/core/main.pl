@@ -401,7 +401,7 @@ extend_type_table_list([Goal | Rest], SymTabIn, SymTabOut) :-
         % writeln('Stampo Tipo arita e coppia'),
         % writeln(PredArity-Pairs),
         append(SymTabIn, Pairs, Combined),
-        sort(Combined, SymTabNext),
+          sort(Combined, SymTabNext),
         extend_type_table_list(Rest, SymTabNext, SymTabOut)
        ).
 

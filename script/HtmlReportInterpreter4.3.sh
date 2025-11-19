@@ -108,7 +108,7 @@ for smtfile in "$DIR"/*.smt2.pl; do
   rowclass="missing"
 
   # --- Cerca tutti i .zmiout associati al prefix ---
-  for candidate in "$prefix".*.zmiout; do
+  for candidate in "$prefix"*.zmiout; do
     [ -f "$candidate" ] || continue
     filename=$(basename "$candidate")
 
