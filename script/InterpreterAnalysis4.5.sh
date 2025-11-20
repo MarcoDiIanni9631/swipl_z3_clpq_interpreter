@@ -78,7 +78,7 @@ prefix="$(basename "$base")"
 
 # --- SKIP SE ESISTE GIÀ ALMENO UN .ZMIOUT ---
 if [ "$SKIP_EXISTING" = "yes" ]; then
-  if ls "$dir"/"$prefix".*.zmiout 1>/dev/null 2>&1; then
+  if compgen -G "$dir/$prefix"*.zmiout > /dev/null; then
     echo "⏭️  Esiste già uno zmiout per $(basename "$file") → skip."
     return
   fi
