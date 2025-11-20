@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # ==========================================================
-# Script: InterpreterAnalysis4.6.sh
+# Script: InterpreterAnalysis4.7.sh
 # Autore: Marco Di Ianni
 # Descrizione:
 #   Analizza file .pl con l’interprete Prolog.
@@ -58,7 +58,7 @@ fi
 
 # --- VERIFICA SWI-PROLOG ---
 if [ -z "$SWIPL_BIN" ] || [ ! -x "$SWIPL_BIN" ]; then
-  echo "❌ Errore: SWI-Prolog non trovato."
+  echo "❌ SWI-Prolog non trovato."
   exit 1
 fi
 
@@ -67,17 +67,19 @@ fi
 # ----------------------------------------------------------
 process_file() {
   file="$1"
-  [ -f "$file" ] || return
 
+  # NORMALIZZA ASSOLUTO SEMPRE
   FILE_ABS="$(readlink -f "$file")"
+  [ -f "$FILE_ABS" ] || return
+
   base="${FILE_ABS%.pl}"
   dir="$(dirname "$FILE_ABS")"
   prefix="$(basename "$base")"
 
-  # --- SKIP .ZMIOUT ---
+  # --- SKIP SE ESISTE ZMIOUT ---
   if [ "$SKIP_EXISTING" = "yes" ]; then
     if compgen -G "$dir/$prefix"*.zmiout > /dev/null; then
-      echo "⏭️  Esiste già uno zmiout → skip: $(basename "$file")"
+      echo "⏭️  Skip: $(basename "$FILE_ABS") (zmiout già presente)"
       return
     fi
   fi
@@ -86,7 +88,7 @@ process_file() {
   MAIN_DIR="$(dirname "$MAIN_ABS")"
   tmpout="$dir/$(basename "$base").tmpout"
 
-  echo "▶️ Elaborazione file: $(basename "$file") (timeout ${TIMEOUT_SEC}s)"
+  echo "▶️ File: $(basename "$FILE_ABS") (timeout ${TIMEOUT_SEC}s)"
   echo "📂 Working dir: $MAIN_DIR"
 
   (
@@ -105,7 +107,7 @@ process_file() {
   LIMIT_TAG=$(grep -q "Limite MaxDepth raggiunto" "$tmpout" && echo "_MaxDepthReached" || echo "")
   PUSH_TAG=$(grep -q "z3_push_failed" "$tmpout" && echo "_Z3PushFailed" || echo "_Z3PushOK")
   TERM_TAG=$(grep -q "Ho raggiunto la terminazione dell'albero" "$tmpout" && echo "_totalExplored" || echo "_notFullyExplored")
-  ERROR_TAG=$(grep -Eqi "error|failed|segfault" "$tmpout" && echo "_Error" || echo "")
+  ERROR_TAG=$(grep -Eqi "error|failed" "$tmpout" && echo "_Error" || echo "")
 
   if grep -q "No SAT" "$tmpout"; then
     verdict="true"
@@ -120,7 +122,7 @@ process_file() {
   finalout="${base}.${STATUS}_${verdict}_MaxDepth${MaxDepth}${LIMIT_TAG}${PUSH_TAG}${TERM_TAG}${ERROR_TAG}.zmiout"
   mv "$tmpout" "$finalout" 2>/dev/null || true
 
-  echo "✅ File elaborato --> $finalout"
+  echo "✅ Output --> $finalout"
 }
 
 export -f process_file
@@ -131,13 +133,12 @@ export MAIN SWIPL_BIN TIMEOUT_SEC TARGET SKIP_EXISTING
 # ----------------------------------------------------------
 if [ -d "$INPUT_PATH" ]; then
 
-  # PERCORSI ASSOLUTI PRIMA DI PASSARE A PARALLEL
   if [ "$MODE" == "-s" ]; then
-    echo "⚙️ Avvio elaborazione parallela su: $INPUT_PATH"
+    echo "⚙️ Esecuzione parallela su: $INPUT_PATH"
     find "$INPUT_PATH" -type f -name "*.pl" -exec readlink -f {} \; \
       | parallel -j 16 process_file {}
   else
-    echo "⚙️ Avvio analisi sequenziale"
+    echo "⚙️ Esecuzione sequenziale"
     find "$INPUT_PATH" -type f -name "*.pl" -exec readlink -f {} \; \
       | while read -r file; do process_file "$file"; done
   fi
