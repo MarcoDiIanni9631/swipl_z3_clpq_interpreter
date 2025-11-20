@@ -71,18 +71,19 @@ process_file() {
   file="$1"
   [ -f "$file" ] || return
 
-  FILE_ABS="$(readlink -f "$file")"
-  base="${file%.pl}"
-  dir="$(dirname "$file")"
-  prefix="$(basename "$base")"
+FILE_ABS="$(readlink -f "$file")"
+base="${FILE_ABS%.pl}"
+dir="$(dirname "$FILE_ABS")"
+prefix="$(basename "$base")"
 
-  # --- SKIP SE ESISTE GIÀ ALMENO UN .ZMIOUT ---
-  if [ "$SKIP_EXISTING" = "yes" ]; then
-    if ls "$dir"/"$prefix".*.zmiout 1>/dev/null 2>&1; then
-      echo "⏭️  Esiste già uno zmiout per $(basename "$file") → skip."
-      return
-    fi
+# --- SKIP SE ESISTE GIÀ ALMENO UN .ZMIOUT ---
+if [ "$SKIP_EXISTING" = "yes" ]; then
+  if ls "$dir"/"$prefix".*.zmiout 1>/dev/null 2>&1; then
+    echo "⏭️  Esiste già uno zmiout per $(basename "$file") → skip."
+    return
   fi
+fi
+
 
   MAIN_ABS="$(readlink -f "$MAIN")"
   MAIN_DIR="$(dirname "$MAIN_ABS")"
