@@ -272,8 +272,14 @@ zmi_aux(constr(C), Z3In, CLPQIn, SymTab, _, Z3Out, CLPQOut, constr(Normalized)) 
     build_conjunct([CLPQIn, Normalized], CLPQTmp),
 
     build_conjunct([Z3In, Normalized], Z3Tmp),
-
+    
+    
+    debug_print('stampo SymTab dentro il constr'),
+    debug_print(SymTab),
     build_type_equality_list(SymTab, TypeAnnots),
+
+    debug_print('stampo TypeAnnots dentro il constr'),
+    debug_print(TypeAnnots),
        
     % writeln('Stampo Normalized'),writeln(Normalized),
 
@@ -326,7 +332,8 @@ zmi_aux(Head, Z3In, CLPQIn,SymTabIn, Steps, Z3Out, CLPQOut, SubTree => Head) :-
     extend_type_table_list([Head | BodyList], SymTabIn, SymTabFinal),
 
   %  maplist(rewrite_constr(Head, SymTabFinal), BodyList, RewrittenList),
-
+    debug_print('stampo symTabFinal'),
+    debug_print(SymTabFinal),
     build_conjunct(BodyList, Body),
     NewSteps is Steps - 1,
     %  debug_print('Stampo Body prima di zmi'),
@@ -625,13 +632,26 @@ build_type_equality(Var-array(Index, Elem), (Var:array(Index, Elem) = Var:array(
 
 
 
-%evita l'aggiunta dei true a inizio clausola da mandare a z3
-build_type_equality_list(SymTab, TypeAnnots) :- 
-  ( bagof(Y, (member(X,SymTab), build_type_equality(X,Y)), TypeAnnots) 
-      -> true
-    ; 
-      TypeAnnots=[]
-  ).
+% %evita l'aggiunta dei true a inizio clausola da mandare a z3
+% build_type_equality_list(SymTab, TypeAnnots) :- 
+%   ( bagof(Y, (member(X,SymTab), build_type_equality(X,Y)), TypeAnnots) 
+%       -> true
+%     ; 
+%       TypeAnnots=[]
+%   ).
+
+build_type_equality_list([], []).
+
+build_type_equality_list([X | Rest], [Y | Ys]) :-
+    build_type_equality(X, Y),           
+    !,
+    build_type_equality_list(Rest, Ys).
+
+build_type_equality_list([_ | Rest], Ys) :-
+    build_type_equality_list(Rest, Ys).
+
+
+
 
 % rewrite_constr(_, _, constr(true), constr(true)) :-
 %      !.

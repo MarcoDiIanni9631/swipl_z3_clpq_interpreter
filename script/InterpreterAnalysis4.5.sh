@@ -78,7 +78,7 @@ process_file() {
 
   # --- SKIP SE ESISTE ZMIOUT ---
   if [ "$SKIP_EXISTING" = "yes" ]; then
-    if compgen -G "$dir/$prefix"*.zmiout > /dev/null; then
+    if compgen -G "$dir/$prefix".*.zmiout > /dev/null; then
       echo "⏭️  Skip: $(basename "$FILE_ABS") (zmiout già presente)"
       return
     fi
