@@ -18,7 +18,7 @@ REPORT_DATE="$(date +"%Y-%m-%d %H:%M:%S")"
 
 first_zmiout=$(ls "$DIR"/*.zmiout 2>/dev/null | head -n1)
 if [ -n "$first_zmiout" ]; then
-  extracted_md=$(basename "$first_zmiout" | grep -oP "MaxDepth\K[0-9]+")
+  extracted_md=$(basename "$first_zmiout" | grep -oP "\.MaxDepth\K[0-9]+")
   [ -n "$extracted_md" ] && MAXDEPTH_FOUND="$extracted_md"
 fi
 [ -z "$MAXDEPTH_FOUND" ] && MAXDEPTH_FOUND="$DEFAULT_MAXDEPTH"
@@ -51,17 +51,21 @@ fi
   echo "</head><body>"
   echo "<h2>Verifica Corrispondenza Risultati - $BASENAME</h2>"
   echo "<div class='timestamp'>🕓 Report generato il: <strong>$REPORT_DATE</strong></div>"
+
+  # ---- LEGENDA COMPLETA ----
   echo "<div class='legend'>
           <p><strong>Directory di origine:</strong> $DIR</p>
           <ul>
-            <li><span class='color-box' style='background:#f66;'></span><strong>Rosso</strong>: sempre se c'è un errore</li>
-            <li><span class='color-box' style='background:#9f9;'></span><strong>Verde</strong>: false, derivable</li>
-            <li><span class='color-box' style='background:#9f9;'></span><strong>Verde</strong>: true non derivabile e timeout non raggiunto e limite profondità non raggiunto e esplorato tutto l&apos;albero</li>
-            <li><span class='color-box' style='background:#ffeb99;'></span><strong>Giallo</strong>: non derivabile ma timeout o MaxDepth raggiunto</li>
-            <li><span class='color-box' style='background:#f66;'></span><strong>Rosso</strong>: false non derivabile se esplorato tutto l&apos;albero e non c&apos;è timeout e non è raggiunto MaxDepth</li>
-            <li><span class='color-box' style='background:#ffeb99;'></span><strong>Giallo</strong>: false non derivabile se raggiunto timeout o MaxDepth</li>
+            <li><span class='color-box' style='background:#f66;'></span><strong>Rosso</strong>: errore rilevato</li>
+            <li><span class='color-box' style='background:#9f9;'></span><strong>Verde</strong>: false → derivable</li>
+            <li><span class='color-box' style='background:#9f9;'></span><strong>Verde</strong>: true non derivabile, <em>senza</em> timeout, <em>senza</em> MaxDepthReached, ed esplorato tutto l’albero</li>
+            <li><span class='color-box' style='background:#ffeb99;'></span><strong>Giallo</strong>: true non derivabile ma con timeout / MaxDepthReached / esplorazione incompleta</li>
+            <li><span class='color-box' style='background:#f66;'></span><strong>Rosso</strong>: false non derivabile con albero completamente esplorato</li>
+            <li><span class='color-box' style='background:#ffeb99;'></span><strong>Giallo</strong>: false non derivabile con timeout o MaxDepthReached</li>
+            <li><span class='asterisk'>*</span> = non derivabile per effetto di <strong>unknown</strong> nel risultato ZMI</li>
           </ul>
         </div>"
+
   echo "<table>"
   echo "<tr>
           <th>ID</th>
@@ -79,12 +83,15 @@ fi
         </tr>"
 } > "$HTML_OUT"
 
+
 # ---- LOOP FILES ----
 shopt -s nullglob
 counter=1
 
 for smtfile in "$DIR"/*.smt2.pl; do
   base=$(basename "$smtfile")
+
+  # Etichetta SMT
   verdict_part=$(basename "$base" .smt2.pl | rev | cut -d'_' -f1 | rev)
   if [[ "$verdict_part" == "true" ]]; then
     label_smt="true"
@@ -94,9 +101,10 @@ for smtfile in "$DIR"/*.smt2.pl; do
     label_smt="unknown"
   fi
 
-  prefix="${smtfile%.smt2.pl}"
+  prefix="$(basename "$smtfile")"
   zmiout_file=""
   label_zmi=""
+
   timeout_flag="no"
   maxdepth_disp="?"
   maxdepth_reached_flag="no"
@@ -105,36 +113,44 @@ for smtfile in "$DIR"/*.smt2.pl; do
   error_type="-"
   timeout_nomaxdepth_flag="no"
   nosat_flag="no"
+
   rowclass="missing"
 
-  # --- Cerca tutti i .zmiout associati al prefix ---
-  for candidate in "$prefix"*.zmiout; do
+  # ---- CERCA zmiout ----
+  for candidate in "$DIR/$prefix."*.zmiout; do
     [ -f "$candidate" ] || continue
     filename=$(basename "$candidate")
 
-    [[ "$filename" == *timeout* ]] && timeout_flag="yes"
-    [[ "$filename" == *Error* ]] && error_flag="yes"
+    # timeout/done
+    [[ "$filename" =~ \.timeout\. ]] && timeout_flag="yes"
 
-    if [[ "$filename" =~ MaxDepth([0-9]+) ]]; then
+    # error/noerror
+    [[ "$filename" =~ \.Error\. ]] && error_flag="yes"
+
+    # MaxDepth
+    if [[ "$filename" =~ \.MaxDepth([0-9]+)\. ]]; then
       maxdepth="${BASH_REMATCH[1]}"
       maxdepth_disp="$maxdepth"
     fi
 
-    if [[ "$filename" == *MaxDepthReached* ]]; then
-      maxdepth_reached_flag="yes"
-      maxdepth_disp="${maxdepth:-?} (MaxDepthReached)"
+    # MaxDepthReached
+    [[ "$filename" =~ \.MaxDepthReached\. ]] && maxdepth_reached_flag="yes"
+
+    # totalExplored / notFullyExplored
+    if [[ "$filename" =~ \.totalExplored\. ]]; then
+      explored_flag="yes"
+    elif [[ "$filename" =~ \.notFullyExplored\. ]]; then
+      explored_flag="no"
     fi
 
-    # --- Tipo di errore (differenzia type error / type error model) ---
+    # Error type (model/type)
     if grep -qiE "ERROR:" "$candidate" || grep -qi -- "----Type error" "$candidate"; then
       raw_error=$(grep -im1 -E "ERROR:" "$candidate" || grep -im1 -- "----Type error" "$candidate")
 
       if echo "$raw_error" | grep -q -- "----Type error"; then
         error_type="Type error (model)"
-      elif echo "$raw_error" | grep -q "Type error"; then
+      elif echo "$raw_error" | grep -qi "Type error"; then
         error_type="Type error"
-      elif echo "$raw_error" | grep -qi "segmentation fault"; then
-        error_type="Segmentation fault"
       else
         error_type="Other error"
       fi
@@ -142,128 +158,105 @@ for smtfile in "$DIR"/*.smt2.pl; do
       error_flag="yes"
     fi
 
-    # --- Rileva 'No SAT branches found' ---
-    if grep -q "No SAT branches found" "$candidate"; then
-      nosat_flag="yes"
-    fi
+    # No SAT branches
+    grep -q "No SAT branches found" "$candidate" && nosat_flag="yes"
 
-    # --- Determina label_zmi in base al filename ---
-    if   [[ "$filename" =~ (^|[_\.])false([_\.]|$) ]]; then
-      zmiout_file="$candidate"; label_zmi="false"; break
-    elif [[ "$filename" =~ (^|[_\.])true([_\.]|$) ]]; then
-      zmiout_file="$candidate"; label_zmi="true"; break
-    elif [[ "$filename" =~ (^|[_\.])unknown([_\.]|$) ]]; then
-      zmiout_file="$candidate"; label_zmi="unknown"
+    # ---- Estrai verdict dal nome del file ----
+    verdict_raw=$(echo "$filename" | grep -oP '\.(true|false|unknown)\.' | tr -d '.')
+
+    if [ -n "$verdict_raw" ]; then
+      label_zmi="$verdict_raw"
+      zmiout_file="$candidate"
+      break
     fi
   done
 
-  # --- Explored tree basato sul file ZMI scelto ---
-  if [ -n "$zmiout_file" ]; then
-    chosen_name=$(basename "$zmiout_file")
-    if [[ "$chosen_name" == *"_totalExplored"* ]]; then
-      explored_flag="yes"
-    elif [[ "$chosen_name" == *"_notFullyExplored"* ]]; then
-      explored_flag="no"
-    fi
-  fi
 
-  # --- Timeout&NoMaxDepth flag (info extra) ---
+  # Timeout senza MaxDepthReached
   if [[ "$timeout_flag" == "yes" && "$maxdepth_reached_flag" == "no" ]]; then
     timeout_nomaxdepth_flag="yes"
-  else
-    timeout_nomaxdepth_flag="no"
   fi
 
-  # --- Etichetta ZMI finale (testo) ---
+  # ---- Esposizione testo ZMI ----
   if [[ "$label_zmi" == "true" ]]; then
-    if [[ "$nosat_flag" == "yes" ]]; then
-      label_zmi_disp="non derivabile"
-    else
-      label_zmi_disp="non derivabile<span class='asterisk'>*</span>"
-    fi
+    label_zmi_disp="non derivabile</span>"
+
   elif [[ "$label_zmi" == "false" ]]; then
     label_zmi_disp="derivable"
+
+  elif [[ "$label_zmi" == "unknown" ]]; then
+    label_zmi_disp="non derivabile<span class='asterisk'>*</span>"
+
   else
     label_zmi_disp=""
   fi
 
-  # --- Match check ---
-  if [[ "$label_smt" == "unknown" || -z "$label_zmi" ]]; then
-    match="no"
+
+  # ---- MATCH ----
+  if [[ "$label_smt" == "$label_zmi" ]]; then
+    match="yes"
   else
-    if [[ "$label_smt" == "$label_zmi" ]]; then
-      match="yes"
-    else
-      match="no"
-    fi
+    match="no"
   fi
 
-  # =========================
-  #   LOGICA COLORI (A)
-  # =========================
 
-  # 1) Rosso se c'è un errore
+  # ---- LOGICA COLORI ----
+
+  # 1. Rosso: error
   if [[ "$error_flag" == "yes" ]]; then
     rowclass="err"
 
-  # 2) Verde: false, derivable
+  # 2. True + unknown => non derivabile* => giallo
+  elif [[ "$label_smt" == "true" && "$label_zmi" == "unknown" ]]; then
+    rowclass="warn" 
+
+  # 2. Verde: false → derivable
   elif [[ "$label_smt" == "false" && "$label_zmi" == "false" ]]; then
     rowclass="ok"
 
-  # 3) Verde: true non derivabile, no timeout, no MaxDepth, esplorato tutto
+  # 3. true-non-derivable full ok
   elif [[ "$label_smt" == "true" && "$label_zmi" == "true" ]]; then
     if [[ "$timeout_flag" == "no" && "$maxdepth_reached_flag" == "no" && "$explored_flag" == "yes" ]]; then
       rowclass="ok"
     else
-      # 4) Giallo: non derivabile ma timeout o MaxDepth raggiunto
-      if [[ "$timeout_flag" == "yes" || "$maxdepth_reached_flag" == "yes" ]]; then
-        rowclass="warn"
-      else
-        rowclass="warn"
-      fi
+      rowclass="warn"
     fi
 
-  # 5) Rosso / Giallo: false non derivabile
+  # 4. false NON derivabile
   elif [[ "$label_smt" == "false" && "$label_zmi" == "true" ]]; then
-    # Rosso: false non derivabile se esplorato tutto, no timeout, no MaxDepth
     if [[ "$explored_flag" == "yes" && "$timeout_flag" == "no" && "$maxdepth_reached_flag" == "no" ]]; then
       rowclass="err"
-    # Giallo: false non derivabile se raggiunto timeout o MaxDepth
-    elif [[ "$timeout_flag" == "yes" || "$maxdepth_reached_flag" == "yes" ]]; then
-      rowclass="warn"
     else
       rowclass="warn"
     fi
 
   else
-    # altri casi (mismatch non specificato) -> errore se entrambi not empty, altrimenti missing
-    if [[ -n "$label_smt" && -n "$label_zmi" && "$label_smt" != "unknown" && "$label_zmi" != "unknown" ]]; then
-      rowclass="err"
-    else
-      rowclass="missing"
-    fi
+    rowclass="missing"
   fi
 
-  # --- Ricerca SMT anche nella stessa cartella / cartella padre ---
+
+  # ---- LINK
   smt_prefix=$(basename "${smtfile%.smt2.pl}")
-  smt_orig_same="$DIR/$smt_prefix.smt2"
-  smt_orig_parent="$PARENT_DIR/$smt_prefix.smt2"
 
-  if [ -f "$smt_orig_same" ]; then
-    link_smt="(<a class='smt-link' href='$(basename "$smt_orig_same")'>SMT</a>)"
-  elif [ -f "$smt_orig_parent" ]; then
-    link_smt="(<a class='smt-link' href='../$(basename "$smt_orig_parent")'>SMT</a>)"
+  # cerca SMT
+  if [ -f "$DIR/$smt_prefix.smt2" ]; then
+    link_smt="(<a class='smt-link' href='$smt_prefix.smt2'>SMT</a>)"
+  elif [ -f "$PARENT_DIR/$smt_prefix.smt2" ]; then
+    link_smt="(<a class='smt-link' href='../$smt_prefix.smt2'>SMT</a>)"
   else
-    link_smt="(<a class='smt-link missing-link' href='../$smt_prefix.smt2'>SMT!</a>)"
+    link_smt="(<a class='smt-link missing-link'>SMT!</a>)"
   fi
 
-  link_pl="<a href='$(basename "$smtfile")'>$base</a>"
+  link_pl="<a href='$base'>$base</a>"
+
   if [ -n "$zmiout_file" ]; then
     link_zmi="(<a href='$(basename "$zmiout_file")'>ZMI</a>)"
   else
     link_zmi="(ZMI missing)"
   fi
 
+
+  # ---- OUTPUT RIGA ----
   echo "<tr class='$rowclass'>
           <td>$counter</td>
           <td>$link_pl $link_smt $link_zmi</td>
@@ -280,9 +273,11 @@ for smtfile in "$DIR"/*.smt2.pl; do
         </tr>" >> "$HTML_OUT"
 
   counter=$((counter+1))
-
 done
 
+
 shopt -u nullglob
+
 echo "</table></body></html>" >> "$HTML_OUT"
+
 echo "✅ Report generato: $HTML_OUT"

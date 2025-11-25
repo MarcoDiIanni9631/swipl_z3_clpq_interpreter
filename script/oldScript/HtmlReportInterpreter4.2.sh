@@ -1,15 +1,4 @@
 #!/bin/bash
-#
-# ==========================================================
-# Script: HtmlReportInterpreter_4.2.sh
-# Descrizione:
-#   Genera un report HTML confrontando i risultati ZMI con
-#   il verdict atteso dai file SMT.
-#   Evidenzia:
-#     🟡 Timeout ma MaxDepth non raggiunto
-#     🔴 ErrorDetected = sì
-#     🌿 "No SAT branches found" = non derivabile completo
-# ==========================================================
 
 DIR="$1"
 DEFAULT_TIME_LIMIT=300
@@ -57,9 +46,6 @@ fi
     .legend {margin: 10px 0 18px; font-size: 13px; color: #444;}
     .legend span {display:inline-block; margin-right:14px;}
     .timestamp {font-size: 13px; color: #666; margin-bottom: 10px;}
-  
-  
-  
   </style>'
   echo "</head><body>"
   echo "<h2>Verifica Corrispondenza Risultati - $BASENAME</h2>"
@@ -130,16 +116,21 @@ for smtfile in "$DIR"/*.smt2.pl; do
       maxdepth_disp="${maxdepth:-?} (MaxDepthReached)"
     fi
 
-    # --- Tipo di errore ---
-    if grep -q "ERROR: \[Thread main\]" "$candidate"; then
-      raw_error=$(grep -m1 "ERROR: \[Thread main\]" "$candidate")
-      if echo "$raw_error" | grep -q "Type error"; then
+    # --- Tipo di errore (differenzia type error / type error model) ---
+    if grep -qiE "ERROR:" "$candidate" || grep -qi -- "----Type error" "$candidate"; then
+      raw_error=$(grep -im1 -E "ERROR:" "$candidate" || grep -im1 -- "----Type error" "$candidate")
+
+      if echo "$raw_error" | grep -q -- "----Type error"; then
+        error_type="Type error (model)"
+      elif echo "$raw_error" | grep -q "Type error"; then
         error_type="Type error"
       elif echo "$raw_error" | grep -qi "segmentation fault"; then
         error_type="Segmentation fault"
       else
         error_type="Other error"
       fi
+
+      error_flag="yes"
     fi
 
     # --- Rileva 'No SAT branches found' ---
