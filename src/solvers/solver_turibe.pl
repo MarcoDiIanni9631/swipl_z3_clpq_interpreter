@@ -34,49 +34,15 @@ debug_print(Msg, Arg) :-
       format(Msg, [Arg]).
 debug_print(_, _).
 
-% ----------------------------
-% Conversione variabili Prolog -> Z3
-% ----------------------------
-
-% var2z3pairs([], []).
-% var2z3pairs([X|Xs], [X-Y|Ys]) :-
-%     var2z3(X, Y),
-%     var2z3pairs(Xs, Ys).
-
-% var2z3(X, X1) :-
-%     term_to_atom(X, A),
-%     atomic_concat(x, A, X1).
-
-% % unifypairs([]).
-% unifypairs([X-Y|Ys]) :- X=Y, unifypairs(Ys).
-
-% z3constr2lower(C, Pairs, C1) :-
-%     term_variables(C, Vars),
-%     build_z3_pairs(Vars, Pairs),
-%     copy_term(C, Ccopy),
-%     apply_pairs(Pairs, Ccopy, C1). x_1210:int e x_1210:bool select(a:array(int,int),b:int))
-%  _1210 ->prolog
-%  
-
 
 %testare questa
 z3constr2lower(C, Pairs, C1) :-
     copy_term(C, Ccopy),
     term_variables(Ccopy, Vars),
     build_z3_pairs(Vars, Pairs),
-    % copy_term(C, Ccopy),
     apply_pairs(Pairs, Ccopy, C1).
 
-  %+C input, -P -> output
-  %apply pairs -C2
-
-
-%  %questa vecchia soluzione aggigornata modificata buona 
-% z3constr2lower(C, P, C2) :-
-%     copy_term(C, C1), %f(X,X) -> f(X1,X1) 
-%     term_variables(C1, L),
-%     build_z3_pairs(L, P),
-%     apply_pairs(P,C1,C2).      
+   
 
 % ----------------------------
 % Sostituzione delle costanti nel modello

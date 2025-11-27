@@ -62,4 +62,4 @@ contains_forbidden_functor(Term) :-
     sub_term(Sub, Term),
     compound(Sub),
     functor(Sub, F, _),
-    memberchk(F, [store, array, and, or, not]).
+    memberchk(F, [select, store, array, and, or, not]).

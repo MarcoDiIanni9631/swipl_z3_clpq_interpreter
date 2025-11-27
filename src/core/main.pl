@@ -238,33 +238,6 @@ zmi_aux((A, B), Z3In, CLPQIn,SymTab, Steps, Z3Out, CLPQOut, (TreeA, TreeB)) :-
 % -------------------------------------------------------------
 
 
-    %old constr c
-% zmi_aux(constr(C), Z3In, CLPQIn, SymTab, _, Z3Out, CLPQOut, constr(Normalized)) :-
-%     debug_print('Entrato in constr c'),
-%     normalize_bool_expr(C, Normalized),
-%     writeln('stampo c'),writeln(C),
-%     build_conjunct([CLPQIn, Normalized], CLPQTmp),
-
-%     build_conjunct([Z3In, Normalized], Z3Tmp),
-
-%     maplist(build_type_equality, SymTab, TypeAnnots),
-
-%         writeln('Stampo Normalized'),writeln(Normalized),
-
-%         writeln('Stampo Z3Tmp'),writeln(Z3List),
-
-%     conj_to_list(Z3Tmp, Z3List),
-
-%     writeln('Stampo Z3List'),writeln(Z3List),
-%     append(TypeAnnots, Z3List, FlatList),
-%    % writeln('Stampo prima di build '), writeln(FlatList),
-%     build_conjunct(FlatList, Z3Final),
-%  %   writeln('stampo Z3Final'),writeln(Z3Final),
-
-%     Z3Out  = Z3Final,
-%     CLPQOut = CLPQTmp,
-%     z3_sat_check(Z3Final, sat, _).
-
 zmi_aux(constr(C), Z3In, CLPQIn, SymTab, _, Z3Out, CLPQOut, constr(Normalized)) :-
     debug_print('Entrato in constr c'),
     normalize_bool_expr(C, Normalized),
@@ -325,13 +298,8 @@ zmi_aux(Head, Z3In, CLPQIn,SymTabIn, Steps, Z3Out, CLPQOut, SubTree => Head) :-
     reorder_body(RawBody, TempBody), %metto prima il constr, magari ci sono condizioni dello stesso ramo che mi impediscono di andare in loop 
 
     conj_to_list(TempBody, BodyList),
-    % extend_type_table_head(Head, SymTabIn, SymTabMid), % SymTab = [A-int, B-array(int, int), C-int, D-int, E-int] .
-    % extend_type_table_body(BodyList, SymTabMid, SymTabFinal), % se nel body esiste una chiamata ad altro predicato, nella symTab aggiunge anche le nuove lettere con i tipi presi dal pred es .  SymTab = [A-int, B-array(int, int), C-int, D-int, E-int, F-int(aggiunto questo)] .
-
-
     extend_type_table_list([Head | BodyList], SymTabIn, SymTabFinal),
 
-  %  maplist(rewrite_constr(Head, SymTabFinal), BodyList, RewrittenList),
     debug_print('stampo symTabFinal'),
     debug_print(SymTabFinal),
     build_conjunct(BodyList, Body),
@@ -345,51 +313,8 @@ zmi_aux(Head, Z3In, CLPQIn,SymTabIn, Steps, Z3Out, CLPQOut, SubTree => Head) :-
 
 
 
-% extend_type_table_head(Head, Old, New) :-
-%     Head =.. [Pred | Args],
-%     length(Args, Arity),
-%     PredArity = Pred/Arity,
-%     build_type_pairs(PredArity, 1, Args, [], Pairs),
-%     append(Old, Pairs, Combined),
-%     sort(Combined, New).
-
-% extend_type_table_body([], SymTab, SymTab).
-
-% extend_type_table_body([Goal | Rest], SymTabIn, SymTabOut) :-
-%     ( Goal = constr(_) ; Goal == true ) ->
-%         extend_type_table_body(Rest, SymTabIn, SymTabOut)
-%     ;
-%        ( Goal =.. [Pred | Args],
-%         length(Args, Arity),
-%         PredArity = Pred/Arity,
-%         build_type_pairs(PredArity, 1, Args, [], Pairs),
-%         append(SymTabIn, Pairs, Combined),
-%         sort(Combined, SymTabNext),
-%         extend_type_table_body(Rest, SymTabNext, SymTabOut)).
-
-
-
 
 extend_type_table_list([], SymTab, SymTab).
-
-%versione con ottimizzazione
-
-% extend_type_table_list([Goal | Rest], SymTabIn, SymTabOut) :-
-%     ( Goal = constr(_) ; Goal == true ) ->
-%         extend_type_table_list(Rest, SymTabIn, SymTabOut)
-%     ;
-%        ( Goal =.. [Pred | Args],
-%         length(Args, Arity),
-%         PredArity = Pred/Arity,
-%         build_type_pairs(PredArity, 1, Args, [], Pairs),
-%         writeln('Stampo Goal'),
-%         writeln(Goal),
-%         writeln('Stampo Tipo arita e coppia'),
-%         writeln(PredArity-Pairs),  
-%         append(SymTabIn, Pairs, Combined),
-%         sort(Combined, SymTabNext),
-%         extend_type_table_list(Rest, SymTabNext, SymTabOut)).
-
 
 %versione senza ottimiazziozneo
 
@@ -411,51 +336,6 @@ extend_type_table_list([Goal | Rest], SymTabIn, SymTabOut) :-
           sort(Combined, SymTabNext),
         extend_type_table_list(Rest, SymTabNext, SymTabOut)
        ).
-
-
-% % ----------------------------
-% % Costruzione coppie Var-Type (supporta anche array/2)
-% % ----------------------------
-% build_type_pairs(_, _, [], Acc, Acc).
-% build_type_pairs(PredArity, Pos, [Var | Rest], AccIn, AccOut) :- 
-    
-%     %Asserito in db pred_arg('main@bb22.i'/5, 1, int).
-%     %PredArity = 'main@bb22.i'/5
-%     %Pos posizione corrente dell'argomento (1,2,3...)
-%     %[Var | Rest] lista degli argomenti del predicato (es. [A, B, C, D])
-%     %AccIn Coppie trovate finora - [B-bool, A-int]
-%     %AccOut valorizzato alla fine con AccIn quando è lista vuota
-    
-%   (  ( var(Var), %es A
-%       pred_arg(PredArity, Pos, Type) )% pred_arg('main@bb22.i'/5, 1, int)
-%     ->
-       
-%        ( ( atom(Type)) % tipi atomici (int, bool, …)
-%         -> (AccNext = [Var-Type | AccIn])
-%         ; 
-        
-%        (( Type = array(Index, Elem),  % array(Index, Elem) con entrambi ground (es. array(int,int), array(int,bool))
-%         ground(Index), ground(Elem)
-%         )
-%         -> (AccNext = [Var-array(Index, Elem) | AccIn])
-
-%         % qualsiasi altro caso: non aggiungere nulla
-%         ;  (AccNext = AccIn
-%         )
-%     )
-% )
-%     ;   (AccNext = AccIn )
-%     ),
-%     Pos1 is Pos + 1,
-%     build_type_pairs(PredArity, Pos1, Rest, AccNext, AccOut).
-
-
-
-
-
-% % Caso base: lista vuota → restituisci accumulator finale
-% build_type_pairs(_, _, [], Acc, Acc).
-
 
 % %     %Asserito in db pred_arg('main@bb22.i'/5, 1, int).
 % %     %PredArity = 'main@bb22.i'/5
@@ -494,126 +374,6 @@ build_type_pairs(PredArity, Pos, [_Var | Rest], AccIn, AccOut) :-
     build_type_pairs(PredArity, Pos1, Rest, AccNext, AccOut).
 
 
-
-
-% %     %Asserito in db pred_arg('main@bb22.i'/5, 1, int).
-% %     %PredArity = 'main@bb22.i'/5
-% %     %Pos posizione corrente dell'argomento (1,2,3...)
-% %     %[Var | Rest] lista degli argomenti del predicato (es. [A, B, C, D])
-% %     %AccIn Coppie trovate finora - [B-bool, A-int]
-% %     %AccOut valorizzato alla fine con AccIn quando è lista vuota
-
-
-% % % ================================================================
-% % %  Costruzione coppie Var-Type (solo per array)
-% % % ================================================================
-
-% build_type_pairs(_, _, [], Acc, Acc).
-
-% build_type_pairs(PredArity, Pos, [Var | Rest], AccIn, AccOut) :-
-%     var(Var),
-%     pred_arg(PredArity, Pos, Type),
-%     Type = array(Index, Elem),
-%     ground(Index),
-%     ground(Elem),
-%     !,
-%     AccNext = [Var-array(Index, Elem) | AccIn],
-%     Pos1 is Pos + 1,
-%     build_type_pairs(PredArity, Pos1, Rest, AccNext, AccOut).
-
-% build_type_pairs(PredArity, Pos, [_Var | Rest], AccIn, AccOut) :-
-%     % ignora tutti i tipi non array
-%     Pos1 is Pos + 1,
-%     build_type_pairs(PredArity, Pos1, Rest, AccIn, AccOut).
-
-
-
-
-
-
-
-% % ================================================================
-% %  Modalità di inferenza tipi
-% %  full = tutti i tipi
-% %  arrays_only = solo array
-% % ================================================================
-
-% :- dynamic type_inference_mode/1.
-% % Default: analizza tutti i tipi
-% type_inference_mode(full).
-
-% % Stampare quale modalità è attiva
-% show_type_inference_mode :-
-%     type_inference_mode(Mode),
-%     format('[INFO] Type inference mode: ~w~n', [Mode]).
-
-% % Dispatcher principale
-% build_type_pairs(PredArity, Pos, Vars, AccIn, AccOut) :-
-%     type_inference_mode(arrays_only),
-%     !,
-%     build_type_pairs_arrays_only(PredArity, Pos, Vars, AccIn, AccOut).
-
-% build_type_pairs(PredArity, Pos, Vars, AccIn, AccOut) :-
-%     type_inference_mode(full),
-%     !,
-%     build_type_pairs_full(PredArity, Pos, Vars, AccIn, AccOut).
-
-% % ================================================================
-% %  Versione arrays_only
-% % ================================================================
-
-% build_type_pairs_arrays_only(_, _, [], Acc, Acc).
-
-% build_type_pairs_arrays_only(PredArity, Pos, [Var | Rest], AccIn, AccOut) :-
-%     var(Var),
-%     pred_arg(PredArity, Pos, Type),
-%     Type = array(Index, Elem),
-%     ground(Index),
-%     ground(Elem),
-%     !,
-%     AccNext = [Var-array(Index, Elem) | AccIn],
-%     Pos1 is Pos + 1,
-%     build_type_pairs_arrays_only(PredArity, Pos1, Rest, AccNext, AccOut).
-
-% build_type_pairs_arrays_only(PredArity, Pos, [_Var | Rest], AccIn, AccOut) :-
-%     AccNext = AccIn,
-%     Pos1 is Pos + 1,
-%     build_type_pairs_arrays_only(PredArity, Pos1, Rest, AccNext, AccOut).
-
-% % ================================================================
-% %  Versione full
-% % ================================================================
-
-% build_type_pairs_full(_, _, [], Acc, Acc).
-
-% build_type_pairs_full(PredArity, Pos, [Var | Rest], AccIn, AccOut) :-
-%     var(Var),
-%     pred_arg(PredArity, Pos, Type),
-%     atom(Type),
-%     !,
-%     AccNext = [Var-Type | AccIn],
-%     Pos1 is Pos + 1,
-%     build_type_pairs_full(PredArity, Pos1, Rest, AccNext, AccOut).
-
-% build_type_pairs_full(PredArity, Pos, [Var | Rest], AccIn, AccOut) :-
-%     var(Var),
-%     pred_arg(PredArity, Pos, Type),
-%     Type = array(Index, Elem),
-%     ground(Index),
-%     ground(Elem),
-%     !,
-%     AccNext = [Var-array(Index, Elem) | AccIn],
-%     Pos1 is Pos + 1,
-%     build_type_pairs_full(PredArity, Pos1, Rest, AccNext, AccOut).
-
-% build_type_pairs_full(PredArity, Pos, [_Var | Rest], AccIn, AccOut) :-
-%     AccNext = AccIn,
-%     Pos1 is Pos + 1,
-%     build_type_pairs_full(PredArity, Pos1, Rest, AccNext, AccOut).
-
-
-
-
 % ----------------------------
 % Costruzione vincoli di uguaglianza tipizzata
 % ----------------------------
@@ -630,16 +390,6 @@ build_type_equality(Var-array(Index, Elem), (Var:array(Index, Elem) = Var:array(
     ground(Index), ground(Elem),
      !.
 
-
-
-% %evita l'aggiunta dei true a inizio clausola da mandare a z3
-% build_type_equality_list(SymTab, TypeAnnots) :- 
-%   ( bagof(Y, (member(X,SymTab), build_type_equality(X,Y)), TypeAnnots) 
-%       -> true
-%     ; 
-%       TypeAnnots=[]
-%   ).
-
 build_type_equality_list([], []).
 
 build_type_equality_list([X | Rest], [Y | Ys]) :-
@@ -649,43 +399,6 @@ build_type_equality_list([X | Rest], [Y | Ys]) :-
 
 build_type_equality_list([_ | Rest], Ys) :-
     build_type_equality_list(Rest, Ys).
-
-
-
-
-% rewrite_constr(_, _, constr(true), constr(true)) :-
-%      !.
-% rewrite_constr(_, _, true, true) :-
-%      !.
-% rewrite_constr(_, SymTab, constr(C0), constr(CFinal)) :-
-%     % debug_print('Before normalize rewrite_constr'),
-%     % debug_print(C0),
-
-%     % normalize_bool_expr(C0, Normalized0),
-%     %    debug_print('After normalize rewrite_constr'),
-
-%     % debug_print(Normalized0),
-
-%     %Test per vedere funzionamento 
-%     %?- SymTab = [A-int, B-int],
-%     %       rewrite_constr(_, SymTab, constr((A=<B, B=<10)), Out).
-%     %SymTab = [A-int, B-int],
-%     %Out = constr((A:int=A:int, B:int=B:int, A=<B, B=<10)).
-
-% %
-    
-%     maplist(build_type_equality, SymTab, TypeAnnots),
-%     conj_to_list(C0, CList),
-%     append(TypeAnnots, CList, FullList),
-% forall(
-%     member((Var:Type = Var:Type), TypeAnnots),
-%     format('')
-% ),
-%     build_conjunct(FullList, CFinal),   
-%     !.
-% rewrite_constr(_, _, Other, Other).
-
-% build_type_equality(Var-Type, (Var:Type = Var:Type)).
 
 
 %% constr_to_rawground(+Constr, -RawGround)
@@ -726,25 +439,6 @@ reorder_body(BodyIn, BodyOut) :-
     move_constr(FlatList, ReorderedList),
     build_conjunct(ReorderedList, BodyOut).
 
-
-
-
-
-
-% reorder_body(BodyIn, BodyOut) :-
-%     writeln('🟦 [DEBUG] Entrato in reorder_body/2'),
-%     writeln('   Corpo originale:'),
-%     writeln(BodyIn),
-%     conj_to_list(BodyIn, FlatList),
-%     writeln('   Dopo conj_to_list:'),
-%     writeln(FlatList),
-%     move_constr(FlatList, ReorderedList),
-%     writeln('   Dopo move_constr:'),
-%     writeln(ReorderedList),
-%     build_conjunct(ReorderedList, BodyOut),
-%     writeln('   Corpo riordinato:'),
-%     writeln(BodyOut),
-%     writeln('🟩 [DEBUG] Fine reorder_body/2').
 % ----------------------------
 % Derivation tree printing
 % ----------------------------
@@ -783,16 +477,3 @@ main :-
     ; (format("Uso: swipl -s main.pl -- <file.smt2.pl> <ff|incorrect>~n", []),
       halt(1))
     ).
-
-
-
-%smoke test
-
-% ?- user:clause('main@.preheader'(A,B,C,D,E,F,G,H,I), Raw),
-%    reorder_body(Raw, R1),
-%    conj_to_list(R1, L),
-%    extend_type_table('main@.preheader'(A,B,C,D,E,F,G,H,I), [], Sym0),
-%    extend_type_tableBody(L, Sym0, Sym),
-%    maplist(rewrite_constr('main@.preheader'(A,B,C,D,E,F,G,H,I), Sym), L, Rw),
-%    build_conjunct(Rw, Final),
-%    writeln(Final).
