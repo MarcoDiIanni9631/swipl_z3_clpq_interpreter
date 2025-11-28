@@ -240,6 +240,8 @@ zmi_aux((A, B), Z3In, CLPQIn,SymTab, Steps, Z3Out, CLPQOut, (TreeA, TreeB)) :-
 
 zmi_aux(constr(C), Z3In, CLPQIn, SymTab, _, Z3Out, CLPQOut, constr(Normalized)) :-
     debug_print('Entrato in constr c'),
+    debug_print('Stampo C'),
+    debug_print(C),
     normalize_bool_expr(C, Normalized),
     % writeln('stampo c'),writeln(C),
     build_conjunct([CLPQIn, Normalized], CLPQTmp),

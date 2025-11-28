@@ -87,12 +87,10 @@ extract_pred_type(Line) :-
     string_codes(Line, Codes),
     phrase(pred_decl(Name/Arity, Types), Codes),
     Arity > 0,
-    forall(nth1(Pos, Types, T),
-        ( T = array(ElemType)
-        -> assertz(pred_arg(Name/Arity, Pos, array(int, ElemType)))
-        ;  assertz(pred_arg(Name/Arity, Pos, T))
-        )
-    ).
+    forall(nth1(Pos, Types, T0),
+        ( fix_array_type(T0, T),
+          assertz(pred_arg(Name/Arity, Pos, T))
+        )).
 
 pred_decl(Name/Arity, Types) -->
     ":- pred ", whites, pred_head(Name, Types), whites, ".",
@@ -230,3 +228,21 @@ replace_fail_with_goal((A;B), (NA;NB)) :-
 replace_fail_with_goal((\+ A), (\+ NA)) :-
      !, replace_fail_with_goal(A, NA).
 replace_fail_with_goal(Term, Term).
+
+
+% ------------------------------------------------------------------------------
+% fix_array_type/2 – normalizza  array annidato in array(Index,Value)
+% ------------------------------------------------------------------------------
+fix_array_type(array(Elem), array(int, Fixed)) :-
+    !,
+    fix_array_type(Elem, Fixed).
+
+fix_array_type(array(Index,Elem), array(FixedIndex, FixedElem)) :-
+    !,
+    fix_array_type(Index, FixedIndex),
+    fix_array_type(Elem, FixedElem).
+
+fix_array_type(int, int) :- !.
+fix_array_type(bool, bool) :- !.
+fix_array_type(real, real) :- !.
+fix_array_type(X, X).
