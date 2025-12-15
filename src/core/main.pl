@@ -21,6 +21,18 @@
 :- use_module(logic_utils).
 :- use_module(io).
 
+
+:- dynamic test_counter/1.
+
+reset_test_counter :-
+    retractall(test_counter(_)),
+    assertz(test_counter(0)).
+
+next_test_id(Id) :-
+    retract(test_counter(N)),
+    Id is N + 1,
+    assertz(test_counter(Id)).
+
 % -------------------------------------------------------------
 % Scelta del solver e caricamento moduli
 %
@@ -43,7 +55,7 @@ set_solver(turibe) :-
 :- initialization(set_solver(turibe), now).
 
 :- use_module('../solvers/solver_turibe',
-              [ z3_sat_check/3,
+              [ z3_sat_check/4,
                 z3constr2lower/3,      
                 enable_debug/0, disable_debug/0, debug_print/1, debug_print/2
               ]).
@@ -105,7 +117,7 @@ set_solver(turibe) :-
 zmi(Head) :-
 
     set_solver(turibe),
-
+    reset_test_counter,
     MaxDepths = 50, % <-- qui il default passi
 
     format('ℹ️ MaxDepth impostato a: ~w\n', [MaxDepths]),
@@ -139,12 +151,16 @@ print_all_models([M|Rest]) :-
 
 
 
-print_single_model(model(FinalZ3, FinalCLPQ, _)) :-
-    nl, writeln('--- CLPQ Constraints ---'),
+print_single_model(model(FinalZ3, FinalCLPQ, _Calls, _)) :-
+    nl,
+    % writeln('CALL TRACE:'),
+    % writeln(Calls),
+    % nl,
+    writeln('--- CLPQ Constraints ---'),
     clpq_sat_from_formula(FinalCLPQ),
-    nl, writeln('--- FINAL MODEL (Z3) ---'),
-    z3_print_model_final(FinalZ3).
-
+    nl,
+    writeln('--- FINAL MODEL (Z3) ---'),
+    writeln(FinalZ3).
 
 
 
@@ -157,12 +173,49 @@ print_single_model(model(FinalZ3, FinalCLPQ, _)) :-
 % finale con z3_sat_check/3. Restituisce il modello simbolico trovato.
 % -------------------------------------------------------------
 
-zmi_branch_sat(Head, MaxDepths, model(FinalZ3, FinalCLPQ, Tree)) :-
-    InitialZ3  = true,
+
+zmi_branch_sat(Head, MaxDepths, model(FinalZ3, FinalCLPQ, FinalCalls, Tree)) :-
+
+    InitialZ3   = true,
     InitialCLPQ = true,
-    zmi_aux(Head, InitialZ3, InitialCLPQ, [], MaxDepths, FinalZ3, FinalCLPQ, Tree),
-    z3_sat_check(FinalZ3, sat, _),
-    format('✅ INCORRECT/FF FOUND: ~w~n', [FinalZ3]).
+    InitialCalls = [],
+
+    zmi_aux(Head, InitialZ3, InitialCLPQ, [], InitialCalls, MaxDepths,
+            FinalZ3, FinalCLPQ, FinalCalls, Tree),
+
+    % Verifica SAT
+    z3_sat_check(FinalZ3, sat, ModelPretty, _Pairs),
+
+    next_test_id(TestId),
+    nl,
+    format('================ TEST #~w =================~n', [TestId]),
+    
+    get_dict(constants, ModelPretty, Consts),
+    %Recupero primo predicato con arità diversa da 0 
+    first_nonzero_arity_atom(FinalCalls, FirstCall),
+
+    %Estraggo le variabili argomento del predicato con arità diversa da 0
+    extract_var_list(FirstCall, VarList),
+
+    %Costruisco le coppie
+    extract_values_from_model(VarList, Consts, ValueList),
+    classify_test_from_vmapgood_consts(Consts, TestResult),
+    nl,nl,
+    writeln('RISULTATO TEST:'),
+    writeln(TestResult),
+    % Stampa finale della CALL TRACE simbolica
+    format("\n📌 CALL TRACE :\n", []),
+    % writeln(FinalCalls),
+    print_call_trace_symbolic(FinalCalls),
+    % Stampa del vincolo finalZ3
+    format('✅ INCORRECT/FF FOUND: ~w~n', [FinalZ3]),
+    nl,
+    format('\nMODELLO Z3:\n', []),
+    writeln(ModelPretty),
+    nl,nl,
+    writeln('Variabili di input e valore corrispondente'),
+    writeln(ValueList),
+    format('\n============================================\n\n', []).
 
 % ----------------------------
 % Interpreter rules 
@@ -176,8 +229,8 @@ zmi_branch_sat(Head, MaxDepths, model(FinalZ3, FinalCLPQ, Tree)) :-
 % i vincoli correnti Z3 e CLPQ senza modificarli.
 % -------------------------------------------------------------
 
-zmi_aux(true, Z3, CLPQ,_, _, Z3, CLPQ, true).
-
+% zmi_aux(true, Z3, CLPQ,_, _, Z3, CLPQ, true).
+zmi_aux(true, Z3, CLPQ,_, Calls, _, Z3, CLPQ, Calls, true).
 
 % -------------------------------------------------------------
 % Gestione della disgiunzione ( ; )
@@ -188,20 +241,19 @@ zmi_aux(true, Z3, CLPQ,_, _, Z3, CLPQ, true).
 % per individuare la fine dell'esplorazione dell'albero senza
 % interrompere l’esplorazione complessiva.
 % -------------------------------------------------------------
-zmi_aux((G ; _), Z3In, CLPQIn, SymTab, Steps, Z3Out, CLPQOut, Tree) :-
-    zmi_aux(G, Z3In, CLPQIn, SymTab, Steps, Z3Out, CLPQOut, Tree).
- 
-zmi_aux((_ ; G), Z3In, CLPQIn, SymTab, Steps, Z3Out, CLPQOut, Tree) :-
-    zmi_aux(G, Z3In, CLPQIn, SymTab, Steps, Z3Out, CLPQOut, Tree).  
+zmi_aux((G ; _), Z3In, CLPQIn, SymTab, CallsIn, Steps,Z3Out, CLPQOut, CallsOut,Tree) :-
+    zmi_aux(G, Z3In, CLPQIn, SymTab, CallsIn, Steps,Z3Out, CLPQOut, CallsOut,Tree).
 
+zmi_aux((_ ; G), Z3In, CLPQIn, SymTab, CallsIn, Steps,Z3Out, CLPQOut, CallsOut,Tree) :-
+    zmi_aux(G, Z3In, CLPQIn, SymTab, CallsIn, Steps,Z3Out, CLPQOut, CallsOut,Tree).
 % -------------------------------------------------------------
 % Caso di terminazione: falseVerimap
 %
 % Quando viene raggiunto, la ricorsione si arresta
 % -------------------------------------------------------------
-zmi_aux(falseVerimap, Z3, CLPQ, _, _, Z3, CLPQ, false) :-
+zmi_aux(falseVerimap, Z3, CLPQ, _, _, _, Z3, CLPQ,_, false) :-
     nl, nl,
-    writeln('Ho raggiunto la terminazione dell\'albero'), %va cambiato, per ora lasciato cosi per conformità con altri script
+    writeln('Ho raggiunto la terminazione dell\'albero'), 
     nl, nl,
     fail.
 
@@ -213,7 +265,7 @@ zmi_aux(falseVerimap, Z3, CLPQ, _, _, Z3, CLPQ, false) :-
 % supera il limite impostato (MaxDepths), evitando loop infiniti.
 % -------------------------------------------------------------
 
-zmi_aux(_, _, _, _,0, _, _, _) :- 
+zmi_aux(_, _, _, _, _,0, _, _, _, _) :- 
     writeln('Limite MaxDepth raggiunto'),
     fail.
 
@@ -223,9 +275,20 @@ zmi_aux(_, _, _, _,0, _, _, _) :-
 % Esegue i due goal in sequenza, propagando i vincoli Z3 e CLPQ
 % dal primo al secondo. 
 % -------------------------------------------------------------
-zmi_aux((A, B), Z3In, CLPQIn,SymTab, Steps, Z3Out, CLPQOut, (TreeA, TreeB)) :-
-    zmi_aux(A, Z3In, CLPQIn,SymTab, Steps, TempZ3, TempCLPQ, TreeA),
-    zmi_aux(B, TempZ3, TempCLPQ,SymTab, Steps, Z3Out, CLPQOut, TreeB).
+% zmi_aux((A, B), Z3In, CLPQIn,SymTab, CallsIn, Steps, Z3Out, CLPQOut, (TreeA, TreeB)) :-
+%     zmi_aux(A, Z3In, CLPQIn,SymTab, Steps, TempZ3, TempCLPQ, TreeA),
+%     zmi_aux(B, TempZ3, TempCLPQ,SymTab, Steps, Z3Out, CLPQOut, TreeB).
+
+
+zmi_aux((A, B), Z3In, CLPQIn, SymTab, CallsIn, Steps,
+        Z3Out, CLPQOut, CallsOut,
+        (TreeA, TreeB)) :-
+
+    zmi_aux(A, Z3In, CLPQIn, SymTab, CallsIn, Steps,
+            TempZ3, TempCLPQ, CallsMid, TreeA),
+
+    zmi_aux(B, TempZ3, TempCLPQ, SymTab, CallsMid, Steps,
+            Z3Out, CLPQOut, CallsOut, TreeB).
 
 % -------------------------------------------------------------
 % Gestione dei vincoli: constr(C)
@@ -238,39 +301,22 @@ zmi_aux((A, B), Z3In, CLPQIn,SymTab, Steps, Z3Out, CLPQOut, (TreeA, TreeB)) :-
 % -------------------------------------------------------------
 
 
-zmi_aux(constr(C), Z3In, CLPQIn, SymTab, _, Z3Out, CLPQOut, constr(Normalized)) :-
-    debug_print('Entrato in constr c'),
-    debug_print('Stampo C'),
-    debug_print(C),
+zmi_aux(constr(C), Z3In, CLPQIn, SymTab, CallsIn, _Steps,
+        Z3Out, CLPQOut, CallsOut,
+        constr(Normalized)) :-
+
+    CallsOut = CallsIn,
     normalize_bool_expr(C, Normalized),
-    % writeln('stampo c'),writeln(C),
     build_conjunct([CLPQIn, Normalized], CLPQTmp),
-
     build_conjunct([Z3In, Normalized], Z3Tmp),
-    
-    
-    debug_print('stampo SymTab dentro il constr'),
-    debug_print(SymTab),
     build_type_equality_list(SymTab, TypeAnnots),
-
-    debug_print('stampo TypeAnnots dentro il constr'),
-    debug_print(TypeAnnots),
-       
-    % writeln('Stampo Normalized'),writeln(Normalized),
-
-    %     writeln('Stampo Z3Tmp'),writeln(Z3List),
-
     conj_to_list(Z3Tmp, Z3List),
-
-    % writeln('Stampo Z3List'),writeln(Z3List),
     append(TypeAnnots, Z3List, FlatList),
-   % writeln('Stampo prima di build '), writeln(FlatList),
     build_conjunct(FlatList, Z3Final),
- %   writeln('stampo Z3Final'),writeln(Z3Final),
-
     Z3Out  = Z3Final,
     CLPQOut = CLPQTmp,
-    z3_sat_check(Z3Final, sat, _).
+    z3_sat_check(Z3Final, sat, _,_).
+
 
 
 % -------------------------------------------------------------
@@ -286,34 +332,38 @@ zmi_aux(constr(C), Z3In, CLPQIn, SymTab, _, Z3Out, CLPQOut, constr(Normalized)) 
 % -------------------------------------------------------------
 
 
-zmi_aux(Head, Z3In, CLPQIn,SymTabIn, Steps, Z3Out, CLPQOut, SubTree => Head) :-
+zmi_aux(Head, Z3In, CLPQIn, SymTabIn, CallsIn, Steps,
+        Z3Out, CLPQOut, CallsOut,
+        SubTree => HeadCopy) :-
 
     Steps > 0,
     Head \= true,
     Head \= (_, _),
     Head \= constr(_),
-    debug_print('Mi trovo in questa head'),
-    debug_print(Head),
-    clause(Head, RawBody), %guarda fine pagina per spiegazione
-    %  debug_print('Stampo Rawbody'),
-    %  debug_print(RawBody),
-    reorder_body(RawBody, TempBody), %metto prima il constr, magari ci sono condizioni dello stesso ramo che mi impediscono di andare in loop 
 
+    HeadCopy = Head,
+    append(CallsIn, [Head], CallsMid),
+    % append(CallsIn, [HeadCopy], CallsMid),
+
+    % Recupera la clausola
+    clause(Head, RawBody),
+
+    % Porta constr in testa
+    reorder_body(RawBody, TempBody),
+
+    % Aggiunge tipi alla symtab
     conj_to_list(TempBody, BodyList),
     extend_type_table_list([Head | BodyList], SymTabIn, SymTabFinal),
 
-    debug_print('stampo symTabFinal'),
-    debug_print(SymTabFinal),
+    % Ricostruisce il corpo
     build_conjunct(BodyList, Body),
+
     NewSteps is Steps - 1,
-    %  debug_print('Stampo Body prima di zmi'),
 
-
-    %  debug_print(Body),
-    zmi_aux(Body, Z3In, CLPQIn,SymTabFinal, NewSteps, Z3Out, CLPQOut, SubTree).
-
-
-
+    % Continua la derivazione
+    zmi_aux(Body, Z3In, CLPQIn, SymTabFinal, CallsMid, NewSteps,
+            Z3Out, CLPQOut, CallsOut,
+            SubTree).
 
 
 extend_type_table_list([], SymTab, SymTab).
@@ -417,7 +467,7 @@ constr_to_rawground(Constr,Pairs, RawGround) :-
 %  2) Esegue il push+check su Z3 tramite z3_sat_check/3
 constr_push_check(Constr, Result, RawGround) :-
     constr_to_rawground(Constr,_Pairs, RawGround),
-    z3_sat_check(RawGround, Result, _).
+    z3_sat_check(RawGround, Result, _, _).
 
 % ----------------------------
 % Sposta constr in testa
@@ -479,3 +529,95 @@ main :-
     ; (format("Uso: swipl -s main.pl -- <file.smt2.pl> <ff|incorrect>~n", []),
       halt(1))
     ).
+
+
+
+
+print_call_trace_symbolic([]) :- !.
+print_call_trace_symbolic([Call | Rest]) :-
+    Call =.. [F | Args],
+    format("~w(", [F]),
+    print_args_symbolic(Args),
+    format(")~n"),
+    print_call_trace_symbolic(Rest).
+
+print_args_symbolic([]).
+print_args_symbolic([A]) :- !, write(A).
+print_args_symbolic([A | Rest]) :-
+    write(A), write(", "),
+    print_args_symbolic(Rest).
+
+
+
+
+
+% ============================================================
+% Sostituzione sicura delle variabili 
+% ============================================================
+
+lookup_var_value(Var, [V=Val | _], Val) :-
+    Var == V, !.
+lookup_var_value(Var, [_ | Rest], Val) :-
+    lookup_var_value(Var, Rest, Val).
+
+subst_var(Var, Consts, Value) :-
+    var(Var),
+    lookup_var_value(Var, Consts, Value),
+    !.
+subst_var(Var, _, Var).
+
+subst_args([], _, []).
+subst_args([A | As], Consts, [V | Vs]) :-
+    subst_var(A, Consts, V),
+    subst_args(As, Consts, Vs).
+
+subst_call(Call, Consts, NewCall) :-
+    Call =.. [F | Args],
+    subst_args(Args, Consts, NewArgs),
+    NewCall =.. [F | NewArgs].
+
+subst_call_trace([], _, []).
+subst_call_trace([C | Cs], Consts, [NC | NCs]) :-
+    subst_call(C, Consts, NC),
+    subst_call_trace(Cs, Consts, NCs).
+
+
+
+
+% ============================================================
+% Estrazione input programma C dal modello Z3
+% ============================================================
+
+% Trova il primo predicato della call trace con arità > 0
+first_nonzero_arity_atom([Call | _], Call) :-
+    Call =.. [_ | Args],
+    Args \= [],
+    !.
+
+first_nonzero_arity_atom([_ | Rest], Call) :-
+    first_nonzero_arity_atom(Rest, Call).
+
+
+% Estrae la lista delle variabili da un predicato
+extract_var_list(Call, VarList) :-
+    Call =.. [_ | VarList].
+
+
+% Costruisce Var=Value 
+extract_values_from_model([], _, []).
+extract_values_from_model([Var | Vars], Consts, [Var=Val | Rest]) :-
+    lookup_var_value(Var, Consts, Val),
+    !,
+    extract_values_from_model(Vars, Consts, Rest).
+
+
+
+classify_test_from_vmapgood_consts(Consts, testVerimapGood) :-
+    member(_=1042, Consts),
+    !.
+
+classify_test_from_vmapgood_consts(Consts, testFail) :-
+    member(_=42, Consts),
+    !.
+
+classify_test_from_vmapgood_consts(_, testUnknown).
