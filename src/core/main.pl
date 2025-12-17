@@ -189,14 +189,28 @@ zmi_branch_sat(Head, MaxDepths, model(FinalZ3, FinalCLPQ, FinalCalls, Tree)) :-
     next_test_id(TestId),
     nl,
     format('================ TEST #~w =================~n', [TestId]),
-    
+    nl,
+    format('✅ INCORRECT/FF FOUND: ~w~n', [FinalZ3]),
+    nl,nl,
     get_dict(constants, ModelPretty, Consts),
     %Recupero primo predicato con arità diversa da 0 
     first_nonzero_arity_atom(FinalCalls, FirstCall),
-
+    writeln('first non zero arity fatto'),
+    writeln('Stampo FinalCalls'),
+    writeln(FinalCalls),
+    writeln('Stampo FirstCAll'),
+    writeln(First),
+    
+        
+    
     %Estraggo le variabili argomento del predicato con arità diversa da 0
     extract_var_list(FirstCall, VarList),
+    writeln('estrazione fatta'),
+    writeln('stampo Varlist'),
+    writeln(VarList),
 
+
+    
     %Costruisco le coppie
     extract_values_from_model(VarList, Consts, ValueList),
     classify_test_from_vmapgood_consts(Consts, TestResult),
@@ -208,8 +222,6 @@ zmi_branch_sat(Head, MaxDepths, model(FinalZ3, FinalCLPQ, FinalCalls, Tree)) :-
     % writeln(FinalCalls),
     print_call_trace_symbolic(FinalCalls),
     % Stampa del vincolo finalZ3
-    format('✅ INCORRECT/FF FOUND: ~w~n', [FinalZ3]),
-    nl,
     format('\nMODELLO Z3:\n', []),
     writeln(ModelPretty),
     nl,nl,
@@ -347,7 +359,14 @@ zmi_aux(Head, Z3In, CLPQIn, SymTabIn, CallsIn, Steps,
 
     % Recupera la clausola
     clause(Head, RawBody),
+    debug_print('Mi trovo in quest head'),
+    debug_print(Head),
+    nl,
 
+    debug_print('Con questo Body!'),
+    debug_print(RawBody),
+    nl,
+    
     % Porta constr in testa
     reorder_body(RawBody, TempBody),
 
@@ -605,9 +624,13 @@ extract_var_list(Call, VarList) :-
 
 % Costruisce Var=Value 
 extract_values_from_model([], _, []).
+
 extract_values_from_model([Var | Vars], Consts, [Var=Val | Rest]) :-
     lookup_var_value(Var, Consts, Val),
     !,
+    extract_values_from_model(Vars, Consts, Rest).
+
+extract_values_from_model([Var | Vars], Consts, [Var=unconstrained | Rest]) :-
     extract_values_from_model(Vars, Consts, Rest).
 
 
