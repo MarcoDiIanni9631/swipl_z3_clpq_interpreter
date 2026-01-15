@@ -21,7 +21,7 @@
 :- use_module(logic_utils).
 :- use_module(io).
 
-
+:- dynamic input_names/1.
 :- dynamic test_counter/1.
 
 reset_test_counter :-
@@ -61,7 +61,12 @@ set_solver(turibe) :-
               ]).
 :- use_module('../solvers/solver_clpq', [clpq_sat_from_formula/1]).
 
-
+% init_input_names(CFile) :-
+%     retractall(input_names(_)),
+%     extract_input_names(CFile, Names),
+%     InputNames = [vgood | Names],
+%     assertz(input_names(InputNames)),
+%     format("📥 Input variables from C: ~w~n", [InputNames]).
 % % ----------------------------
 % % Custom logical operators
 % % ----------------------------
@@ -198,8 +203,8 @@ zmi_branch_sat(Head, MaxDepths, model(FinalZ3, FinalCLPQ, FinalCalls, Tree)) :-
     writeln('first non zero arity fatto'),
     writeln('Stampo FinalCalls'),
     writeln(FinalCalls),
-    writeln('Stampo FirstCAll'),
-    writeln(First),
+    % writeln('Stampo FirstCAll'),
+    % writeln(First),
     
         
     
@@ -210,7 +215,8 @@ zmi_branch_sat(Head, MaxDepths, model(FinalZ3, FinalCLPQ, FinalCalls, Tree)) :-
     writeln(VarList),
 
 
-    
+
+
     %Costruisco le coppie
     extract_values_from_model(VarList, Consts, ValueList),
     classify_test_from_vmapgood_consts(Consts, TestResult),
@@ -225,8 +231,15 @@ zmi_branch_sat(Head, MaxDepths, model(FinalZ3, FinalCLPQ, FinalCalls, Tree)) :-
     format('\nMODELLO Z3:\n', []),
     writeln(ModelPretty),
     nl,nl,
-    writeln('Variabili di input e valore corrispondente'),
+input_names(Names),
+writeln('Stampo nomi'),
+    writeln(Names),
+writeln('Stampo ValueList'),
     writeln(ValueList),
+bind_named_inputs(Names, ValueList, InputBindings),
+nl,
+writeln('INPUT BINDINGS :'),
+writeln(InputBindings),
     format('\n============================================\n\n', []).
 
 % ----------------------------
@@ -531,24 +544,42 @@ print_tree(Other, Indent) :- tab(Indent), writeln(Other).
 % Wrapper: carica file e lancia zmi/1
 % ----------------------------
 
+% run_analysis(File, Target) :-
+%     format("📂 Analisi del file: ~w con target: ~w~n", [File, Target]),
+%     load_clean(File),
+%     zmi(Target).
+%     %format("📌 Analisi terminata.~n", []).
+
 run_analysis(File, Target) :-
     format("📂 Analisi del file: ~w con target: ~w~n", [File, Target]),
     load_clean(File),
     zmi(Target).
-    %format("📌 Analisi terminata.~n", []).
+
+
 
 
 :- initialization(main, main).
 
+% main :-
+%     current_prolog_flag(argv, Argv),
+%     ( Argv = [File, Target] ->(
+%         run_analysis(File, Target),
+%         halt(0))
+%     ; (format("Uso: swipl -s main.pl -- <file.smt2.pl> <ff|incorrect>~n", []),
+%       halt(1))
+%     ).
+
 main :-
     current_prolog_flag(argv, Argv),
-    ( Argv = [File, Target] ->(
-        run_analysis(File, Target),
-        halt(0))
-    ; (format("Uso: swipl -s main.pl -- <file.smt2.pl> <ff|incorrect>~n", []),
-      halt(1))
+    (   append(_, [File, Target], Argv)
+    ->  run_analysis(File, Target),
+        halt(0)
+    ;   format(
+            "Uso: swipl -s main.pl -- <file.smt2.pl> <ff|incorrect>~n",
+            []
+        ),
+        halt(1)
     ).
-
 
 
 
@@ -644,3 +675,92 @@ classify_test_from_vmapgood_consts(Consts, testFail) :-
     !.
 
 classify_test_from_vmapgood_consts(_, testUnknown).
+
+
+
+% bind_inputs(InputNames, Vars, Consts, Bindings) :-
+%     bind_inputs_prefix(InputNames, Vars, Consts, Bindings).
+
+% bind_inputs_prefix([], _, _, []) :- !.
+% bind_inputs_prefix(_, [], _, []) :- !.
+% bind_inputs_prefix([Name|Ns], [Var|Vs], Consts, [Name=Value|Rest]) :-
+%     ( lookup_var_value(Var, Consts, Value) -> true
+%     ; Value = unconstrained
+%     ),
+%     bind_inputs_prefix(Ns, Vs, Consts, Rest).
+
+
+
+%     is_all_uppercase(Name) :-
+%     atom_chars(Name, Chars),
+%     Chars \= [],
+%     forall(member(C, Chars),
+%            ( char_type(C, upper)
+%            ; C == '_'
+%            )).
+
+% filter_input_names(InputNames, Filtered) :-
+%     exclude(is_all_uppercase, InputNames, Filtered).
+
+
+% skip_vgood([_Vgood | Rest], Rest) :- !.
+% skip_vgood([], []).
+
+
+% bind_inputs_from_values([], _, []).
+% bind_inputs_from_values(_, [], []).
+% bind_inputs_from_values([Name|Ns], [_=Val|Vs], [Name=Val|Rest]) :-
+%     bind_inputs_from_values(Ns, Vs, Rest).
+
+
+
+run_with_inputs(Target) :-
+    input_vars(_Inputs),
+    zmi(Target).
+
+
+%     % =============================
+% % INPUT NAMES (SEMANTIC)
+% % =============================
+
+% % input(Name, PositionInVarList)
+% input_decl([
+%     input(vgood, 1),
+%     input(x,     2),
+%     input(i,     3),
+%     input(n,     4)
+% ]).
+
+
+% select_inputs([], _, []).
+% select_inputs([input(Name,Pos) | Rest], VarList, [Name=Var | Out]) :-
+%     nth1(Pos, VarList, Var),
+%     select_inputs(Rest, VarList, Out).
+
+
+%     bind_inputs_from_model([], _, []).
+% bind_inputs_from_model([Name=Var | Rest], Consts, [Name=Val | Out]) :-
+%     ( lookup_var_value(Var, Consts, Val) -> true
+%     ; Val = unconstrained
+%     ),
+%     bind_inputs_from_model(Rest, Consts, Out).
+
+bind_named_inputs(InputNames, ValueList, Bindings) :-
+    bind_named_inputs_prefix(InputNames, ValueList, Bindings).
+
+bind_named_inputs_prefix([], _, []) :- !.
+bind_named_inputs_prefix(_, [], []) :- !.
+
+bind_named_inputs_prefix(
+    [Name | Ns],
+    [_Var = Val | Vs],
+    [Name = Val | Rest]
+) :-
+    bind_named_inputs_prefix(Ns, Vs, Rest).
+
+
+% =============================
+% INPUT NAMES
+% =============================
+
+input_names([vgood, a]).

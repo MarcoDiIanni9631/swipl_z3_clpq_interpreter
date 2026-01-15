@@ -5,7 +5,8 @@
     read_full_term/3,
     should_skip_line/1,
     pred_arg/3,
-    type_arg/3
+    type_arg/3,
+    extract_input_names/2
 ]).
 
 :- use_module(library(readutil)).
@@ -246,3 +247,54 @@ fix_array_type(int, int) :- !.
 fix_array_type(bool, bool) :- !.
 fix_array_type(real, real) :- !.
 fix_array_type(X, X).
+
+
+
+% ------------------------------------------------------------------------------
+% Estrazione variabili di input dal main del file C
+% ------------------------------------------------------------------------------
+
+% extract_input_names(CFile, InputNames) :-
+%     read_file_to_string(CFile, Code, []),
+%     main_body(Code, Main),
+%     findall(Name,
+%         input_decl(Main, Name),
+%         RawNames),
+%   %  exclude(is_all_caps, RawNames, CleanNames),
+%     InputNames = RawNames.
+
+
+extract_input_names(CFile, InputNames) :-
+    read_file_to_string(CFile, Code, []),
+    main_body(Code, Main),
+    findall(Name,
+        input_decl(Main, Name),
+        Names0),
+    sort(Names0, InputNames).
+
+is_all_caps(Name) :-
+    atom_string(Name, S),
+    string_upper(S, S).
+
+ main_body(Code, Main) :-
+    re_matchsub(
+        "main\\s*\\([^)]*\\)\\s*\\{(?<body>.*)\\}",
+        Code,
+        Dict,
+        [dotall(true)]
+    ),
+    Main = Dict.body.
+
+
+
+
+input_decl(Main, Name) :-
+    re_matchsub(
+        "\\bint\\s+(?![^;]*=)(?<vars>[^;]+);",
+        Main,
+        Dict,
+        [global(true)]
+    ),
+    split_string(Dict.vars, ",", " \n\t", Vars),
+    member(NameStr, Vars),
+    atom_string(Name, NameStr).
