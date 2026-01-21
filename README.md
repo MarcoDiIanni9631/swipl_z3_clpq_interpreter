@@ -83,3 +83,7 @@ Esempio:
 ---
 
 Questo repository integra la logica di Prolog con i vincoli SMT tramite Z3, permettendo analisi simboliche e sperimentazioni con diverse strategie di inferenza.
+
+## Acknowledgments
+
+This project is partially supported by the PNRR project FAIR –- Future AI Research (PE00000013), Spoke 9 -- Green-aware AI, under the NRRP MUR program funded by the NextGenerationEU.
