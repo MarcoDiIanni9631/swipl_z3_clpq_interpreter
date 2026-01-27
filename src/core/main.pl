@@ -141,25 +141,7 @@ set_solver(turibe) :-
 % Usa zmi_branch_sat/3 per esplorare tutti i percorsi logici
 % fino a trovare i rami soddisfacibili (SAT), poi stampa i modelli.
 % -------------------------------------------------------------
-% zmi(Head) :-
 
-%     set_solver(turibe),
-%     reset_test_counter,
-%     MaxDepths = 50, % <-- qui il default passi
-
-%     format('ℹ️ MaxDepth impostato a: ~w\n', [MaxDepths]),
-
-%     findall(Model, zmi_branch_sat( (Head; falseVerimap) , MaxDepths, Model), Models),
-
-%     ( Models == [] ->
-
-%         (format('No SAT branches found in MaxDepths = ~w.\n', [MaxDepths]))
-
-%     ; (format('--- ALL SAT BRANCHES FOUND (MaxDepths = ~w) ---~n', [MaxDepths]),
-
-%       print_all_models(Models))
-
-%     ).
 
 
 % -------------------------------------------------------------
@@ -174,16 +156,16 @@ set_solver(turibe) :-
 % -------------------------------------------------------------
 
 
-zmi(Head) :-
-
+zmi(Head, MaxDepths) :-
     set_solver(turibe),
     reset_test_counter,
-    MaxDepths = 50, % <-- qui il default passi
-
     format('ℹ️ MaxDepth impostato a: ~w\n', [MaxDepths]),
+    zmi_branch_sat((Head; falseVerimap), MaxDepths, _Model).
+    
 
-    zmi_branch_sat( (Head; falseVerimap) , MaxDepths, _Model).
 
+
+    
 % -------------------------------------------------------------
 % Stampa dei modelli soddisfacenti (SAT)
 %
@@ -626,10 +608,10 @@ print_tree(Other, Indent) :- tab(Indent), writeln(Other).
 %     zmi(Target).
 %     %format("📌 Analisi terminata.~n", []).
 
-run_analysis(File, Target) :-
+run_analysis(File, Target, MaxDepth) :-
     format("📂 Analisi del file: ~w con target: ~w~n", [File, Target]),
     load_clean(File),
-    zmi(Target).
+    zmi(Target, MaxDepth).
 
 
 
@@ -645,17 +627,45 @@ run_analysis(File, Target) :-
 %       halt(1))
 %     ).
 
+% =============================
+% CLI (arg parsing)
+% =============================
+
+usage :-
+    format("Uso: swipl -s main.pl -- <file.smt2.pl> <ff|incorrect> [maxdepth]~n", []).
+
+default_maxdepth(50).
+
+parse_maxdepth(AtomOrString, MaxDepth) :-
+    (   atom(AtomOrString)
+    ->  atom_string(AtomOrString, S)
+    ;   S = AtomOrString
+    ),
+    catch(number_string(N, S), _, fail),
+    integer(N),
+    N > 0,
+    MaxDepth = N.
+
+% Accetta SOLO 2 o 3 argomenti (escludendo eventuali roba prima)
+parse_argv(Argv, File, Target, MaxDepth) :-
+    append(_, Tail, Argv),
+    (   Tail = [File, Target]
+    ->  default_maxdepth(MaxDepth)
+    ;   Tail = [File, Target, MaxDepthS],
+        parse_maxdepth(MaxDepthS, MaxDepth)
+    ).
+
 main :-
     current_prolog_flag(argv, Argv),
-    (   append(_, [File, Target], Argv)
-    ->  run_analysis(File, Target),
+    (   parse_argv(Argv, File, Target, MaxDepth)
+    ->  run_analysis(File, Target, MaxDepth),
         halt(0)
-    ;   format(
-            "Uso: swipl -s main.pl -- <file.smt2.pl> <ff|incorrect>~n",
-            []
-        ),
+    ;   usage,
         halt(1)
     ).
+
+
+
 
 
 

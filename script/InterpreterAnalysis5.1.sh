@@ -32,6 +32,7 @@ fi
 MODE="$1"
 INPUT_PATH="$2"
 TARGET="$3"
+MAXDEPTH="${4:-50}"
 MAIN="../src/core/main.pl"
 
 # ----------------------------------------------------------
@@ -126,7 +127,7 @@ run_prolog() {
 
   timeout ${TIMEOUT_SEC}s "$SWIPL_BIN" --stack-limit=4GB \
     -s "$MAIN_ABS" -- \
-    "$plfile" "$TARGET"
+    "$plfile" "$TARGET" "$MAXDEPTH"
 }
 
 
@@ -206,8 +207,7 @@ process_file() {
 export -f process_file
 export -f run_prolog
 # export -f find_associated_c_file
-export MAIN SWIPL_BIN TIMEOUT_SEC TARGET SKIP_EXISTING
-
+export MAIN SWIPL_BIN TIMEOUT_SEC TARGET SKIP_EXISTING MAXDEPTH
 # ----------------------------------------------------------
 # ESECUZIONE
 # ----------------------------------------------------------
