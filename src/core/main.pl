@@ -24,6 +24,15 @@
 :- dynamic input_names/1.
 :- dynamic test_counter/1.
 
+
+% -------------------------------------------------------------
+% Contatore dei test (progressivo)
+%
+% reset_test_counter/0  azzera il contatore.
+% next_test_id(-Id)     incrementa e restituisce l’id del test corrente.
+% Serve per stampare risultati numerati quando troviamo rami SAT.
+% -------------------------------------------------------------
+
 reset_test_counter :-
     retractall(test_counter(_)),
     assertz(test_counter(0)).
@@ -46,11 +55,15 @@ set_solver(turibe) :-
     use_module('../solvers/solver_turibe'),
     use_module(z3lib(z3)).
 
-% set_solver(vidal) :-
-%     getenv('SWIZ3_VIDAL_PATH', Z3Path),
-%     assertz(file_search_path(z3lib, Z3Path)),
-%     use_module(z3lib(swiplz3)),
-%     use_module('../solvers/solver_vidal').
+% -------------------------------------------------------------
+% set_solver(+Solver)
+%
+% Configura a runtime il backend Z3.
+% - turibe: usa la libreria Z3 tramite wrapper "solver_turibe"
+%   e path SWIZ3_TURIBE_PATH (env var).
+% Nota: viene inizializzato automaticamente all’avvio (now).
+% -------------------------------------------------------------
+
 
 :- initialization(set_solver(turibe), now).
 
@@ -75,6 +88,15 @@ set_solver(turibe) :-
 % :- op(1000, yfx, v).   % or
 % :- op(1000, yfx, or).  % alternative or
 % :- op(900,  fy, ~).    % not
+
+% -------------------------------------------------------------
+% Disabilitazione operatori logici infissi (and/or/&/v)
+%
+% I file generati possono contenere simboli che interferiscono con
+% operatori definiti globalmente da SWI-Prolog o da librerie.
+% Impostando precedenza 0, evitiamo parsing ambiguo e forziamo
+% l’uso della rappresentazione a termini (più controllabile).
+% -------------------------------------------------------------
 
 % --- Disable all logical infix operators globally ---
 :- op(0, xfx, or).
@@ -119,6 +141,39 @@ set_solver(turibe) :-
 % Usa zmi_branch_sat/3 per esplorare tutti i percorsi logici
 % fino a trovare i rami soddisfacibili (SAT), poi stampa i modelli.
 % -------------------------------------------------------------
+% zmi(Head) :-
+
+%     set_solver(turibe),
+%     reset_test_counter,
+%     MaxDepths = 50, % <-- qui il default passi
+
+%     format('ℹ️ MaxDepth impostato a: ~w\n', [MaxDepths]),
+
+%     findall(Model, zmi_branch_sat( (Head; falseVerimap) , MaxDepths, Model), Models),
+
+%     ( Models == [] ->
+
+%         (format('No SAT branches found in MaxDepths = ~w.\n', [MaxDepths]))
+
+%     ; (format('--- ALL SAT BRANCHES FOUND (MaxDepths = ~w) ---~n', [MaxDepths]),
+
+%       print_all_models(Models))
+
+%     ).
+
+
+% -------------------------------------------------------------
+% zmi(+Head)
+%
+% Entry point dell’analisi simbolica.
+%
+% Versione attiva:
+%   esegue una singola esplorazione tramite zmi_branch_sat/3
+%   (utile per debugging e per fermarsi al primo SAT).
+
+% -------------------------------------------------------------
+
+
 zmi(Head) :-
 
     set_solver(turibe),
@@ -127,18 +182,7 @@ zmi(Head) :-
 
     format('ℹ️ MaxDepth impostato a: ~w\n', [MaxDepths]),
 
-    findall(Model, zmi_branch_sat( (Head; falseVerimap) , MaxDepths, Model), Models),
-
-    ( Models == [] ->
-
-        (format('No SAT branches found in MaxDepths = ~w.\n', [MaxDepths]))
-
-    ; (format('--- ALL SAT BRANCHES FOUND (MaxDepths = ~w) ---~n', [MaxDepths]),
-
-      print_all_models(Models))
-
-    ).
-
+    zmi_branch_sat( (Head; falseVerimap) , MaxDepths, _Model).
 
 % -------------------------------------------------------------
 % Stampa dei modelli soddisfacenti (SAT)
@@ -172,10 +216,20 @@ print_single_model(model(FinalZ3, FinalCLPQ, _Calls, _)) :-
 % -------------------------------------------------------------
 % zmi_branch_sat(+Head, +MaxDepths, -Model)
 %
-% Esegue un singolo ramo di esplorazione simbolica partendo da Head.
-% Inizializza i vincoli Z3 e CLPQ a true, invoca zmi_aux/8 per
-% esplorare il programma fino a MaxDepths e verifica la soddisfacibilità
-% finale con z3_sat_check/3. Restituisce il modello simbolico trovato.
+% Esegue una derivazione simbolica partendo da Head.
+% Stato simbolico:
+%   - Z3 formula corrente (FinalZ3)
+%   - CLPQ formula corrente (FinalCLPQ)
+%   - Call trace (FinalCalls)
+%   - Albero di derivazione (Tree)
+%
+% Dopo la derivazione:
+%   - verifica SAT su FinalZ3 (z3_sat_check/4)
+%   - costruisce un test-id progressivo
+%   - estrae variabili di input dal primo predicato con arità > 0
+%   - lega i nomi input_names/1 ai valori del modello Z3
+%
+% Nota: assume che il primo predicato con arità > 0 rappresenti la “firma input”.
 % -------------------------------------------------------------
 
 
@@ -200,9 +254,9 @@ zmi_branch_sat(Head, MaxDepths, model(FinalZ3, FinalCLPQ, FinalCalls, Tree)) :-
     get_dict(constants, ModelPretty, Consts),
     %Recupero primo predicato con arità diversa da 0 
     first_nonzero_arity_atom(FinalCalls, FirstCall),
-    writeln('first non zero arity fatto'),
-    writeln('Stampo FinalCalls'),
-    writeln(FinalCalls),
+   % writeln('first non zero arity fatto'),
+    % writeln('Stampo FinalCalls'),
+    % writeln(FinalCalls),
     % writeln('Stampo FirstCAll'),
     % writeln(First),
     
@@ -210,9 +264,9 @@ zmi_branch_sat(Head, MaxDepths, model(FinalZ3, FinalCLPQ, FinalCalls, Tree)) :-
     
     %Estraggo le variabili argomento del predicato con arità diversa da 0
     extract_var_list(FirstCall, VarList),
-    writeln('estrazione fatta'),
-    writeln('stampo Varlist'),
-    writeln(VarList),
+    % writeln('estrazione fatta'),
+    % writeln('stampo Varlist'),
+    % writeln(VarList),
 
 
 
@@ -220,7 +274,6 @@ zmi_branch_sat(Head, MaxDepths, model(FinalZ3, FinalCLPQ, FinalCalls, Tree)) :-
     %Costruisco le coppie
     extract_values_from_model(VarList, Consts, ValueList),
     classify_test_from_vmapgood_consts(Consts, TestResult),
-    nl,nl,
     writeln('RISULTATO TEST:'),
     writeln(TestResult),
     % Stampa finale della CALL TRACE simbolica
@@ -245,6 +298,19 @@ writeln(InputBindings),
 % ----------------------------
 % Interpreter rules 
 % ----------------------------
+
+
+% -------------------------------------------------------------
+% zmi_aux(+Goal, +Z3In, +CLPQIn, +SymTabIn, +CallsIn, +Steps,
+%         -Z3Out, -CLPQOut, -CallsOut, -Tree)
+%
+% Meta-interprete simbolico.
+% - Propaga vincoli Z3 e CLPQ lungo la derivazione
+% - Mantiene una tabella di tipi (SymTab) ricostruita dai pred_arg/3
+% - Accumula la call trace (CallsOut)
+%
+% Steps è il budget di profondità (MaxDepths).
+% -------------------------------------------------------------
 
 
 % -------------------------------------------------------------
@@ -273,7 +339,8 @@ zmi_aux((_ ; G), Z3In, CLPQIn, SymTab, CallsIn, Steps,Z3Out, CLPQOut, CallsOut,T
     zmi_aux(G, Z3In, CLPQIn, SymTab, CallsIn, Steps,Z3Out, CLPQOut, CallsOut,Tree).
 % -------------------------------------------------------------
 % Caso di terminazione: falseVerimap
-%
+% falseVerimap stampa e poi fail per forzare backtracking 
+% sulla disgiunzione e quindi “segnare fine albero” senza produrre modello
 % Quando viene raggiunto, la ricorsione si arresta
 % -------------------------------------------------------------
 zmi_aux(falseVerimap, Z3, CLPQ, _, _, _, Z3, CLPQ,_, false) :-
@@ -281,7 +348,6 @@ zmi_aux(falseVerimap, Z3, CLPQ, _, _, _, Z3, CLPQ,_, false) :-
     writeln('Ho raggiunto la terminazione dell\'albero'), 
     nl, nl,
     fail.
-
 
 % -------------------------------------------------------------
 % Caso di arresto per profondità massima
@@ -374,11 +440,11 @@ zmi_aux(Head, Z3In, CLPQIn, SymTabIn, CallsIn, Steps,
     clause(Head, RawBody),
     debug_print('Mi trovo in quest head'),
     debug_print(Head),
-    nl,
+   % nl,
 
     debug_print('Con questo Body!'),
     debug_print(RawBody),
-    nl,
+  % nl,
     
     % Porta constr in testa
     reorder_body(RawBody, TempBody),
@@ -397,6 +463,16 @@ zmi_aux(Head, Z3In, CLPQIn, SymTabIn, CallsIn, Steps,
             Z3Out, CLPQOut, CallsOut,
             SubTree).
 
+
+
+% -------------------------------------------------------------
+% Ricostruzione tipi (SymTab)
+%
+% extend_type_table_list/3 scorre i goal della clausola e, se sono
+% predicati del programma, usa pred_arg(Pred/Arity,Pos,Type) per
+% associare (Var-Type). Queste info vengono poi re-iniettate in Z3
+% come uguaglianze tipizzate Var:Type = Var:Type.
+% -------------------------------------------------------------
 
 extend_type_table_list([], SymTab, SymTab).
 
@@ -763,4 +839,4 @@ bind_named_inputs_prefix(
 % INPUT NAMES
 % =============================
 
-input_names([vgood, a]).
+input_names([vgood, sum, number, a]).

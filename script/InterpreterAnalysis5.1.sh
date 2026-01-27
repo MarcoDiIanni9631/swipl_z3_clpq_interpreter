@@ -72,50 +72,63 @@ if [ -z "$SWIPL_BIN" ] || [ ! -x "$SWIPL_BIN" ]; then
   exit 1
 fi
 
+# # ----------------------------------------------------------
+# # TROVA FILE C ASSOCIATO
+# # ----------------------------------------------------------
+# find_associated_c_file() {
+#   local plfile="$1"
+#   local dir base cfile
+
+#   dir="$(dirname "$plfile")"
+#   base="$(basename "$plfile")"
+
+#   # Caso smt2map:
+#   # foo.c.transform.smt.smt2.pl → foo.c
+#   if [[ "$base" == *.c.transform.smt.smt2.pl ]]; then
+#     cfile="$dir/${base%.transform.smt.smt2.pl}"
+#     [ -f "$cfile" ] && echo "$cfile" && return
+#   fi
+
+#   # Fallback: foo.smt2.pl → foo.c
+#   cfile="$dir/${base%.smt2.pl}.c"
+#   [ -f "$cfile" ] && echo "$cfile" && return
+
+#   echo ""
+# }
+
+# # ----------------------------------------------------------
+# # ESECUZIONE PROLOG (CON / SENZA C)
+# # ----------------------------------------------------------
+# run_prolog() {
+#   local plfile="$1"
+#   local cfile
+
+#   cfile="$(find_associated_c_file "$plfile")"
+
+#   if [ -n "$cfile" ]; then
+#     echo "📎 File C associato trovato: $(basename "$cfile")"
+#     timeout ${TIMEOUT_SEC}s "$SWIPL_BIN" --stack-limit=4GB \
+#       -s "$MAIN_ABS" -- \
+#       "$cfile" "$plfile" "$TARGET"
+#   else
+#     timeout ${TIMEOUT_SEC}s "$SWIPL_BIN" --stack-limit=4GB \
+#       -s "$MAIN_ABS" -- \
+#       "$plfile" "$TARGET"
+#   fi
+# }
+
+
 # ----------------------------------------------------------
-# TROVA FILE C ASSOCIATO
-# ----------------------------------------------------------
-find_associated_c_file() {
-  local plfile="$1"
-  local dir base cfile
-
-  dir="$(dirname "$plfile")"
-  base="$(basename "$plfile")"
-
-  # Caso smt2map:
-  # foo.c.transform.smt.smt2.pl → foo.c
-  if [[ "$base" == *.c.transform.smt.smt2.pl ]]; then
-    cfile="$dir/${base%.transform.smt.smt2.pl}"
-    [ -f "$cfile" ] && echo "$cfile" && return
-  fi
-
-  # Fallback: foo.smt2.pl → foo.c
-  cfile="$dir/${base%.smt2.pl}.c"
-  [ -f "$cfile" ] && echo "$cfile" && return
-
-  echo ""
-}
-
-# ----------------------------------------------------------
-# ESECUZIONE PROLOG (CON / SENZA C)
+# ESECUZIONE PROLOG (SOLO PL)
 # ----------------------------------------------------------
 run_prolog() {
   local plfile="$1"
-  local cfile
 
-  cfile="$(find_associated_c_file "$plfile")"
-
-  if [ -n "$cfile" ]; then
-    echo "📎 File C associato trovato: $(basename "$cfile")"
-    timeout ${TIMEOUT_SEC}s "$SWIPL_BIN" --stack-limit=4GB \
-      -s "$MAIN_ABS" -- \
-      "$cfile" "$plfile" "$TARGET"
-  else
-    timeout ${TIMEOUT_SEC}s "$SWIPL_BIN" --stack-limit=4GB \
-      -s "$MAIN_ABS" -- \
-      "$plfile" "$TARGET"
-  fi
+  timeout ${TIMEOUT_SEC}s "$SWIPL_BIN" --stack-limit=4GB \
+    -s "$MAIN_ABS" -- \
+    "$plfile" "$TARGET"
 }
+
 
 # ----------------------------------------------------------
 # PROCESSAMENTO SINGOLO FILE
@@ -192,7 +205,7 @@ process_file() {
 
 export -f process_file
 export -f run_prolog
-export -f find_associated_c_file
+# export -f find_associated_c_file
 export MAIN SWIPL_BIN TIMEOUT_SEC TARGET SKIP_EXISTING
 
 # ----------------------------------------------------------
