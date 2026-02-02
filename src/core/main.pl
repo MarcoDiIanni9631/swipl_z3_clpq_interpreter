@@ -156,12 +156,22 @@ set_solver(turibe) :-
 % -------------------------------------------------------------
 
 
+% Wrapper per compatibilità: zmi/2 accetta MaxDepths
 zmi(Head, MaxDepths) :-
     set_solver(turibe),
     reset_test_counter,
     format('ℹ️ MaxDepth impostato a: ~w\n', [MaxDepths]),
-    zmi_branch_sat((Head; falseVerimap), MaxDepths, _Model).
-    
+    findall(_Model,
+            zmi_branch_sat((Head; falseVerimap), MaxDepths, _Model),
+            Models),
+    ( Models == [] ->
+        format('No SAT branches found in MaxDepths = ~w.\n', [MaxDepths])
+    ;
+        true
+    ).
+
+zmi(Head) :-
+    zmi(Head, 50).
 
 
 
@@ -183,15 +193,15 @@ print_all_models([M|Rest]) :-
 
 
 print_single_model(model(FinalZ3, FinalCLPQ, _Calls, _)) :-
-    nl,
+    true.
     % writeln('CALL TRACE:'),
     % writeln(Calls),
+    % % nl,
+    % writeln('--- CLPQ Constraints ---'),
+    % clpq_sat_from_formula(FinalCLPQ),
     % nl,
-    writeln('--- CLPQ Constraints ---'),
-    clpq_sat_from_formula(FinalCLPQ),
-    nl,
-    writeln('--- FINAL MODEL (Z3) ---'),
-    writeln(FinalZ3).
+    % writeln('--- FINAL MODEL (Z3) ---'),
+    % writeln(FinalZ3).
 
 
 
@@ -849,4 +859,4 @@ bind_named_inputs_prefix(
 % INPUT NAMES
 % =============================
 
-input_names([vgood, sum, number, a]).
+input_names([vgood, a]).
