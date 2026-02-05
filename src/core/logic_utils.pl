@@ -110,11 +110,20 @@ normalize_bool_expr(abs(X), abs(NX)) :-
     !,
     normalize_bool_expr(X, NX).
 
+% =\= (diseguaglianza aritmetica) -> not(A = B)
+normalize_bool_expr(Expr, not(NA = NB)) :-
+    nonvar(Expr),
+    Expr =.. ['=\\=', A, B],
+    !,
+    normalize_bool_expr(A, NA),
+    normalize_bool_expr(B, NB).
+
+
+
 % Relational operators and equalities
 normalize_bool_expr(Expr, NExpr) :-
     nonvar(Expr), Expr =.. [Op, A, B],
-    member(Op, [=, <, >, =<, >=, \=, =:=, =\\=]),
-    !,
+    member(Op, [=, <, >, =<, >=, \=, =:=]),    !,
     normalize_bool_expr(A, NA),
     normalize_bool_expr(B, NB),
     NExpr =.. [Op, NA, NB].
