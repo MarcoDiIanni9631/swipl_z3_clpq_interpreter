@@ -642,7 +642,7 @@ run_analysis(File, Target, MaxDepth) :-
 % =============================
 
 usage :-
-    format("Uso: swipl -s main.pl -- <file.smt2.pl> <ff|incorrect> [maxdepth]~n", []).
+    format("Uso: swipl -s main.pl -- [--debug] <file.smt2.pl> <ff|incorrect> [maxdepth]~n", []).
 
 default_maxdepth(50).
 
@@ -656,9 +656,18 @@ parse_maxdepth(AtomOrString, MaxDepth) :-
     N > 0,
     MaxDepth = N.
 
-% Accetta SOLO 2 o 3 argomenti (escludendo eventuali roba prima)
-parse_argv(Argv, File, Target, MaxDepth) :-
-    append(_, Tail, Argv),
+% Rimuove --debug se presente e restituisce Debug=true/false
+strip_debug_flag(ArgvIn, ArgvOut, Debug) :-
+    (   select('--debug', ArgvIn, ArgvTmp)
+    ->  Debug = true,
+        ArgvOut = ArgvTmp
+    ;   Debug = false,
+        ArgvOut = ArgvIn
+    ).
+
+parse_argv(Argv, File, Target, MaxDepth, Debug) :-
+    append(_, Tail0, Argv),
+    strip_debug_flag(Tail0, Tail, Debug),
     (   Tail = [File, Target]
     ->  default_maxdepth(MaxDepth)
     ;   Tail = [File, Target, MaxDepthS],
@@ -667,13 +676,13 @@ parse_argv(Argv, File, Target, MaxDepth) :-
 
 main :-
     current_prolog_flag(argv, Argv),
-    (   parse_argv(Argv, File, Target, MaxDepth)
-    ->  run_analysis(File, Target, MaxDepth),
+    (   parse_argv(Argv, File, Target, MaxDepth, Debug)
+    ->  ( Debug == true -> enable_debug ; true ),
+        run_analysis(File, Target, MaxDepth),
         halt(0)
     ;   usage,
         halt(1)
     ).
-
 
 
 
