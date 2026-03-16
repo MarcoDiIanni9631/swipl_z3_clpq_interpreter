@@ -38,7 +38,7 @@ fi
 MODE="$1"
 INPUT_PATH="$2"
 TARGET="$3"
-MAXDEPTH="${4:-50}"
+MAXDEPTH="${4:-10000000}"
 MAIN="../src/core/main.pl"
 
 # ----------------------------------------------------------
@@ -62,12 +62,12 @@ if [ "$MODE" == "-s" ]; then
   SWIPL_BIN="$HOME/local/swipl-9.3.31/bin/swipl"
   export SWIZ3_TURIBE_PATH="$HOME/verimap_projects/swi-prolog-z3"
   export LD_LIBRARY_PATH="$HOME/local/z3-4.15.3/lib:$HOME/verimap_projects/swi-prolog-z3:$HOME/verimap_projects/swi-prolog-z3/z3/build:${LD_LIBRARY_PATH:-}"
-  TIMEOUT_SEC=300
+  TIMEOUT_SEC=60000
 
 elif [ "$MODE" == "-l" ]; then
   echo "💻 Modalità LOCALE attiva"
   SWIPL_BIN="$(command -v swipl || true)"
-  TIMEOUT_SEC=300
+  TIMEOUT_SEC=3000
 
 else
   echo "❌ Modalità non riconosciuta. Usa -l o -s."

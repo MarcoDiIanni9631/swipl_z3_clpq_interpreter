@@ -21,7 +21,7 @@ import os
 from typing import List
 
 CONSTR_RE = re.compile(
-    r"^\s*([A-Z_][A-Za-z0-9_]*)\s*(=\\==|\\==|=\\\\=|\\\\=|=:=|=<|>=|<|>|=)\s*(.+?)\s*$"
+    r"^\s*([A-Z_][A-Za-z0-9_]*|\d+)\s*(=\\==|\\==|=\\\\=|\\\\=|=:=|=<|>=|<|>|=)\s*(.+?)\s*$"
 )
 
 def split_top_level_commas(s: str) -> List[str]:
@@ -73,14 +73,16 @@ def transform_clause(stmt: str) -> str:
 
     core = s[:-1].strip()
 
-    # directives unchanged
+    # directives unchanged (:- pred, :- dynamic, etc.)
     if core.lstrip().startswith(":-"):
         return stmt
 
-    # facts unchanged
+    # facts → convert to constr(true)
     if ":-" not in core:
-        return stmt
+        head = core
+        return f"{head} :- constr((true))."
 
+    # normal clauses
     head, body = core.split(":-", 1)
     head, body = head.strip(), body.strip()
 
@@ -96,7 +98,7 @@ def transform_clause(stmt: str) -> str:
         else:
             calls.append(g)
 
-    # no constraints => unchanged
+    # no constraints → unchanged
     if not constrs:
         return stmt
 

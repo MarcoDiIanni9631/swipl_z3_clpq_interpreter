@@ -171,7 +171,7 @@ zmi(Head, MaxDepths) :-
     ).
 
 zmi(Head) :-
-    zmi(Head, 50).
+    zmi(Head, 10000000).
 
 
 
@@ -383,24 +383,75 @@ zmi_aux((A, B), Z3In, CLPQIn, SymTab, CallsIn, Steps,
 % in Z3 tramite z3_sat_check/3.
 % -------------------------------------------------------------
 
+%ex version correct
+% zmi_aux(constr(C), Z3In, CLPQIn, SymTab, CallsIn, _Steps,
+%         Z3Out, CLPQOut, CallsOut,
+%         constr(Normalized)) :-
+
+%     CallsOut = CallsIn,
+%     normalize_bool_expr(C, Normalized),
+%     build_conjunct([CLPQIn, Normalized], CLPQTmp),
+%     build_conjunct([Z3In, Normalized], Z3Tmp),
+%     build_type_equality_list(SymTab, TypeAnnots),
+%     conj_to_list(Z3Tmp, Z3List),
+%     append(TypeAnnots, Z3List, FlatList),
+%     build_conjunct(FlatList, Z3Final),
+%     Z3Out  = Z3Final,
+%     CLPQOut = CLPQTmp,
+%     z3_sat_check(Z3Final, sat, _,_).
+
+
+% zmi_aux(constr(C), Z3In, CLPQIn, SymTab, CallsIn, _Steps,
+%         Z3Out, CLPQOut, CallsOut,
+%         constr(Normalized)) :-
+
+%     CallsOut = CallsIn,
+%     normalize_bool_expr(C, Normalized),
+%     build_conjunct([CLPQIn, Normalized], CLPQTmp),
+%     build_conjunct([Z3In,  Normalized], Z3Tmp),
+
+%     build_type_equality_list(SymTab, TypeAnnots),
+
+%     conj_to_list(Z3Tmp, Z3List0),
+%     strip_type_equalities(Z3List0, Z3CoreList),
+
+%     append(TypeAnnots, Z3CoreList, FlatList),
+%     build_conjunct(FlatList, Z3Final),
+
+%     Z3Out   = Z3Final,
+%     CLPQOut = CLPQTmp,
+%     z3_sat_check(Z3Final, sat, _, _).
 
 zmi_aux(constr(C), Z3In, CLPQIn, SymTab, CallsIn, _Steps,
         Z3Out, CLPQOut, CallsOut,
         constr(Normalized)) :-
 
     CallsOut = CallsIn,
-    normalize_bool_expr(C, Normalized),
-    build_conjunct([CLPQIn, Normalized], CLPQTmp),
-    build_conjunct([Z3In, Normalized], Z3Tmp),
-    build_type_equality_list(SymTab, TypeAnnots),
-    conj_to_list(Z3Tmp, Z3List),
-    append(TypeAnnots, Z3List, FlatList),
-    build_conjunct(FlatList, Z3Final),
-    Z3Out  = Z3Final,
-    CLPQOut = CLPQTmp,
-    z3_sat_check(Z3Final, sat, _,_).
+normalize_bool_expr(C, Normalized),
 
+% ---- CLPQ resta come prima ----
+build_conjunct([CLPQIn, Normalized], CLPQTmp),
 
+% 1. Trasformo Z3In in lista piatta
+conj_to_list(Z3In, Z3ListIn),
+
+% 2. Aggiungo il nuovo vincolo
+append(Z3ListIn, [Normalized], Z3ListTmp),
+
+% 3. Aggiungo type annotations
+build_type_equality_list(SymTab, TypeAnnots),
+append(TypeAnnots, Z3ListTmp, Z3ListWithTypes),
+
+% 4. Rimuovo duplicati veri
+sort(Z3ListWithTypes, Z3ListNoDup),
+
+% 5. Ricostruisco formula piatta
+build_conjunct(Z3ListNoDup, Z3Final),
+
+Z3Out   = Z3Final,
+CLPQOut = CLPQTmp,
+
+z3_sat_check(Z3Final, sat, _, _).
 
 % -------------------------------------------------------------
 % zmi_aux(Head, Z3In, CLPQIn,SymTabIn, Steps, Z3Out, CLPQOut, SubTree => Head) :-
@@ -644,7 +695,7 @@ run_analysis(File, Target, MaxDepth) :-
 usage :-
     format("Uso: swipl -s main.pl -- [--debug] <file.smt2.pl> <ff|incorrect> [maxdepth]~n", []).
 
-default_maxdepth(50).
+default_maxdepth(1000000).
 
 parse_maxdepth(AtomOrString, MaxDepth) :-
     (   atom(AtomOrString)
@@ -781,6 +832,25 @@ classify_test_from_vmapgood_consts(Consts, testFail) :-
 
 classify_test_from_vmapgood_consts(_, testUnknown).
 
+
+
+% -------------------------------------------------------------
+% Rimozione type-equalities già presenti in Z3In
+% Riconosce termini del tipo  (Var:Type = Var:Type)
+% -------------------------------------------------------------
+
+is_type_equality((L = R)) :-
+    L == R,
+    compound(L),
+    functor(L, ':', 2).
+
+strip_type_equalities([], []).
+strip_type_equalities([H|T], R) :-
+    is_type_equality(H),
+    !,
+    strip_type_equalities(T, R).
+strip_type_equalities([H|T], [H|R]) :-
+    strip_type_equalities(T, R).
 
 
 % bind_inputs(InputNames, Vars, Consts, Bindings) :-
