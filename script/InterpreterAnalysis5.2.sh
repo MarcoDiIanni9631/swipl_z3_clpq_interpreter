@@ -12,33 +12,50 @@
 set -u
 
 # ----------------------------------------------------------
-# OPZIONE: SKIP FILE GIÀ ELABORATI
+# PARSING ARGOMENTI (flag e posizionali in qualsiasi ordine)
 # ----------------------------------------------------------
 
 DEBUG="no"
-if [ "${1:-}" == "--debug" ]; then
-  DEBUG="yes"
-  shift
-fi
-
 SKIP_EXISTING="no"
-if [ "${1:-}" == "--skip-existing" ]; then
-  SKIP_EXISTING="yes"
-  shift
-fi
+MAXDEPTH=""
+LOOPLIMIT=""
+TIMEOUT_OVERRIDE=""
+MODE=""
+INPUT_PATH=""
+TARGET=""
+
+while [ "$#" -gt 0 ]; do
+  case "$1" in
+    --debug)         DEBUG="yes";              shift ;;
+    --skip-existing) SKIP_EXISTING="yes";      shift ;;
+    --maxdepth)      MAXDEPTH="$2";            shift 2 ;;
+    --looplimit)     LOOPLIMIT="$2";           shift 2 ;;
+    --timeout)       TIMEOUT_OVERRIDE="$2";    shift 2 ;;
+    -l|-s)           MODE="$1";                shift ;;
+    *)
+      if [ -z "$INPUT_PATH" ]; then
+        INPUT_PATH="$1"
+      elif [ -z "$TARGET" ]; then
+        TARGET="$1"
+      else
+        echo "❌ Argomento inaspettato: $1"
+        exit 1
+      fi
+      shift ;;
+  esac
+done
+
+MAXDEPTH="${MAXDEPTH:-10000000}"
 
 # ----------------------------------------------------------
-# CONTROLLO ARGOMENTI
+# CONTROLLO ARGOMENTI OBBLIGATORI
 # ----------------------------------------------------------
-if [ "$#" -lt 3 ]; then
+if [ -z "$MODE" ] || [ -z "$INPUT_PATH" ] || [ -z "$TARGET" ]; then
   echo "Uso:"
-echo "  $0 [--debug] [--skip-existing] [-l | -s] <file_o_cartella> <predicato> [maxdepth]"  exit 1
+  echo "  nohup $0 [--debug] [--skip-existing] [--maxdepth N] [--looplimit N] [--timeout SEC] [-l | -s] <file_o_cartella> <predicato> &"
+  exit 1
 fi
 
-MODE="$1"
-INPUT_PATH="$2"
-TARGET="$3"
-MAXDEPTH="${4:-10000000}"
 MAIN="../src/core/main.pl"
 
 # ----------------------------------------------------------
@@ -78,6 +95,8 @@ if [ -z "$SWIPL_BIN" ] || [ ! -x "$SWIPL_BIN" ]; then
   echo "❌ SWI-Prolog non trovato."
   exit 1
 fi
+
+[ -n "$TIMEOUT_OVERRIDE" ] && TIMEOUT_SEC="$TIMEOUT_OVERRIDE"
 
 # # ----------------------------------------------------------
 # # TROVA FILE C ASSOCIATO
@@ -130,16 +149,15 @@ fi
 # ----------------------------------------------------------
 run_prolog() {
   local plfile="$1"
+  local extra_args=()
+  [ "$DEBUG" = "yes" ]    && extra_args+=("--debug")
+  extra_args+=("$plfile" "$TARGET")
+  extra_args+=("--maxdepth" "$MAXDEPTH")
+  [ -n "$LOOPLIMIT" ]     && extra_args+=("--looplimit" "$LOOPLIMIT")
 
-  if [ "$DEBUG" = "yes" ]; then
-    timeout ${TIMEOUT_SEC}s "$SWIPL_BIN" --stack-limit=4GB \
-      -s "$MAIN_ABS" -- \
-      --debug "$plfile" "$TARGET" "$MAXDEPTH"
-  else
-    timeout ${TIMEOUT_SEC}s "$SWIPL_BIN" --stack-limit=4GB \
-      -s "$MAIN_ABS" -- \
-      "$plfile" "$TARGET" "$MAXDEPTH"
-  fi
+  timeout ${TIMEOUT_SEC}s "$SWIPL_BIN" --stack-limit=4GB \
+    -s "$MAIN_ABS" -- \
+    "${extra_args[@]}"
 }
 
 
@@ -219,7 +237,7 @@ process_file() {
 export -f process_file
 export -f run_prolog
 # export -f find_associated_c_file
-export MAIN SWIPL_BIN TIMEOUT_SEC TARGET SKIP_EXISTING MAXDEPTH
+export MAIN SWIPL_BIN TIMEOUT_SEC TARGET SKIP_EXISTING MAXDEPTH LOOPLIMIT
 
 export DEBUG
 # ----------------------------------------------------------

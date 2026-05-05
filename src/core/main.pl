@@ -23,6 +23,33 @@
 
 :- dynamic input_names/1.
 :- dynamic test_counter/1.
+:- dynamic loop_limit/1.
+
+% -------------------------------------------------------------
+% Loop detection: limite di unfolding per predicato
+%
+% loop_limit(K) — ogni predicato (functor/arità) può comparire al
+% massimo K volte nella call trace del cammino corrente.
+% K=1 → nessun loop: ogni predicato è eseguito al più una volta
+%        per cammino (produce al massimo un test per cammino strutturale).
+% K=2 → una iterazione di loop permessa, ecc.
+% Impostato dinamicamente all'avvio tramite set_loop_limit/1.
+% -------------------------------------------------------------
+loop_limit(2000).
+
+set_loop_limit(K) :-
+    retractall(loop_limit(_)),
+    assertz(loop_limit(K)),
+    format('ℹ️ LoopLimit impostato a: ~w\n', [K]).
+
+% calls_count(+Calls, +F, +A, -N)
+% Conta quante volte il predicato F/A compare nella lista Calls.
+calls_count([], _, _, 0).
+calls_count([Call | Rest], F, A, N) :-
+    (   functor(Call, F, A)
+    ->  calls_count(Rest, F, A, N0), N is N0 + 1
+    ;   calls_count(Rest, F, A, N)
+    ).
 
 
 % -------------------------------------------------------------
@@ -161,8 +188,8 @@ zmi(Head, MaxDepths) :-
     set_solver(turibe),
     reset_test_counter,
     format('ℹ️ MaxDepth impostato a: ~w\n', [MaxDepths]),
-    findall(_Model,
-            zmi_branch_sat((Head; falseVerimap), MaxDepths, _Model),
+    findall(Model,
+            zmi_branch_sat((Head; falseVerimap), MaxDepths, Model),
             Models),
     ( Models == [] ->
         format('No SAT branches found in MaxDepths = ~w.\n', [MaxDepths])
@@ -192,7 +219,7 @@ print_all_models([M|Rest]) :-
 
 
 
-print_single_model(model(FinalZ3, FinalCLPQ, _Calls, _)) :-
+print_single_model(model(_, _, _Calls, _)) :-
     true.
     % writeln('CALL TRACE:'),
     % writeln(Calls),
@@ -465,6 +492,10 @@ z3_sat_check(Z3Final, sat, _, _).
 % zmi_aux/8 sul corpo, riducendo Steps
 % -------------------------------------------------------------
 
+%   - Calls — la lista di predicati già chiamati in questo cammino
+%   - F — nome del predicato da cercare (es. new9)                                                                                                     
+%   - A — arità (numero di argomenti, es. 35)     
+%   - N — risultato: quante volte F/A compare in Calls 
 
 zmi_aux(Head, Z3In, CLPQIn, SymTabIn, CallsIn, Steps,
         Z3Out, CLPQOut, CallsOut,
@@ -475,11 +506,25 @@ zmi_aux(Head, Z3In, CLPQIn, SymTabIn, CallsIn, Steps,
     Head \= (_, _),
     Head \= constr(_),
 
+    %  Loop detection 
+    % Se il predicato corrente compare già K volte nella call trace
+    % del cammino corrente, taglia il ramo (loop rilevato).
+    functor(Head, HeadF, HeadA),
+    calls_count(CallsIn, HeadF, HeadA, HeadCount),
+    loop_limit(LoopK),
+    ( HeadCount >= LoopK ->
+        (debug_print('Loop rilevato, taglio il ramo'),
+        debug_print(Head),
+        fail)
+    ; true ),
+    % ─────────────────────────────────────────────────────────
+
     HeadCopy = Head,
     append(CallsIn, [Head], CallsMid),
     % append(CallsIn, [HeadCopy], CallsMid),
 
     % Recupera la clausola
+  %  debug_print(cercando_clausola(HeadF/HeadA)),
     clause(Head, RawBody),
     debug_print('Mi trovo in quest head'),
     debug_print(Head),
@@ -669,8 +714,9 @@ print_tree(Other, Indent) :- tab(Indent), writeln(Other).
 %     zmi(Target).
 %     %format("📌 Analisi terminata.~n", []).
 
-run_analysis(File, Target, MaxDepth) :-
+run_analysis(File, Target, MaxDepth, LoopLimit) :-
     format("📂 Analisi del file: ~w con target: ~w~n", [File, Target]),
+    set_loop_limit(LoopLimit),
     load_clean(File),
     zmi(Target, MaxDepth).
 
@@ -693,43 +739,79 @@ run_analysis(File, Target, MaxDepth) :-
 % =============================
 
 usage :-
-    format("Uso: swipl -s main.pl -- [--debug] <file.smt2.pl> <ff|incorrect> [maxdepth]~n", []).
+    format("Uso: swipl -s main.pl -- [--debug] <file.smt2.pl> <target> [--maxdepth N] [--looplimit N]~n", []).
 
 default_maxdepth(1000000).
+default_looplimit(2000).
 
-parse_maxdepth(AtomOrString, MaxDepth) :-
+parse_int_arg(AtomOrString, N) :-
     (   atom(AtomOrString)
     ->  atom_string(AtomOrString, S)
     ;   S = AtomOrString
     ),
     catch(number_string(N, S), _, fail),
     integer(N),
-    N > 0,
-    MaxDepth = N.
+    N > 0.
 
-% Rimuove --debug se presente e restituisce Debug=true/false
-strip_debug_flag(ArgvIn, ArgvOut, Debug) :-
-    (   select('--debug', ArgvIn, ArgvTmp)
-    ->  Debug = true,
-        ArgvOut = ArgvTmp
-    ;   Debug = false,
-        ArgvOut = ArgvIn
-    ).
+% parse_flags(+Tokens, -File, -Target, -MaxDepth, -LoopLimit, -Debug)
+% Scorre la lista di token in ordine qualsiasi:
+%   --debug, --maxdepth N, --looplimit N sono flag nominati.
+%   I primi due token non-flag sono File e Target.
+parse_flags(Tokens, File, Target, MaxDepth, LoopLimit, Debug) :-
+    parse_flags_(Tokens, _, _, _, _, _,
+                 File, Target, MaxDepth, LoopLimit, Debug).
 
-parse_argv(Argv, File, Target, MaxDepth, Debug) :-
-    append(_, Tail0, Argv),
-    strip_debug_flag(Tail0, Tail, Debug),
-    (   Tail = [File, Target]
-    ->  default_maxdepth(MaxDepth)
-    ;   Tail = [File, Target, MaxDepthS],
-        parse_maxdepth(MaxDepthS, MaxDepth)
-    ).
+parse_flags_([], File, Target, MaxDepthIn, LoopLimitIn, DebugIn,
+             File, Target, MaxDepth, LoopLimit, Debug) :-
+    ( var(MaxDepthIn)  -> default_maxdepth(MaxDepth)  ; MaxDepth  = MaxDepthIn  ),
+    ( var(LoopLimitIn) -> default_looplimit(LoopLimit) ; LoopLimit = LoopLimitIn ),
+    ( var(DebugIn)     -> Debug = false                ; Debug     = DebugIn     ).
+
+parse_flags_(['--debug' | Rest], FileAcc, TargetAcc, MDep, LLim, _,
+             File, Target, MaxDepth, LoopLimit, Debug) :-
+    parse_flags_(Rest, FileAcc, TargetAcc, MDep, LLim, true,
+                 File, Target, MaxDepth, LoopLimit, Debug).
+
+parse_flags_(['--maxdepth', VS | Rest], FileAcc, TargetAcc, _, LLim, Dbg,
+             File, Target, MaxDepth, LoopLimit, Debug) :-
+    parse_int_arg(VS, N),
+    parse_flags_(Rest, FileAcc, TargetAcc, N, LLim, Dbg,
+                 File, Target, MaxDepth, LoopLimit, Debug).
+
+parse_flags_(['--looplimit', VS | Rest], FileAcc, TargetAcc, MDep, _, Dbg,
+             File, Target, MaxDepth, LoopLimit, Debug) :-
+    parse_int_arg(VS, N),
+    parse_flags_(Rest, FileAcc, TargetAcc, MDep, N, Dbg,
+                 File, Target, MaxDepth, LoopLimit, Debug).
+
+% Primo token non-flag: è File
+parse_flags_([Tok | Rest], FileAcc, TargetAcc, MDep, LLim, Dbg,
+             File, Target, MaxDepth, LoopLimit, Debug) :-
+    \+ sub_atom(Tok, 0, 2, _, '--'),
+    var(FileAcc),
+    parse_flags_(Rest, Tok, TargetAcc, MDep, LLim, Dbg,
+                 File, Target, MaxDepth, LoopLimit, Debug).
+
+% Secondo token non-flag: è Target
+parse_flags_([Tok | Rest], FileAcc, TargetAcc, MDep, LLim, Dbg,
+             File, Target, MaxDepth, LoopLimit, Debug) :-
+    \+ sub_atom(Tok, 0, 2, _, '--'),
+    nonvar(FileAcc),
+    var(TargetAcc),
+    parse_flags_(Rest, FileAcc, Tok, MDep, LLim, Dbg,
+                 File, Target, MaxDepth, LoopLimit, Debug).
+
+parse_argv(Argv, File, Target, MaxDepth, LoopLimit, Debug) :-
+    append(_, Tail, Argv),
+    Tail \= [],
+    parse_flags(Tail, File, Target, MaxDepth, LoopLimit, Debug),
+    nonvar(File), nonvar(Target).
 
 main :-
     current_prolog_flag(argv, Argv),
-    (   parse_argv(Argv, File, Target, MaxDepth, Debug)
+    (   parse_argv(Argv, File, Target, MaxDepth, LoopLimit, Debug)
     ->  ( Debug == true -> enable_debug ; true ),
-        run_analysis(File, Target, MaxDepth),
+        run_analysis(File, Target, MaxDepth, LoopLimit),
         halt(0)
     ;   usage,
         halt(1)
