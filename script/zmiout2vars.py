@@ -103,12 +103,10 @@ def split_clauses(text):
     return clauses
 
 def extract_var_constraints(clauses, rv_to_sol):
-    """Return clauses that mention at least one named runtime variable, raw."""
+    """Return all non-trivial clauses (skip type annotations and 'true')."""
     results = []
     for clause in clauses:
         if ':int=' in clause or clause == 'true':
-            continue
-        if not any(rv in clause for rv in rv_to_sol):
             continue
         results.append(clause)
     return results
@@ -249,17 +247,16 @@ def process_test(test_block, blocks, state_vars, func, func_args):
                 if body_args and pos < len(body_args):
                     rv_to_sol[body_args[pos]] = arg
 
-    if rv_to_sol:
-        raw = parse_incorrect_line(test_block)
-        clauses = split_clauses(raw)
-        constraints = extract_var_constraints(clauses, rv_to_sol)
-        lines.append("")
-        lines.append("=== VINCOLI SULLE VARIABILI SOLIDITY ===")
-        if constraints:
-            for c in constraints:
-                lines.append(f"  {c}")
-        else:
-            lines.append("  (nessun vincolo trovato)")
+    raw = parse_incorrect_line(test_block)
+    clauses = split_clauses(raw)
+    constraints = extract_var_constraints(clauses, rv_to_sol)
+    lines.append("")
+    lines.append("=== VINCOLI ===")
+    if constraints:
+        for c in constraints:
+            lines.append(f"  {c}")
+    else:
+        lines.append("  (nessun vincolo trovato)")
 
     return lines
 

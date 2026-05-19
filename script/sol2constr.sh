@@ -28,6 +28,25 @@ SERVER_BASE="/home/labeconomia/mdiianni/verimap_projects"
 SERVER_USER="mdiianni"
 SERVER_HOST="compute-clai.unich.it"
 
+# Rilevamento automatico: locale o server
+if hostname | grep -q "compute-clai"; then
+  ON_SERVER=true
+else
+  ON_SERVER=false
+fi
+
+# Traduce path locale → server (no-op se già sul server)
+to_server_path() { $ON_SERVER && echo "$1" || echo "${1/$LOCAL_BASE/$SERVER_BASE}"; }
+
+# Esegue un comando sul server (SSH se locale, bash diretto se sul server)
+run_on_server() {
+  if $ON_SERVER; then
+    bash -c "$1"
+  else
+    ssh "${SERVER_USER}@${SERVER_HOST}" "$1"
+  fi
+}
+
 usage() {
   echo "Uso: $0 <contratto.sol> [nome_funzione]"
   echo ""
@@ -71,18 +90,18 @@ echo "🖥️  Server:    $SERVER_HOST"
 echo "=================================="
 
 # ------------------------------------------------------------------
-# STEP 1+2: CONVERSIONE (sempre sul server)
+# STEP 1+2: CONVERSIONE
 # ------------------------------------------------------------------
-SERVER_SOL="${SOL/$LOCAL_BASE/$SERVER_BASE}"
+SERVER_SOL="$(to_server_path "$SOL")"
 SERVER_TPL="${SERVER_SOL%.sol}.t.pl"
-SERVER_SOL2TPL="${SOL2TPL/$LOCAL_BASE/$SERVER_BASE}"
-SERVER_YULPL2CONSTR_PATH="${YULPL2CONSTR/$LOCAL_BASE/$SERVER_BASE}"
+SERVER_SOL2TPL="$(to_server_path "$SOL2TPL")"
+SERVER_YULPL2CONSTR_PATH="$(to_server_path "$YULPL2CONSTR")"
 
 FUNC_ARG="${FUNC:+\"$FUNC\"}"
 
 echo ""
 echo "🔄 Step 1: sol → .t.pl  (grey server)..."
-ssh "${SERVER_USER}@${SERVER_HOST}" "
+run_on_server "
   set -e
   export SOL2TPL_GREY='$SERVER_GREY'
   export SOL2TPL_YULCHC='$SERVER_YULCHC'
@@ -92,11 +111,11 @@ ssh "${SERVER_USER}@${SERVER_HOST}" "
 "
 
 TPL="${SOL%.sol}.t.pl"
-[ -f "$TPL" ] || { echo "❌ .t.pl non presente nel mount: $TPL"; exit 1; }
+[ -f "$TPL" ] || { echo "❌ .t.pl non trovato: $TPL"; exit 1; }
 
 echo ""
 echo "🔄 Step 2: .t.pl → .t_constr.pl  (yulPl2Constr, server)..."
-ssh "${SERVER_USER}@${SERVER_HOST}" "
+run_on_server "
   python3 '$SERVER_YULPL2CONSTR_PATH' '$SERVER_TPL'
 "
 
