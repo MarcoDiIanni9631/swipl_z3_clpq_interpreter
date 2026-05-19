@@ -24,6 +24,10 @@
 :- dynamic input_names/1.
 :- dynamic test_counter/1.
 :- dynamic loop_limit/1.
+:- dynamic skip_pred/1.
+:- dynamic sat_found_for/1.   % sat_found_for(F/A) — SAT già trovato per questo pred ricorsivo
+:- dynamic stop_per_loop/0.   % flag: --stop-first-per-loop attivo
+:- discontiguous zmi_aux/10.
 
 % -------------------------------------------------------------
 % Loop detection: limite di unfolding per predicato
@@ -39,8 +43,7 @@ loop_limit(2000).
 
 set_loop_limit(K) :-
     retractall(loop_limit(_)),
-    assertz(loop_limit(K)),
-    format('ℹ️ LoopLimit impostato a: ~w\n', [K]).
+    assertz(loop_limit(K)).
 
 % calls_count(+Calls, +F, +A, -N)
 % Conta quante volte il predicato F/A compare nella lista Calls.
@@ -185,20 +188,28 @@ set_solver(turibe) :-
 
 % Wrapper per compatibilità: zmi/2 accetta MaxDepths
 zmi(Head, MaxDepths) :-
-    set_solver(turibe),
-    reset_test_counter,
-    format('ℹ️ MaxDepth impostato a: ~w\n', [MaxDepths]),
-    findall(Model,
-            zmi_branch_sat((Head; falseVerimap), MaxDepths, Model),
-            Models),
-    ( Models == [] ->
-        format('No SAT branches found in MaxDepths = ~w.\n', [MaxDepths])
-    ;
-        true
-    ).
+    zmi(Head, MaxDepths, false).
 
 zmi(Head) :-
-    zmi(Head, 10000000).
+    zmi(Head, 10000000, false).
+
+zmi(Head, MaxDepths, StopFirst) :-
+    set_solver(turibe),
+    reset_test_counter,
+    retractall(sat_found_for(_)),
+    ( StopFirst == true ->
+        ( zmi_branch_sat((Head; falseVerimap), MaxDepths, _) -> true ; true ),
+        ( test_counter(0) -> format('No SAT branches found in MaxDepths = ~w.\n', [MaxDepths]) ; true )
+    ;
+        findall(Model,
+                zmi_branch_sat((Head; falseVerimap), MaxDepths, Model),
+                Models),
+        ( Models == [] ->
+            format('No SAT branches found in MaxDepths = ~w.\n', [MaxDepths])
+        ;
+            true
+        )
+    ).
 
 
 
@@ -264,6 +275,9 @@ zmi_branch_sat(Head, MaxDepths, model(FinalZ3, FinalCLPQ, FinalCalls, Tree)) :-
     % Verifica SAT
     z3_sat_check(FinalZ3, sat, ModelPretty, _Pairs),
 
+    % Marca i predicati ricorsivi come "già trovato SAT" (se --stop-first-per-loop)
+    mark_loop_preds(FinalCalls),
+
     next_test_id(TestId),
     nl,
     format('================ TEST #~w =================~n', [TestId]),
@@ -314,8 +328,43 @@ writeln('INPUT BINDINGS :'),
 writeln(InputBindings),
     format('\n============================================\n\n', []).
 
+
+% mark_loop_preds(+Calls)
+% Se --stop-first-per-loop è attivo, marca come "SAT trovato" solo i predicati
+% che compaiono >= 2 volte nella call trace E sono ricorsivi nel CHC.
+mark_loop_preds(Calls) :-
+    ( stop_per_loop ->
+        forall(
+            ( member(Call, Calls),
+              functor(Call, F, A),
+              calls_count(Calls, F, A, N),
+              N >= 2,
+              is_directly_recursive(F/A),
+              \+ sat_found_for(F/A) ),
+            assertz(sat_found_for(F/A))
+        )
+    ; true ).
+
+% is_directly_recursive(+F/A)
+% Vero se il predicato F/A ha almeno una clausola che chiama F/A nel corpo.
+is_directly_recursive(F/A) :-
+    functor(Head, F, A),
+    clause(Head, Body),
+    body_contains_pred(Body, F, A),
+    !.
+
+body_contains_pred((G, Rest), F, A) :-
+    !,
+    ( functor(G, F, A) -> true
+    ; body_contains_pred(G, F, A)
+    ; body_contains_pred(Rest, F, A)
+    ).
+body_contains_pred(G, F, A) :-
+    functor(G, F, A).
+
+
 % ----------------------------
-% Interpreter rules 
+% Interpreter rules
 % ----------------------------
 
 
@@ -480,22 +529,68 @@ CLPQOut = CLPQTmp,
 
 z3_sat_check(Z3Final, sat, _, _).
 
-% -------------------------------------------------------------
-% zmi_aux(Head, Z3In, CLPQIn,SymTabIn, Steps, Z3Out, CLPQOut, SubTree => Head) :-
 
-% Prende un predicato del programma (es. ff, 'main@bb22.i', ecc.)
-% Trova dinamicamente la definizione tramite clause/2.
-% Riordina il corpo portando i vincoli constr/1 in testa,
-% aggiorna la tabella dei tipi con le variabili di testa e corpo,
-% e riscrive i vincoli inserendo le annotazioni di tipo.
-% Infine, ricostruisce la congiunzione e richiama ricorsivamente
-% zmi_aux/8 sul corpo, riducendo Steps
-% -------------------------------------------------------------
+% zmi_aux(Head, Z3In, CLPQIn, _SymTabIn, CallsIn, Steps,
+%         Z3Out, CLPQOut, CallsOut,
+%         skip(Head)) :-
 
-%   - Calls — la lista di predicati già chiamati in questo cammino
-%   - F — nome del predicato da cercare (es. new9)                                                                                                     
-%   - A — arità (numero di argomenti, es. 35)     
-%   - N — risultato: quante volte F/A compare in Calls 
+%     Steps > 0,
+%     Head \= true,
+%     Head \= (_, _),
+%     Head \= constr(_),
+
+%     functor(Head, HeadF, HeadA),s" — e
+%     skip_pred(HeadF),
+%     !,
+
+%     calls_count(CallsIn, HeadF, HeadA, HeadCount),
+%     loop_limit(LoopK),
+%     ( HeadCount >= LoopK ->
+%         ( debug_print('Loop rilevato, taglio il ramo'),
+%           debug_print(Head),
+%           fail )
+%     ; true ),
+
+%     debug_print('Esecuzione diretta (skip):'),
+%     debug_print(Head),
+
+%     append(CallsIn, [Head], CallsOut),
+
+%     clause(Head, RawBody),
+%     extract_skip_constr(RawBody, SkipC),
+
+%     format("~n=== SKIP: ~w ===~n", [HeadF]),
+%     format("  Constraint: ~w~n", [SkipC]),
+%     format("  Head PRIMA: ~w~n", [Head]),
+%     format("  Z3 PRIMA:   ~w~n", [Z3In]),
+
+%     zmi_skip_body(RawBody, Z3In, CLPQIn, Z3Out, CLPQOut),
+
+%     format("  Head DOPO:  ~w~n", [Head]),
+%     format("  Z3 DOPO:    ~w~n", [Z3Out]),
+%     format("  (vincolo aggiunto a Z3 senza SAT check)~n", []).
+
+
+% extract_skip_constr(constr(C), C) :- !.
+% extract_skip_constr((constr(C), _), C) :- !.
+% extract_skip_constr(Body, Body).
+
+
+% zmi_skip_body(true, Z3, CLPQ, Z3, CLPQ) :- !.
+% zmi_skip_body((A, B), Z3In, CLPQIn, Z3Out, CLPQOut) :- !,
+%     zmi_skip_body(A, Z3In, CLPQIn, Z3Mid, CLPQMid),
+%     zmi_skip_body(B, Z3Mid, CLPQMid, Z3Out, CLPQOut).
+% zmi_skip_body(constr(C), Z3In, CLPQIn, Z3Out, CLPQOut) :- !,
+%     normalize_bool_expr(C, Normalized),
+%     build_conjunct([CLPQIn, Normalized], CLPQOut),
+%     conj_to_list(Z3In, Z3ListIn),
+%     append(Z3ListIn, [Normalized], Z3ListTmp),
+%     build_conjunct(Z3ListTmp, Z3Out),
+%     call(C).
+% zmi_skip_body(Goal, Z3In, CLPQIn, Z3Out, CLPQOut) :-
+%     clause(Goal, Body),
+%     zmi_skip_body(Body, Z3In, CLPQIn, Z3Out, CLPQOut).
+
 
 zmi_aux(Head, Z3In, CLPQIn, SymTabIn, CallsIn, Steps,
         Z3Out, CLPQOut, CallsOut,
@@ -517,6 +612,8 @@ zmi_aux(Head, Z3In, CLPQIn, SymTabIn, CallsIn, Steps,
         debug_print(Head),
         fail)
     ; true ),
+    % stop-first-per-loop: se siamo al secondo+ unrolling e SAT già trovato per questo pred, taglia
+    ( HeadCount >= 1, sat_found_for(HeadF/HeadA) -> fail ; true ),
     % ─────────────────────────────────────────────────────────
 
     HeadCopy = Head,
@@ -715,10 +812,20 @@ print_tree(Other, Indent) :- tab(Indent), writeln(Other).
 %     %format("📌 Analisi terminata.~n", []).
 
 run_analysis(File, Target, MaxDepth, LoopLimit) :-
+    run_analysis(File, Target, MaxDepth, LoopLimit, none, false).
+
+run_analysis(File, Target, MaxDepth, LoopLimit, SkipFile) :-
+    run_analysis(File, Target, MaxDepth, LoopLimit, SkipFile, false).
+
+run_analysis(File, Target, MaxDepth, LoopLimit, SkipFile, StopFirst) :-
     format("📂 Analisi del file: ~w con target: ~w~n", [File, Target]),
+    ( SkipFile \= none ->
+        format("⚡ Skip file: ~w~n", [SkipFile]),
+        consult(SkipFile)
+    ; true ),
     set_loop_limit(LoopLimit),
     load_clean(File),
-    zmi(Target, MaxDepth).
+    zmi(Target, MaxDepth, StopFirst).
 
 
 
@@ -739,7 +846,7 @@ run_analysis(File, Target, MaxDepth, LoopLimit) :-
 % =============================
 
 usage :-
-    format("Uso: swipl -s main.pl -- [--debug] <file.smt2.pl> <target> [--maxdepth N] [--looplimit N]~n", []).
+    format("Uso: swipl -s main.pl -- [--debug] [--stop-first] [--stop-first-per-loop] [--skip-file F] <file.pl> <target> [--maxdepth N] [--looplimit N]~n", []).
 
 default_maxdepth(1000000).
 default_looplimit(2000).
@@ -753,65 +860,80 @@ parse_int_arg(AtomOrString, N) :-
     integer(N),
     N > 0.
 
-% parse_flags(+Tokens, -File, -Target, -MaxDepth, -LoopLimit, -Debug)
-% Scorre la lista di token in ordine qualsiasi:
-%   --debug, --maxdepth N, --looplimit N sono flag nominati.
-%   I primi due token non-flag sono File e Target.
-parse_flags(Tokens, File, Target, MaxDepth, LoopLimit, Debug) :-
-    parse_flags_(Tokens, _, _, _, _, _,
-                 File, Target, MaxDepth, LoopLimit, Debug).
+% parse_flags(+Tokens, -File, -Target, -MaxDepth, -LoopLimit, -Debug, -SkipFile, -StopFirst)
+parse_flags(Tokens, File, Target, MaxDepth, LoopLimit, Debug, SkipFile, StopFirst) :-
+    parse_flags_(Tokens, _, _, _, _, _, _, _,
+                 File, Target, MaxDepth, LoopLimit, Debug, SkipFile, StopFirst).
 
-parse_flags_([], File, Target, MaxDepthIn, LoopLimitIn, DebugIn,
-             File, Target, MaxDepth, LoopLimit, Debug) :-
-    ( var(MaxDepthIn)  -> default_maxdepth(MaxDepth)  ; MaxDepth  = MaxDepthIn  ),
-    ( var(LoopLimitIn) -> default_looplimit(LoopLimit) ; LoopLimit = LoopLimitIn ),
-    ( var(DebugIn)     -> Debug = false                ; Debug     = DebugIn     ).
+parse_flags_([], File, Target, MaxDepthIn, LoopLimitIn, DebugIn, SkipIn, StopFirstIn,
+             File, Target, MaxDepth, LoopLimit, Debug, SkipFile, StopFirst) :-
+    ( var(MaxDepthIn)   -> default_maxdepth(MaxDepth)  ; MaxDepth   = MaxDepthIn   ),
+    ( var(LoopLimitIn)  -> default_looplimit(LoopLimit) ; LoopLimit  = LoopLimitIn  ),
+    ( var(DebugIn)      -> Debug = false                ; Debug      = DebugIn      ),
+    ( var(SkipIn)       -> SkipFile = none              ; SkipFile   = SkipIn       ),
+    ( var(StopFirstIn)  -> StopFirst = false            ; StopFirst  = StopFirstIn  ).
 
-parse_flags_(['--debug' | Rest], FileAcc, TargetAcc, MDep, LLim, _,
-             File, Target, MaxDepth, LoopLimit, Debug) :-
-    parse_flags_(Rest, FileAcc, TargetAcc, MDep, LLim, true,
-                 File, Target, MaxDepth, LoopLimit, Debug).
+parse_flags_(['--debug' | Rest], FileAcc, TargetAcc, MDep, LLim, _, Skp, SF,
+             File, Target, MaxDepth, LoopLimit, Debug, SkipFile, StopFirst) :-
+    parse_flags_(Rest, FileAcc, TargetAcc, MDep, LLim, true, Skp, SF,
+                 File, Target, MaxDepth, LoopLimit, Debug, SkipFile, StopFirst).
 
-parse_flags_(['--maxdepth', VS | Rest], FileAcc, TargetAcc, _, LLim, Dbg,
-             File, Target, MaxDepth, LoopLimit, Debug) :-
+parse_flags_(['--stop-first' | Rest], FileAcc, TargetAcc, MDep, LLim, Dbg, Skp, _,
+             File, Target, MaxDepth, LoopLimit, Debug, SkipFile, StopFirst) :-
+    parse_flags_(Rest, FileAcc, TargetAcc, MDep, LLim, Dbg, Skp, true,
+                 File, Target, MaxDepth, LoopLimit, Debug, SkipFile, StopFirst).
+
+parse_flags_(['--maxdepth', VS | Rest], FileAcc, TargetAcc, _, LLim, Dbg, Skp, SF,
+             File, Target, MaxDepth, LoopLimit, Debug, SkipFile, StopFirst) :-
     parse_int_arg(VS, N),
-    parse_flags_(Rest, FileAcc, TargetAcc, N, LLim, Dbg,
-                 File, Target, MaxDepth, LoopLimit, Debug).
+    parse_flags_(Rest, FileAcc, TargetAcc, N, LLim, Dbg, Skp, SF,
+                 File, Target, MaxDepth, LoopLimit, Debug, SkipFile, StopFirst).
 
-parse_flags_(['--looplimit', VS | Rest], FileAcc, TargetAcc, MDep, _, Dbg,
-             File, Target, MaxDepth, LoopLimit, Debug) :-
+parse_flags_(['--looplimit', VS | Rest], FileAcc, TargetAcc, MDep, _, Dbg, Skp, SF,
+             File, Target, MaxDepth, LoopLimit, Debug, SkipFile, StopFirst) :-
     parse_int_arg(VS, N),
-    parse_flags_(Rest, FileAcc, TargetAcc, MDep, N, Dbg,
-                 File, Target, MaxDepth, LoopLimit, Debug).
+    parse_flags_(Rest, FileAcc, TargetAcc, MDep, N, Dbg, Skp, SF,
+                 File, Target, MaxDepth, LoopLimit, Debug, SkipFile, StopFirst).
+
+parse_flags_(['--skip-file', VS | Rest], FileAcc, TargetAcc, MDep, LLim, Dbg, _, SF,
+             File, Target, MaxDepth, LoopLimit, Debug, SkipFile, StopFirst) :-
+    parse_flags_(Rest, FileAcc, TargetAcc, MDep, LLim, Dbg, VS, SF,
+                 File, Target, MaxDepth, LoopLimit, Debug, SkipFile, StopFirst).
 
 % Primo token non-flag: è File
-parse_flags_([Tok | Rest], FileAcc, TargetAcc, MDep, LLim, Dbg,
-             File, Target, MaxDepth, LoopLimit, Debug) :-
+parse_flags_([Tok | Rest], FileAcc, TargetAcc, MDep, LLim, Dbg, Skp, SF,
+             File, Target, MaxDepth, LoopLimit, Debug, SkipFile, StopFirst) :-
     \+ sub_atom(Tok, 0, 2, _, '--'),
     var(FileAcc),
-    parse_flags_(Rest, Tok, TargetAcc, MDep, LLim, Dbg,
-                 File, Target, MaxDepth, LoopLimit, Debug).
+    parse_flags_(Rest, Tok, TargetAcc, MDep, LLim, Dbg, Skp, SF,
+                 File, Target, MaxDepth, LoopLimit, Debug, SkipFile, StopFirst).
 
 % Secondo token non-flag: è Target
-parse_flags_([Tok | Rest], FileAcc, TargetAcc, MDep, LLim, Dbg,
-             File, Target, MaxDepth, LoopLimit, Debug) :-
+parse_flags_([Tok | Rest], FileAcc, TargetAcc, MDep, LLim, Dbg, Skp, SF,
+             File, Target, MaxDepth, LoopLimit, Debug, SkipFile, StopFirst) :-
     \+ sub_atom(Tok, 0, 2, _, '--'),
     nonvar(FileAcc),
     var(TargetAcc),
-    parse_flags_(Rest, FileAcc, Tok, MDep, LLim, Dbg,
-                 File, Target, MaxDepth, LoopLimit, Debug).
+    parse_flags_(Rest, FileAcc, Tok, MDep, LLim, Dbg, Skp, SF,
+                 File, Target, MaxDepth, LoopLimit, Debug, SkipFile, StopFirst).
 
-parse_argv(Argv, File, Target, MaxDepth, LoopLimit, Debug) :-
+parse_argv(Argv, File, Target, MaxDepth, LoopLimit, Debug, SkipFile, StopFirst) :-
     append(_, Tail, Argv),
     Tail \= [],
-    parse_flags(Tail, File, Target, MaxDepth, LoopLimit, Debug),
+    parse_flags(Tail, File, Target, MaxDepth, LoopLimit, Debug, SkipFile, StopFirst),
     nonvar(File), nonvar(Target).
 
 main :-
     current_prolog_flag(argv, Argv),
-    (   parse_argv(Argv, File, Target, MaxDepth, LoopLimit, Debug)
+    ( memberchk('--stop-first-per-loop', Argv) ->
+        assertz(stop_per_loop),
+        delete(Argv, '--stop-first-per-loop', CleanArgv)
+    ;
+        CleanArgv = Argv
+    ),
+    (   parse_argv(CleanArgv, File, Target, MaxDepth, LoopLimit, Debug, SkipFile, StopFirst)
     ->  ( Debug == true -> enable_debug ; true ),
-        run_analysis(File, Target, MaxDepth, LoopLimit),
+        run_analysis(File, Target, MaxDepth, LoopLimit, SkipFile, StopFirst),
         halt(0)
     ;   usage,
         halt(1)

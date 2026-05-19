@@ -6,10 +6,13 @@
 # Descrizione:
 #   Analizza file .pl con l’interprete Prolog.
 #   Supporta automaticamente file .c associati (se presenti).
-#   Opzioni: --skip-existing, -l (locale), -s (server)
+#   Opzioni: --skip-existing, --stop-first, --stop-first-per-loop, ecc.
 # ==========================================================
 
 set -u
+
+# Salva la riga di comando originale prima del parsing
+ORIG_CMDLINE="$*"
 
 # ----------------------------------------------------------
 # PARSING ARGOMENTI (flag e posizionali in qualsiasi ordine)
@@ -20,7 +23,9 @@ SKIP_EXISTING="no"
 MAXDEPTH=""
 LOOPLIMIT=""
 TIMEOUT_OVERRIDE=""
-MODE=""
+SKIP_FILE=""
+STOP_FIRST="no"
+STOP_PER_LOOP="no"
 INPUT_PATH=""
 TARGET=""
 
@@ -31,7 +36,9 @@ while [ "$#" -gt 0 ]; do
     --maxdepth)      MAXDEPTH="$2";            shift 2 ;;
     --looplimit)     LOOPLIMIT="$2";           shift 2 ;;
     --timeout)       TIMEOUT_OVERRIDE="$2";    shift 2 ;;
-    -l|-s)           MODE="$1";                shift ;;
+    --skip-file)     SKIP_FILE="$2";           shift 2 ;;
+    --stop-first)          STOP_FIRST="yes";          shift ;;
+    --stop-first-per-loop) STOP_PER_LOOP="yes";       shift ;;
     *)
       if [ -z "$INPUT_PATH" ]; then
         INPUT_PATH="$1"
@@ -50,9 +57,9 @@ MAXDEPTH="${MAXDEPTH:-10000000}"
 # ----------------------------------------------------------
 # CONTROLLO ARGOMENTI OBBLIGATORI
 # ----------------------------------------------------------
-if [ -z "$MODE" ] || [ -z "$INPUT_PATH" ] || [ -z "$TARGET" ]; then
+if [ -z "$INPUT_PATH" ] || [ -z "$TARGET" ]; then
   echo "Uso:"
-  echo "  nohup $0 [--debug] [--skip-existing] [--maxdepth N] [--looplimit N] [--timeout SEC] [-l | -s] <file_o_cartella> <predicato> &"
+  echo "  nohup $0 [--debug] [--stop-first] [--stop-first-per-loop] [--skip-existing] [--maxdepth N] [--looplimit N] [--timeout SEC] [--skip-file F] <file_o_cartella> <predicato> &"
   exit 1
 fi
 
@@ -72,24 +79,12 @@ if [ ! -f "$MAIN" ]; then
 fi
 
 # ----------------------------------------------------------
-# CONFIGURAZIONE AMBIENTE
+# CONFIGURAZIONE AMBIENTE (server)
 # ----------------------------------------------------------
-if [ "$MODE" == "-s" ]; then
-  echo "🖥️ Modalità SERVER attiva"
-  SWIPL_BIN="$HOME/local/swipl-9.3.31/bin/swipl"
-  export SWIZ3_TURIBE_PATH="$HOME/verimap_projects/swi-prolog-z3"
-  export LD_LIBRARY_PATH="$HOME/local/z3-4.15.3/lib:$HOME/verimap_projects/swi-prolog-z3:$HOME/verimap_projects/swi-prolog-z3/z3/build:${LD_LIBRARY_PATH:-}"
-  TIMEOUT_SEC=60000
-
-elif [ "$MODE" == "-l" ]; then
-  echo "💻 Modalità LOCALE attiva"
-  SWIPL_BIN="$(command -v swipl || true)"
-  TIMEOUT_SEC=3000
-
-else
-  echo "❌ Modalità non riconosciuta. Usa -l o -s."
-  exit 1
-fi
+SWIPL_BIN="${SWIPL_BIN:-$HOME/local/swipl-9.3.31/bin/swipl}"
+export SWIZ3_TURIBE_PATH="${SWIZ3_TURIBE_PATH:-$HOME/verimap_projects/swi-prolog-z3}"
+export LD_LIBRARY_PATH="$HOME/local/z3-4.15.3/lib:${SWIZ3_TURIBE_PATH}:${SWIZ3_TURIBE_PATH}/z3/build:${LD_LIBRARY_PATH:-}"
+TIMEOUT_SEC=60000
 
 if [ -z "$SWIPL_BIN" ] || [ ! -x "$SWIPL_BIN" ]; then
   echo "❌ SWI-Prolog non trovato."
@@ -150,10 +145,13 @@ fi
 run_prolog() {
   local plfile="$1"
   local extra_args=()
-  [ "$DEBUG" = "yes" ]    && extra_args+=("--debug")
+  [ "$DEBUG" = "yes" ]            && extra_args+=("--debug")
+  [ "$STOP_FIRST" = "yes" ]       && extra_args+=("--stop-first")
+  [ "$STOP_PER_LOOP" = "yes" ]    && extra_args+=("--stop-first-per-loop")
   extra_args+=("$plfile" "$TARGET")
   extra_args+=("--maxdepth" "$MAXDEPTH")
-  [ -n "$LOOPLIMIT" ]     && extra_args+=("--looplimit" "$LOOPLIMIT")
+  [ -n "$LOOPLIMIT" ]        && extra_args+=("--looplimit" "$LOOPLIMIT")
+  [ -n "$SKIP_FILE" ]        && extra_args+=("--skip-file" "$SKIP_FILE")
 
   timeout ${TIMEOUT_SEC}s "$SWIPL_BIN" --stack-limit=4GB \
     -s "$MAIN_ABS" -- \
@@ -191,21 +189,43 @@ process_file() {
   echo "▶️ File: $filename (timeout ${TIMEOUT_SEC}s)"
   echo "📂 Working dir: $MAIN_DIR"
 
+  FILE_START_TS="$(date '+%Y-%m-%d %H:%M:%S')"
+  FILE_START_EPOCH="$(date +%s)"
+  echo "=== ANALISI: $filename ===" > "$tmpout"
+  echo "Comando:     bash InterpreterAnalysis5.2.sh $ORIG_CMDLINE" >> "$tmpout"
+  echo "Inizio:      $FILE_START_TS" >> "$tmpout"
+  echo "--- Parametri ---" >> "$tmpout"
+  echo "MaxDepth:    $MAXDEPTH" >> "$tmpout"
+  echo "LoopLimit:   ${LOOPLIMIT:-default}" >> "$tmpout"
+  echo "Timeout:     ${TIMEOUT_SEC}s" >> "$tmpout"
+  echo "OnlyFirstTestGlobal: $STOP_FIRST" >> "$tmpout"
+  echo "OnlyFirstPerLoop: $STOP_PER_LOOP" >> "$tmpout"
+  echo "Debug:            $DEBUG" >> "$tmpout"
+  echo "SkipIfDone:       $SKIP_EXISTING" >> "$tmpout"
+  [ -n "$SKIP_FILE" ] && echo "SkipFile:    $SKIP_FILE" >> "$tmpout"
+  echo "-----------------" >> "$tmpout"
+  echo "" >> "$tmpout"
+
   (
     cd "$MAIN_DIR" || exit 1
     run_prolog "$FILE_ABS"
-  ) > "$tmpout" 2>&1
+  ) >> "$tmpout" 2>&1
 
   EXIT_CODE=$?
+
+  FILE_END_TS="$(date '+%Y-%m-%d %H:%M:%S')"
+  FILE_ELAPSED=$(( $(date +%s) - FILE_START_EPOCH ))
+  FILE_ELAPSED_FMT="$(printf '%02dh %02dm %02ds' $((FILE_ELAPSED/3600)) $(((FILE_ELAPSED%3600)/60)) $((FILE_ELAPSED%60)))"
+  echo "" >> "$tmpout"
+  echo "Fine:   $FILE_END_TS" >> "$tmpout"
+  echo "Durata: $FILE_ELAPSED_FMT" >> "$tmpout"
 
   # ----------------------------------------------------------
   # TAGGING OUTPUT (IDENTICO A 5.0)
   # ----------------------------------------------------------
   [ $EXIT_CODE -eq 124 ] && STATUS="timeout" || STATUS="NoTimeoutReached"
 
-  MaxDepth="$(grep -oP "MaxDepth impostato a: \K[0-9]+" "$tmpout" 2>/dev/null || true)"
-  [ -z "$MaxDepth" ] && MaxDepth="unknown"
-  TAG_MAXDEPTH="MaxDepth${MaxDepth}"
+  TAG_MAXDEPTH="MaxDepth${MAXDEPTH}"
 
   TAG_LIMIT=$(grep -q "Limite MaxDepth raggiunto" "$tmpout" && echo "MaxDepthReached" || echo "MaxDepthNotReached")
   TAG_PUSH=$(grep -q "z3_push_failed" "$tmpout" && echo "Z3PushFailed" || echo "Z3PushOK")
@@ -236,27 +256,32 @@ process_file() {
 
 export -f process_file
 export -f run_prolog
-# export -f find_associated_c_file
-export MAIN SWIPL_BIN TIMEOUT_SEC TARGET SKIP_EXISTING MAXDEPTH LOOPLIMIT
+export MAIN SWIPL_BIN TIMEOUT_SEC TARGET SKIP_EXISTING MAXDEPTH LOOPLIMIT SKIP_FILE STOP_FIRST STOP_PER_LOOP ORIG_CMDLINE DEBUG
 
-export DEBUG
 # ----------------------------------------------------------
 # ESECUZIONE
 # ----------------------------------------------------------
+START_TS="$(date '+%Y-%m-%d %H:%M:%S')"
+START_EPOCH="$(date +%s)"
+echo "🕐 Inizio analisi: $START_TS"
+echo "==========================================="
+
 if [ -d "$INPUT_PATH" ]; then
-  if [ "$MODE" == "-s" ]; then
-    echo "⚙️ Esecuzione parallela su: $INPUT_PATH"
-    find "$INPUT_PATH" -type f -name "*.pl" -exec readlink -f {} \; \
-      | parallel -j 16 process_file {}
-  else
-    echo "⚙️ Esecuzione sequenziale"
-    find "$INPUT_PATH" -type f -name "*.pl" -exec readlink -f {} \; \
-      | while read -r file; do process_file "$file"; done
-  fi
+  echo "⚙️ Esecuzione parallela su: $INPUT_PATH"
+  find "$INPUT_PATH" -type f -name "*.pl" -exec readlink -f {} \; \
+    | parallel -j 16 process_file {}
 else
   process_file "$(readlink -f "$INPUT_PATH")"
 fi
 
+END_TS="$(date '+%Y-%m-%d %H:%M:%S')"
+END_EPOCH="$(date +%s)"
+ELAPSED=$(( END_EPOCH - START_EPOCH ))
+ELAPSED_FMT="$(printf '%02dh %02dm %02ds' $((ELAPSED/3600)) $(((ELAPSED%3600)/60)) $((ELAPSED%60)))"
+
 echo "==========================================="
 echo "✅ Analisi completata!"
+echo "🕐 Inizio:  $START_TS"
+echo "🕑 Fine:    $END_TS"
+echo "⏱️  Durata:  $ELAPSED_FMT"
 echo "==========================================="

@@ -1,0 +1,313 @@
+#!/usr/bin/env python3
+"""
+zmiout2vars.py
+Usage: python3 zmiout2vars.py <contract.sol> <defs.txt> <analysis.zmiout>
+
+For each Solidity variable, finds which predicate in the call trace carries it,
+at which argument position, and what concrete value Z3 assigned.
+Output is written to <analysis.zmiout>.vars.txt
+"""
+import re, sys
+
+
+# ---- Parsing helpers ----
+
+def parse_state_vars(sol):
+    contract_body = re.search(r'contract\s+\w+\s*\{(.*)', sol, re.DOTALL)
+    if not contract_body:
+        return []
+    body = contract_body.group(1)
+    before_funcs = re.split(r'\bfunction\b', body)[0]
+    return re.findall(
+        r'^\s+(?:uint\d*|int\d*|address|bool|bytes\d*)\s+(?:(?:public|private|internal|constant)\s+)*(\w+)\s*[=;]',
+        before_funcs, re.MULTILINE)
+
+def parse_func_args(sol, func):
+    m = re.search(rf'function\s+{func}\s*\(([^)]*)\)', sol)
+    if not m or not m.group(1).strip():
+        return []
+    args = []
+    for part in m.group(1).split(','):
+        tokens = part.strip().split()
+        if tokens:
+            args.append(tokens[-1])
+    return args
+
+def load_defs_blocks(defs):
+    return re.split(r'\n(?=new\d+\()', defs)
+
+def detect_func_name(blocks):
+    for block in blocks:
+        if re.match(r'new2\(', block):
+            m = re.search(r'fun_call\(subO_fun_(\w+?)_\d+,', block)
+            if m:
+                return m.group(1)
+    return None
+
+def get_param_list(block):
+    m = re.match(r'new\d+\(([^)]+)\)', block)
+    if not m:
+        return []
+    return [p.strip() for p in m.group(1).split(',')]
+
+def parse_env_slots(block):
+    start = re.split(r',cf\(', block)[0]
+    m = re.search(r"\('msg\.value',\w+\)((?:,\(\d+,[A-Z]\d*\))*)\]", start)
+    if not m:
+        return {}
+    return {int(s.group(1)): s.group(2)
+            for s in re.finditer(r'\((\d+),([A-Z]\d*)\)', m.group(1))}
+
+def find_block(blocks, name):
+    for block in blocks:
+        if re.match(rf'{name}\(', block):
+            return block
+    return None
+
+def find_body_from_trace(trace_dict, blocks, n_args):
+    for name in trace_dict:
+        block = find_block(blocks, name)
+        if block is None:
+            continue
+        if 'subO_' not in block:
+            continue
+        start = re.split(r',cf\(', block)[0]
+        locals_ = {int(v): l for v, l in re.findall(r'\(v(\d+),([A-Z]\d*)\)', start)}
+        if n_args == 0 or all(i in locals_ for i in range(n_args)):
+            return name, locals_, get_param_list(block)
+    return None, {}, []
+
+
+# ---- constraint extraction ----
+
+def parse_incorrect_line(block):
+    """Return the raw constraint string from the INCORRECT/FF FOUND line."""
+    m = re.search(r'INCORRECT/FF FOUND:\s*(.*)', block)
+    return m.group(1) if m else ""
+
+def split_clauses(text):
+    """Split comma-separated constraint clauses respecting parentheses depth."""
+    clauses, current, depth = [], [], 0
+    for ch in text:
+        if ch == '(':
+            depth += 1
+        elif ch == ')':
+            depth -= 1
+        if ch == ',' and depth == 0:
+            clauses.append(''.join(current).strip())
+            current = []
+        else:
+            current.append(ch)
+    if current:
+        clauses.append(''.join(current).strip())
+    return clauses
+
+def extract_var_constraints(clauses, rv_to_sol):
+    """Return clauses that mention at least one named runtime variable, raw."""
+    results = []
+    for clause in clauses:
+        if ':int=' in clause or clause == 'true':
+            continue
+        if not any(rv in clause for rv in rv_to_sol):
+            continue
+        results.append(clause)
+    return results
+
+
+# ---- zmiout parsing ----
+
+def split_tests(zmiout):
+    """Split zmiout into individual test blocks by TEST #N marker."""
+    parts = re.split(r'={3,}\s*TEST #\d+\s*={3,}', zmiout)
+    return [p for p in parts if 'CALL TRACE' in p or 'model{' in p]
+
+def parse_call_trace(block):
+    trace = []
+    in_trace = False
+    for line in block.split('\n'):
+        s = line.strip()
+        if 'CALL TRACE' in s:
+            in_trace = True
+            continue
+        if in_trace:
+            if 'MODELLO Z3' in s or s.startswith('model{'):
+                break
+            m = re.match(r'(new\d+)\((.+)\)\s*$', s)
+            if m:
+                args = [a.strip() for a in m.group(2).split(',')]
+                trace.append((m.group(1), args))
+    return trace
+
+def parse_z3_model(block):
+    m = re.search(r'model\{constants:\[([^\]]+)\]', block)
+    if not m:
+        return {}
+    model = {}
+    for item in m.group(1).split(','):
+        kv = item.strip().split('=', 1)
+        if len(kv) == 2:
+            key, val = kv[0].strip(), kv[1].strip()
+            if re.match(r'^-?\d+$', val):
+                model[key] = int(val)
+    return model
+
+def process_test(test_block, blocks, state_vars, func, func_args):
+    n_args = len(func_args)
+    call_trace = parse_call_trace(test_block)
+    z3_model   = parse_z3_model(test_block)
+
+    trace_dict = {}
+    for name, args in call_trace:
+        if name not in trace_dict:
+            trace_dict[name] = args
+
+    lines = []
+    new2_args = trace_dict.get('new2')
+
+    lines.append("=== STATE VARIABLES (valori POST-chiamata) ===")
+
+    ref_name, ref_env, ref_params = None, {}, []
+    for cname in trace_dict:
+        block = find_block(blocks, cname)
+        if block is None:
+            continue
+        if 'subO_' not in block:
+            continue
+        env = parse_env_slots(block)
+        if env:
+            ref_name   = cname
+            ref_env    = env
+            ref_params = get_param_list(block)
+            break
+
+    if new2_args is None:
+        lines.append("  (new2 not found in call trace)")
+    elif ref_name is None:
+        lines.append("  (no subO_ predicate with env slots found in trace)")
+    else:
+        offset = len(new2_args) // 2
+        for i, var in enumerate(state_vars):
+            letter = ref_env.get(i)
+            if letter is None:
+                lines.append(f"  {var:<12}  slot {i}  ->  slot not found in env")
+                continue
+            if letter not in ref_params:
+                lines.append(f"  {var:<12}  slot {i}  ->  letter {letter} not in param list")
+                continue
+            pre_pos  = ref_params.index(letter)
+            post_pos = pre_pos + offset
+            rv  = new2_args[post_pos] if post_pos < len(new2_args) else '?'
+            val = z3_model.get(rv, '?')
+            lines.append(f"  {var:<12}  slot {i}  ->  pos {post_pos} in new2  ->  {rv}  =  {val}")
+
+    lines.append("")
+    lines.append(f"=== FUNCTION ARGS: {func}({', '.join(func_args)}) ===")
+
+    chosen_name, chosen_locals, chosen_params = find_body_from_trace(
+        trace_dict, blocks, n_args
+    )
+
+    if chosen_name is None:
+        lines.append("  (no body predicate found)")
+    else:
+        body_args = trace_dict.get(chosen_name)
+        for j, arg in enumerate(func_args):
+            letter = chosen_locals.get(j)
+            if letter is None:
+                lines.append(f"  {arg:<12}  v{j}  ->  letter NOT FOUND in defs")
+                continue
+            if letter not in chosen_params:
+                lines.append(f"  {arg:<12}  v{j} = {letter}  ->  not in param list of {chosen_name}")
+                continue
+            pos = chosen_params.index(letter)
+            if body_args and pos < len(body_args):
+                rv  = body_args[pos]
+                val = z3_model.get(rv, '?')
+                lines.append(f"  {arg:<12}  v{j} = {letter}  ->  pos {pos} in {chosen_name}  ->  {rv}  =  {val}")
+            else:
+                lines.append(f"  {arg:<12}  v{j} = {letter}  ->  pos {pos} in {chosen_name}  ->  NOT IN TRACE")
+
+    # ---- constraint section ----
+    # Build runtime_var -> solidity_name map from what we resolved above
+    rv_to_sol = {}
+
+    if new2_args is not None and ref_name is not None:
+        offset = len(new2_args) // 2
+        for i, var in enumerate(state_vars):
+            letter = ref_env.get(i)
+            if letter and letter in ref_params:
+                post_pos = ref_params.index(letter) + offset
+                if post_pos < len(new2_args):
+                    rv_to_sol[new2_args[post_pos]] = var
+
+    if chosen_name is not None:
+        body_args = trace_dict.get(chosen_name)
+        for j, arg in enumerate(func_args):
+            letter = chosen_locals.get(j)
+            if letter and letter in chosen_params:
+                pos = chosen_params.index(letter)
+                if body_args and pos < len(body_args):
+                    rv_to_sol[body_args[pos]] = arg
+
+    if rv_to_sol:
+        raw = parse_incorrect_line(test_block)
+        clauses = split_clauses(raw)
+        constraints = extract_var_constraints(clauses, rv_to_sol)
+        lines.append("")
+        lines.append("=== VINCOLI SULLE VARIABILI SOLIDITY ===")
+        if constraints:
+            for c in constraints:
+                lines.append(f"  {c}")
+        else:
+            lines.append("  (nessun vincolo trovato)")
+
+    return lines
+
+
+# ---- Main ----
+
+def main():
+    if len(sys.argv) != 4:
+        print("Usage: zmiout2vars.py <contract.sol> <defs.txt> <analysis.zmiout>")
+        sys.exit(1)
+
+    sol_path    = sys.argv[1]
+    defs_path   = sys.argv[2]
+    zmiout_path = sys.argv[3]
+
+    sol    = open(sol_path).read()
+    defs   = open(defs_path).read()
+    zmiout = open(zmiout_path).read()
+
+    out_path = zmiout_path + ".vars.txt"
+
+    blocks     = load_defs_blocks(defs)
+    func       = detect_func_name(blocks)
+    if not func:
+        print("ERROR: function name not found in new2 (no fun_call with subO_fun_)")
+        sys.exit(1)
+
+    state_vars = parse_state_vars(sol)
+    func_args  = parse_func_args(sol, func)
+
+    tests = split_tests(zmiout)
+    if not tests:
+        tests = [zmiout]  # single test, no markers
+
+    all_lines = []
+    for i, test_block in enumerate(tests, 1):
+        if len(tests) > 1:
+            all_lines.append(f"================ TEST #{i} ================")
+        all_lines.extend(process_test(test_block, blocks, state_vars, func, func_args))
+        all_lines.append("")
+
+    output = "\n".join(all_lines) + "\n"
+
+    with open(out_path, 'w') as f:
+        f.write(output)
+
+    print(f"Output scritto in: {out_path} ({len(tests)} test trovati)")
+
+
+if __name__ == '__main__':
+    main()
