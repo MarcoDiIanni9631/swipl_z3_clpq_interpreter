@@ -103,94 +103,69 @@ def _split_and_at_depth0(s):
         parts.append(''.join(current).strip())
     return [p for p in parts if p]
 
-def _parse_z3_term(s, var_map):
-    from z3 import Int, IntVal
-    s = s.strip()
-    if re.match(r'^-?\d+$', s):
-        return IntVal(int(s))
-    m = re.search(r'^(.+)\+(.+?)$', s)
+def _expr_to_smt2(s):
+    """Convert arithmetic expression to SMT-LIB (handles + and -)."""
+    m = re.search(r'^(.+?)\+(.+)$', s)
     if m:
-        return _parse_z3_term(m.group(1), var_map) + _parse_z3_term(m.group(2), var_map)
-    m = re.search(r'^(.+)-(.+?)$', s)
+        return f'(+ {m.group(1).strip()} {m.group(2).strip()})'
+    m = re.search(r'^(.+?)-(.+)$', s)
     if m:
-        return _parse_z3_term(m.group(1), var_map) - _parse_z3_term(m.group(2), var_map)
-    if s not in var_map:
-        var_map[s] = Int(s)
-    return var_map[s]
+        return f'(- {m.group(1).strip()} {m.group(2).strip()})'
+    return s
 
-def _parse_z3_atom(s, var_map):
-    from z3 import Not, BoolVal
+def _atom_to_smt2(s):
+    """Convert a single constraint atom string to SMT-LIB format."""
     s = s.strip()
     m = re.match(r'^not\((.+)\)$', s)
     if m:
-        return Not(_parse_z3_atom(m.group(1), var_map))
-    m = re.match(r'^(.+?)(>=|=<|<=|>|<|=)(.+)$', s)
+        return f'(not {_atom_to_smt2(m.group(1))})'
+    for pat, tmpl in [
+        (r'^(.+?)=<(.+)$', '(<= {0} {1})'),   # Prolog =<
+        (r'^(.+?)>=(.+)$', '(>= {0} {1})'),
+        (r'^(.+?)>(.+)$',  '(> {0} {1})'),
+        (r'^(.+?)<(.+)$',  '(< {0} {1})'),
+    ]:
+        m = re.match(pat, s)
+        if m:
+            return tmpl.format(m.group(1).strip(), m.group(2).strip())
+    m = re.match(r'^(.+?)=(.+)$', s)
     if m:
-        lhs = _parse_z3_term(m.group(1), var_map)
-        rhs = _parse_z3_term(m.group(3), var_map)
-        op  = m.group(2)
-        if op == '=':  return lhs == rhs
-        if op == '>':  return lhs > rhs
-        if op == '<':  return lhs < rhs
-        if op == '>=': return lhs >= rhs
-        if op in ('<=', '=<'): return lhs <= rhs
-    return BoolVal(True)
-
-def _parse_z3_constraint(s, var_map):
-    from z3 import And
-    atoms = []
-    for a in _split_and_at_depth0(s):
-        try:
-            atoms.append(_parse_z3_atom(a, var_map))
-        except Exception:
-            pass
-    if not atoms:
-        from z3 import BoolVal; return BoolVal(True)
-    return And(atoms) if len(atoms) > 1 else atoms[0]
-
-def _project_constraints_fallback(constraints, rv_to_sol):
-    """Fallback: string substitution of runtime vars → Solidity names."""
-    results = []
-    for c in constraints:
-        s = c
-        for rv, name in rv_to_sol.items():
-            s = re.sub(r'\b' + re.escape(rv) + r'\b', name, s)
-        if any(name in s for name in rv_to_sol.values()):
-            results.append(s)
-    return results if results else ["(nessun vincolo con variabili Solidity)"]
+        return f'(= {m.group(1).strip()} {_expr_to_smt2(m.group(2).strip())})'
+    return 'true'
 
 def project_constraints(constraints, rv_to_sol):
-    """Apply Z3 qe to project constraints onto Solidity variables only."""
+    """Apply Z3 qe to project constraints onto Solidity variables only (SMT-LIB approach)."""
     try:
-        from z3 import And, Exists, Tactic, Goal, Int, substitute
+        from z3 import And, Exists, Tactic, Goal, Int, substitute, parse_smt2_string
     except ImportError:
-        return _project_constraints_fallback(constraints, rv_to_sol)
+        return ["(z3 non disponibile)"]
 
-    var_map = {}
-    z3_exprs = []
-    for c in constraints:
-        try:
-            z3_exprs.append(_parse_z3_constraint(c, var_map))
-        except Exception:
-            pass
+    text = ' and '.join(constraints)
+    atoms = _split_and_at_depth0(text)
+    smt_atoms = [_atom_to_smt2(a) for a in atoms if a.strip()]
 
-    if not z3_exprs:
-        return _project_constraints_fallback(constraints, rv_to_sol)
+    all_vars = sorted(set(re.findall(r'_\d+', text)))
+    decls = '\n'.join(f'(declare-const {v} Int)' for v in all_vars)
+    body  = f'(and {" ".join(smt_atoms)})' if len(smt_atoms) > 1 else (smt_atoms[0] if smt_atoms else 'true')
 
-    formula = And(z3_exprs) if len(z3_exprs) > 1 else z3_exprs[0]
+    try:
+        formula = And(parse_smt2_string(f'{decls}\n(assert {body})'))
+    except Exception as e:
+        return [f"(errore parse SMT-LIB: {e})"]
+
     interesting = set(rv_to_sol.keys())
-    vars_to_elim = [v for k, v in var_map.items() if k not in interesting]
+    vars_to_elim = [Int(v) for v in all_vars if v not in interesting]
 
     if vars_to_elim:
         try:
             g = Goal(); g.add(Exists(vars_to_elim, formula))
             result = Tactic('qe')(g).as_expr()
-        except Exception:
-            return _project_constraints_fallback(constraints, rv_to_sol)
+        except Exception as e:
+            return [f"(errore QE: {e})"]
     else:
         result = formula
 
-    subst = [(var_map[rv], Int(name)) for rv, name in rv_to_sol.items() if rv in var_map]
+    subst = [(Int(rv), Int(name)) for rv, name in rv_to_sol.items() if rv in set(all_vars)]
     if subst:
         result = substitute(result, subst)
 
@@ -404,7 +379,7 @@ def main():
     defs   = open(defs_path).read()
     zmiout = open(zmiout_path).read()
 
-    out_path = zmiout_path + ".vars_z3.txt"
+    out_path = zmiout_path + ".vars_smt.txt"
 
     blocks           = load_defs_blocks(defs)
     func, entry_pred = detect_func_and_entry(blocks)

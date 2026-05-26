@@ -26,9 +26,10 @@ import shutil
 #   SOL2TPL_GREY     = /home/labeconomia/mdiianni/verimap_projects/grey
 #   SOL2TPL_YULCHC   = /home/labeconomia/mdiianni/verimap_projects/yul-chc
 
-PATH_GREY       = os.environ.get("SOL2TPL_GREY",    "/home/marco/Downloads/grey")
-PATH_YUL_CHC    = os.environ.get("SOL2TPL_YULCHC",  "/home/marco/Desktop/yul9Marzo/yul-chc")
-SOLC_PATH       = os.environ.get("SOL2TPL_SOLC",    os.path.join(PATH_GREY, "solc-latest"))
+_VERIMAP        = "/home/labeconomia/mdiianni/verimap_projects"
+PATH_GREY       = os.environ.get("SOL2TPL_GREY",   os.path.join(_VERIMAP, "grey"))
+PATH_YUL_CHC    = os.environ.get("SOL2TPL_YULCHC", os.path.join(_VERIMAP, "yul-chc"))
+SOLC_PATH       = os.environ.get("SOL2TPL_SOLC",   os.path.join(PATH_GREY, "solc-latest"))
 TRANSFORM_BIN   = os.path.join(PATH_YUL_CHC, "scripts/transform")
 TRANSFORM_CFG   = "lib/yul/configs/vcg_multistep.iteration"
 

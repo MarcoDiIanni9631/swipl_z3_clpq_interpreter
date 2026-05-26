@@ -1,13 +1,10 @@
 #!/usr/bin/env python3
 """
-zmiout2vars.py
-Usage: python3 zmiout2vars.py <contract.sol> <defs.txt> <analysis.zmiout>
-
-For each Solidity variable, finds which predicate in the call trace carries it,
-at which argument position, and what concrete value Z3 assigned.
-Output is written to <analysis.zmiout>.vars.txt
+zmiout2vars_clpq.py
+Same pipeline as zmiout2vars.py but projects constraints via SWI-Prolog CLPQ dump/3.
+Usage: python3 zmiout2vars_clpq.py <contract.sol> <defs.txt> <analysis.zmiout>
 """
-import re, sys
+import re, sys, subprocess, tempfile, os
 
 
 # ---- Parsing helpers ----
@@ -81,7 +78,7 @@ def find_body_from_trace(trace_dict, blocks, n_args):
     return None, {}, []
 
 
-# ---- Z3 quantifier elimination projection ----
+# ---- CLPQ projection ----
 
 def _split_and_at_depth0(s):
     """Split 's' on 'and' at parenthesis depth 0."""
@@ -103,98 +100,103 @@ def _split_and_at_depth0(s):
         parts.append(''.join(current).strip())
     return [p for p in parts if p]
 
-def _parse_z3_term(s, var_map):
-    from z3 import Int, IntVal
-    s = s.strip()
-    if re.match(r'^-?\d+$', s):
-        return IntVal(int(s))
-    m = re.search(r'^(.+)\+(.+?)$', s)
-    if m:
-        return _parse_z3_term(m.group(1), var_map) + _parse_z3_term(m.group(2), var_map)
-    m = re.search(r'^(.+)-(.+?)$', s)
-    if m:
-        return _parse_z3_term(m.group(1), var_map) - _parse_z3_term(m.group(2), var_map)
-    if s not in var_map:
-        var_map[s] = Int(s)
-    return var_map[s]
-
-def _parse_z3_atom(s, var_map):
-    from z3 import Not, BoolVal
+def _atom_to_clpq(s):
+    """Convert a constraint atom string to CLPQ Prolog syntax."""
     s = s.strip()
     m = re.match(r'^not\((.+)\)$', s)
     if m:
-        return Not(_parse_z3_atom(m.group(1), var_map))
-    m = re.match(r'^(.+?)(>=|=<|<=|>|<|=)(.+)$', s)
+        inner = m.group(1).strip()
+        m2 = re.match(r'^(.+?)=(.+)$', inner)
+        if m2:
+            return f'{m2.group(1).strip()} =\\= {m2.group(2).strip()}'
+        return None
+    for pat, tmpl in [
+        (r'^(.+?)=<(.+)$', '{0} =< {1}'),
+        (r'^(.+?)>=(.+)$', '{0} >= {1}'),
+        (r'^(.+?)>(.+)$',  '{0} > {1}'),
+        (r'^(.+?)<(.+)$',  '{0} < {1}'),
+    ]:
+        m = re.match(pat, s)
+        if m:
+            return tmpl.format(m.group(1).strip(), m.group(2).strip())
+    m = re.match(r'^(.+?)=(.+)$', s)
     if m:
-        lhs = _parse_z3_term(m.group(1), var_map)
-        rhs = _parse_z3_term(m.group(3), var_map)
-        op  = m.group(2)
-        if op == '=':  return lhs == rhs
-        if op == '>':  return lhs > rhs
-        if op == '<':  return lhs < rhs
-        if op == '>=': return lhs >= rhs
-        if op in ('<=', '=<'): return lhs <= rhs
-    return BoolVal(True)
-
-def _parse_z3_constraint(s, var_map):
-    from z3 import And
-    atoms = []
-    for a in _split_and_at_depth0(s):
-        try:
-            atoms.append(_parse_z3_atom(a, var_map))
-        except Exception:
-            pass
-    if not atoms:
-        from z3 import BoolVal; return BoolVal(True)
-    return And(atoms) if len(atoms) > 1 else atoms[0]
-
-def _project_constraints_fallback(constraints, rv_to_sol):
-    """Fallback: string substitution of runtime vars → Solidity names."""
-    results = []
-    for c in constraints:
-        s = c
-        for rv, name in rv_to_sol.items():
-            s = re.sub(r'\b' + re.escape(rv) + r'\b', name, s)
-        if any(name in s for name in rv_to_sol.values()):
-            results.append(s)
-    return results if results else ["(nessun vincolo con variabili Solidity)"]
+        return f'{m.group(1).strip()} = {m.group(2).strip()}'
+    return None
 
 def project_constraints(constraints, rv_to_sol):
-    """Apply Z3 qe to project constraints onto Solidity variables only."""
+    """Project constraints onto Solidity variables using SWI-Prolog CLPQ dump/3.
+    Bound vars (unified to a value by CLPQ) are printed directly.
+    Free vars get a joint dump so internal variables are fully eliminated.
+    """
+    text = ' and '.join(constraints)
+    atoms = _split_and_at_depth0(text)
+    clpq_atoms = [f'    {{{c}}}' for a in atoms for c in [_atom_to_clpq(a)] if c]
+
+    if not clpq_atoms:
+        return ["(nessun vincolo convertibile in CLPQ)"]
+
+    interesting = list(rv_to_sol.keys())
+    sol_names   = [rv_to_sol[v] for v in interesting]
+    pairs_str   = '[' + ', '.join(f"{rv}-'{sol}'" for rv, sol in zip(interesting, sol_names)) + ']'
+
+    script = (
+        ':- style_check(-singleton).\n'
+        ':- use_module(library(clpq)).\n'
+        ':- use_module(library(apply)).\n'
+        ':- use_module(library(pairs)).\n\n'
+
+        'replace_all(S, [], [], S).\n'
+        'replace_all(S, [NV|NVs], [Name|Names], Result) :-\n'
+        '    term_string(NV, NVS),\n'
+        '    atomic_list_concat(Parts, NVS, S),\n'
+        '    atomic_list_concat(Parts, Name, S2),\n'
+        '    replace_all(S2, NVs, Names, Result).\n\n'
+
+        'project :-\n'
+        + ',\n'.join(clpq_atoms) + ',\n'
+        f'    Pairs = {pairs_str},\n'
+        '    partition([P]>>(P=V-_,number(V)), Pairs, BoundPairs, FreePairs),\n'
+        '    forall(member(V-N, BoundPairs), format("~w=~w~n", [N, V])),\n'
+        '    (FreePairs = [] -> true ;\n'
+        '        pairs_keys(FreePairs, FreeVars),\n'
+        '        pairs_values(FreePairs, FreeNames),\n'
+        '        length(FreeVars, NF), length(NewVars, NF),\n'
+        '        dump(FreeVars, NewVars, Cs),\n'
+        '        forall(member(C, Cs), (\n'
+        '            term_string(C, CS),\n'
+        '            replace_all(CS, NewVars, FreeNames, Result),\n'
+        '            writeln(Result)\n'
+        '        ))\n'
+        '    ).\n\n'
+        ':- (project -> true ; write(clpq_failed), nl), halt.\n'
+    )
+
+    with tempfile.NamedTemporaryFile(mode='w', suffix='.pl', delete=False) as f:
+        f.write(script); tmp = f.name
+
     try:
-        from z3 import And, Exists, Tactic, Goal, Int, substitute
-    except ImportError:
-        return _project_constraints_fallback(constraints, rv_to_sol)
+        res = subprocess.run(['swipl', '-q', tmp],
+                             capture_output=True, text=True, timeout=30)
+        out = res.stdout.strip()
+    except subprocess.TimeoutExpired:
+        return ["(timeout CLPQ)"]
+    except FileNotFoundError:
+        return ["(swipl non trovato nel PATH)"]
+    finally:
+        os.unlink(tmp)
 
-    var_map = {}
-    z3_exprs = []
-    for c in constraints:
-        try:
-            z3_exprs.append(_parse_z3_constraint(c, var_map))
-        except Exception:
-            pass
+    if not out or 'clpq_failed' in out:
+        err = res.stderr.strip()
+        return [f"(CLPQ fallito: {err[:300] if err else 'nessun output'})"]
 
-    if not z3_exprs:
-        return _project_constraints_fallback(constraints, rv_to_sol)
-
-    formula = And(z3_exprs) if len(z3_exprs) > 1 else z3_exprs[0]
-    interesting = set(rv_to_sol.keys())
-    vars_to_elim = [v for k, v in var_map.items() if k not in interesting]
-
-    if vars_to_elim:
-        try:
-            g = Goal(); g.add(Exists(vars_to_elim, formula))
-            result = Tactic('qe')(g).as_expr()
-        except Exception:
-            return _project_constraints_fallback(constraints, rv_to_sol)
-    else:
-        result = formula
-
-    subst = [(var_map[rv], Int(name)) for rv, name in rv_to_sol.items() if rv in var_map]
-    if subst:
-        result = substitute(result, subst)
-
-    return [str(result)]
+    seen = set()
+    result = []
+    for l in out.split('\n'):
+        l = l.strip()
+        if l and l not in seen:
+            seen.add(l); result.append(l)
+    return result
 
 
 # ---- constraint extraction ----
@@ -378,7 +380,7 @@ def process_test(test_block, blocks, state_vars, func, func_args, entry_pred='ne
         lines.append("  (nessun vincolo trovato)")
 
     lines.append("")
-    lines.append("=== VINCOLI PROIETTATI (solo variabili Solidity) ===")
+    lines.append("=== VINCOLI PROIETTATI CLPQ (solo variabili Solidity) ===")
     if rv_to_sol:
         projected = project_constraints(constraints, rv_to_sol)
         for p in projected:
@@ -404,7 +406,7 @@ def main():
     defs   = open(defs_path).read()
     zmiout = open(zmiout_path).read()
 
-    out_path = zmiout_path + ".vars_z3.txt"
+    out_path = zmiout_path + ".vars_clpq.txt"
 
     blocks           = load_defs_blocks(defs)
     func, entry_pred = detect_func_and_entry(blocks)

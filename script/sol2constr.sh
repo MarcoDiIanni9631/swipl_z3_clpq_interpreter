@@ -103,9 +103,6 @@ echo ""
 echo "🔄 Step 1: sol → .t.pl  (grey server)..."
 run_on_server "
   set -e
-  export SOL2TPL_GREY='$SERVER_GREY'
-  export SOL2TPL_YULCHC='$SERVER_YULCHC'
-  export SOL2TPL_SOLC='$SERVER_GREY/solc-latest'
   python3 '$SERVER_SOL2TPL' '$SERVER_SOL' $FUNC_ARG
   echo '✅ .t.pl generato'
 "

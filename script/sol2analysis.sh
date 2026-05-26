@@ -6,7 +6,9 @@
 #
 # Opzioni pipeline:
 #   --until-tpl          : ferma dopo la conversione (sol → t.pl), no analisi
-#   --vars               : dopo l'analisi genera anche il .vars.txt
+#   --varz3              : dopo l'analisi genera .vars.txt con zmiout2vars.py (Z3)
+#   --varclpq            : dopo l'analisi genera .vars.txt con zmiout2vars_clpq.py
+#   --varsmt             : dopo l'analisi genera .vars.txt con zmiout2vars_smtlib.py
 #   --graph              : genera il grafo CHC (combinabile con tutti)
 #
 # Opzioni analisi (passate a InterpreterAnalysis5.2.sh):
@@ -16,8 +18,8 @@
 # Esempi:
 #   nohup bash sol2analysis.sh test/MyContract.sol incorrect &
 #   nohup bash sol2analysis.sh --until-tpl --graph test/MyContract.sol incorrect &
-#   nohup bash sol2analysis.sh --vars --graph test/MyContract.sol incorrect &
-#   nohup bash sol2analysis.sh --stop-first-per-loop --vars --graph \
+#   nohup bash sol2analysis.sh --varz3 --graph test/MyContract.sol incorrect &
+#   nohup bash sol2analysis.sh --stop-first-per-loop --varz3 --graph \
 #        test/MyContract.sol myFunc incorrect &
 # ====================================================================
 
@@ -25,7 +27,10 @@ set -u
 
 SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
 SOL2CONSTR="$SCRIPT_DIR/sol2constr.sh"
-ZMIOUT2VARS="$SCRIPT_DIR/zmiout2vars.py"
+ZMIOUT2VARS_Z3="$SCRIPT_DIR/zmiout2vars.py"
+ZMIOUT2VARS_CLPQ="$SCRIPT_DIR/zmiout2vars_clpq.py"
+ZMIOUT2VARS_SMT="$SCRIPT_DIR/zmiout2vars_smtlib.py"
+ANNOTATE_SOL="$SCRIPT_DIR/annotate_sol.py"
 
 LOCAL_BASE="/home/marco/remote_verimap"
 SERVER_USER="mdiianni"
@@ -67,8 +72,11 @@ usage() {
   echo ""
   echo "  Opzioni pipeline:"
   echo "    --until-tpl          ferma dopo conversione (no analisi)"
-  echo "    --vars               genera .vars.txt dopo l'analisi"
-  echo "    --graph              genera grafo CHC (combinabile)"
+  echo "    --varz3              genera .vars.txt con zmiout2vars.py (Z3)"
+  echo "    --varclpq            genera .vars.txt con zmiout2vars_clpq.py"
+  echo "    --varsmt             genera .vars.txt con zmiout2vars_smtlib.py"
+  echo "    --graph              genera grafo CHC (combinabile)
+    --annotate           genera .annotated.sol con vincoli come commento"
   echo ""
   echo "  Opzioni analisi:"
   echo "    --debug, --stop-first, --stop-first-per-loop, --skip-existing"
@@ -82,14 +90,18 @@ usage() {
 ANALYSIS_FLAGS=()
 POSITIONAL=()
 DO_ANALYSIS=true
-DO_VARS=false
+DO_VARS=""
 DO_GRAPH=false
+DO_ANNOTATE=false
 
 while [ "$#" -gt 0 ]; do
   case "$1" in
     --until-tpl)          DO_ANALYSIS=false; shift ;;
-    --vars)               DO_VARS=true; shift ;;
+    --varz3)              DO_VARS="z3"; shift ;;
+    --varclpq)            DO_VARS="clpq"; shift ;;
+    --varsmt)             DO_VARS="smt"; shift ;;
     --graph)              DO_GRAPH=true; shift ;;
+    --annotate)           DO_ANNOTATE=true; shift ;;
     --debug|--stop-first|--stop-first-per-loop|--skip-existing)
       ANALYSIS_FLAGS+=("$1"); shift ;;
     --maxdepth|--looplimit|--timeout|--skip-file)
@@ -192,10 +204,15 @@ run_on_server "
 # ------------------------------------------------------------------
 # STEP 4 (opzionale): VARS — zmiout → vars.txt
 # ------------------------------------------------------------------
-if $DO_VARS; then
+if [ -n "$DO_VARS" ]; then
+  case "$DO_VARS" in
+    z3)   VARS_SCRIPT="$ZMIOUT2VARS_Z3";   VARS_LABEL="Z3" ;;
+    clpq) VARS_SCRIPT="$ZMIOUT2VARS_CLPQ"; VARS_LABEL="CLPQ" ;;
+    smt)  VARS_SCRIPT="$ZMIOUT2VARS_SMT";  VARS_LABEL="SMT-LIB" ;;
+  esac
   echo ""
   echo "=================================================="
-  echo "📋 VARIABILI: generazione .vars.txt"
+  echo "📋 VARIABILI ($VARS_LABEL): generazione .vars.txt"
   echo "=================================================="
   SERVER_DIR="$(dirname "$SERVER_CONSTR")"
   ZMIOUT_SERVER=$(run_on_server "ls -t '$SERVER_DIR'/*.zmiout 2>/dev/null | head -1")
@@ -204,8 +221,19 @@ if $DO_VARS; then
   else
     ZMIOUT_LOCAL="$SOL_DIR/$(basename "$ZMIOUT_SERVER")"
     copy_from_server "$ZMIOUT_SERVER" "$ZMIOUT_LOCAL"
-    python3 "$ZMIOUT2VARS" "$SOL" "$DEFS" "$ZMIOUT_LOCAL"
+    python3 "$VARS_SCRIPT" "$SOL" "$DEFS" "$ZMIOUT_LOCAL"
   fi
+fi
+
+# ------------------------------------------------------------------
+# STEP 5 (opzionale): ANNOTATE — genera .annotated.sol
+# ------------------------------------------------------------------
+if $DO_ANNOTATE; then
+  echo ""
+  echo "=================================================="
+  echo "✏️  ANNOTAZIONE: generazione .annotated.sol"
+  echo "=================================================="
+  python3 "$ANNOTATE_SOL" "$SOL_DIR"
 fi
 
 echo ""

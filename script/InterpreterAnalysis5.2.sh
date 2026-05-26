@@ -63,7 +63,9 @@ if [ -z "$INPUT_PATH" ] || [ -z "$TARGET" ]; then
   exit 1
 fi
 
-MAIN="../src/core/main.pl"
+# Percorso assoluto di questo script → usato per trovare main.pl e i tool
+SCRIPT_DIR="$(cd "$(dirname "$(readlink -f "$0")")" && pwd)"
+MAIN="$SCRIPT_DIR/../src/core/main.pl"
 
 # ----------------------------------------------------------
 # CONTROLLI DI BASE
@@ -79,11 +81,14 @@ if [ ! -f "$MAIN" ]; then
 fi
 
 # ----------------------------------------------------------
-# CONFIGURAZIONE AMBIENTE (server)
+# CONFIGURAZIONE AMBIENTE
+# Percorsi assoluti: funzionano per qualsiasi utente sul server.
+# Sovrascrivibili via variabili d'ambiente se necessario.
 # ----------------------------------------------------------
-SWIPL_BIN="${SWIPL_BIN:-$HOME/local/swipl-9.3.31/bin/swipl}"
-export SWIZ3_TURIBE_PATH="${SWIZ3_TURIBE_PATH:-$HOME/verimap_projects/swi-prolog-z3}"
-export LD_LIBRARY_PATH="$HOME/local/z3-4.15.3/lib:${SWIZ3_TURIBE_PATH}:${SWIZ3_TURIBE_PATH}/z3/build:${LD_LIBRARY_PATH:-}"
+_VERIMAP="/home/labeconomia/mdiianni/verimap_projects"
+SWIPL_BIN="${SWIPL_BIN:-/home/labeconomia/mdiianni/local/swipl-9.3.31/bin/swipl}"
+export SWIZ3_TURIBE_PATH="${SWIZ3_TURIBE_PATH:-$_VERIMAP/swi-prolog-z3}"
+export LD_LIBRARY_PATH="/home/labeconomia/mdiianni/local/z3-4.15.3/lib:${SWIZ3_TURIBE_PATH}:${SWIZ3_TURIBE_PATH}/z3/build:${LD_LIBRARY_PATH:-}"
 TIMEOUT_SEC=60000
 
 if [ -z "$SWIPL_BIN" ] || [ ! -x "$SWIPL_BIN" ]; then
