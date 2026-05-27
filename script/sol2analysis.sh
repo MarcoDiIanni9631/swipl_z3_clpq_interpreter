@@ -6,7 +6,7 @@
 #
 # Opzioni pipeline:
 #   --until-tpl          : ferma dopo la conversione (sol → t.pl), no analisi
-#   --varz3              : dopo l'analisi genera .vars.txt con zmiout2vars.py (Z3)
+#   --varz3              : dopo l'analisi genera .vars.txt con zmiout2vars_z3.py (Z3)
 #   --varclpq            : dopo l'analisi genera .vars.txt con zmiout2vars_clpq.py
 #   --varsmt             : dopo l'analisi genera .vars.txt con zmiout2vars_smtlib.py
 #   --graph              : genera il grafo CHC (combinabile con tutti)
@@ -27,7 +27,7 @@ set -u
 
 SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
 SOL2CONSTR="$SCRIPT_DIR/sol2constr.sh"
-ZMIOUT2VARS_Z3="$SCRIPT_DIR/zmiout2vars.py"
+ZMIOUT2VARS_Z3="$SCRIPT_DIR/zmiout2vars_z3.py"
 ZMIOUT2VARS_CLPQ="$SCRIPT_DIR/zmiout2vars_clpq.py"
 ZMIOUT2VARS_SMT="$SCRIPT_DIR/zmiout2vars_smtlib.py"
 ANNOTATE_SOL="$SCRIPT_DIR/annotate_sol.py"
@@ -72,7 +72,7 @@ usage() {
   echo ""
   echo "  Opzioni pipeline:"
   echo "    --until-tpl          ferma dopo conversione (no analisi)"
-  echo "    --varz3              genera .vars.txt con zmiout2vars.py (Z3)"
+  echo "    --varz3              genera .vars.txt con zmiout2vars_z3.py (Z3)"
   echo "    --varclpq            genera .vars.txt con zmiout2vars_clpq.py"
   echo "    --varsmt             genera .vars.txt con zmiout2vars_smtlib.py"
   echo "    --graph              genera grafo CHC (combinabile)
@@ -90,16 +90,18 @@ usage() {
 ANALYSIS_FLAGS=()
 POSITIONAL=()
 DO_ANALYSIS=true
-DO_VARS=""
+DO_VARS=()
 DO_GRAPH=false
 DO_ANNOTATE=false
+SKIP_CONVERT=false
 
 while [ "$#" -gt 0 ]; do
   case "$1" in
     --until-tpl)          DO_ANALYSIS=false; shift ;;
-    --varz3)              DO_VARS="z3"; shift ;;
-    --varclpq)            DO_VARS="clpq"; shift ;;
-    --varsmt)             DO_VARS="smt"; shift ;;
+    --skip-convert)       SKIP_CONVERT=true; shift ;;
+    --varz3)              DO_VARS+=("z3"); shift ;;
+    --varclpq)            DO_VARS+=("clpq"); shift ;;
+    --varsmt)             DO_VARS+=("smt"); shift ;;
     --graph)              DO_GRAPH=true; shift ;;
     --annotate)           DO_ANNOTATE=true; shift ;;
     --debug|--stop-first|--stop-first-per-loop|--skip-existing)
@@ -147,13 +149,18 @@ SOL_DIR="$(dirname "$SOL")"
 # ------------------------------------------------------------------
 # STEP 1: CONVERSIONE (sol → t.pl + t_constr.pl)
 # ------------------------------------------------------------------
-echo "=================================================="
-echo "🔄 CONVERSIONE: $BASE_NAME"
-echo "=================================================="
-
-bash "$SOL2CONSTR" "$SOL" "$FUNC"
-
-[ -f "$CONSTR" ] || { echo "❌ Conversione fallita: $CONSTR non generato"; exit 1; }
+if $SKIP_CONVERT; then
+  echo "=================================================="
+  echo "⏭️  CONVERSIONE saltata (--skip-convert): $BASE_NAME"
+  echo "=================================================="
+  [ -f "$CONSTR" ] || { echo "❌ --skip-convert attivo ma $CONSTR non trovato"; exit 1; }
+else
+  echo "=================================================="
+  echo "🔄 CONVERSIONE: $BASE_NAME"
+  echo "=================================================="
+  bash "$SOL2CONSTR" "$SOL" "$FUNC"
+  [ -f "$CONSTR" ] || { echo "❌ Conversione fallita: $CONSTR non generato"; exit 1; }
+fi
 
 # ------------------------------------------------------------------
 # STEP 2 (opzionale): GRAFO CHC dal .t.pl
@@ -204,16 +211,7 @@ run_on_server "
 # ------------------------------------------------------------------
 # STEP 4 (opzionale): VARS — zmiout → vars.txt
 # ------------------------------------------------------------------
-if [ -n "$DO_VARS" ]; then
-  case "$DO_VARS" in
-    z3)   VARS_SCRIPT="$ZMIOUT2VARS_Z3";   VARS_LABEL="Z3" ;;
-    clpq) VARS_SCRIPT="$ZMIOUT2VARS_CLPQ"; VARS_LABEL="CLPQ" ;;
-    smt)  VARS_SCRIPT="$ZMIOUT2VARS_SMT";  VARS_LABEL="SMT-LIB" ;;
-  esac
-  echo ""
-  echo "=================================================="
-  echo "📋 VARIABILI ($VARS_LABEL): generazione .vars.txt"
-  echo "=================================================="
+if [ "${#DO_VARS[@]}" -gt 0 ]; then
   SERVER_DIR="$(dirname "$SERVER_CONSTR")"
   ZMIOUT_SERVER=$(run_on_server "ls -t '$SERVER_DIR'/*.zmiout 2>/dev/null | head -1")
   if [ -z "$ZMIOUT_SERVER" ]; then
@@ -221,7 +219,18 @@ if [ -n "$DO_VARS" ]; then
   else
     ZMIOUT_LOCAL="$SOL_DIR/$(basename "$ZMIOUT_SERVER")"
     copy_from_server "$ZMIOUT_SERVER" "$ZMIOUT_LOCAL"
-    python3 "$VARS_SCRIPT" "$SOL" "$DEFS" "$ZMIOUT_LOCAL"
+    for VARS_BACKEND in "${DO_VARS[@]}"; do
+      case "$VARS_BACKEND" in
+        z3)   VARS_SCRIPT="$ZMIOUT2VARS_Z3";   VARS_LABEL="Z3" ;;
+        clpq) VARS_SCRIPT="$ZMIOUT2VARS_CLPQ"; VARS_LABEL="CLPQ" ;;
+        smt)  VARS_SCRIPT="$ZMIOUT2VARS_SMT";  VARS_LABEL="SMT-LIB" ;;
+      esac
+      echo ""
+      echo "=================================================="
+      echo "📋 VARIABILI ($VARS_LABEL): generazione .vars.txt"
+      echo "=================================================="
+      python3 "$VARS_SCRIPT" "$SOL" "$DEFS" "$ZMIOUT_LOCAL"
+    done
   fi
 fi
 

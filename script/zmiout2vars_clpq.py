@@ -406,7 +406,8 @@ def main():
     defs   = open(defs_path).read()
     zmiout = open(zmiout_path).read()
 
-    out_path = zmiout_path + ".vars_clpq.txt"
+    sol_stem = os.path.splitext(os.path.basename(sol_path))[0]
+    out_path = os.path.join(os.path.dirname(zmiout_path), sol_stem + ".vars_clpq.txt")
 
     blocks           = load_defs_blocks(defs)
     func, entry_pred = detect_func_and_entry(blocks)
@@ -425,6 +426,8 @@ def main():
     for i, test_block in enumerate(tests, 1):
         if len(tests) > 1:
             all_lines.append(f"================ TEST #{i} ================")
+        if 'testVerimapGood' in test_block:
+            all_lines.append("[POSITIVE WITNESS — verimapGood]")
         all_lines.extend(process_test(test_block, blocks, state_vars, func, func_args, entry_pred))
         all_lines.append("")
 
