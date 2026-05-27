@@ -1,89 +1,186 @@
-Pipeline Commands — Quick Reference
-(tested on AuctionOffer.sol, function: offer, target: incorrect)
+# Pipeline — Step-by-step commands
 
-REPO=/home/labeconomia/mdiianni/verimap_projects/swipl_z3_clpq_interpreter
-BASE=/home/labeconomia/mdiianni/verimap_projects/swipl_z3_clpq_interpreter/test/README_test
+All commands below use these two variables — set them to your actual installation paths:
 
+```bash
+GREY_DIR=/path/to/grey
+YULCHC_DIR=/path/to/yul-chc
+```
 
-==============================================================
-ALL-IN-ONE
-==============================================================
+---
 
-nohup bash $REPO/script/sol2analysis.sh --stop-first-per-loop --timeout 60 --varz3 --varclpq --annotate $BASE/step_sol2analysis_endtoend_v2/AuctionOffer.sol incorrect > $BASE/step_sol2analysis_endtoend_v2/run.log 2>&1 &
-tail -f $BASE/step_sol2analysis_endtoend_v2/run.log
+### 1. `.sol` → `.json` — Compile Solidity to YUL (GREY)
 
+GREY invokes `solc` on the Solidity source and produces a JSON file containing the YUL intermediate representation of the contract.
 
-==============================================================
-STEP 1a — Solidity → JSON  (GREY)
-==============================================================
+```bash
+cd $GREY_DIR
+python3 src/grey_main.py \
+  -s /absolute/path/to/MyContract/MyContract.sol \
+  -v -if sol -o output -solc ./solc-latest
+mv output/intermediate.json /absolute/path/to/MyContract/MyContract.json
+```
 
-cd /home/labeconomia/mdiianni/verimap_projects/grey
-python3 src/grey_main.py -s $BASE/step1a_grey_sol_to_json/AuctionOffer.sol -v -if sol -o output -solc ./solc-latest
-mv intermediate.json $BASE/step1a_grey_sol_to_json/AuctionOffer.json
+> **Warning:** GREY always writes to `output/intermediate.json` inside its own directory.
+> Do not run multiple conversions in parallel — they overwrite each other.
 
+---
 
-==============================================================
-STEP 1b — JSON → .pl  (yul2chc)
-==============================================================
+### 2. `.json` → `.pl` — Translate YUL to raw CHC clauses (yul2chc)
 
-cd /home/labeconomia/mdiianni/verimap_projects/yul-chc
-python3 scripts/yul2chc.py -json $BASE/step1b_yulchc_json_to_pl/AuctionOffer.json
+The JSON is translated into raw Constrained Horn Clauses in Prolog syntax.
+Output is written to the same directory as the `.json`.
 
+```bash
+cd $YULCHC_DIR
+python3 scripts/yul2chc.py -json /absolute/path/to/MyContract/MyContract.json
+```
 
-==============================================================
-STEP 1c — Inspect .pl  (find function name and entry block)
-==============================================================
+Output: `MyContract.pl`
 
-grep "^fun(" $BASE/step1c_write_aux_pl/AuctionOffer.pl
-# Look for:  fun(subO_fun_<name>_<N>, ..., <StartBlock>, ...)
-# Ignore:    subO_external_fun_*, subO_getter_fun_*, subO_abi_*
+---
 
+### 3. Write `aux.pl` — Define the function entry point
 
-==============================================================
-STEP 1d — .pl → .t.pl  (transform)
-==============================================================
+The `.aux.pl` file tells the interpreter which function to analyse and how to call it.
+Inspect the `.pl` (look for `fun(subO_fun_*)` lines) to find the function name, its input variables, and its start block.
 
-cd /home/labeconomia/mdiianni/verimap_projects/yul-chc
-./scripts/transform --interactive $BASE/step1d_transform_pl_to_tpl/AuctionOffer.pl lib/yul/configs/vcg_multistep.iteration
+```prolog
+% MyContract.aux.pl
+evm_globals(['msg.value']).
 
+prop(Env1, Cf0, []) :-
+    Cmd = cmd(
+        'START_BLOCK',                          % entry block name (from .pl)
+        fun_call(subO_fun_myFunction_N,         % function name   (from .pl)
+                 [num(_V_v0), num(_V_v1)], [])  % one num() per input arg
+    ),
+    Cf0 = cf(Cmd, Env1).
+```
 
-==============================================================
-STEP 2 — .t.pl → .t_constr.pl  (yulPl2Constr)
-==============================================================
+> `sol2tpl.py` generates this file automatically — write it by hand only if you need
+> a custom entry point or want to re-use an existing `.pl`.
 
-python3 $REPO/script/yulPl2Constr.py $BASE/step2_yulpl2constr_tpl_to_tconstr/AuctionOffer.t.pl
+---
 
+### 4. `.pl` + `aux.pl` → `.t.pl` + `.t.pl-defs.txt` — Transform CHC clauses (transform)
 
-==============================================================
-STEP 3 — Analysis  (.t_constr.pl → .zmiout)
-==============================================================
+The `transform` tool applies verification-condition transformations to the raw CHC clauses,
+producing the final form used by the interpreter (`.t.pl`) and a predicate definitions file
+(`.t.pl-defs.txt`) needed by the variable-mapping scripts.
+Must be run from the yul-chc directory.
 
-nohup bash $REPO/script/InterpreterAnalysis5.2.sh --stop-first-per-loop --timeout 60 $BASE/step3_analysis_tconstr_to_zmiout/AuctionOffer.t_constr.pl incorrect &
+```bash
+cd $YULCHC_DIR
+./scripts/transform \
+  --interactive \
+  /absolute/path/to/MyContract/MyContract.pl \
+  lib/yul/configs/vcg_multistep.iteration
+```
 
+Output: `MyContract.t.pl` and `MyContract.t.pl-defs.txt` in the same folder as the `.pl`.
 
-==============================================================
-STEP 4a — Variables with Z3
-==============================================================
+---
 
-python3 $REPO/script/zmiout2vars_z3.py $BASE/step4_zmiout2vars/AuctionOffer.sol $BASE/step4_zmiout2vars/AuctionOffer.t.pl-defs.txt $BASE/step4_zmiout2vars/AuctionOffer.t_constr.pl.*.zmiout
+### Steps 1–4 in one command
 
+`sol2tpl.py` runs GREY, yul2chc, generates `aux.pl`, and runs `transform` automatically:
 
-==============================================================
-STEP 4b — Variables with CLPQ
-==============================================================
+```bash
+python3 script/sol2tpl.py test/MyContract/MyContract.sol
+# or, to specify the function explicitly:
+python3 script/sol2tpl.py test/MyContract/MyContract.sol myFunction
+```
 
-python3 $REPO/script/zmiout2vars_clpq.py $BASE/step4b_zmiout2vars_clpq/AuctionOffer.sol $BASE/step4b_zmiout2vars_clpq/AuctionOffer.t.pl-defs.txt $BASE/step4b_zmiout2vars_clpq/AuctionOffer.t_constr.pl.*.zmiout
+---
 
+### 5. `.t.pl` → `.t_constr.pl` — Add CLP(Q) constraints
 
-==============================================================
-STEP 5 — Annotate .sol  (appends constraints as comment)
-==============================================================
+The `.t.pl` clauses use plain Prolog arithmetic. This step rewrites every arithmetic
+operation into CLP(Q) constraints, enabling symbolic reasoning over numeric values
+during analysis.
 
-python3 $REPO/script/annotate_sol.py $BASE/step5_annotate_sol/
+```bash
+python3 script/yulPl2Constr.py test/MyContract/MyContract.t.pl
+```
 
+Output: `MyContract.t_constr.pl` in the same folder as the `.t.pl`.
 
-==============================================================
-STEP 6 — CHC graph  (chcviz)
-==============================================================
+---
 
-chcviz $BASE/step6_chcviz/AuctionOffer.t.pl
+### 6. `.t_constr.pl` → `.zmiout` — Run the analysis
+
+The SWI-Prolog interpreter unfolds the CHC clauses depth-first, accumulating CLP(Q)
+constraints and discharging them to Z3 at each step. When a path to an `assert`
+violation is satisfiable, Z3 returns a concrete model — the counterexample. The
+full call trace and Z3 model are written to a `.zmiout` file.
+
+```bash
+nohup bash script/InterpreterAnalysis5.2.sh \
+  --stop-first-per-loop \
+  --timeout 300 \
+  test/MyContract/MyContract.t_constr.pl \
+  incorrect &
+```
+
+The `.zmiout` filename encodes the outcome:
+- `derivable` — a violation was found (counterexample inside)
+- `nonDerivable` — no violation found within the given depth/timeout
+
+**Analysis flags:**
+
+| Flag | Meaning |
+|---|---|
+| `--stop-first-per-loop` | One counterexample per loop iteration (recommended) |
+| `--stop-first` | Stop at the very first counterexample found |
+| `--timeout SEC` | Timeout in seconds (default: 60000) |
+| `--maxdepth N` | Maximum unfolding depth (default: 10000000) |
+| `--looplimit N` | Maximum number of loop iterations |
+| `--skip-existing` | Skip if a `.zmiout` already exists |
+| `--debug` | Verbose output |
+
+---
+
+### 7. `.zmiout` → `.vars_z3.txt` / `.vars_clpq.txt` — Map to Solidity variables
+
+The `.zmiout` contains raw Z3 variable names (e.g. `_352`, `_32314`) with no direct
+connection to Solidity. This step uses the structural layout of the CHC predicates
+(from `.t.pl-defs.txt`) to map each Z3 variable back to its Solidity name (state
+variable or function argument), then projects the constraints onto those variables
+only, eliminating internal auxiliary variables.
+
+```bash
+# Z3 backend (quantifier elimination):
+python3 script/zmiout2vars_z3.py \
+  test/MyContract/MyContract.sol \
+  test/MyContract/MyContract.t.pl-defs.txt \
+  test/MyContract/MyContract.t_constr.pl.*.zmiout
+
+# CLP(Q) backend (projection via SWI-Prolog dump/3):
+python3 script/zmiout2vars_clpq.py \
+  test/MyContract/MyContract.sol \
+  test/MyContract/MyContract.t.pl-defs.txt \
+  test/MyContract/MyContract.t_constr.pl.*.zmiout
+```
+
+Output: `...zmiout.vars_z3.txt` and/or `...zmiout.vars_clpq.txt`
+
+---
+
+### 8. `.vars_z3.txt` → `.annotated.sol` — Annotate the source file
+
+Appends the projected constraints as a `/* ... */` comment block at the end of the
+original `.sol`, so witness values and conditions are readable directly alongside
+the source code.
+
+```bash
+# Entire folder (auto-finds .sol + .vars_z3.txt pairs):
+python3 script/annotate_sol.py test/MyContract/
+
+# Single pair:
+python3 script/annotate_sol.py \
+  test/MyContract/MyContract.sol \
+  "test/MyContract/MyContract.t_constr.pl.*.zmiout.vars_z3.txt"
+```
+
+Output: `MyContract.annotated.sol`
